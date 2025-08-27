@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Podfy – Proof of Delivery, retrieved in seconds</title>
+  <meta name="description" content="Podfy lets brand owners retrieve Proof of Delivery documents fast. Assign drivers, capture PODs, and share branded links instantly." />
+  <meta property="og:title" content="Podfy – Proof of Delivery, retrieved in seconds" />
+  <meta property="og:description" content="Assign drivers, capture PODs, and share branded links instantly." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://podfy.net/" />
+  <meta property="og:image" content="https://podfy.net/og-image.png" />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Tailwind Play CDN (OK for MVP; swap to compiled Tailwind later) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#4B5563',   // Podfy gray (text/logo)
+              accent: '#2563EB'     // CTA blue (change to taste)
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+  <!-- Top bar -->
+  <header class="border-b border-slate-100">
+    <div class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+      <!-- Inline gray logo (box + arrow + check + Podfy wordmark) -->
+      <a href="#" class="flex items-center gap-3">
+        <svg width="32" height="32" viewBox="0 0 64 64" aria-label="Podfy logo" class="text-brand">
+          <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 22l24-12 24 12v20L32 54 8 42V22Z"/>
+            <path d="M32 54V34"/>
+            <path d="M14 36h10"/><path d="M24 36l6 4-6 4"/>
+            <path d="M38 36l4 5 8-10"/>
+          </g>
+        </svg>
+        <span class="text-xl font-semibold tracking-tight text-brand">Podfy</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm">
+        <a href="#how" class="hover:text-brand">How it works</a>
+        <a href="#features" class="hover:text-brand">Features</a>
+        <a href="#security" class="hover:text-brand">Security</a>
+        <a href="#pricing" class="hover:text-brand">Pricing</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="https://podfy.app" class="hidden md:inline-block rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50">Open app</a>
+        <a href="#contact" class="inline-block rounded-lg bg-brand-accent px-4 py-2 text-white text-sm font-medium shadow hover:opacity-95">Request a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-slate-50">
+    <div class="mx-auto max-w-6xl px-4 py-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">Proof of Delivery, retrieved in seconds</h1>
+        <p class="mt-4 text-lg text-slate-600">Podfy lets brand owners assign drivers to upload signed PODs instantly. Customer-specific links show the right logo and color—everything else is standardized and fast.</p>
+        <div class="mt-6 flex gap-3">
+          <a href="https://podfy.app" class="rounded-lg bg-brand-accent px-5 py-3 text-white font-medium shadow hover:opacity-95">Try Podfy.app</a>
+          <a href="#how" class="rounded-lg border px-5 py-3 text-slate-700 hover:bg-white">See how it works</a>
+        </div>
+        <p class="mt-3 text-xs text-slate-500">No credit card required. GDPR-ready. EU data residency available.</p>
+      </div>
+      <div class="relative">
+        <div class="rounded-2xl border bg-white p-6 shadow-sm">
+          <div class="text-sm text-slate-500 mb-3">Driver upload preview</div>
+          <div class="rounded-lg border p-4">
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+              <div class="h-6 w-6 rounded bg-slate-100"></div>
+              <span>podfy.app/<strong class="text-slate-900">acme</strong></span>
+            </div>
+            <div class="mt-4 grid gap-3">
+              <input class="w-full rounded border px-3 py-2 text-sm" placeholder="Delivery ID">
+              <input class="w-full rounded border px-3 py-2 text-sm" placeholder="Order number">
+              <button class="rounded bg-brand-accent px-3 py-2 text-white text-sm">Upload signed POD</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-2xl font-bold">How it works</h2>
+    <div class="mt-6 grid md:grid-cols-3 gap-6">
+      <div class="rounded-xl border p-6">
+        <div class="text-sm font-semibold text-slate-700">1. Assign</div>
+        <p class="mt-2 text-slate-600">Create a customer slug (e.g., <code>acme</code>). Share the link or QR with your driver.</p>
+      </div>
+      <div class="rounded-xl border p-6">
+        <div class="text-sm font-semibold text-slate-700">2. Capture</div>
+        <p class="mt-2 text-slate-600">Driver snaps the signed note or uploads a PDF. Auto-compression and cleanup included.</p>
+      </div>
+      <div class="rounded-xl border p-6">
+        <div class="text-sm font-semibold text-slate-700">3. Retrieve</div>
+        <p class="mt-2 text-slate-600">Brand owner sees the POD instantly with logo/color applied and can search, preview, and export.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="bg-slate-50">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl font-bold">Built for brand owners</h2>
+      <ul class="mt-6 grid md:grid-cols-2 gap-4 text-slate-700">
+        <li>Customer-branded links (logo + button color via slug)</li>
+        <li>Blazing-fast uploads and previews</li>
+        <li>Searchable POD database (order, date, driver)</li>
+        <li>Webhooks + email/SMS notifications</li>
+        <li>Role-based access and audit log</li>
+        <li>Bulk export and retention policies</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Security -->
+  <section id="security" class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-2xl font-bold">Security & compliance</h2>
+    <div class="mt-4 grid md:grid-cols-2 gap-6 text-slate-700">
+      <div class="rounded-xl border p-6">
+        <h3 class="font-semibold">HTTPS by default</h3>
+        <p class="mt-1">.app is HSTS-preloaded. All traffic is encrypted end-to-end.</p>
+      </div>
+      <div class="rounded-xl border p-6">
+        <h3 class="font-semibold">EU data residency</h3>
+        <p class="mt-1">Store data in EU regions and configure clear retention windows.</p>
+      </div>
+      <div class="rounded-xl border p-6">
+        <h3 class="font-semibold">Access control</h3>
+        <p class="mt-1">Role-based access, signed URLs, and per-customer isolation.</p>
+      </div>
+      <div class="rounded-xl border p-6">
+        <h3 class="font-semibold">Auditability</h3>
+        <p class="mt-1">Track who uploaded, viewed, and downloaded each POD.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="bg-slate-50">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl font-bold">Simple pricing</h2>
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="rounded-xl border p-6">
+          <div class="text-sm font-semibold text-slate-700">Starter</div>
+          <div class="mt-2 text-3xl font-bold">€0</div>
+          <p class="mt-1 text-slate-600">Pilot up to 3 customers</p>
+        </div>
+        <div class="rounded-xl border p-6 border-brand-accent">
+          <div class="text-sm font-semibold text-slate-700">Business</div>
+          <div class="mt-2 text-3xl font-bold">€—</div>
+          <p class="mt-1 text-slate-600">Unlimited customers, webhook notifications, audit log</p>
+        </div>
+        <div class="rounded-xl border p-6">
+          <div class="text-sm font-semibold text-slate-700">Enterprise</div>
+          <div class="mt-2 text-3xl font-bold">Custom</div>
+          <p class="mt-1 text-slate-600">SLA, SSO, data retention controls</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="mx-auto max-w-6xl px-4 py-16">
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      <div>
+        <h2 class="text-2xl font-bold">Request a live demo</h2>
+        <p class="mt-2 text-slate-600">Tell us about your operation and we’ll show how brand-specific slugs, driver uploads, and instant retrieval work.</p>
+        <ul class="mt-4 text-slate-700 list-disc pl-5">
+          <li>Response within 1 business day</li>
+          <li>No installation required</li>
+        </ul>
+      </div>
+      <form class="rounded-xl border p-6 bg-white grid gap-3" action="https://submit-form.com/YOUR_FORMSPARK_ID" method="POST">
+        <input type="hidden" name="_redirect" value="https://podfy.net/thanks" />
+        <label class="text-sm">Name
+          <input name="name" required class="mt-1 w-full rounded border px-3 py-2" />
+        </label>
+        <label class="text-sm">Email
+          <input type="email" name="email" required class="mt-1 w-full rounded border px-3 py-2" />
+        </label>
+        <label class="text-sm">Company
+          <input name="company" class="mt-1 w-full rounded border px-3 py-2" />
+        </label>
+        <label class="text-sm">Message
+          <textarea name="message" rows="4" class="mt-1 w-full rounded border px-3 py-2"></textarea>
+        </label>
+        <button class="mt-2 rounded-lg bg-brand-accent px-4 py-2 text-white font-medium hover:opacity-95" type="submit">Request demo</button>
+        <p class="text-xs text-slate-500">We respect your privacy. No spam.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="border-t">
+    <div class="mx-auto max-w-6xl px-4 py-8 text-sm text-slate-500 flex flex-wrap items-center justify-between gap-3">
+      <span>© <span id="y"></span> Podfy</span>
+      <div class="flex gap-4">
+        <a href="#security" class="hover:text-slate-700">Security</a>
+        <a href="/privacy.html" class="hover:text-slate-700">Privacy</a>
+        <a href="/terms.html" class="hover:text-slate-700">Terms</a>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
