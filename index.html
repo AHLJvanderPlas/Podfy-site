@@ -194,23 +194,42 @@
           <li>No installation required</li>
         </ul>
       </div>
-      <form class="rounded-xl border p-6 bg-white grid gap-3" action="https://submit-form.com/YOUR_FORMSPARK_ID" method="POST">
-        <input type="hidden" name="_redirect" value="https://podfy.net/thanks" />
-        <label class="text-sm">Name
-          <input name="name" required class="mt-1 w-full rounded border px-3 py-2" />
-        </label>
-        <label class="text-sm">Email
-          <input type="email" name="email" required class="mt-1 w-full rounded border px-3 py-2" />
-        </label>
-        <label class="text-sm">Company
-          <input name="company" class="mt-1 w-full rounded border px-3 py-2" />
-        </label>
-        <label class="text-sm">Message
-          <textarea name="message" rows="4" class="mt-1 w-full rounded border px-3 py-2"></textarea>
-        </label>
-        <button class="mt-2 rounded-lg bg-brand-accent px-4 py-2 text-white font-medium hover:opacity-95" type="submit">Request demo</button>
-        <p class="text-xs text-slate-500">We respect your privacy. No spam.</p>
-      </form>
+<form action="https://submit-form.com/UQgzHuUP3" method="POST" class="rounded-xl border p-6 bg-white grid gap-3">
+  <!-- Redirect after success -->
+  <input type="hidden" name="_redirect" value="https://podfy.net/thanks.html" />
+
+  <!-- Spam honeypot (keeps bots out) -->
+  <input type="text" name="website" tabindex="-1" autocomplete="off"
+         style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+
+  <label class="text-sm">Name
+    <input name="name" required class="mt-1 w-full rounded border px-3 py-2" />
+  </label>
+
+  <label class="text-sm">Email
+    <input type="email" name="email" required class="mt-1 w-full rounded border px-3 py-2" />
+  </label>
+
+  <label class="text-sm">Company
+    <input name="company" class="mt-1 w-full rounded border px-3 py-2" />
+  </label>
+
+  <label class="text-sm">Message
+    <textarea name="message" rows="4" class="mt-1 w-full rounded border px-3 py-2"></textarea>
+  </label>
+
+  <!-- Optional consent (good for GDPR clarity) -->
+  <label class="inline-flex items-start gap-2 text-sm">
+    <input type="checkbox" name="consent" required class="mt-1">
+    I agree to be contacted about my demo request and have read the
+    <a href="/privacy.html" class="text-blue-600 underline">Privacy Policy</a>.
+  </label>
+
+  <button class="mt-2 rounded-lg bg-brand-accent px-4 py-2 text-white font-medium hover:opacity-95" type="submit">
+    Request demo
+  </button>
+</form>
+
     </div>
   </section>
 
