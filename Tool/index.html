@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Opening Podfy App…</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+           margin: 0; display: grid; place-items: center; min-height: 100vh;
+           color: #0f172a; background: #f8fafc; }
+    .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 24px; max-width: 520px; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+    .btn { display: inline-block; padding: 10px 16px; border-radius: 8px; color: #fff;
+           background: #2563eb; text-decoration: none; font-weight: 600; }
+    .muted { color: #64748b; font-size: 14px; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 style="margin:0 0 8px 0;">Opening Podfy App…</h1>
+    <p id="status" class="muted">We’re trying to open the app in a new tab.</p>
+    <p><a id="cta" class="btn" href="https://podfy.app" rel="noopener" target="_blank">Open Podfy now</a></p>
+    <p class="muted">If nothing happens, click the button above.</p>
+  </div>
+
+  <script>
+    (function () {
+      const url = "https://podfy.app";
+      // Try to open in a new tab
+      const win = window.open(url, "_blank", "noopener");
+      if (!win) {
+        // Likely blocked by a popup blocker — update message and auto-redirect same tab after a short delay
+        document.getElementById("status").textContent = "Your browser blocked the new tab. Redirecting in 1.5s…";
+        setTimeout(() => { window.location.href = url; }, 1500);
+      }
+    })();
+  </script>
+</body>
+</html>
