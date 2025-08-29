@@ -4,8 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Companies – Podfy</title>
-  <meta name="description" content="Auto-updating list of companies and theme settings from podfy.app." />
-  <link rel="canonical" href="https://podfy.net/companies">
+  <meta name="description" content="Internal list of companies and theme settings from podfy.app." />
+  <!-- Do not index or follow -->
+  <meta name="robots" content="noindex, nofollow" />
 
   <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,6 +18,9 @@
     html { scroll-behavior: smooth; }
     .color-cell { font-weight:600; border-left: 1px solid rgba(0,0,0,.06); border-right: 1px solid rgba(0,0,0,.06); }
     .color-cell code { background: rgba(255,255,255,.2); padding: 2px 6px; border-radius: 6px }
+    .logo-img { height: 24px; max-width: 200px; object-fit: contain }
+    .favicon-img { width: 20px; height: 20px; object-fit: contain; border-radius: 4px }
+    th, td { white-space: nowrap; }
   </style>
 </head>
 <body class="bg-white text-slate-800 antialiased">
@@ -42,7 +46,11 @@
 
   <main class="mx-auto max-w-6xl px-4 py-10">
     <h1 class="text-3xl font-bold">Companies</h1>
-    <p class="mt-2 text-slate-600">Auto-loaded from <code>https://podfy.app/themes.json</code>. New companies appear here automatically.</p>
+    <p class="mt-2 text-slate-600">
+      Auto-loaded from <code>https://podfy.app/themes.json</code>. Favicon links are used from the JSON when present;
+      otherwise we try <code>https://podfy.app/favicons/&lt;slug&gt;.(ico|png|svg)</code>. Logos are taken from JSON or
+      <code>https://podfy.app/logos/&lt;slug&gt;.(svg|png|jpg|webp)</code>.
+    </p>
 
     <div class="mt-6 flex items-center gap-3">
       <input id="search" placeholder="Filter by slug, name or any field…" class="w-full max-w-md rounded border px-3 py-2 text-sm" />
@@ -59,12 +67,13 @@
     </div>
 
     <p class="mt-3 text-xs text-slate-500">
-      Notes: logos are inferred from fields like <code>logo</code>/<code>logoUrl</code>. Any field that looks like a color (hex/rgb/rgba/hsl) is rendered with that background; the color code remains visible.
+      Notes: any field that looks like a color (hex/rgb/rgba/hsl) is rendered with that background; the code remains visible.
     </p>
   </main>
 
   <script>
     const ENDPOINT = "https://podfy.app/themes.json";
+    const BASE = "https://podfy.app";
 
     const statusEl = document.getElementById('status');
     const thead = document.querySelector('#tbl thead');
@@ -93,7 +102,7 @@
         const [r,g,b] = c.match(/\d+(\.\d+)?/g).map(Number);
         return { r, g, b };
       }
-      if (HSL_RE.test(c)) { // minimal hsl->rgb
+      if (HSL_RE.test(c)) {
         const [h,s,l] = c.match(/\d+(\.\d+)?/g).map(Number);
         return hslToRgb(h/360, s/100, l/100);
       }
@@ -115,9 +124,11 @@
       return L > 0.5 ? '#111' : '#fff';
     }
 
-    // --- Data shaping ---
-    const logoKeys = ['logo','logoUrl','logoURL','logo_url','icon','iconUrl','iconURL','brandLogo'];
+    // --- Keys from JSON ---
+    const logoKeysFromJson = ['logo','logoUrl','logoURL','logo_url','brandLogo','brand_logo'];
+    const faviconKeysFromJson = ['favicon','faviconUrl','faviconURL','favicon_url','shortcutIcon','appleTouchIcon'];
 
+    // --- Flatten helper so nested theme.color.primary also becomes a column ---
     function flatten(obj, prefix='', out={}) {
       Object.entries(obj || {}).forEach(([k,v])=>{
         const key = prefix ? `${prefix}.${k}` : k;
@@ -134,25 +145,71 @@
       let rows = [];
       if (Array.isArray(json)) rows = json.slice();
       else rows = Object.entries(json||{}).map(([slug, cfg]) => ({ slug, ...cfg }));
+
       rows = rows.map(r=>{
         const flat = flatten(r);
         if (!flat.slug && r.slug) flat.slug = r.slug;
+        if (!flat.slug && (flat.name || flat.brand)) {
+          flat.slug = String(flat.name || flat.brand).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+        }
         return flat;
       });
       return rows;
     }
 
+    // --- Columns: favicon first, then logo, then slug/name/brand, then color keys, then the rest ---
     function collectColumns(rows){
       const set = new Set();
       rows.forEach(r => Object.keys(r||{}).forEach(k => set.add(k)));
       const keys = [...set];
+
       const score = (k)=>{
-        if (k === 'slug') return -1000;
-        if (k === 'name' || k === 'brand') return -900;
-        if (k.toLowerCase().includes('color')) return -800; // color columns first
+        if (k === 'slug') return -700;
+        if (k === 'name' || k === 'brand') return -600;
+        if (k.toLowerCase().includes('color')) return -500;
         return k.startsWith('_') ? 100 : 0;
       };
-      return keys.sort((a,b)=> score(a) - score(b) || a.localeCompare(b));
+      const rest = keys
+        .filter(k => !['favicon','logo'].includes(k))
+        .sort((a,b)=> score(a) - score(b) || a.localeCompare(b));
+
+      // Inject our image columns at the very front
+      return ['favicon','logo', ...rest];
+    }
+
+    // --- URL helpers + fallbacks ---
+    function urlJoin(base, path) { return base.replace(/\/+$/, '') + '/' + path.replace(/^\/+/, ''); }
+
+    function logoCandidates(slug) {
+      const p = `logos/${slug}`;
+      return [
+        urlJoin(BASE, `${p}.svg`),
+        urlJoin(BASE, `${p}.png`),
+        urlJoin(BASE, `${p}.jpg`),
+        urlJoin(BASE, `${p}.jpeg`),
+        urlJoin(BASE, `${p}.webp`),
+        `${BASE}//logos/${slug}.svg` // tolerate accidental double slash
+      ];
+    }
+    function faviconCandidates(slug) {
+      const p = `favicons/${slug}`;
+      return [
+        urlJoin(BASE, `${p}.ico`),
+        urlJoin(BASE, `${p}.png`),
+        urlJoin(BASE, `${p}.svg`)
+      ];
+    }
+
+    function setImageWithFallback(img, urls) {
+      const list = urls.filter(Boolean);
+      let i = 0;
+      function next() {
+        if (i >= list.length) { img.replaceWith(document.createTextNode('')); return; }
+        const url = list[i++];
+        img.onerror = next;
+        img.src = url;
+      }
+      next();
     }
 
     // --- Rendering ---
@@ -161,18 +218,42 @@
       const filtered = rows.filter(r => JSON.stringify(r).toLowerCase().includes(q));
       const cols = collectColumns(filtered);
 
+      // header
       thead.innerHTML = '<tr>' + cols.map(c => `<th class="text-left px-3 py-2 font-semibold">${c}</th>`).join('') + '</tr>';
 
+      // body
       tbody.innerHTML = filtered.map(r => {
+        const slug = r.slug || '';
+        // URLs provided in JSON?
+        const faviconFromJson = Object.entries(r).find(([k,v]) => faviconKeysFromJson.includes(k) && looksLikeUrl(v))?.[1];
+        const logoFromJson = Object.entries(r).find(([k,v]) => logoKeysFromJson.includes(k) && looksLikeUrl(v))?.[1];
+
         return '<tr>' + cols.map(c => {
           let v = r[c];
 
-          // Logo-like fields render as images if URL
-          if (logoKeys.some(k => c.toLowerCase().includes(k.toLowerCase())) && looksLikeUrl(v)) {
-            return `<td class="px-3 py-2"><img src="${v}" alt="${r.slug||''} logo" class="h-6 max-w-[160px] object-contain"/></td>`;
+          // Injected favicon column (FIRST)
+          if (c === 'favicon') {
+            const urls = faviconFromJson ? [faviconFromJson] : faviconCandidates(slug);
+            const data = urls.map(encodeURIComponent).join('|');
+            return `<td class="px-3 py-2"><img class="favicon-img company-img" data-srcs="${data}" alt="${slug} favicon"></td>`;
           }
 
-          // Color fields: background = color, text = readable
+          // Injected logo column (SECOND)
+          if (c === 'logo') {
+            const urls = logoFromJson ? [logoFromJson] : logoCandidates(slug);
+            const data = urls.map(encodeURIComponent).join('|');
+            return `<td class="px-3 py-2"><img class="logo-img company-img" data-srcs="${data}" alt="${slug} logo"></td>`;
+          }
+
+          // If JSON itself contains a favicon/logo field, render as image
+          if (faviconKeysFromJson.includes(c) && looksLikeUrl(v)) {
+            return `<td class="px-3 py-2"><img src="${v}" alt="${slug} favicon" class="favicon-img"/></td>`;
+          }
+          if (logoKeysFromJson.includes(c) && looksLikeUrl(v)) {
+            return `<td class="px-3 py-2"><img src="${v}" alt="${slug} logo" class="logo-img"/></td>`;
+          }
+
+          // Color fields: colored background
           if (looksLikeColor(v)) {
             const txt = bestTextColor(v);
             const border = txt === '#fff' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.12)';
@@ -191,6 +272,12 @@
         }).join('') + '</tr>';
       }).join('');
 
+      // Load favicon/logo fallbacks after DOM insert
+      document.querySelectorAll('img.company-img').forEach(img => {
+        const list = decodeURIComponent(img.dataset.srcs || '').split('|').filter(Boolean).map(decodeURIComponent);
+        setImageWithFallback(img, list);
+      });
+
       statusEl.textContent = `${filtered.length} compan${filtered.length===1?'y':'ies'} shown`;
     }
 
@@ -207,6 +294,7 @@
       }
     }
 
+    // Flatten + normalize already defined above
     document.getElementById('refresh').addEventListener('click', load);
     search.addEventListener('input', () => render(window.__companies||[]));
     load();
