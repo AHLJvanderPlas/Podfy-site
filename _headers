@@ -16,3 +16,6 @@ Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.tailw
 # Long-cache static assets (place logos, icons, og-image here)
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+/companies
+  X-Robots-Tag: noindex, nofollow
