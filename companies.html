@@ -18,8 +18,6 @@
     html { scroll-behavior: smooth; }
     .color-cell { font-weight:600; border-left: 1px solid rgba(0,0,0,.06); border-right: 1px solid rgba(0,0,0,.06); }
     .color-cell code { background: rgba(255,255,255,.2); padding: 2px 6px; border-radius: 6px }
-    .logo-img { height: 24px; max-width: 220px; object-fit: contain }
-    .favicon-img { width: 20px; height: 20px; object-fit: contain; border-radius: 4px }
     th, td { white-space: nowrap; }
   </style>
 </head>
@@ -47,13 +45,11 @@
   <main class="mx-auto max-w-6xl px-4 py-10">
     <h1 class="text-3xl font-bold">Companies</h1>
     <p class="mt-2 text-slate-600">
-      Auto-loaded from <code>https://podfy.app/themes.json</code>. We render <strong>SVG</strong> favicons and logos from the JSON.
-      If a URL is relative (e.g. <code>/logos/podfy.svg</code>), we prefix <code>https://podfy.app/</code>.
-      Any field that looks like a color is shown with that color as the cell background.
+      Auto-loaded from <code>https://podfy.app/themes.json</code>. Columns for <code>logo</code>, <code>favicon</code>, and <code>mailTo</code> are hidden. Color fields are rendered with their color as the cell background.
     </p>
 
     <div class="mt-6 flex items-center gap-3">
-      <input id="search" placeholder="Filter by slug, name or any field…" class="w-full max-w-md rounded border px-3 py-2 text-sm" />
+      <input id="search" placeholder="Filter by slug, brandName or any field…" class="w-full max-w-md rounded border px-3 py-2 text-sm" />
       <button id="refresh" class="rounded border px-3 py-2 text-sm hover:bg-slate-50">Refresh</button>
     </div>
 
@@ -67,13 +63,12 @@
     </div>
 
     <p class="mt-3 text-xs text-slate-500">
-      Notes: JSON fields used for images are <code>favicon</code> and <code>logo</code> (SVG only). Color fields accept hex/rgb/rgba/hsl.
+      Notes: color-like values supported: HEX, rgb(), rgba(), hsl(). Hidden keys: <code>logo</code>, <code>favicon</code>, <code>mailTo</code>.
     </p>
   </main>
 
   <script>
     const ENDPOINT = "https://podfy.app/themes.json";
-    const PREFIX = "https://podfy.app";
 
     const statusEl = document.getElementById('status');
     const thead = document.querySelector('#tbl thead');
@@ -123,7 +118,7 @@
       return L > 0.5 ? '#111' : '#fff';
     }
 
-    // --- Flatten helper so nested theme.color.primary also becomes a column ---
+    // --- Flatten, normalize, and column building ---
     function flatten(obj, prefix='', out={}) {
       Object.entries(obj || {}).forEach(([k,v])=>{
         const key = prefix ? `${prefix}.${k}` : k;
@@ -136,50 +131,39 @@
       return out;
     }
 
-    function ensureAbsoluteSvg(urlLike) {
-      if (!urlLike || typeof urlLike !== 'string') return null;
-      // Only accept .svg (optionally with query string)
-      if (!/\.svg(\?|#|$)/i.test(urlLike)) return null;
-      if (/^https?:\/\//i.test(urlLike)) return urlLike;
-      const path = urlLike.startsWith('/') ? urlLike : '/' + urlLike;
-      return PREFIX.replace(/\/+$/,'') + path;
-    }
-
     function normalizeData(json){
       let rows = [];
       if (Array.isArray(json)) rows = json.slice();
       else rows = Object.entries(json||{}).map(([slug, cfg]) => ({ slug, ...cfg }));
-
       rows = rows.map(r=>{
         const flat = flatten(r);
         if (!flat.slug && r.slug) flat.slug = r.slug;
-        if (!flat.slug && (flat.name || flat.brand)) {
-          flat.slug = String(flat.name || flat.brand).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+        if (!flat.slug && (flat.name || flat.brand || flat.brandName)) {
+          flat.slug = String(flat.name || flat.brand || flat.brandName)
+                        .toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
         }
-        // Absolute SVG URLs derived from JSON values
-        flat.__faviconAbs = ensureAbsoluteSvg(flat.favicon);
-        flat.__logoAbs    = ensureAbsoluteSvg(flat.logo);
         return flat;
       });
       return rows;
     }
 
-    // Columns: favicon first, then logo, then slug/name/brand, then color keys, then the rest (excluding raw logo/favicon fields)
+    // Hide these keys (case-insensitive for "mailto")
+    const HIDDEN_EXACT = new Set(['logo','favicon','mailTo','__logoAbs','__faviconAbs']);
+    function isHiddenKey(k) { return HIDDEN_EXACT.has(k) || k.toLowerCase() === 'mailto'; }
+
     function collectColumns(rows){
       const set = new Set();
-      rows.forEach(r => Object.keys(r||{}).forEach(k => set.add(k)));
+      rows.forEach(r => Object.keys(r||{}).forEach(k => { if (!isHiddenKey(k)) set.add(k); }));
+      const keys = [...set];
 
-      const hidden = new Set(['logo','favicon','__faviconAbs','__logoAbs']); // we render images instead
-      const keys = [...set].filter(k => !hidden.has(k));
-
+      // Prioritize some columns
       const score = (k)=>{
-        if (k === 'slug') return -700;
-        if (k === 'name' || k === 'brand') return -600;
-        if (k.toLowerCase().includes('color')) return -500;
+        if (k === 'slug') return -1000;
+        if (k === 'brandName' || k === 'name' || k === 'brand') return -900;
+        if (k.toLowerCase().includes('color')) return -800;
         return k.startsWith('_') ? 100 : 0;
       };
-      const rest = keys.sort((a,b)=> score(a) - score(b) || a.localeCompare(b));
-      return ['favicon','logo', ...rest];
+      return keys.sort((a,b)=> score(a) - score(b) || a.localeCompare(b));
     }
 
     // --- Rendering ---
@@ -191,27 +175,10 @@
       thead.innerHTML = '<tr>' + cols.map(c => `<th class="text-left px-3 py-2 font-semibold">${c}</th>`).join('') + '</tr>';
 
       tbody.innerHTML = filtered.map(r => {
-        const slug = r.slug || '';
         return '<tr>' + cols.map(c => {
           let v = r[c];
 
-          // Injected favicon column (FIRST)
-          if (c === 'favicon') {
-            const src = r.__faviconAbs || '';
-            return src
-              ? `<td class="px-3 py-2"><img class="favicon-img" src="${src}" alt="${slug} favicon" onerror="this.remove()"></td>`
-              : `<td class="px-3 py-2"></td>`;
-          }
-
-          // Injected logo column (SECOND)
-          if (c === 'logo') {
-            const src = r.__logoAbs || '';
-            return src
-              ? `<td class="px-3 py-2"><img class="logo-img" src="${src}" alt="${slug} logo" onerror="this.remove()"></td>`
-              : `<td class="px-3 py-2"></td>`;
-          }
-
-          // Color fields: colored background with code
+          // Color fields: colored background with code visible
           if (looksLikeColor(v)) {
             const txt = bestTextColor(v);
             const border = txt === '#fff' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.12)';
