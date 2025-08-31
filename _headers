@@ -19,3 +19,6 @@ Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.tailw
 
 /companies
   X-Robots-Tag: noindex, nofollow
+
+/portal/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;
