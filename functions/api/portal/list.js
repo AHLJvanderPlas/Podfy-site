@@ -1,19 +1,14 @@
-// Public demo: lists ALL objects, with search & pagination. NO AUTH.
-import { json, badrequest } from "./_utils";
+// functions/api/portal/list.js
+import { json } from "./_utils";
 
 function matchSearch(item, q) {
   if (!q) return true;
   q = q.toLowerCase();
   const fields = [
     item.key || "",
-    item.size?.toString() || "",
-    item.uploaded?.toString() || "",
     item.httpMetadata?.contentType || "",
     item.customMetadata?.slug || "",
-    item.customMetadata?.slug_original || "",
-    item.customMetadata?.uploader_email || "",
-    item.customMetadata?.orig_name || "",
-    item.customMetadata?.orig_type || ""
+    item.customMetadata?.orig_name || ""
   ];
   return fields.some(v => v.toLowerCase().includes(q));
 }
@@ -24,9 +19,12 @@ export async function onRequestGet({ request, env }) {
   const cursor = searchParams.get("cursor") || undefined;
   const limit = Math.min(parseInt(searchParams.get("limit") || "100", 10), 1000);
 
+  // Use prefix = "" (all keys) and recursive listing
   const list = await env.PODFY_BUCKET.list({
     limit,
     cursor,
+    prefix: "",             // root
+    delimiter: undefined,   // don’t collapse into “folders”
     include: ["customMetadata", "httpMetadata"]
   });
 
