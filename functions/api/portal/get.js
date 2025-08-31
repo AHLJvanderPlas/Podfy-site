@@ -1,12 +1,7 @@
-// functions/api/portal/get.js
-// Streams any object after a valid session (no slug restriction).
-
-import { readSession, unauthorized, badrequest } from "./_utils";
+// Public demo: streams any object. NO AUTH.
+import { badrequest } from "./_utils";
 
 export async function onRequestGet({ request, env }) {
-  const session = await readSession(request, env.PORTAL_SESSION_SECRET);
-  if (!session) return unauthorized();
-
   const url = new URL(request.url);
   const key = url.searchParams.get("key");
   if (!key) return badrequest("key required");
