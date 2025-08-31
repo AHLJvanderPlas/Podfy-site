@@ -1,7 +1,8 @@
 // functions/api/portal/list.js
+// Lists ALL objects (no slug filter), with search & pagination.
+
 import { readSession, unauthorized, json, badrequest } from "./_utils";
 
-// Search helper over key + selected metadata fields
 function matchSearch(item, q) {
   if (!q) return true;
   q = q.toLowerCase();
@@ -28,22 +29,18 @@ export async function onRequestGet({ request, env }) {
   const cursor = searchParams.get("cursor") || undefined;
   const limit = Math.min(parseInt(searchParams.get("limit") || "100", 10), 1000);
 
-  // We cannot prefix by slug because keys currently don't contain slug.
-  // Use include: ["customMetadata","httpMetadata"] and filter on metadata.slug.
   const list = await env.PODFY_BUCKET.list({
     limit,
     cursor,
     include: ["customMetadata", "httpMetadata"]
   });
 
-  // Filter to this tenant's slug and apply free-text search
   const filtered = (list.objects || [])
-    .filter(obj => (obj.customMetadata?.slug || "").toLowerCase() === session.slug.toLowerCase())
     .filter(obj => matchSearch(obj, q))
     .map(obj => ({
       key: obj.key,
       size: obj.size,
-      uploaded: obj.uploaded, // Date
+      uploaded: obj.uploaded,
       httpMetadata: obj.httpMetadata || {},
       customMetadata: obj.customMetadata || {}
     }));
