@@ -1,59 +1,73 @@
 // functions/api/portal/login.js
-// Hard-coded login (no slug). Returns explicit error reasons.
+// Robust handler: POST = login, OPTIONS allowed, all others -> explicit 405.
 
-import { createSessionCookie, json, badrequest } from "./_utils";
+import { createSessionCookie, json } from "./_utils";
 
 // Hard-coded credentials
 const HARDCODED_EMAIL = "ahlj.vd.plas@gmail.com";
 const HARDCODED_PASSWORD = "Rodenrijselaan10a!";
 
-function error(status, code, message, extra = {}) {
+function err(status, code, message, extra = {}) {
   return json({ error: message, code, ...extra }, { status });
 }
 
-export async function onRequestPost({ request, env }) {
+// --- Core login logic used by both exports ---
+async function handlePost({ request, env }) {
   const secret = env.PORTAL_SESSION_SECRET;
-  if (!secret) {
-    return error(500, "missing_secret", "PORTAL_SESSION_SECRET is not set on the server");
-  }
+  if (!secret) return err(500, "missing_secret", "PORTAL_SESSION_SECRET is not set on the server");
 
-  let body = null;
-  try {
-    body = await request.json();
-  } catch {
-    return error(400, "invalid_json", "Request body must be valid JSON with fields: email, password");
-  }
+  let body;
+  try { body = await request.json(); }
+  catch { return err(400, "invalid_json", "Request body must be valid JSON with fields: email, password"); }
 
   const missing = [];
   const emailIn = body?.email;
   const passwordIn = body?.password;
   if (!emailIn) missing.push("email");
   if (!passwordIn) missing.push("password");
-  if (missing.length) {
-    return error(400, "missing_fields", "Missing required fields", { missing });
-  }
+  if (missing.length) return err(400, "missing_fields", "Missing required fields", { missing });
 
   const email = String(emailIn).trim().toLowerCase();
   const password = String(passwordIn);
 
   if (email !== HARDCODED_EMAIL || password !== HARDCODED_PASSWORD) {
-    return error(401, "invalid_credentials", "Email or password is incorrect", {
+    return err(401, "invalid_credentials", "Email or password is incorrect", {
       hint: "Ensure the email matches exactly and the password is typed correctly"
     });
   }
 
-  // No slug in the session; show all after login
-  const payload = { email, scope: "all" };
+  // No slug for now — show all
+  const setCookie = await createSessionCookie({ email, scope: "all" }, secret);
+  return new Response(JSON.stringify({ ok: true }), {
+    headers: { "Content-Type": "application/json", "Set-Cookie": setCookie },
+    status: 200,
+  });
+}
 
-  try {
-    const setCookie = await createSessionCookie(payload, secret);
-    return new Response(JSON.stringify({ ok: true }), {
-      headers: { "Content-Type": "application/json", "Set-Cookie": setCookie },
-      status: 200
-    });
-  } catch (e) {
-    return error(500, "session_create_failed", "Failed to create session cookie", {
-      details: String(e?.message || e || "unknown")
-    });
-  }
+// Handle POST explicitly (preferred by Pages)
+export async function onRequestPost(ctx) {
+  try { return await handlePost(ctx); }
+  catch (e) { return err(500, "unexpected_error", "Unhandled server error", { details: String(e?.message || e) }); }
+}
+
+// Allow CORS/preflight if a browser decides to preflight
+export async function onRequestOptions() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
+}
+
+// Fallback for accidental GET/HEAD/etc. (prevents opaque 405s)
+export async function onRequest(context) {
+  const method = context.request.method || "GET";
+  if (method.toUpperCase() === "POST") return onRequestPost(context);
+  if (method.toUpperCase() === "OPTIONS") return onRequestOptions(context);
+  return err(405, "method_not_allowed", `Use POST for /api/portal/login (got ${method})`, {
+    allow: ["POST", "OPTIONS"],
+  });
 }
