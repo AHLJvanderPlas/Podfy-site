@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Podfy Customer Portal – Sign in</title>
+  <title>Podfy Portal – Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="/assets/favicon.ico">
   <style>
@@ -16,9 +16,6 @@
     button[disabled] { opacity:.6; cursor:default; }
     .spacer { height:16px; }
     .muted { color:#6b7280; }
-    .err { background:#fef2f2; border:1px solid #fecaca; color:#991b1b; padding:10px 12px; border-radius:8px; }
-    .ok { background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; padding:10px 12px; border-radius:8px; }
-    .hidden { display:none; }
     table { width:100%; border-collapse:collapse; }
     th, td { text-align:left; padding:10px; border-bottom:1px solid #eee; font-size:14px; }
     th { background:#f8fafc; font-weight:600; }
@@ -28,29 +25,13 @@
 </head>
 <body>
   <div class="container">
-    <h1>Podfy Customer Portal</h1>
+    <h1>Podfy Portal – Demo</h1>
+    <p class="muted">Demo mode: no login required. All objects are visible.</p>
 
-    <!-- Login card -->
-    <div id="login" class="card">
-      <h3>Sign in</h3>
-      <div class="row">
-        <input id="email" type="email" placeholder="Email (e.g., ahlj.vd.plas@gmail.com)" />
-        <input id="password" type="password" placeholder="Password" />
-        <button id="signin" type="button">Sign in</button>
-      </div>
-      <div class="spacer"></div>
-      <p class="muted">For now, credentials are hard-coded. After login, all files are visible.</p>
-      <div id="loginMsg" class="hidden"></div>
-    </div>
-
-    <div class="spacer"></div>
-
-    <!-- App card -->
-    <div id="app" class="card hidden">
+    <div class="card">
       <div class="row">
         <input id="search" placeholder="Search (key, filename, content-type, email, slug, etc.)" />
         <button id="refresh" type="button">Search</button>
-        <button id="logout" type="button" style="background:#ef4444">Log out</button>
       </div>
       <div class="spacer"></div>
       <table>
@@ -76,7 +57,6 @@
     </div>
   </div>
 
-  <!-- External script (CSP-friendly) -->
   <script src="/portal/app.js" defer></script>
 </body>
 </html>
