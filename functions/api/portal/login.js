@@ -1,5 +1,5 @@
 // functions/api/portal/login.js
-// Robust handler: POST = login, OPTIONS allowed, all others -> explicit 405.
+// Single-export handler for Cloudflare Pages Functions.
 
 import { createSessionCookie, json } from "./_utils";
 
@@ -11,7 +11,6 @@ function err(status, code, message, extra = {}) {
   return json({ error: message, code, ...extra }, { status });
 }
 
-// --- Core login logic used by both exports ---
 async function handlePost({ request, env }) {
   const secret = env.PORTAL_SESSION_SECRET;
   if (!secret) return err(500, "missing_secret", "PORTAL_SESSION_SECRET is not set on the server");
@@ -36,38 +35,39 @@ async function handlePost({ request, env }) {
     });
   }
 
-  // No slug for now — show all
   const setCookie = await createSessionCookie({ email, scope: "all" }, secret);
   return new Response(JSON.stringify({ ok: true }), {
-    headers: { "Content-Type": "application/json", "Set-Cookie": setCookie },
-    status: 200,
-  });
-}
-
-// Handle POST explicitly (preferred by Pages)
-export async function onRequestPost(ctx) {
-  try { return await handlePost(ctx); }
-  catch (e) { return err(500, "unexpected_error", "Unhandled server error", { details: String(e?.message || e) }); }
-}
-
-// Allow CORS/preflight if a browser decides to preflight
-export async function onRequestOptions() {
-  return new Response(null, {
-    status: 204,
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
+      "Content-Type": "application/json",
+      "Set-Cookie": setCookie
     },
+    status: 200
   });
 }
 
-// Fallback for accidental GET/HEAD/etc. (prevents opaque 405s)
 export async function onRequest(context) {
-  const method = context.request.method || "GET";
-  if (method.toUpperCase() === "POST") return onRequestPost(context);
-  if (method.toUpperCase() === "OPTIONS") return onRequestOptions(context);
+  const method = (context.request.method || "GET").toUpperCase();
+
+  if (method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
+      }
+    });
+  }
+
+  if (method === "POST") {
+    try {
+      return await handlePost(context);
+    } catch (e) {
+      return err(500, "unexpected_error", "Unhandled server error", { details: String(e?.message || e) });
+    }
+  }
+
   return err(405, "method_not_allowed", `Use POST for /api/portal/login (got ${method})`, {
-    allow: ["POST", "OPTIONS"],
+    allow: ["POST", "OPTIONS"]
   });
 }
