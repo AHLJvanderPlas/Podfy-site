@@ -1,188 +1,81 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Podfy Portal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; background: #fafafa; color: #111; }
-      .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
-      .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-      .row { display: flex; gap: 8px; align-items: center; }
-      .row > * { flex: 1; }
-      input, button, select { padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; }
-      button { background: #111; color: #fff; cursor: pointer; }
-      button[disabled] { opacity: .6; cursor: default; }
-      table { width: 100%; border-collapse: collapse; }
-      th, td { text-align: left; padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; }
-      th { background: #f8fafc; font-weight: 600; }
-      .right { text-align: right; }
-      .muted { color: #6b7280; }
-      .badge { display: inline-block; font-size: 12px; padding: 2px 6px; border: 1px solid #e5e7eb; border-radius: 999px; }
-      .spacer { height: 16px; }
-      .hidden { display: none; }
-    </style>
-  </head>
-  <body>
-    <div class="container">
+<head>
+  <meta charset="utf-8" />
+  <title>Podfy Customer Portal – Sign in</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:#fafafa; color:#111; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    .card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .row { display:flex; gap:8px; align-items:center; }
+    .row > * { flex:1; }
+    input, button { padding:10px 12px; border:1px solid #d1d5db; border-radius:8px; font-size:14px; }
+    button { background:#111; color:#fff; cursor:pointer; }
+    button[disabled] { opacity:.6; cursor:default; }
+    .spacer { height:16px; }
+    .muted { color:#6b7280; }
+    .err { background:#fef2f2; border:1px solid #fecaca; color:#991b1b; padding:10px 12px; border-radius:8px; }
+    .ok { background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; padding:10px 12px; border-radius:8px; }
+    .hidden { display:none; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { text-align:left; padding:10px; border-bottom:1px solid #eee; font-size:14px; }
+    th { background:#f8fafc; font-weight:600; }
+    .right { text-align:right; }
+    .badge { display:inline-block; font-size:12px; padding:2px 6px; border:1px solid #e5e7eb; border-radius:999px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Podfy Customer Portal</h1>
 
-      <h1>Podfy Customer Portal</h1>
-      <div id="login" class="card">
-        <h3>Sign in</h3>
-        <div class="row">
-          <input id="email" type="email" placeholder="Email (e.g., ahlj.vd.plas@gmail.com)" />
-          <input id="password" type="password" placeholder="Password" />
-          <input id="slug" placeholder="Customer slug (e.g., fender)" />
-          <button id="signin">Sign in</button>
-        </div>
-        <p class="muted">For now, credentials are hard-coded. The slug determines which tenant’s files you’ll see.</p>
-        <div id="loginError" class="muted"></div>
+    <!-- Login card -->
+    <div id="login" class="card">
+      <h3>Sign in</h3>
+      <div class="row">
+        <input id="email" type="email" placeholder="Email (e.g., ahlj.vd.plas@gmail.com)" />
+        <input id="password" type="password" placeholder="Password" />
+        <input id="slug" placeholder="Customer slug (e.g., fender)" />
+        <button id="signin">Sign in</button>
       </div>
-
       <div class="spacer"></div>
-
-      <div id="app" class="card hidden">
-        <div class="row">
-          <input id="search" placeholder="Search (key, filename, content-type, email, slug, etc.)" />
-          <button id="refresh">Search</button>
-          <button id="logout" style="background:#ef4444">Log out</button>
-        </div>
-
-        <div class="spacer"></div>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Key</th>
-              <th>Content type</th>
-              <th>Size</th>
-              <th>Uploaded</th>
-              <th>Slug</th>
-              <th>Original name</th>
-              <th>Uploader email</th>
-              <th class="right">Action</th>
-            </tr>
-          </thead>
-          <tbody id="rows"></tbody>
-        </table>
-
-        <div class="spacer"></div>
-
-        <div class="row">
-          <span id="status" class="muted"></span>
-          <button id="more" class="right">Load more</button>
-        </div>
-      </div>
-
+      <p class="muted">For now, credentials are hard-coded. The slug determines which tenant’s files you’ll see.</p>
+      <div id="loginMsg" class="hidden"></div>
     </div>
 
-    <script>
-      const loginEl = document.getElementById("login");
-      const appEl = document.getElementById("app");
-      const signinBtn = document.getElementById("signin");
-      const logoutBtn = document.getElementById("logout");
-      const refreshBtn = document.getElementById("refresh");
-      const moreBtn = document.getElementById("more");
-      const statusEl = document.getElementById("status");
-      const rowsEl = document.getElementById("rows");
-      const loginErrorEl = document.getElementById("loginError");
+    <div class="spacer"></div>
 
-      let cursor = null;
+    <!-- App card -->
+    <div id="app" class="card hidden">
+      <div class="row">
+        <input id="search" placeholder="Search (key, filename, content-type, email, slug, etc.)" />
+        <button id="refresh">Search</button>
+        <button id="logout" style="background:#ef4444">Log out</button>
+      </div>
+      <div class="spacer"></div>
+      <table>
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Content type</th>
+            <th>Size</th>
+            <th>Uploaded</th>
+            <th>Slug</th>
+            <th>Original name</th>
+            <th>Uploader email</th>
+            <th class="right">Action</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="spacer"></div>
+      <div class="row">
+        <span id="status" class="muted"></span>
+        <button id="more" class="right">Load more</button>
+      </div>
+    </div>
+  </div>
 
-      async function login() {
-        loginErrorEl.textContent = "";
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-        const slug = document.getElementById("slug").value.trim().toLowerCase();
-        if (!email || !password || !slug) {
-          loginErrorEl.textContent = "Please provide email, password and slug.";
-          return;
-        }
-        signinBtn.disabled = true;
-        try {
-          const res = await fetch("/api/portal/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password, slug })
-          });
-          if (!res.ok) {
-            const data = await res.json().catch(() => ({}));
-            throw new Error(data.error || "Login failed");
-          }
-          loginEl.classList.add("hidden");
-          appEl.classList.remove("hidden");
-          await load(true);
-        } catch (e) {
-          loginErrorEl.textContent = e.message;
-        } finally {
-          signinBtn.disabled = false;
-        }
-      }
-
-      async function logout() {
-        await fetch("/api/portal/logout", { method: "POST" });
-        rowsEl.innerHTML = "";
-        appEl.classList.add("hidden");
-        loginEl.classList.remove("hidden");
-      }
-
-      function fmtSize(n) {
-        if (!n && n !== 0) return "";
-        const kb = n / 1024, mb = kb / 1024;
-        if (mb >= 1) return mb.toFixed(2) + " MB";
-        if (kb >= 1) return kb.toFixed(1) + " KB";
-        return n + " B";
-      }
-
-      function fmtDate(d) {
-        if (!d) return "";
-        try { return new Date(d).toLocaleString(); } catch { return String(d); }
-      }
-
-      function render(items) {
-        for (const it of items) {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${it.key}</td>
-            <td>${it.httpMetadata?.contentType || ""}</td>
-            <td>${fmtSize(it.size)}</td>
-            <td>${fmtDate(it.uploaded)}</td>
-            <td><span class="badge">${it.customMetadata?.slug || ""}</span></td>
-            <td>${it.customMetadata?.orig_name || ""}</td>
-            <td>${it.customMetadata?.uploader_email || ""}</td>
-            <td class="right"><a href="/api/portal/get?key=${encodeURIComponent(it.key)}" target="_blank">View</a></td>
-          `;
-          rowsEl.appendChild(tr);
-        }
-      }
-
-      async function load(reset=false) {
-        statusEl.textContent = "Loading…";
-        if (reset) {
-          rowsEl.innerHTML = "";
-          cursor = null;
-        }
-        const q = document.getElementById("search").value.trim();
-        const url = new URL("/api/portal/list", window.location.origin);
-        if (q) url.searchParams.set("q", q);
-        if (cursor) url.searchParams.set("cursor", cursor);
-        const res = await fetch(url.toString(), { headers: { "Accept": "application/json" }});
-        if (res.status === 401) {
-          await logout();
-          statusEl.textContent = "Session expired—please sign in again.";
-          return;
-        }
-        const data = await res.json();
-        render(data.items || []);
-        cursor = data.cursor;
-        statusEl.textContent = data.items?.length ? `Loaded ${data.items.length} items` : "No items found";
-        moreBtn.disabled = !cursor;
-      }
-
-      signinBtn.addEventListener("click", login);
-      refreshBtn.addEventListener("click", () => load(true));
-      moreBtn.addEventListener("click", () => load(false));
-      logoutBtn.addEventListener("click", logout);
-    </script>
-  </body>
-</html>
+  <script>
+    const loginEl = document.getElementById("login");
+    const appEl = document.getE
