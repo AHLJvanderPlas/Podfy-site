@@ -1,7 +1,5 @@
-// functions/api/portal/list.js
-// Lists ALL objects (no slug filter), with search & pagination.
-
-import { readSession, unauthorized, json, badrequest } from "./_utils";
+// Public demo: lists ALL objects, with search & pagination. NO AUTH.
+import { json, badrequest } from "./_utils";
 
 function matchSearch(item, q) {
   if (!q) return true;
@@ -21,9 +19,6 @@ function matchSearch(item, q) {
 }
 
 export async function onRequestGet({ request, env }) {
-  const session = await readSession(request, env.PORTAL_SESSION_SECRET);
-  if (!session) return unauthorized();
-
   const { searchParams } = new URL(request.url);
   const q = searchParams.get("q") || "";
   const cursor = searchParams.get("cursor") || undefined;
