@@ -1,5 +1,5 @@
-// Public demo: streams any object (no auth).
-import { badrequest } from "./_utils.js"; // <-- explicit .js
+// Public demo: stream any object by key.
+import { badrequest } from "./_utils.js";
 
 export async function onRequestGet({ request, env }) {
   try {
@@ -17,13 +17,18 @@ export async function onRequestGet({ request, env }) {
     if (!obj) return new Response("Not Found", { status: 404 });
 
     const ct = head.httpMetadata?.contentType || "application/octet-stream";
-    const cd = ct.startsWith("image/") ? "inline" : "attachment";
+    const inline = ct.startsWith("image/");
+    const cd = inline ? "inline" : "attachment";
     const filename = key.split("/").pop() || "file";
 
     return new Response(obj.body, {
-      headers: { "Content-Type": ct, "Content-Disposition": `${cd}; filename="${filename}"` }
+      headers: {
+        "Content-Type": ct,
+        "Content-Disposition": `${cd}; filename="${filename}"`,
+      },
     });
   } catch (e) {
     return new Response(`Get failed: ${String(e?.message || e)}`, { status: 500 });
   }
 }
+
