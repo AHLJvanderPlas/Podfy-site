@@ -46,7 +46,7 @@
   <!-- Main -->
   <main class="mx-auto max-w-6xl px-4 py-10">
     <h1 class="text-3xl font-bold">Release notes</h1>
-    <p class="mt-2 text-slate-600">A concise log of updates to the Podfy site and app.</p>
+    <p class="mt-2 text-slate-600">A concise log of updates to the Podfy app.</p>
 
     <div class="mt-6 overflow-x-auto border rounded-xl">
       <table class="min-w-full text-sm">
@@ -64,9 +64,9 @@
           <tr id="v0-4-0">
             <td class="px-4 py-3 whitespace-nowrap">2025-09-08</td>
             <td class="px-4 py-3 font-semibold text-slate-900">v0.4.0</td>
-            <td class="px-4 py-3 whitespace-nowrap">#84</td>
+            <td class="px-4 py-3 whitespace-nowrap">6713e6e</td>
             <td class="px-4 py-3">
-              Added internal <a href="/companies" class="text-blue-600 underline">Companies</a> page that auto-loads themes from <code>podfy.app</code>, renders color fields, and shows brand assets.
+            Overhauled the file upload UX: Replaced the plain status text with a proper file preview chip (showing file name/size + remove button), added a real progress bar that shows live upload percentage and the final “Thanks. File received.” message, styled it to match the Submit button colors (both bar fill and label text), and ensured buttons hide while uploading then reappear after success. We fixed visibility bugs (chip showing on load, filename not clearing, buttons not hiding), cleaned and documented the CSS, widened the bar to 80% of the hero and doubled its thickness, and finally added multilingual support for all progress messages (“Starting… 0%”, “Uploading… {percent}%”, “Thanks. File received.”, and error texts) in your i18n.json so the experience is fully translated.
             </td>
           </tr>
 
