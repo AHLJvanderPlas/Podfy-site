@@ -1,123 +1,141 @@
-<svg
-  role="img"
-  aria-labelledby="podfyPhoneTitle podfyPhoneDesc"
-  viewBox="0 0 640 420"
-  xmlns="http://www.w3.org/2000/svg"
-  width="100%"
-  style="max-width: 720px; height: auto"
->
-  <title id="podfyPhoneTitle">Hand holding a smartphone showing the Podfy logo</title>
-  <desc id="podfyPhoneDesc">Illustration of a phone in a hand with Podfy branding on the screen, adaptive to light and dark modes.</desc>
+<!-- hero-podfy.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d"
+     viewBox="0 0 1200 720" width="100%" style="height:auto;max-width:1200px">
+  <title id="t">Podfy hero illustration: phone upload with branded screen</title>
+  <desc id="d">A minimal vector showing a smartphone with a Podfy-branded uploader on screen and a soft browser card behind it. Colors adapt to light/dark mode.</desc>
 
-  <!-- Styles: brand tokens + light/dark adaptation -->
+  <!-- ====== THEME TOKENS + DARK/LIGHT ====== -->
   <style>
     :root{
-      --brand-primary: #1D3557;
-      --brand-accent:  #06D6A0;
-      --ink:           #0F172A;
-      --muted:         #475569;
-      --card:          #FFFFFF;
-      --cardEdge:      #E2E8F0;
-      --bgGradA:       #F0F4F9;
-      --bgGradB:       #FFFFFF;
-      --shadow:        rgba(16,24,40,.14);
+      --brand-primary:#1D3557;  /* headings/icons (light) */
+      --brand-accent:#06D6A0;   /* CTAs, status */
+      --ink:#0F172A;            /* main text on light */
+      --muted:#475569;          /* secondary text on light */
+      --bgA:#F0F4F9;            /* hero gradient top (light) */
+      --bgB:#FFFFFF;            /* hero gradient bottom (light) */
+      --card:#FFFFFF;           /* cards (light) */
+      --edge:#E2E8F0;           /* card borders (light) */
+      --shadow:rgba(16,24,40,.14);
     }
     @media (prefers-color-scheme: dark){
       :root{
-        --ink:       #E5E7EB;
-        --muted:     #94A3B8;
-        --card:      #0F172A;
-        --cardEdge:  #243140;
-        --bgGradA:   #0E2237;
-        --bgGradB:   #0B1220;
-        --shadow:    rgba(0,0,0,.40);
+        --brand-primary:#A5B4CF; /* headings/icons (dark-tuned) */
+        --ink:#E5E7EB;           /* main text on dark */
+        --muted:#94A3B8;         /* secondary text on dark */
+        --bgA:#0E2237;           /* hero gradient top (dark) */
+        --bgB:#0B1220;           /* hero gradient bottom (dark) */
+        --card:#0F172A;          /* cards (dark) */
+        --edge:#243140;          /* card borders (dark) */
+        --shadow:rgba(0,0,0,.42);
       }
     }
-    .bg-grad { fill: url(#bg); }
-    .ink     { stroke: var(--ink); }
-    .fill-ink{ fill: var(--ink); }
-    .muted   { fill: var(--muted); }
-    .card    { fill: var(--card); stroke: var(--cardEdge); }
-    .primary { stroke: var(--brand-primary); }
-    .accentF { fill: var(--brand-accent); }
-    .accentS { stroke: var(--brand-accent); }
-    .round   { stroke-linecap: round; stroke-linejoin: round; }
+    .bg     { fill:url(#g); }
+    .card   { fill:var(--card); stroke:var(--edge); }
+    .inkS   { stroke:var(--ink); }
+    .inkF   { fill:var(--ink); }
+    .mutedF { fill:var(--muted); }
+    .brandS { stroke:var(--brand-primary); }
+    .accentF{ fill:var(--brand-accent); }
+    .accentS{ stroke:var(--brand-accent); }
+    .round  { stroke-linecap:round; stroke-linejoin:round; }
+    .thin   { stroke-width:1.5; }
+    .med    { stroke-width:2; }
+    .thick  { stroke-width:4; }
+    .noselect{ user-select:none }
+    .nonScale *{ vector-effect:non-scaling-stroke }
   </style>
 
-  <!-- Subtle background / container -->
+  <!-- ====== GRADIENT & FILTERS ====== -->
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="var(--bgGradA)"/>
-      <stop offset="1" stop-color="var(--bgGradB)"/>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--bgA)"/>
+      <stop offset="1" stop-color="var(--bgB)"/>
     </linearGradient>
 
-    <!-- Soft shadow for the phone -->
-    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="160%">
-      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="var(--shadow)"/>
+    <filter id="drop" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="var(--shadow)"/>
     </filter>
 
-    <!-- Podfy logo mark (cube + check) as a symbol -->
+    <!-- Podfy cube + check mark -->
     <symbol id="podfy-mark" viewBox="0 0 64 64">
-      <!-- cube outline -->
-      <path class="primary round" d="M12 24l20-10 20 10v16L32 50 12 40V24z" fill="none" stroke-width="4"/>
-      <path class="primary round" d="M32 14v36" fill="none" stroke-width="4"/>
-      <path class="primary round" d="M12 24l20 10 20-10" fill="none" stroke-width="4"/>
-      <!-- check accent -->
-      <path class="accentS round" d="M24 33l6 6 12-12" fill="none" stroke-width="6"/>
+      <path class="brandS round thick" d="M12 24l20-10 20 10v16L32 50 12 40V24z" fill="none"/>
+      <path class="brandS round thick" d="M32 14v36M12 24l20 10 20-10" fill="none"/>
+      <path class="accentS round thick" d="M24 33l7 7 11-11" fill="none"/>
     </symbol>
   </defs>
 
-  <!-- Background panel -->
-  <rect class="bg-grad" x="0" y="0" width="640" height="420" rx="20"/>
+  <!-- ====== BACKGROUND ====== -->
+  <rect class="bg" x="0" y="0" width="1200" height="720" rx="28"/>
 
-  <!-- Hand (neutral duotone silhouette, avoiding skin tones) -->
-  <g transform="translate(60,100)">
-    <!-- Wrist / sleeve -->
-    <path d="M30 200 h120 a14 14 0 0 0 14-14 v-28 a24 24 0 0 0 -24-24 h-44 a30 30 0 0 1 -30 -30 v-20 a22 22 0 0 0 -44 0 v78 a38 38 0 0 0 38 38z"
-          fill="url(#sleeveGrad)"/>
-    <linearGradient id="sleeveGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="var(--brand-primary)" stop-opacity=".18"/>
-      <stop offset="1" stop-color="var(--brand-primary)" stop-opacity=".10"/>
-    </linearGradient>
-
-    <!-- Palm/back of hand -->
-    <path d="M132 72 c-10 0-19 8-20 18l-6 57c-1 10 7 18 17 18h70c12 0 22-9 24-21l6-36c2-12-6-22-18-24l-73-12z"
-          fill="rgba(15,23,42,.08)"/>
-
-    <!-- Thumb -->
-    <path d="M110 142 c-3 8 2 16 10 18l30 8c10 2 20-4 22-14l2-10c2-10-5-20-15-22l-28-6c-10-2-18 4-21 12z"
-          fill="rgba(15,23,42,.10)"/>
+  <!-- ====== BROWSER PREVIEW CARD (behind phone) ====== -->
+  <g transform="translate(650,246)" filter="url(#drop)" class="nonScale">
+    <rect class="card med" x="0" y="0" width="470" height="260" rx="40"/>
+    <!-- top chrome -->
+    <rect x="24" y="22" width="422" height="10" rx="5" class="mutedF" opacity=".18"/>
+    <circle cx="28" cy="27" r="4" class="mutedF" opacity=".28"/>
+    <circle cx="42" cy="27" r="4" class="mutedF" opacity=".28"/>
+    <circle cx="56" cy="27" r="4" class="mutedF" opacity=".28"/>
+    <!-- inner placeholder -->
+    <rect x="24" y="60" width="422" height="156" rx="18" class="mutedF" opacity=".08"/>
+    <g transform="translate(40,84)">
+      <use href="#podfy-mark" width="48" height="48"/>
+      <rect x="78" y="8" width="190" height="14" rx="7" class="inkF" opacity=".12"/>
+      <rect x="78" y="30" width="150" height="12" rx="6" class="inkF" opacity=".08"/>
+      <rect x="0" y="86" width="112" height="34" rx="10" class="accentF" opacity=".16" />
+      <rect x="130" y="86" width="112" height="34" rx="10" class="inkF" opacity=".08"/>
+    </g>
   </g>
 
-  <!-- Phone group -->
-  <g transform="translate(240,60)" filter="url(#softShadow)">
-    <!-- Phone body -->
-    <rect class="card" x="0" y="0" width="200" height="320" rx="26" stroke-width="2"/>
-    <!-- Speaker and home indicator -->
-    <rect class="muted" x="86" y="14" width="28" height="6" rx="3"/>
-    <rect class="muted" x="70" y="300" width="60" height="6" rx="3"/>
+  <!-- ====== PHONE + HAND ====== -->
+  <!-- abstract sleeve & hand shapes (neutral duotone) -->
+  <g transform="translate(250,300)">
+    <path d="M0,130 c60,55 160,55 220,0 v-36 c0-16-12-28-28-28H84c-24,0-44-20-44-44v-18c0-18-14-32-32-32S-24,-14-24,4v88c0,16 8,28 24,38z"
+          fill="rgba(15,23,42,.08)"/>
+  </g>
 
-    <!-- Screen area (slightly inset) -->
-    <rect x="14" y="32" width="172" height="256" rx="14" fill="none" stroke="var(--cardEdge)"/>
+  <g transform="translate(380,120)" filter="url(#drop)" class="nonScale">
+    <!-- phone body -->
+    <rect x="0" y="0" width="260" height="500" rx="34" class="card med"/>
+    <!-- speaker + home bar -->
+    <rect x="110" y="18" width="40" height="6" rx="3" class="mutedF"/>
+    <rect x="90"  y="474" width="80" height="6" rx="3" class="mutedF" opacity=".6"/>
+    <!-- screen border -->
+    <rect x="16" y="40" width="228" height="420" rx="18" fill="none" stroke="var(--edge)"/>
 
-    <!-- Podfy logo on the screen -->
-    <g transform="translate(36,90)">
-      <use href="#podfy-mark" width="128" height="128"/>
-      <!-- Brand label -->
-      <text x="64" y="152" text-anchor="middle"
-            font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif"
-            font-size="22" class="fill-ink" style="font-weight:700; letter-spacing:.5px">PODFY</text>
-      <!-- CTA chip -->
-      <g transform="translate(22,174)">
-        <rect x="0" y="0" rx="12" width="84" height="28" fill="rgba(6,214,160,0.12)" stroke="var(--brand-accent)"/>
-        <circle class="accentF" cx="14" cy="14" r="5"/>
-        <text x="28" y="18" font-size="13" class="fill-ink" style="font-weight:600">Uploaded</text>
+    <!-- screen content -->
+    <g transform="translate(34,78)">
+      <use href="#podfy-mark" width="84" height="84"/>
+      <text x="110" y="112" class="inkF" text-anchor="middle"
+            font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial"
+            font-size="22" style="font-weight:700;letter-spacing:.4px">Podfy</text>
+
+      <!-- upload panel -->
+      <rect x="0" y="140" width="192" height="150" rx="16" class="inkF" opacity=".04"/>
+      <g transform="translate(16,158)">
+        <rect x="0" y="0" width="160" height="36" rx="10" class="inkF" opacity=".06"/>
+        <rect x="0" y="48" width="160" height="36" rx="10" class="accentF" opacity=".18"/>
+        <rect x="0" y="96" width="80"  height="28" rx="8"  class="accentF"/>
+        <rect x="92" y="96" width="68"  height="28" rx="8"  class="inkF" opacity=".12"/>
+        <circle cx="12" cy="110" r="5" class="accentF"/>
+      </g>
+
+      <!-- status chip -->
+      <g transform="translate(40,314)">
+        <rect x="0" y="0" width="112" height="30" rx="15" class="accentF" opacity=".16" />
+        <circle cx="15" cy="15" r="6" class="accentF"/>
+        <text x="34" y="19" font-size="14" class="inkF" style="font-weight:600">Uploaded</text>
       </g>
     </g>
   </g>
 
-  <!-- Little sparks/accent dots -->
-  <circle class="accentF" cx="520" cy="88" r="4"/>
-  <circle class="accentF" cx="540" cy="108" r="3"/>
-  <circle class="accentF" cx="504" cy="116" r="2"/>
+  <!-- subtle floating accent dots -->
+  <circle cx="1040" cy="170" r="4" class="accentF"/>
+  <circle cx="1018" cy="190" r="3" class="accentF"/>
+  <circle cx="1060" cy="206" r="2.5" class="accentF"/>
+
+  <!-- accessibility: ensure strokes readable at small sizes -->
+  <style><![CDATA[
+    /* keep strokes crisp when rasterized */
+    path,rect,circle{ shape-rendering:geometricPrecision }
+  ]]></style>
 </svg>
