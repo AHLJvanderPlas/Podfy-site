@@ -1,80 +1,91 @@
-<!-- phone-in-hand.svg -->
+<!-- phone-hand-check.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d"
-     viewBox="0 0 480 360" width="100%" style="max-width:640px;height:auto">
-  <title id="t">Phone in hand with Podfy logo</title>
-  <desc id="d">Simple illustration of a neutral hand holding a phone that shows the Podfy logo. Adapts to light and dark mode.</desc>
+     viewBox="0 0 612 612" width="100%" style="max-width:640px;height:auto">
+  <title id="t">Phone in hand with approval check</title>
+  <desc id="d">Minimal illustration of a hand holding a smartphone showing a green check mark. Colors adapt to light and dark modes.</desc>
 
-  <!-- ===== Theming (light/dark) ===== -->
+  <!-- THEME (light/dark) -->
   <style>
     :root{
-      --brand-primary:#1D3557;   /* outlines/icons on light */
-      --brand-accent:#06D6A0;    /* small accent check */
-      --ink:#0F172A;             /* dark ink on light */
-      --hand:#E8EEF5;            /* hand/sleeve fill (neutral) */
-      --phone:#F7FAFC;           /* phone shell */
-      --edge:#D9E1EC;            /* device/hand edge */
-      --screen:#FFFFFF;          /* phone screen */
-      --shadowA:rgba(16,24,40,.08);
+      --bg:        #AEE0EE;      /* soft sky */
+      --phone:     #1D2B4A;      /* phone body */
+      --screen:    #FFFFFF;      /* screen */
+      --edge:      #D7E0EA;      /* outlines on light */
+      --hand:      #EAD9C9;      /* hand */
+      --hand2:     #F2E5D8;      /* finger/palm tone */
+      --sleeve:    #0F5A8A;      /* jacket */
+      --check:     #06D6A0;      /* accent green */
+      --ink:       #0F172A;      /* text/lines if needed */
+      --shadow:    rgba(16,24,40,.12);
     }
     @media (prefers-color-scheme: dark){
       :root{
-        --brand-primary:#D0D8EA; /* outlines/icons on dark */
-        --ink:#E5E7EB;           /* light ink on dark */
-        --hand:#1A2332;          /* hand/sleeve fill (neutral dark) */
-        --phone:#E6ECF5;         /* light device against dark bg */
-        --edge:#B9C6D8;          /* device/hand edge on dark */
-        --screen:#0F172A;        /* dark screen */
-        --shadowA:rgba(0,0,0,.35);
+        --bg:      #0E2237;
+        --phone:   #E6ECF5;
+        --screen:  #0F172A;
+        --edge:    #244055;
+        --hand:    #2A3545;
+        --hand2:   #303E52;
+        --sleeve:  #0D6AA8;
+        --check:   #06D6A0;
+        --ink:     #E5E7EB;
+        --shadow:  rgba(0,0,0,.35);
       }
     }
-
-    .stroke      { stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke }
-    .deviceEdge  { stroke:var(--edge); }
-    .brandStroke { stroke:var(--brand-primary); }
-    .inkFill     { fill:var(--ink); }
+    .stroke{stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+    path,rect,circle{shape-rendering:geometricPrecision}
   </style>
 
-  <!-- ===== Podfy mark symbol (cube + check) ===== -->
-  <symbol id="podfy-mark" viewBox="0 0 64 64">
-    <path class="stroke brandStroke" stroke-width="4"
-          d="M12 24l20-10 20 10v16L32 50 12 40V24z" fill="none"/>
-    <path class="stroke brandStroke" stroke-width="4" d="M32 14v36M12 24l20 10 20-10" fill="none"/>
-    <path class="stroke" stroke="var(--brand-accent)" stroke-width="6" d="M24 33l7 7 11-11" fill="none"/>
-  </symbol>
+  <!-- Background -->
+  <rect x="0" y="0" width="612" height="612" fill="var(--bg)"/>
 
-  <!-- ===== Soft “ground” shadow (no filters) ===== -->
-  <ellipse cx="240" cy="330" rx="160" ry="16" fill="var(--shadowA)"/>
+  <!-- Ground shadow -->
+  <ellipse cx="306" cy="560" rx="180" ry="18" fill="var(--shadow)"/>
 
-  <!-- ===== Hand (neutral, no skin tone) ===== -->
-  <g transform="translate(40,150)">
-    <!-- palm/back -->
-    <path d="M110 30c-10 0-18 8-19 18l-6 52c-1 9 6 17 15 18l152 14c12 1 22-7 24-19l6-34c2-12-6-22-18-24l-154-25z"
+  <!-- Left hand holding phone (back hand) -->
+  <g transform="translate(180,150)">
+    <path d="M30,200 c-8,-48 14,-78 46,-78h62c22,0 40,18 40,40v60c0,22 -18,40 -40,40H72
+             c-34,0 -58,-23 -42,-62z"
           fill="var(--hand)" stroke="var(--edge)" stroke-width="2" class="stroke"/>
-    <!-- thumb -->
-    <path d="M96 96c-3 8 2 16 10 18l42 10c10 2 20-4 22-14l2-10c2-10-5-20-15-22l-40-8c-10-2-18 4-21 12z"
-          fill="var(--hand)" stroke="var(--edge)" stroke-width="2" class="stroke"/>
-    <!-- sleeve -->
-    <path d="M-8 86c10 24 38 38 68 38h62a22 22 0 0 0 22-22v-20a24 24 0 0 0-24-24H76c-18 0-32-14-32-32v-8c0-12-10-22-22-22S-8 6-8 18v68z"
-          fill="var(--hand)" opacity=".85"/>
+    <!-- knuckles -->
+    <circle cx="210" cy="162" r="10" fill="var(--hand)"/>
+    <circle cx="200" cy="190" r="10" fill="var(--hand)"/>
+    <circle cx="188" cy="216" r="10" fill="var(--hand)"/>
   </g>
 
-  <!-- ===== Phone ===== -->
-  <g transform="translate(220,40)">
+  <!-- Phone -->
+  <g transform="translate(206,90)">
     <!-- body -->
-    <rect x="0" y="0" width="160" height="280" rx="22"
-          fill="var(--phone)" stroke="var(--edge)" stroke-width="2" class="stroke"/>
-    <!-- speaker + home bar -->
-    <rect x="70" y="10" width="20" height="4" rx="2" fill="var(--edge)"/>
-    <rect x="52" y="268" width="56" height="4" rx="2" fill="var(--edge)" opacity=".7"/>
+    <rect x="0" y="0" width="200" height="360" rx="24"
+          fill="var(--phone)"/>
     <!-- screen -->
-    <rect x="10" y="26" width="140" height="228" rx="12"
-          fill="var(--screen)" stroke="var(--edge)" stroke-width="1.5" class="stroke"/>
-    <!-- Podfy mark on screen -->
-    <g transform="translate(28,64)">
-      <use href="#podfy-mark" width="104" height="104"/>
-      <text x="52" y="122" text-anchor="middle"
-            font-size="16" font-weight="700" class="inkFill"
-            style="letter-spacing:.4px">PODFY</text>
+    <rect x="16" y="44" width="168" height="272" rx="14"
+          fill="var(--screen)"/>
+    <!-- camera dot + speaker -->
+    <circle cx="100" cy="20" r="4" fill="#8090A0" opacity=".6"/>
+    <!-- home bar -->
+    <rect x="70" y="330" width="60" height="8" rx="4" fill="#8090A0" opacity=".6"/>
+
+    <!-- check badge (center) -->
+    <g transform="translate(56,136)">
+      <circle cx="44" cy="44" r="44" fill="var(--check)"/>
+      <path d="M26,46 l14,14 30,-30" fill="none" stroke="#fff" stroke-width="10" class="stroke"/>
     </g>
+  </g>
+
+  <!-- Fore hand & finger tapping (front hand) -->
+  <g transform="translate(244,308)">
+    <!-- sleeve -->
+    <rect x="-36" y="108" width="120" height="64" rx="8" fill="var(--sleeve)"/>
+    <!-- wrist connector -->
+    <rect x="-20" y="98" width="88" height="14" rx="6" fill="#E6EAF0" opacity=".7"/>
+    <!-- palm -->
+    <path d="M72,32 c16,0 28,12 28,28v58c0,22 -18,40 -40,40H8c-18,0 -32,-14 -32,-32v-22
+             c0,-18 14,-32 32,-32h24c4,-16 16,-40 40,-40z"
+          fill="var(--hand2)" stroke="var(--edge)" stroke-width="2" class="stroke"/>
+    <!-- index finger (tapping) -->
+    <path d="M24,36 c-10,8 -12,22 -6,32l18,30c8,14 26,18 40,10l6,-4c14,-8 18,-26 10,-40l-10,-18
+             c-10,-18 -34,-22 -50,-10z"
+          fill="var(--hand2)" stroke="var(--edge)" stroke-width="2" class="stroke"/>
   </g>
 </svg>
