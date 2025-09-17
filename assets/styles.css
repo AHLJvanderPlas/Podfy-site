@@ -1,21 +1,23 @@
 /* ==========================================================================
-   PODFY – minimal utility CSS (replacement for Tailwind classes used on the site)
+   PODFY – utility CSS (tiny, fast)
    Breakpoints: sm=640px, md=768px, lg=1024px
    ========================================================================== */
 
 :root{
-  /* Brand palette (WCAG-friendly) */
+  /* Brand palette */
   --brand-primary:#1D3557; /* deep trust blue */
   --brand-accent:#06D6A0;  /* CTA green */
-  --brand-warm:#FF9F1C;    /* states/highlights (sparingly) */
+  --brand-warm:#FF9F1C;    /* focus/active highlight */
+
+  /* Theme tokens */
   --bg:#FFFFFF;
-  --surface:#F5F5F5;       /* neutral surface */
-  --tint-50:#F0F4F9;       /* very light brand-blue tint */
+  --surface:#F5F5F5;       /* panels/surfaces */
+  --tint-50:#F0F4F9;       /* very light brand-blue tint for sections/hero */
   --ink:#0F172A;
   --muted:#475569;
   --line:#E2E8F0;
 
-  /* Legacy neutrals kept for existing utilities */
+  /* Legacy slate scale (used by utilities) */
   --slate-50:#F8FAFC;
   --slate-100:#F1F5F9;
   --slate-200:#E2E8F0;
@@ -24,6 +26,7 @@
   --slate-700:#334155;
   --slate-800:#1F2937;
   --slate-900:#0F172A;
+
   --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
   --container-6xl:72rem;
 }
@@ -38,10 +41,9 @@ a.underline{text-decoration:underline}
 button{font:inherit}
 .antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-/* Accessibility helpers */
+/* A11y */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .focus\:not-sr-only:focus{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal}
-/* Focus utilities used by the skip link */
 .focus\:fixed:focus{position:fixed}
 .focus\:top-2:focus{top:.5rem}
 .focus\:left-2:focus{left:.5rem}
@@ -51,17 +53,17 @@ button{font:inherit}
 .focus\:px-3:focus{padding-left:.75rem;padding-right:.75rem}
 .focus\:py-2:focus{padding-top:.5rem;padding-bottom:.5rem}
 
-/* New semantic helpers */
+/* Semantic helpers */
 .text-ink{color:var(--ink)}
 .text-muted{color:var(--muted)}
+.text-brand{color:var(--brand-primary)}
 .bg-surface{background:var(--surface)}
 .bg-tint{background:var(--tint-50)}
-.text-brand{color:var(--brand-primary)}
 .bg-hero{background:linear-gradient(180deg, var(--tint-50) 0%, #FFFFFF 60%)}
 .brand-card{background:#fff;border:1px solid var(--line);border-radius:.75rem}
 .border-line{border-color:var(--line)}
 
-/* Dark mode – variable overrides */
+/* Dark mode overrides */
 @media (prefers-color-scheme: dark){
   :root{
     color-scheme: light dark;
@@ -71,7 +73,8 @@ button{font:inherit}
     --ink:#E5E7EB;
     --muted:#94A3B8;
     --line:#243140;
-    /* remap slate scale used by utilities */
+
+    /* remap slate scale for utilities in dark */
     --slate-50:#0B1220;
     --slate-100:#0F172A;
     --slate-200:#1F2937;
@@ -89,6 +92,11 @@ button{font:inherit}
   .border, .border-t, .border-b, .border-slate-100, .border-slate-200, .border-slate-300{border-color:var(--line)}
   .btn-outline{border:1px solid var(--line);background:transparent;color:var(--ink)}
   .btn-outline:hover{box-shadow:0 0 0 2px var(--line) inset}
+  /* Forms in dark */
+  input[type="text"], input[type="email"], textarea{
+    background:var(--surface); color:var(--ink); border-color:var(--line);
+  }
+  details{background:var(--surface)}
 }
 
 /* Buttons */
@@ -111,10 +119,10 @@ button{font:inherit}
 }
 @media (max-width:768px){.cta-bar{display:grid;grid-template-columns:1fr 1fr}}
 
-/* Focus visible */
+/* Focus */
 :focus-visible{outline:3px solid var(--brand-warm);outline-offset:2px}
 
-/* Container + layout */
+/* Layout utilities */
 .mx-auto{margin-left:auto;margin-right:auto}
 .max-w-6xl{max-width:var(--container-6xl)}
 .px-3{padding-left:.75rem;padding-right:.75rem}
@@ -192,7 +200,6 @@ button{font:inherit}
 .bg-white{background:#fff}
 .bg-slate-50{background:var(--slate-50)}
 .bg-brand-accent{background:var(--brand-accent)}
-.bg-hero{} /* gradient above */
 .hover\:bg-slate-50:hover{background:var(--slate-50)}
 .hover\:bg-white:hover{background:#fff}
 .bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-from,transparent), var(--tw-gradient-to,transparent))}
@@ -216,23 +223,21 @@ button{font:inherit}
 .shadow{box-shadow:0 4px 24px rgba(0,0,0,.08)}
 .shadow-sm{box-shadow:0 1px 2px rgba(0,0,0,.06)}
 
-/* Buttons & interactive */
+/* Interactive */
 .hover\:opacity-95:hover{opacity:.95}
 
-/* Width / height helpers */
+/* Size helpers */
 .w-auto{width:auto}
 .w-5{width:1.25rem}
 .h-7{height:1.75rem}
 .h-0.5{height:.125rem}
 
-/* Spacing stacks */
+/* Stacks & lists */
 .space-y-1 > :not([hidden]) ~ :not([hidden]){--_s:0.25rem;margin-top:var(--_s)}
-
-/* Lists */
 .list-disc{list-style-type:disc}
 .list-inside{list-style-position:inside}
 
-/* Inputs & form controls */
+/* Inputs (light default; dark overrides above) */
 input[type="text"],input[type="email"],textarea{
   display:block;width:100%;
   border:1px solid var(--slate-300);
@@ -257,27 +262,27 @@ a.text-blue-600.underline{text-decoration:underline}
 table{border-collapse:collapse;width:100%}
 th,td{padding:.625rem;border-bottom:1px solid var(--slate-100);text-align:left}
 
-/* Badges / simple pill */
+/* Badges */
 .rounded.border{border:1px solid var(--slate-200);border-radius:.5rem}
 .badge{display:inline-block;border:1px solid var(--slate-200);border-radius:999px;padding:.125rem .375rem;font-size:.75rem}
 
-/* Position helpers for hero art */
+/* Position helpers */
 .relative{position:relative}
 .absolute{position:absolute}
 .-inset-4{top:-1rem;right:-1rem;bottom:-1rem;left:-1rem}
 
-/* Responsive media queries */
-@media (min-width:640px){ /* sm */
+/* Responsive */
+@media (min-width:640px){
   .sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-@media (min-width:768px){ /* md */
+@media (min-width:768px){
   .md\:hidden{display:none}
   .md\:flex{display:flex}
   .md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
   .md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
   .md\:text-5xl{font-size:3rem;line-height:1.1}
 }
-@media (min-width:1024px){ /* lg */
+@media (min-width:1024px){
   .lg\:py-20{padding-top:5rem;padding-bottom:5rem}
   .lg\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
   .lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -286,5 +291,5 @@ th,td{padding:.625rem;border-bottom:1px solid var(--slate-100);text-align:left}
 
 /* Page niceties */
 header a:hover, footer a:hover{color:var(--brand-primary)}
-details{background:#fff}
+details{background:#fff} /* dark-mode override above */
 summary{cursor:pointer}
