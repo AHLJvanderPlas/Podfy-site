@@ -17,28 +17,28 @@
   <meta property="og:description" content="Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://podfy.net/" />
-  <meta property="og:image" content="https://podfy.net/assets/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PODFY — Proof of Delivery, without the headaches.">
-  <meta name="twitter:description" content="Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast.">
-  <meta name="twitter:image" content="https://podfy.net/assets/og-image.png">
+  <meta property="og:image" content="https://podfy.net/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PODFY — Proof of Delivery, without the headaches." />
+  <meta name="twitter:description" content="Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast." />
+  <meta name="twitter:image" content="https://podfy.net/assets/og-image.png" />
 
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1D3557">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0B1220">
-  
-  <!-- Favicons (swap paths to match your repo) -->
+  <!-- Light/Dark UI colors -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1D3557" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0B1220" />
+
+  <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB">
 
-<link rel="stylesheet" href="/assets/styles.css?v=3">
-  
+  <link rel="stylesheet" href="/assets/styles.css?v=3">
+
   <style>
     html { scroll-behavior: smooth; }
-    /* Prefer-reduced-motion */
     @media (prefers-reduced-motion: reduce) {
       * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
     }
@@ -56,6 +56,7 @@
     "sameAs":[]
   }
   </script>
+
   <!-- JSON-LD: SoftwareApplication -->
   <script type="application/ld+json">
   {
@@ -89,6 +90,7 @@
     }
   }
   </script>
+
   <!-- JSON-LD: Breadcrumbs -->
   <script type="application/ld+json">
   {
@@ -101,7 +103,7 @@
   }
   </script>
 </head>
-<body class="bg-white text-slate-800 antialiased">
+<body class="text-slate-800 antialiased">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:border focus:px-3 focus:py-2">Skip to content</a>
 
   <!-- Header -->
@@ -111,7 +113,6 @@
         <img src="/assets/podfy.svg" alt="PODFY" class="h-7 w-auto">
       </a>
 
-      <!-- Mobile menu button -->
       <button id="menuBtn" class="md:hidden p-2 rounded border border-slate-300" aria-controls="primaryNav" aria-expanded="false" aria-label="Open navigation">
         <span class="block h-0.5 w-5 bg-slate-800 mb-1"></span>
         <span class="block h-0.5 w-5 bg-slate-800 mb-1"></span>
@@ -134,7 +135,7 @@
   </header>
 
   <main id="main">
-    <!-- Hero / Positioning -->
+    <!-- Hero -->
     <section class="bg-hero" aria-label="Product overview">
       <div class="mx-auto max-w-6xl px-4 py-16 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
         <div>
@@ -161,7 +162,7 @@
       </div>
     </section>
 
-    <!-- Core Benefits (sales language) -->
+    <!-- Value -->
     <section id="value" class="mx-auto max-w-6xl px-4 py-16 bg-tint">
       <h2 class="text-2xl md:text-3xl font-bold text-brand">Why companies choose PODFY</h2>
       <p class="mt-2 text-slate-600 text-sm">Reduce POD disputes and speed customer confirmation.</p>
@@ -185,7 +186,7 @@
       </div>
     </section>
 
-    <!-- Feature Overview (plain English) -->
+    <!-- Features -->
     <section id="features" class="mx-auto max-w-6xl px-4 py-16">
       <h2 class="text-2xl md:text-3xl font-bold text-brand">What makes PODFY simple</h2>
       <div class="mt-8 grid md:grid-cols-2 gap-6">
@@ -208,27 +209,27 @@
       </div>
     </section>
 
-    <!-- Product Solutions / Plans -->
+    <!-- Plans -->
     <section id="solutions" class="mx-auto max-w-6xl px-4 py-16 bg-tint">
       <h2 id="pricing" class="text-2xl md:text-3xl font-bold text-brand">Pricing &amp; Plans</h2>
       <p class="mt-2 text-slate-600">Choose the option that fits your workflow today — and upgrade anytime.</p>
       <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <article class="rounded-xl border bg-white p-6">
+        <article class="rounded-xl border brand-card p-6">
           <h3 class="text-lg font-semibold">Trial (Free)</h3>
           <p class="mt-2 text-slate-600">Try the app right away from our main page. Send a copy to yourself to experience the flow. No integration needed.</p>
           <a href="/demo" class="mt-4 inline-block text-sm font-medium text-blue-600 underline" data-event="cta:demo-upload">Try a demo upload</a>
         </article>
-        <article class="rounded-xl border bg-white p-6">
+        <article class="rounded-xl border brand-card p-6">
           <h3 class="text-lg font-semibold">Branded page</h3>
           <p class="mt-2 text-slate-600">Get your own upload link with your logo, colors, and contact email — including the option to capture a shipment reference.</p>
           <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline" data-event="cta:request-demo">Request a demo</a>
         </article>
-        <article class="rounded-xl border bg-white p-6">
+        <article class="rounded-xl border brand-card p-6">
           <h3 class="text-lg font-semibold">Branded + Portal</h3>
           <p class="mt-2 text-slate-600">Everything in Branded, plus a simple portal that stores your PODs for one year — exactly the CMR convention period.</p>
           <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline" data-event="cta:request-details">Request details</a>
         </article>
-        <article class="rounded-xl border bg-white p-6">
+        <article class="rounded-xl border brand-card p-6">
           <h3 class="text-lg font-semibold">AI-powered (coming soon)</h3>
           <p class="mt-2 text-slate-600">The app reads the document for you and captures key shipment data automatically. Custom webhooks or APIs available on request.</p>
           <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline" data-event="cta:join-waitlist">Join the waitlist</a>
@@ -236,7 +237,7 @@
       </div>
     </section>
 
-    <!-- How it Works -->
+    <!-- How it works -->
     <section id="how" class="mx-auto max-w-6xl px-4 py-16">
       <h2 class="text-2xl md:text-3xl font-bold text-brand">How it works</h2>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
@@ -258,7 +259,7 @@
       </div>
     </section>
 
-    <!-- Trust signals & badges -->
+    <!-- Trust -->
     <section class="mx-auto max-w-6xl px-4 py-8 bg-surface">
       <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs text-slate-600" aria-label="Trust signals">
         <div class="rounded border px-3 py-2">Runs at the edge (Cloudflare Pages + Functions)</div>
@@ -300,7 +301,7 @@
         </details>
       </div>
 
-      <!-- FAQ JSON-LD for AI/SEO -->
+      <!-- FAQ JSON-LD -->
       <script type="application/ld+json">
       {
         "@context":"https://schema.org",
@@ -324,23 +325,27 @@
         <form id="contact-form"
               action="https://submit-form.com/UQgzHuUP3"
               method="POST"
-              class="rounded-xl border p-6 bg-white grid gap-3"
+              class="rounded-xl border p-6 brand-card grid gap-3"
               aria-describedby="contactHelp">
           <!-- Honeypot -->
           <input type="text" name="website" tabindex="-1" autocomplete="off"
                  style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"
                  aria-hidden="true">
+
           <p id="contactHelp" class="sr-only">Use this form to request a demo or contact sales.</p>
 
           <label class="text-sm">Name
             <input name="name" required autocomplete="name" class="mt-1 w-full rounded border px-3 py-2" />
           </label>
+
           <label class="text-sm">Email
             <input type="email" name="email" required autocomplete="email" class="mt-1 w-full rounded border px-3 py-2" />
           </label>
+
           <label class="text-sm">Company
             <input name="company" autocomplete="organization" class="mt-1 w-full rounded border px-3 py-2" />
           </label>
+
           <label class="text-sm">Message
             <textarea name="message" rows="4" class="mt-1 w-full rounded border px-3 py-2" placeholder="Tell us which solution fits you (Trial, Branded, Portal, or AI)…"></textarea>
           </label>
@@ -359,7 +364,7 @@
         </form>
 
         <div>
-          <div class="rounded-xl border p-6">
+          <div class="rounded-xl border p-6 brand-card">
             <div class="font-semibold">Email</div>
             <p class="mt-1"><a class="text-blue-600 underline" href="mailto:info@podfy.net">info@podfy.net</a></p>
             <div class="mt-4 font-semibold">Helpful links</div>
@@ -401,9 +406,12 @@
     </div>
   </aside>
 
-  <!-- Inline JS (unchanged except version bump) -->
+  <!-- Inline JS -->
   <script>
+    // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
     (function () {
       const btn = document.getElementById('menuBtn');
       const menu = document.getElementById('mobileMenu');
@@ -412,24 +420,31 @@
         const nowHidden = menu.classList.toggle('hidden');
         btn.setAttribute('aria-expanded', String(!nowHidden));
       });
-      menu.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('#mobileMenu a')) {
           menu.classList.add('hidden');
           btn.setAttribute('aria-expanded', 'false');
         }
       });
     })();
+
+    // AJAX form submit
     (function () {
       const form = document.getElementById('contact-form');
       if (!form) return;
       const statusEl = document.getElementById('form-status');
       const endpoint = form.getAttribute('action');
+
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
         statusEl.textContent = 'Sending…';
         try {
           const formData = new FormData(form);
-          const resp = await fetch(endpoint, { method: 'POST', headers: { 'Accept': 'application/json' }, body: formData });
+          const resp = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: formData
+          });
           if (resp.ok) {
             form.innerHTML = `
               <div class="text-center">
@@ -446,6 +461,8 @@
         }
       });
     })();
+
+    // Dismissible footer demo bar (desktop)
     (function () {
       const bar = document.getElementById('demoBar');
       const close = document.getElementById('demoBarClose');
