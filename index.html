@@ -3,38 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Podfy – Proof of Delivery, retrieved in seconds</title>
-  <meta name="description" content="Podfy lets brand owners retrieve Proof of Delivery instantly, without chasing drivers or emails. Assign drivers, capture PODs, and share branded links instantly." />
-  <meta property="og:title" content="Podfy – Proof of Delivery, retrieved in seconds" />
-  <meta property="og:description" content="Assign drivers, capture PODs, and share branded links instantly." />
+  <title>PODFY — Proof-of-Delivery uploads, branded and instant</title>
+  <meta name="description" content="PODFY is a simple, branded upload tool for logistics. Drivers snap a photo or drop a file; your team is notified instantly. Start in minutes — no app, no login, no integration required." />
+  <link rel="canonical" href="https://podfy.net/">
+
+  <!-- Basic SEO -->
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#2563EB" />
+  <meta name="format-detection" content="telephone=no,address=no,email=no" />
+  <meta name="keywords" content="proof of delivery, POD, CMR upload, logistics, 3PL, carriers, warehouse operations, branded upload link, no integration, quick setup, Cloudflare R2">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="PODFY — Proof-of-Delivery uploads, branded and instant" />
+  <meta property="og:description" content="Drag-and-drop or snap a photo. Files go straight to your storage; teams get notified immediately. Start in minutes." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://podfy.net/" />
   <meta property="og:image" content="https://podfy.net/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Podfy – Proof of Delivery, retrieved in seconds">
-  <meta name="twitter:description" content="Assign drivers, capture PODs, and share branded links instantly.">
+  <meta name="twitter:title" content="PODFY — Proof-of-Delivery uploads, branded and instant">
+  <meta name="twitter:description" content="Drag-and-drop or snap a photo. Files go straight to your storage; teams get notified immediately.">
   <meta name="twitter:image" content="https://podfy.net/assets/og-image.png">
-  <link rel="canonical" href="https://podfy.net/">
 
-  <!-- Favicons / App icons -->
+  <!-- Favicons (swap paths to match your repo) -->
   <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-  <link rel="shortcut icon" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-  <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#555555">
+  <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB">
 
-  <!-- Tailwind Play CDN (OK for MVP; swap to compiled Tailwind later) -->
+  <!-- Tailwind (swap to compiled Tailwind in production) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: {
-              DEFAULT: '#4B5563',   // Podfy gray (text/logo)
-              accent: '#2563EB'     // CTA blue (change to taste)
-            }
+            brand: { DEFAULT: '#111827', accent: '#2563EB' }
           }
         }
       }
@@ -42,217 +46,370 @@
   </script>
   <style>
     html { scroll-behavior: smooth; }
+    /* Prefer-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
   </style>
+
+  <!-- JSON-LD: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"PODFY",
+    "url":"https://podfy.net/",
+    "logo":"https://podfy.net/assets/podfy.svg",
+    "email":"info@podfy.net",
+    "sameAs":[]
+  }
+  </script>
+  <!-- JSON-LD: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"PODFY Upload CMR/POD",
+    "applicationCategory":"BusinessApplication",
+    "operatingSystem":"Web",
+    "description":"Branded, privacy-respecting Proof-of-Delivery uploads for logistics. Start in minutes — no app, no login, no integration.",
+    "featureList":[
+      "Snap a photo or drag-and-drop a file",
+      "Branded upload link per customer",
+      "Instant email notifications to your team",
+      "Optional shipment reference capture",
+      "Quick set-up, no integration required"
+    ],
+    "url":"https://podfy.net/"
+  }
+  </script>
 </head>
 <body class="bg-white text-slate-800 antialiased">
-  <!-- Top bar -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:border focus:px-3 focus:py-2">Skip to content</a>
+
+  <!-- Header -->
   <header class="border-b border-slate-100">
     <div class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-      <!-- Brand: Podfy wordmark SVG -->
-      <a href="/" class="flex items-center gap-3">
-        <img src="/assets/podfy.svg" alt="Podfy" class="h-7 w-auto">
-        <span class="sr-only">Podfy</span>
+      <a href="/" class="flex items-center gap-3" aria-label="PODFY home">
+        <img src="/assets/podfy.svg" alt="PODFY" class="h-7 w-auto">
       </a>
-      <nav class="hidden md:flex items-center gap-8 text-sm">
+
+      <!-- Mobile menu button -->
+      <button id="menuBtn" class="md:hidden p-2 rounded border border-slate-300" aria-controls="primaryNav" aria-expanded="false" aria-label="Open navigation">
+        <span class="block h-0.5 w-5 bg-slate-800 mb-1"></span>
+        <span class="block h-0.5 w-5 bg-slate-800 mb-1"></span>
+        <span class="block h-0.5 w-5 bg-slate-800"></span>
+      </button>
+
+      <nav id="primaryNav" class="hidden md:flex items-center gap-8 text-sm">
         <a href="#how" class="hover:text-brand">How it works</a>
+        <a href="#value" class="hover:text-brand">Benefits</a>
         <a href="#features" class="hover:text-brand">Features</a>
-        <a href="#security" class="hover:text-brand">Security</a>
-        <a href="#pricing" class="hover:text-brand">Pricing</a>
+        <a href="#solutions" class="hover:text-brand">Solutions</a>
+        <a href="#faq" class="hover:text-brand">FAQ</a>
       </nav>
-      <div class="flex items-center gap-3">
-        <a href="https://podfy.app" class="hidden md:inline-block rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50">Open app</a>
-        <a href="#contact" class="inline-block rounded-lg bg-brand-accent px-4 py-2 text-white text-sm font-medium shadow hover:opacity-95">Request a demo</a>
+
+      <div class="hidden md:flex items-center gap-3">
+        <a href="/demo" class="rounded-lg bg-brand-accent px-4 py-2 text-white text-sm font-medium shadow hover:opacity-95">Try a demo upload</a>
+        <a href="#contact" class="rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50">Talk to sales</a>
+      </div>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100">
+      <div class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="#how" class="py-1">How it works</a>
+        <a href="#value" class="py-1">Benefits</a>
+        <a href="#features" class="py-1">Features</a>
+        <a href="#solutions" class="py-1">Solutions</a>
+        <a href="#faq" class="py-1">FAQ</a>
+        <div class="flex gap-3 pt-2">
+          <a href="/demo" class="flex-1 text-center rounded-lg bg-brand-accent px-4 py-2 text-white font-medium">Demo upload</a>
+          <a href="#contact" class="flex-1 text-center rounded-lg border border-slate-300 px-4 py-2">Talk to sales</a>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="bg-slate-50">
-    <div class="mx-auto max-w-6xl px-4 py-20 grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">Proof of Delivery, retrieved in seconds</h1>
-        <p class="mt-4 text-lg text-slate-600">Podfy is a single-purpose tool for brand owners and 3PLs: assign drivers, capture signed PODs, and retrieve them with branded links instantly.</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="https://podfy.app" class="rounded-lg bg-brand-accent px-5 py-3 text-white font-medium shadow hover:opacity-95">Open the app</a>
-          <a href="#how" class="rounded-lg border border-slate-300 px-5 py-3 font-medium hover:bg-white">See how it works</a>
-        </div>
-      </div>
-      <div>
-        <div class="relative">
-          <div class="absolute -inset-4 rounded-3xl bg-gradient-to-r from-slate-100 to-slate-200"></div>
-          <img src="/assets/hero-screenshot.png" alt="Podfy upload and retrieval flow" class="relative rounded-2xl border border-slate-200 shadow-sm">
-        </div>
-        <p class="mt-3 text-xs text-slate-500">Conceptual UI for illustration.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section id="how" class="mx-auto max-w-6xl px-4 py-16">
-    <h2 class="text-2xl md:text-3xl font-bold">How it works</h2>
-    <div class="mt-8 grid md:grid-cols-3 gap-6">
-      <div class="rounded-xl border p-5">
-        <div class="text-sm font-semibold text-slate-700">1) Assign</div>
-        <p class="mt-2 text-slate-600">Brand owner creates a link (slug) for a customer and assigns it to the driver.</p>
-      </div>
-      <div class="rounded-xl border p-5">
-        <div class="text-sm font-semibold text-slate-700">2) Capture</div>
-        <p class="mt-2 text-slate-600">Driver uploads the signed POD via the link, no login required. Uploads use short-lived signed URLs.</p>
-      </div>
-      <div class="rounded-xl border p-5">
-        <div class="text-sm font-semibold text-slate-700">3) Retrieve</div>
-        <p class="mt-2 text-slate-600">Brand owner retrieves the POD instantly with customer branding (logo & color) applied.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="features" class="mx-auto max-w-6xl px-4 py-16">
-    <h2 class="text-2xl md:text-3xl font-bold">Features</h2>
-    <div class="mt-8 grid md:grid-cols-3 gap-6">
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">Branded links</div>
-        <p class="mt-2 text-slate-600">Customer-specific slug determines logo and button color; everything else stays consistent.</p>
-      </div>
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">Fast retrieval</div>
-        <p class="mt-2 text-slate-600">Designed for speed: from signature to retrieval in seconds.</p>
-      </div>
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">Audit trail</div>
-        <p class="mt-2 text-slate-600">Track uploads, views, and downloads for compliance.</p>
-      </div>
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">EU-ready</div>
-        <p class="mt-2 text-slate-600">GDPR-friendly defaults, clear retention windows, EU data residency options.</p>
-      </div>
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">No-login for drivers</div>
-        <p class="mt-2 text-slate-600">Frictionless uploads from mobile with short-lived, signed URLs.</p>
-      </div>
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">Simple pricing</div>
-        <p class="mt-2 text-slate-600">Start free; scale as you need.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Security summary -->
-  <section id="security" class="mx-auto max-w-6xl px-4 py-16">
-    <h2 class="text-2xl md:text-3xl font-bold">Security</h2>
-    <div class="mt-8 grid md:grid-cols-2 gap-6">
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">Data protection</div>
-        <p class="mt-2 text-slate-600">Encryption in transit, scoped access, and configurable retention.</p>
-      </div>
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">Responsible disclosure</div>
-        <p class="mt-2 text-slate-600">We acknowledge in 3 business days and triage in 7. See our <a class="text-blue-600 underline" href="/security.html">security page</a>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing" class="mx-auto max-w-6xl px-4 py-16">
-    <h2 class="text-2xl md:text-3xl font-bold">Pricing</h2>
-    <div class="mt-8 grid md:grid-cols-3 gap-6">
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">Starter</div>
-        <div class="mt-2 text-3xl font-bold">Free</div>
-        <p class="mt-2 text-slate-600">Basic uploads, branded retrieval, email support.</p>
-      </div>
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">Team</div>
-        <div class="mt-2 text-3xl font-bold">€49/mo</div>
-        <p class="mt-2 text-slate-600">Multiple slugs, audit logs, priority support.</p>
-      </div>
-      <div class="rounded-xl border p-5">
-        <div class="font-semibold">Enterprise</div>
-        <div class="mt-2 text-3xl font-bold">Custom</div>
-        <p class="mt-2 text-slate-600">SSO, EU data residency, SLA. <a class="text-blue-600 underline" href="#contact">Contact us</a>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="mx-auto max-w-6xl px-4 py-16">
-    <h2 class="text-2xl md:text-3xl font-bold">Request a demo</h2>
-    <div class="mt-6 grid md:grid-cols-2 gap-8">
-      <form id="contact-form"
-            action="https://submit-form.com/UQgzHuUP3"
-            method="POST"
-            class="rounded-xl border p-6 bg-white grid gap-3">
-
-        <!-- Honeypot -->
-        <input type="text" name="website" tabindex="-1" autocomplete="off"
-               style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"
-               aria-hidden="true">
-
-        <label class="text-sm">Name
-          <input name="name" required class="mt-1 w-full rounded border px-3 py-2" />
-        </label>
-
-        <label class="text-sm">Email
-          <input type="email" name="email" required class="mt-1 w-full rounded border px-3 py-2" />
-        </label>
-
-        <label class="text-sm">Company
-          <input name="company" class="mt-1 w-full rounded border px-3 py-2" />
-        </label>
-
-        <label class="text-sm">Message
-          <textarea name="message" rows="4" class="mt-1 w-full rounded border px-3 py-2"></textarea>
-        </label>
-
-        <label class="inline-flex items-start gap-2 text-sm">
-          <input type="checkbox" name="consent" required class="mt-1">
-          I agree to be contacted about my demo request and have read the
-          <a href="/privacy.html" class="text-blue-600 underline">Privacy Policy</a>.
-        </label>
-
-        <button class="mt-2 rounded-lg bg-brand-accent px-4 py-2 text-white font-medium hover:opacity-95" type="submit">
-          Request demo
-        </button>
-
-        <p id="form-status" class="mt-3 text-sm text-slate-600" role="status" aria-live="polite"></p>
-      </form>
-
-      <div>
-        <div class="rounded-xl border p-6">
-          <div class="font-semibold">Email</div>
-          <p class="mt-1"><a class="text-blue-600 underline" href="mailto:info@podfy.net">info@podfy.net</a></p>
-          <div class="mt-4 font-semibold">Legal</div>
-          <ul class="mt-1 space-y-1 list-disc list-inside text-slate-600">
-            <li><a class="text-blue-600 underline" href="/security.html">Security</a></li>
-            <li><a class="text-blue-600 underline" href="/privacy.html">Privacy</a></li>
-            <li><a class="text-blue-600 underline" href="/terms.html">Terms</a></li>
-            <li><a class="text-blue-600 underline" href="/imprint.html">Imprint</a></li>
+  <main id="main">
+    <!-- Hero / Positioning -->
+    <section class="bg-slate-50">
+      <div class="mx-auto max-w-6xl px-4 py-16 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">Proof-of-Delivery uploads, branded and instant.</h1>
+          <p class="mt-4 text-lg text-slate-600">Drivers and partners simply snap a photo or drag-and-drop a file. It lands with you immediately — and your team gets alerted.</p>
+          <ul class="mt-4 text-slate-600 space-y-1 text-sm">
+            <li>✅ <strong>Quick set-up</strong> — start in minutes.</li>
+            <li>✅ <strong>No app, no login</strong> — works on any phone or computer.</li>
+            <li>✅ <strong>No integration needed</strong> to try it.</li>
           </ul>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/demo" class="rounded-lg bg-brand-accent px-5 py-3 text-white font-medium shadow hover:opacity-95">Try a demo upload</a>
+            <a href="#solutions" class="rounded-lg border border-slate-300 px-5 py-3 font-medium hover:bg-white">See solutions</a>
+          </div>
+          <p class="mt-3 text-xs text-slate-500">Built for logistics, 3PLs, carriers, warehouse operations, and brands.</p>
         </div>
-        <p class="mt-4 text-xs text-slate-500">PODFY — KVK: 12345678</p>
+        <div>
+          <div class="relative">
+            <div class="absolute -inset-4 rounded-3xl bg-gradient-to-r from-slate-100 to-slate-200"></div>
+            <img src="/assets/hero-screenshot.png" alt="Branded uploader with progress and file chip" class="relative rounded-2xl border border-slate-200 shadow-sm">
+          </div>
+          <p class="mt-3 text-xs text-slate-500">Conceptual UI for illustration.</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
+    <!-- Core Benefits (sales language) -->
+    <section id="value" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">Why companies choose PODFY</h2>
+      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <article class="rounded-xl border p-5">
+          <h3 class="font-semibold">Instant uploads</h3>
+          <p class="mt-2 text-slate-600">Drivers or partners can simply snap a photo or drop a file. No app to install, no account to log in.</p>
+        </article>
+        <article class="rounded-xl border p-5">
+          <h3 class="font-semibold">Your brand, your link</h3>
+          <p class="mt-2 text-slate-600">Each upload page carries your logo, colors, and contact email — so it looks and feels like your company.</p>
+        </article>
+        <article class="rounded-xl border p-5">
+          <h3 class="font-semibold">Teams notified instantly</h3>
+          <p class="mt-2 text-slate-600">As soon as a file is uploaded, your staff gets an email alert with the details. Optionally, the sender receives a copy too.</p>
+        </article>
+        <article class="rounded-xl border p-5">
+          <h3 class="font-semibold">Quick set-up</h3>
+          <p class="mt-2 text-slate-600">Start in minutes. No integration needed to try it — just share your unique link and receive your first proof-of-delivery.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Feature Overview (plain English) -->
+    <section id="features" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">What makes PODFY simple</h2>
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <article class="rounded-xl border p-6">
+          <h3 class="text-lg font-semibold">Easy for drivers</h3>
+          <p class="mt-2 text-slate-600">Open the link, drop a file or take a photo, and hit send. That’s it. Works on any phone, tablet, or computer.</p>
+        </article>
+        <article class="rounded-xl border p-6">
+          <h3 class="text-lg font-semibold">Branded pages</h3>
+          <p class="mt-2 text-slate-600">Every page shows your logo and colors. If someone lands on a wrong link, they’ll see a clear safety message.</p>
+        </article>
+        <article class="rounded-xl border p-6">
+          <h3 class="text-lg font-semibold">Reliable delivery</h3>
+          <p class="mt-2 text-slate-600">Files are safely stored and your operations team receives an instant email with the file and shipment details.</p>
+        </article>
+        <article class="rounded-xl border p-6">
+          <h3 class="text-lg font-semibold">Privacy built-in</h3>
+          <p class="mt-2 text-slate-600">Location is only shared with driver consent. File types and sizes are checked, and old files can be automatically deleted.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Product Solutions / Plans -->
+    <section id="solutions" class="mx-auto max-w-6xl px-4 py-16 bg-slate-50">
+      <h2 class="text-2xl md:text-3xl font-bold">Product solutions</h2>
+      <p class="mt-2 text-slate-600">Choose the option that fits your workflow today — and upgrade anytime.</p>
+      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <article class="rounded-xl border bg-white p-6">
+          <h3 class="text-lg font-semibold">Trial (Free)</h3>
+          <p class="mt-2 text-slate-600">Try the app right away from our main page. Send a copy to yourself to experience the flow. No integration needed.</p>
+          <a href="/demo" class="mt-4 inline-block text-sm font-medium text-blue-600 underline">Try a demo upload</a>
+        </article>
+        <article class="rounded-xl border bg-white p-6">
+          <h3 class="text-lg font-semibold">Branded page</h3>
+          <p class="mt-2 text-slate-600">Get your own upload link with your logo, colors, and contact email — including the option to capture a shipment reference.</p>
+          <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline">Talk to sales</a>
+        </article>
+        <article class="rounded-xl border bg-white p-6">
+          <h3 class="text-lg font-semibold">Branded + Portal</h3>
+          <p class="mt-2 text-slate-600">Everything in Branded, plus a simple portal that stores your PODs for one year — exactly the CMR convention period.</p>
+          <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline">Request details</a>
+        </article>
+        <article class="rounded-xl border bg-white p-6">
+          <h3 class="text-lg font-semibold">AI-powered (coming soon)</h3>
+          <p class="mt-2 text-slate-600">The app reads the document for you and captures key shipment data automatically. Custom webhooks or APIs available on request.</p>
+          <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline">Join the waitlist</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="how" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">How it works</h2>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <article class="rounded-xl border p-5">
+          <div class="text-sm font-semibold text-slate-700">1) Share your link</div>
+          <p class="mt-2 text-slate-600">Open your brand page (e.g., <em>/acme</em>). It automatically shows your logo and colors.</p>
+        </article>
+        <article class="rounded-xl border p-5">
+          <div class="text-sm font-semibold text-slate-700">2) Upload the POD</div>
+          <p class="mt-2 text-slate-600">Drop a file or take a photo. Add a shipment reference if needed. Optional: email a copy to the sender.</p>
+        </article>
+        <article class="rounded-xl border p-5">
+          <div class="text-sm font-semibold text-slate-700">3) You’re notified</div>
+          <p class="mt-2 text-slate-600">Your team receives an email straight away. Files are stored safely and easy to find later.</p>
+        </article>
+      </div>
+      <div class="mt-8">
+        <a href="/demo" class="inline-block rounded-lg bg-brand-accent px-5 py-3 text-white font-medium shadow hover:opacity-95">Try a demo upload</a>
+      </div>
+    </section>
+
+    <!-- Trust signals & badges -->
+    <section class="mx-auto max-w-6xl px-4 py-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs text-slate-600">
+        <div class="rounded border px-3 py-2">Runs at the edge (Cloudflare Pages + Functions)</div>
+        <div class="rounded border px-3 py-2">Files stored safely</div>
+        <div class="rounded border px-3 py-2">Instant email alerts</div>
+        <div class="rounded border px-3 py-2">HEIC supported · Mobile camera capture</div>
+        <div class="rounded border px-3 py-2">No app or login required</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">FAQ</h2>
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">Do I need to install an app or create accounts?</summary>
+          <p class="mt-2 text-slate-600">No. Just open the link and upload. It works on any phone or computer.</p>
+        </details>
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">How fast can we start?</summary>
+          <p class="mt-2 text-slate-600">You can try it in minutes with our demo. A branded link can be set up quickly for your team.</p>
+        </details>
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">Can we add our branding?</summary>
+          <p class="mt-2 text-slate-600">Yes. Your upload page can show your logo, colors, and contact email.</p>
+        </details>
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">Can drivers add a shipment reference?</summary>
+          <p class="mt-2 text-slate-600">Yes. The branded plan supports capturing a shipment reference with the upload.</p>
+        </details>
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">How long are files kept?</summary>
+          <p class="mt-2 text-slate-600">With the Portal option, PODs are stored for one year — matching the CMR convention period.</p>
+        </details>
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">Do you integrate with our systems?</summary>
+          <p class="mt-2 text-slate-600">For many teams, no integration is needed. If you want automation, we offer custom webhooks or APIs on request.</p>
+        </details>
+      </div>
+
+      <!-- FAQ JSON-LD for AI/SEO -->
+      <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"FAQPage",
+        "mainEntity":[
+          {"@type":"Question","name":"Do I need to install an app or create accounts?","acceptedAnswer":{"@type":"Answer","text":"No. Just open the link and upload. It works on any phone or computer."}},
+          {"@type":"Question","name":"How fast can we start?","acceptedAnswer":{"@type":"Answer","text":"You can try it in minutes with our demo. A branded link can be set up quickly for your team."}},
+          {"@type":"Question","name":"Can we add our branding?","acceptedAnswer":{"@type":"Answer","text":"Yes. Your upload page can show your logo, colors, and contact email."}},
+          {"@type":"Question","name":"Can drivers add a shipment reference?","acceptedAnswer":{"@type":"Answer","text":"Yes. The branded plan supports capturing a shipment reference with the upload."}},
+          {"@type":"Question","name":"How long are files kept?","acceptedAnswer":{"@type":"Answer","text":"With the Portal option, PODs are stored for one year — matching the CMR convention period."}},
+          {"@type":"Question","name":"Do you integrate with our systems?","acceptedAnswer":{"@type":"Answer","text":"For many teams, no integration is needed. If you want automation, we offer custom webhooks or APIs on request."}}
+        ]
+      }
+      </script>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">Talk to sales</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-8">
+        <form id="contact-form"
+              action="https://submit-form.com/UQgzHuUP3"
+              method="POST"
+              class="rounded-xl border p-6 bg-white grid gap-3"
+              aria-describedby="contactHelp">
+
+          <!-- Honeypot -->
+          <input type="text" name="website" tabindex="-1" autocomplete="off"
+                 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"
+                 aria-hidden="true">
+
+          <p id="contactHelp" class="sr-only">Use this form to request a demo or contact sales.</p>
+
+          <label class="text-sm">Name
+            <input name="name" required autocomplete="name" class="mt-1 w-full rounded border px-3 py-2" />
+          </label>
+
+          <label class="text-sm">Email
+            <input type="email" name="email" required autocomplete="email" class="mt-1 w-full rounded border px-3 py-2" />
+          </label>
+
+          <label class="text-sm">Company
+            <input name="company" autocomplete="organization" class="mt-1 w-full rounded border px-3 py-2" />
+          </label>
+
+          <label class="text-sm">Message
+            <textarea name="message" rows="4" class="mt-1 w-full rounded border px-3 py-2" placeholder="Tell us which solution fits you (Trial, Branded, Portal, or AI)…"></textarea>
+          </label>
+
+          <label class="inline-flex items-start gap-2 text-sm">
+            <input type="checkbox" name="consent" required class="mt-1">
+            I agree to be contacted about my request and have read the
+            <a href="/privacy.html" class="text-blue-600 underline">Privacy Policy</a>.
+          </label>
+
+          <button class="mt-2 rounded-lg bg-brand-accent px-4 py-2 text-white font-medium hover:opacity-95" type="submit">
+            Send request
+          </button>
+
+          <p id="form-status" class="mt-3 text-sm text-slate-600" role="status" aria-live="polite"></p>
+        </form>
+
+        <div>
+          <div class="rounded-xl border p-6">
+            <div class="font-semibold">Email</div>
+            <p class="mt-1"><a class="text-blue-600 underline" href="mailto:info@podfy.net">info@podfy.net</a></p>
+            <div class="mt-4 font-semibold">Helpful links</div>
+            <ul class="mt-1 space-y-1 list-disc list-inside text-slate-600">
+              <li><a class="text-blue-600 underline" href="/privacy.html">Privacy</a></li>
+              <li><a class="text-blue-600 underline" href="/terms.html">Terms</a></li>
+              <li><a class="text-blue-600 underline" href="/demo">Demo upload</a></li>
+            </ul>
+          </div>
+          <p class="mt-4 text-xs text-slate-500">PODFY — KVK: 12345678</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (lawful links only) -->
   <footer class="border-t border-slate-100">
     <div class="mx-auto max-w-6xl px-4 py-10 grid md:grid-cols-2 gap-6 items-center">
       <p class="text-sm text-slate-600">© <span id="y"></span> PODFY. All rights reserved.</p>
       <div class="justify-self-end text-sm">
-        <a href="/security.html" class="hover:text-brand mr-4">Security</a>
         <a href="/privacy.html" class="hover:text-brand mr-4">Privacy</a>
-        <a href="/terms.html" class="hover:text-brand mr-4">Terms</a>
-        <a href="/imprint.html" class="hover:text-brand">Imprint</a>
+        <a href="/terms.html" class="hover:text-brand">Terms</a>
       </div>
     </div>
   </footer>
 
-  <!-- Inline JS: keep minimal; remove when moving to compiled assets -->
+  <!-- Inline JS -->
   <script>
     // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // AJAX submit (stay on page)
+    // Mobile menu toggle
+    (function () {
+      const btn = document.getElementById('menuBtn');
+      const menu = document.getElementById('mobileMenu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', () => {
+        const nowHidden = menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!nowHidden));
+      });
+      menu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+
+    // AJAX form submit (keep user on page)
     (function () {
       const form = document.getElementById('contact-form');
       if (!form) return;
@@ -275,7 +432,7 @@
                 <h3 class="text-xl font-semibold">Thanks — we’ve got your request.</h3>
                 <p class="mt-2 text-slate-600">We’ll get back to you shortly at the email you provided.</p>
                 <p class="mt-4"><a class="text-blue-600 underline" href="/">Back to homepage</a> ·
-                   <a class="text-blue-600 underline" href="https://podfy.app" target="_blank" rel="noopener">Open the app</a></p>
+                   <a class="text-blue-600 underline" href="/demo" rel="noopener">Try a demo upload</a></p>
               </div>`;
           } else {
             statusEl.textContent = 'Something went wrong. Please try again, or email info@podfy.net.';
