@@ -93,6 +93,7 @@ button{font:inherit}
     --slate-800:#E5E7EB;
     --slate-900:#F8FAFC;
   }
+   
   .bg-hero{background:linear-gradient(180deg, var(--tint-50) 0%, var(--bg) 60%)}
   .bg-surface{background:var(--surface)}
   .bg-tint{background:var(--tint-50)}
@@ -103,11 +104,16 @@ button{font:inherit}
   .btn-outline:hover{box-shadow:0 0 0 2px var(--line) inset}
    /* Icons in dark: keep brand blue for stroke, accent stays green */
   .bullet .icon{color:var(--slate-800)} /* light text color for strokes on dark bg */
-  /* Forms in dark */
-  input[type="text"], input[type="email"], textarea{
-    background:var(--surface); color:var(--ink); border-color:var(--line);
+  /* Headings: make brand headings light on dark */
+  .text-brand{color:var(--slate-900)}
+  /* Icons: white strokes on dark (accent stays green) */
+  .icon-list .icon{color:var(--slate-900)}
+  /* Forms & FAQ in dark (use higher specificity + !important to beat base rules below) */
+  body input[type="text"], body input[type="email"], body textarea{
+    background:var(--surface) !important; color:var(--ink) !important; border-color:var(--line) !important;
   }
-  details{background:var(--surface)}
+  #faq details{background:var(--surface) !important; border-color:var(--line) !important;}
+  #faq details summary{color:var(--ink)}
 }
 
 /* Buttons */
