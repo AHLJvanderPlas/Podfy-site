@@ -31,7 +31,7 @@
 /* Base */
 *{box-sizing:border-box}
 html{line-height:1.5;-webkit-text-size-adjust:100%}
-body{margin:0;font-family:var(--font-sans);color:var(--slate-800);background:#fff}
+body{margin:0;font-family:var(--font-sans);color:var(--slate-800);background:var(--bg)}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
 a.underline{text-decoration:underline}
@@ -60,6 +60,36 @@ button{font:inherit}
 .bg-hero{background:linear-gradient(180deg, var(--tint-50) 0%, #FFFFFF 60%)}
 .brand-card{background:#fff;border:1px solid var(--line);border-radius:.75rem}
 .border-line{border-color:var(--line)}
+
+/* Dark mode – variable overrides */
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: light dark;
+    --bg:#0B1220;
+    --surface:#0F172A;
+    --tint-50:#0E2237;
+    --ink:#E5E7EB;
+    --muted:#94A3B8;
+    --line:#243140;
+    /* remap slate scale used by utilities */
+    --slate-50:#0B1220;
+    --slate-100:#0F172A;
+    --slate-200:#1F2937;
+    --slate-300:#243140;
+    --slate-600:#94A3B8;
+    --slate-700:#CBD5E1;
+    --slate-800:#E5E7EB;
+    --slate-900:#F8FAFC;
+  }
+  .bg-hero{background:linear-gradient(180deg, var(--tint-50) 0%, var(--bg) 60%)}
+  .bg-surface{background:var(--surface)}
+  .bg-tint{background:var(--tint-50)}
+  a.text-blue-600{color:#60A5FA}
+  .brand-card{background:var(--surface);border:1px solid var(--line)}
+  .border, .border-t, .border-b, .border-slate-100, .border-slate-200, .border-slate-300{border-color:var(--line)}
+  .btn-outline{border:1px solid var(--line);background:transparent;color:var(--ink)}
+  .btn-outline:hover{box-shadow:0 0 0 2px var(--line) inset}
+}
 
 /* Buttons */
 .btn{
@@ -162,7 +192,7 @@ button{font:inherit}
 .bg-white{background:#fff}
 .bg-slate-50{background:var(--slate-50)}
 .bg-brand-accent{background:var(--brand-accent)}
-.bg-hero{} /* class present for clarity in diff; gradient declared above */
+.bg-hero{} /* gradient above */
 .hover\:bg-slate-50:hover{background:var(--slate-50)}
 .hover\:bg-white:hover{background:#fff}
 .bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-from,transparent), var(--tw-gradient-to,transparent))}
