@@ -62,9 +62,15 @@ button{font:inherit}
 .bg-hero{background:linear-gradient(180deg, var(--tint-50) 0%, #FFFFFF 60%)}
 .brand-card{background:#fff;border:1px solid var(--line);border-radius:.75rem}
 .border-line{border-color:var(--line)}
-/* Icon bullets */
-.bullet{display:flex;align-items:flex-start;gap:.5rem}
-.bullet .icon{width:1.15rem;height:1.15rem;flex:0 0 auto;color:var(--brand-primary);margin-top:.15rem}
+/* Icon bullets (emoji-sized) */
+.icon-list{list-style:none;margin:0;padding:0}
+.icon-list li{display:flex;align-items:baseline;gap:.5rem;margin:0}
+.icon-list .icon{
+  width:1.1em;height:1.1em;flex:0 0 auto;display:inline-block;
+  color:var(--brand-primary);vertical-align:-0.15em
+}
+/* keep strokes readable when scaled down */
+.icon path,.icon rect,.icon circle{vector-effect:non-scaling-stroke}
 
 /* Dark mode overrides */
 @media (prefers-color-scheme: dark){
