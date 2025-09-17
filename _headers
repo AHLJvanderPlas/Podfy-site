@@ -6,8 +6,8 @@ Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.tailw
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Cross-Origin-Opener-Policy: same-origin
-  # HTML should not be cached aggressively (avoid stale deploys)
-  Cache-Control: no-store, max-age=0
+  # HTML caching (short cache with revalidate)
+  Cache-Control: max-age=60, must-revalidate
 
 # Optional: discourage indexing of the helper /tool page
 /tool/*
