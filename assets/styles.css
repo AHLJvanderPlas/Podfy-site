@@ -4,7 +4,17 @@
    ========================================================================== */
 
 :root{
-  --brand-accent:#2563EB;
+  /* Brand palette (WCAG-friendly) */
+  --brand-primary:#1D3557; /* deep trust blue */
+  --brand-accent:#06D6A0;  /* CTA green */
+  --brand-warm:#FF9F1C;    /* states/highlights (sparingly) */
+  --bg:#FFFFFF;
+  --surface:#F5F5F5;
+  --ink:#0F172A;
+  --muted:#475569;
+  --line:#E2E8F0;
+
+  /* Legacy neutrals kept for existing utilities */
   --slate-50:#F8FAFC;
   --slate-100:#F1F5F9;
   --slate-200:#E2E8F0;
@@ -39,6 +49,35 @@ button{font:inherit}
 .focus\:border:focus{border:1px solid var(--slate-200)}
 .focus\:px-3:focus{padding-left:.75rem;padding-right:.75rem}
 .focus\:py-2:focus{padding-top:.5rem;padding-bottom:.5rem}
+
+/* New semantic helpers */
+.text-ink{color:var(--ink)}
+.text-muted{color:var(--muted)}
+.bg-surface{background:var(--surface)}
+.border-line{border-color:var(--line)}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:.6rem;padding:.75rem 1.1rem;font-weight:600;
+  transition:transform .05s ease, opacity .2s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-accent{background:var(--brand-accent);color:#fff}
+.btn-accent:hover{opacity:.95}
+.btn-outline{border:1px solid var(--line);background:#fff;color:var(--ink)}
+.btn-outline:hover{box-shadow:0 0 0 2px var(--line) inset}
+
+/* Sticky mobile CTA bar */
+.cta-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:50;
+  background:var(--bg);border-top:1px solid var(--line);padding:.75rem;
+  display:none;gap:.5rem;box-shadow:0 -6px 20px rgba(0,0,0,.06)
+}
+@media (max-width:768px){.cta-bar{display:grid;grid-template-columns:1fr 1fr}}
+
+/* Focus visible */
+:focus-visible{outline:3px solid var(--brand-warm);outline-offset:2px}
 
 /* Container + layout */
 .mx-auto{margin-left:auto;margin-right:auto}
@@ -113,7 +152,7 @@ button{font:inherit}
 .text-slate-900{color:var(--slate-900)}
 .text-white{color:#fff}
 .text-blue-600{color:#2563EB}
-.hover\:text-brand:hover{color:var(--brand-accent)}
+.hover\:text-brand:hover{color:var(--brand-primary)}
 
 .bg-white{background:#fff}
 .bg-slate-50{background:var(--slate-50)}
@@ -210,6 +249,6 @@ th,td{padding:.625rem;border-bottom:1px solid var(--slate-100);text-align:left}
 }
 
 /* Page niceties */
-header a:hover, footer a:hover{color:var(--brand-accent)}
+header a:hover, footer a:hover{color:var(--brand-primary)}
 details{background:#fff}
 summary{cursor:pointer}
