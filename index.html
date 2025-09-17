@@ -3,25 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PODFY — Proof-of-Delivery uploads, branded and instant</title>
-  <meta name="description" content="PODFY is a simple, branded upload tool for logistics. Drivers snap a photo or drop a file; your team is notified instantly. Start in minutes — no app, no login, no integration required." />
+  <title>PODFY — Proof of Delivery, without the headaches.</title>
+  <meta name="description" content="Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast. Try a demo upload or talk to sales." />
   <link rel="canonical" href="https://podfy.net/">
 
   <!-- Basic SEO -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#2563EB" />
+  <meta name="theme-color" content="#1D3557" />
   <meta name="format-detection" content="telephone=no,address=no,email=no" />
   <meta name="keywords" content="proof of delivery, POD, CMR upload, logistics, 3PL, carriers, warehouse operations, branded upload link, no integration, quick setup, Cloudflare R2">
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="PODFY — Proof-of-Delivery uploads, branded and instant" />
-  <meta property="og:description" content="Drag-and-drop or snap a photo. Files go straight to your storage; teams get notified immediately. Start in minutes." />
+  <meta property="og:title" content="PODFY — Proof of Delivery, without the headaches." />
+  <meta property="og:description" content="Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://podfy.net/" />
   <meta property="og:image" content="https://podfy.net/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PODFY — Proof-of-Delivery uploads, branded and instant">
-  <meta name="twitter:description" content="Drag-and-drop or snap a photo. Files go straight to your storage; teams get notified immediately.">
+  <meta name="twitter:title" content="PODFY — Proof of Delivery, without the headaches.">
+  <meta name="twitter:description" content="Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast.">
   <meta name="twitter:image" content="https://podfy.net/assets/og-image.png">
 
   <!-- Favicons (swap paths to match your repo) -->
@@ -31,7 +31,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB">
 
-<link rel="stylesheet" href="/assets/styles.css?v=1">
+<link rel="stylesheet" href="/assets/styles.css?v=2">
   
   <style>
     html { scroll-behavior: smooth; }
@@ -69,7 +69,32 @@
       "Optional shipment reference capture",
       "Quick set-up, no integration required"
     ],
-    "url":"https://podfy.net/"
+    "applicationSuite":"Podfy",
+    "url":"https://podfy.net/",
+    "provider":{
+      "@type":"Organization",
+      "name":"PODFY",
+      "url":"https://podfy.net/"
+    },
+    "offers":{
+      "@type":"Offer",
+      "price":"0",
+      "priceCurrency":"EUR",
+      "category":"FreeTrial",
+      "url":"https://podfy.net/demo",
+      "availability":"https://schema.org/InStock"
+    }
+  }
+  </script>
+  <!-- JSON-LD: Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://podfy.net/"},
+      {"@type":"ListItem","position":2,"name":"Product","item":"https://podfy.net/#features"}
+    ]
   }
   </script>
 </head>
@@ -94,13 +119,13 @@
         <a href="#how" class="hover:text-brand">How it works</a>
         <a href="#value" class="hover:text-brand">Benefits</a>
         <a href="#features" class="hover:text-brand">Features</a>
-        <a href="#solutions" class="hover:text-brand">Solutions</a>
+        <a href="#solutions" class="hover:text-brand">Pricing &amp; Plans</a>
         <a href="#faq" class="hover:text-brand">FAQ</a>
       </nav>
 
       <div class="hidden md:flex items-center gap-3">
-        <a href="/demo" class="rounded-lg bg-brand-accent px-4 py-2 text-white text-sm font-medium shadow hover:opacity-95">Try a demo upload</a>
-        <a href="#contact" class="rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50">Talk to sales</a>
+        <a href="/demo" class="btn btn-accent text-sm" data-event="cta:demo-upload" aria-label="Try a demo upload">Try a demo upload</a>
+        <a href="#contact" class="btn btn-outline text-sm" data-event="cta:request-demo" aria-label="Request a demo">Request a demo</a>
       </div>
     </div>
 
@@ -110,11 +135,11 @@
         <a href="#how" class="py-1">How it works</a>
         <a href="#value" class="py-1">Benefits</a>
         <a href="#features" class="py-1">Features</a>
-        <a href="#solutions" class="py-1">Solutions</a>
+        <a href="#solutions" class="py-1">Pricing &amp; Plans</a>
         <a href="#faq" class="py-1">FAQ</a>
         <div class="flex gap-3 pt-2">
-          <a href="/demo" class="flex-1 text-center rounded-lg bg-brand-accent px-4 py-2 text-white font-medium">Demo upload</a>
-          <a href="#contact" class="flex-1 text-center rounded-lg border border-slate-300 px-4 py-2">Talk to sales</a>
+          <a href="/demo" class="flex-1 text-center btn btn-accent font-medium" data-event="cta:demo-upload">Demo upload</a>
+          <a href="#contact" class="flex-1 text-center btn btn-outline" data-event="cta:request-demo">Request demo</a>
         </div>
       </div>
     </div>
@@ -122,28 +147,28 @@
 
   <main id="main">
     <!-- Hero / Positioning -->
-    <section class="bg-slate-50">
+    <section class="bg-slate-50" aria-label="Product overview">
       <div class="mx-auto max-w-6xl px-4 py-16 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">Proof-of-Delivery uploads, branded and instant.</h1>
-          <p class="mt-4 text-lg text-slate-600">Drivers and partners simply snap a photo or drag-and-drop a file. It lands with you immediately — and your team gets alerted.</p>
-          <ul class="mt-4 text-slate-600 space-y-1 text-sm">
-            <li>✅ <strong>Quick set-up</strong> — start in minutes.</li>
-            <li>✅ <strong>No app, no login</strong> — works on any phone or computer.</li>
-            <li>✅ <strong>No integration needed</strong> to try it.</li>
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">Proof of Delivery, without the headaches.</h1>
+          <p class="mt-4 text-lg text-slate-600">Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast.</p>
+          <ul class="mt-4 text-slate-600 space-y-1 text-sm" aria-label="Key benefits">
+            <li>✅ <strong>No app</strong> — drivers upload from any phone.</li>
+            <li>✅ <strong>Instant notifications</strong> — teams get email alerts.</li>
+            <li>✅ <strong>Your brand</strong> — logo, colors, and safety messages.</li>
           </ul>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="/demo" class="rounded-lg bg-brand-accent px-5 py-3 text-white font-medium shadow hover:opacity-95">Try a demo upload</a>
-            <a href="#solutions" class="rounded-lg border border-slate-300 px-5 py-3 font-medium hover:bg-white">See solutions</a>
+          <div class="mt-6 flex flex-wrap gap-3" aria-label="Primary calls to action">
+            <a href="/demo" class="btn btn-accent" data-event="cta:demo-upload">Try a demo upload</a>
+            <a href="#solutions" class="btn btn-outline" data-event="cta:see-plans">See pricing &amp; plans</a>
           </div>
           <p class="mt-3 text-xs text-slate-500">Built for logistics, 3PLs, carriers, warehouse operations, and brands.</p>
         </div>
         <div>
-          <div class="relative">
+          <figure class="relative">
             <div class="absolute -inset-4 rounded-3xl bg-gradient-to-r from-slate-100 to-slate-200"></div>
-            <img src="/assets/hero-screenshot.png" alt="Branded uploader with progress and file chip" class="relative rounded-2xl border border-slate-200 shadow-sm">
-          </div>
-          <p class="mt-3 text-xs text-slate-500">Conceptual UI for illustration.</p>
+            <img src="/assets/hero-screenshot.png" alt="Branded uploader showing a POD photo and progress chip" class="relative rounded-2xl border border-slate-200 shadow-sm" fetchpriority="high" decoding="async">
+            <figcaption class="mt-3 text-xs text-slate-500">Conceptual UI. Images are compressed for fast loading.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -151,6 +176,7 @@
     <!-- Core Benefits (sales language) -->
     <section id="value" class="mx-auto max-w-6xl px-4 py-16">
       <h2 class="text-2xl md:text-3xl font-bold">Why companies choose PODFY</h2>
+      <p class="mt-2 text-slate-600 text-sm">Reduce POD disputes and speed customer confirmation.</p>
       <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <article class="rounded-xl border p-5">
           <h3 class="font-semibold">Instant uploads</h3>
@@ -196,28 +222,28 @@
 
     <!-- Product Solutions / Plans -->
     <section id="solutions" class="mx-auto max-w-6xl px-4 py-16 bg-slate-50">
-      <h2 class="text-2xl md:text-3xl font-bold">Product solutions</h2>
+      <h2 id="pricing" class="text-2xl md:text-3xl font-bold">Pricing &amp; Plans</h2>
       <p class="mt-2 text-slate-600">Choose the option that fits your workflow today — and upgrade anytime.</p>
       <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <article class="rounded-xl border bg-white p-6">
           <h3 class="text-lg font-semibold">Trial (Free)</h3>
           <p class="mt-2 text-slate-600">Try the app right away from our main page. Send a copy to yourself to experience the flow. No integration needed.</p>
-          <a href="/demo" class="mt-4 inline-block text-sm font-medium text-blue-600 underline">Try a demo upload</a>
+          <a href="/demo" class="mt-4 inline-block text-sm font-medium text-blue-600 underline" data-event="cta:demo-upload">Try a demo upload</a>
         </article>
         <article class="rounded-xl border bg-white p-6">
           <h3 class="text-lg font-semibold">Branded page</h3>
           <p class="mt-2 text-slate-600">Get your own upload link with your logo, colors, and contact email — including the option to capture a shipment reference.</p>
-          <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline">Talk to sales</a>
+          <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline" data-event="cta:request-demo">Request a demo</a>
         </article>
         <article class="rounded-xl border bg-white p-6">
           <h3 class="text-lg font-semibold">Branded + Portal</h3>
           <p class="mt-2 text-slate-600">Everything in Branded, plus a simple portal that stores your PODs for one year — exactly the CMR convention period.</p>
-          <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline">Request details</a>
+          <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline" data-event="cta:request-details">Request details</a>
         </article>
         <article class="rounded-xl border bg-white p-6">
           <h3 class="text-lg font-semibold">AI-powered (coming soon)</h3>
           <p class="mt-2 text-slate-600">The app reads the document for you and captures key shipment data automatically. Custom webhooks or APIs available on request.</p>
-          <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline">Join the waitlist</a>
+          <a href="#contact" class="mt-4 inline-block text-sm font-medium text-blue-600 underline" data-event="cta:join-waitlist">Join the waitlist</a>
         </article>
       </div>
     </section>
@@ -240,19 +266,20 @@
         </article>
       </div>
       <div class="mt-8">
-        <a href="/demo" class="inline-block rounded-lg bg-brand-accent px-5 py-3 text-white font-medium shadow hover:opacity-95">Try a demo upload</a>
+        <a href="/demo" class="btn btn-accent" data-event="cta:demo-upload">Try a demo upload</a>
       </div>
     </section>
 
     <!-- Trust signals & badges -->
     <section class="mx-auto max-w-6xl px-4 py-8">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs text-slate-600">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs text-slate-600" aria-label="Trust signals">
         <div class="rounded border px-3 py-2">Runs at the edge (Cloudflare Pages + Functions)</div>
         <div class="rounded border px-3 py-2">Files stored safely</div>
         <div class="rounded border px-3 py-2">Instant email alerts</div>
         <div class="rounded border px-3 py-2">HEIC supported · Mobile camera capture</div>
         <div class="rounded border px-3 py-2">No app or login required</div>
       </div>
+      <p class="mt-2 text-xs text-slate-600">Note: GDPR-ready. EU hosting option available.</p>
     </section>
 
     <!-- FAQ -->
@@ -341,7 +368,7 @@
             <a href="/privacy.html" class="text-blue-600 underline">Privacy Policy</a>.
           </label>
 
-          <button class="mt-2 rounded-lg bg-brand-accent px-4 py-2 text-white font-medium hover:opacity-95" type="submit">
+          <button class="mt-2 btn btn-accent" type="submit" data-event="cta:contact-submit">
             Send request
           </button>
 
@@ -363,6 +390,11 @@
         </div>
       </div>
     </section>
+    <!-- Sticky mobile CTA bar -->
+    <div class="cta-bar" role="region" aria-label="Quick actions">
+      <a href="/demo" class="btn btn-accent" data-event="cta:demo-upload">Demo upload</a>
+      <a href="#contact" class="btn btn-outline" data-event="cta:request-demo">Request demo</a>
+    </div>
   </main>
 
   <!-- Footer (lawful links only) -->
@@ -375,6 +407,15 @@
       </div>
     </div>
   </footer>
+
+  <!-- Footer demo info bar (dismissible) -->
+  <aside id="demoBar" class="hidden md:flex justify-between items-center px-4 py-3 border-t border-slate-100" role="region" aria-label="Interactive demo">
+    <span class="text-sm text-slate-700">See a 2-minute interactive demo.</span>
+    <div class="flex gap-3">
+      <a href="/demo" class="btn btn-accent" data-event="cta:demo-footer">Open demo</a>
+      <button id="demoBarClose" class="btn btn-outline text-sm" aria-label="Hide demo bar">Hide</button>
+    </div>
+  </aside>
 
   <!-- Inline JS -->
   <script>
@@ -430,6 +471,16 @@
           statusEl.textContent = 'Network error. Please try again, or email info@podfy.net.';
         }
       });
+    })();
+
+    // Dismissible footer demo bar
+    (function () {
+      const bar = document.getElementById('demoBar');
+      const close = document.getElementById('demoBarClose');
+      if (!bar || !close) return;
+      // Show on desktop only (already hidden on mobile by class)
+      bar.classList.remove('hidden');
+      close.addEventListener('click', () => bar.remove());
     })();
   </script>
 </body>
