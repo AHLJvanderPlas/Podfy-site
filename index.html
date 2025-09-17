@@ -31,7 +31,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB">
 
-<link rel="stylesheet" href="/assets/styles.css?v=2">
+<link rel="stylesheet" href="/assets/styles.css?v=3">
   
   <style>
     html { scroll-behavior: smooth; }
@@ -128,26 +128,11 @@
         <a href="#contact" class="btn btn-outline text-sm" data-event="cta:request-demo" aria-label="Request a demo">Request a demo</a>
       </div>
     </div>
-
-    <!-- Mobile dropdown -->
-    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100">
-      <div class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
-        <a href="#how" class="py-1">How it works</a>
-        <a href="#value" class="py-1">Benefits</a>
-        <a href="#features" class="py-1">Features</a>
-        <a href="#solutions" class="py-1">Pricing &amp; Plans</a>
-        <a href="#faq" class="py-1">FAQ</a>
-        <div class="flex gap-3 pt-2">
-          <a href="/demo" class="flex-1 text-center btn btn-accent font-medium" data-event="cta:demo-upload">Demo upload</a>
-          <a href="#contact" class="flex-1 text-center btn btn-outline" data-event="cta:request-demo">Request demo</a>
-        </div>
-      </div>
-    </div>
   </header>
 
   <main id="main">
     <!-- Hero / Positioning -->
-    <section class="bg-slate-50" aria-label="Product overview">
+    <section class="bg-hero" aria-label="Product overview">
       <div class="mx-auto max-w-6xl px-4 py-16 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">Proof of Delivery, without the headaches.</h1>
@@ -174,8 +159,8 @@
     </section>
 
     <!-- Core Benefits (sales language) -->
-    <section id="value" class="mx-auto max-w-6xl px-4 py-16">
-      <h2 class="text-2xl md:text-3xl font-bold">Why companies choose PODFY</h2>
+    <section id="value" class="mx-auto max-w-6xl px-4 py-16 bg-tint">
+      <h2 class="text-2xl md:text-3xl font-bold text-brand">Why companies choose PODFY</h2>
       <p class="mt-2 text-slate-600 text-sm">Reduce POD disputes and speed customer confirmation.</p>
       <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <article class="rounded-xl border p-5">
@@ -199,7 +184,7 @@
 
     <!-- Feature Overview (plain English) -->
     <section id="features" class="mx-auto max-w-6xl px-4 py-16">
-      <h2 class="text-2xl md:text-3xl font-bold">What makes PODFY simple</h2>
+      <h2 class="text-2xl md:text-3xl font-bold text-brand">What makes PODFY simple</h2>
       <div class="mt-8 grid md:grid-cols-2 gap-6">
         <article class="rounded-xl border p-6">
           <h3 class="text-lg font-semibold">Easy for drivers</h3>
@@ -221,8 +206,8 @@
     </section>
 
     <!-- Product Solutions / Plans -->
-    <section id="solutions" class="mx-auto max-w-6xl px-4 py-16 bg-slate-50">
-      <h2 id="pricing" class="text-2xl md:text-3xl font-bold">Pricing &amp; Plans</h2>
+    <section id="solutions" class="mx-auto max-w-6xl px-4 py-16 bg-tint">
+      <h2 id="pricing" class="text-2xl md:text-3xl font-bold text-brand">Pricing &amp; Plans</h2>
       <p class="mt-2 text-slate-600">Choose the option that fits your workflow today — and upgrade anytime.</p>
       <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <article class="rounded-xl border bg-white p-6">
@@ -250,7 +235,7 @@
 
     <!-- How it Works -->
     <section id="how" class="mx-auto max-w-6xl px-4 py-16">
-      <h2 class="text-2xl md:text-3xl font-bold">How it works</h2>
+      <h2 class="text-2xl md:text-3xl font-bold text-brand">How it works</h2>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
         <article class="rounded-xl border p-5">
           <div class="text-sm font-semibold text-slate-700">1) Share your link</div>
@@ -271,7 +256,7 @@
     </section>
 
     <!-- Trust signals & badges -->
-    <section class="mx-auto max-w-6xl px-4 py-8">
+    <section class="mx-auto max-w-6xl px-4 py-8 bg-surface">
       <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs text-slate-600" aria-label="Trust signals">
         <div class="rounded border px-3 py-2">Runs at the edge (Cloudflare Pages + Functions)</div>
         <div class="rounded border px-3 py-2">Files stored safely</div>
@@ -284,7 +269,7 @@
 
     <!-- FAQ -->
     <section id="faq" class="mx-auto max-w-6xl px-4 py-16">
-      <h2 class="text-2xl md:text-3xl font-bold">FAQ</h2>
+      <h2 class="text-2xl md:text-3xl font-bold text-brand">FAQ</h2>
       <div class="mt-8 grid md:grid-cols-2 gap-6">
         <details class="rounded-xl border p-5">
           <summary class="font-semibold cursor-pointer">Do I need to install an app or create accounts?</summary>
@@ -331,33 +316,28 @@
 
     <!-- Contact -->
     <section id="contact" class="mx-auto max-w-6xl px-4 py-16">
-      <h2 class="text-2xl md:text-3xl font-bold">Talk to sales</h2>
+      <h2 class="text-2xl md:text-3xl font-bold text-brand">Talk to sales</h2>
       <div class="mt-6 grid md:grid-cols-2 gap-8">
         <form id="contact-form"
               action="https://submit-form.com/UQgzHuUP3"
               method="POST"
               class="rounded-xl border p-6 bg-white grid gap-3"
               aria-describedby="contactHelp">
-
           <!-- Honeypot -->
           <input type="text" name="website" tabindex="-1" autocomplete="off"
                  style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"
                  aria-hidden="true">
-
           <p id="contactHelp" class="sr-only">Use this form to request a demo or contact sales.</p>
 
           <label class="text-sm">Name
             <input name="name" required autocomplete="name" class="mt-1 w-full rounded border px-3 py-2" />
           </label>
-
           <label class="text-sm">Email
             <input type="email" name="email" required autocomplete="email" class="mt-1 w-full rounded border px-3 py-2" />
           </label>
-
           <label class="text-sm">Company
             <input name="company" autocomplete="organization" class="mt-1 w-full rounded border px-3 py-2" />
           </label>
-
           <label class="text-sm">Message
             <textarea name="message" rows="4" class="mt-1 w-full rounded border px-3 py-2" placeholder="Tell us which solution fits you (Trial, Branded, Portal, or AI)…"></textarea>
           </label>
@@ -390,6 +370,7 @@
         </div>
       </div>
     </section>
+
     <!-- Sticky mobile CTA bar -->
     <div class="cta-bar" role="region" aria-label="Quick actions">
       <a href="/demo" class="btn btn-accent" data-event="cta:demo-upload">Demo upload</a>
@@ -397,7 +378,7 @@
     </div>
   </main>
 
-  <!-- Footer (lawful links only) -->
+  <!-- Footer -->
   <footer class="border-t border-slate-100">
     <div class="mx-auto max-w-6xl px-4 py-10 grid md:grid-cols-2 gap-6 items-center">
       <p class="text-sm text-slate-600">© <span id="y"></span> PODFY. All rights reserved.</p>
@@ -417,12 +398,9 @@
     </div>
   </aside>
 
-  <!-- Inline JS -->
+  <!-- Inline JS (unchanged except version bump) -->
   <script>
-    // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Mobile menu toggle
     (function () {
       const btn = document.getElementById('menuBtn');
       const menu = document.getElementById('mobileMenu');
@@ -438,24 +416,17 @@
         }
       });
     })();
-
-    // AJAX form submit (keep user on page)
     (function () {
       const form = document.getElementById('contact-form');
       if (!form) return;
       const statusEl = document.getElementById('form-status');
       const endpoint = form.getAttribute('action');
-
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
         statusEl.textContent = 'Sending…';
         try {
           const formData = new FormData(form);
-          const resp = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: formData
-          });
+          const resp = await fetch(endpoint, { method: 'POST', headers: { 'Accept': 'application/json' }, body: formData });
           if (resp.ok) {
             form.innerHTML = `
               <div class="text-center">
@@ -472,13 +443,10 @@
         }
       });
     })();
-
-    // Dismissible footer demo bar
     (function () {
       const bar = document.getElementById('demoBar');
       const close = document.getElementById('demoBarClose');
       if (!bar || !close) return;
-      // Show on desktop only (already hidden on mobile by class)
       bar.classList.remove('hidden');
       close.addEventListener('click', () => bar.remove());
     })();
