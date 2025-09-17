@@ -104,6 +104,25 @@
   </script>
 </head>
 <body class="text-slate-800 antialiased">
+  
+  <!-- Inline SVG sprite (duotone icons). Hidden from AT; referenced via <use>. -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
+    <symbol id="ic-noapp" viewBox="0 0 24 24">
+      <rect x="6" y="2" width="12" height="20" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="12" cy="18" r="1.2" fill="currentColor"/>
+      <!-- accent slash -->
+      <path d="M4 4l16 16" stroke="var(--brand-accent)" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="ic-instant" viewBox="0 0 24 24">
+      <path d="M3 7l9 6 9-6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" fill="none" stroke="currentColor" stroke-width="1.8" />
+      <circle cx="19" cy="7" r="2.5" fill="var(--brand-accent)"/>
+    </symbol>
+    <symbol id="ic-brand" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <rect x="6" y="8" width="8" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="18" cy="10" r="1.8" fill="var(--brand-accent)"/>
+    </symbol>
+  </svg>
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:border focus:px-3 focus:py-2">Skip to content</a>
 
   <!-- Header -->
@@ -141,10 +160,19 @@
         <div>
           <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">Proof of Delivery, without the headaches.</h1>
           <p class="mt-4 text-lg text-slate-600">Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast.</p>
-          <ul class="mt-4 text-slate-600 space-y-1 text-sm" aria-label="Key benefits">
-            <li>✅ <strong>No app</strong> — drivers upload from any phone.</li>
-            <li>✅ <strong>Instant notifications</strong> — teams get email alerts.</li>
-            <li>✅ <strong>Your brand</strong> — logo, colors, and safety messages.</li>
+          +          <ul class="mt-4 text-slate-600 space-y-2 text-sm" aria-label="Key benefits">
+            <li class="bullet">
+              <svg class="icon" aria-hidden="true"><use href="#ic-noapp"/></svg>
+              <span><strong>No app</strong> — drivers upload from any phone.</span>
+            </li>
+            <li class="bullet">
+              <svg class="icon" aria-hidden="true"><use href="#ic-instant"/></svg>
+              <span><strong>Instant notifications</strong> — teams get email alerts.</span>
+            </li>
+            <li class="bullet">
+              <svg class="icon" aria-hidden="true"><use href="#ic-brand"/></svg>
+              <span><strong>Your brand</strong> — logo, colors, and safety messages.</span>
+            </li>
           </ul>
           <div class="mt-6 flex flex-wrap gap-3" aria-label="Primary calls to action">
             <a href="/demo" class="btn btn-accent" data-event="cta:demo-upload">Try a demo upload</a>
