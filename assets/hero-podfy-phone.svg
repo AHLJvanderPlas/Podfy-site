@@ -1,120 +1,80 @@
-<!-- phone-podfy.svg -->
+<!-- phone-in-hand.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d"
-     viewBox="0 0 360 720" width="100%" style="height:auto;max-width:420px">
-  <title id="t">Podfy uploader UI on a smartphone</title>
-  <desc id="d">Vector phone mock showing the Podfy logo, an upload panel with two buttons, a checkbox row, and a green submit button. Colors adapt to light and dark mode.</desc>
+     viewBox="0 0 480 360" width="100%" style="max-width:640px;height:auto">
+  <title id="t">Phone in hand with Podfy logo</title>
+  <desc id="d">Simple illustration of a neutral hand holding a phone that shows the Podfy logo. Adapts to light and dark mode.</desc>
 
-  <!-- ===== THEME TOKENS ===== -->
+  <!-- ===== Theming (light/dark) ===== -->
   <style>
     :root{
-      --brand-primary:#1D3557;   /* headings/icons (light) */
-      --brand-accent:#06D6A0;    /* CTA green */
-      --ink:#0F172A;             /* main text */
-      --muted:#475569;           /* secondary text */
-      --edge:#E2E8F0;            /* borders */
+      --brand-primary:#1D3557;   /* outlines/icons on light */
+      --brand-accent:#06D6A0;    /* small accent check */
+      --ink:#0F172A;             /* dark ink on light */
+      --hand:#E8EEF5;            /* hand/sleeve fill (neutral) */
+      --phone:#F7FAFC;           /* phone shell */
+      --edge:#D9E1EC;            /* device/hand edge */
       --screen:#FFFFFF;          /* phone screen */
-      --shell:#F5F7FB;           /* phone shell */
-      --shell-edge:#DEE5EF;      /* shell stroke */
-      --chip:#EEF2F7;            /* light chips */
-      --dropHint:#CBD5E1;        /* dashed border */
+      --shadowA:rgba(16,24,40,.08);
     }
     @media (prefers-color-scheme: dark){
       :root{
-        --brand-primary:#A5B4CF; /* tuned for dark */
-        --ink:#E5E7EB;
-        --muted:#94A3B8;
-        --edge:#243140;
-        --screen:#0F172A;
-        --shell:#E6EBF2;
-        --shell-edge:#CAD3E1;
-        --chip:#1A2535;
-        --dropHint:#334559;
+        --brand-primary:#D0D8EA; /* outlines/icons on dark */
+        --ink:#E5E7EB;           /* light ink on dark */
+        --hand:#1A2332;          /* hand/sleeve fill (neutral dark) */
+        --phone:#E6ECF5;         /* light device against dark bg */
+        --edge:#B9C6D8;          /* device/hand edge on dark */
+        --screen:#0F172A;        /* dark screen */
+        --shadowA:rgba(0,0,0,.35);
       }
     }
 
-    /* helpers */
-    .shellF   { fill:var(--shell); stroke:var(--shell-edge); }
-    .screenF  { fill:var(--screen); stroke:var(--edge); }
-    .inkF     { fill:var(--ink); }
-    .mutedF   { fill:var(--muted); }
-    .brandS   { stroke:var(--brand-primary); }
-    .accentF  { fill:var(--brand-accent); }
-    .accentS  { stroke:var(--brand-accent); }
-    .edgeS    { stroke:var(--edge); }
-    .round    { stroke-linecap:round; stroke-linejoin:round; }
-    .thin     { stroke-width:1.5; }
-    .med      { stroke-width:2; }
-    .thick    { stroke-width:3.5; }
-    /* crisp lines when scaled */
-    path,rect,circle,line,polyline{ vector-effect:non-scaling-stroke; shape-rendering:geometricPrecision; }
-    text{ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, "Noto Sans", "Helvetica Neue", sans-serif; }
+    .stroke      { stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke }
+    .deviceEdge  { stroke:var(--edge); }
+    .brandStroke { stroke:var(--brand-primary); }
+    .inkFill     { fill:var(--ink); }
   </style>
 
-  <!-- ===== SYMBOL: Podfy cube + check ===== -->
+  <!-- ===== Podfy mark symbol (cube + check) ===== -->
   <symbol id="podfy-mark" viewBox="0 0 64 64">
-    <path class="brandS round thick" d="M12 24l20-10 20 10v16L32 50 12 40V24z" fill="none"/>
-    <path class="brandS round thick" d="M32 14v36M12 24l20 10 20-10" fill="none"/>
-    <path class="accentS round thick" d="M24 33l7 7 11-11" fill="none"/>
+    <path class="stroke brandStroke" stroke-width="4"
+          d="M12 24l20-10 20 10v16L32 50 12 40V24z" fill="none"/>
+    <path class="stroke brandStroke" stroke-width="4" d="M32 14v36M12 24l20 10 20-10" fill="none"/>
+    <path class="stroke" stroke="var(--brand-accent)" stroke-width="6" d="M24 33l7 7 11-11" fill="none"/>
   </symbol>
 
-  <!-- ===== PHONE SHELL ===== -->
-  <!-- faux shadow (no filters) -->
-  <ellipse cx="180" cy="686" rx="140" ry="18" fill="rgba(0,0,0,.10)"/>
-  <rect x="40" y="20" width="280" height="680" rx="44" class="shellF med"/>
-  <!-- notch + helpers -->
-  <rect x="120" y="40" width="120" height="22" rx="11" fill="#fff" opacity=".65"/>
-  <rect x="160" y="36" width="40" height="6" rx="3" class="mutedF" opacity=".55"/>
+  <!-- ===== Soft “ground” shadow (no filters) ===== -->
+  <ellipse cx="240" cy="330" rx="160" ry="16" fill="var(--shadowA)"/>
 
-  <!-- ===== SCREEN ===== -->
-  <rect x="58" y="72" width="244" height="600" rx="22" class="screenF med"/>
+  <!-- ===== Hand (neutral, no skin tone) ===== -->
+  <g transform="translate(40,150)">
+    <!-- palm/back -->
+    <path d="M110 30c-10 0-18 8-19 18l-6 52c-1 9 6 17 15 18l152 14c12 1 22-7 24-19l6-34c2-12-6-22-18-24l-154-25z"
+          fill="var(--hand)" stroke="var(--edge)" stroke-width="2" class="stroke"/>
+    <!-- thumb -->
+    <path d="M96 96c-3 8 2 16 10 18l42 10c10 2 20-4 22-14l2-10c2-10-5-20-15-22l-40-8c-10-2-18 4-21 12z"
+          fill="var(--hand)" stroke="var(--edge)" stroke-width="2" class="stroke"/>
+    <!-- sleeve -->
+    <path d="M-8 86c10 24 38 38 68 38h62a22 22 0 0 0 22-22v-20a24 24 0 0 0-24-24H76c-18 0-32-14-32-32v-8c0-12-10-22-22-22S-8 6-8 18v68z"
+          fill="var(--hand)" opacity=".85"/>
+  </g>
 
-  <!-- ===== UI CONTENT ===== -->
-  <g transform="translate(58,72)">
-    <!-- top brand row -->
-    <g transform="translate(20,28)">
-      <use href="#podfy-mark" width="28" height="28"/>
-      <text x="38" y="22" class="inkF" style="font-size:22px;font-weight:700;letter-spacing:.4px">Podfy</text>
+  <!-- ===== Phone ===== -->
+  <g transform="translate(220,40)">
+    <!-- body -->
+    <rect x="0" y="0" width="160" height="280" rx="22"
+          fill="var(--phone)" stroke="var(--edge)" stroke-width="2" class="stroke"/>
+    <!-- speaker + home bar -->
+    <rect x="70" y="10" width="20" height="4" rx="2" fill="var(--edge)"/>
+    <rect x="52" y="268" width="56" height="4" rx="2" fill="var(--edge)" opacity=".7"/>
+    <!-- screen -->
+    <rect x="10" y="26" width="140" height="228" rx="12"
+          fill="var(--screen)" stroke="var(--edge)" stroke-width="1.5" class="stroke"/>
+    <!-- Podfy mark on screen -->
+    <g transform="translate(28,64)">
+      <use href="#podfy-mark" width="104" height="104"/>
+      <text x="52" y="122" text-anchor="middle"
+            font-size="16" font-weight="700" class="inkFill"
+            style="letter-spacing:.4px">PODFY</text>
     </g>
-
-    <!-- H1 -->
-    <text x="20" y="110" class="inkF"
-          style="font-size:28px;font-weight:800;letter-spacing:.2px">Upload CMR / POD</text>
-
-    <!-- dashed dropzone -->
-    <g transform="translate(20,130)">
-      <rect x="0" y="0" width="204" height="190" rx="14" fill="none"
-            stroke="var(--dropHint)" stroke-width="2" stroke-dasharray="4 6"/>
-      <g transform="translate(62,22)">
-        <use href="#podfy-mark" width="80" height="80"/>
-      </g>
-      <text x="18" y="128" class="inkF" style="font-size:18px;font-weight:700">Upload CMR / POD</text>
-      <text x="18" y="148" class="mutedF" style="font-size:12px">Drag &amp; drop your document here</text>
-
-      <!-- buttons -->
-      <g transform="translate(12,158)">
-        <rect x="0" y="0" width="86" height="32" rx="10" fill="var(--chip)" class="edgeS thin"/>
-        <text x="10" y="21" class="inkF" style="font-size:12px;font-weight:700">Choose file</text>
-
-        <rect x="98" y="0" width="86" height="32" rx="10" fill="var(--chip)" class="edgeS thin"/>
-        <text x="110" y="21" class="inkF" style="font-size:12px;font-weight:700">Take photo</text>
-      </g>
-    </g>
-
-    <!-- checkbox row -->
-    <g transform="translate(20,350)">
-      <circle cx="12" cy="12" r="12" fill="rgba(6,214,160,.14)" class="edgeS thin"/>
-      <circle cx="12" cy="12" r="6" class="accentF"/>
-      <polyline points="8,12 11,15 17,9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="28" y="16" class="inkF" style="font-size:14px">Email me a copy</text>
-    </g>
-
-    <!-- submit button -->
-    <g transform="translate(20,392)">
-      <rect x="0" y="0" width="204" height="44" rx="12" class="accentF"/>
-      <text x="102" y="28" text-anchor="middle" style="font-size:16px;font-weight:700" fill="#ffffff">Submit</text>
-    </g>
-
-    <!-- bottom home indicator -->
-    <rect x="82" y="560" width="80" height="6" rx="3" class="mutedF" opacity=".65"/>
   </g>
 </svg>
