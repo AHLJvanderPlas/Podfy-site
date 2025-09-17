@@ -276,6 +276,23 @@ th,td{padding:.625rem;border-bottom:1px solid var(--slate-100);text-align:left}
 .absolute{position:absolute}
 .-inset-4{top:-1rem;right:-1rem;bottom:-1rem;left:-1rem}
 
+/* Compact icon bullets (emoji-sized) */
+.icon-list{ list-style:none; margin:0; padding:0; }
+.icon-list li{ display:flex; align-items:baseline; gap:.5rem; }
+
+/* Size icons relative to text so they behave like emojis */
+.icon-list .icon{
+  width:1.1em;               /* ~emoji size at current font-size */
+  height:1.1em;
+  flex:0 0 auto;
+  color:var(--brand-primary); /* stroke inherits this */
+  vertical-align:-0.15em;     /* nudge down like emoji */
+}
+
+/* If you used my earlier .bullet class, keep it working too */
+.bullet{ display:flex; align-items:baseline; gap:.5rem; }
+.bullet .icon{ width:1.1em; height:1.1em; flex:0 0 auto; vertical-align:-0.15em; }
+
 /* Responsive */
 @media (min-width:640px){
   .sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
