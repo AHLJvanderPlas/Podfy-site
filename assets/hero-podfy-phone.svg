@@ -1,134 +1,120 @@
-<!-- /assets/hero-podfy.svg -->
+<!-- phone-podfy.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d"
-     viewBox="0 0 1200 720" width="100%" preserveAspectRatio="xMidYMid meet"
-     style="height:auto;max-width:1200px">
-  <title id="t">Podfy hero illustration: phone upload with branded screen</title>
-  <desc id="d">A smartphone showing the Podfy uploader, with a soft browser card behind it. Colors adapt to light/dark mode.</desc>
+     viewBox="0 0 360 720" width="100%" style="height:auto;max-width:420px">
+  <title id="t">Podfy uploader UI on a smartphone</title>
+  <desc id="d">Vector phone mock showing the Podfy logo, an upload panel with two buttons, a checkbox row, and a green submit button. Colors adapt to light and dark mode.</desc>
 
-  <!-- THEME -->
+  <!-- ===== THEME TOKENS ===== -->
   <style>
     :root{
-      --brand-primary:#1D3557;
-      --brand-accent:#06D6A0;
-      --ink:#0F172A;
-      --muted:#475569;
-      --bgA:#F0F4F9;
-      --bgB:#FFFFFF;
-      --card:#FFFFFF;
-      --edge:#E2E8F0;
-      --shadowA: rgba(16,24,40,.10);
-      --shadowB: rgba(16,24,40,.06);
+      --brand-primary:#1D3557;   /* headings/icons (light) */
+      --brand-accent:#06D6A0;    /* CTA green */
+      --ink:#0F172A;             /* main text */
+      --muted:#475569;           /* secondary text */
+      --edge:#E2E8F0;            /* borders */
+      --screen:#FFFFFF;          /* phone screen */
+      --shell:#F5F7FB;           /* phone shell */
+      --shell-edge:#DEE5EF;      /* shell stroke */
+      --chip:#EEF2F7;            /* light chips */
+      --dropHint:#CBD5E1;        /* dashed border */
     }
     @media (prefers-color-scheme: dark){
       :root{
-        --brand-primary:#A5B4CF;
+        --brand-primary:#A5B4CF; /* tuned for dark */
         --ink:#E5E7EB;
         --muted:#94A3B8;
-        --bgA:#0E2237;
-        --bgB:#0B1220;
-        --card:#0F172A;
         --edge:#243140;
-        --shadowA: rgba(0,0,0,.40);
-        --shadowB: rgba(0,0,0,.24);
+        --screen:#0F172A;
+        --shell:#E6EBF2;
+        --shell-edge:#CAD3E1;
+        --chip:#1A2535;
+        --dropHint:#334559;
       }
     }
-    .bg { fill: url(#g); }
-    .card { fill: var(--card); stroke: var(--edge); }
-    .inkS { stroke: var(--ink); }
-    .inkF { fill: var(--ink); }
-    .mutedF { fill: var(--muted); }
-    .brandS{ stroke: var(--brand-primary); }
-    .accentF{ fill: var(--brand-accent); }
-    .accentS{ stroke: var(--brand-accent); }
-    .round { stroke-linecap: round; stroke-linejoin: round; }
-    .thin  { stroke-width: 1.5; }
-    .med   { stroke-width: 2; }
-    .thick { stroke-width: 4; }
-    /* keep strokes crisp */
-    path,rect,circle{ vector-effect: non-scaling-stroke; shape-rendering: geometricPrecision; }
+
+    /* helpers */
+    .shellF   { fill:var(--shell); stroke:var(--shell-edge); }
+    .screenF  { fill:var(--screen); stroke:var(--edge); }
+    .inkF     { fill:var(--ink); }
+    .mutedF   { fill:var(--muted); }
+    .brandS   { stroke:var(--brand-primary); }
+    .accentF  { fill:var(--brand-accent); }
+    .accentS  { stroke:var(--brand-accent); }
+    .edgeS    { stroke:var(--edge); }
+    .round    { stroke-linecap:round; stroke-linejoin:round; }
+    .thin     { stroke-width:1.5; }
+    .med      { stroke-width:2; }
+    .thick    { stroke-width:3.5; }
+    /* crisp lines when scaled */
+    path,rect,circle,line,polyline{ vector-effect:non-scaling-stroke; shape-rendering:geometricPrecision; }
+    text{ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, "Noto Sans", "Helvetica Neue", sans-serif; }
   </style>
 
-  <!-- GRADIENT -->
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="var(--bgA)"/>
-      <stop offset="1" stop-color="var(--bgB)"/>
-    </linearGradient>
+  <!-- ===== SYMBOL: Podfy cube + check ===== -->
+  <symbol id="podfy-mark" viewBox="0 0 64 64">
+    <path class="brandS round thick" d="M12 24l20-10 20 10v16L32 50 12 40V24z" fill="none"/>
+    <path class="brandS round thick" d="M32 14v36M12 24l20 10 20-10" fill="none"/>
+    <path class="accentS round thick" d="M24 33l7 7 11-11" fill="none"/>
+  </symbol>
 
-    <!-- Podfy mark -->
-    <symbol id="podfy-mark" viewBox="0 0 64 64">
-      <path class="brandS round thick" d="M12 24l20-10 20 10v16L32 50 12 40V24z" fill="none"/>
-      <path class="brandS round thick" d="M32 14v36M12 24l20 10 20-10" fill="none"/>
-      <path class="accentS round thick" d="M24 33l7 7 11-11" fill="none"/>
-    </symbol>
-  </defs>
+  <!-- ===== PHONE SHELL ===== -->
+  <!-- faux shadow (no filters) -->
+  <ellipse cx="180" cy="686" rx="140" ry="18" fill="rgba(0,0,0,.10)"/>
+  <rect x="40" y="20" width="280" height="680" rx="44" class="shellF med"/>
+  <!-- notch + helpers -->
+  <rect x="120" y="40" width="120" height="22" rx="11" fill="#fff" opacity=".65"/>
+  <rect x="160" y="36" width="40" height="6" rx="3" class="mutedF" opacity=".55"/>
 
-  <!-- BACKGROUND -->
-  <rect class="bg" x="0" y="0" width="1200" height="720" rx="28"/>
+  <!-- ===== SCREEN ===== -->
+  <rect x="58" y="72" width="244" height="600" rx="22" class="screenF med"/>
 
-  <!-- “DROP SHADOWS” without filters (blurless soft blocks) -->
-  <!-- large browser card shadow -->
-  <rect x="666" y="246" width="470" height="260" rx="42" fill="var(--shadowA)"/>
-  <!-- phone shadow ellipse -->
-  <ellipse cx="510" cy="520" rx="180" ry="36" fill="var(--shadowB)"/>
-
-  <!-- BROWSER PREVIEW CARD -->
-  <g transform="translate(650,246)">
-    <rect class="card med" x="0" y="0" width="470" height="260" rx="40"/>
-    <!-- chrome -->
-    <rect x="24" y="22" width="422" height="10" rx="5" class="mutedF" opacity=".18"/>
-    <circle cx="28" cy="27" r="4" class="mutedF" opacity=".28"/>
-    <circle cx="42" cy="27" r="4" class="mutedF" opacity=".28"/>
-    <circle cx="56" cy="27" r="4" class="mutedF" opacity=".28"/>
-    <!-- inner placeholder -->
-    <rect x="24" y="60" width="422" height="156" rx="18" class="inkF" opacity=".04"/>
-    <g transform="translate(40,84)">
-      <use href="#podfy-mark" width="48" height="48"/>
-      <rect x="78" y="8"  width="190" height="14" rx="7"  class="inkF" opacity=".12"/>
-      <rect x="78" y="30" width="150" height="12" rx="6"  class="inkF" opacity=".08"/>
-      <rect x="0"  y="86" width="112" height="34" rx="10" class="accentF" opacity=".16"/>
-      <rect x="130" y="86" width="112" height="34" rx="10" class="inkF" opacity=".08"/>
+  <!-- ===== UI CONTENT ===== -->
+  <g transform="translate(58,72)">
+    <!-- top brand row -->
+    <g transform="translate(20,28)">
+      <use href="#podfy-mark" width="28" height="28"/>
+      <text x="38" y="22" class="inkF" style="font-size:22px;font-weight:700;letter-spacing:.4px">Podfy</text>
     </g>
-  </g>
 
-  <!-- PHONE -->
-  <g transform="translate(360,120)">
-    <!-- body -->
-    <rect x="0" y="0" width="260" height="500" rx="34" class="card med"/>
-    <!-- speaker + home bar -->
-    <rect x="110" y="18" width="40" height="6" rx="3" class="mutedF"/>
-    <rect x="90"  y="474" width="80" height="6" rx="3" class="mutedF" opacity=".65"/>
-    <!-- screen border -->
-    <rect x="16" y="40" width="228" height="420" rx="18" fill="none" stroke="var(--edge)"/>
+    <!-- H1 -->
+    <text x="20" y="110" class="inkF"
+          style="font-size:28px;font-weight:800;letter-spacing:.2px">Upload CMR / POD</text>
 
-    <!-- screen content -->
-    <g transform="translate(34,78)">
-      <use href="#podfy-mark" width="84" height="84"/>
-      <text x="110" y="112" class="inkF" text-anchor="middle"
-            font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial"
-            font-size="22" style="font-weight:700;letter-spacing:.4px">Podfy</text>
-
-      <!-- upload panel -->
-      <rect x="0" y="140" width="192" height="150" rx="16" class="inkF" opacity=".04"/>
-      <g transform="translate(16,158)">
-        <rect x="0" y="0" width="160" height="36" rx="10" class="inkF" opacity=".06"/>
-        <rect x="0" y="48" width="160" height="36" rx="10" class="accentF" opacity=".18"/>
-        <rect x="0" y="96" width="80"  height="28" rx="8"  class="accentF"/>
-        <rect x="92" y="96" width="68"  height="28" rx="8"  class="inkF" opacity=".12"/>
-        <circle cx="12" cy="110" r="5" class="accentF"/>
+    <!-- dashed dropzone -->
+    <g transform="translate(20,130)">
+      <rect x="0" y="0" width="204" height="190" rx="14" fill="none"
+            stroke="var(--dropHint)" stroke-width="2" stroke-dasharray="4 6"/>
+      <g transform="translate(62,22)">
+        <use href="#podfy-mark" width="80" height="80"/>
       </g>
+      <text x="18" y="128" class="inkF" style="font-size:18px;font-weight:700">Upload CMR / POD</text>
+      <text x="18" y="148" class="mutedF" style="font-size:12px">Drag &amp; drop your document here</text>
 
-      <!-- status chip -->
-      <g transform="translate(40,314)">
-        <rect x="0" y="0" width="112" height="30" rx="15" class="accentF" opacity=".16" />
-        <circle cx="15" cy="15" r="6" class="accentF"/>
-        <text x="34" y="19" font-size="14" class="inkF" style="font-weight:600">Uploaded</text>
+      <!-- buttons -->
+      <g transform="translate(12,158)">
+        <rect x="0" y="0" width="86" height="32" rx="10" fill="var(--chip)" class="edgeS thin"/>
+        <text x="10" y="21" class="inkF" style="font-size:12px;font-weight:700">Choose file</text>
+
+        <rect x="98" y="0" width="86" height="32" rx="10" fill="var(--chip)" class="edgeS thin"/>
+        <text x="110" y="21" class="inkF" style="font-size:12px;font-weight:700">Take photo</text>
       </g>
     </g>
-  </g>
 
-  <!-- small accent dots -->
-  <circle cx="1040" cy="170" r="4" class="accentF"/>
-  <circle cx="1018" cy="190" r="3" class="accentF"/>
-  <circle cx="1060" cy="206" r="2.5" class="accentF"/>
+    <!-- checkbox row -->
+    <g transform="translate(20,350)">
+      <circle cx="12" cy="12" r="12" fill="rgba(6,214,160,.14)" class="edgeS thin"/>
+      <circle cx="12" cy="12" r="6" class="accentF"/>
+      <polyline points="8,12 11,15 17,9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="28" y="16" class="inkF" style="font-size:14px">Email me a copy</text>
+    </g>
+
+    <!-- submit button -->
+    <g transform="translate(20,392)">
+      <rect x="0" y="0" width="204" height="44" rx="12" class="accentF"/>
+      <text x="102" y="28" text-anchor="middle" style="font-size:16px;font-weight:700" fill="#ffffff">Submit</text>
+    </g>
+
+    <!-- bottom home indicator -->
+    <rect x="82" y="560" width="80" height="6" rx="3" class="mutedF" opacity=".65"/>
+  </g>
 </svg>
