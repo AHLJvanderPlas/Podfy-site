@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>PODFY – Free tier demo manual</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Step-by-step manual for the PODFY free tier demo: using PODFY.app, the copy email field, and the delivery portal with 60-day history." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="format-detection" content="telephone=no,address=no,email=no" />
+
+  <!-- Color scheme: follow user system preference -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F7FB" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#020617" />
+
+  <!-- Favicons (adjust paths if your main site uses different ones) -->
+  <link rel="icon" type="image/svg+xml" href="https://podfy.net/logos/podfy-favicon.svg" />
+  <link rel="alternate icon" href="https://podfy.net/logos/podfy-favicon.svg" />
+
+  <!-- Main site stylesheet if needed (optional, keep if you want shared base styles) -->
+  <!-- <link rel="stylesheet" href="/assets/styles.css" /> -->
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --bg-elevated: rgba(255, 255, 255, 0.98);
+      --bg-soft: rgba(255, 255, 255, 0.92);
+      --fg: #0f172a;
+      --fg-soft: #64748b;
+      --fg-softer: #94a3b8;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --accent-strong: #1d4ed8;
+      --border-subtle: rgba(148, 163, 184, 0.4);
+      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.12);
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --radius-pill: 999px;
+      --max-width: 1120px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: radial-gradient(circle at top, #020617 0, #020617 60%, #000 100%);
+        --bg-elevated: rgba(15, 23, 42, 0.96);
+        --bg-soft: rgba(15, 23, 42, 0.92);
+        --fg: #e5e7eb;
+        --fg-soft: #9ca3af;
+        --fg-softer: #6b7280;
+        --accent: #60a5fa;
+        --accent-soft: rgba(59, 130, 246, 0.20);
+        --accent-strong: #3b82f6;
+        --border-subtle: rgba(148, 163, 184, 0.35);
+        --shadow-soft: 0 26px 80px rgba(15, 23, 42, 0.9);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      color: var(--fg);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.12), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(79, 70, 229, 0.10), transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(8, 47, 73, 0.14), transparent 55%),
+        var(--bg);
+      background-attachment: fixed;
+    }
+
+    a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-inner {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px 16px 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Main page–style header (simplified, independent of external CSS) */
+    .site-header {
+      width: 100%;
+      border-radius: 999px;
+      padding: 10px 14px;
+      margin: 8px auto 0;
+      max-width: var(--max-width);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.04));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+    }
+
+    .site-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .site-brand-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.9), transparent 55%),
+        linear-gradient(135deg, #2563eb, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: #ffffff;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.6);
+      flex-shrink: 0;
+    }
+
+    .site-brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .site-brand-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .site-brand-subtitle {
+      font-size: 12px;
+      color: var(--fg-soft);
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .site-nav-link {
+      font-size: 13px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--fg-soft);
+      text-decoration: none;
+    }
+
+    .site-nav-link:hover {
+      border-color: rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.04);
+      text-decoration: none;
+    }
+
+    .site-nav-cta {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-strong), #22c1ee);
+      border: none;
+      color: #ffffff;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.55);
+    }
+
+    .site-nav-cta:hover {
+      text-decoration: none;
+      filter: brightness(1.05);
+    }
+
+    @media (max-width: 720px) {
+      .site-header {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        border-radius: 20px;
+      }
+      .site-nav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* Hero section */
+    .hero {
+      margin-top: 24px;
+      margin-bottom: 8px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .hero-main {
+      padding: 18px 20px 18px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(239, 246, 255, 0.96));
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .hero-main {
+        background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.22), transparent 60%),
+                    radial-gradient(circle at bottom right, rgba(22, 163, 163, 0.22), transparent 60%),
+                    var(--bg-elevated);
+      }
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 220px;
+      height: 220px;
+      background:
+        radial-gradient(circle at 30% 0%, rgba(96, 165, 250, 0.35), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(34, 211, 238, 0.35), transparent 55%);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-main-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      background: var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-strong);
+      margin-bottom: 10px;
+    }
+
+    .hero-kicker-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.22);
+    }
+
+    .hero-title {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--accent-strong), #22c1ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin: 0 0 12px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--fg-soft);
+      max-width: 620px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      font-size: 12px;
+      color: var(--fg-soft);
+    }
+
+    .hero-pill {
+      border-radius: 999px;
+      padding: 5px 9px;
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      background: rgba(255, 255, 255, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .hero-pill {
+        background: rgba(15, 23, 42, 0.9);
+      }
+    }
+
+    .hero-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+    }
+
+    .hero-note {
+      margin-top: 12px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      background: rgba(248, 250, 252, 0.98);
+      font-size: 12px;
+      color: var(--fg-soft);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .hero-note {
+        background: rgba(15, 23, 42, 0.9);
+      }
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .hero-side-card {
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      padding: 12px 12px 10px;
+      font-size: 12px;
+      color: var(--fg-soft);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .hero-side-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--fg);
+    }
+
+    .hero-side-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .hero-side-badge {
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 11px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--fg-soft);
+    }
+
+    /* Floating blocks: delivery-portal style cards */
+    .sections {
+      margin-top: 20px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .sections {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .demo-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      padding: 14px 14px 12px;
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.14);
+      overflow: hidden;
+    }
+
+    .demo-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.18), transparent 55%);
+      opacity: 0.7;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .demo-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .demo-card-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      color: var(--fg-softer);
+      margin-bottom: 4px;
+    }
+
+    .demo-card-title {
+      margin: 0 0 6px;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .demo-card-body {
+      font-size: 13px;
+      color: var(--fg-soft);
+      line-height: 1.5;
+    }
+
+    .demo-card-body p {
+      margin: 0 0 6px;
+    }
+
+    .demo-list {
+      margin: 4px 0 4px 18px;
+      padding: 0;
+      font-size: 13px;
+    }
+
+    .demo-list li {
+      margin-bottom: 4px;
+    }
+
+    .demo-chip-row {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .demo-chip {
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 11px;
+      border: 1px solid rgba(148, 163, 184, 0.75);
+      background: rgba(248, 250, 252, 0.96);
+      color: var(--fg-soft);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .demo-chip {
+        background: rgba(15, 23, 42, 0.94);
+      }
+    }
+
+    .demo-ref-box {
+      margin-top: 6px;
+      padding: 7px 9px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(248, 250, 252, 0.95);
+      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      word-break: break-all;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .demo-ref-box {
+        background: rgba(15, 23, 42, 0.96);
+      }
+    }
+
+    /* Upgrade callout */
+    .upgrade-callout {
+      margin-top: 4px;
+      border-radius: 16px;
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      background: linear-gradient(135deg, rgba(219, 234, 254, 0.9), rgba(224, 242, 254, 0.9));
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #1f2933;
+      box-shadow: 0 18px 50px rgba(37, 99, 235, 0.25);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .upgrade-callout {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.96));
+        color: var(--fg);
+      }
+    }
+
+    .upgrade-actions {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .upgrade-link {
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(37, 99, 235, 0.6);
+      color: var(--accent-strong);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .upgrade-link {
+        background: rgba(15, 23, 42, 0.98);
+      }
+    }
+
+    .upgrade-link-primary {
+      background: linear-gradient(135deg, var(--accent-strong), #22c1ee);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.65);
+    }
+
+    /* Footer – main-site style but compact */
+    .site-footer {
+      width: 100%;
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      margin-top: auto;
+    }
+
+    .site-footer-inner {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 16px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--fg-soft);
+    }
+
+    .site-footer-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .site-footer-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-soft);
+    }
+
+    .footer-link {
+      color: var(--fg-soft);
+      text-decoration: none;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <!-- Header (main-page style, all nav items) -->
+    <header class="site-header">
+      <div class="site-brand">
+        <div class="site-brand-logo">P</div>
+        <div class="site-brand-text">
+          <div class="site-brand-title">PODFY</div>
+          <div class="site-brand-subtitle">Zero-friction proof of delivery</div>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="site-nav-link" href="https://podfy.net/">Home</a>
+        <a class="site-nav-link" href="https://podfy.app/">PODFY.app</a>
+        <a class="site-nav-link" href="https://delivery.podfy.net/">Delivery portal</a>
+        <a class="site-nav-link" href="https://podfy.app/furore">Furore demo</a>
+        <a class="site-nav-link" href="https://podfy.app/furore/demo-shipment123">Demo shipment example</a>
+        <a class="site-nav-cta" href="#upgrade">Upgrade options</a>
+      </nav>
+    </header>
+
+    <main class="page-inner">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-main">
+          <div class="hero-main-inner">
+            <div class="hero-kicker">
+              <span class="hero-kicker-dot"></span>
+              <span>Free tier demo · step-by-step</span>
+            </div>
+            <h1 class="hero-title">
+              Practice PODFY with a <span>zero-friction free tier</span>.
+            </h1>
+            <p class="hero-subtitle">
+              This page explains how to use the default <strong>PODFY.app</strong> capture flow,
+              the <strong>Copy email</strong> field, and the <strong>delivery portal</strong> to test
+              your POD process end-to-end without any setup or contracts.
+            </p>
+            <div class="hero-pills">
+              <div class="hero-pill">
+                <span class="hero-pill-dot"></span>
+                Capture PODs with GPS and clean/issue flags.
+              </div>
+              <div class="hero-pill">
+                <span>Use your email as a free demo identity.</span>
+              </div>
+              <div class="hero-pill">
+                <span>View the last 60 days via delivery.podfy.net.</span>
+              </div>
+            </div>
+            <div class="hero-note">
+              In the free tier demo, all deliveries are linked to the email you enter in the
+              <strong>Copy email</strong> field of PODFY.app and are visible in the delivery
+              portal for <strong>60 days</strong>. No login or password management is required –
+              a magic link is sent to your inbox.
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="hero-side-card">
+            <div class="hero-side-title">Free tier in one glance</div>
+            <ul class="demo-list">
+              <li>Use any public PODFY.app link to capture a POD.</li>
+              <li>Fill in the <strong>Copy email</strong> with your own inbox.</li>
+              <li>Receive the POD copy and magic link to the portal.</li>
+              <li>Scan your deliveries in a 60-day overview.</li>
+            </ul>
+            <div class="hero-side-badges">
+              <span class="hero-side-badge">No configuration</span>
+              <span class="hero-side-badge">No login accounts</span>
+              <span class="hero-side-badge">Driver &amp; recipient friendly</span>
+            </div>
+          </div>
+          <div class="hero-side-card">
+            <div class="hero-side-title">Useful links</div>
+            <ul class="demo-list">
+              <li><a href="https://podfy.app/" target="_blank" rel="noreferrer">podfy.app</a> – default capture app</li>
+              <li><a href="https://delivery.podfy.net/" target="_blank" rel="noreferrer">delivery.podfy.net</a> – delivery portal</li>
+              <li><a href="https://podfy.app/furore" target="_blank" rel="noreferrer">podfy.app/furore</a> – branded demo page</li>
+              <li><a href="https://podfy.app/furore/demo-shipment123" target="_blank" rel="noreferrer">podfy.app/furore/demo-shipment123</a> – reference example</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Floating instructional blocks -->
+      <section class="sections" aria-label="Free tier demo manual">
+        <!-- 1. PODFY.app basics -->
+        <article class="demo-card" id="podfy-basics">
+          <div class="demo-card-inner">
+            <div class="demo-card-kicker">Step 1 · PODFY.app basics</div>
+            <h2 class="demo-card-title">Open PODFY.app and capture a POD</h2>
+            <div class="demo-card-body">
+              <p>
+                Start with the default app at <a href="https://podfy.app/" target="_blank" rel="noreferrer">podfy.app</a>
+                or with a branded URL such as
+                <a href="https://podfy.app/furore" target="_blank" rel="noreferrer">podfy.app/furore</a>.
+              </p>
+              <ul class="demo-list">
+                <li><strong>Photo / document upload</strong> – upload or capture a photo of the signed CMR, delivery note or pallet photo.</li>
+                <li><strong>Reference</strong> – depending on the link, a reference field can be added to tag your shipment (see the demo ship example below).</li>
+                <li><strong>Clean toggle</strong> – mark the delivery as <em>clean</em> (no issues) or leave it unset when there are damages or remarks.</li>
+                <li><strong>Copy email</strong> – the email address where a copy of the POD is sent. This is also your key for the free-tier demo.</li>
+              </ul>
+              <div class="demo-chip-row">
+                <span class="demo-chip">No login required for PODFY.app</span>
+                <span class="demo-chip">Works from any modern browser</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. GPS, Clean and Copy email -->
+        <article class="demo-card" id="fields-explained">
+          <div class="demo-card-inner">
+            <div class="demo-card-kicker">Step 2 · Fields explained</div>
+            <h2 class="demo-card-title">GPS, clean flag and the copy email field</h2>
+            <div class="demo-card-body">
+              <p><strong>GPS</strong></p>
+              <ul class="demo-list">
+                <li>PODFY.app can store location data (when allowed by the device/browser) as part of the transaction.</li>
+                <li>This helps to verify where a POD was captured and can be used for audits and quality checks.</li>
+              </ul>
+
+              <p><strong>Clean flag</strong></p>
+              <ul class="demo-list">
+                <li>Use the <em>Clean</em> option to confirm the delivery was completed without issues.</li>
+                <li>If there is damage, delay or a discrepancy, leave it unset and describe the situation in the remarks.</li>
+              </ul>
+
+              <p><strong>Copy email field</strong></p>
+              <ul class="demo-list">
+                <li>This is the email address that receives a copy of the POD after upload.</li>
+                <li>In the free-tier demo, this address is also used as the identity in the delivery portal.</li>
+                <li>For testing, enter an address you can access yourself (for example, your own work email).</li>
+              </ul>
+
+              <div class="demo-chip-row">
+                <span class="demo-chip">GPS = where</span>
+                <span class="demo-chip">Clean flag = quality</span>
+                <span class="demo-chip">Copy email = portal identity</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Using copy email as free-tier identity -->
+        <article class="demo-card" id="copy-email-free-tier">
+          <div class="demo-card-inner">
+            <div class="demo-card-kicker">Step 3 · Free tier demo</div>
+            <h2 class="demo-card-title">Use the copy email as your free-tier identity</h2>
+            <div class="demo-card-body">
+              <p>
+                The free-tier demo is built around the <strong>Copy email</strong> field. Every time you upload a POD
+                and fill in the same email address, all those deliveries are linked together behind the scenes.
+              </p>
+              <ul class="demo-list">
+                <li>Choose one test address (for example <em>driver.demo@example.com</em>).</li>
+                <li>Enter this address in the <strong>Copy email</strong> field for every test POD you upload.</li>
+                <li>You will receive a POD copy per delivery and can later use the same email to log in to the delivery portal.</li>
+              </ul>
+              <p>
+                This allows you to practice with real flows (drivers, planners, recipients) without configuring users or
+                creating accounts.
+              </p>
+              <div class="demo-chip-row">
+                <span class="demo-chip">One email = one demo identity</span>
+                <span class="demo-chip">Ideal for training and pilots</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Magic link and delivery portal -->
+        <article class="demo-card" id="delivery-portal">
+          <div class="demo-card-inner">
+            <div class="demo-card-kicker">Step 4 · Delivery portal</div>
+            <h2 class="demo-card-title">Sign in with a magic link and view your PODs</h2>
+            <div class="demo-card-body">
+              <p>
+                The delivery portal is available at
+                <a href="https://delivery.podfy.net/" target="_blank" rel="noreferrer">delivery.podfy.net</a>.
+                There are no passwords to remember – access is granted via a one-time magic link.
+              </p>
+              <p><strong>How it works</strong></p>
+              <ul class="demo-list">
+                <li>Open <a href="https://delivery.podfy.net/" target="_blank" rel="noreferrer">delivery.podfy.net</a>.</li>
+                <li>Enter the same email as used in the <strong>Copy email</strong> field.</li>
+                <li>Click “Send magic link”.</li>
+                <li>Check your inbox and click the sign-in link.</li>
+              </ul>
+              <p><strong>What you see after login</strong></p>
+              <ul class="demo-list">
+                <li>A table with all deliveries linked to your email for the last <strong>60 days</strong>.</li>
+                <li>Columns for party (slug), PODFY ID, date, time, clean/issue status, remarks and a POD button.</li>
+                <li>Click “View POD” to open the image or PDF in a modal window and download it if needed.</li>
+              </ul>
+              <div class="demo-chip-row">
+                <span class="demo-chip">Magic link only – no password</span>
+                <span class="demo-chip">Multi-customer overview</span>
+                <span class="demo-chip">Last 60 days included in free tier</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Branded demo: Furore -->
+        <article class="demo-card" id="furore-demo">
+          <div class="demo-card-inner">
+            <div class="demo-card-kicker">Step 5 · Branded demo</div>
+            <h2 class="demo-card-title">Use a branded demo page (Furore example)</h2>
+            <div class="demo-card-body">
+              <p>
+                In a branded demo tier, your PODFY.app link is customised to your brand. The following links show how this works
+                using a fictional example customer <strong>Furore</strong>.
+              </p>
+              <p><strong>Base branded page</strong></p>
+              <div class="demo-ref-box">
+                https://podfy.app/furore
+              </div>
+              <p style="margin-top:6px;">
+                Opening this link shows a PODFY page branded for Furore – layout, colors and logo are aligned with the customer.
+              </p>
+
+              <p style="margin-top:8px;"><strong>Reference example with shipment ID</strong></p>
+              <div class="demo-ref-box">
+                https://podfy.app/furore/demo-shipment123
+              </div>
+              <p style="margin-top:6px;">
+                Adding <code>/demo-shipment123</code> to the URL creates a pre-filled
+                <strong>Reference</strong> field inside the app. The text after <code>/furore/</code>
+                becomes the reference value linked to that POD.
+              </p>
+              <ul class="demo-list">
+                <li>The reference can be any shipment ID, order number or internal code.</li>
+                <li>It is stored alongside the POD and visible in your reporting and search.</li>
+                <li>This makes it easy for drivers to work with structured references without extra typing.</li>
+              </ul>
+
+              <div class="demo-chip-row">
+                <span class="demo-chip">Branded URL per customer</span>
+                <span class="demo-chip">URL path = reference field</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. 60-day limit and paid plans -->
+        <article class="demo-card" id="history-and-plans">
+          <div class="demo-card-inner">
+            <div class="demo-card-kicker">Step 6 · Retention & upgrades</div>
+            <h2 class="demo-card-title">Understand the 60-day limit and upgrade options</h2>
+            <div class="demo-card-body">
+              <p><strong>60-day free history</strong></p>
+              <ul class="demo-list">
+                <li>The delivery portal shows the last <strong>60 days</strong> of deliveries linked to your email.</li>
+                <li>Older data is still stored safely within PODFY but not visible in the free-tier portal.</li>
+              </ul>
+              <p><strong>Paid retention tiers</strong></p>
+              <ul class="demo-list">
+                <li>Customer plans can extend retention from <strong>1 year</strong> up to <strong>7 years</strong>.</li>
+                <li>Retention is configured per customer, aligned with compliance and audit needs.</li>
+              </ul>
+              <div class="demo-chip-row">
+                <span class="demo-chip">Free: 60 days visible</span>
+                <span class="demo-chip">Paid: 1–7 years visibility</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. Upgrade call to action -->
+        <article class="demo-card" id="upgrade">
+          <div class="demo-card-inner">
+            <div class="demo-card-kicker">Step 7 · From demo to production</div>
+            <h2 class="demo-card-title">Upgrade to a branded demo or full PODFY deployment</h2>
+            <div class="demo-card-body">
+              <p>
+                Once you are comfortable with the free-tier demo and the delivery portal, you can upgrade to a branded
+                demo or full production setup. In a branded tier you receive:
+              </p>
+              <ul class="demo-list">
+                <li>Your own branded PODFY.app link (for example <code>podfy.app/yourbrand</code>).</li>
+                <li>Branded delivery pages and emails for your customers and carriers.</li>
+                <li>Configured retention (1–7 years) and access control per role.</li>
+                <li>Support for multiple slugs (customers) in one unified platform.</li>
+              </ul>
+
+              <div class="upgrade-callout">
+                <strong>From practice to production.</strong>
+                <p style="margin:4px 0 0;">
+                  Use this manual to practice POD flows with your team. When you’re ready, we can turn your demo setup
+                  into a branded PODFY environment with proper retention, reporting and integrations.
+                </p>
+                <div class="upgrade-actions">
+                  <a class="upgrade-link upgrade-link-primary" href="https://podfy.net/#contact">Talk to PODFY</a>
+                  <a class="upgrade-link" href="https://podfy.app/furore" target="_blank" rel="noreferrer">Revisit Furore demo</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <div class="site-footer-left">
+          <span class="footer-logo">PODFY</span>
+          <span>© <span id="footerYear"></span> · Zero-friction proof of delivery</span>
+        </div>
+        <div class="site-footer-right">
+          <a class="footer-link" href="https://podfy.net/">Main site</a>
+          <a class="footer-link" href="https://delivery.podfy.net/">Delivery portal</a>
+          <a class="footer-link" href="https://podfy.app/">PODFY.app</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set footer year
+    (function () {
+      var el = document.getElementById("footerYear");
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
