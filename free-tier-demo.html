@@ -1,3 +1,7 @@
+Here’s the updated HTML file with the new explanations for the search bar and the reference column added to the Delivery portal section.  ￼
+
+You can replace your current free-tier-demo.html with this version:
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -821,12 +825,40 @@
               <p><strong>What you see after login</strong></p>
               <ul class="demo-list">
                 <li>A table with all deliveries linked to your email for the last <strong>60 days</strong>.</li>
-                <li>Columns for party (slug), PODFY ID, date, time, clean/issue status, remarks and a POD button.</li>
+                <li>
+                  A search field above the table that filters across the main columns
+                  (party, PODFY ID, <strong>Reference</strong>, date, clean/issue status and remarks)
+                  while you type.
+                </li>
+                <li>
+                  Columns for party (slug), PODFY ID, <strong>Reference</strong>, date, time,
+                  clean/issue status, remarks and a POD button.
+                </li>
                 <li>Click “View POD” to open the image or PDF in a modal window and download it if needed.</li>
               </ul>
+
+              <p><strong>Search bar</strong></p>
+              <ul class="demo-list">
+                <li>Start typing any part of a PODFY ID, customer name, reference or remark to reduce the list in real time.</li>
+                <li>Use it during calls with customers to instantly locate a single shipment within all deliveries for that email.</li>
+              </ul>
+
+              <p><strong>Reference column</strong></p>
+              <ul class="demo-list">
+                <li>
+                  Shows the shipment or order reference that was captured in PODFY.app, for example from a URL like
+                  <code>podfy.app/furore/demo-shipment123</code>.
+                </li>
+                <li>
+                  If a POD was created without a reference, the column stays empty – but those rows are still included in search.
+                </li>
+                <li>The search bar can be used to filter directly on a specific reference value.</li>
+              </ul>
+
               <div class="demo-chip-row">
                 <span class="demo-chip">Magic link only – no password</span>
-                <span class="demo-chip">Multi-customer overview</span>
+                <span class="demo-chip">Full-table search</span>
+                <span class="demo-chip">Reference-aware filtering</span>
                 <span class="demo-chip">Last 60 days included in free tier</span>
               </div>
             </div>
