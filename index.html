@@ -40,7 +40,7 @@
   <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB" />
 
   <!-- Unified Podfy stylesheet -->
-  <link rel="stylesheet" href="/assets/styles.css?v=7" />
+  <link rel="stylesheet" href="/assets/styles.css?v=8" />
 
   <!-- Optional smooth scrolling with reduced-motion guard -->
   <style>
@@ -91,7 +91,7 @@
       "price": "0",
       "priceCurrency": "EUR",
       "category": "FreeTrial",
-      "url": "https://podfy.net/demo",
+      "url": "https://podfy.net/free-tier-demo.html",
       "availability": "https://schema.org/InStock"
     }
   }
@@ -172,9 +172,17 @@
 
   [[PODFY_HEADER]]
 
-    <section class="site-subheader" aria-label="PODFY Delivery Portal summary">
+  <!-- Sub-header: delivery-portal style with CTAs -->
+  <section class="site-subheader" aria-label="PODFY Delivery Portal summary">
     <div class="site-subheader-inner">
       <div class="site-subheader-left">
+        <div class="site-subheader-logo">
+          <img src="/assets/podfy.svg" alt="PODFY">
+        </div>
+        <div class="site-subheader-text">
+          <div class="site-subheader-title">PODFY Delivery Portal</div>
+          <div class="site-subheader-subtitle">delivery.podfy.net</div>
+        </div>
       </div>
 
       <div class="site-subheader-right">
@@ -187,7 +195,7 @@
       </div>
     </div>
   </section>
-  
+
   <main id="main">
     <!-- HERO -->
     <section class="bg-hero" aria-label="Product overview">
@@ -241,7 +249,7 @@
     </section>
 
     <!-- VALUE -->
-    <section id="value" class="mx-auto max-w-6xl px-4 py-16 bg-tint">
+    <section id="value" class="mx-auto max-w-6xl px-4 py-16">
       <h2 class="text-2xl md:text-3xl font-bold text-brand">
         Why companies choose PODFY
       </h2>
@@ -250,25 +258,25 @@
       </p>
 
       <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <article class="rounded-xl border p-5">
+        <article class="tile-card">
           <h3 class="font-semibold">Instant uploads</h3>
           <p class="mt-2 text-muted">
             Drivers or partners can simply snap a photo or drop a file. No app to install, no account to log in.
           </p>
         </article>
-        <article class="rounded-xl border p-5">
+        <article class="tile-card">
           <h3 class="font-semibold">Your brand, your link</h3>
           <p class="mt-2 text-muted">
             Each upload page carries your logo, colors, and contact email — so it looks and feels like your company.
           </p>
         </article>
-        <article class="rounded-xl border p-5">
+        <article class="tile-card">
           <h3 class="font-semibold">Teams notified instantly</h3>
           <p class="mt-2 text-muted">
             As soon as a file is uploaded, your staff gets an email alert with the details. Optionally, the sender receives a copy too.
           </p>
         </article>
-        <article class="rounded-xl border p-5">
+        <article class="tile-card">
           <h3 class="font-semibold">Quick set-up</h3>
           <p class="mt-2 text-muted">
             Start in minutes. No integration needed to try it — just share your unique link and receive your first proof-of-delivery.
@@ -284,25 +292,25 @@
       </h2>
 
       <div class="mt-8 grid md:grid-cols-2 gap-6">
-        <article class="rounded-xl border p-6">
+        <article class="tile-card">
           <h3 class="text-lg font-semibold">Easy for drivers</h3>
           <p class="mt-2 text-muted">
             Open the link, drop a file or take a photo, and hit send. That’s it. Works on any phone, tablet, or computer.
           </p>
         </article>
-        <article class="rounded-xl border p-6">
+        <article class="tile-card">
           <h3 class="text-lg font-semibold">Branded pages</h3>
           <p class="mt-2 text-muted">
             Every page shows your logo and colors. If someone lands on a wrong link, they’ll see a clear safety message.
           </p>
         </article>
-        <article class="rounded-xl border p-6">
+        <article class="tile-card">
           <h3 class="text-lg font-semibold">Reliable delivery</h3>
           <p class="mt-2 text-muted">
             Files are safely stored and your operations team receives an instant email with the file and shipment details.
           </p>
         </article>
-        <article class="rounded-xl border p-6">
+        <article class="tile-card">
           <h3 class="text-lg font-semibold">Privacy built-in</h3>
           <p class="mt-2 text-muted">
             Location is only shared with driver consent. File types and sizes are checked, and old files can be automatically deleted.
@@ -312,7 +320,7 @@
     </section>
 
     <!-- PRICING / PLANS -->
-    <section id="solutions" class="mx-auto max-w-6xl px-4 py-16 bg-tint">
+    <section id="solutions" class="mx-auto max-w-6xl px-4 py-16">
       <h2 id="pricing" class="text-2xl md:text-3xl font-bold text-brand">
         Pricing &amp; Plans
       </h2>
@@ -321,19 +329,19 @@
       </p>
 
       <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <article class="rounded-xl border brand-card p-6">
+        <article class="tile-card brand-card">
           <h3 class="text-lg font-semibold">Trial (Free)</h3>
           <p class="mt-2 text-muted">
             Try the app right away from our main page. Send a copy to yourself to experience the flow. No integration needed.
           </p>
-          <a href="/demo"
+          <a href="/free-tier-demo.html"
              class="mt-4 inline-block text-sm font-medium text-blue-600 underline"
              data-event="cta:demo-upload">
             Try a demo upload
           </a>
         </article>
 
-        <article class="rounded-xl border brand-card p-6">
+        <article class="tile-card brand-card">
           <h3 class="text-lg font-semibold">Branded page</h3>
           <p class="mt-2 text-muted">
             Get your own upload link with your logo, colors, and contact email — including the option to capture a shipment reference.
@@ -345,7 +353,7 @@
           </a>
         </article>
 
-        <article class="rounded-xl border brand-card p-6">
+        <article class="tile-card brand-card">
           <h3 class="text-lg font-semibold">Branded + Portal</h3>
           <p class="mt-2 text-muted">
             Everything in Branded, plus a simple portal that stores your PODs for one year — exactly the CMR convention period.
@@ -357,7 +365,7 @@
           </a>
         </article>
 
-        <article class="rounded-xl border brand-card p-6">
+        <article class="tile-card brand-card">
           <h3 class="text-lg font-semibold">AI-powered (coming soon)</h3>
           <p class="mt-2 text-muted">
             The app reads the document for you and captures key shipment data automatically. Custom webhooks or APIs available on request.
@@ -378,7 +386,7 @@
       </h2>
 
       <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <article class="rounded-xl border p-5">
+        <article class="tile-card">
           <div class="text-sm font-semibold text-slate-700">
             1) Share your link
           </div>
@@ -387,7 +395,7 @@
           </p>
         </article>
 
-        <article class="rounded-xl border p-5">
+        <article class="tile-card">
           <div class="text-sm font-semibold text-slate-700">
             2) Upload the POD
           </div>
@@ -396,7 +404,7 @@
           </p>
         </article>
 
-        <article class="rounded-xl border p-5">
+        <article class="tile-card">
           <div class="text-sm font-semibold text-slate-700">
             3) You’re notified
           </div>
@@ -407,7 +415,7 @@
       </div>
 
       <div class="mt-8">
-        <a href="/demo" class="btn btn-accent" data-event="cta:demo-upload">
+        <a href="/free-tier-demo.html" class="btn btn-accent" data-event="cta:demo-upload">
           Try a demo upload
         </a>
       </div>
@@ -444,7 +452,7 @@
       </h2>
 
       <div class="mt-8 grid md:grid-cols-2 gap-6">
-        <details class="rounded-xl border p-5">
+        <details class="tile-card">
           <summary class="font-semibold cursor-pointer">
             Do I need to install an app or create accounts?
           </summary>
@@ -453,7 +461,7 @@
           </p>
         </details>
 
-        <details class="rounded-xl border p-5">
+        <details class="tile-card">
           <summary class="font-semibold cursor-pointer">
             How fast can we start?
           </summary>
@@ -462,7 +470,7 @@
           </p>
         </details>
 
-        <details class="rounded-xl border p-5">
+        <details class="tile-card">
           <summary class="font-semibold cursor-pointer">
             Can we add our branding?
           </summary>
@@ -471,7 +479,7 @@
           </p>
         </details>
 
-        <details class="rounded-xl border p-5">
+        <details class="tile-card">
           <summary class="font-semibold cursor-pointer">
             Can drivers add a shipment reference?
           </summary>
@@ -480,7 +488,7 @@
           </p>
         </details>
 
-        <details class="rounded-xl border p-5">
+        <details class="tile-card">
           <summary class="font-semibold cursor-pointer">
             How long are files kept?
           </summary>
@@ -489,7 +497,7 @@
           </p>
         </details>
 
-        <details class="rounded-xl border p-5">
+        <details class="tile-card">
           <summary class="font-semibold cursor-pointer">
             Do you integrate with our systems?
           </summary>
@@ -508,7 +516,7 @@
 
       <div class="mt-6 grid md:grid-cols-2 gap-8">
         <form id="contact-form"
-              class="rounded-xl border p-6 brand-card grid gap-3"
+              class="tile-card grid gap-3"
               aria-describedby="contactHelp">
           <p id="contactHelp" class="sr-only">
             Use this form to request a demo or contact sales.
@@ -553,7 +561,7 @@
         </form>
 
         <div>
-          <div class="rounded-xl border p-6 brand-card">
+          <div class="tile-card">
             <div class="font-semibold">Email</div>
             <p class="mt-1">
               <a class="text-blue-600 underline" href="mailto:info@podfy.net">
@@ -565,7 +573,7 @@
             <ul class="mt-1 space-y-1 list-disc list-inside text-slate-600">
               <li><a class="text-blue-600 underline" href="/privacy">Privacy</a></li>
               <li><a class="text-blue-600 underline" href="/terms">Terms</a></li>
-              <li><a class="text-blue-600 underline" href="/demo">Demo upload</a></li>
+              <li><a class="text-blue-600 underline" href="/free-tier-demo.html">Demo upload</a></li>
             </ul>
           </div>
           <p class="mt-4 text-xs text-slate-500">
@@ -577,7 +585,7 @@
 
     <!-- Sticky mobile CTA bar -->
     <div class="cta-bar" role="region" aria-label="Quick actions">
-      <a href="/demo" class="btn btn-accent" data-event="cta:demo-upload">
+      <a href="/free-tier-demo.html" class="btn btn-accent" data-event="cta:demo-upload">
         Demo upload
       </a>
       <a href="#contact" class="btn btn-outline" data-event="cta:request-demo">
