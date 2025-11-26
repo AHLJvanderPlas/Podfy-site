@@ -1,17 +1,87 @@
-<header class="site-header">
-  <div class="header-inner">
-    <a href="/" class="logo">
-      <img src="/podfy-logo.svg" alt="PODFY" />
+<header class="site-header border-b border-slate-100 bg-hero">
+  <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
+    <!-- Logo + brand -->
+    <a href="/" class="flex items-center gap-2">
+      <img src="/assets/podfy-logo.svg" alt="PODFY" class="h-7 w-auto" />
+      <span class="text-sm font-semibold tracking-tight text-slate-900">
+        PODFY
+      </span>
     </a>
-    <nav class="main-nav">
-      <a href="/releases/">Releases</a>
-      <a href="/docs/">Docs</a>
-      <a href="/portal/">Delivery portal</a>
+
+    <!-- Desktop navigation -->
+    <nav class="hidden md:flex items-center gap-6 text-sm text-slate-700">
+      <a href="/#product" class="hover:text-brand">Product</a>
+      <a href="/#how-it-works" class="hover:text-brand">How it works</a>
+      <a href="/releases/" class="hover:text-brand">Releases</a>
+      <a href="/#pricing" class="hover:text-brand">Pricing</a>
+      <a href="/#faq" class="hover:text-brand">FAQ</a>
     </nav>
 
-    <!-- Optional theme toggle -->
-    <button id="theme-toggle" aria-label="Toggle theme">
-      🌓
-    </button>
+    <!-- Desktop actions + theme toggle, mobile menu button -->
+    <div class="flex items-center gap-3">
+      <!-- Optional theme toggle – wired later to JS if you like -->
+      <button
+        id="theme-toggle"
+        type="button"
+        class="hidden md:inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50"
+      >
+        <span>Theme</span>
+      </button>
+
+      <!-- Primary CTA (desktop) -->
+      <a
+        href="https://delivery.podfy.net/"
+        class="hidden md:inline-flex btn btn-accent text-xs"
+      >
+        Open delivery portal
+      </a>
+
+      <!-- Mobile menu button -->
+      <button
+        id="menuBtn"
+        type="button"
+        class="md:hidden inline-flex flex-col justify-center rounded border border-slate-200 px-2 py-1"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+      >
+        <span class="block h-0.5 w-5 mb-1"></span>
+        <span class="block h-0.5 w-5 mb-1"></span>
+        <span class="block h-0.5 w-5"></span>
+      </button>
+    </div>
   </div>
+
+  <!-- Mobile navigation drawer -->
+  <nav
+    id="mobileNav"
+    class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-3 space-y-2 text-sm text-slate-800"
+  >
+    <a href="/#product" class="block py-1 hover:text-brand">Product</a>
+    <a href="/#how-it-works" class="block py-1 hover:text-brand">How it works</a>
+    <a href="/releases/" class="block py-1 hover:text-brand">Releases</a>
+    <a href="/#pricing" class="block py-1 hover:text-brand">Pricing</a>
+    <a href="/#faq" class="block py-1 hover:text-brand">FAQ</a>
+
+    <a
+      href="https://delivery.podfy.net/"
+      class="block mt-2 btn btn-accent w-auto text-center"
+    >
+      Open delivery portal
+    </a>
+  </nav>
+
+  <script>
+    // Simple mobile menu toggle logic
+    (function () {
+      var btn = document.getElementById("menuBtn");
+      var nav = document.getElementById("mobileNav");
+      if (!btn || !nav) return;
+
+      btn.addEventListener("click", function () {
+        var isHidden = nav.classList.contains("hidden");
+        nav.classList.toggle("hidden", !isHidden);
+        btn.setAttribute("aria-expanded", String(isHidden));
+      });
+    })();
+  </script>
 </header>
