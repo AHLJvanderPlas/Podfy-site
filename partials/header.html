@@ -1,77 +1,66 @@
-<header class="site-header border-b border-slate-100 bg-hero">
-  <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
-    <!-- Logo + brand -->
-    <a href="/" class="flex items-center gap-2">
-      <img src="/assets/podfy-logo.svg" alt="PODFY" class="h-7 w-auto" />
-      <span class="text-sm font-semibold tracking-tight text-slate-900">
-        PODFY
-      </span>
+<header class="site-header">
+  <div class="site-header-inner">
+    <!-- Logo -->
+    <a href="/" class="site-header-logo">
+      <img src="/assets/podfy-logo.svg" alt="Podfy" class="h-7 w-auto" />
+      <span class="site-header-logo-text">Podfy</span>
     </a>
 
     <!-- Desktop navigation -->
-    <nav class="hidden md:flex items-center gap-6 text-sm text-slate-700">
-      <a href="/#product" class="hover:text-brand">Product</a>
-      <a href="/#how-it-works" class="hover:text-brand">How it works</a>
-      <a href="/releases/" class="hover:text-brand">Releases</a>
-      <a href="/#pricing" class="hover:text-brand">Pricing</a>
-      <a href="/#faq" class="hover:text-brand">FAQ</a>
+    <nav class="site-header-nav">
+      <a href="#how-it-works" class="site-header-nav-link">How it works</a>
+      <a href="#benefits" class="site-header-nav-link">Benefits</a>
+      <a href="#features" class="site-header-nav-link">Features</a>
+      <a href="#pricing" class="site-header-nav-link">Pricing &amp; Plans</a>
+      <a href="#faq" class="site-header-nav-link">FAQ</a>
     </nav>
 
-    <!-- Desktop actions + theme toggle, mobile menu button -->
-    <div class="flex items-center gap-3">
-      <!-- Optional theme toggle – wired later to JS if you like -->
-      <button
-        id="theme-toggle"
-        type="button"
-        class="hidden md:inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50"
-      >
-        <span>Theme</span>
-      </button>
-
-      <!-- Primary CTA (desktop) -->
+    <!-- Desktop actions -->
+    <div class="site-header-actions">
       <a
-        href="https://delivery.podfy.net/"
-        class="hidden md:inline-flex btn btn-accent text-xs"
+        href="https://demo.podfy.net/"
+        class="primary-cta"
       >
-        Open delivery portal
+        Try a demo upload
+      </a>
+      <a
+        href="#request-demo"
+        class="secondary-cta"
+      >
+        Request a demo
       </a>
 
       <!-- Mobile menu button -->
       <button
         id="menuBtn"
         type="button"
-        class="md:hidden inline-flex flex-col justify-center rounded border border-slate-200 px-2 py-1"
+        class="site-header-menu-btn md:hidden"
         aria-label="Toggle navigation"
         aria-expanded="false"
       >
-        <span class="block h-0.5 w-5 mb-1"></span>
-        <span class="block h-0.5 w-5 mb-1"></span>
-        <span class="block h-0.5 w-5"></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
   </div>
 
-  <!-- Mobile navigation drawer -->
-  <nav
-    id="mobileNav"
-    class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-3 space-y-2 text-sm text-slate-800"
-  >
-    <a href="/#product" class="block py-1 hover:text-brand">Product</a>
-    <a href="/#how-it-works" class="block py-1 hover:text-brand">How it works</a>
-    <a href="/releases/" class="block py-1 hover:text-brand">Releases</a>
-    <a href="/#pricing" class="block py-1 hover:text-brand">Pricing</a>
-    <a href="/#faq" class="block py-1 hover:text-brand">FAQ</a>
-
-    <a
-      href="https://delivery.podfy.net/"
-      class="block mt-2 btn btn-accent w-auto text-center"
-    >
-      Open delivery portal
+  <!-- Mobile navigation -->
+  <nav id="mobileNav" class="site-header-mobile-nav md:hidden">
+    <a href="#how-it-works">How it works</a>
+    <a href="#benefits">Benefits</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing &amp; Plans</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://demo.podfy.net/" class="primary-cta block text-center mt-2">
+      Try a demo upload
+    </a>
+    <a href="#request-demo" class="secondary-cta block text-center mt-2">
+      Request a demo
     </a>
   </nav>
 
   <script>
-    // Simple mobile menu toggle logic
     (function () {
       var btn = document.getElementById("menuBtn");
       var nav = document.getElementById("mobileNav");
@@ -82,6 +71,9 @@
         nav.classList.toggle("hidden", !isHidden);
         btn.setAttribute("aria-expanded", String(isHidden));
       });
+
+      // Start hidden on load
+      nav.classList.add("hidden");
     })();
   </script>
 </header>
