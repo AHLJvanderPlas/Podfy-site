@@ -1,81 +1,66 @@
 <header class="site-header-shell">
   <div class="site-header-inner">
-    
-    <!-- Brand -->
+    <!-- Brand: only logo (color switches via CSS) -->
     <a href="/" class="site-brand" aria-label="Podfy home">
       <img src="/assets/podfy.svg" alt="PODFY">
-      <span class="site-brand-title">PODFY</span>
     </a>
 
-    <!-- Desktop navigation -->
+    <!-- Desktop navigation (no Release notes link) -->
     <nav id="primaryNav" class="site-nav">
       <a href="/#how">How it works</a>
       <a href="/#value">Benefits</a>
       <a href="/#features">Features</a>
       <a href="/#solutions">Pricing &amp; Plans</a>
       <a href="/#faq">FAQ</a>
-      <a href="/releases" class="text-brand font-semibold">Release notes</a>
     </nav>
 
-    <!-- Actions -->
+    <!-- Actions: only theme toggle + mobile menu -->
     <div class="site-header-actions">
-
-      <!-- Theme toggle -->
-      <button id="themeToggle" class="site-theme-toggle" data-mode="system">
+      <!-- Theme toggle pill -->
+      <button
+        id="themeToggle"
+        type="button"
+        class="site-theme-toggle"
+        data-mode="system"
+        aria-label="Toggle color theme"
+      >
         <span class="site-theme-dot"></span>
         <span class="site-theme-label">System</span>
       </button>
 
-      <!-- CTAs -->
-      <a href="/demo" class="site-cta-primary hidden md:inline-flex">
-        Try a demo upload
-      </a>
-      <a href="/#contact" class="site-cta-secondary hidden md:inline-flex">
-        Request a demo
-      </a>
-
-      <!-- Mobile menu -->
+      <!-- Mobile menu button -->
       <button
         id="menuBtn"
         type="button"
         class="site-menu-btn md:hidden"
         aria-label="Toggle navigation"
-        aria-expanded="false">
+        aria-expanded="false"
+      >
         <span></span>
         <span></span>
         <span></span>
       </button>
-
     </div>
   </div>
 
-  <!-- Mobile navigation -->
+  <!-- Mobile nav -->
   <nav id="mobileNav" class="site-mobile-nav md:hidden">
     <a href="/#how">How it works</a>
     <a href="/#value">Benefits</a>
     <a href="/#features">Features</a>
     <a href="/#solutions">Pricing &amp; Plans</a>
     <a href="/#faq">FAQ</a>
-    <a href="/releases">Release notes</a>
-
-    <a href="/demo" class="site-cta-primary mt-2 mx-4 flex justify-center">
-      Try a demo upload
-    </a>
-    <a href="/#contact" class="site-cta-secondary mt-2 mx-4 flex justify-center">
-      Request a demo
-    </a>
   </nav>
 
   <script>
-    // Mobile menu toggle
     (function () {
-      var btn = document.getElementById("menuBtn");
-      var mobile = document.getElementById("mobileNav");
-      if (!btn || !mobile) return;
+      var menuBtn = document.getElementById("menuBtn");
+      var mobileNav = document.getElementById("mobileNav");
+      if (!menuBtn || !mobileNav) return;
 
-      btn.addEventListener("click", function () {
-        var open = mobile.classList.toggle("open");
-        btn.setAttribute("aria-expanded", String(open));
+      menuBtn.addEventListener("click", function () {
+        var open = mobileNav.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", String(open));
       });
     })();
   </script>
