@@ -464,14 +464,14 @@ details{background:#fff}
 }
 
 /* Light mode card */
-html[data-theme="light"] .site-subheader-inner{
-  border-color:rgba(148,163,184,0.40);
-  box-shadow:0 18px 40px rgba(15,23,42,0.18);
+html[data-theme="light"] .site-header-shell{
   background:
     radial-gradient(circle at 0% 0%, rgba(59,130,246,0.10), transparent 55%),
     radial-gradient(circle at 100% 0%, rgba(56,189,248,0.12), transparent 55%),
     linear-gradient(135deg, #E5F0FF, #FFFFFF);
+  border-bottom:1px solid rgba(148,163,184,0.40);
 }
+
 
 /* Layout bits */
 .site-subheader-left{
