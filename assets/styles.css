@@ -632,6 +632,7 @@ html[data-theme="light"] .manual-contact-card{
   margin-bottom:.7rem;
 }
 
+.site-subheader-right .search-input{max-width:260px;}
 /* --------------------------------------------------------------------------
    BACKWARD COMPATIBILITY LAYER
    (All old class names mapped to new system)
