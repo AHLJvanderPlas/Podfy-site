@@ -1,5 +1,6 @@
 <footer class="site-footer">
   <div class="site-footer-inner">
+    
     <div>
       <strong>PODFY</strong> – lightweight, zero-friction POD capture.
     </div>
@@ -13,12 +14,11 @@
     <div class="site-footer-meta">
       © <span id="podfyFooterYear"></span> PODFY. All rights reserved.
     </div>
+
   </div>
 
   <script>
-    (function () {
-      var y = document.getElementById("podfyFooterYear");
-      if (y) y.textContent = new Date().getFullYear();
-    })();
+    var yf = document.getElementById("podfyFooterYear");
+    if (yf) yf.textContent = new Date().getFullYear();
   </script>
 </footer>
