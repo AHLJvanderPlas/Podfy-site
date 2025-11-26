@@ -42,6 +42,22 @@
   <!-- Unified Podfy stylesheet -->
   <link rel="stylesheet" href="/assets/styles.css?v=6" />
 
+  <!-- Optional smooth scrolling with reduced-motion guard -->
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+
+  <!-- Theme handling (matches header toggle) -->
+  <script src="/assets/theme.js" defer></script>
+
   <!-- Structured data: Organization -->
   <script type="application/ld+json">
   {
@@ -102,248 +118,499 @@
     ]
   }
   </script>
-</head>
 
+  <!-- Structured data: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Do drivers need an account or app?","acceptedAnswer":{"@type":"Answer","text":"No. Podfy works in any browser — no login, no installation."}},
+      {"@type":"Question","name":"How fast can we start?","acceptedAnswer":{"@type":"Answer","text":"You can try it in minutes with our demo. A branded link can be set up quickly for your team."}},
+      {"@type":"Question","name":"Can we add our branding?","acceptedAnswer":{"@type":"Answer","text":"Yes. Your upload page can show your logo, colors, and contact email."}},
+      {"@type":"Question","name":"Can drivers add a shipment reference?","acceptedAnswer":{"@type":"Answer","text":"Yes. The branded plan supports capturing a shipment reference with the upload."}},
+      {"@type":"Question","name":"How long are files kept?","acceptedAnswer":{"@type":"Answer","text":"With the Portal option, PODs are stored for one year — matching the CMR convention period."}},
+      {"@type":"Question","name":"Do you integrate with our systems?","acceptedAnswer":{"@type":"Answer","text":"For many teams, no integration is needed. If you want automation, we offer custom webhooks or APIs on request."}}
+    ]
+  }
+  </script>
+</head>
 
 <body class="text-slate-800 antialiased">
 
+  <!-- Inline SVG sprite for hero icons -->
+  <svg xmlns="http://www.w3.org/2000/svg"
+       style="position:absolute; width:0; height:0; overflow:hidden"
+       aria-hidden="true">
+    <symbol id="ic-noapp" viewBox="0 0 24 24">
+      <rect x="6" y="2" width="12" height="20" rx="2" ry="2"
+            fill="none" stroke="currentColor" stroke-width="1.8" />
+      <circle cx="12" cy="18" r="1.2" fill="currentColor" />
+      <path d="M4 4l16 16"
+            stroke="var(--brand-accent)"
+            stroke-width="2"
+            stroke-linecap="round" />
+    </symbol>
+    <symbol id="ic-instant" viewBox="0 0 24 24">
+      <path d="M3 7l9 6 9-6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"
+            fill="none" stroke="currentColor" stroke-width="1.8" />
+      <circle cx="19" cy="7" r="2.5" fill="var(--brand-accent)" />
+    </symbol>
+    <symbol id="ic-brand" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2"
+            fill="none" stroke="currentColor" stroke-width="1.8" />
+      <rect x="6" y="8" width="8" height="5" rx="1.2"
+            fill="none" stroke="currentColor" stroke-width="1.8" />
+      <circle cx="18" cy="10" r="1.8" fill="var(--brand-accent)" />
+    </symbol>
+  </svg>
+
+  <a href="#main"
+     class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:border focus:px-3 focus:py-2">
+    Skip to content
+  </a>
+
   [[PODFY_HEADER]]
 
-  <!-- ========================================= -->
-  <!-- HERO SECTION -->
-  <!-- ========================================= -->
-  <section id="hero" class="bg-hero px-4 py-16 lg:py-20">
-    <div class="mx-auto max-w-6xl text-center">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-ink">
-        Proof of Delivery, without the headaches.
-      </h1>
-      <p class="mt-4 text-lg text-muted max-w-2xl mx-auto">
-        No apps. No logins. No training. Drivers upload your POD or CMR in seconds — branded to your company.
+  <main id="main">
+    <!-- HERO -->
+    <section class="bg-hero" aria-label="Product overview">
+      <div class="mx-auto max-w-6xl px-4 py-16 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-ink">
+            Proof of Delivery, without the headaches.
+          </h1>
+          <p class="mt-4 text-lg text-muted">
+            Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast.
+          </p>
+
+          <ul class="icon-list mt-4 text-muted text-sm" aria-label="Key benefits">
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="#ic-noapp" /></svg>
+              <span><strong>No app</strong> — drivers upload from any phone.</span>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="#ic-instant" /></svg>
+              <span><strong>Instant notifications</strong> — teams get email alerts.</span>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="#ic-brand" /></svg>
+              <span><strong>Your brand</strong> — logo, colors, and safety messages.</span>
+            </li>
+          </ul>
+
+          <div class="mt-6 flex flex-wrap gap-3" aria-label="Primary calls to action">
+            <a href="/demo" class="btn btn-accent" data-event="cta:demo-upload">
+              Try a demo upload
+            </a>
+            <a href="#solutions" class="btn btn-outline" data-event="cta:see-plans">
+              See pricing &amp; plans
+            </a>
+          </div>
+
+          <p class="mt-3 text-xs text-slate-500">
+            Built for logistics, 3PLs, carriers, warehouse operations, and brands.
+          </p>
+        </div>
+
+        <div>
+          <img
+            src="/assets/PodfyHero.png"
+            alt="Phone showing Podfy’s upload screen"
+            width="1200"
+            height="800"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE -->
+    <section id="value" class="mx-auto max-w-6xl px-4 py-16 bg-tint">
+      <h2 class="text-2xl md:text-3xl font-bold text-brand">
+        Why companies choose PODFY
+      </h2>
+      <p class="mt-2 text-muted text-sm">
+        Reduce POD disputes and speed customer confirmation.
       </p>
 
-      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/demo" class="btn btn-accent text-lg" data-event="cta:demo-upload">
+      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <article class="rounded-xl border p-5">
+          <h3 class="font-semibold">Instant uploads</h3>
+          <p class="mt-2 text-muted">
+            Drivers or partners can simply snap a photo or drop a file. No app to install, no account to log in.
+          </p>
+        </article>
+        <article class="rounded-xl border p-5">
+          <h3 class="font-semibold">Your brand, your link</h3>
+          <p class="mt-2 text-muted">
+            Each upload page carries your logo, colors, and contact email — so it looks and feels like your company.
+          </p>
+        </article>
+        <article class="rounded-xl border p-5">
+          <h3 class="font-semibold">Teams notified instantly</h3>
+          <p class="mt-2 text-muted">
+            As soon as a file is uploaded, your staff gets an email alert with the details. Optionally, the sender receives a copy too.
+          </p>
+        </article>
+        <article class="rounded-xl border p-5">
+          <h3 class="font-semibold">Quick set-up</h3>
+          <p class="mt-2 text-muted">
+            Start in minutes. No integration needed to try it — just share your unique link and receive your first proof-of-delivery.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold text-brand">
+        What makes PODFY simple
+      </h2>
+
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <article class="rounded-xl border p-6">
+          <h3 class="text-lg font-semibold">Easy for drivers</h3>
+          <p class="mt-2 text-muted">
+            Open the link, drop a file or take a photo, and hit send. That’s it. Works on any phone, tablet, or computer.
+          </p>
+        </article>
+        <article class="rounded-xl border p-6">
+          <h3 class="text-lg font-semibold">Branded pages</h3>
+          <p class="mt-2 text-muted">
+            Every page shows your logo and colors. If someone lands on a wrong link, they’ll see a clear safety message.
+          </p>
+        </article>
+        <article class="rounded-xl border p-6">
+          <h3 class="text-lg font-semibold">Reliable delivery</h3>
+          <p class="mt-2 text-muted">
+            Files are safely stored and your operations team receives an instant email with the file and shipment details.
+          </p>
+        </article>
+        <article class="rounded-xl border p-6">
+          <h3 class="text-lg font-semibold">Privacy built-in</h3>
+          <p class="mt-2 text-muted">
+            Location is only shared with driver consent. File types and sizes are checked, and old files can be automatically deleted.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PRICING / PLANS -->
+    <section id="solutions" class="mx-auto max-w-6xl px-4 py-16 bg-tint">
+      <h2 id="pricing" class="text-2xl md:text-3xl font-bold text-brand">
+        Pricing &amp; Plans
+      </h2>
+      <p class="mt-2 text-muted">
+        Choose the option that fits your workflow today — and upgrade anytime.
+      </p>
+
+      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <article class="rounded-xl border brand-card p-6">
+          <h3 class="text-lg font-semibold">Trial (Free)</h3>
+          <p class="mt-2 text-muted">
+            Try the app right away from our main page. Send a copy to yourself to experience the flow. No integration needed.
+          </p>
+          <a href="/demo"
+             class="mt-4 inline-block text-sm font-medium text-blue-600 underline"
+             data-event="cta:demo-upload">
+            Try a demo upload
+          </a>
+        </article>
+
+        <article class="rounded-xl border brand-card p-6">
+          <h3 class="text-lg font-semibold">Branded page</h3>
+          <p class="mt-2 text-muted">
+            Get your own upload link with your logo, colors, and contact email — including the option to capture a shipment reference.
+          </p>
+          <a href="#contact"
+             class="mt-4 inline-block text-sm font-medium text-blue-600 underline"
+             data-event="cta:request-demo">
+            Request a demo
+          </a>
+        </article>
+
+        <article class="rounded-xl border brand-card p-6">
+          <h3 class="text-lg font-semibold">Branded + Portal</h3>
+          <p class="mt-2 text-muted">
+            Everything in Branded, plus a simple portal that stores your PODs for one year — exactly the CMR convention period.
+          </p>
+          <a href="#contact"
+             class="mt-4 inline-block text-sm font-medium text-blue-600 underline"
+             data-event="cta:request-details">
+            Request details
+          </a>
+        </article>
+
+        <article class="rounded-xl border brand-card p-6">
+          <h3 class="text-lg font-semibold">AI-powered (coming soon)</h3>
+          <p class="mt-2 text-muted">
+            The app reads the document for you and captures key shipment data automatically. Custom webhooks or APIs available on request.
+          </p>
+          <a href="#contact"
+             class="mt-4 inline-block text-sm font-medium text-blue-600 underline"
+             data-event="cta:join-waitlist">
+            Join the waitlist
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold text-brand">
+        How it works
+      </h2>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <article class="rounded-xl border p-5">
+          <div class="text-sm font-semibold text-slate-700">
+            1) Share your link
+          </div>
+          <p class="mt-2 text-muted">
+            Open your brand page (e.g., <em>/acme</em>). It automatically shows your logo and colors.
+          </p>
+        </article>
+
+        <article class="rounded-xl border p-5">
+          <div class="text-sm font-semibold text-slate-700">
+            2) Upload the POD
+          </div>
+          <p class="mt-2 text-muted">
+            Drop a file or take a photo. Add a shipment reference if needed. Optional: email a copy to the sender.
+          </p>
+        </article>
+
+        <article class="rounded-xl border p-5">
+          <div class="text-sm font-semibold text-slate-700">
+            3) You’re notified
+          </div>
+          <p class="mt-2 text-muted">
+            Your team receives an email straight away. Files are stored safely and easy to find later.
+          </p>
+        </article>
+      </div>
+
+      <div class="mt-8">
+        <a href="/demo" class="btn btn-accent" data-event="cta:demo-upload">
           Try a demo upload
         </a>
-        <a href="#contact" class="btn btn-outline text-lg" data-event="cta:request-demo">
-          Request a demo
-        </a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========================================= -->
-  <!-- VALUE PROPOSITION -->
-  <!-- ========================================= -->
-  <section id="value" class="px-4 py-16">
-    <div class="mx-auto max-w-4xl text-center">
-      <h2 class="text-3xl font-bold text-ink">
-        Zero friction for drivers. Instant clarity for your team.
-      </h2>
-      <p class="mt-3 text-muted max-w-2xl mx-auto">
-        Podfy replaces WhatsApp chaos, unclear photos, missing CMRs and slow confirmations.  
-        One link — always branded — sends your POD straight to the right people.
+    <!-- TRUST STRIP -->
+    <section class="mx-auto max-w-6xl px-4 py-8 bg-surface">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs text-slate-600" aria-label="Trust signals">
+        <div class="rounded border px-3 py-2">
+          Runs at the edge (Cloudflare Pages + Functions)
+        </div>
+        <div class="rounded border px-3 py-2">
+          Files stored safely
+        </div>
+        <div class="rounded border px-3 py-2">
+          Instant email alerts
+        </div>
+        <div class="rounded border px-3 py-2">
+          HEIC supported · Mobile camera capture
+        </div>
+        <div class="rounded border px-3 py-2">
+          No app or login required
+        </div>
+      </div>
+      <p class="mt-2 text-xs text-slate-600">
+        Note: GDPR-ready. EU hosting option available.
       </p>
-    </div>
+    </section>
 
-    <div class="mx-auto max-w-6xl grid md:grid-cols-3 gap-8 mt-12">
-      <div class="brand-card p-5">
-        <h3 class="font-semibold text-xl">No apps or accounts</h3>
-        <p class="text-muted mt-2">Drivers upload instantly from browser. No logins or installs.</p>
-      </div>
-
-      <div class="brand-card p-5">
-        <h3 class="font-semibold text-xl">Branded upload link</h3>
-        <p class="text-muted mt-2">Carriers and customers feel at home with your logo and colors.</p>
-      </div>
-
-      <div class="brand-card p-5">
-        <h3 class="font-semibold text-xl">Instant notifications</h3>
-        <p class="text-muted mt-2">Your team receives PODs directly in their inbox.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================= -->
-  <!-- FEATURES -->
-  <!-- ========================================= -->
-  <section id="features" class="bg-tint px-4 py-16">
-    <div class="mx-auto max-w-6xl">
-      <h2 class="text-3xl font-bold text-center text-ink">
-        Everything you need for fast POD handling
+    <!-- FAQ -->
+    <section id="faq" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold text-brand">
+        FAQ
       </h2>
 
-      <div class="grid md:grid-cols-2 gap-10 mt-12">
-        <!-- LEFT COLUMN -->
-        <div class="space-y-6">
-          <div>
-            <h3 class="font-semibold text-xl">Guided driver flow</h3>
-            <p class="text-muted mt-2">Clear instructions help drivers upload correct, readable images.</p>
-          </div>
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">
+            Do I need to install an app or create accounts?
+          </summary>
+          <p class="mt-2 text-muted">
+            No. Just open the link and upload. It works on any phone or computer.
+          </p>
+        </details>
 
-          <div>
-            <h3 class="font-semibold text-xl">Multi-image upload</h3>
-            <p class="text-muted mt-2">Combine multiple photos into one PDF, formatted with your brand.</p>
-          </div>
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">
+            How fast can we start?
+          </summary>
+          <p class="mt-2 text-muted">
+            You can try it in minutes with our demo. A branded link can be set up quickly for your team.
+          </p>
+        </details>
 
-          <div>
-            <h3 class="font-semibold text-xl">Optional shipment reference</h3>
-            <p class="text-muted mt-2">Let drivers add a customer or load reference for easier internal tracking.</p>
-          </div>
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">
+            Can we add our branding?
+          </summary>
+          <p class="mt-2 text-muted">
+            Yes. Your upload page can show your logo, colors, and contact email.
+          </p>
+        </details>
 
-          <div>
-            <h3 class="font-semibold text-xl">Fully branded email confirmations</h3>
-            <p class="text-muted mt-2">Your customer receives a clean, on-brand POD email.</p>
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">
+            Can drivers add a shipment reference?
+          </summary>
+          <p class="mt-2 text-muted">
+            Yes. The branded plan supports capturing a shipment reference with the upload.
+          </p>
+        </details>
+
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">
+            How long are files kept?
+          </summary>
+          <p class="mt-2 text-muted">
+            With the Portal option, PODs are stored for one year — matching the CMR convention period.
+          </p>
+        </details>
+
+        <details class="rounded-xl border p-5">
+          <summary class="font-semibold cursor-pointer">
+            Do you integrate with our systems?
+          </summary>
+          <p class="mt-2 text-muted">
+            For many teams, no integration is needed. If you want automation, we offer custom webhooks or APIs on request.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold text-brand">
+        Talk to sales
+      </h2>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-8">
+        <form id="contact-form"
+              class="rounded-xl border p-6 brand-card grid gap-3"
+              aria-describedby="contactHelp">
+          <p id="contactHelp" class="sr-only">
+            Use this form to request a demo or contact sales.
+          </p>
+
+          <label class="text-sm">
+            Name
+            <input name="name" required autocomplete="name"
+                   class="mt-1 w-full rounded border px-3 py-2" />
+          </label>
+
+          <label class="text-sm">
+            Email
+            <input type="email" name="email" required autocomplete="email"
+                   class="mt-1 w-full rounded border px-3 py-2" />
+          </label>
+
+          <label class="text-sm">
+            Company
+            <input name="company" autocomplete="organization"
+                   class="mt-1 w-full rounded border px-3 py-2" />
+          </label>
+
+          <label class="text-sm">
+            Message
+            <textarea name="message" rows="4"
+                      class="mt-1 w-full rounded border px-3 py-2"
+                      placeholder="Tell us which solution fits you (Trial, Branded, Portal, or AI)…"></textarea>
+          </label>
+
+          <label class="inline-flex items-start gap-2 text-sm">
+            <input type="checkbox" name="consent" required class="mt-1" />
+            <span>
+              I agree to be contacted about my request and have read the
+              <a href="/privacy" class="text-blue-600 underline">Privacy Policy</a>.
+            </span>
+          </label>
+
+          <button class="mt-2 btn btn-accent" type="submit" data-event="cta:contact-submit">
+            Send request
+          </button>
+        </form>
+
+        <div>
+          <div class="rounded-xl border p-6 brand-card">
+            <div class="font-semibold">Email</div>
+            <p class="mt-1">
+              <a class="text-blue-600 underline" href="mailto:info@podfy.net">
+                info@podfy.net
+              </a>
+            </p>
+
+            <div class="mt-4 font-semibold">Helpful links</div>
+            <ul class="mt-1 space-y-1 list-disc list-inside text-slate-600">
+              <li><a class="text-blue-600 underline" href="/privacy">Privacy</a></li>
+              <li><a class="text-blue-600 underline" href="/terms">Terms</a></li>
+              <li><a class="text-blue-600 underline" href="/demo">Demo upload</a></li>
+            </ul>
           </div>
+          <p class="mt-4 text-xs text-slate-500">
+            PODFY – KVK: 12345678
+          </p>
         </div>
-
-        <!-- RIGHT COLUMN -->
-        <div class="space-y-6">
-          <div>
-            <h3 class="font-semibold text-xl">Fast & privacy-safe</h3>
-            <p class="text-muted mt-2">Files are processed securely on Cloudflare edge, kept only as needed.</p>
-          </div>
-
-          <div>
-            <h3 class="font-semibold text-xl">Driver/Recipient portal</h3>
-            <p class="text-muted mt-2">With a magic link, users can view their PODs from the last 60 days.</p>
-          </div>
-
-          <div>
-            <h3 class="font-semibold text-xl">Your colors & logo</h3>
-            <p class="text-muted mt-2">Branding is consistent across upload page, emails and PDF output.</p>
-          </div>
-
-          <div>
-            <h3 class="font-semibold text-xl">Telemetry & quality</h3>
-            <p class="text-muted mt-2">Track when files are uploaded, emailed, and opened.</p>
-          </div>
-        </div>
       </div>
+    </section>
+
+    <!-- Sticky mobile CTA bar -->
+    <div class="cta-bar" role="region" aria-label="Quick actions">
+      <a href="/demo" class="btn btn-accent" data-event="cta:demo-upload">
+        Demo upload
+      </a>
+      <a href="#contact" class="btn btn-outline" data-event="cta:request-demo">
+        Request demo
+      </a>
     </div>
-  </section>
-
-  <!-- ========================================= -->
-  <!-- PRICING / PLANS -->
-  <!-- ========================================= -->
-  <section id="solutions" class="px-4 py-16">
-    <div class="mx-auto max-w-4xl text-center">
-      <h2 class="text-3xl font-bold text-ink">Simple, transparent pricing</h2>
-      <p class="mt-3 text-muted">Start free. Upgrade when you need to scale.</p>
-    </div>
-
-    <div class="mx-auto max-w-5xl grid md:grid-cols-3 gap-8 mt-12">
-      <div class="brand-card p-6">
-        <h3 class="text-xl font-semibold">Free</h3>
-        <p class="mt-2 text-muted">Perfect for testing or small teams.</p>
-        <ul class="icon-list mt-4">
-          <li><span class="icon">✔</span> Up to 100 uploads/month</li>
-          <li><span class="icon">✔</span> Branded upload link</li>
-          <li><span class="icon">✔</span> PDF generation</li>
-        </ul>
-      </div>
-
-      <div class="brand-card p-6">
-        <h3 class="text-xl font-semibold">Team</h3>
-        <p class="mt-2 text-muted">More volume and branding options.</p>
-        <ul class="icon-list mt-4">
-          <li><span class="icon">✔</span> 2,000 uploads/month</li>
-          <li><span class="icon">✔</span> Advanced branding</li>
-          <li><span class="icon">✔</span> Portal access</li>
-        </ul>
-      </div>
-
-      <div class="brand-card p-6">
-        <h3 class="text-xl font-semibold">Enterprise</h3>
-        <p class="mt-2 text-muted">Full support for carriers & 3PLs.</p>
-        <ul class="icon-list mt-4">
-          <li><span class="icon">✔</span> Unlimited uploads</li>
-          <li><span class="icon">✔</span> SSO / SAML</li>
-          <li><span class="icon">✔</span> Custom SLAs</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================= -->
-  <!-- FAQ -->
-  <!-- ========================================= -->
-  <section id="faq" class="bg-surface px-4 py-16">
-    <div class="mx-auto max-w-4xl">
-      <h2 class="text-3xl font-bold text-center text-ink">FAQ</h2>
-
-      <div class="mt-10 space-y-4">
-        <details>
-          <summary>Do drivers need an account or app?</summary>
-          <p>No. Podfy works in any browser — no login, no installation.</p>
-        </details>
-
-        <details>
-          <summary>Can customers receive branded POD emails?</summary>
-          <p>Yes. Uploads are processed with your logo, colors and metadata.</p>
-        </details>
-
-        <details>
-          <summary>How long are files stored?</summary>
-          <p>Long enough for delivery, QA and email processing — then purged according to your plan.</p>
-        </details>
-
-        <details>
-          <summary>Does Podfy integrate with TMS?</summary>
-          <p>Podfy does not require integration, but can send webhooks or emails.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================= -->
-  <!-- CONTACT -->
-  <!-- ========================================= -->
-  <section id="contact" class="px-4 py-16">
-    <div class="mx-auto max-w-4xl text-center">
-      <h2 class="text-3xl font-bold text-ink">Get in touch</h2>
-      <p class="mt-3 text-muted">We’re here to help you modernise your POD flow.</p>
-
-      <form id="contact-form" class="mt-8 space-y-4 mx-auto max-w-md">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Work email" required>
-        <textarea name="message" placeholder="How can we help?" rows="4" required></textarea>
-        <button type="submit" class="btn btn-accent w-full">Send</button>
-      </form>
-    </div>
-  </section>
+  </main>
 
   [[PODFY_FOOTER]]
 
   <script>
-    // Contact form
-    document.getElementById('contact-form').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(e.target).entries());
-
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(data)
-        });
-        alert(res.ok ? 'Message sent!' : 'Something went wrong.');
-      } catch (err) {
-        alert('Network error.');
-      }
-    });
-
-    // Mobile menu
+    // Contact form -> /api/contact (JSON body)
     (function () {
-      var btn = document.getElementById('menuBtn');
-      var nav = document.getElementById('primaryNav');
-      if (!btn || !nav) return;
-      btn.addEventListener('click', function () {
-        var hidden = nav.classList.toggle('hidden');
-        btn.setAttribute('aria-expanded', String(!hidden));
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var data = Object.fromEntries(new FormData(form).entries());
+
+        try {
+          var res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          alert(res.ok ? 'Message sent!' : 'Something went wrong.');
+        } catch (err) {
+          alert('Network error.');
+        }
       });
     })();
-  </script>
 
+    // Show sticky CTA bar on small screens after slight scroll
+    (function () {
+      var bar = document.querySelector('.cta-bar');
+      if (!bar) return;
+
+      function onScroll() {
+        if (window.scrollY > 200) {
+          bar.style.display = 'grid';
+        } else {
+          bar.style.display = 'none';
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 </body>
 </html>
