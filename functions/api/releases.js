@@ -1,27 +1,82 @@
-export async function onRequestGet({ env }) {
-  try {
-    const db = env.BD;
+// functions/api/releases.js
 
-    const { results } = await db.prepare(`
+export async function onRequestGet({ env, request }) {
+  const db = env.BD;
+  const url = new URL(request.url);
+
+  // Query params: ?page=1&pageSize=25
+  const pageParam = parseInt(url.searchParams.get("page") || "1", 10);
+  const sizeParam = parseInt(url.searchParams.get("pageSize") || "25", 10);
+
+  const pageSize = Math.min(Math.max(sizeParam, 5), 100); // clamp 5–100
+  const page = pageParam > 0 ? pageParam : 1;
+  const offset = (page - 1) * pageSize;
+
+  try {
+    // Main page of results
+    const dataSql = `
       SELECT
-        id, release_date, version, deployment_ref,
-        fixes, new_features, area_tags, is_published
+        id,
+        release_date,
+        version,
+        deployment_ref,
+        fixes,
+        new_features,
+        area_tags,
+        is_published
       FROM Site_Releases
       WHERE is_published = 1
       ORDER BY release_date DESC, id DESC
-      LIMIT 200
-    `).all();
+      LIMIT ? OFFSET ?
+    `;
 
-    return new Response(JSON.stringify({ items: results, error: null }), {
-      headers: { "Content-Type": "application/json" }
-    });
+    const dataResult = await db.prepare(dataSql).bind(pageSize, offset).all();
+    const items = dataResult.results || [];
+
+    // Total count for pagination
+    const countSql = `
+      SELECT COUNT(*) AS total
+      FROM Site_Releases
+      WHERE is_published = 1
+    `;
+    const countRow = await db.prepare(countSql).first();
+    const total = countRow ? countRow.total : 0;
+    const totalPages = total > 0 ? Math.ceil(total / pageSize) : 1;
+
+    return new Response(
+      JSON.stringify({
+        items,
+        page,
+        pageSize,
+        total,
+        totalPages,
+        error: null,
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      }
+    );
   } catch (err) {
-    return new Response(JSON.stringify({
-      items: [],
-      error: String(err)
-    }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    });
+    console.error("Error in /api/releases:", err);
+
+    return new Response(
+      JSON.stringify({
+        items: [],
+        page: 1,
+        pageSize: 25,
+        total: 0,
+        totalPages: 1,
+        error: String(err && err.message ? err.message : err),
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      }
+    );
   }
 }
