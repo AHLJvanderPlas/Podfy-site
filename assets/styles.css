@@ -209,6 +209,14 @@ input[type="checkbox"]{
   padding:0 1rem;
 }
 
+/* Match subheader width to page content width */
+.site-subheader-container {
+  max-width: var(--container-6xl);
+  margin: 0 auto;
+  padding: 0 1rem; /* matches the page padding */
+}
+
+
 /* Existing utility classes remain unchanged... */
 
 /* --------------------------------------------------------------------------
