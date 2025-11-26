@@ -16,38 +16,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
+  <!-- Unified Podfy stylesheet -->
   <link rel="stylesheet" href="/assets/styles.css?v=6">
 </head>
 <body class="text-slate-800 antialiased">
 
-  <!-- Header copied from main page -->
-  <header class="border-b border-slate-100">
-    <div class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3" aria-label="PODFY home">
-        <img src="/assets/podfy.svg" alt="PODFY" class="h-7 w-auto">
-      </a>
-
-      <button id="menuBtn" class="md:hidden p-2 rounded border border-slate-300" aria-controls="primaryNav" aria-expanded="false" aria-label="Open navigation">
-        <span class="block h-0.5 w-5 bg-slate-800 mb-1"></span>
-        <span class="block h-0.5 w-5 bg-slate-800 mb-1"></span>
-        <span class="block h-0.5 w-5 bg-slate-800"></span>
-      </button>
-
-      <nav id="primaryNav" class="hidden md:flex items-center gap-8 text-sm">
-        <a href="/#how" class="hover:text-brand">How it works</a>
-        <a href="/#value" class="hover:text-brand">Benefits</a>
-        <a href="/#features" class="hover:text-brand">Features</a>
-        <a href="/#solutions" class="hover:text-brand">Pricing &amp; Plans</a>
-        <a href="/#faq" class="hover:text-brand">FAQ</a>
-        <a href="/releases" class="text-brand font-semibold">Release notes</a>
-      </nav>
-
-      <div class="hidden md:flex items-center gap-3">
-        <a href="/demo" class="btn btn-accent text-sm">Try a demo upload</a>
-        <a href="/#contact" class="btn btn-outline text-sm">Request a demo</a>
-      </div>
-    </div>
-  </header>
+  [[PODFY_HEADER]]
 
   <main class="release-page">
     <h1 class="text-3xl font-bold">Release notes</h1>
@@ -56,12 +30,22 @@
     </p>
 
     <div class="mt-4">
-      <input id="release-search" class="search-input" placeholder="Search by version, text, or tag" />
+      <input
+        id="release-search"
+        class="search-input"
+        type="search"
+        placeholder="Search by version, text, or tag" />
     </div>
 
-    <p id="releases-loading" class="mt-2 text-sm text-muted">Fetching latest releases from the Podfy database.</p>
-    <p id="releases-empty" class="mt-2 text-sm text-muted" style="display:none;">No release notes are published yet.</p>
-    <p id="releases-error" class="mt-2 text-sm" style="display:none;color:#e11d48;">There was a problem loading release notes. Please refresh the page.</p>
+    <p id="releases-loading" class="mt-2 text-sm text-muted">
+      Fetching latest releases from the Podfy database.
+    </p>
+    <p id="releases-empty" class="mt-2 text-sm text-muted" style="display:none;">
+      No release notes are published yet.
+    </p>
+    <p id="releases-error" class="mt-2 text-sm" style="display:none;color:#e11d48;">
+      There was a problem loading release notes. Please refresh the page.
+    </p>
 
     <!-- Desktop table view -->
     <div class="release-table-view mt-4">
@@ -82,32 +66,9 @@
     <div class="release-cards-view mt-4" id="releases-cards-wrapper"></div>
   </main>
 
-  <footer class="border-t border-slate-100">
-    <div class="mx-auto max-w-6xl px-4 py-10 flex items-center justify-between text-sm text-slate-600">
-      <p>© <span id="y"></span> PODFY. All rights reserved.</p>
-      <div>
-        <a href="/privacy.html" class="hover:text-brand mr-4">Privacy</a>
-        <a href="/terms.html" class="hover:text-brand">Terms</a>
-      </div>
-    </div>
-  </footer>
+  [[PODFY_FOOTER]]
 
   <script>
-    // Footer year
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Simple mobile menu toggle: show/hide nav on small screens
-    (function () {
-      var btn = document.getElementById('menuBtn');
-      var nav = document.getElementById('primaryNav');
-      if (!btn || !nav) return;
-      btn.addEventListener('click', function () {
-        var hidden = nav.classList.toggle('hidden');
-        btn.setAttribute('aria-expanded', String(!hidden));
-      });
-    })();
-
-    // Release notes rendering
     (function () {
       var apiUrl = '/api/releases';
       var allReleases = [];
@@ -123,10 +84,10 @@
       function escapeHtml(str) {
         if (!str) return '';
         return str
-          .replace(/&/g,'&amp;')
-          .replace(/</g,'&lt;')
-          .replace(/>/g,'&gt;')
-          .replace(/"/g,'&quot;');
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
       }
 
       function toLinesList(text) {
@@ -142,16 +103,20 @@
 
       function toId(version) {
         if (!version) return '';
-        return 'v-' + version.replace(/[^0-9a-z]/gi,'-');
+        return 'v-' + version.replace(/[^0-9a-z]/gi, '-');
       }
 
       function tagsFrom(area_tags) {
         if (!area_tags) return [];
-        return area_tags.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+        return area_tags
+          .split(',')
+          .map(function (t) { return t.trim(); })
+          .filter(Boolean);
       }
 
       function render(filter) {
         filter = (filter || '').toLowerCase();
+
         var filtered = allReleases.filter(function (r) {
           if (!filter) return true;
           var blob = [
@@ -169,27 +134,37 @@
           if (metaEl) metaEl.textContent = 'No releases match the current filter.';
           loadingEl.style.display = 'none';
           emptyEl.style.display = 'block';
+          errorEl.style.display = 'none';
+          tableBody.innerHTML = '';
+          cardsWrapper.innerHTML = '';
           return;
         }
 
         loadingEl.style.display = 'none';
         emptyEl.style.display = 'none';
         errorEl.style.display = 'none';
-        if (metaEl) metaEl.textContent = 'Showing ' + filtered.length + ' of ' + allReleases.length + ' releases.';
+
+        if (metaEl) {
+          metaEl.textContent = 'Showing ' + filtered.length + ' of ' + allReleases.length + ' releases.';
+        }
 
         // Desktop table
         tableBody.innerHTML = filtered.map(function (r) {
           var updates = '';
           if (r.new_features) {
-            updates += '<div><div class="release-section-label">New</div>' + toLinesList(r.new_features) + '</div>';
+            updates += '<div><div class="release-section-label">New</div>' +
+              toLinesList(r.new_features) + '</div>';
           }
           if (r.fixes) {
-            updates += '<div class="mt-2"><div class="release-section-label">Fixes</div>' + toLinesList(r.fixes) + '</div>';
+            updates += '<div class="mt-2"><div class="release-section-label">Fixes</div>' +
+              toLinesList(r.fixes) + '</div>';
           }
           var tags = tagsFrom(r.area_tags);
           if (tags.length) {
             updates += '<div class="mt-2">' +
-              tags.map(function (t) { return '<span class="release-tag">' + escapeHtml(t) + '</span>'; }).join('') +
+              tags.map(function (t) {
+                return '<span class="release-tag">' + escapeHtml(t) + '</span>';
+              }).join('') +
               '</div>';
           }
 
@@ -208,7 +183,9 @@
           var tags = tagsFrom(r.area_tags);
           var tagsHtml = tags.length
             ? '<div class="mt-2">' +
-              tags.map(function (t) { return '<span class="release-tag">' + escapeHtml(t) + '</span>'; }).join('') +
+              tags.map(function (t) {
+                return '<span class="release-tag">' + escapeHtml(t) + '</span>';
+              }).join('') +
               '</div>'
             : '';
 
@@ -224,10 +201,14 @@
                   : '') +
               '</div>' +
               (r.new_features
-                ? '<div class="mt-3"><div class="release-section-label">New</div>' + toLinesList(r.new_features) + '</div>'
+                ? '<div class="mt-3"><div class="release-section-label">New</div>' +
+                    toLinesList(r.new_features) +
+                  '</div>'
                 : '') +
               (r.fixes
-                ? '<div class="mt-3"><div class="release-section-label">Fixes</div>' + toLinesList(r.fixes) + '</div>'
+                ? '<div class="mt-3"><div class="release-section-label">Fixes</div>' +
+                    toLinesList(r.fixes) +
+                  '</div>'
                 : '') +
               tagsHtml +
             '</article>'
