@@ -439,6 +439,102 @@ details{background:#fff}
 }
 
 /* -----------------------------------------------------------
+   PODFY marketing – portal-style subheader on main site
+   ----------------------------------------------------------- */
+
+.site-subheader{
+  padding:1rem 1rem 0;
+}
+
+.site-subheader-inner{
+  max-width:var(--container-6xl);
+  margin:0 auto;
+  padding:.9rem 1.25rem;
+  border-radius:1.5rem;
+  border:1px solid rgba(148,163,184,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.5rem;
+  box-shadow:0 16px 40px rgba(15,23,42,0.55);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.16), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(56,189,248,0.18), transparent 55%),
+    linear-gradient(135deg, #020617, #020617);
+}
+
+/* Light mode card */
+html[data-theme="light"] .site-subheader-inner{
+  border-color:rgba(148,163,184,0.40);
+  box-shadow:0 18px 40px rgba(15,23,42,0.18);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.10), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(56,189,248,0.12), transparent 55%),
+    linear-gradient(135deg, #E5F0FF, #FFFFFF);
+}
+
+/* Layout bits */
+.site-subheader-left{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  min-width:0;
+}
+
+.site-subheader-logo img{
+  height:2.1rem;
+  width:auto;
+  display:block;
+}
+
+/* Reuse same logo inversion rules inside card */
+html[data-theme="dark"] .site-subheader-logo img{
+  filter:invert(1);
+}
+
+.site-subheader-text{
+  display:flex;
+  flex-direction:column;
+}
+.site-subheader-title{
+  font-size:.9rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#E5E7EB;
+}
+.site-subheader-subtitle{
+  font-size:.8rem;
+  color:#9CA3AF;
+}
+
+html[data-theme="light"] .site-subheader-title{
+  color:#0F172A;
+}
+html[data-theme="light"] .site-subheader-subtitle{
+  color:#4B5563;
+}
+
+.site-subheader-right{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+
+/* Stack CTAs on small screens */
+@media (max-width:640px){
+  .site-subheader-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .site-subheader-right{
+    width:100%;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+  }
+}
+
+/* -----------------------------------------------------------
    LIGHT HEADER VARIANT PER PAGE
    - Add class "header-light" to <body> on pages that should
      use a light header instead of the dark bar.
