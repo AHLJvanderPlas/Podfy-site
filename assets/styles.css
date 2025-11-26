@@ -560,3 +560,259 @@ body.header-light .site-header-mobile-nav a:hover{
 @media (min-width:769px){
   .release-cards-view{display:none}
 }
+
+/* -----------------------------------------------------------
+   PODFY marketing site – header + footer
+   ----------------------------------------------------------- */
+
+.site-header-shell{
+  position:sticky;
+  top:0;
+  z-index:40;
+  backdrop-filter:blur(14px);
+  /* soft glass gradient similar to delivery portal */
+  background:
+    radial-gradient(circle at 0% 0%, rgba(37,99,235,0.12), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(56,189,248,0.10), transparent 55%),
+    linear-gradient(135deg, rgba(15,23,42,0.90), rgba(15,23,42,0.92));
+  border-bottom:1px solid rgba(148,163,184,0.35);
+}
+
+html[data-theme="light"] .site-header-shell{
+  background:
+    radial-gradient(circle at 0% 0%, rgba(37,99,235,0.06), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(56,189,248,0.06), transparent 55%),
+    linear-gradient(135deg, #020617, #020617);
+  border-bottom:1px solid rgba(15,23,42,0.35);
+}
+
+.site-header-inner{
+  max-width:var(--container-6xl);
+  margin:0 auto;
+  padding:.8rem 1rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.5rem;
+  color:#E5E7EB;
+}
+
+/* brand */
+.site-brand{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  min-width:0;
+}
+.site-brand img{
+  height:1.9rem;
+  width:auto;
+  display:block;
+}
+.site-brand-title{
+  font-size:.95rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+/* nav */
+.site-nav{
+  display:none;
+}
+@media (min-width:768px){
+  .site-nav{
+    display:flex;
+    align-items:center;
+    gap:2rem;
+    font-size:.9rem;
+  }
+}
+.site-nav a{
+  color:inherit;
+  opacity:.9;
+}
+.site-nav a:hover{
+  opacity:1;
+}
+
+/* CTAs + toggle */
+.site-header-actions{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+}
+
+/* toggle pill in delivery-portal style, no emoji */
+.site-theme-toggle{
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,0.65);
+  background:rgba(15,23,42,0.35);
+  padding:3px 10px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  font-weight:600;
+  transition:background .15s ease-out, border-color .15s ease-out, transform .15s ease-out;
+}
+.site-theme-toggle:hover{
+  background:rgba(15,23,42,0.55);
+  transform:translateY(-1px);
+}
+
+.site-theme-dot{
+  width:9px;
+  height:9px;
+  border-radius:999px;
+  background:var(--brand-accent);
+  box-shadow:0 0 0 4px rgba(34,197,94,0.25);
+}
+
+/* state colours for dot */
+html[data-theme="light"] .site-theme-toggle[data-mode="light"] .site-theme-dot{
+  background:#22c55e;
+  box-shadow:0 0 0 4px rgba(34,197,94,0.25);
+}
+html[data-theme="dark"] .site-theme-toggle[data-mode="dark"] .site-theme-dot{
+  background:#38bdf8;
+  box-shadow:0 0 0 4px rgba(56,189,248,0.30);
+}
+
+/* CTA buttons – pill style echoing portal */
+.site-cta-primary,
+.site-cta-secondary{
+  border-radius:999px;
+  padding:.55rem 1.25rem;
+  font-size:.8rem;
+  font-weight:600;
+  letter-spacing:.04em;
+  text-transform:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:0;
+  text-decoration:none;
+  cursor:pointer;
+  transition:transform .1s ease-out, box-shadow .15s ease-out, opacity .15s ease-out;
+}
+
+/* primary = gradient blue/teal like portal */
+.site-cta-primary{
+  background-image:linear-gradient(135deg, #2563EB, #22C1C3);
+  color:#fff;
+  box-shadow:0 10px 28px rgba(37,99,235,0.65);
+}
+.site-cta-primary:hover{
+  transform:translateY(-1px);
+  box-shadow:0 14px 36px rgba(37,99,235,0.75);
+}
+.site-cta-primary:active{
+  transform:translateY(0);
+  box-shadow:0 6px 18px rgba(37,99,235,0.6);
+}
+
+/* secondary = glassy border pill */
+.site-cta-secondary{
+  border:1px solid rgba(148,163,184,0.75);
+  background:rgba(15,23,42,0.25);
+  color:#E5E7EB;
+}
+.site-cta-secondary:hover{
+  background:rgba(15,23,42,0.45);
+  transform:translateY(-1px);
+}
+
+/* header hamburger reuses existing utilities but tuned for dark bar */
+.site-menu-btn{
+  display:inline-flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:.18rem;
+  padding:.4rem .5rem;
+  border-radius:.6rem;
+  border:1px solid rgba(51,65,85,0.9);
+  background:rgba(15,23,42,0.85);
+}
+.site-menu-btn span{
+  display:block;
+  width:1.25rem;
+  height:.14rem;
+  border-radius:999px;
+  background:#E5E7EB;
+}
+
+@media (min-width:768px){
+  .site-menu-btn{display:none;}
+}
+
+/* mobile nav */
+.site-mobile-nav{
+  display:none;
+  background:rgba(15,23,42,0.98);
+  border-top:1px solid rgba(15,23,42,0.8);
+  color:#E5E7EB;
+}
+.site-mobile-nav a{
+  display:block;
+  padding:.45rem 1rem;
+  font-size:.9rem;
+  opacity:.9;
+}
+.site-mobile-nav a:hover{
+  opacity:1;
+}
+
+/* show mobile nav when .open is added via JS */
+.site-mobile-nav.open{
+  display:block;
+}
+
+/* -----------------------------------------------------------
+   Footer – echoes delivery footer but for whole site
+   ----------------------------------------------------------- */
+
+.site-footer{
+  border-top:1px solid rgba(15,23,42,0.2);
+  background:radial-gradient(circle at 50% 0, rgba(15,23,42,0.6), #020617);
+  color:#CBD5F5;
+}
+
+html[data-theme="light"] .site-footer{
+  background:linear-gradient(180deg, #020617, #020617);
+  color:#E5E7EB;
+}
+
+.site-footer-inner{
+  max-width:var(--container-6xl);
+  margin:0 auto;
+  padding:1.25rem 1rem 1.75rem;
+  display:flex;
+  flex-direction:column;
+  gap:.75rem;
+  text-align:center;
+  font-size:.8rem;
+}
+
+.site-footer-nav{
+  display:flex;
+  justify-content:center;
+  gap:1.5rem;
+  flex-wrap:wrap;
+  font-size:.8rem;
+}
+.site-footer-nav a{
+  opacity:.85;
+}
+.site-footer-nav a:hover{
+  opacity:1;
+}
+
+.site-footer-meta{
+  font-size:.75rem;
+  opacity:.8;
+}
+
