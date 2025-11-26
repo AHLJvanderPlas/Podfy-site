@@ -1,6 +1,5 @@
 /* ==========================================================================
    PODFY – Global Design System (Unified + Backward Compatible)
-   ========================================================================== */
 
 /* --------------------------------------------------------------------------
    THEME TOKENS
@@ -252,6 +251,40 @@ html[data-theme="light"] .shell-bar-glass{
 /* --------------------------------------------------------------------------
    SITE HEADER
    -------------------------------------------------------------------------- */
+/* Sticky shell header wrapper */
+.site-header-shell{
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:transparent;
+}
+
+/* Brand logo sizing (reuses current behaviour) */
+.site-brand img{
+  height:1.75rem;
+  width:auto;
+}
+
+/* Desktop nav visibility */
+.site-nav{
+  display:none;
+  gap:1.5rem;
+  font-size:.9rem;
+}
+@media (min-width:768px){
+  .site-nav{display:flex;}
+}
+
+/* Right-side layout */
+.site-header-actions{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+}
+
+/* Mobile menu button + mobile nav already had basic styles;
+   keep your existing .site-menu-btn and .site-mobile-nav rules.
+   No color overrides needed – they inherit var(--ink)/var(--muted). */
 
 .site-header-shell{
   position:sticky;
