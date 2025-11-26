@@ -816,3 +816,16 @@ html[data-theme="light"] .site-footer{
   opacity:.8;
 }
 
+/* Logo color: black in light, white in dark (by inverting) */
+.site-brand img{
+  height:1.9rem;
+  width:auto;
+  display:block;
+  filter:none;
+}
+
+/* If your base SVG is black, this invert makes it white on dark background */
+html[data-theme="dark"] .site-brand img{
+  filter:invert(1);
+}
+
