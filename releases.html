@@ -5,29 +5,255 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Release Notes – Podfy</title>
   <meta name="description" content="Release notes for Podfy: dates, versions, deployments, and changes." />
-  <link rel="canonical" href="https://podfy.net/releases">
+  <link rel="canonical" href="https://podfy.net/releases" />
 
-  <!-- Favicons (reuse site defaults) -->
-  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-  <link rel="shortcut icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <!-- Color scheme: follow user system preference, allow overrides -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f7fb" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617" />
 
-  <!-- Tailwind CDN -->
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="shortcut icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+  <!-- Tailwind CDN (as on the original page) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = { theme: { extend: { colors: { brand: { DEFAULT:'#4B5563', accent:'#2563EB' }}}}}
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#4B5563',
+              accent: '#2563EB'
+            }
+          }
+        }
+      }
+    };
   </script>
-  <style>html{scroll-behavior:smooth}</style>
+
+  <!-- Apply stored theme as early as possible to avoid flicker -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('podfy-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      } catch (e) {
+        // If localStorage is not available, fall back to system preference
+      }
+    })();
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* Base design tokens – inspired by the free tier demo page */
+    :root {
+      --bg: #f5f7fb;
+      --bg-elevated: rgba(255, 255, 255, 0.98);
+      --bg-soft: rgba(255, 255, 255, 0.92);
+      --fg: #0f172a;
+      --fg-soft: #64748b;
+      --fg-softer: #94a3b8;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --accent-strong: #1d4ed8;
+      --border-subtle: rgba(148, 163, 184, 0.4);
+      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.12);
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: radial-gradient(circle at top, #020617 0, #020617 60%, #000 100%);
+        --bg-elevated: rgba(15, 23, 42, 0.96);
+        --bg-soft: rgba(15, 23, 42, 0.92);
+        --fg: #e5e7eb;
+        --fg-soft: #9ca3af;
+        --fg-softer: #6b7280;
+        --accent: #60a5fa;
+        --accent-soft: rgba(59, 130, 246, 0.20);
+        --accent-strong: #3b82f6;
+        --border-subtle: rgba(148, 163, 184, 0.35);
+        --shadow-soft: 0 26px 80px rgba(15, 23, 42, 0.9);
+      }
+    }
+
+    /* Manual overrides via data-theme attribute */
+    [data-theme="light"] {
+      --bg: #f5f7fb;
+      --bg-elevated: rgba(255, 255, 255, 0.98);
+      --bg-soft: rgba(255, 255, 255, 0.92);
+      --fg: #0f172a;
+      --fg-soft: #64748b;
+      --fg-softer: #94a3b8;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --accent-strong: #1d4ed8;
+      --border-subtle: rgba(148, 163, 184, 0.4);
+      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.12);
+    }
+
+    [data-theme="dark"] {
+      --bg: radial-gradient(circle at top, #020617 0, #020617 60%, #000 100%);
+      --bg-elevated: rgba(15, 23, 42, 0.96);
+      --bg-soft: rgba(15, 23, 42, 0.92);
+      --fg: #e5e7eb;
+      --fg-soft: #9ca3af;
+      --fg-softer: #6b7280;
+      --accent: #60a5fa;
+      --accent-soft: rgba(59, 130, 246, 0.20);
+      --accent-strong: #3b82f6;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --shadow-soft: 0 26px 80px rgba(15, 23, 42, 0.9);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    header {
+      background: var(--bg-elevated);
+      border-bottom-color: var(--border-subtle);
+    }
+
+    footer {
+      border-top-color: var(--border-subtle);
+      background: transparent;
+      color: var(--fg-soft);
+    }
+
+    /* Map commonly used Tailwind color utility classes to theme variables */
+    .bg-white {
+      background-color: var(--bg-elevated) !important;
+    }
+
+    .bg-slate-50 {
+      background-color: var(--bg-soft) !important;
+    }
+
+    .text-slate-600 {
+      color: var(--fg-soft) !important;
+    }
+
+    .text-slate-800,
+    .text-slate-900 {
+      color: var(--fg) !important;
+    }
+
+    .border-slate-100,
+    .border-slate-300,
+    .divide-slate-200 {
+      border-color: var(--border-subtle) !important;
+    }
+
+    .text-brand {
+      color: var(--accent) !important;
+    }
+
+    .bg-brand-accent {
+      background-color: var(--accent) !important;
+    }
+
+    /* Release cards (mobile) */
+    .release-card {
+      border-radius: var(--radius-xl);
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .release-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      margin-right: 0.25rem;
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+    }
+
+    .release-section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: var(--fg-softer);
+    }
+
+    .theme-toggle-btn {
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      padding: 0.3rem 0.9rem;
+      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--bg-elevated);
+      color: var(--fg-soft);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+      cursor: pointer;
+    }
+
+    .theme-toggle-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .search-input {
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      padding: 0.45rem 0.9rem;
+      font-size: 0.82rem;
+      width: 100%;
+      color: var(--fg);
+    }
+
+    .search-input::placeholder {
+      color: var(--fg-softer);
+    }
+
+    .search-input:focus {
+      outline: 2px solid var(--accent-soft);
+      outline-offset: 2px;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body class="bg-white text-slate-800 antialiased">
+
+<body class="antialiased">
 
   <!-- Header -->
-  <header class="border-b border-slate-100">
-    <div class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+  <header class="border-b">
+    <div class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between gap-3">
       <a href="/" class="flex items-center gap-3">
-        <img src="/assets/podfy.svg" alt="Podfy" class="h-7 w-auto">
+        <img src="/assets/podfy.svg" alt="Podfy" class="h-7 w-auto" />
         <span class="sr-only">Podfy</span>
       </a>
       <nav class="hidden md:flex items-center gap-8 text-sm">
@@ -37,8 +263,16 @@
         <a href="/releases" class="text-brand font-medium">Release notes</a>
       </nav>
       <div class="flex items-center gap-3">
-        <a href="https://podfy.app" class="hidden md:inline-block rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50">Open app</a>
-        <a href="/#contact" class="inline-block rounded-lg bg-brand-accent px-4 py-2 text-white text-sm font-medium shadow hover:opacity-95">Request a demo</a>
+        <button id="theme-toggle" type="button" class="theme-toggle-btn" aria-label="Toggle color theme" aria-pressed="false">
+          <span class="theme-toggle-dot"></span>
+          <span id="theme-toggle-label">Theme: Auto</span>
+        </button>
+        <a href="https://podfy.app" class="hidden md:inline-block rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50">
+          Open app
+        </a>
+        <a href="/#contact" class="inline-block rounded-lg bg-brand-accent px-4 py-2 text-white text-sm font-medium shadow hover:opacity-95">
+          Request a demo
+        </a>
       </div>
     </div>
   </header>
@@ -46,109 +280,335 @@
   <!-- Main -->
   <main class="mx-auto max-w-6xl px-4 py-10">
     <h1 class="text-3xl font-bold">Release notes</h1>
-    <p class="mt-2 text-slate-600">A concise log of updates to the Podfy app.</p>
+    <p class="mt-2 text-slate-600 max-w-2xl">
+      A concise log of updates to the Podfy app. Automatically populated from our internal release database.
+    </p>
 
-    <div class="mt-6 overflow-x-auto border rounded-xl">
-      <table class="min-w-full text-sm">
-        <thead class="bg-slate-50 text-slate-600">
-          <tr>
-            <th class="text-left px-4 py-2 font-semibold">Date</th>
-            <th class="text-left px-4 py-2 font-semibold">Version</th>
-            <th class="text-left px-4 py-2 font-semibold">Deployment #</th>
-            <th class="text-left px-4 py-2 font-semibold">Updates</th>
-          </tr>
-        </thead>
-        <!-- Thin line between versions -->
-        <tbody class="divide-y divide-slate-200">
+    <!-- Controls: search + meta info -->
+    <section class="mt-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div id="releases-meta" class="text-sm text-slate-600">
+          Loading release notes
+        </div>
+        <div class="w-full sm:w-auto">
+          <label for="release-search" class="sr-only">Search release notes</label>
+          <input
+            id="release-search"
+            type="search"
+            class="search-input"
+            placeholder="Search by version, text, or tag" />
+        </div>
+      </div>
 
-           <!-- Update release note blocks -->
+      <!-- Loading state -->
+      <div id="releases-loading" class="mt-6 text-sm text-slate-600">
+        Fetching latest releases from the Podfy database.
+      </div>
 
-          <tr id="v0-4-3">
-            <td class="px-4 py-3 whitespace-nowrap">2025-09-16</td>
-            <td class="px-4 py-3 font-semibold text-slate-900">v0.4.3</td>
-            <td class="px-4 py-3 whitespace-nowrap">b0cd5de</td>
-            <td class="px-4 py-3">
-              Added upload validation tools for secure uploads; Size max 25mb, ceck on filetipes including filesniffer. 
-              Included bot defence with honeypot and also include time barrier, that rejects filled forms in unther 2 seconds.
-            </td>
-          </tr>
-          
-          <tr id="v0-4-2">
-            <td class="px-4 py-3 whitespace-nowrap">2025-09-10</td>
-            <td class="px-4 py-3 font-semibold text-slate-900">v0.4.2</td>
-            <td class="px-4 py-3 whitespace-nowrap">980f2ae</td>
-            <td class="px-4 py-3">
-              Made email confirmation branded, now show slug style colors in email for outlook and gmail.
-            </td>
-          </tr>
-          
-          <tr id="v0-4-1">
-            <td class="px-4 py-3 whitespace-nowrap">2025-09-09</td>
-            <td class="px-4 py-3 font-semibold text-slate-900">v0.4.1</td>
-            <td class="px-4 py-3 whitespace-nowrap">9284904</td>
-            <td class="px-4 py-3">
-              Added multilingual support for all progress messages (“Starting… 0%”, “Uploading… {percent}%”, “Thanks. File received.”, and error texts) in your i18n.json so the experience is fully translated.
-            </td>
-          </tr>
-          
-          <tr id="v0-4-0">
-            <td class="px-4 py-3 whitespace-nowrap">2025-09-08</td>
-            <td class="px-4 py-3 font-semibold text-slate-900">v0.4.0</td>
-            <td class="px-4 py-3 whitespace-nowrap">6713e6e</td>
-            <td class="px-4 py-3">
-              Added file preview chip (mobile ready), added a real progress bar that shows live upload percentage. Fixed visibility bugs and autozoom Iphone, cleaned and documented the CSS.
-            </td>
-          </tr>
+      <!-- Empty state -->
+      <div id="releases-empty" class="mt-6 hidden text-sm text-slate-600">
+        No release notes are published yet. Please check back later.
+      </div>
 
-          <tr id="v0-3-0">
-            <td class="px-4 py-3 whitespace-nowrap">2025-09-07</td>
-            <td class="px-4 py-3 font-semibold text-slate-900">v0.3.0</td>
-            <td class="px-4 py-3 whitespace-nowrap">#79</td>
-            <td class="px-4 py-3">
-              In-page contact form submission via Formspark (AJAX) with honeypot; no redirect. Updated CSP to allow <code>connect-src</code> to Formspark.
-            </td>
-          </tr>
+      <!-- Error state -->
+      <div id="releases-error" class="mt-6 hidden text-sm text-red-600">
+        There was a problem loading release notes. Please refresh the page.
+      </div>
 
-          <tr id="v0-2-0">
-            <td class="px-4 py-3 whitespace-nowrap">2025-09-06</td>
-            <td class="px-4 py-3 font-semibold text-slate-900">v0.2.0</td>
-            <td class="px-4 py-3 whitespace-nowrap">#73</td>
-            <td class="px-4 py-3">
-              Branding refresh: SVG favicon and header wordmark. Added OG/Twitter meta tags and robots/sitemap.
-            </td>
-          </tr>
+      <!-- Desktop table -->
+      <div id="releases-table-wrapper" class="mt-6 overflow-x-auto border rounded-xl hidden lg:block bg-white fade-in">
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-50 text-slate-600">
+            <tr>
+              <th class="text-left px-4 py-2 font-semibold whitespace-nowrap">Date</th>
+              <th class="text-left px-4 py-2 font-semibold whitespace-nowrap">Version</th>
+              <th class="text-left px-4 py-2 font-semibold whitespace-nowrap">Deployment</th>
+              <th class="text-left px-4 py-2 font-semibold">Updates</th>
+            </tr>
+          </thead>
+          <tbody id="releases-table-body" class="divide-y divide-slate-200 bg-white"></tbody>
+        </table>
+      </div>
 
-          <tr id="v0-1-0">
-            <td class="px-4 py-3 whitespace-nowrap">2025-09-05</td>
-            <td class="px-4 py-3 font-semibold text-slate-900">v0.1.0</td>
-            <td class="px-4 py-3 whitespace-nowrap">#66</td>
-            <td class="px-4 py-3">
-              Initial one-pager launch on Cloudflare Pages with Security, Privacy, Terms, and Imprint pages.
-            </td>
-          </tr>
-          <!-- /EXAMPLE ROWS -->
-        </tbody>
-      </table>
-    </div>
+      <!-- Mobile cards -->
+      <div id="releases-cards-wrapper" class="mt-6 grid gap-4 lg:hidden fade-in"></div>
+    </section>
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-100">
-    <div class="mx-auto max-w-6xl px-4 py-10 grid md:grid-cols-2 gap-6 items-center">
-      <p class="text-sm text-slate-600">© <span id="y"></span> PODFY. All rights reserved.</p>
-      <div class="justify-self-end text-sm">
-        <a href="/security.html" class="hover:text-brand mr-4">Security</a>
-        <a href="/privacy.html" class="hover:text-brand mr-4">Privacy</a>
-        <a href="/terms.html" class="hover:text-brand mr-4">Terms</a>
-        <a href="/imprint.html" class="hover:text-brand mr-4">Imprint</a>
+  <footer class="border-t mt-10">
+    <div class="mx-auto max-w-6xl px-4 py-6 text-xs text-slate-600 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div>© <span id="year-span"></span> Podfy. All rights reserved.</div>
+      <div class="flex flex-wrap gap-3">
+        <a href="/security.html" class="hover:text-brand">Security</a>
+        <a href="/companies" class="hover:text-brand">Companies</a>
         <a href="/releases" class="hover:text-brand">Release notes</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Footer year
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // Small helper: escape HTML to avoid breaking markup if text contains special characters
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Convert a multiline plain-text block into either a paragraph or a bullet list
+    function renderTextBlock(text) {
+      if (!text) return '';
+      var lines = text.split(/\r?\n/).map(function (l) { return l.trim(); }).filter(Boolean);
+      if (lines.length <= 1) {
+        return '<p>' + escapeHtml(lines[0] || text) + '</p>';
+      }
+      var items = lines.map(function (line) {
+        return '<li>' + escapeHtml(line) + '</li>';
+      }).join('');
+      return '<ul class="list-disc pl-4 space-y-1">' + items + '</ul>';
+    }
+
+    function createAnchorId(version) {
+      if (!version) return '';
+      return 'v' + version.replace(/[^0-9a-zA-Z]+/g, '-');
+    }
+
+    function parseTags(area_tags) {
+      if (!area_tags) return [];
+      return area_tags
+        .split(',')
+        .map(function (t) { return t.trim(); })
+        .filter(Boolean);
+    }
+
+    // Theme toggle logic
+    (function () {
+      var button = document.getElementById('theme-toggle');
+      var label = document.getElementById('theme-toggle-label');
+      var MODES = ['auto', 'light', 'dark'];
+
+      function getCurrentMode() {
+        try {
+          var saved = localStorage.getItem('podfy-theme');
+          if (saved === 'light' || saved === 'dark') return saved;
+          return 'auto';
+        } catch (e) {
+          return 'auto';
+        }
+      }
+
+      function applyMode(mode) {
+        var root = document.documentElement;
+        if (mode === 'light' || mode === 'dark') {
+          root.setAttribute('data-theme', mode);
+          try { localStorage.setItem('podfy-theme', mode); } catch (e) {}
+        } else {
+          root.removeAttribute('data-theme');
+          try { localStorage.removeItem('podfy-theme'); } catch (e) {}
+        }
+
+        if (label) {
+          if (mode === 'light') label.textContent = 'Theme: Light';
+          else if (mode === 'dark') label.textContent = 'Theme: Dark';
+          else label.textContent = 'Theme: Auto';
+        }
+        if (button) {
+          button.setAttribute('aria-pressed', mode !== 'auto');
+        }
+      }
+
+      var current = getCurrentMode();
+      applyMode(current);
+
+      if (button) {
+        button.addEventListener('click', function () {
+          var index = MODES.indexOf(current);
+          if (index === -1) index = 0;
+          current = MODES[(index + 1) % MODES.length];
+          applyMode(current);
+        });
+      }
+    })();
+
+    // Fetch and render releases
+    (function () {
+      var apiUrl = '/api/releases';
+      var allReleases = [];
+
+      var loadingEl = document.getElementById('releases-loading');
+      var emptyEl = document.getElementById('releases-empty');
+      var errorEl = document.getElementById('releases-error');
+      var tableWrapper = document.getElementById('releases-table-wrapper');
+      var cardsWrapper = document.getElementById('releases-cards-wrapper');
+      var tableBody = document.getElementById('releases-table-body');
+      var metaEl = document.getElementById('releases-meta');
+      var searchInput = document.getElementById('release-search');
+      var yearSpan = document.getElementById('year-span');
+
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      function setState(state) {
+        if (loadingEl) loadingEl.classList.toggle('hidden', state !== 'loading');
+        if (emptyEl) emptyEl.classList.toggle('hidden', state !== 'empty');
+        if (errorEl) errorEl.classList.toggle('hidden', state !== 'error');
+      }
+
+      function render(filterValue) {
+        filterValue = (filterValue || '').toLowerCase();
+
+        var filtered = allReleases.filter(function (r) {
+          if (!filterValue) return true;
+          var tags = parseTags(r.area_tags).join(' ');
+          var text = [
+            r.version,
+            r.release_date,
+            r.deployment_ref,
+            r.fixes,
+            r.new_features,
+            tags
+          ].join(' ').toLowerCase();
+          return text.indexOf(filterValue) !== -1;
+        });
+
+        if (!filtered.length) {
+          tableWrapper.classList.add('hidden');
+          cardsWrapper.classList.add('hidden');
+          setState('empty');
+          if (metaEl) metaEl.textContent = 'No releases match the current filter.';
+          return;
+        }
+
+        setState('ok');
+        tableWrapper.classList.remove('hidden');
+        cardsWrapper.classList.remove('hidden');
+
+        if (metaEl) {
+          metaEl.textContent = 'Showing ' + filtered.length + ' of ' + allReleases.length + ' releases.';
+        }
+
+        // Desktop table
+        var tableHtml = filtered.map(function (r) {
+          var anchorId = createAnchorId(r.version);
+          var tags = parseTags(r.area_tags);
+          var tagsHtml = tags.length
+            ? '<div class="mt-2 flex flex-wrap gap-1">' +
+              tags.map(function (t) {
+                return '<span class="release-tag">' + escapeHtml(t) + '</span>';
+              }).join('') +
+              '</div>'
+            : '';
+
+          var updatesHtml =
+            '<div class="space-y-3">' +
+              (r.new_features
+                ? '<div>' +
+                  '<div class="release-section-label mb-1">New</div>' +
+                  renderTextBlock(r.new_features) +
+                '</div>'
+                : '') +
+              (r.fixes
+                ? '<div>' +
+                  '<div class="release-section-label mb-1">Fixes</div>' +
+                  renderTextBlock(r.fixes) +
+                '</div>'
+                : '') +
+              tagsHtml +
+            '</div>';
+
+          return (
+            '<tr id="' + anchorId + '">' +
+              '<td class="px-4 py-3 whitespace-nowrap align-top">' + escapeHtml(r.release_date || '') + '</td>' +
+              '<td class="px-4 py-3 font-semibold text-slate-900 whitespace-nowrap align-top">' + escapeHtml(r.version || '') + '</td>' +
+              '<td class="px-4 py-3 whitespace-nowrap align-top">' + escapeHtml(r.deployment_ref || '') + '</td>' +
+              '<td class="px-4 py-3 align-top">' + updatesHtml + '</td>' +
+            '</tr>'
+          );
+        }).join('');
+        tableBody.innerHTML = tableHtml;
+
+        // Mobile cards
+        var cardsHtml = filtered.map(function (r) {
+          var tags = parseTags(r.area_tags);
+          var tagsHtml = tags.length
+            ? '<div class="mt-3 flex flex-wrap">' +
+              tags.map(function (t) {
+                return '<span class="release-tag">' + escapeHtml(t) + '</span>';
+              }).join('') +
+              '</div>'
+            : '';
+
+          var updatesParts = '';
+          if (r.new_features) {
+            updatesParts +=
+              '<div class="mt-3">' +
+                '<div class="release-section-label mb-1">New</div>' +
+                renderTextBlock(r.new_features) +
+              '</div>';
+          }
+          if (r.fixes) {
+            updatesParts +=
+              '<div class="mt-3">' +
+                '<div class="release-section-label mb-1">Fixes</div>' +
+                renderTextBlock(r.fixes) +
+              '</div>';
+          }
+
+          return (
+            '<article class="release-card p-4">' +
+              '<div class="flex items-center justify-between gap-3">' +
+                '<div>' +
+                  '<div class="text-xs text-slate-600">' + escapeHtml(r.release_date || '') + '</div>' +
+                  '<div class="text-base font-semibold text-slate-900 mt-0.5">' + escapeHtml(r.version || '') + '</div>' +
+                '</div>' +
+                (r.deployment_ref
+                  ? '<div class="text-[11px] text-slate-600 whitespace-nowrap">Deployment ' + escapeHtml(r.deployment_ref) + '</div>'
+                  : '') +
+              '</div>' +
+              updatesParts +
+              tagsHtml +
+            '</article>'
+          );
+        }).join('');
+        cardsWrapper.innerHTML = cardsHtml;
+      }
+
+      // Initial fetch
+      setState('loading');
+
+      fetch(apiUrl)
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          allReleases = (data && data.items) || [];
+          if (!allReleases.length) {
+            setState('empty');
+            tableWrapper.classList.add('hidden');
+            cardsWrapper.classList.add('hidden');
+            if (metaEl) metaEl.textContent = 'No release notes are published yet.';
+            return;
+          }
+          setState('ok');
+          render('');
+        })
+        .catch(function (err) {
+          console.error('Failed to load releases', err);
+          setState('error');
+          if (metaEl) metaEl.textContent = 'Unable to load release notes.';
+        });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function (e) {
+          var value = e.target.value || '';
+          if (!allReleases.length) return;
+          render(value);
+        });
+      }
+    })();
   </script>
 </body>
 </html>
