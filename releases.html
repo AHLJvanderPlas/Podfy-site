@@ -37,22 +37,43 @@
   <link rel="stylesheet" href="/assets/styles.css?v=6">
 </head>
 <body class="text-slate-800 antialiased">
+  <a href="#main"
+     class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:border focus:px-3 focus:py-2">
+    Skip to content
+  </a>
 
   [[PODFY_HEADER]]
 
-  <main class="release-page">
+  <!-- Subheader with search ----------------------------------------------->
+  <section class="site-subheader" aria-label="Release notes header">
+    <div class="shell-bar shell-bar-glass site-subheader-inner">
+      <div class="site-subheader-left">
+        <div class="site-subheader-logo">
+          <img src="/assets/podfy.svg" alt="PODFY" />
+        </div>
+        <div class="site-subheader-text">
+          <div class="site-subheader-title">Release notes</div>
+          <div class="site-subheader-subtitle">
+            Versions, deployments, fixes and new functionality across PODFY.
+          </div>
+        </div>
+      </div>
+      <div class="site-subheader-right">
+        <label class="sr-only" for="release-search">Search release notes</label>
+        <input
+          id="release-search"
+          class="search-input"
+          type="search"
+          placeholder="Search by version, text, or tag" />
+      </div>
+    </div>
+  </section>
+
+  <main id="main" class="release-page">
     <h1 class="text-3xl font-bold">Release notes</h1>
     <p class="mt-2 text-sm text-muted" id="releases-meta">
       Loading release notes…
     </p>
-
-    <div class="mt-4">
-      <input
-        id="release-search"
-        class="search-input"
-        type="search"
-        placeholder="Search by version, text, or tag" />
-    </div>
 
     <p id="releases-loading" class="mt-2 text-sm text-muted">
       Fetching latest releases from the Podfy database.
@@ -84,13 +105,13 @@
 
     <!-- Pagination controls -->
     <div class="release-pagination mt-6" id="releases-pagination" style="display:none;">
-      <button id="releases-prev" class="btn btn-outline btn-sm" type="button">
+      <button id="releases-prev" class="btn btn-secondary btn-sm" type="button">
         Previous
       </button>
       <span id="releases-page-info" class="text-sm text-muted" style="margin:0 0.75rem;">
         Page 1 of 1
       </span>
-      <button id="releases-next" class="btn btn-outline btn-sm" type="button">
+      <button id="releases-next" class="btn btn-secondary btn-sm" type="button">
         Next
       </button>
     </div>
