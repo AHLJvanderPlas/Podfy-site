@@ -1,72 +1,55 @@
 (function () {
-  var STORAGE_KEY = "podfy_site_theme"; // "light" | "dark" | null
+  var STORAGE_KEY = "podfy-theme";
   var root = document.documentElement;
-  var currentMode = "system";
+  var current = "system";
 
   function getSystemMode() {
-    if (window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
   }
 
   function apply(mode) {
-    // mode: "light" | "dark" | "system"
     var effective = mode === "system" ? getSystemMode() : mode;
     root.setAttribute("data-theme", effective);
-    currentMode = mode;
 
     var btn = document.getElementById("themeToggle");
     if (!btn) return;
+
+    btn.dataset.mode = mode;
 
     var label = btn.querySelector(".site-theme-label");
-    btn.setAttribute("data-mode", mode);
-
-    if (label) {
-      if (mode === "light") label.textContent = "Light";
-      else if (mode === "dark") label.textContent = "Dark";
-      else label.textContent = "System";
-    }
+    if (label) label.textContent =
+      mode === "system" ? "System" :
+      mode === "light"  ? "Light"  :
+                          "Dark";
   }
 
-  function loadInitial() {
-    var stored = null;
-    try {
-      stored = localStorage.getItem(STORAGE_KEY);
-    } catch (e) {}
-
-    if (stored === "light" || stored === "dark") {
-      apply(stored);
-    } else {
-      apply("system");
-    }
+  function cycle() {
+    return current === "system"
+      ? "light"
+      : current === "light"
+      ? "dark"
+      : "system";
   }
 
-  function cycleMode() {
-    // system → light → dark → system
-    if (currentMode === "system") return "light";
-    if (currentMode === "light") return "dark";
-    return "system";
+  function init() {
+    var stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === "light" || stored === "dark") current = stored;
+    apply(current);
   }
 
-  loadInitial();
-
-  window.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
     var btn = document.getElementById("themeToggle");
     if (!btn) return;
 
+    init();
+
     btn.addEventListener("click", function () {
-      var next = cycleMode();
-      currentMode = next;
-
-      if (next === "system") {
-        try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
-      } else {
-        try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
-      }
-
-      apply(next);
+      current = cycle();
+      apply(current);
+      if (current === "system") localStorage.removeItem(STORAGE_KEY);
+      else localStorage.setItem(STORAGE_KEY, current);
     });
   });
 })();
