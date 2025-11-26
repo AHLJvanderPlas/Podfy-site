@@ -1,23 +1,33 @@
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-left">
-      <strong>PODFY</strong> – Lightweight POD capture
-    </div>
-    <div class="footer-center">
-      <a href="/releases/">Release notes</a> ·
-      <a href="/privacy/">Privacy</a> ·
-      <a href="/terms/">Terms</a>
-    </div>
-    <div class="footer-right">
-      © <span id="year"></span> PODFY
+<footer class="site-footer border-t border-slate-100 bg-surface">
+  <div class="mx-auto max-w-6xl px-4 py-6 text-sm text-slate-600">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+      <!-- Left: brand line -->
+      <div class="text-center md:text-left text-slate-700">
+        <span class="font-semibold text-slate-800">PODFY</span>
+        <span class="text-slate-600"> – lightweight, zero-friction POD capture.</span>
+      </div>
+
+      <!-- Center: footer navigation -->
+      <div class="flex flex-wrap justify-center gap-4 text-xs text-slate-600">
+        <a href="/releases/" class="hover:text-brand">Release notes</a>
+        <a href="/#security" class="hover:text-brand">Security</a>
+        <a href="/privacy/" class="hover:text-brand">Privacy</a>
+        <a href="/terms/" class="hover:text-brand">Terms</a>
+        <a href="/contact/" class="hover:text-brand">Contact</a>
+      </div>
+
+      <!-- Right: copyright -->
+      <div class="text-center md:text-right text-xs text-slate-500">
+        © <span id="footer-year"></span> PODFY. All rights reserved.
+      </div>
     </div>
   </div>
-</footer>
 
-<script>
-  // Simple example: keep tiny footer logic local, or move this into your main JS bundle
-  document.addEventListener("DOMContentLoaded", function () {
-    var y = document.getElementById("year");
-    if (y) y.textContent = new Date().getFullYear();
-  });
-</script>
+  <script>
+    // Set year dynamically
+    (function () {
+      var y = document.getElementById("footer-year");
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+</footer>
