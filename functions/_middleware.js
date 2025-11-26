@@ -1,21 +1,31 @@
 export async function onRequest(context) {
-  const { request, env } = context;
+  const { request, env, next } = context;
+  const url = new URL(request.url);
 
-  // 1) Get the original static asset (HTML, CSS, etc.)
+  // ============================================================
+  // 1) CRITICAL: Let all /api/* requests skip this middleware
+  // ============================================================
+  if (url.pathname.startsWith("/api/")) {
+    return next();
+  }
+
+  // ============================================================
+  // 2) Fetch the original static asset
+  // ============================================================
   const originResponse = await env.ASSETS.fetch(request);
 
-  // Only touch HTML responses
+  // Only transform HTML pages
   const contentType = originResponse.headers.get("Content-Type") || "";
   if (!contentType.includes("text/html")) {
     return originResponse;
   }
 
-  // 2) Read the HTML body
+  // Read original HTML
   const html = await originResponse.text();
 
-  // 3) Fetch header and footer partials from your static assets
-  const url = new URL(request.url);
-
+  // ============================================================
+  // 3) Load header and footer partials
+  // ============================================================
   const [headerRes, footerRes] = await Promise.all([
     env.ASSETS.fetch(new URL("/partials/header.html", url)),
     env.ASSETS.fetch(new URL("/partials/footer.html", url)),
@@ -26,10 +36,14 @@ export async function onRequest(context) {
     footerRes.text(),
   ]);
 
-  // 4) Replace placeholders in the HTML
+  // ============================================================
+  // 4) Inject header/footer placeholders
+  // ============================================================
   let transformed = html.replace("[[PODFY_HEADER]]", headerHtml);
   transformed = transformed.replace("[[PODFY_FOOTER]]", footerHtml);
 
-  // 5) Return new response with same headers/status, but modified body
+  // ============================================================
+  // 5) Return updated HTML with original headers + status
+  // ============================================================
   return new Response(transformed, originResponse);
 }
