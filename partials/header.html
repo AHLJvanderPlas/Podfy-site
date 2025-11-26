@@ -1,7 +1,8 @@
 <header class="site-header-shell">
   <div class="site-header-inner">
+    
     <!-- Brand -->
-    <a href="/" class="site-brand" aria-label="PODFY home">
+    <a href="/" class="site-brand" aria-label="Podfy home">
       <img src="/assets/podfy.svg" alt="PODFY">
       <span class="site-brand-title">PODFY</span>
     </a>
@@ -16,21 +17,16 @@
       <a href="/releases" class="text-brand font-semibold">Release notes</a>
     </nav>
 
-    <!-- Actions & theme toggle -->
+    <!-- Actions -->
     <div class="site-header-actions">
-      <!-- Theme toggle pill -->
-      <button
-        id="themeToggle"
-        type="button"
-        class="site-theme-toggle"
-        data-mode="system"
-        aria-label="Toggle color theme"
-      >
+
+      <!-- Theme toggle -->
+      <button id="themeToggle" class="site-theme-toggle" data-mode="system">
         <span class="site-theme-dot"></span>
         <span class="site-theme-label">System</span>
       </button>
 
-      <!-- CTAs (desktop) -->
+      <!-- CTAs -->
       <a href="/demo" class="site-cta-primary hidden md:inline-flex">
         Try a demo upload
       </a>
@@ -38,22 +34,22 @@
         Request a demo
       </a>
 
-      <!-- Hamburger (mobile) -->
+      <!-- Mobile menu -->
       <button
         id="menuBtn"
         type="button"
         class="site-menu-btn md:hidden"
         aria-label="Toggle navigation"
-        aria-expanded="false"
-      >
+        aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
       </button>
+
     </div>
   </div>
 
-  <!-- Mobile nav -->
+  <!-- Mobile navigation -->
   <nav id="mobileNav" class="site-mobile-nav md:hidden">
     <a href="/#how">How it works</a>
     <a href="/#value">Benefits</a>
@@ -61,24 +57,25 @@
     <a href="/#solutions">Pricing &amp; Plans</a>
     <a href="/#faq">FAQ</a>
     <a href="/releases">Release notes</a>
-    <a href="/demo" class="site-cta-primary mt-2 mx-4 justify-center">
+
+    <a href="/demo" class="site-cta-primary mt-2 mx-4 flex justify-center">
       Try a demo upload
     </a>
-    <a href="/#contact" class="site-cta-secondary mt-2 mx-4 justify-center">
+    <a href="/#contact" class="site-cta-secondary mt-2 mx-4 flex justify-center">
       Request a demo
     </a>
   </nav>
 
   <script>
+    // Mobile menu toggle
     (function () {
-      var menuBtn = document.getElementById("menuBtn");
-      var mobileNav = document.getElementById("mobileNav");
-      if (!menuBtn || !mobileNav) return;
+      var btn = document.getElementById("menuBtn");
+      var mobile = document.getElementById("mobileNav");
+      if (!btn || !mobile) return;
 
-      menuBtn.addEventListener("click", function () {
-        var isOpen = mobileNav.classList.contains("open");
-        mobileNav.classList.toggle("open", !isOpen);
-        menuBtn.setAttribute("aria-expanded", String(!isOpen));
+      btn.addEventListener("click", function () {
+        var open = mobile.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(open));
       });
     })();
   </script>
