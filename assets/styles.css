@@ -925,3 +925,45 @@ html[data-theme="dark"] .site-brand img{
   filter:invert(1);
 }
 
+/* ===========================================================
+   Explicit theme overrides via html[data-theme]
+   - These override the prefers-color-scheme block above.
+   =========================================================== */
+
+html[data-theme="light"]{
+  color-scheme: light;
+  --bg:#FFFFFF;
+  --surface:#F5F5F5;
+  --tint-50:#F0F4F9;
+  --ink:#0F172A;
+  --muted:#475569;
+  --line:#E2E8F0;
+
+  --slate-50:#F8FAFC;
+  --slate-100:#F1F5F9;
+  --slate-200:#E2E8F0;
+  --slate-300:#CBD5E1;
+  --slate-600:#475569;
+  --slate-700:#334155;
+  --slate-800:#1F2937;
+  --slate-900:#0F172A;
+}
+
+html[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0B1220;
+  --surface:#0F172A;
+  --tint-50:#0E2237;
+  --ink:#E5E7EB;
+  --muted:#94A3B8;
+  --line:#243140;
+
+  --slate-50:#0B1220;
+  --slate-100:#0F172A;
+  --slate-200:#1F2937;
+  --slate-300:#243140;
+  --slate-600:#94A3B8;
+  --slate-700:#CBD5E1;
+  --slate-800:#E5E7EB;
+  --slate-900:#F8FAFC;
+}
