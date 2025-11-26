@@ -1,32 +1,23 @@
-<footer class="site-footer border-t border-slate-100 bg-surface">
-  <div class="mx-auto max-w-6xl px-4 py-6 text-sm text-slate-600">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-3">
-      <!-- Left: brand line -->
-      <div class="text-center md:text-left text-slate-700">
-        <span class="font-semibold text-slate-800">PODFY</span>
-        <span class="text-slate-600"> – lightweight, zero-friction POD capture.</span>
-      </div>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <strong>PODFY</strong> – lightweight, zero-friction POD capture.
+    </div>
 
-      <!-- Center: footer navigation -->
-      <div class="flex flex-wrap justify-center gap-4 text-xs text-slate-600">
-        <a href="/releases/" class="hover:text-brand">Release notes</a>
-        <a href="/#security" class="hover:text-brand">Security</a>
-        <a href="/privacy/" class="hover:text-brand">Privacy</a>
-        <a href="/terms/" class="hover:text-brand">Terms</a>
-        <a href="/contact/" class="hover:text-brand">Contact</a>
-      </div>
+    <nav class="site-footer-nav">
+      <a href="/releases">Releases</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms &amp; Conditions</a>
+    </nav>
 
-      <!-- Right: copyright -->
-      <div class="text-center md:text-right text-xs text-slate-500">
-        © <span id="footer-year"></span> PODFY. All rights reserved.
-      </div>
+    <div class="site-footer-meta">
+      © <span id="podfyFooterYear"></span> PODFY. All rights reserved.
     </div>
   </div>
 
   <script>
-    // Set year dynamically
     (function () {
-      var y = document.getElementById("footer-year");
+      var y = document.getElementById("podfyFooterYear");
       if (y) y.textContent = new Date().getFullYear();
     })();
   </script>
