@@ -4,383 +4,29 @@
   <meta charset="utf-8" />
   <title>PODFY – Free tier demo manual</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Step-by-step manual for the PODFY free tier demo: using PODFY.app, the copy email field, and the delivery portal with 60-day history." />
+  <meta name="description" content="Step-by-step manual for the PODFY free tier demo: PODFY.app, copy email field and delivery portal with 60-day history." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="format-detection" content="telephone=no,address=no,email=no" />
 
-  <!-- Color scheme + theming -->
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1D3557" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0B1220" />
 
-  <!-- Favicons (aligned with main site) -->
   <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
-
-  <!-- Shared Podfy styles + theme toggle -->
-  <link rel="stylesheet" href="/assets/styles.css?v=8" />
+  <link rel="stylesheet" href="/assets/styles.css?v=9" />
   <script src="/assets/theme.js" defer></script>
-
-  <!-- Page-specific styling (only manual-* classes; uses global theme tokens) -->
-  <style>
-    body{
-      background:
-        radial-gradient(circle at 0% 0%, rgba(59,130,246,0.12), transparent 55%),
-        radial-gradient(circle at 100% 0%, rgba(79,70,229,0.10), transparent 50%),
-        radial-gradient(circle at 50% 100%, rgba(8,47,73,0.14), transparent 55%),
-        var(--bg);
-      background-attachment:fixed;
-    }
-
-    main{
-      min-height:100vh;
-    }
-
-    .manual-shell{
-      max-width:var(--container-6xl);
-      margin:0 auto;
-      padding:1rem 1rem 2.5rem;
-    }
-
-    /* Hero grid (intro + quick overview) */
-    .manual-hero{
-      margin-top:1.5rem;
-      margin-bottom:.75rem;
-      display:grid;
-      grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
-      gap:1.25rem;
-      align-items:flex-start;
-    }
-    @media (max-width:960px){
-      .manual-hero{
-        grid-template-columns:minmax(0,1fr);
-      }
-    }
-
-    .manual-hero-main{
-      position:relative;
-      border-radius:1.5rem;
-      border:1px solid var(--line);
-      padding:1.2rem 1.4rem 1.3rem;
-      background:linear-gradient(135deg, rgba(255,255,255,0.96), var(--surface));
-      box-shadow:0 18px 40px rgba(15,23,42,0.18);
-      overflow:hidden;
-    }
-    html[data-theme="dark"] .manual-hero-main{
-      background:
-        radial-gradient(circle at top left, rgba(37,99,235,0.22), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(22,163,163,0.22), transparent 60%),
-        rgba(15,23,42,0.96);
-      box-shadow:
-        0 0 30px rgba(15,23,42,0.85),
-        inset 0 0 40px rgba(15,23,42,0.8);
-    }
-    .manual-hero-main::before{
-      content:"";
-      position:absolute;
-      right:-80px;
-      top:-80px;
-      width:220px;
-      height:220px;
-      background:
-        radial-gradient(circle at 30% 0%, rgba(96,165,250,0.35), transparent 60%),
-        radial-gradient(circle at 70% 70%, rgba(34,211,238,0.35), transparent 55%);
-      opacity:.6;
-      mix-blend-mode:screen;
-      pointer-events:none;
-    }
-    .manual-hero-inner{position:relative;z-index:1;}
-
-    .manual-hero-kicker{
-      font-size:.7rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-weight:600;
-      padding:.25rem .6rem;
-      border-radius:999px;
-      border:1px solid rgba(37,99,235,0.4);
-      background:rgba(37,99,235,0.06);
-      display:inline-flex;
-      align-items:center;
-      gap:.35rem;
-      color:#1d4ed8;
-      margin-bottom:.6rem;
-    }
-    .manual-hero-kicker-dot{
-      width:7px;height:7px;border-radius:999px;
-      background:var(--brand-accent);
-      box-shadow:0 0 0 6px rgba(37,99,235,0.22);
-    }
-    .manual-hero-title{
-      margin:0 0 .4rem;
-      font-size:1.75rem;
-      line-height:1.15;
-      letter-spacing:-.04em;
-      color:var(--ink);
-    }
-    .manual-hero-title span{
-      background:linear-gradient(135deg,#2563EB,#22C1EE);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    .manual-hero-subtitle{
-      margin:0 0 .7rem;
-      font-size:.95rem;
-      line-height:1.55;
-      color:var(--muted);
-      max-width:40rem;
-    }
-
-    .manual-hero-pills{
-      display:flex;
-      flex-wrap:wrap;
-      gap:.45rem;
-      margin:.4rem 0 .7rem;
-      font-size:.78rem;
-      color:var(--muted);
-    }
-    .manual-hero-pill{
-      border-radius:999px;
-      padding:.3rem .6rem;
-      border:1px solid rgba(148,163,184,0.65);
-      background:rgba(255,255,255,0.9);
-      display:inline-flex;
-      align-items:center;
-      gap:.35rem;
-    }
-    html[data-theme="dark"] .manual-hero-pill{
-      background:rgba(15,23,42,0.9);
-    }
-    .manual-hero-pill-dot{
-      width:6px;height:6px;border-radius:999px;
-      background:#22C55E;
-      box-shadow:0 0 0 4px rgba(34,197,94,0.3);
-    }
-
-    .manual-hero-note{
-      margin-top:.7rem;
-      padding:.5rem .65rem;
-      border-radius:.8rem;
-      border:1px dashed rgba(148,163,184,0.7);
-      background:rgba(248,250,252,0.98);
-      font-size:.78rem;
-      color:var(--muted);
-    }
-    html[data-theme="dark"] .manual-hero-note{
-      background:rgba(15,23,42,0.9);
-    }
-
-    .manual-hero-side{
-      display:flex;
-      flex-direction:column;
-      gap:.7rem;
-      padding:.4rem 0;
-    }
-    .manual-side-card{
-      border-radius:1rem;
-      border:1px solid var(--line);
-      background:var(--surface);
-      padding:.75rem .8rem .7rem;
-      font-size:.8rem;
-      color:var(--muted);
-      box-shadow:0 18px 40px rgba(15,23,42,0.14);
-    }
-    html[data-theme="dark"] .manual-side-card{
-      background:rgba(15,23,42,0.96);
-      box-shadow:
-        0 0 25px rgba(15,23,42,0.8),
-        inset 0 0 40px rgba(15,23,42,0.8);
-    }
-    .manual-side-title{
-      font-size:.82rem;
-      font-weight:600;
-      margin-bottom:.35rem;
-      color:var(--ink);
-    }
-
-    .manual-side-list{
-      margin:.2rem 0 .2rem 1.1rem;
-      padding:0;
-      font-size:.8rem;
-    }
-    .manual-side-list li{margin-bottom:.25rem;}
-
-    .manual-side-badges{
-      display:flex;
-      flex-wrap:wrap;
-      gap:.35rem;
-      margin-top:.45rem;
-    }
-    .manual-side-badge{
-      border-radius:999px;
-      padding:.25rem .5rem;
-      font-size:.7rem;
-      border:1px solid rgba(148,163,184,0.6);
-      color:var(--muted);
-      background:rgba(248,250,252,0.96);
-    }
-    html[data-theme="dark"] .manual-side-badge{
-      background:rgba(15,23,42,0.96);
-    }
-
-    /* Section grid (instruction blocks) */
-    .manual-sections{
-      margin-top:1.2rem;
-      margin-bottom:1.6rem;
-      display:grid;
-      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-      gap:.9rem;
-    }
-    @media (max-width:960px){
-      .manual-sections{
-        grid-template-columns:minmax(0,1fr);
-      }
-    }
-
-    .manual-card{
-      position:relative;
-      border-radius:1.1rem;
-      border:1px solid var(--line);
-      background:var(--surface);
-      padding:.9rem .95rem .75rem;
-      box-shadow:0 18px 50px rgba(15,23,42,0.14);
-      overflow:hidden;
-    }
-    .manual-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(56,189,248,0.18), transparent 55%);
-      opacity:.65;
-      mix-blend-mode:soft-light;
-      pointer-events:none;
-    }
-    html[data-theme="dark"] .manual-card{
-      background:rgba(15,23,42,0.96);
-      box-shadow:
-        0 0 28px rgba(15,23,42,0.85),
-        inset 0 0 40px rgba(15,23,42,0.8);
-    }
-    .manual-card-inner{position:relative;z-index:1;}
-
-    .manual-card-kicker{
-      font-size:.7rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-weight:600;
-      color:var(--muted);
-      margin-bottom:.25rem;
-    }
-    .manual-card-title{
-      margin:0 0 .35rem;
-      font-size:.96rem;
-      font-weight:600;
-      letter-spacing:-.02em;
-      color:var(--ink);
-    }
-    .manual-card-body{
-      font-size:.8rem;
-      color:var(--muted);
-      line-height:1.5;
-    }
-    .manual-card-body p{margin:0 0 .35rem;}
-    .manual-list{
-      margin:.2rem 0 .3rem 1.1rem;
-      padding:0;
-      font-size:.8rem;
-    }
-    .manual-list li{margin-bottom:.25rem;}
-
-    .manual-chip-row{
-      margin-top:.5rem;
-      display:flex;
-      flex-wrap:wrap;
-      gap:.35rem;
-    }
-    .manual-chip{
-      border-radius:999px;
-      padding:.2rem .55rem;
-      font-size:.7rem;
-      border:1px solid rgba(148,163,184,0.75);
-      background:rgba(248,250,252,0.96);
-      color:var(--muted);
-    }
-    html[data-theme="dark"] .manual-chip{
-      background:rgba(15,23,42,0.94);
-    }
-
-    .manual-ref-box{
-      margin-top:.35rem;
-      padding:.35rem .55rem;
-      border-radius:.6rem;
-      border:1px solid rgba(148,163,184,0.7);
-      background:rgba(248,250,252,0.95);
-      font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-      font-size:.72rem;
-      word-break:break-all;
-    }
-    html[data-theme="dark"] .manual-ref-box{
-      background:rgba(15,23,42,0.96);
-    }
-
-    .manual-upgrade-callout{
-      margin-top:.3rem;
-      border-radius:1rem;
-      border:1px solid rgba(37,99,235,0.4);
-      background:linear-gradient(135deg, rgba(219,234,254,0.96), rgba(224,242,254,0.96));
-      padding:.75rem .85rem;
-      font-size:.8rem;
-      color:#1f2933;
-      box-shadow:0 18px 50px rgba(37,99,235,0.25);
-    }
-    html[data-theme="dark"] .manual-upgrade-callout{
-      background:linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.96));
-      color:var(--ink);
-    }
-    .manual-upgrade-actions{
-      margin-top:.5rem;
-      display:flex;
-      flex-wrap:wrap;
-      gap:.4rem;
-    }
-    .manual-upgrade-link{
-      border-radius:999px;
-      padding:.35rem .7rem;
-      font-size:.72rem;
-      font-weight:600;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      text-decoration:none;
-      border:1px solid rgba(37,99,235,0.6);
-      color:#1d4ed8;
-      background:rgba(255,255,255,0.98);
-    }
-    html[data-theme="dark"] .manual-upgrade-link{
-      background:rgba(15,23,42,0.98);
-    }
-    .manual-upgrade-link-primary{
-      background:linear-gradient(135deg,#2563EB,#22C1EE);
-      color:#fff;
-      border-color:transparent;
-      box-shadow:0 12px 28px rgba(37,99,235,0.65);
-    }
-  </style>
 </head>
-<body class="text-slate-800 antialiased">
-  <!-- Skip link for accessibility -->
+<body class="manual-page">
   <a href="#main"
      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:border focus:px-3 focus:py-2">
     Skip to content
   </a>
 
-  <!-- Shared main header (with theme toggle) -->
   [[PODFY_HEADER]]
 
-  <!-- Subheader in main Podfy portal style -->
-  <section class="site-subheader" aria-label="Free tier manual header">
-    <div class="site-subheader-inner">
+  <!-- Subheader (standard Podfy header pill bar) -->
+  <section class="site-subheader" aria-label="Free tier demo header">
+    <div class="shell-bar shell-bar-glass site-subheader-inner">
       <div class="site-subheader-left">
         <div class="site-subheader-text">
           <div class="site-subheader-title">Manual for your first experience</div>
@@ -390,10 +36,10 @@
         </div>
       </div>
       <div class="site-subheader-right">
-        <a href="https://podfy.app/" class="site-cta-primary" target="_blank" rel="noreferrer">
+        <a href="https://podfy.app/" class="btn btn-primary" target="_blank" rel="noreferrer">
           Open PODFY.app
         </a>
-        <a href="https://delivery.podfy.net/" class="site-cta-secondary" target="_blank" rel="noreferrer">
+        <a href="https://delivery.podfy.net/" class="btn btn-secondary" target="_blank" rel="noreferrer">
           Open delivery portal
         </a>
       </div>
@@ -402,22 +48,27 @@
 
   <main id="main">
     <div class="manual-shell">
-      <!-- HERO -->
+
+      <!-- HERO -------------------------------------------------------------->
       <section class="manual-hero">
-        <div class="manual-hero-main">
+        <div class="card card-glass manual-hero-main">
           <div class="manual-hero-inner">
             <div class="manual-hero-kicker">
               <span class="manual-hero-kicker-dot"></span>
               <span>Free tier demo · step-by-step</span>
             </div>
+
             <h1 class="manual-hero-title">
               Practice PODFY with a <span>zero-friction free tier</span>.
             </h1>
+
             <p class="manual-hero-subtitle">
-              This page explains how to use the default <strong>PODFY.app</strong> capture flow,
-              the <strong>Copy email</strong> field, and the <strong>delivery portal</strong> to test
-              your POD process end-to-end without any setup or contracts.
+              This page explains how to use the default <strong>PODFY.app</strong> capture
+              flow, the <strong>Copy email</strong> field, and the
+              <strong>delivery portal</strong> to test your POD process end-to-end without
+              any setup or contracts.
             </p>
+
             <div class="manual-hero-pills">
               <div class="manual-hero-pill">
                 <span class="manual-hero-pill-dot"></span>
@@ -430,11 +81,12 @@
                 <span>View the last 60 days via delivery.podfy.net.</span>
               </div>
             </div>
+
             <div class="manual-hero-note">
-              In the free tier demo, all deliveries are linked to the email you enter in the
-              <strong>Copy email</strong> field of PODFY.app and are visible in the delivery
-              portal for <strong>60 days</strong>. No login or password management is required –
-              a magic link is sent to your inbox.
+              In the free tier demo, all deliveries are linked to the email you enter in
+              the <strong>Copy email</strong> field of PODFY.app and are visible in the
+              delivery portal for <strong>60 days</strong>. No login or password management
+              is required – a magic link is sent to your inbox.
             </div>
           </div>
         </div>
@@ -443,10 +95,10 @@
           <div class="manual-side-card">
             <div class="manual-side-title">Free tier in one glance</div>
             <ul class="manual-side-list">
-              <li>Use any public PODFY.app link to capture a POD.</li>
+              <li>Use the default PODFY.app or a branded URL.</li>
               <li>Fill in the <strong>Copy email</strong> with your own inbox.</li>
-              <li>Receive the POD copy and magic link to the portal.</li>
-              <li>Scan your deliveries in a 60-day overview.</li>
+              <li>Receive a POD copy per delivery.</li>
+              <li>Open the delivery portal with a magic link.</li>
             </ul>
             <div class="manual-side-badges">
               <span class="manual-side-badge">No configuration</span>
@@ -454,6 +106,7 @@
               <span class="manual-side-badge">Driver &amp; recipient friendly</span>
             </div>
           </div>
+
           <div class="manual-side-card">
             <div class="manual-side-title">Useful links</div>
             <ul class="manual-side-list">
@@ -466,24 +119,25 @@
         </aside>
       </section>
 
-      <!-- INSTRUCTION BLOCKS -->
+      <!-- MAIN STEPS -------------------------------------------------------->
       <section class="manual-sections" aria-label="Free tier demo manual">
-        <!-- 1. PODFY.app basics -->
-        <article class="manual-card" id="podfy-basics">
+
+        <!-- Step 1 -->
+        <article class="manual-card">
           <div class="manual-card-inner">
             <div class="manual-card-kicker">Step 1 · PODFY.app basics</div>
             <h2 class="manual-card-title">Open PODFY.app and capture a POD</h2>
             <div class="manual-card-body">
               <p>
-                Start with the default app at <a href="https://podfy.app/" target="_blank" rel="noreferrer">podfy.app</a>
-                or with a branded URL such as
+                Start with <a href="https://podfy.app/" target="_blank" rel="noreferrer">podfy.app</a>
+                or a branded URL such as
                 <a href="https://podfy.app/furore" target="_blank" rel="noreferrer">podfy.app/furore</a>.
               </p>
               <ul class="manual-list">
-                <li><strong>Photo / document upload</strong> – upload or capture a photo of the signed CMR, delivery note or pallet photo.</li>
-                <li><strong>Reference</strong> – depending on the link, a reference field can be added to tag your shipment (see the demo ship example below).</li>
-                <li><strong>Clean toggle</strong> – mark the delivery as <em>clean</em> (no issues) or leave it unset when there are damages or remarks.</li>
-                <li><strong>Copy email</strong> – the email address where a copy of the POD is sent. This is also your key for the free-tier demo.</li>
+                <li><strong>Photo / document upload</strong> – capture a signed CMR, delivery note or pallet photo.</li>
+                <li><strong>Reference</strong> – optionally pre-filled via the URL, used to tag your shipment.</li>
+                <li><strong>Clean toggle</strong> – mark the delivery as clean when there are no issues.</li>
+                <li><strong>Copy email</strong> – the address that receives the POD copy and unlocks the portal.</li>
               </ul>
               <div class="manual-chip-row">
                 <span class="manual-chip">No login required for PODFY.app</span>
@@ -493,29 +147,28 @@
           </div>
         </article>
 
-        <!-- 2. GPS, Clean and Copy email -->
-        <article class="manual-card" id="fields-explained">
+        <!-- Step 2 -->
+        <article class="manual-card">
           <div class="manual-card-inner">
             <div class="manual-card-kicker">Step 2 · Fields explained</div>
             <h2 class="manual-card-title">GPS, clean flag and the copy email field</h2>
             <div class="manual-card-body">
               <p><strong>GPS</strong></p>
               <ul class="manual-list">
-                <li>PODFY.app can store location data (when allowed by the device/browser) as part of the transaction.</li>
-                <li>This helps to verify where a POD was captured and can be used for audits and quality checks.</li>
+                <li>Location is stored when the device and browser permit it.</li>
+                <li>Useful for audits and “where was this POD captured?” questions.</li>
               </ul>
 
               <p><strong>Clean flag</strong></p>
               <ul class="manual-list">
-                <li>Use the <em>Clean</em> option to confirm the delivery was completed without issues.</li>
-                <li>If there is damage, delay or a discrepancy, leave it unset and describe the situation in the remarks.</li>
+                <li>Use <em>Clean</em> for fully OK deliveries.</li>
+                <li>Leave it unset and add a remark when there are damages or delays.</li>
               </ul>
 
-              <p><strong>Copy email field</strong></p>
+              <p><strong>Copy email</strong></p>
               <ul class="manual-list">
-                <li>This is the email address that receives a copy of the POD after upload.</li>
-                <li>In the free-tier demo, this address is also used as the identity in the delivery portal.</li>
-                <li>For testing, enter an address you can access yourself (for example, your own work email).</li>
+                <li>Receives the POD copy as soon as the driver submits.</li>
+                <li>In the free tier, it also acts as your identity in the delivery portal.</li>
               </ul>
 
               <div class="manual-chip-row">
@@ -527,98 +180,75 @@
           </div>
         </article>
 
-        <!-- 3. Using copy email as free-tier identity -->
-        <article class="manual-card" id="copy-email-free-tier">
+        <!-- Step 3 -->
+        <article class="manual-card">
           <div class="manual-card-inner">
-            <div class="manual-card-kicker">Step 3 · Free tier demo</div>
-            <h2 class="manual-card-title">Use the copy email as your free-tier identity</h2>
+            <div class="manual-card-kicker">Step 3 · Free tier identity</div>
+            <h2 class="manual-card-title">Use the copy email as your demo identity</h2>
             <div class="manual-card-body">
               <p>
-                The free-tier demo is built around the <strong>Copy email</strong> field. Every time you upload a POD
-                and fill in the same email address, all those deliveries are linked together behind the scenes.
+                Choose one test address – for example <em>driver.demo@example.com</em> – and use it in the
+                <strong>Copy email</strong> field for every test POD.
               </p>
               <ul class="manual-list">
-                <li>Choose one test address (for example <em>driver.demo@example.com</em>).</li>
-                <li>Enter this address in the <strong>Copy email</strong> field for every test POD you upload.</li>
-                <li>You will receive a POD copy per delivery and can later use the same email to log in to the delivery portal.</li>
+                <li>All those deliveries are linked behind the scenes to that email.</li>
+                <li>You can share the same address with colleagues during a pilot.</li>
+                <li>Every POD shows up under this identity in the delivery portal.</li>
               </ul>
-              <p>
-                This allows you to practice with real flows (drivers, planners, recipients) without configuring users or
-                creating accounts.
-              </p>
               <div class="manual-chip-row">
                 <span class="manual-chip">One email = one demo identity</span>
-                <span class="manual-chip">Ideal for training and pilots</span>
+                <span class="manual-chip">Great for training and pilots</span>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- 4. Magic link and delivery portal -->
-        <article class="manual-card" id="delivery-portal">
+        <!-- Step 4 -->
+        <article class="manual-card">
           <div class="manual-card-inner">
             <div class="manual-card-kicker">Step 4 · Delivery portal</div>
             <h2 class="manual-card-title">Sign in with a magic link and view your PODs</h2>
             <div class="manual-card-body">
               <p>
-                The delivery portal is available at
-                <a href="https://delivery.podfy.net/" target="_blank" rel="noreferrer">delivery.podfy.net</a>.
-                There are no passwords to remember – access is granted via a one-time magic link.
+                Go to <a href="https://delivery.podfy.net/" target="_blank" rel="noreferrer">delivery.podfy.net</a>
+                and enter the same email you used as copy address.
               </p>
-              <p><strong>How it works</strong></p>
               <ul class="manual-list">
-                <li>Open <a href="https://delivery.podfy.net/" target="_blank" rel="noreferrer">delivery.podfy.net</a>.</li>
-                <li>Enter the same email as used in the <strong>Copy email</strong> field.</li>
-                <li>Click “Send magic link”.</li>
-                <li>Check your inbox and click the sign-in link.</li>
-              </ul>
-              <p><strong>What you see after login</strong></p>
-              <ul class="manual-list">
-                <li>A table with all deliveries linked to your email for the last <strong>60 days</strong>.</li>
-                <li>A search field above the table that filters across the main columns (party, PODFY ID, <strong>Reference</strong>, date, clean/issue status and remarks).</li>
-                <li>Columns for party (slug), PODFY ID, <strong>Reference</strong>, date, time, clean/issue status, remarks and a POD button.</li>
-                <li>Click “View POD” to open the image or PDF in a modal window and download it if needed.</li>
+                <li>Request a magic link – no password required.</li>
+                <li>Click the link in your inbox to open the portal.</li>
               </ul>
 
-              <p><strong>Search bar</strong></p>
+              <p><strong>What you will see</strong></p>
               <ul class="manual-list">
-                <li>Start typing any part of a PODFY ID, customer name, reference or remark to reduce the list in real time.</li>
-                <li>Use it during calls with customers to instantly locate a single shipment within all deliveries for that email.</li>
-              </ul>
-
-              <p><strong>Reference column</strong></p>
-              <ul class="manual-list">
-                <li>Shows the shipment or order reference that was captured in PODFY.app, for example from a URL like <code>podfy.app/furore/demo-shipment123</code>.</li>
-                <li>If a POD was created without a reference, the column stays empty – but those rows are still included in search.</li>
-                <li>The search bar can be used to filter directly on a specific reference value.</li>
+                <li>A list of all deliveries for the last <strong>60 days</strong> for that email.</li>
+                <li>A search box that filters across party, PODFY ID, reference, and remarks.</li>
+                <li>A reference column when your URL included a shipment ID or order number.</li>
               </ul>
 
               <div class="manual-chip-row">
-                <span class="manual-chip">Magic link only – no password</span>
-                <span class="manual-chip">Full-table search</span>
+                <span class="manual-chip">Magic link only – no passwords</span>
+                <span class="manual-chip">Full table search</span>
                 <span class="manual-chip">Reference-aware filtering</span>
-                <span class="manual-chip">Last 60 days included in free tier</span>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- 5. Branded demo: Furore -->
-        <article class="manual-card" id="furore-demo">
+        <!-- Step 5 -->
+        <article class="manual-card">
           <div class="manual-card-inner">
             <div class="manual-card-kicker">Step 5 · Branded demo</div>
             <h2 class="manual-card-title">Use a branded demo page (Furore example)</h2>
             <div class="manual-card-body">
-              <p>
-                In a branded demo tier, your PODFY.app link is customised to your brand. The following links show how this works
-                using a fictional example customer <strong>Furore</strong>.
-              </p>
+              <p>In a branded tier, your PODFY.app link is customised to your brand.</p>
+
               <p><strong>Base branded page</strong></p>
               <div class="manual-ref-box">
                 https://podfy.app/furore
               </div>
+
               <p style="margin-top:.35rem;">
-                Opening this link shows a PODFY page branded for Furore – layout, colors and logo are aligned with the customer.
+                Opening this link shows a PODFY page branded for Furore – layout, colours and logo are aligned with the customer.
               </p>
 
               <p style="margin-top:.55rem;"><strong>Reference example with shipment ID</strong></p>
@@ -626,50 +256,34 @@
                 https://podfy.app/furore/demo-shipment123
               </div>
               <p style="margin-top:.35rem;">
-                Adding <code>/demo-shipment123</code> to the URL creates a pre-filled
-                <strong>Reference</strong> field inside the app. The text after <code>/furore/</code>
-                becomes the reference value linked to that POD.
+                The part after <code>/furore/</code> becomes the <strong>Reference</strong> inside the app and is stored in the portal.
               </p>
-              <ul class="manual-list">
-                <li>The reference can be any shipment ID, order number or internal code.</li>
-                <li>It is stored alongside the POD and visible in your reporting and search.</li>
-                <li>This makes it easy for drivers to work with structured references without extra typing.</li>
-              </ul>
-
-              <div class="manual-chip-row">
-                <span class="manual-chip">Branded URL per customer</span>
-                <span class="manual-chip">URL path = reference field</span>
-              </div>
             </div>
           </div>
         </article>
 
-        <!-- 6. 60-day limit and paid plans -->
-        <article class="manual-card" id="history-and-plans">
+        <!-- Step 6 -->
+        <article class="manual-card">
           <div class="manual-card-inner">
-            <div class="manual-card-kicker">Step 6 · Retention &amp; upgrades</div>
-            <h2 class="manual-card-title">Understand the 60-day limit and upgrade options</h2>
+            <div class="manual-card-kicker">Step 6 · Retention &amp; plans</div>
+            <h2 class="manual-card-title">Understand the 60-day limit and upgrades</h2>
             <div class="manual-card-body">
-              <p><strong>60-day free history</strong></p>
+              <p><strong>Free tier</strong></p>
               <ul class="manual-list">
-                <li>The delivery portal shows the last <strong>60 days</strong> of deliveries linked to your email.</li>
-                <li>Older data is still stored safely within PODFY but not visible in the free-tier portal.</li>
+                <li>Portal shows the last <strong>60 days</strong> of PODs for your email.</li>
+                <li>Older data is still stored but not exposed in this demo portal.</li>
               </ul>
-              <p><strong>Paid retention tiers</strong></p>
+              <p><strong>Paid tiers</strong></p>
               <ul class="manual-list">
-                <li>Customer plans can extend retention from <strong>1 year</strong> up to <strong>7 years</strong>.</li>
-                <li>Retention is configured per customer, aligned with compliance and audit needs.</li>
+                <li>Retention can be extended from <strong>1 year</strong> up to <strong>7 years</strong>.</li>
+                <li>Access and retention are configured per customer and role.</li>
               </ul>
-              <div class="manual-chip-row">
-                <span class="manual-chip">Free: 60 days visible</span>
-                <span class="manual-chip">Paid: 1–7 years visibility</span>
-              </div>
             </div>
           </div>
         </article>
 
-        <!-- 7. Upgrade call to action -->
-        <article class="manual-card" id="upgrade">
+        <!-- Step 7 – highlighted card with same background as hero -->
+        <article class="manual-card manual-card-highlight">
           <div class="manual-card-inner">
             <div class="manual-card-kicker">Step 7 · From demo to production</div>
             <h2 class="manual-card-title">Upgrade to a branded demo or full PODFY deployment</h2>
@@ -688,18 +302,43 @@
               <div class="manual-upgrade-callout">
                 <strong>From practice to production.</strong>
                 <p style="margin:.25rem 0 0;">
-                  Use this manual to practice POD flows with your team. When you’re ready, we can turn your demo setup
+                  Use this manual to practice POD flows with your team. When you are ready, we can turn your demo setup
                   into a branded PODFY environment with proper retention, reporting and integrations.
                 </p>
                 <div class="manual-upgrade-actions">
-                  <a class="manual-upgrade-link manual-upgrade-link-primary" href="https://podfy.net/#contact">Talk to PODFY</a>
-                  <a class="manual-upgrade-link" href="https://podfy.app/furore" target="_blank" rel="noreferrer">Revisit Furore demo</a>
+                  <a class="btn btn-primary" href="https://podfy.net/#contact">
+                    Talk to PODFY
+                  </a>
+                  <a class="btn btn-secondary" href="https://podfy.app/furore" target="_blank" rel="noreferrer">
+                    Revisit Furore demo
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </article>
+
       </section>
+
+      <!-- FLOATING CONTACT PLACEHOLDER ------------------------------------->
+      <section aria-label="Upgrade contact placeholder">
+        <div class="manual-contact-card">
+          <h2 class="manual-contact-title">Ready for the next step?</h2>
+          <p class="manual-contact-body">
+            This space is reserved for a lightweight contact form. You can use it to request a branded demo,
+            a production quote, or a guided onboarding session.
+          </p>
+
+          <div class="manual-contact-placeholder">
+            Contact form placeholder – fields like name, company, email and short message will appear here.
+          </div>
+
+          <a href="https://podfy.net/#contact" class="btn btn-primary">
+            Show me the upgrade manual
+          </a>
+        </div>
+      </section>
+
     </div>
   </main>
 
