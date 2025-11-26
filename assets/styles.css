@@ -4,13 +4,18 @@
    - Breakpoints: sm=640px, md=768px, lg=1024px
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   THEME TOKENS
+   Base = light; html[data-theme] overrides for explicit light/dark
+   -------------------------------------------------------------------------- */
+
 :root{
   /* Brand palette – matches free-tier demo scheme */
   --brand-primary:#1D3557; /* deep trust blue */
   --brand-accent:#06D6A0;  /* CTA green */
   --brand-warm:#FF9F1C;    /* focus/active highlight */
 
-  /* Theme tokens */
+  /* Theme tokens (light) */
   --bg:#FFFFFF;
   --surface:#F5F5F5;       /* panels/surfaces */
   --tint-50:#F0F4F9;       /* very light brand-blue tint for sections/hero */
@@ -18,7 +23,7 @@
   --muted:#475569;
   --line:#E2E8F0;
 
-  /* Legacy slate scale (used by utilities) */
+  /* Slate scale */
   --slate-50:#F8FAFC;
   --slate-100:#F1F5F9;
   --slate-200:#E2E8F0;
@@ -32,49 +37,58 @@
   --container-6xl:72rem;
 }
 
-/* Dark mode overrides – matches free-tier demo feel */
-@media (prefers-color-scheme: dark){
-  :root{
-    color-scheme: light dark;
-    --bg:#0B1220;
-    --surface:#0F172A;
-    --tint-50:#0E2237;
-    --ink:#E5E7EB;
-    --muted:#94A3B8;
-    --line:#243140;
+/* Explicit theme overrides driven by theme.js */
 
-    /* remap slate scale for utilities in dark */
-    --slate-50:#0B1220;
-    --slate-100:#0F172A;
-    --slate-200:#1F2937;
-    --slate-300:#243140;
-    --slate-600:#94A3B8;
-    --slate-700:#CBD5E1;
-    --slate-800:#E5E7EB;
-    --slate-900:#F8FAFC;
-  }
+html[data-theme="light"]{
+  color-scheme: light;
+  --bg:#FFFFFF;
+  --surface:#F5F5F5;
+  --tint-50:#F0F4F9;
+  --ink:#0F172A;
+  --muted:#475569;
+  --line:#E2E8F0;
 
-  .bg-hero{background:linear-gradient(180deg, var(--tint-50) 0%, var(--bg) 60%)}
-  .bg-surface{background:var(--surface)}
-  .bg-tint{background:var(--tint-50)}
-  a.text-blue-600{color:#60A5FA}
-  .brand-card{background:var(--surface);border:1px solid var(--line)}
-  .border, .border-t, .border-b, .border-slate-100, .border-slate-200, .border-slate-300{border-color:var(--line)}
-  .btn-outline{border:1px solid var(--line);background:transparent;color:var(--ink)}
-  .btn-outline:hover{box-shadow:0 0 0 2px var(--line) inset}
-  .text-brand{color:var(--slate-900)}
-  .icon-list .icon{color:var(--slate-900)}
-  body input[type="text"], body input[type="email"], body textarea{
-    background:var(--surface) !important; color:var(--ink) !important; border-color:var(--line) !important;
-  }
-  #faq details{background:var(--surface) !important; border-color:var(--line) !important;}
-  #faq details summary{color:var(--ink)}
+  --slate-50:#F8FAFC;
+  --slate-100:#F1F5F9;
+  --slate-200:#E2E8F0;
+  --slate-300:#CBD5E1;
+  --slate-600:#475569;
+  --slate-700:#334155;
+  --slate-800:#1F2937;
+  --slate-900:#0F172A;
 }
 
-/* Base */
+html[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0B1220;
+  --surface:#0F172A;
+  --tint-50:#0E2237;
+  --ink:#E5E7EB;
+  --muted:#94A3B8;
+  --line:#243140;
+
+  --slate-50:#0B1220;
+  --slate-100:#0F172A;
+  --slate-200:#1F2937;
+  --slate-300:#243140;
+  --slate-600:#94A3B8;
+  --slate-700:#CBD5E1;
+  --slate-800:#E5E7EB;
+  --slate-900:#F8FAFC;
+}
+
+/* --------------------------------------------------------------------------
+   BASE ELEMENTS
+   -------------------------------------------------------------------------- */
+
 *{box-sizing:border-box}
 html{line-height:1.5;-webkit-text-size-adjust:100%}
-body{margin:0;font-family:var(--font-sans);color:var(--slate-800);background:var(--bg)}
+body{
+  margin:0;
+  font-family:var(--font-sans);
+  color:var(--slate-800);
+  background:var(--bg);
+}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
 a.underline{text-decoration:underline}
@@ -82,7 +96,10 @@ button{font:inherit}
 .antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
 /* A11y */
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
 .focus\:not-sr-only:focus{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal}
 .focus\:fixed:focus{position:fixed}
 .focus\:top-2:focus{top:.5rem}
@@ -99,7 +116,9 @@ button{font:inherit}
 .text-brand{color:var(--brand-primary)}
 .bg-surface{background:var(--surface)}
 .bg-tint{background:var(--tint-50)}
-.bg-hero{background:linear-gradient(180deg, var(--tint-50) 0%, #FFFFFF 60%)}
+.bg-hero{
+  background:linear-gradient(180deg, var(--tint-50) 0%, var(--bg) 60%);
+}
 .brand-card{background:#fff;border:1px solid var(--line);border-radius:.75rem}
 .border-line{border-color:var(--line)}
 
@@ -130,7 +149,9 @@ button{font:inherit}
   background:var(--bg);border-top:1px solid var(--line);padding:.75rem;
   display:none;gap:.5rem;box-shadow:0 -6px 20px rgba(0,0,0,.06)
 }
-@media (max-width:768px){.cta-bar{display:grid;grid-template-columns:1fr 1fr}}
+@media (max-width:768px){
+  .cta-bar{display:grid;grid-template-columns:1fr 1fr}
+}
 
 /* Focus ring */
 :focus-visible{outline:3px solid var(--brand-warm);outline-offset:2px}
@@ -250,22 +271,20 @@ button{font:inherit}
 .list-disc{list-style-type:disc}
 .list-inside{list-style-position:inside}
 
-/* Inputs (light default; dark overrides earlier) */
+/* Inputs (light default) */
 input[type="text"],input[type="email"],textarea{
   display:block;width:100%;
   border:1px solid var(--slate-300);
-  border-radius:.5rem;padding:.5rem .75rem;background:#fff;color:var(--slate-800)
+  border-radius:.5rem;padding:.5rem .75rem;
+  background:#fff;color:var(--slate-800);
 }
 input[type="checkbox"]{width:1rem;height:1rem}
 button[type="submit"], .btn{
   display:inline-block;border:0;cursor:pointer;
   border-radius:.5rem;padding:.5rem 1rem;
-  background:var(--brand-accent);color:#fff;font-weight:500
+  background:var(--brand-accent);color:#fff;font-weight:500;
 }
 button[disabled]{opacity:.6;cursor:not-allowed}
-
-/* Header hamburger bars */
-#menuBtn span{display:block;background:var(--slate-800)}
 
 /* Links styled as links */
 a.text-blue-600{color:#2563EB}
@@ -305,276 +324,6 @@ th,td{padding:.625rem;border-bottom:1px solid var(--slate-100);text-align:left}
 /* Page niceties */
 header a:hover, footer a:hover{color:var(--brand-primary)}
 details{background:#fff}
-
-/* -----------------------------------------------------------
-   PODFY SITE HEADER
-   ----------------------------------------------------------- */
-
-/* Shell */
-.site-header{
-  position:sticky;
-  top:0;
-  z-index:40;
-  background:#020617; /* deep navy to match current header */
-  border-bottom:1px solid #020617;
-}
-
-/* Inner layout */
-.site-header-inner{
-  max-width:var(--container-6xl);
-  margin:0 auto;
-  padding:.75rem 1rem;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:1.5rem;
-}
-
-/* Logo */
-.site-header-logo{
-  display:flex;
-  align-items:center;
-  gap:.5rem;
-}
-.site-header-logo-text{
-  font-weight:600;
-  font-size:.95rem;
-  color:#E5E7EB;
-}
-
-/* Desktop navigation */
-.site-header-nav{
-  display:none;
-}
-@media (min-width:768px){
-  .site-header-nav{
-    display:flex;
-    align-items:center;
-    gap:2rem;
-    font-size:.9rem;
-  }
-}
-
-.site-header-nav-link{
-  color:#E5E7EB;
-  font-weight:500;
-}
-.site-header-nav-link:hover{
-  color:#ffffff;
-}
-
-/* Actions / CTAs */
-.site-header-actions{
-  display:flex;
-  align-items:center;
-  gap:.75rem;
-}
-
-/* CTA buttons – use existing accent color, but pill-shaped */
-.primary-cta,
-.secondary-cta{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:.55rem 1.1rem;
-  border-radius:999px;
-  font-size:.85rem;
-  font-weight:600;
-  border:0;
-  cursor:pointer;
-  text-decoration:none;
-  transition:opacity .15s ease, transform .05s ease;
-}
-
-.primary-cta{
-  background:var(--brand-accent);
-  color:#ffffff;
-}
-.primary-cta:hover{opacity:.95}
-.primary-cta:active{transform:translateY(1px)}
-
-.secondary-cta{
-  background:transparent;
-  color:#ECFEFF;
-  border:1px solid rgba(148,163,184,.6);
-}
-.secondary-cta:hover{
-  background:rgba(15,23,42,.7);
-}
-
-/* Mobile menu button */
-.site-header-menu-btn{
-  display:inline-flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:.18rem;
-  padding:.4rem .5rem;
-  border-radius:.5rem;
-  border:1px solid rgba(30,64,175,.4);
-  background:rgba(15,23,42,.9);
-}
-.site-header-menu-btn span{
-  display:block;
-  width:1.25rem;
-  height:.14rem;
-  background:#E5E7EB;
-  border-radius:999px;
-}
-
-/* Mobile nav */
-.site-header-mobile-nav{
-  background:#020617;
-  border-top:1px solid #020617;
-  padding:.75rem 1rem 1rem;
-  display:flex;
-  flex-direction:column;
-  gap:.35rem;
-  font-size:.9rem;
-}
-.site-header-mobile-nav a{
-  color:#E5E7EB;
-}
-.site-header-mobile-nav a:hover{
-  color:#ffffff;
-}
-
-/* -----------------------------------------------------------
-   PODFY marketing – portal-style subheader on main site
-   ----------------------------------------------------------- */
-
-.site-subheader{
-  padding:1rem 1rem 0;
-}
-
-.site-subheader-inner{
-  max-width:var(--container-6xl);
-  margin:0 auto;
-  padding:.9rem 1.25rem;
-  border-radius:1.5rem;
-  border:1px solid rgba(148,163,184,0.45);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:1.5rem;
-  box-shadow:0 16px 40px rgba(15,23,42,0.55);
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.16), transparent 55%),
-    radial-gradient(circle at 100% 0%, rgba(56,189,248,0.18), transparent 55%),
-    linear-gradient(135deg, #020617, #020617);
-}
-
-/* Light mode card */
-html[data-theme="light"] .site-header-shell{
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.10), transparent 55%),
-    radial-gradient(circle at 100% 0%, rgba(56,189,248,0.12), transparent 55%),
-    linear-gradient(135deg, #E5F0FF, #FFFFFF);
-  border-bottom:1px solid rgba(148,163,184,0.40);
-}
-
-
-/* Layout bits */
-.site-subheader-left{
-  display:flex;
-  align-items:center;
-  gap:.75rem;
-  min-width:0;
-}
-
-.site-subheader-logo img{
-  height:2.1rem;
-  width:auto;
-  display:block;
-}
-
-/* Reuse same logo inversion rules inside card */
-html[data-theme="dark"] .site-subheader-logo img{
-  filter:invert(1);
-}
-
-.site-subheader-text{
-  display:flex;
-  flex-direction:column;
-}
-.site-subheader-title{
-  font-size:.9rem;
-  font-weight:600;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:#E5E7EB;
-}
-.site-subheader-subtitle{
-  font-size:.8rem;
-  color:#9CA3AF;
-}
-
-html[data-theme="light"] .site-subheader-title{
-  color:#0F172A;
-}
-html[data-theme="light"] .site-subheader-subtitle{
-  color:#4B5563;
-}
-
-.site-subheader-right{
-  display:flex;
-  align-items:center;
-  gap:.6rem;
-}
-
-/* Stack CTAs on small screens */
-@media (max-width:640px){
-  .site-subheader-inner{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-  .site-subheader-right{
-    width:100%;
-    justify-content:flex-start;
-    flex-wrap:wrap;
-  }
-}
-
-/* -----------------------------------------------------------
-   LIGHT HEADER VARIANT PER PAGE
-   - Add class "header-light" to <body> on pages that should
-     use a light header instead of the dark bar.
-   ----------------------------------------------------------- */
-
-body.header-light .site-header{
-  background:#ffffff;
-  border-bottom:1px solid var(--line);
-}
-
-body.header-light .site-header-logo-text{
-  color:var(--slate-800);
-}
-
-body.header-light .site-header-nav-link{
-  color:var(--slate-700);
-}
-body.header-light .site-header-nav-link:hover{
-  color:var(--brand-primary);
-}
-
-body.header-light .site-header-menu-btn{
-  background:#ffffff;
-  border-color:var(--slate-200);
-}
-body.header-light .site-header-menu-btn span{
-  background:var(--slate-800);
-}
-
-body.header-light .site-header-mobile-nav{
-  background:#ffffff;
-  border-color:var(--line);
-}
-body.header-light .site-header-mobile-nav a{
-  color:var(--slate-800);
-}
-body.header-light .site-header-mobile-nav a:hover{
-  color:var(--brand-primary);
-}
-
 
 /* -----------------------------------------------------------
    RELEASE NOTES PAGE SPECIFIC STYLES
@@ -661,12 +410,12 @@ body.header-light .site-header-mobile-nav a:hover{
    PODFY marketing site – header + footer
    ----------------------------------------------------------- */
 
+/* Header shell (shared) */
 .site-header-shell{
   position:sticky;
   top:0;
   z-index:40;
   backdrop-filter:blur(14px);
-  /* soft glass gradient similar to delivery portal */
   background:
     radial-gradient(circle at 0% 0%, rgba(37,99,235,0.12), transparent 55%),
     radial-gradient(circle at 100% 0%, rgba(56,189,248,0.10), transparent 55%),
@@ -678,8 +427,8 @@ html[data-theme="light"] .site-header-shell{
   background:
     radial-gradient(circle at 0% 0%, rgba(37,99,235,0.06), transparent 55%),
     radial-gradient(circle at 100% 0%, rgba(56,189,248,0.06), transparent 55%),
-    linear-gradient(135deg, #020617, #020617);
-  border-bottom:1px solid rgba(15,23,42,0.35);
+    linear-gradient(135deg, #E5F0FF, #FFFFFF);
+  border-bottom:1px solid rgba(148,163,184,0.40);
 }
 
 .site-header-inner{
@@ -693,7 +442,7 @@ html[data-theme="light"] .site-header-shell{
   color:#E5E7EB;
 }
 
-/* brand */
+/* Brand */
 .site-brand{
   display:flex;
   align-items:center;
@@ -704,6 +453,7 @@ html[data-theme="light"] .site-header-shell{
   height:1.9rem;
   width:auto;
   display:block;
+  filter:none;
 }
 .site-brand-title{
   font-size:.95rem;
@@ -712,7 +462,12 @@ html[data-theme="light"] .site-header-shell{
   text-transform:uppercase;
 }
 
-/* nav */
+/* Invert logo for dark */
+html[data-theme="dark"] .site-brand img{
+  filter:invert(1);
+}
+
+/* Nav */
 .site-nav{
   display:none;
 }
@@ -732,14 +487,14 @@ html[data-theme="light"] .site-header-shell{
   opacity:1;
 }
 
-/* CTAs + toggle */
+/* Header actions & theme toggle */
 .site-header-actions{
   display:flex;
   align-items:center;
   gap:.5rem;
 }
 
-/* toggle pill in delivery-portal style, no emoji */
+/* Theme toggle pill */
 .site-theme-toggle{
   border-radius:999px;
   border:1px solid rgba(148,163,184,0.65);
@@ -768,7 +523,6 @@ html[data-theme="light"] .site-header-shell{
   box-shadow:0 0 0 4px rgba(34,197,94,0.25);
 }
 
-/* state colours for dot */
 html[data-theme="light"] .site-theme-toggle[data-mode="light"] .site-theme-dot{
   background:#22c55e;
   box-shadow:0 0 0 4px rgba(34,197,94,0.25);
@@ -778,7 +532,7 @@ html[data-theme="dark"] .site-theme-toggle[data-mode="dark"] .site-theme-dot{
   box-shadow:0 0 0 4px rgba(56,189,248,0.30);
 }
 
-/* CTA buttons – pill style echoing portal */
+/* Header CTAs (used in subheader, not main header now) */
 .site-cta-primary,
 .site-cta-secondary{
   border-radius:999px;
@@ -796,7 +550,6 @@ html[data-theme="dark"] .site-theme-toggle[data-mode="dark"] .site-theme-dot{
   transition:transform .1s ease-out, box-shadow .15s ease-out, opacity .15s ease-out;
 }
 
-/* primary = gradient blue/teal like portal */
 .site-cta-primary{
   background-image:linear-gradient(135deg, #2563EB, #22C1C3);
   color:#fff;
@@ -811,7 +564,6 @@ html[data-theme="dark"] .site-theme-toggle[data-mode="dark"] .site-theme-dot{
   box-shadow:0 6px 18px rgba(37,99,235,0.6);
 }
 
-/* secondary = glassy border pill */
 .site-cta-secondary{
   border:1px solid rgba(148,163,184,0.75);
   background:rgba(15,23,42,0.25);
@@ -822,7 +574,7 @@ html[data-theme="dark"] .site-theme-toggle[data-mode="dark"] .site-theme-dot{
   transform:translateY(-1px);
 }
 
-/* header hamburger reuses existing utilities but tuned for dark bar */
+/* Header hamburger */
 .site-menu-btn{
   display:inline-flex;
   flex-direction:column;
@@ -840,12 +592,11 @@ html[data-theme="dark"] .site-theme-toggle[data-mode="dark"] .site-theme-dot{
   border-radius:999px;
   background:#E5E7EB;
 }
-
 @media (min-width:768px){
   .site-menu-btn{display:none;}
 }
 
-/* mobile nav */
+/* Mobile nav */
 .site-mobile-nav{
   display:none;
   background:rgba(15,23,42,0.98);
@@ -861,22 +612,14 @@ html[data-theme="dark"] .site-theme-toggle[data-mode="dark"] .site-theme-dot{
 .site-mobile-nav a:hover{
   opacity:1;
 }
+.site-mobile-nav.open{display:block;}
 
-/* show mobile nav when .open is added via JS */
-.site-mobile-nav.open{
-  display:block;
-}
-
-/* -----------------------------------------------------------
-   Footer – echoes delivery footer but for whole site
-   ----------------------------------------------------------- */
-
+/* Footer */
 .site-footer{
   border-top:1px solid rgba(15,23,42,0.2);
   background:radial-gradient(circle at 50% 0, rgba(15,23,42,0.6), #020617);
   color:#CBD5F5;
 }
-
 html[data-theme="light"] .site-footer{
   background:linear-gradient(180deg, #020617, #020617);
   color:#E5E7EB;
@@ -892,7 +635,6 @@ html[data-theme="light"] .site-footer{
   text-align:center;
   font-size:.8rem;
 }
-
 .site-footer-nav{
   display:flex;
   justify-content:center;
@@ -900,70 +642,135 @@ html[data-theme="light"] .site-footer{
   flex-wrap:wrap;
   font-size:.8rem;
 }
-.site-footer-nav a{
-  opacity:.85;
-}
-.site-footer-nav a:hover{
-  opacity:1;
-}
-
+.site-footer-nav a{opacity:.85;}
+.site-footer-nav a:hover{opacity:1;}
 .site-footer-meta{
   font-size:.75rem;
   opacity:.8;
 }
 
-/* Logo color: black in light, white in dark (by inverting) */
-.site-brand img{
-  height:1.9rem;
+/* -----------------------------------------------------------
+   PORTAL-STYLE SUBHEADER CARD
+   ----------------------------------------------------------- */
+
+.site-subheader{
+  padding:1rem 1rem 0;
+}
+.site-subheader-inner{
+  max-width:var(--container-6xl);
+  margin:0 auto;
+  padding:.9rem 1.25rem;
+  border-radius:1.5rem;
+  border:1px solid rgba(148,163,184,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.5rem;
+  box-shadow:0 16px 40px rgba(15,23,42,0.55);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.16), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(56,189,248,0.18), transparent 55%),
+    linear-gradient(135deg, rgba(15,23,42,0.92), rgba(15,23,42,0.96));
+}
+html[data-theme="light"] .site-subheader-inner{
+  border-color:rgba(148,163,184,0.40);
+  box-shadow:0 18px 40px rgba(15,23,42,0.18);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.10), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(56,189,248,0.12), transparent 55%),
+    linear-gradient(135deg, #E5F0FF, #FFFFFF);
+}
+
+.site-subheader-left{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  min-width:0;
+}
+.site-subheader-logo img{
+  height:2.1rem;
   width:auto;
   display:block;
-  filter:none;
 }
-
-/* If your base SVG is black, this invert makes it white on dark background */
-html[data-theme="dark"] .site-brand img{
+html[data-theme="dark"] .site-subheader-logo img{
   filter:invert(1);
 }
+.site-subheader-text{
+  display:flex;
+  flex-direction:column;
+}
+.site-subheader-title{
+  font-size:.9rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#E5E7EB;
+}
+.site-subheader-subtitle{
+  font-size:.8rem;
+  color:#9CA3AF;
+}
+html[data-theme="light"] .site-subheader-title{color:#0F172A;}
+html[data-theme="light"] .site-subheader-subtitle{color:#4B5563;}
 
-/* ===========================================================
-   Explicit theme overrides via html[data-theme]
-   - These override the prefers-color-scheme block above.
-   =========================================================== */
-
-html[data-theme="light"]{
-  color-scheme: light;
-  --bg:#FFFFFF;
-  --surface:#F5F5F5;
-  --tint-50:#F0F4F9;
-  --ink:#0F172A;
-  --muted:#475569;
-  --line:#E2E8F0;
-
-  --slate-50:#F8FAFC;
-  --slate-100:#F1F5F9;
-  --slate-200:#E2E8F0;
-  --slate-300:#CBD5E1;
-  --slate-600:#475569;
-  --slate-700:#334155;
-  --slate-800:#1F2937;
-  --slate-900:#0F172A;
+.site-subheader-right{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
 }
 
-html[data-theme="dark"]{
-  color-scheme: dark;
-  --bg:#0B1220;
-  --surface:#0F172A;
-  --tint-50:#0E2237;
-  --ink:#E5E7EB;
-  --muted:#94A3B8;
-  --line:#243140;
+@media (max-width:640px){
+  .site-subheader-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .site-subheader-right{
+    width:100%;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+  }
+}
 
-  --slate-50:#0B1220;
-  --slate-100:#0F172A;
-  --slate-200:#1F2937;
-  --slate-300:#243140;
-  --slate-600:#94A3B8;
-  --slate-700:#CBD5E1;
-  --slate-800:#E5E7EB;
-  --slate-900:#F8FAFC;
+/* -----------------------------------------------------------
+   GLASSY TILE CARDS (used across marketing page)
+   ----------------------------------------------------------- */
+
+.tile-card{
+  background:var(--surface);
+  border-radius:1rem;
+  border:1px solid var(--line);
+  padding:1.3rem 1.4rem;
+  box-shadow:0 2px 10px rgba(15,23,42,0.10);
+  backdrop-filter:blur(14px);
+}
+html[data-theme="dark"] .tile-card{
+  background:rgba(15,23,42,0.85);
+  border-color:rgba(148,163,184,0.35);
+  box-shadow:
+    0 0 25px rgba(15,23,42,0.7),
+    inset 0 0 40px rgba(15,23,42,0.8);
+}
+
+/* Contact form fields respect theme */
+#contact-form input,
+#contact-form textarea{
+  background:var(--surface) !important;
+  border:1px solid var(--line) !important;
+  color:var(--ink) !important;
+}
+html[data-theme="dark"] #contact-form input,
+html[data-theme="dark"] #contact-form textarea{
+  background:rgba(15,23,42,0.9) !important;
+  border-color:rgba(148,163,184,0.6) !important;
+}
+
+/* Bottom CTA buttons should still look good in both themes */
+.cta-bar .btn-accent{
+  background:var(--brand-accent);
+  color:#fff;
+}
+.cta-bar .btn-outline{
+  background:var(--surface);
+  border:1px solid var(--line);
+  color:var(--ink);
 }
