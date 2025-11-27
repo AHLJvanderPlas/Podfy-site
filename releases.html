@@ -44,16 +44,18 @@
 
   [[PODFY_HEADER]]
 
-  <!-- Subheader with search -->
+  <!-- Subheader with title, meta, and search -->
   <section class="site-subheader" aria-label="Release notes header">
     <div class="site-subheader-container">
       <div class="shell-bar shell-bar-glass site-subheader-inner">
         <div class="site-subheader-left">
           <div class="site-subheader-text">
-            <div class="site-subheader-title">Release notes</div>
-            <div class="site-subheader-subtitle">
-              Versions, deployments, fixes and new functionality across PODFY.
+            <div class="site-subheader-title text-2xl font-bold tracking-tight">
+              Release notes
             </div>
+            <p id="releases-meta" class="site-subheader-subtitle text-sm text-muted mt-1">
+              Loading release notes…
+            </p>
           </div>
         </div>
         <div class="site-subheader-right">
@@ -68,12 +70,7 @@
     </div>
   </section>
 
-  <main id="main" class="container release-page">
-    <h1 class="text-3xl font-bold">Release notes</h1>
-    <p class="mt-2 text-sm text-muted" id="releases-meta">
-      Loading release notes…
-    </p>
-
+  <main id="main" class="container release-page mt-6">
     <p id="releases-loading" class="mt-2 text-sm text-muted">
       Fetching latest releases from the Podfy database.
     </p>
@@ -151,11 +148,18 @@
           .replace(/"/g, "&quot;");
       }
 
+      // Convert multi-line text into a bullet list
+      // and strip a leading "- " or "– " so we don't get double bullets.
       function toLinesList(text) {
         if (!text) return "";
         var lines = text
           .split(/\r?\n/)
-          .map(function (l) { return l.trim(); })
+          .map(function (l) {
+            var t = l.trim();
+            if (t.startsWith("- ")) t = t.slice(2);
+            else if (t.startsWith("– ")) t = t.slice(2);
+            return t;
+          })
           .filter(Boolean);
 
         if (lines.length <= 1) {
@@ -305,67 +309,72 @@
           .join("");
 
         /* CARD VIEW — 4 floating areas */
-cardsWrapper.innerHTML = filtered
-  .map(function (r) {
-    var tags = tagsFrom(r.area_tags);
-    var tagsHtml = tags.length
-      ? '<div class="flex flex-wrap gap-1 text-xs text-muted release-card-tags">' +
-        tags
-          .map(function (t) {
-            return '<span class="pill">' + escapeHtml(t) + "</span>";
+        cardsWrapper.innerHTML = filtered
+          .map(function (r) {
+            var tags = tagsFrom(r.area_tags);
+            var tagsHtml = tags.length
+              ? '<div class="flex flex-wrap gap-1 text-xs text-muted release-card-tags">' +
+                tags
+                  .map(function (t) {
+                    return '<span class="pill">' + escapeHtml(t) + "</span>";
+                  })
+                  .join("") +
+                "</div>"
+              : "";
+
+            // Title line: Release, Version, Build
+            var titleParts = [];
+            if (r.release_date) {
+              titleParts.push("Release: " + r.release_date);
+            }
+            if (r.version) {
+              titleParts.push("Version: " + r.version);
+            }
+            if (r.deployment_ref) {
+              titleParts.push("Build: " + r.deployment_ref);
+            }
+            var titleLine = titleParts.join(" · ");
+
+            return (
+              '<article class="manual-card card card-glass release-card" id="' +
+              toId(r.version) +
+              '">' +
+
+                /* TOP: wrapper + inner flex row */
+                '<div class="release-card-header">' +
+                  '<div class="flex flex-wrap items-start justify-between gap-3">' +
+                    '<div class="release-card-title">' +
+                      '<div class="text-xs text-muted uppercase tracking-tight">Release</div>' +
+                      '<div class="text-lg font-semibold tracking-tight">' +
+                        escapeHtml(titleLine) +
+                      "</div>" +
+                    "</div>" +
+                    tagsHtml +
+                  "</div>" +
+                "</div>" +
+
+                /* BOTTOM: wrapper + inner grid (2 cols on md+, stacked on mobile) */
+                '<div class="release-card-body mt-4">' +
+                  '<div class="grid md:grid-cols-2 gap-6">' +
+                    (r.new_features
+                      ? '<section>' +
+                          '<div class="release-section-label">New</div>' +
+                          toLinesList(r.new_features) +
+                        "</section>"
+                      : "") +
+                    (r.fixes
+                      ? '<section>' +
+                          '<div class="release-section-label">Fixes</div>' +
+                          toLinesList(r.fixes) +
+                        "</section>"
+                      : "") +
+                  "</div>" +
+                "</div>" +
+
+              "</article>"
+            );
           })
-          .join("") +
-        "</div>"
-      : "";
-
-    var titleLine = [
-      r.release_date || "",
-      r.version || "",
-      r.deployment_ref ? "deploy " + r.deployment_ref : ""
-    ]
-      .filter(Boolean)
-      .join(" · ");
-
-    return (
-      '<article class="manual-card card card-glass release-card" id="' +
-      toId(r.version) +
-      '">' +
-
-        /* TOP: wrapper + inner flex row */
-        '<div class="release-card-header">' +
-          '<div class="flex flex-wrap items-start justify-between gap-3">' +
-            '<div class="release-card-title">' +
-              '<div class="text-xs text-muted uppercase tracking-tight">Release</div>' +
-              '<div class="text-lg font-semibold tracking-tight">' +
-                escapeHtml(titleLine) +
-              "</div>" +
-            "</div>" +
-            tagsHtml +
-          "</div>" +
-        "</div>" +
-
-        /* BOTTOM: wrapper + inner grid (2 cols on md+, stacked on mobile) */
-        '<div class="release-card-body mt-4">' +
-          '<div class="grid md:grid-cols-2 gap-6">' +
-            (r.new_features
-              ? '<section>' +
-                  '<div class="release-section-label">New</div>' +
-                  toLinesList(r.new_features) +
-                "</section>"
-              : "") +
-            (r.fixes
-              ? '<section>' +
-                  '<div class="release-section-label">Fixes</div>' +
-                  toLinesList(r.fixes) +
-                "</section>"
-              : "") +
-          "</div>" +
-        "</div>" +
-
-      "</article>"
-    );
-  })
-  .join("");
+          .join("");
 
         updatePaginationControls();
       }
