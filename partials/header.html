@@ -1,6 +1,5 @@
 <header class="site-header-shell">
-  <!-- Reuse subheader glass bar styles -->
-  <div class="shell-bar shell-bar-glass">
+  <div class="site-header-inner">
     <!-- Brand -->
     <a href="/" class="site-brand" aria-label="Podfy home">
       <img src="/assets/podfy.svg" alt="PODFY">
@@ -15,37 +14,21 @@
       <a href="/#faq">FAQ</a>
     </nav>
 
-    <!-- Right side: theme toggle + mobile menu -->
+    <!-- Header actions: theme toggle -->
     <div class="site-header-actions">
-      <!-- Theme toggle pill -->
-      <button
-        id="themeToggle"
-        type="button"
-        class="site-theme-toggle"
-        data-mode="system"
-        aria-label="Toggle color theme"
-      >
+      <button type="button"
+              class="site-theme-toggle"
+              id="themeToggle"
+              data-mode="system"
+              aria-label="Toggle color mode">
         <span class="site-theme-dot"></span>
         <span class="site-theme-label">System</span>
-      </button>
-
-      <!-- Mobile menu button -->
-      <button
-        id="menuBtn"
-        type="button"
-        class="site-menu-btn md:hidden"
-        aria-label="Toggle navigation"
-        aria-expanded="false"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
       </button>
     </div>
   </div>
 
-  <!-- Mobile nav (full-width, below bar) -->
-  <nav id="mobileNav" class="site-mobile-nav md:hidden">
+  <!-- Mobile nav -->
+  <nav id="mobileNav" class="site-mobile-nav md:hidden" aria-label="Mobile navigation">
     <a href="/#how">How it works</a>
     <a href="/#value">Benefits</a>
     <a href="/#features">Features</a>
@@ -55,14 +38,47 @@
 
   <script>
     (function () {
+      // Theme toggle (unchanged from your version)
+      var STORAGE_KEY = "podfy-theme";
+      var toggle = document.getElementById("themeToggle");
+      if (toggle) {
+        function applyTheme(mode) {
+          var root = document.documentElement;
+          if (mode === "system") {
+            root.removeAttribute("data-theme");
+          } else {
+            root.setAttribute("data-theme", mode);
+          }
+          toggle.dataset.mode = mode;
+          toggle.querySelector(".site-theme-label").textContent =
+            mode.charAt(0).toUpperCase() + mode.slice(1);
+          try { localStorage.setItem(STORAGE_KEY, mode); } catch (e) {}
+        }
+
+        var stored = null;
+        try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+        if (stored === "light" || stored === "dark" || stored === "system") {
+          applyTheme(stored);
+        }
+
+        toggle.addEventListener("click", function () {
+          var current = toggle.dataset.mode || "system";
+          var next = current === "system" ? "light"
+                   : current === "light" ? "dark"
+                   : "system";
+          applyTheme(next);
+        });
+      }
+
+      // Mobile nav
       var menuBtn = document.getElementById("menuBtn");
       var mobileNav = document.getElementById("mobileNav");
-      if (!menuBtn || !mobileNav) return;
-
-      menuBtn.addEventListener("click", function () {
-        var open = mobileNav.classList.toggle("open");
-        menuBtn.setAttribute("aria-expanded", String(open));
-      });
+      if (menuBtn && mobileNav) {
+        menuBtn.addEventListener("click", function () {
+          var open = mobileNav.classList.toggle("open");
+          menuBtn.setAttribute("aria-expanded", String(open));
+        });
+      }
     })();
   </script>
 </header>
