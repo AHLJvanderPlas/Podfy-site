@@ -100,7 +100,7 @@
     </div>
 
     <!-- Mobile card view -->
-    <div class="release-cards-view mt-4" id="releases-cards-wrapper"></div>
+    <div class="card card-glass release-cards-view mt-4" id="releases-cards-wrapper"></div>
 
     <!-- Pagination controls -->
     <div class="release-pagination mt-6" id="releases-pagination" style="display:none;">
@@ -269,7 +269,7 @@
                 tags
                   .map(function (t) {
                     return (
-                      '<span class="release-tag">' + escapeHtml(t) + "</span>"
+                      '<span class="pill">' + escapeHtml(t) + "</span>"
                     );
                   })
                   .join("") +
@@ -302,11 +302,11 @@ cardsWrapper.innerHTML = filtered
   .map(function (r) {
     var tags = tagsFrom(r.area_tags);
     var tagsHtml = tags.length
-      ? '<div class="release-card-tags">' +
+      ? '<div class="card card-glass release-card-tags">' +
         tags
           .map(function (t) {
             return (
-              '<span class="release-tag">' + escapeHtml(t) + "</span>"
+              '<span class="pill">' + escapeHtml(t) + "</span>"
             );
           })
           .join("") +
@@ -314,26 +314,26 @@ cardsWrapper.innerHTML = filtered
       : "";
 
     return (
-      '<article class="manual-card release-card" id="' +
+      '<article class="manual-card card card-glass release-card" id="' +
       toId(r.version) +
       '">' +
-        '<div class="release-card-header-line">' +
-          '<span class="release-card-date">' +
+        '<div class="card card-glass release-card-header-line">' +
+          '<span class="card card-glass release-card-date">' +
             escapeHtml(r.release_date || "") +
           "</span>" +
-          '<span class="release-card-sep">•</span>' +
-          '<span class="release-card-version">' +
+          '<span class="card card-glass release-card-sep">•</span>' +
+          '<span class="card card-glass release-card-version">' +
             escapeHtml(r.version || "") +
           "</span>" +
           (r.deployment_ref
-            ? '<span class="release-card-sep">•</span>' +
-              '<span class="release-card-deploy">Deploy ' +
+            ? '<span class="card card-glass release-card-sep">•</span>' +
+              '<span class="card card-glass release-card-deploy">Deploy ' +
                 escapeHtml(r.deployment_ref) +
               "</span>"
             : "") +
         "</div>" +
 
-        '<div class="release-card-body">' +
+        '<div class="card card-glass release-card-body">' +
           (r.new_features
             ? '<div class="mt-1"><div class="release-section-label">New</div>' +
               toLinesList(r.new_features) +
