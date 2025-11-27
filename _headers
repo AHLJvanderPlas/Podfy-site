@@ -19,3 +19,9 @@
 
 /companies
   X-Robots-Tag: noindex, nofollow
+
+/header.html
+  Cache-Control: no-store
+
+/footer.html
+  Cache-Control: no-store
