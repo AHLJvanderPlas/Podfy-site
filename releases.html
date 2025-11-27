@@ -36,7 +36,7 @@
   <!-- Unified Podfy stylesheet -->
   <link rel="stylesheet" href="/assets/styles.css?v=dev10">
 </head>
-<body class="text-slate-800 antialiased">
+<body class="antialiased">
   <a href="#main"
      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:border focus:px-3 focus:py-2">
     Skip to content
@@ -44,31 +44,31 @@
 
   [[PODFY_HEADER]]
 
-  <!-- Subheader with search ----------------------------------------------->
+  <!-- Subheader with search -->
   <section class="site-subheader" aria-label="Release notes header">
-   <div class="site-subheader-container">
-    <div class="shell-bar shell-bar-glass site-subheader-inner">
-      <div class="site-subheader-left">
-        <div class="site-subheader-text">
-          <div class="site-subheader-title">Release notes</div>
-          <div class="site-subheader-subtitle">
-            Versions, deployments, fixes and new functionality across PODFY.
+    <div class="site-subheader-container">
+      <div class="shell-bar shell-bar-glass site-subheader-inner">
+        <div class="site-subheader-left">
+          <div class="site-subheader-text">
+            <div class="site-subheader-title">Release notes</div>
+            <div class="site-subheader-subtitle">
+              Versions, deployments, fixes and new functionality across PODFY.
+            </div>
           </div>
         </div>
+        <div class="site-subheader-right">
+          <label class="sr-only" for="release-search">Search release notes</label>
+          <input
+            id="release-search"
+            class="search-input"
+            type="search"
+            placeholder="Search by version, text, or tag" />
+        </div>
       </div>
-      <div class="site-subheader-right">
-        <label class="sr-only" for="release-search">Search release notes</label>
-        <input
-          id="release-search"
-          class="search-input"
-          type="search"
-          placeholder="Search by version, text, or tag" />
-      </div>
-     </div>
     </div>
   </section>
 
-  <main id="main" class="release-page">
+  <main id="main" class="container release-page">
     <h1 class="text-3xl font-bold">Release notes</h1>
     <p class="mt-2 text-sm text-muted" id="releases-meta">
       Loading release notes…
@@ -84,7 +84,7 @@
       There was a problem loading release notes. Please refresh the page.
     </p>
 
-    <!-- Desktop table view -->
+    <!-- Legacy desktop table (kept for structure, hidden by CSS) -->
     <div class="release-table-view mt-4">
       <table class="release-table">
         <thead>
@@ -99,8 +99,8 @@
       </table>
     </div>
 
-    <!-- Mobile card view -->
-    <div class="card card-glass release-cards-view mt-4" id="releases-cards-wrapper"></div>
+    <!-- Card view (all breakpoints) -->
+    <div class="release-cards-view mt-4" id="releases-cards-wrapper"></div>
 
     <!-- Pagination controls -->
     <div class="release-pagination mt-6" id="releases-pagination" style="display:none;">
@@ -153,13 +153,22 @@
 
       function toLinesList(text) {
         if (!text) return "";
-        var lines = text.split(/\r?\n/).map(function (l) { return l.trim(); }).filter(Boolean);
+        var lines = text
+          .split(/\r?\n/)
+          .map(function (l) { return l.trim(); })
+          .filter(Boolean);
+
         if (lines.length <= 1) {
           return "<p>" + escapeHtml(lines[0] || text) + "</p>";
         }
-        return "<ul class=\"list-disc list-inside\">" +
-          lines.map(function (l) { return "<li>" + escapeHtml(l) + "</li>"; }).join("") +
-        "</ul>";
+
+        return (
+          '<ul class="list-disc list-inside">' +
+          lines
+            .map(function (l) { return "<li>" + escapeHtml(l) + "</li>"; })
+            .join("") +
+          "</ul>"
+        );
       }
 
       function toId(version) {
@@ -246,7 +255,7 @@
             ").";
         }
 
-        // Desktop table
+        /* Desktop table rows (hidden by CSS but kept for structure) */
         tableBody.innerHTML = filtered
           .map(function (r) {
             var updates = "";
@@ -268,9 +277,7 @@
                 '<div class="mt-2">' +
                 tags
                   .map(function (t) {
-                    return (
-                      '<span class="pill">' + escapeHtml(t) + "</span>"
-                    );
+                    return '<span class="pill">' + escapeHtml(t) + "</span>";
                   })
                   .join("") +
                 "</div>";
@@ -297,60 +304,56 @@
           })
           .join("");
 
-// Card view (used for all breakpoints)
-cardsWrapper.innerHTML = filtered
-  .map(function (r) {
-    var tags = tagsFrom(r.area_tags);
-    var tagsHtml = tags.length
-      ? '<div class="card card-glass release-card-tags">' +
-        tags
-          .map(function (t) {
+        /* Card view for all breakpoints */
+        cardsWrapper.innerHTML = filtered
+          .map(function (r) {
+            var tags = tagsFrom(r.area_tags);
+            var tagsHtml = tags.length
+              ? '<div class="release-card-tags">' +
+                tags
+                  .map(function (t) {
+                    return '<span class="pill">' + escapeHtml(t) + "</span>";
+                  })
+                  .join("") +
+                "</div>"
+              : "";
+
             return (
-              '<span class="pill">' + escapeHtml(t) + "</span>"
+              '<article class="manual-card card card-glass release-card" id="' +
+              toId(r.version) +
+              '">' +
+                '<div class="release-card-header-line">' +
+                  '<span class="release-card-date">' +
+                    escapeHtml(r.release_date || "") +
+                  "</span>" +
+                  '<span class="release-card-sep">•</span>' +
+                  '<span class="release-card-version">' +
+                    escapeHtml(r.version || "") +
+                  "</span>" +
+                  (r.deployment_ref
+                    ? '<span class="release-card-sep">•</span>' +
+                      '<span class="release-card-deploy">Deploy ' +
+                        escapeHtml(r.deployment_ref) +
+                      "</span>"
+                    : "") +
+                "</div>" +
+                '<div class="release-card-body">' +
+                  (r.new_features
+                    ? '<div class="mt-1"><div class="release-section-label">New</div>' +
+                      toLinesList(r.new_features) +
+                      "</div>"
+                    : "") +
+                  (r.fixes
+                    ? '<div class="mt-3"><div class="release-section-label">Fixes</div>' +
+                      toLinesList(r.fixes) +
+                      "</div>"
+                    : "") +
+                  tagsHtml +
+                "</div>" +
+              "</article>"
             );
           })
-          .join("") +
-        "</div>"
-      : "";
-
-    return (
-      '<article class="manual-card card card-glass release-card" id="' +
-      toId(r.version) +
-      '">' +
-        '<div class="card card-glass release-card-header-line">' +
-          '<span class="card card-glass release-card-date">' +
-            escapeHtml(r.release_date || "") +
-          "</span>" +
-          '<span class="card card-glass release-card-sep">•</span>' +
-          '<span class="card card-glass release-card-version">' +
-            escapeHtml(r.version || "") +
-          "</span>" +
-          (r.deployment_ref
-            ? '<span class="card card-glass release-card-sep">•</span>' +
-              '<span class="card card-glass release-card-deploy">Deploy ' +
-                escapeHtml(r.deployment_ref) +
-              "</span>"
-            : "") +
-        "</div>" +
-
-        '<div class="card card-glass release-card-body">' +
-          (r.new_features
-            ? '<div class="mt-1"><div class="release-section-label">New</div>' +
-              toLinesList(r.new_features) +
-              "</div>"
-            : "") +
-          (r.fixes
-            ? '<div class="mt-3"><div class="release-section-label">Fixes</div>' +
-              toLinesList(r.fixes) +
-              "</div>"
-            : "") +
-          tagsHtml +
-        "</div>" +
-      "</article>"
-    );
-  })
-  .join("");
-
+          .join("");
 
         updatePaginationControls();
       }
@@ -403,7 +406,7 @@ cardsWrapper.innerHTML = filtered
           });
       }
 
-      // Wire up search
+      /* Search */
       if (searchInput) {
         searchInput.addEventListener("input", function (e) {
           currentFilter = e.target.value || "";
@@ -411,7 +414,7 @@ cardsWrapper.innerHTML = filtered
         });
       }
 
-      // Wire up pagination buttons
+      /* Pagination buttons */
       if (prevBtn) {
         prevBtn.addEventListener("click", function () {
           if (currentPage > 1) {
@@ -427,7 +430,7 @@ cardsWrapper.innerHTML = filtered
         });
       }
 
-      // Initial load
+      /* Initial load */
       loadPage(1);
     })();
   </script>
