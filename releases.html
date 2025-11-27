@@ -60,17 +60,19 @@
         </div>
         <div class="site-subheader-right">
           <label class="sr-only" for="release-search">Search release notes</label>
-          <input
-            id="release-search"
-            class="search-input"
-            type="search"
-            placeholder="Search by version, text, or tag" />
+          <div class="shell-bar-search">
+            <input
+              id="release-search"
+              class="search-input bg-surface border-line"
+              type="search"
+              placeholder="Search by version, text, or tag" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <main id="main" class="container release-page mt-6">
+  <main id="main" class="container release-page">
     <p id="releases-loading" class="mt-2 text-sm text-muted">
       Fetching latest releases from the Podfy database.
     </p>
@@ -97,7 +99,7 @@
     </div>
 
     <!-- Card view (all breakpoints) -->
-    <div class="release-cards-view mt-4" id="releases-cards-wrapper"></div>
+    <div class="release-cards-view mt-6" id="releases-cards-wrapper"></div>
 
     <!-- Pagination controls -->
     <div class="release-pagination mt-6" id="releases-pagination" style="display:none;">
@@ -149,7 +151,7 @@
       }
 
       // Convert multi-line text into a bullet list
-      // and strip a leading "- " or "– " so we don't get double bullets.
+      // and strip any leading "- " / "– " to avoid double bullets.
       function toLinesList(text) {
         if (!text) return "";
         var lines = text
@@ -259,7 +261,7 @@
             ").";
         }
 
-        /* TABLE ROWS (kept for structure) */
+        /* TABLE ROWS (legacy structure) */
         tableBody.innerHTML = filtered
           .map(function (r) {
             var updates = "";
@@ -308,7 +310,7 @@
           })
           .join("");
 
-        /* CARD VIEW — 4 floating areas */
+        /* CARD VIEW — title + tags top, New/Fixes bottom (2 cols on md+) */
         cardsWrapper.innerHTML = filtered
           .map(function (r) {
             var tags = tagsFrom(r.area_tags);
@@ -340,11 +342,10 @@
               toId(r.version) +
               '">' +
 
-                /* TOP: wrapper + inner flex row */
+                // TOP: title left, tags right
                 '<div class="release-card-header">' +
                   '<div class="flex flex-wrap items-start justify-between gap-3">' +
                     '<div class="release-card-title">' +
-                      '<div class="text-xs text-muted uppercase tracking-tight">Release</div>' +
                       '<div class="text-lg font-semibold tracking-tight">' +
                         escapeHtml(titleLine) +
                       "</div>" +
@@ -353,17 +354,17 @@
                   "</div>" +
                 "</div>" +
 
-                /* BOTTOM: wrapper + inner grid (2 cols on md+, stacked on mobile) */
+                // BOTTOM: New (left) and Fixes (right)
                 '<div class="release-card-body mt-4">' +
-                  '<div class="grid md:grid-cols-2 gap-6">' +
+                  '<div class="flex flex-col md:flex-row gap-6">' +
                     (r.new_features
-                      ? '<section>' +
+                      ? '<section class="flex-1">' +
                           '<div class="release-section-label">New</div>' +
                           toLinesList(r.new_features) +
                         "</section>"
                       : "") +
                     (r.fixes
-                      ? '<section>' +
+                      ? '<section class="flex-1">' +
                           '<div class="release-section-label">Fixes</div>' +
                           toLinesList(r.fixes) +
                         "</section>"
