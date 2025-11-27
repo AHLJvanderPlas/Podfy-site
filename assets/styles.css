@@ -482,7 +482,7 @@ html[data-theme="dark"] .site-footer{
 
 .manual-hero{
   margin-top:1.5rem;
-  margin-bottom:1rem;
+  margin-bottom:3rem;
   display:grid;
   grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
   gap:1.25rem;
