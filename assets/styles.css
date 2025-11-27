@@ -251,14 +251,6 @@ html[data-theme="light"] .shell-bar-glass{
 /* --------------------------------------------------------------------------
    SITE HEADER
    -------------------------------------------------------------------------- */
-/* Sticky shell header wrapper */
-.site-header-shell{
-  position:sticky;
-  top:0;
-  margin-bottom: 1.5rem;
-  z-index:40;
-  background:transparent;
-}
 
 /* Brand logo sizing (reuses current behaviour) */
 .site-brand img{
@@ -291,6 +283,7 @@ html[data-theme="light"] .shell-bar-glass{
   position:sticky;
   top:0;
   z-index:40;
+  margin-bottom: 2rem;
   background:linear-gradient(180deg, rgba(15,23,42,0.98), rgba(15,23,42,0.96));
   border-bottom:1px solid var(--line);
 }
