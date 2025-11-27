@@ -34,7 +34,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
   <!-- Unified Podfy stylesheet -->
-  <link rel="stylesheet" href="/assets/styles.css?v=dev10">
+  <link rel="stylesheet" href="/assets/styles.css?v=dev11">
 </head>
 <body class="antialiased">
   <a href="#main"
@@ -255,7 +255,7 @@
             ").";
         }
 
-        /* Desktop table rows (hidden by CSS but kept for structure) */
+        /* TABLE ROWS (kept for structure) */
         tableBody.innerHTML = filtered
           .map(function (r) {
             var updates = "";
@@ -304,12 +304,12 @@
           })
           .join("");
 
-        /* Card view for all breakpoints */
+        /* CARD VIEW — 4 floating areas */
         cardsWrapper.innerHTML = filtered
           .map(function (r) {
             var tags = tagsFrom(r.area_tags);
             var tagsHtml = tags.length
-              ? '<div class="release-card-tags">' +
+              ? '<div class="release-card-tags flex flex-wrap gap-1 text-xs text-muted">' +
                 tags
                   .map(function (t) {
                     return '<span class="pill">' + escapeHtml(t) + "</span>";
@@ -318,38 +318,46 @@
                 "</div>"
               : "";
 
+            var titleLine = [
+              r.release_date || "",
+              r.version || "",
+              r.deployment_ref ? "deploy " + r.deployment_ref : ""
+            ]
+              .filter(Boolean)
+              .join(" · ");
+
             return (
               '<article class="manual-card card card-glass release-card" id="' +
               toId(r.version) +
               '">' +
-                '<div class="release-card-header-line">' +
-                  '<span class="release-card-date">' +
-                    escapeHtml(r.release_date || "") +
-                  "</span>" +
-                  '<span class="release-card-sep">•</span>' +
-                  '<span class="release-card-version">' +
-                    escapeHtml(r.version || "") +
-                  "</span>" +
-                  (r.deployment_ref
-                    ? '<span class="release-card-sep">•</span>' +
-                      '<span class="release-card-deploy">Deploy ' +
-                        escapeHtml(r.deployment_ref) +
-                      "</span>"
-                    : "") +
-                "</div>" +
-                '<div class="release-card-body">' +
-                  (r.new_features
-                    ? '<div class="mt-1"><div class="release-section-label">New</div>' +
-                      toLinesList(r.new_features) +
-                      "</div>"
-                    : "") +
-                  (r.fixes
-                    ? '<div class="mt-3"><div class="release-section-label">Fixes</div>' +
-                      toLinesList(r.fixes) +
-                      "</div>"
-                    : "") +
+
+                /* TOP ROW: title left, tags right */
+                '<div class="release-card-header flex flex-wrap items-start justify-between gap-3">' +
+                  '<div class="release-card-title">' +
+                    '<div class="text-xs text-muted uppercase tracking-tight">Release</div>' +
+                    '<div class="text-lg font-semibold tracking-tight">' +
+                      escapeHtml(titleLine) +
+                    "</div>" +
+                  "</div>" +
                   tagsHtml +
                 "</div>" +
+
+                /* BOTTOM ROW: New (left), Fixes (right), stacking on small screens */
+                '<div class="mt-4 grid md:grid-cols-2 gap-6 release-card-body">' +
+                  (r.new_features
+                    ? '<section>' +
+                        '<div class="release-section-label">New</div>' +
+                        toLinesList(r.new_features) +
+                      "</section>"
+                    : "") +
+                  (r.fixes
+                    ? '<section>' +
+                        '<div class="release-section-label">Fixes</div>' +
+                        toLinesList(r.fixes) +
+                      "</section>"
+                    : "") +
+                "</div>" +
+
               "</article>"
             );
           })
