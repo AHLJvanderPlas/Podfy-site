@@ -771,17 +771,24 @@ html[data-theme="dark"] .manual-chip{
 
 /* Card variant with hero-style background (used for last block) */
 
-.manual-card-highlight{
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.28), transparent 60%),
-    radial-gradient(circle at 40% 120%, rgba(56,189,248,0.25), transparent 60%),
-    linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.99));
+/* Light mode */
+.manual-card-highlight {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.65),
+    rgba(230, 240, 255, 0.45)
+  );
+  border: 1px solid rgba(140, 160, 200, 0.4);
 }
-html[data-theme="light"] .manual-card-highlight{
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59,130,246,0.14), transparent 60%),
-    radial-gradient(circle at 40% 120%, rgba(56,189,248,0.20), transparent 60%),
-    linear-gradient(135deg,#E5F0FF,#FFFFFF);
+
+/* Dark mode */
+html[data-theme="dark"] .manual-card-highlight {
+  background: linear-gradient(
+    145deg,
+    rgba(30, 40, 70, 0.7),
+    rgba(20, 25, 50, 0.9)
+  );
+  border: 1px solid rgba(90, 110, 150, 0.4);
 }
 
 /* Reference / code boxes */
