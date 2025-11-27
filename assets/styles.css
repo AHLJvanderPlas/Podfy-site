@@ -255,6 +255,7 @@ html[data-theme="light"] .shell-bar-glass{
 .site-header-shell{
   position:sticky;
   top:0;
+  margin-bottom: 1.5rem;
   z-index:40;
   background:transparent;
 }
