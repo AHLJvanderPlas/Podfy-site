@@ -305,63 +305,67 @@
           .join("");
 
         /* CARD VIEW — 4 floating areas */
-        cardsWrapper.innerHTML = filtered
-          .map(function (r) {
-            var tags = tagsFrom(r.area_tags);
-            var tagsHtml = tags.length
-              ? '<div class="release-card-tags flex flex-wrap gap-1 text-xs text-muted">' +
-                tags
-                  .map(function (t) {
-                    return '<span class="pill">' + escapeHtml(t) + "</span>";
-                  })
-                  .join("") +
-                "</div>"
-              : "";
-
-            var titleLine = [
-              r.release_date || "",
-              r.version || "",
-              r.deployment_ref ? "deploy " + r.deployment_ref : ""
-            ]
-              .filter(Boolean)
-              .join(" · ");
-
-            return (
-              '<article class="manual-card card card-glass release-card" id="' +
-              toId(r.version) +
-              '">' +
-
-                /* TOP ROW: title left, tags right */
-                '<div class="release-card-header flex flex-wrap items-start justify-between gap-3">' +
-                  '<div class="release-card-title">' +
-                    '<div class="text-xs text-muted uppercase tracking-tight">Release</div>' +
-                    '<div class="text-lg font-semibold tracking-tight">' +
-                      escapeHtml(titleLine) +
-                    "</div>" +
-                  "</div>" +
-                  tagsHtml +
-                "</div>" +
-
-                /* BOTTOM ROW: New (left), Fixes (right), stacking on small screens */
-                '<div class="mt-4 grid md:grid-cols-2 gap-6 release-card-body">' +
-                  (r.new_features
-                    ? '<section>' +
-                        '<div class="release-section-label">New</div>' +
-                        toLinesList(r.new_features) +
-                      "</section>"
-                    : "") +
-                  (r.fixes
-                    ? '<section>' +
-                        '<div class="release-section-label">Fixes</div>' +
-                        toLinesList(r.fixes) +
-                      "</section>"
-                    : "") +
-                "</div>" +
-
-              "</article>"
-            );
+cardsWrapper.innerHTML = filtered
+  .map(function (r) {
+    var tags = tagsFrom(r.area_tags);
+    var tagsHtml = tags.length
+      ? '<div class="flex flex-wrap gap-1 text-xs text-muted release-card-tags">' +
+        tags
+          .map(function (t) {
+            return '<span class="pill">' + escapeHtml(t) + "</span>";
           })
-          .join("");
+          .join("") +
+        "</div>"
+      : "";
+
+    var titleLine = [
+      r.release_date || "",
+      r.version || "",
+      r.deployment_ref ? "deploy " + r.deployment_ref : ""
+    ]
+      .filter(Boolean)
+      .join(" · ");
+
+    return (
+      '<article class="manual-card card card-glass release-card" id="' +
+      toId(r.version) +
+      '">' +
+
+        /* TOP: wrapper + inner flex row */
+        '<div class="release-card-header">' +
+          '<div class="flex flex-wrap items-start justify-between gap-3">' +
+            '<div class="release-card-title">' +
+              '<div class="text-xs text-muted uppercase tracking-tight">Release</div>' +
+              '<div class="text-lg font-semibold tracking-tight">' +
+                escapeHtml(titleLine) +
+              "</div>" +
+            "</div>" +
+            tagsHtml +
+          "</div>" +
+        "</div>" +
+
+        /* BOTTOM: wrapper + inner grid (2 cols on md+, stacked on mobile) */
+        '<div class="release-card-body mt-4">' +
+          '<div class="grid md:grid-cols-2 gap-6">' +
+            (r.new_features
+              ? '<section>' +
+                  '<div class="release-section-label">New</div>' +
+                  toLinesList(r.new_features) +
+                "</section>"
+              : "") +
+            (r.fixes
+              ? '<section>' +
+                  '<div class="release-section-label">Fixes</div>' +
+                  toLinesList(r.fixes) +
+                "</section>"
+              : "") +
+          "</div>" +
+        "</div>" +
+
+      "</article>"
+    );
+  })
+  .join("");
 
         updatePaginationControls();
       }
