@@ -863,17 +863,37 @@ html[data-theme="light"] .manual-contact-card{
 /* --------------------------------------------------------------------------
    RELEASE CARDS  (desktop + mobile)
    -------------------------------------------------------------------------- */
+/* =========================================================
+   Release cards – 2-column layout
+   ========================================================= */
+
+
+/* base: single column on small screens */
+.release-card{
+  float:left;
+  width:100%;
+  max-width:100%;
+  margin-bottom:2rem;   /* spacing between rows */
+}
+
+/* 2 cards per row on wider screens */
+@media (min-width: 900px){
+  .release-card{
+    max-width:49%;
+    margin-right:2%;    /* gutter between the two cards */
+  }
+
+  /* last card in each row should not get the right gutter */
+  .release-card:nth-of-type(2n){
+    margin-right:0;
+  }
+}
 
 .release-cards-view{
   display:flex;
   flex-direction:column;
   margin-top: 1rem;
   gap:1rem;
-}
-
-/* reuse manual-card visual style, only adjust inner layout */
-.release-card{
-  padding:1.25rem 1.4rem;
 }
 
 /* first line: date • version • deploy */
