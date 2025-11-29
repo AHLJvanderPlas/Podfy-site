@@ -867,6 +867,17 @@ html[data-theme="light"] .manual-contact-card{
    Release cards – 2-column layout
    ========================================================= */
 
+/* container clears floats */
+.release-cards-view{
+  margin-top:1rem;
+}
+
+/* clearfix so the parent wraps floated cards */
+.release-cards-view::after{
+  content:"";
+  display:block;
+  clear:both;
+}
 
 /* base: single column on small screens */
 .release-card{
@@ -877,23 +888,14 @@ html[data-theme="light"] .manual-contact-card{
 }
 
 /* 2 cards per row on wider screens */
-@media (min-width: 900px){
+@media (min-width:900px){
   .release-card{
     max-width:49%;
     margin-right:2%;    /* gutter between the two cards */
   }
-
-  /* last card in each row should not get the right gutter */
   .release-card:nth-of-type(2n){
     margin-right:0;
   }
-}
-
-.release-cards-view{
-  display:flex;
-  flex-direction:column;
-  margin-top: 1rem;
-  gap:1rem;
 }
 
 /* first line: date • version • deploy */
@@ -935,32 +937,4 @@ html[data-theme="light"] .manual-contact-card{
   display:none;
 }
 
-/* --------------------------------------------------------------------------
-   BACKWARD COMPATIBILITY LAYER
-   (All old class names mapped to new system)
-   -------------------------------------------------------------------------- */
-
-/* Buttons */
-.btn-accent, .site-cta-primary{ @apply .btn .btn-primary; }
-.btn-outline, .site-cta-secondary{ @apply .btn .btn-secondary; }
-
-/* Cards */
-.tile-card, .brand-card, .release-card, .manual-side-card, .manual-card{
-  @apply .card .card-glass;
-}
-
-/* Pills */
-.badge, .release-tag, .manual-chip, .manual-side-badge, .manual-hero-pill{
-  @apply .pill;
-}
-
-/* Inputs */
-#contact-form input,
-#contact-form textarea{
-  @apply input[type=text];
-}
-
-/* Legacy header CTA groups */
-.site-header-actions .btn-accent{ @apply .btn-primary; }
-.site-header-actions .btn-outline{ @apply .btn-secondary; }
 
