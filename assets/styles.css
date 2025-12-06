@@ -1093,7 +1093,7 @@ html[data-theme="light"] .manual-chip {
 }
 
 /* Right side: search takes roughly half of the bar on desktop */
-.site-subheader-right {
+.site-subheader-search {
   flex: 1 1 0;
   max-width: none;
   width: 100%;
@@ -1102,14 +1102,14 @@ html[data-theme="light"] .manual-chip {
 }
 
 /* Inner wrapper so we can stretch the field */
-.site-subheader-right .shell-bar-search {
+.site-subheader-search .shell-bar-search {
   flex: 1 1 0;
   display: flex;
   justify-content: flex-end;
 }
 
 /* Pill-style search input */
-.site-subheader-right .search-input {
+.site-subheader-search .search-input {
   width: 100%;
   max-width: 420px;             /* “right half” on desktop */
   padding: .75rem 1.1rem;
@@ -1125,18 +1125,18 @@ html[data-theme="light"] .manual-chip {
     background-color 150ms ease;
 }
 
-.site-subheader-right .search-input::placeholder {
+.site-subheader-search .search-input::placeholder {
   color: var(--muted);
 }
 
 /* Light / dark variations */
-html[data-theme="dark"] .site-subheader-right .search-input {
+html[data-theme="dark"] .site-subheader-search .search-input {
   background: rgba(15,23,42,0.5);
   border-color: rgba(148,163,184,0.45);
   color: #e5e7eb;
 }
 
-html[data-theme="light"] .site-subheader-right .search-input {
+html[data-theme="light"] .site-subheader-search .search-input {
   background: rgba(255,255,255,0.85);
   border-color: rgba(148,163,184,0.55);
   color: #020617;
@@ -1149,16 +1149,17 @@ html[data-theme="light"] .site-subheader-right .search-input {
     align-items: flex-start;
   }
 
-  .site-subheader-right {
+  .site-subheader-search {
     width: 100%;
     justify-content: flex-start;
   }
 
-  .site-subheader-right .shell-bar-search {
+  .site-subheader-search .shell-bar-search {
     width: 100%;
   }
 
-  .site-subheader-right .search-input {
+  .site-subheader-search .search-input {
     max-width: none; /* full width on mobile */
   }
 }
+
