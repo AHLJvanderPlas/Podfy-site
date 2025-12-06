@@ -902,10 +902,6 @@ html[data-theme="light"] body {
    so the cards line up perfectly with the subheader. */
 .release-page .release-cards-view {
   margin-top: 1.5rem;
-  max-width: none;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0;
 }
 
 /* Mobile-first: single column card */
