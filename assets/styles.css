@@ -874,42 +874,33 @@ html[data-theme="light"] .manual-contact-card{
    RELEASE CARDS  (desktop + mobile)
    -------------------------------------------------------------------------- */
 
-/* container – keep simple vertical flow */
+/* Container – match page/subheader width */
 .release-cards-view{
   margin-top:1rem;
-  overflow:hidden; /* replaces clearfix */
+  max-width:var(--container-6xl);
+  margin-left:auto;
+  margin-right:auto;
+  padding:0 1rem;
+  /* no overflow here – we want to SEE the rounded corners */
 }
 
-/* MOBILE-FIRST: single column, centered card with side breathing room */
+/* Mobile-first: single column card */
 .release-card{
-  float:none;              /* no floats on mobile */
-  width:auto;
-  max-width:40rem;         /* max visual width of a card */
-  margin:1.5rem auto 2rem; /* center card and keep gap between header + card */
+  position:relative;
+  float:none;
+  width:100%;
+  margin:1.5rem 0 2rem;
+  border-radius:1.5rem;
 }
 
-/* keep the very first card (the summary/sub-header) tight to the block above */
-.release-card:first-of-type{
-  margin-top:0;
+/* Header row (title + tags) */
+.release-card-header{
+  display:flex;
+  flex-direction:column;
+  gap:.5rem;
 }
 
-/* DESKTOP: keep single column, align with subheader width */
-@media (min-width: 900px) {
-  .release-cards-view {
-    max-width: var(--container-6xl);
-    margin: 1.5rem auto 0;
-    padding: 0 1rem;
-  }
-
-  .release-card {
-    float: none;
-    width: 100%;
-    max-width: none;
-    margin: 1.5rem 0 2rem;
-  }
-}
-
-/* first line: date • version • deploy */
+/* first line: date · version · deploy */
 .release-card-header-line{
   display:flex;
   flex-wrap:wrap;
@@ -917,30 +908,82 @@ html[data-theme="light"] .manual-contact-card{
   align-items:baseline;
   font-size:.8rem;
   color:var(--muted);
-  margin-bottom:.4rem;
 }
 
-.release-card-date{
-  font-weight:500;
-}
-
+.release-card-date{font-weight:500;}
 .release-card-version{
   font-weight:600;
   text-transform:uppercase;
   letter-spacing:.06em;
 }
+.release-card-deploy{opacity:.9;}
 
-.release-card-deploy{
-  opacity:.9;
+/* Tags row */
+.release-card-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.4rem;
 }
 
+/* Card body */
 .release-card-body{
-  margin-top:.2rem;
+  margin-top:.75rem;
   font-size:.9rem;
 }
 
-.release-card-tags{
-  margin-top:.6rem;
+/* “New” / “Fixes” two-column layout on desktop */
+.release-columns{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  margin-top:.4rem;
+}
+
+.release-column{
+  min-width:0;
+}
+
+.release-section-label{
+  font-size:.78rem;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  font-weight:600;
+  color:var(--muted);
+  margin-bottom:.35rem;
+}
+
+/* list styles reused from previous version */
+.release-columns ul{
+  margin:.1rem 0 .2rem 1.1rem;
+  padding:0;
+}
+.release-columns li{margin-bottom:.25rem;}
+
+/* Desktop: keep single column of cards, but “New/Fixes” side-by-side */
+@media (min-width:900px){
+  .release-card{
+    margin:1.75rem 0 2.25rem;
+  }
+
+  .release-card-header{
+    flex-direction:row;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:1.25rem;
+  }
+
+  .release-card-tags{
+    justify-content:flex-end;
+  }
+
+  .release-columns{
+    flex-direction:row;
+    gap:2.5rem;
+  }
+
+  .release-column{
+    flex:1 1 0;
+  }
 }
 
 /* Releases: use cards everywhere, hide old table */
