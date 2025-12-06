@@ -34,7 +34,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
   <!-- Unified Podfy stylesheet -->
-  <link rel="stylesheet" href="/assets/styles.css?v=dev19">
+  <link rel="stylesheet" href="/assets/styles.css?v=dev20">
 </head>
 <body class="antialiased">
   <a href="#main"
@@ -118,344 +118,273 @@
   [[PODFY_FOOTER]]
 
   <script>
-    (function () {
-      var API_URL = "/api/releases";
-      var PAGE_SIZE = 25;
+  (function () {
+    var API_URL = "/api/releases";
+    var PAGE_SIZE = 25;
 
-      var allReleases = [];
-      var totalReleases = 0;
-      var currentPage = 1;
-      var totalPages = 1;
-      var currentFilter = "";
+    var allReleases = [];
+    var totalReleases = 0;
+    var currentPage = 1;
+    var totalPages = 1;
+    var currentFilter = "";
 
-      var loadingEl = document.getElementById("releases-loading");
-      var emptyEl = document.getElementById("releases-empty");
-      var errorEl = document.getElementById("releases-error");
-      var metaEl = document.getElementById("releases-meta");
-      var tableBody = document.getElementById("releases-table-body");
-      var cardsWrapper = document.getElementById("releases-cards-wrapper");
-      var searchInput = document.getElementById("release-search");
+    var loadingEl = document.getElementById("releases-loading");
+    var emptyEl = document.getElementById("releases-empty");
+    var errorEl = document.getElementById("releases-error");
+    var metaEl = document.getElementById("releases-meta");
+    var tableBody = document.getElementById("releases-table-body");
+    var cardsWrapper = document.getElementById("releases-cards-wrapper");
+    var searchInput = document.getElementById("release-search");
 
-      var paginationEl = document.getElementById("releases-pagination");
-      var prevBtn = document.getElementById("releases-prev");
-      var nextBtn = document.getElementById("releases-next");
-      var pageInfo = document.getElementById("releases-page-info");
+    var paginationEl = document.getElementById("releases-pagination");
+    var prevBtn = document.getElementById("releases-prev");
+    var nextBtn = document.getElementById("releases-next");
+    var pageInfo = document.getElementById("releases-page-info");
 
-      function escapeHtml(str) {
-        if (!str) return "";
-        return str
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;");
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function toLines(text) {
+      if (!text) return [];
+      return text
+        .split(/\r?\n/)
+        .map(function (l) { return l.trim(); })
+        .filter(Boolean);
+    }
+
+    function toListHtml(text) {
+      var lines = toLines(text);
+      if (!lines.length) return "";
+      if (lines.length === 1) {
+        return "<p>" + escapeHtml(lines[0]) + "</p>";
+      }
+      return "<ul>" + lines.map(function (l) {
+        return "<li>" + escapeHtml(l) + "</li>";
+      }).join("") + "</ul>";
+    }
+
+    function tagsFrom(area_tags) {
+      if (!area_tags) return [];
+      return area_tags
+        .split(",")
+        .map(function (t) { return t.trim(); })
+        .filter(Boolean);
+    }
+
+    function toId(version) {
+      if (!version) return "";
+      return "v-" + version.replace(/[^0-9a-z]/gi, "-");
+    }
+
+    function updatePaginationControls() {
+      if (!paginationEl) return;
+
+      if (totalReleases <= PAGE_SIZE && currentPage === 1) {
+        paginationEl.style.display = "none";
+        return;
       }
 
-      // Convert multi-line text into a bullet list
-      // and strip any leading "- " / "– " to avoid double bullets.
-      function toLinesList(text) {
-        if (!text) return "";
-        var lines = text
-          .split(/\r?\n/)
-          .map(function (l) {
-            var t = l.trim();
-            if (t.startsWith("- ")) t = t.slice(2);
-            else if (t.startsWith("– ")) t = t.slice(2);
-            return t;
-          })
-          .filter(Boolean);
+      paginationEl.style.display = "flex";
 
-        if (lines.length <= 1) {
-          return "<p>" + escapeHtml(lines[0] || text) + "</p>";
-        }
+      pageInfo.textContent =
+        "Page " + currentPage + " of " + (totalPages || 1);
 
-        return (
-          '<ul class="list-disc list-inside">' +
-          lines
-            .map(function (l) { return "<li>" + escapeHtml(l) + "</li>"; })
-            .join("") +
-          "</ul>"
-        );
-      }
+      prevBtn.disabled = currentPage <= 1;
+      nextBtn.disabled = currentPage >= totalPages;
+    }
 
-      function toId(version) {
-        if (!version) return "";
-        return "v-" + version.replace(/[^0-9a-z]/gi, "-");
-      }
+    function render(filter) {
+      filter = (typeof filter === "string" ? filter : currentFilter || "").toLowerCase();
+      currentFilter = filter;
 
-      function tagsFrom(area_tags) {
-        if (!area_tags) return [];
-        return area_tags
-          .split(",")
-          .map(function (t) { return t.trim(); })
-          .filter(Boolean);
-      }
+      var filtered = allReleases.filter(function (r) {
+        if (!filter) return true;
+        var blob = [
+          r.version,
+          r.release_date,
+          r.deployment_ref,
+          r.fixes,
+          r.new_features,
+          r.area_tags
+        ].join(" ").toLowerCase();
+        return blob.indexOf(filter) !== -1;
+      });
 
-      function updatePaginationControls() {
-        if (!paginationEl) return;
-
-        if (totalReleases <= PAGE_SIZE && currentPage === 1) {
-          paginationEl.style.display = "none";
-          return;
-        }
-
-        paginationEl.style.display = "flex";
-
-        if (pageInfo) {
-          pageInfo.textContent =
-            "Page " + currentPage + " of " + (totalPages || 1);
-        }
-
-        if (prevBtn) prevBtn.disabled = currentPage <= 1;
-        if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
-      }
-
-      function render(filter) {
-        filter = (typeof filter === "string" ? filter : currentFilter || "").toLowerCase();
-        currentFilter = filter;
-
-        var filtered = allReleases.filter(function (r) {
-          if (!filter) return true;
-          var blob = [
-            r.version,
-            r.release_date,
-            r.deployment_ref,
-            r.fixes,
-            r.new_features,
-            r.area_tags
-          ].join(" ").toLowerCase();
-          return blob.indexOf(filter) !== -1;
-        });
-
-        if (!filtered.length) {
-          loadingEl.style.display = "none";
-          emptyEl.style.display = "block";
-          errorEl.style.display = "none";
-          tableBody.innerHTML = "";
-          cardsWrapper.innerHTML = "";
-          if (metaEl) {
-            metaEl.textContent =
-              "No releases match the current filter on this page (page " +
-              currentPage +
-              " of " +
-              (totalPages || 1) +
-              ").";
-          }
-          updatePaginationControls();
-          return;
-        }
-
+      if (!filtered.length) {
         loadingEl.style.display = "none";
-        emptyEl.style.display = "none";
+        emptyEl.style.display = "block";
         errorEl.style.display = "none";
-
+        tableBody.innerHTML = "";
+        cardsWrapper.innerHTML = "";
         if (metaEl) {
           metaEl.textContent =
-            "Showing " +
-            filtered.length +
-            " of " +
-            totalReleases +
-            " releases (page " +
-            currentPage +
-            " of " +
-            (totalPages || 1) +
-            ").";
+            "No releases match the current filter on this page (page " +
+            currentPage + " of " + (totalPages || 1) + ").";
+        }
+        updatePaginationControls();
+        return;
+      }
+
+      loadingEl.style.display = "none";
+      emptyEl.style.display = "none";
+      errorEl.style.display = "none";
+
+      if (metaEl) {
+        metaEl.textContent =
+          "Showing " + filtered.length + " of " + totalReleases +
+          " releases (page " + currentPage + " of " + (totalPages || 1) + ").";
+      }
+
+      // TABLE VIEW (still kept for accessibility, hidden by CSS)
+      tableBody.innerHTML = filtered.map(function (r) {
+        var updates = "";
+        if (r.new_features) {
+          updates += "<div><strong>New</strong>" + toListHtml(r.new_features) + "</div>";
+        }
+        if (r.fixes) {
+          updates += "<div style=\"margin-top:.5rem;\"><strong>Fixes</strong>" + toListHtml(r.fixes) + "</div>";
+        }
+        return (
+          "<tr>" +
+          "<td>" + escapeHtml(r.release_date || "") + "</td>" +
+          "<td>" + escapeHtml(r.version || "") + "</td>" +
+          "<td>" + escapeHtml(r.deployment_ref || "") + "</td>" +
+          "<td>" + updates + "</td>" +
+          "</tr>"
+        );
+      }).join("");
+
+      // CARD VIEW
+      cardsWrapper.innerHTML = filtered.map(function (r) {
+        var tags = tagsFrom(r.area_tags);
+        var tagsHtml = tags.length
+          ? tags.map(function (t) {
+              return '<span class="release-tag">' + escapeHtml(t) + "</span>";
+            }).join("")
+          : "";
+
+        var newHtml = "";
+        var fixHtml = "";
+
+        if (r.new_features) {
+          newHtml =
+            '<div class="release-column release-column-new">' +
+              '<div class="release-section-label">New</div>' +
+              toListHtml(r.new_features) +
+            "</div>";
         }
 
-        /* TABLE ROWS (legacy structure) */
-        tableBody.innerHTML = filtered
-          .map(function (r) {
-            var updates = "";
-            if (r.new_features) {
-              updates +=
-                '<div><div class="release-section-label">New</div>' +
-                toLinesList(r.new_features) +
-                "</div>";
-            }
-            if (r.fixes) {
-              updates +=
-                '<div class="mt-2"><div class="release-section-label">Fixes</div>' +
-                toLinesList(r.fixes) +
-                "</div>";
-            }
-            var tags = tagsFrom(r.area_tags);
-            if (tags.length) {
-              updates +=
-                '<div class="mt-2">' +
-                tags
-                  .map(function (t) {
-                    return '<span class="pill">' + escapeHtml(t) + "</span>";
-                  })
-                  .join("") +
-                "</div>";
-            }
+        if (r.fixes) {
+          fixHtml =
+            '<div class="release-column release-column-fix">' +
+              '<div class="release-section-label">Fixes</div>' +
+              toListHtml(r.fixes) +
+            "</div>";
+        }
 
-            return (
-              '<tr id="' +
-              toId(r.version) +
-              '">' +
-              "<td>" +
-              escapeHtml(r.release_date || "") +
-              "</td>" +
-              "<td><strong>" +
-              escapeHtml(r.version || "") +
-              "</strong></td>" +
-              "<td>" +
-              escapeHtml(r.deployment_ref || "") +
-              "</td>" +
-              "<td>" +
-              updates +
-              "</td>" +
-              "</tr>"
-            );
-          })
-          .join("");
+        var columnsHtml =
+          '<div class="release-columns">' + newHtml + fixHtml + "</div>";
 
-        /* CARD VIEW — title + tags top, New/Fixes bottom (2 cols on md+) */
-        cardsWrapper.innerHTML = filtered
-          .map(function (r) {
-            var tags = tagsFrom(r.area_tags);
-            var tagsHtml = tags.length
-              ? '<div class="flex flex-wrap gap-1 text-xs text-muted release-card-tags">' +
-                tags
-                  .map(function (t) {
-                    return '<span class="pill">' + escapeHtml(t) + "</span>";
-                  })
-                  .join("") +
-                "</div>"
-              : "";
+        return (
+          '<article class="release-card card card-glass" id="' + toId(r.version) + '">' +
+            '<header class="release-card-header">' +
+              '<div class="release-card-header-line">' +
+                '<span class="release-card-date">' +
+                  'Release: ' + escapeHtml(r.release_date || "") +
+                "</span>" +
+                '<span>&nbsp;· Version: ' +
+                  escapeHtml(r.version || "") +
+                "</span>" +
+                (r.deployment_ref
+                  ? '<span>&nbsp;· Build: ' + escapeHtml(r.deployment_ref) + "</span>"
+                  : "") +
+              "</div>" +
+              (tagsHtml
+                ? '<div class="release-card-tags">' + tagsHtml + "</div>"
+                : "") +
+            "</header>" +
+            '<div class="release-card-body">' +
+              columnsHtml +
+            "</div>" +
+          "</article>"
+        );
+      }).join("");
 
-            // Title line: Release, Version, Build
-            var titleParts = [];
-            if (r.release_date) {
-              titleParts.push("Release: " + r.release_date);
-            }
-            if (r.version) {
-              titleParts.push("Version: " + r.version);
-            }
-            if (r.deployment_ref) {
-              titleParts.push("Build: " + r.deployment_ref);
-            }
-            var titleLine = titleParts.join(" · ");
+      updatePaginationControls();
+    }
 
-            return (
-              '<article class="manual-card card card-glass release-card" id="' +
-              toId(r.version) +
-              '">' +
+    function loadPage(page) {
+      currentPage = page || 1;
+      loadingEl.style.display = "block";
+      emptyEl.style.display = "none";
+      errorEl.style.display = "none";
 
-                // TOP: title left, tags right
-                '<div class="release-card-header">' +
-                  '<div class="flex flex-wrap items-start justify-between gap-3">' +
-                    '<div class="release-card-title">' +
-                      '<div class="text-lg font-semibold tracking-tight">' +
-                        escapeHtml(titleLine) +
-                      "</div>" +
-                    "</div>" +
-                    tagsHtml +
-                  "</div>" +
-                "</div>" +
+      var url =
+        API_URL +
+        "?page=" + encodeURIComponent(currentPage) +
+        "&pageSize=" + encodeURIComponent(PAGE_SIZE);
 
-                // BOTTOM: New (left) and Fixes (right)
-                '<div class="release-card-body mt-4">' +
-                  '<div class="flex flex-col md:flex-row gap-6">' +
-                    (r.new_features
-                      ? '<section class="flex-1">' +
-                          '<div class="release-section-label">New</div>' +
-                          toLinesList(r.new_features) +
-                        "</section>"
-                      : "") +
-                    (r.fixes
-                      ? '<section class="flex-1">' +
-                          '<div class="release-section-label">Fixes</div>' +
-                          toLinesList(r.fixes) +
-                        "</section>"
-                      : "") +
-                  "</div>" +
-                "</div>" +
+      fetch(url)
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          allReleases = data.items || [];
+          totalReleases = data.total || allReleases.length;
+          totalPages = data.totalPages || 1;
+          currentPage = data.page || currentPage;
 
-              "</article>"
-            );
-          })
-          .join("");
-
-        updatePaginationControls();
-      }
-
-      function loadPage(page) {
-        currentPage = page || 1;
-        loadingEl.style.display = "block";
-        emptyEl.style.display = "none";
-        errorEl.style.display = "none";
-
-        var url =
-          API_URL +
-          "?page=" +
-          encodeURIComponent(currentPage) +
-          "&pageSize=" +
-          encodeURIComponent(PAGE_SIZE);
-
-        fetch(url)
-          .then(function (res) {
-            if (!res.ok) {
-              throw new Error("HTTP " + res.status);
-            }
-            return res.json();
-          })
-          .then(function (data) {
-            allReleases = data.items || [];
-            totalReleases = data.total || allReleases.length;
-            totalPages = data.totalPages || 1;
-            currentPage = data.page || currentPage;
-
-            if (!allReleases.length) {
-              loadingEl.style.display = "none";
-              emptyEl.style.display = "block";
-              if (metaEl) {
-                metaEl.textContent =
-                  "No release notes are published yet for this page.";
-              }
-              updatePaginationControls();
-              return;
-            }
-
-            render(currentFilter);
-          })
-          .catch(function () {
+          if (!allReleases.length) {
             loadingEl.style.display = "none";
-            errorEl.style.display = "block";
+            emptyEl.style.display = "block";
             if (metaEl) {
-              metaEl.textContent = "Unable to load release notes.";
+              metaEl.textContent = "No release notes are published yet for this page.";
             }
-          });
-      }
+            updatePaginationControls();
+            return;
+          }
 
-      /* Search */
-      if (searchInput) {
-        searchInput.addEventListener("input", function (e) {
-          currentFilter = e.target.value || "";
           render(currentFilter);
+        })
+        .catch(function () {
+          loadingEl.style.display = "none";
+          errorEl.style.display = "block";
+          if (metaEl) metaEl.textContent = "Unable to load release notes.";
         });
-      }
+    }
 
-      /* Pagination buttons */
-      if (prevBtn) {
-        prevBtn.addEventListener("click", function () {
-          if (currentPage > 1) {
-            loadPage(currentPage - 1);
-          }
-        });
-      }
-      if (nextBtn) {
-        nextBtn.addEventListener("click", function () {
-          if (currentPage < totalPages) {
-            loadPage(currentPage + 1);
-          }
-        });
-      }
+    // Search
+    if (searchInput) {
+      searchInput.addEventListener("input", function (e) {
+        currentFilter = e.target.value || "";
+        render(currentFilter);
+      });
+    }
 
-      /* Initial load */
-      loadPage(1);
-    })();
-  </script>
+    // Pagination
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        if (currentPage > 1) loadPage(currentPage - 1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        if (currentPage < totalPages) loadPage(currentPage + 1);
+      });
+    }
+
+    // Initial page
+    loadPage(1);
+  })();
+</script>
+
   <script src="/assets/theme.js" defer></script>
 </body>
 </html>
