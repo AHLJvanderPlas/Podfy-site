@@ -119,6 +119,16 @@ html[data-theme="dark"] .btn-secondary{
   transform:translateY(-1px);
 }
 
+body {
+  /* keep your existing background definition here */
+  /* e.g. background: radial-gradient(...); */
+
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
 /* --------------------------------------------------------------------------
    CARD SYSTEM – unified
    -------------------------------------------------------------------------- */
@@ -869,34 +879,35 @@ html[data-theme="light"] .manual-contact-card{
    Release cards – 2-column layout
    ========================================================= */
 
-/* container clears floats */
-.release-cards-view{
-  margin-top:1rem;
+/* Mobile-first, flex column layout */
+.release-cards-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 1rem; /* adds spacing from screen edges */
 }
 
-/* clearfix so the parent wraps floated cards */
-.release-cards-view::after{
-  content:"";
-  display:block;
-  clear:both;
+/* Card base */
+.release-card {
+  width: 100%;
+  max-width: 40rem;      /* ~640px — keeps a nice readable width */
+  margin: 0 auto;        /* centers the card */
+  float: none !important; /* kill old float-based behaviour */
 }
 
-/* base: single column on small screens */
-.release-card{
-  float:left;
-  width:100%;
-  max-width:100%;
-  margin-bottom:2rem;   /* spacing between rows */
-}
-
-/* 2 cards per row on wider screens */
-@media (min-width:900px){
-  .release-card{
-    max-width:49%;
-    margin-right:2%;    /* gutter between the two cards */
+/* Two cards per row on larger screens */
+@media (min-width: 900px) {
+  .release-cards-view {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 2%;
+    justify-content: space-between;
   }
-  .release-card:nth-of-type(2n){
-    margin-right:0;
+
+  .release-card {
+    max-width: 49%;
+    margin: 0 0 2rem 0;
   }
 }
 
