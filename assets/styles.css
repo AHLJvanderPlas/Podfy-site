@@ -875,39 +875,36 @@ html[data-theme="light"] .manual-contact-card{
 /* --------------------------------------------------------------------------
    RELEASE CARDS  (desktop + mobile)
    -------------------------------------------------------------------------- */
-/* =========================================================
-   Release cards – 2-column layout
-   ========================================================= */
 
-/* Mobile-first, flex column layout */
-.release-cards-view {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 0 1rem; /* adds spacing from screen edges */
+/* container – keep simple vertical flow */
+.release-cards-view{
+  margin-top:1rem;
+  overflow:hidden; /* replaces clearfix */
 }
 
-/* Card base */
-.release-card {
-  width: 100%;
-  max-width: 40rem;      /* ~640px — keeps a nice readable width */
-  margin: 0 auto;        /* centers the card */
-  float: none !important; /* kill old float-based behaviour */
+/* MOBILE-FIRST: single column, centered card with side breathing room */
+.release-card{
+  float:none;              /* no floats on mobile */
+  width:auto;
+  max-width:40rem;         /* max visual width of a card */
+  margin:1.5rem auto 2rem; /* center card and keep gap between header + card */
 }
 
-/* Two cards per row on larger screens */
-@media (min-width: 900px) {
-  .release-cards-view {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 2%;
-    justify-content: space-between;
+/* keep the very first card (the summary/sub-header) tight to the block above */
+.release-card:first-of-type{
+  margin-top:0;
+}
+
+/* DESKTOP: 2 cards per row again */
+@media (min-width:900px){
+  .release-card{
+    float:left;
+    width:49%;
+    max-width:none;
+    margin:0 2% 2rem 0;   /* two columns with gutter */
   }
-
-  .release-card {
-    max-width: 49%;
-    margin: 0 0 2rem 0;
+  .release-card:nth-of-type(2n){
+    margin-right:0;
   }
 }
 
