@@ -870,8 +870,6 @@ html[data-theme="light"] .manual-contact-card{
   margin-bottom:.7rem;
 }
 
-.site-subheader-right .search-input{max-width:260px;}
-
 /* --------------------------------------------------------------------------
    RELEASE CARDS  (desktop + mobile)
    -------------------------------------------------------------------------- */
@@ -895,16 +893,19 @@ html[data-theme="light"] .manual-contact-card{
   margin-top:0;
 }
 
-/* DESKTOP: 2 cards per row again */
-@media (min-width:900px){
-  .release-card{
-    float:left;
-    width:49%;
-    max-width:none;
-    margin:0 2% 2rem 0;   /* two columns with gutter */
+/* DESKTOP: keep single column, align with subheader width */
+@media (min-width: 900px) {
+  .release-cards-view {
+    max-width: var(--container-6xl);
+    margin: 1.5rem auto 0;
+    padding: 0 1rem;
   }
-  .release-card:nth-of-type(2n){
-    margin-right:0;
+
+  .release-card {
+    float: none;
+    width: 100%;
+    max-width: none;
+    margin: 1.5rem 0 2rem;
   }
 }
 
@@ -1027,50 +1028,88 @@ html[data-theme="light"] .manual-chip {
 }
 
 /* =========================================================
-   3. Releases search field – copy delivery portal styling
+   3. Releases search field – desktop + mobile layout
    ========================================================= */
 
-/* wrapper in the subheader right side */
-.site-subheader-search {
-  flex: 0 0 auto;
-  max-width: 320px;
-  width: 100%;
+/* Subheader shell: keep as row on desktop */
+.site-subheader-container .shell-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
 }
 
-/* pill-style input */
-.site-subheader-search .search-input {
+/* Left side: text area */
+.site-subheader-left {
+  flex: 1 1 auto;
+}
+
+/* Right side: search pill */
+.site-subheader-right {
+  flex: 0 0 auto;
+  max-width: 420px;     /* wider on desktop */
   width: 100%;
-  padding: 7px 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Pill-style input – bigger than default */
+.site-subheader-right .search-input {
+  width: 100%;
+  padding: 0.75rem 1.1rem;              /* roughly 2x taller than before */
   border-radius: 999px;
-  border: 1px solid var(--line-soft, rgba(148, 163, 184, 0.6));
-  font-size: 0.8rem;
-  background: rgba(15, 23, 42, 0.02);
+  border: 1px solid var(--line);
+  font-size: 0.9rem;
+  background: rgba(15, 23, 42, 0.04);
   color: var(--ink);
   outline: none;
-  transition: border-color 150ms ease, box-shadow 150ms ease,
-              background-color 150ms ease;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
 }
 
-.site-subheader-search .search-input::placeholder {
+.site-subheader-right .search-input::placeholder {
   color: var(--muted);
 }
 
-/* light / dark variations */
-html[data-theme="dark"] .site-subheader-search .search-input {
-  background: rgba(15, 23, 42, 0.5);
+/* Dark theme variant */
+html[data-theme="dark"] .site-subheader-right .search-input {
+  background: rgba(15, 23, 42, 0.65);
   border-color: rgba(148, 163, 184, 0.45);
   color: #e5e7eb;
 }
 
-html[data-theme="light"] .site-subheader-search .search-input {
-  background: rgba(255, 255, 255, 0.85);
+/* Light theme variant */
+html[data-theme="light"] .site-subheader-right .search-input {
+  background: rgba(255, 255, 255, 0.9);
   border-color: rgba(148, 163, 184, 0.55);
   color: #020617;
 }
 
-/* focus ring, same behaviour as delivery portal table search */
-.site-subheader-search .search-input:focus {
+/* Focus ring */
+.site-subheader-right .search-input:focus {
   border-color: var(--brand-accent);
   box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.55);
-  background: rgba(15, 23, 42, 0.03);
+  background: rgba(15, 23, 42, 0.02);
 }
+
+/* Mobile: stack text and search; search goes full-width below text */
+@media (max-width: 768px) {
+  .site-subheader-container .shell-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-subheader-right {
+    max-width: none;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0.75rem;
+  }
+
+  .site-subheader-right .search-input {
+    width: 100%;
+  }
+}
+
