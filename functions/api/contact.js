@@ -1,7 +1,7 @@
 // functions/api/contact.js
 //
 // Handles POST /api/contact
-// - Honeypot check (website field)
+// - Honeypot check
 // - Cloudflare Turnstile verification
 // - Stores submission into D1 (Site_Form)
 // - Sends email via Resend to info@podfy.net
@@ -15,25 +15,21 @@ export async function onRequestPost({ request, env }) {
       email = "",
       company = "",
       message = "",
-      website = "", // honeypot (should stay empty)
-      page_path = "/" // optional, can be set from frontend later
+      website = "",   // honeypot
+      page_path = "/" // optional, set by frontend
     } = data;
 
     const ip = request.headers.get("CF-Connecting-IP") || "";
     const userAgent = request.headers.get("User-Agent") || "";
 
-    // 1) Honeypot: if "website" is filled, treat as spam and short-circuit
+    // 1) Honeypot: if "website" is filled, silently accept but do nothing else
     if (website && website.trim() !== "") {
-      // We pretend everything is OK, but do not send email or write to DB.
-      return jsonResponse({ ok: true });
+      return jsonResponse({ ok: true, code: "HONEYPOT_TRIGGered" });
     }
 
     // 2) Basic validation
     if (!name.trim() || !email.trim()) {
-      return jsonResponse(
-        { ok: false, error: "Missing name or email" },
-        400
-      );
+      return errorResponse("MISSING_FIELDS", "Missing name or email", 400);
     }
 
     // 3) Turnstile verification
@@ -44,10 +40,7 @@ export async function onRequestPost({ request, env }) {
       "";
 
     if (!turnstileToken) {
-      return jsonResponse(
-        { ok: false, error: "Missing Turnstile token" },
-        400
-      );
+      return errorResponse("MISSING_TURNSTILE", "Missing Turnstile token", 400);
     }
 
     const verifyBody = new URLSearchParams();
@@ -65,15 +58,12 @@ export async function onRequestPost({ request, env }) {
 
     const verifyJson = await verifyRes.json();
     if (!verifyJson.success) {
-      return jsonResponse(
-        { ok: false, error: "Turnstile validation failed" },
-        400
-      );
+      return errorResponse("TURNSTILE_FAILED", "Turnstile validation failed", 400);
     }
 
     // 4) Store in D1 (Site_Form)
     try {
-      const db = env.BD; // D1 binding (adjust if your binding name differs)
+      const db = env.BD; // adjust if your binding name differs
 
       await db
         .prepare(
@@ -101,8 +91,8 @@ export async function onRequestPost({ request, env }) {
         )
         .run();
     } catch (dbErr) {
-      // Don't kill the request if DB insert fails; just log.
       console.error("Site_Form insert failed:", dbErr);
+      // We log the error but still continue with email sending
     }
 
     // 5) Send email via Resend
@@ -150,31 +140,28 @@ ${message || "-"}
     if (!resendRes.ok) {
       const errText = await resendRes.text().catch(() => "");
       console.error("Resend error:", errText);
-      // We still return 500 to the frontend so you can show a proper message.
-      return jsonResponse(
-        { ok: false, error: "Resend API error" },
-        500
-      );
+      return errorResponse("RESEND_ERROR", "Resend API error", 500);
     }
 
     // 6) Final OK
     return jsonResponse({ ok: true });
   } catch (err) {
     console.error("Unexpected /api/contact error:", err);
-    return jsonResponse(
-      { ok: false, error: "Unexpected error" },
-      500
-    );
+    return errorResponse("UNEXPECTED_ERROR", "Unexpected error", 500);
   }
 }
 
-// Small helpers
+// Helpers
 
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
     headers: { "Content-Type": "application/json; charset=utf-8" }
   });
+}
+
+function errorResponse(code, message, status) {
+  return jsonResponse({ ok: false, code, error: message }, status);
 }
 
 function escapeHtml(str) {
