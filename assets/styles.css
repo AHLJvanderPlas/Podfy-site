@@ -1164,3 +1164,312 @@ html[data-theme="light"] .site-subheader-search .search-input {
   }
 }
 
+/* =========================================================
+   HOME PAGE LAYOUT
+   ========================================================= */
+
+.home-main {
+  max-width: var(--container-6xl);
+  margin: 0 auto;
+  padding: 2.5rem 1rem 3rem;
+}
+
+/* Generic section spacing */
+.home-section {
+  margin: 2.5rem 0;
+}
+
+/* HERO */
+
+.home-hero-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .home-hero-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.home-hero-left {
+  min-width: 0;
+}
+
+.home-hero-right {
+  min-width: 0;
+}
+
+.home-kicker {
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  color: var(--muted);
+  margin-bottom: .5rem;
+}
+
+.home-hero-title {
+  font-size: 2.1rem;
+  line-height: 1.1;
+  letter-spacing: -.04em;
+  margin: 0 0 .6rem;
+  color: var(--ink);
+}
+
+.home-hero-lead {
+  margin: 0 0 1rem;
+  font-size: .98rem;
+  color: var(--muted);
+}
+
+.icon-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem;
+}
+
+.icon-list li {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  margin-bottom: .45rem;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.icon-list .icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.home-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-bottom: .6rem;
+}
+
+.home-hero-footnote {
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+/* Right-hand hero card */
+
+.home-hero-card {
+  border-radius: 1rem;
+}
+
+.home-hero-card-title {
+  margin: 0 0 .5rem;
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.home-hero-steps {
+  margin: 0 0 .5rem 1.1rem;
+  padding: 0;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.home-hero-steps li {
+  margin-bottom: .25rem;
+}
+
+.home-hero-mini {
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+/* GRID HELPERS */
+
+.home-grid-4,
+.home-grid-3,
+.home-grid-2 {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.home-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.home-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.home-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .home-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .home-grid-4,
+  .home-grid-3,
+  .home-grid-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Section headers */
+
+.home-section-title {
+  font-size: 1.6rem;
+  margin: 0 0 .4rem;
+  color: var(--brand-primary);
+}
+
+html[data-theme="dark"] .home-section-title {
+  color: var(--ink);
+}
+
+.home-section-intro {
+  margin: 0 0 1.2rem;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+/* Cards */
+
+.home-card-title {
+  margin: 0 0 .35rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.home-card-body {
+  margin: 0;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.home-card-link {
+  display: inline-block;
+  margin-top: .7rem;
+  font-size: .8rem;
+  color: var(--brand-primary);
+  text-decoration: underline;
+}
+
+html[data-theme="dark"] .home-card-link {
+  color: var(--brand-accent);
+}
+
+/* Steps */
+
+.home-step-kicker {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  color: var(--muted);
+  margin-bottom: .35rem;
+}
+
+/* FAQ */
+
+.home-faq-question {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* CONTACT */
+
+.home-contact-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 960px) {
+  .home-contact-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .9fr);
+  }
+}
+
+.home-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: .75rem;
+}
+
+/* Hide honeypot field visually but keep it in DOM */
+.home-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.home-field {
+  display: flex;
+  flex-direction: column;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.home-field input,
+.home-field textarea {
+  margin-top: .25rem;
+}
+
+.home-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: .45rem;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+.home-consent input[type="checkbox"] {
+  margin-top: .15rem;
+}
+
+.home-link {
+  color: var(--brand-primary);
+  text-decoration: underline;
+}
+
+html[data-theme="dark"] .home-link {
+  color: var(--brand-accent);
+}
+
+.home-form-status {
+  margin-top: .25rem;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+.home-form-status-error {
+  color: #f97373;
+}
+
+.home-contact-side {
+  font-size: .9rem;
+}
+
+.home-contact-subtitle {
+  margin: 1.2rem 0 .35rem;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.home-contact-links {
+  list-style: disc;
+  margin: 0 0 0 1.1rem;
+  padding: 0;
+  font-size: .85rem;
+}
+
+/* Mobile CTA bar reuse (already existing styles can remain) */
+
