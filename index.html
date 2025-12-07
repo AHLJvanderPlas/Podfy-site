@@ -504,6 +504,9 @@ if (window.turnstile && typeof window.turnstile.getResponse === 'function') {
   }
 }
 
+console.log("Turnstile widget:", window.turnstile);
+console.log("Turnstile token:", token);
+      
 if (!token) {
   setStatus('Security check failed. Please wait a moment and try again.', true);
   return;
