@@ -481,6 +481,15 @@
   [[PODFY_FOOTER]]
 
   <script>
+  // Turnstile callback: will be called by the widget when a token is issued
+  window.onTurnstileDone = function (token) {
+    var el = document.getElementById('turnstile-token');
+    if (el) {
+      el.value = token || '';
+    }
+    console.log('Turnstile token received:', token);
+  };
+
   (function () {
     var form = document.getElementById('contact-form');
     var statusEl = document.getElementById('contact-status');
@@ -488,7 +497,7 @@
 
     function setStatus(message, isError) {
       if (!statusEl) return;
-      statusEl.textContent = message;
+      statusEl.textContent = message || '';
       statusEl.classList.toggle('home-form-status-error', !!isError);
     }
 
@@ -496,39 +505,19 @@
       e.preventDefault();
       setStatus('', false);
 
-var data = Object.fromEntries(new FormData(form).entries());
-data.page_path = window.location.pathname || "/";
+      var formData = new FormData(form);
+      var data = Object.fromEntries(formData.entries());
+      data.page_path = window.location.pathname || "/";
 
-// Honeypot...
-if (data.hp_contact && data.hp_contact.trim() !== '') {
-  console.warn('Honeypot triggered, ignoring submission.');
-  setStatus('Thanks! If this was a real request, we will get back to you shortly.', false);
-  form.reset();
-  return;
-}
+      console.log('Submitting contact form payload:', data);
 
-// Get Turnstile token explicitly
-var token = null;
-if (window.turnstile && typeof window.turnstile.getResponse === 'function') {
-  try {
-    token = window.turnstile.getResponse();
-  } catch (e) {
-    console.warn('Turnstile getResponse() failed', e);
-  }
-}
-
-console.log("Turnstile widget:", window.turnstile);
-console.log("Turnstile token:", token);
-      
-if (!token) {
-  setStatus('Security check failed. Please wait a moment and try again.', true);
-  return;
-}
-
-// Add token for backend
-data.turnstileToken = token;
-
-
+      // Honeypot: if filled, silently "succeed"
+      if (data.hp_contact && data.hp_contact.trim() !== '') {
+        console.warn('Honeypot triggered, ignoring submission.');
+        setStatus('Thanks! If this was a real request, we will get back to you shortly.', false);
+        form.reset();
+        return;
+      }
 
       // Basic client-side validation
       if (!data.name || !data.email) {
@@ -538,6 +527,13 @@ data.turnstileToken = token;
 
       if (!form.elements.consent.checked) {
         setStatus('Please agree to the Privacy Policy to continue.', true);
+        return;
+      }
+
+      // Turnstile token must be present
+      if (!data.turnstileToken || !data.turnstileToken.trim()) {
+        console.warn('No Turnstile token in form data.');
+        setStatus('Security check failed. Please wait a moment and try again.', true);
         return;
       }
 
@@ -551,27 +547,29 @@ data.turnstileToken = token;
         var payload = null;
         try {
           payload = await res.json();
-        } catch (_) {
-          // ignore JSON parse errors
-        }
+        } catch (_) {}
+
+        console.log('Contact API response:', res.status, payload);
 
         if (res.ok && payload && payload.ok) {
           setStatus('Thanks! Your message has been sent.', false);
           form.reset();
+          // Clear token so a new one will be issued
+          var tokenEl = document.getElementById('turnstile-token');
+          if (tokenEl) tokenEl.value = '';
           if (window.turnstile && typeof window.turnstile.reset === 'function') {
             window.turnstile.reset();
           }
           return;
         }
 
-        // More explicit error feedback
         var code = payload && payload.code ? payload.code : null;
         var msg  = payload && payload.error ? payload.error : null;
 
         if (code === 'MISSING_FIELDS') {
           setStatus('Please fill in your name and email address.', true);
         } else if (code === 'MISSING_TURNSTILE') {
-          setStatus('Security check failed. Please reload the page and try again.', true);
+          setStatus('Security check failed (no token). Please reload and try again.', true);
         } else if (code === 'TURNSTILE_FAILED') {
           setStatus('Human verification failed. Please try again.', true);
         } else if (code === 'RESEND_ERROR') {
@@ -583,11 +581,12 @@ data.turnstileToken = token;
           setStatus(generic, true);
         }
       } catch (err) {
+        console.error('Network / fetch error in contact form:', err);
         setStatus('Network error. Please check your connection and try again.', true);
       }
     });
 
-    // Sticky CTA bar behaviour (unchanged)
+    // Sticky CTA bar behaviour (kept from your previous version)
     var bar = document.querySelector('.cta-bar');
     if (!bar) return;
 
@@ -602,6 +601,7 @@ data.turnstileToken = token;
     onScroll();
   })();
 </script>
+
 
 </body>
 </html>
