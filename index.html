@@ -381,54 +381,56 @@
             Tell us how you work today and which option (Trial, Branded, Portal, AI) fits you best.
           </p>
 
-          <form id="contact-form" class="home-form" novalidate>
-            <!-- Honeypot field: must stay empty -->
-            <label class="home-honeypot">
-              Company website
-              <input type="text" name="website" tabindex="-1" autocomplete="off" />
-            </label>
+         <form id="contact-form" class="home-form" novalidate>
+  <!-- Honeypot field: must stay empty -->
+  <label class="home-honeypot">
+    Company website
+    <input type="text" name="website" tabindex="-1" autocomplete="off" />
+  </label>
 
-            <label class="home-field">
-              Name
-              <input name="name" required autocomplete="name" />
-            </label>
+  <label class="home-field">
+    Name
+    <input name="name" required autocomplete="name" />
+  </label>
 
-            <label class="home-field">
-              Email
-              <input type="email" name="email" required autocomplete="email" />
-            </label>
+  <label class="home-field">
+    Email
+    <input type="email" name="email" required autocomplete="email" />
+  </label>
 
-            <label class="home-field">
-              Company
-              <input name="company" autocomplete="organization" />
-            </label>
+  <label class="home-field">
+    Company
+    <input name="company" autocomplete="organization" />
+  </label>
 
-            <label class="home-field">
-              Message
-              <textarea name="message" rows="4" placeholder="Tell us briefly about your POD workflow and what you are looking for."></textarea>
-            </label>
+  <label class="home-field">
+    Message
+    <textarea name="message" rows="4"
+      placeholder="Tell us briefly about your POD workflow and what you are looking for."></textarea>
+  </label>
 
-            <!-- Cloudflare Turnstile widget -->
-            <div class="home-field">
-              <div class="cf-turnstile"
-                   data-sitekey="0x4AAAAAACFOR78WSLkw_gB7">
-              </div>
-            </div>
+  <!-- Cloudflare Turnstile widget -->
+  <div class="home-field">
+    <div class="cf-turnstile"
+         data-sitekey="0x4AAAAAACFOR78WSLkw_gB7">
+    </div>
+  </div>
 
-            <label class="home-consent">
-              <input type="checkbox" name="consent" required />
-              <span>
-                I agree to be contacted about my request and have read the
-                <a href="/privacy" class="home-link">Privacy Policy</a>.
-              </span>
-            </label>
+  <label class="home-consent">
+    <input type="checkbox" name="consent" required checked />
+    <span>
+      I agree to be contacted about my request and have read the
+      <a href="/privacy" class="home-link">Privacy Policy</a>.
+    </span>
+  </label>
 
-            <button type="submit" class="btn btn-primary">
-              Send request
-            </button>
+  <button type="submit" class="btn btn-primary">
+    Send request
+  </button>
 
-            <p class="home-form-status" id="contact-status" aria-live="polite"></p>
-          </form>
+  <p class="home-form-status" id="contact-status" aria-live="polite"></p>
+</form>
+
         </div>
 
         <aside class="card card-glass home-contact-side">
