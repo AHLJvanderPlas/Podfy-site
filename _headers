@@ -1,6 +1,20 @@
 /*
   # Security
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://challenges.cloudflare.com/turnstile/v0/api.js https://challenges.cloudflare.com/cdn-cgi/; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://podfy.app https://challenges.cloudflare.com https://api.cloudflare.com https://client-api.arkoselabs.com; frame-src https://challenges.cloudflare.com; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy:
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com;
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data:;
+    font-src 'self' data:;
+    connect-src 'self' https://podfy.app https://challenges.cloudflare.com https://api.cloudflare.com;
+    frame-src https://challenges.cloudflare.com;
+    child-src https://challenges.cloudflare.com;
+    form-action 'self';
+    base-uri 'none';
+    frame-ancestors 'none';
+    object-src 'none';
+    upgrade-insecure-requests;
+
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
@@ -8,14 +22,14 @@
   Cross-Origin-Opener-Policy: same-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
-  # HTML caching (short cache with revalidate)
   Cache-Control: max-age=60, must-revalidate
-
-/tool/*
-  X-Robots-Tag: noindex, nofollow
+*/
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+/tool/*
+  X-Robots-Tag: noindex, nofollow
 
 /companies
   X-Robots-Tag: noindex, nofollow
