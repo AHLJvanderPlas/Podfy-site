@@ -1418,11 +1418,17 @@ html[data-theme="dark"] .home-card-link {
   color: var(--muted);
 }
 
+/* Ensure all home inputs are styled and stay inside the card */
 .home-field input,
-.home-field textarea {
+.home-field textarea,
+.home-field select {
   margin-top: .25rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
+/* Keep checkbox label tidy */
 .home-consent {
   display: flex;
   align-items: flex-start;
@@ -1430,6 +1436,11 @@ html[data-theme="dark"] .home-card-link {
   font-size: .8rem;
   color: var(--muted);
 }
+
+.home-consent input[type="checkbox"] {
+  margin-top: .15rem;
+}
+
 
 .home-consent input[type="checkbox"] {
   margin-top: .15rem;
