@@ -1404,11 +1404,7 @@ html[data-theme="dark"] .home-card-link {
 
 /* Hide honeypot field visually but keep it in DOM */
 .home-honeypot {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+  display: none !important;
 }
 
 .home-field {
