@@ -487,11 +487,13 @@
       data.page_path = window.location.pathname || "/";
 
       // Honeypot: if filled, silently "succeed"
-      if (data.website && data.website.trim() !== '') {
+      if (data.hp_contact && data.hp_contact.trim() !== '') {
+        console.warn('Honeypot triggered, ignoring submission.');
         setStatus('Thanks! If this was a real request, we will get back to you shortly.', false);
         form.reset();
         return;
       }
+
 
       // Basic client-side validation
       if (!data.name || !data.email) {
