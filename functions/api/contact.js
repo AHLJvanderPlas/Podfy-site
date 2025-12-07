@@ -15,16 +15,16 @@ export async function onRequestPost({ request, env }) {
       email = "",
       company = "",
       message = "",
-      website = "",   // honeypot
-      page_path = "/" // optional, set by frontend
+      hp_contact = "",   // honeypot
+      page_path = "/"    // optional, set by frontend
     } = data;
 
     const ip = request.headers.get("CF-Connecting-IP") || "";
     const userAgent = request.headers.get("User-Agent") || "";
 
     // 1) Honeypot: if "website" is filled, silently accept but do nothing else
-    if (website && website.trim() !== "") {
-      return jsonResponse({ ok: true, code: "HONEYPOT_TRIGGered" });
+    if (hp_contact && hp_contact.trim() !== "") {
+      return jsonResponse({ ok: true, code: "HONEYPOT_TRIGGERED" });
     }
 
     // 2) Basic validation
