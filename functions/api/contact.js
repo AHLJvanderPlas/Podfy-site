@@ -4,7 +4,7 @@
 // - Honeypot check
 // - Cloudflare Turnstile verification
 // - Stores submission into D1 (Site_Form)
-// - Sends email via Resend to info@podfy.net
+// - Sends email via Resend to support@podfy.net
 
 export async function onRequestPost({ request, env }) {
   try {
