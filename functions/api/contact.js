@@ -139,32 +139,33 @@ export async function onRequestPost({ request, env }) {
   }
 
   // 5) Send email via Resend
-  if (!RESEND_API_KEY) {
-    console.error("contact: RESEND_API_KEY missing");
-    return json(500, {
-      ok: false,
-      code: "RESEND_MISSING_KEY",
-      error: "Resend API key not configured.",
-    });
-  }
+if (!RESEND_API_KEY) {
+  console.error("contact: RESEND_API_KEY missing");
+  return json(500, {
+    ok: false,
+    code: "RESEND_MISSING_KEY",
+    error: "Resend API key not configured.",
+  });
+}
 
-  const emailPayload = {
-    from: "PODFY <info@podfy.net>", // make sure this domain/address is verified in Resend
-    to: ["info@podfy.net"],
-    subject: `PODFY contact form: ${name.trim()} (${email.trim()})`,
-    reply_to: email.trim(),
-    text: [
-      "New contact form submission from podfy.net:",
-      "",
-      `Name:    ${name}`,
-      `Email:   ${email}`,
-      `Company: ${company}`,
-      `Page:    ${page_path}`,
-      "",
-      "Message:",
-      message,
-    ].join("\n"),
-  };
+// UPDATED: use support@podfy.net
+const emailPayload = {
+  from: "PODFY <support@podfy.net>",       // MUST be verified in Resend 
+  to: ["support@podfy.net"],               // main inbox
+  subject: `PODFY contact form: ${name.trim()} (${email.trim()})`,
+  reply_to: email.trim(),
+  text: [
+    "New contact form submission from podfy.net:",
+    "",
+    `Name:    ${name}`,
+    `Email:   ${email}`,
+    `Company: ${company}`,
+    `Page:    ${page_path}`,
+    "",
+    "Message:",
+    message,
+  ].join("\n"),
+};
 
   try {
     const resendRes = await fetch("https://api.resend.com/emails", {
