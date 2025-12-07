@@ -493,14 +493,21 @@
       e.preventDefault();
       setStatus('', false);
 
-      // Collect fields
+      // Collect fields into a plain object
       var formData = new FormData(form);
       var data = Object.fromEntries(formData.entries());
       data.page_path = window.location.pathname || "/";
 
+      // Debug: log exactly what we are about to send
       console.log('Submitting contact form payload:', data);
+      console.log(
+        'Has cf-turnstile-response:',
+        Object.prototype.hasOwnProperty.call(data, 'cf-turnstile-response'),
+        'value:',
+        data['cf-turnstile-response']
+      );
 
-      // 1) Honeypot check
+      // Honeypot: if filled, silently treat as success
       if (data.hp_contact && data.hp_contact.trim() !== '') {
         console.warn('Honeypot triggered, ignoring submission.');
         setStatus('Thanks! If this was a real request, we will get back to you shortly.', false);
@@ -508,7 +515,7 @@
         return;
       }
 
-      // 2) Basic client-side validation
+      // Basic client-side validation
       if (!data.name || !data.email) {
         setStatus('Please fill in your name and email address.', true);
         return;
@@ -519,15 +526,8 @@
         return;
       }
 
-      // 3) Turnstile token exists?
-      // Turnstile automatically injects a hidden input named "cf-turnstile-response"
-      if (!data["cf-turnstile-response"] || !data["cf-turnstile-response"].trim()) {
-        console.warn("No Turnstile token in submitted form data");
-        setStatus("Security check failed. Please wait a moment and try again.", true);
-        return;
-      }
-
-      // 4) Submit to backend
+      // Important: do NOT block here if cf-turnstile-response is missing.
+      // We always send the payload and let the backend decide.
       try {
         var res = await fetch('/api/contact', {
           method: 'POST',
@@ -543,26 +543,24 @@
         if (res.ok && payload && payload.ok) {
           setStatus('Thanks! Your message has been sent.', false);
           form.reset();
-
-          // Reset Turnstile
           if (window.turnstile && typeof window.turnstile.reset === 'function') {
             window.turnstile.reset();
           }
           return;
         }
 
-        // 5) Error handling with codes
+        // Decode backend error codes for friendlier messages
         var code = payload && payload.code ? payload.code : null;
         var msg  = payload && payload.error ? payload.error : null;
 
         if (code === 'MISSING_FIELDS') {
           setStatus('Please fill in your name and email address.', true);
         } else if (code === 'MISSING_TURNSTILE') {
-          setStatus('Security check failed (missing token). Please try again.', true);
+          setStatus('Security check failed (no token received). Please reload and try again.', true);
         } else if (code === 'TURNSTILE_FAILED') {
           setStatus('Human verification failed. Please try again.', true);
         } else if (code === 'RESEND_ERROR') {
-          setStatus('Email could not be sent. Please try again later.', true);
+          setStatus('We could not send the email right now. Please try again later.', true);
         } else {
           var generic = 'Something went wrong';
           if (msg) generic += ': ' + msg;
