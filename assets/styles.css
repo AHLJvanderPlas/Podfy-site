@@ -134,6 +134,7 @@ body {
    -------------------------------------------------------------------------- */
 
 .card{
+  box-sizing: border-box;      /* NEW: include padding in the width */
   border-radius:1rem;
   border:1px solid var(--line);
   background:var(--surface);
