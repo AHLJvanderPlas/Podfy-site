@@ -478,6 +478,8 @@
         setStatus('', false);
 
         var data = Object.fromEntries(new FormData(form).entries());
+        data.page_path = window.location.pathname || "/";
+
 
         // Honeypot: if filled, silently succeed on frontend but do nothing useful.
         if (data.website && data.website.trim() !== '') {
