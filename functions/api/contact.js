@@ -129,7 +129,7 @@ ${message || "-"}
       },
       body: JSON.stringify({
         from: "PODFY Website <no-reply@podfy.net>",
-        to: ["info@podfy.net"],
+        to: ["support@podfy.net"],
         reply_to: email,
         subject,
         text: plainText,
