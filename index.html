@@ -383,14 +383,27 @@
 
          <form id="contact-form" class="home-form" novalidate>
 <!-- Honeypot: completely hidden field for bots only -->
-<div class="home-honeypot" aria-hidden="true">
-  <input
-    type="text"
-    name="hp_contact"
-    tabindex="-1"
-    autocomplete="off"
-  />
-</div>
+
+             <!-- Hidden field to store Turnstile token -->
+            <input type="hidden" name="turnstileToken" id="turnstile-token" />
+
+  <!-- Cloudflare Turnstile widget -->
+            <div class="home-field">
+              <div class="cf-turnstile"
+                   data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+                   data-callback="onTurnstileDone">
+              </div>
+            </div>
+
+           
+           <div class="home-honeypot" aria-hidden="true">
+            <input
+              type="text"
+              name="hp_contact"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
 
   <label class="home-field">
     Name
