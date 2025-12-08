@@ -165,9 +165,8 @@
           </p>
 
           <!-- CONTACT FORM -->
-          
-          <form id="contact-form" class="home-contact-form" novalidate>
-          <!-- Honeypot (hidden from users) -->
+<form id="contact-form" class="home-contact-form" novalidate>
+  <!-- Honeypot (hidden from users) -->
   <div class="home-field home-field-hp visually-hidden" aria-hidden="true">
     <label for="hp_contact">Leave this field empty</label>
     <input
@@ -240,24 +239,25 @@
     </label>
   </div>
 
-<!-- inside #contact-form, near the bottom -->
+  <!-- Turnstile widget -->
+  <div class="home-field">
+    <div
+      class="cf-turnstile"
+      data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+      data-callback="onTurnstileCompleted"
+      data-error-callback="onTurnstileError"
+      data-expired-callback="onTurnstileExpired"
+    ></div>
+  </div>
 
-<div class="home-field">
-<div class="cf-turnstile"
-     data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-     data-callback="onTurnstileCompleted"
-     data-error-callback="onTurnstileError"
-     data-expired-callback="onTurnstileExpired"
-     data-mode="managed">
-</div>
-</div>
+  <!-- Hidden field where we store the Turnstile token -->
+  <input
+    type="hidden"
+    id="turnstileToken"
+    name="turnstileToken"
+    value=""
+  />
 
-<input
-  type="hidden"
-  id="cf_turnstile_token"
-  name="cf_turnstile_token"
-  value=""
-/>
   <p id="contact-status" class="home-status" role="status"></p>
 
   <div class="home-actions">
@@ -266,7 +266,6 @@
     </button>
   </div>
 </form>
-
         </div>
 
         <aside class="card card-glass home-contact-side">
@@ -289,69 +288,120 @@
   [[PODFY_FOOTER]]
 
   <!-- CONTACT FORM HANDLER -->
- <script>
-  // Cloudflare Turnstile callbacks – names must match the data-* attributes
+<script>
+  // Cloudflare Turnstile callbacks – names must match data-* attributes
   function onTurnstileCompleted(token) {
-    const hidden = document.getElementById("cf_turnstile_token");
-    if (hidden) hidden.value = token;
+    const hidden = document.getElementById("turnstileToken");
+    if (hidden) hidden.value = token || "";
   }
 
   function onTurnstileExpired() {
-    const hidden = document.getElementById("cf_turnstile_token");
+    const hidden = document.getElementById("turnstileToken");
     if (hidden) hidden.value = "";
   }
 
   function onTurnstileError() {
-    const hidden = document.getElementById("cf_turnstile_token");
+    const hidden = document.getElementById("turnstileToken");
     if (hidden) hidden.value = "";
   }
 
-  const form = document.getElementById("contact-form");
-  const statusEl = document.getElementById("contact-status");
+  (function () {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    const statusEl = document.getElementById("contact-status");
+    const submitBtn = form.querySelector('button[type="submit"]');
 
-    statusEl.textContent = "Sending…";
-
-    try {
-      // This will include cf_turnstile_token from the hidden input
-      const payload = Object.fromEntries(new FormData(form).entries());
-
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      let data = null;
-      try {
-        data = await res.json();
-      } catch {
-        // Non-JSON response; treat as generic error
+    function setStatus(message) {
+      if (statusEl) {
+        statusEl.textContent = message || "";
       }
+    }
 
-      if (!res.ok || !data || data.ok === false) {
-        const message =
-          (data && (data.error || data.message)) ||
-          "We could not send the email right now. Please try again later.";
-        statusEl.textContent = message;
+    function setSubmitting(on) {
+      if (submitBtn) {
+        submitBtn.disabled = !!on;
+      }
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // HTML5 validation first
+      if (typeof form.reportValidity === "function" && !form.reportValidity()) {
         return;
       }
 
-      statusEl.textContent = "Thanks! We will contact you shortly.";
-      form.reset();
-
-      // Reset Turnstile so the form can be used again
-      if (window.turnstile) {
-        window.turnstile.reset();
+      // Ensure we have a Turnstile token
+      const tokenInput = document.getElementById("turnstileToken");
+      const token = tokenInput ? tokenInput.value : "";
+      if (!token) {
+        setStatus(
+          "Security check failed. Please wait for the challenge and try again."
+        );
+        try {
+          if (window.turnstile && typeof window.turnstile.reset === "function") {
+            window.turnstile.reset();
+          }
+        } catch (_) {}
+        return;
       }
-    } catch (err) {
-      console.error("Contact form error", err);
-      statusEl.textContent =
-        "Something went wrong while sending your request. Please try again.";
-    }
-  });
+
+      setSubmitting(true);
+      setStatus("Sending…");
+
+      try {
+        const payload = Object.fromEntries(new FormData(form).entries());
+
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        let data = null;
+        try {
+          data = await res.json();
+        } catch (_) {
+          // If not JSON, keep data=null
+        }
+
+        if (!res.ok || !data || data.ok === false) {
+          const msg =
+            (data && (data.error || data.message)) ||
+            "We could not send the email right now. Please try again later.";
+          setStatus(msg);
+
+          // Reset token so user gets a fresh challenge
+          if (tokenInput) tokenInput.value = "";
+          try {
+            if (window.turnstile && typeof window.turnstile.reset === "function") {
+              window.turnstile.reset();
+            }
+          } catch (_) {}
+          return;
+        }
+
+        setStatus("Thanks! We will contact you shortly.");
+        form.reset();
+
+        // Clear token + reset widget after success
+        if (tokenInput) tokenInput.value = "";
+        try {
+          if (window.turnstile && typeof window.turnstile.reset === "function") {
+            window.turnstile.reset();
+          }
+        } catch (_) {}
+      } catch (err) {
+        console.error("Contact form error", err);
+        setStatus(
+          "We could not send the email right now. Please try again later."
+        );
+      } finally {
+        setSubmitting(false);
+      }
+    });
+  })();
 </script>
 
 </body>
