@@ -239,7 +239,7 @@
   </div>
 
   <!-- Hidden Turnstile token -->
-  <input type="hidden" id="turnstile-token" name="turnstile_token" />
+  <input type="hidden" id="turnstile-token" name="turnstileToken" />
 
   <!-- Turnstile widget -->
   <div class="home-field">
@@ -287,15 +287,15 @@
   <script>
 
       function onTurnstileSuccess(token) {
-    document.getElementById("turnstile-token").value = token;
+    document.getElementById("turnstileToken").value = token;
   }
 
   function onTurnstileExpired() {
-    document.getElementById("turnstile-token").value = "";
+    document.getElementById("turnstileToken").value = "";
   }
 
   function onTurnstileError() {
-    document.getElementById("turnstile-token").value = "";
+    document.getElementById("turnstileToken").value = "";
   }
     
     const form = document.getElementById("contact-form");
