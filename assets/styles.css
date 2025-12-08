@@ -1500,10 +1500,16 @@ html[data-theme="dark"] .home-link {
   padding-top: 1.5rem; /* small breathing room under the nav bar */
 }
 
-/* Gradient accent for the hero headline */
 .hero-heading span {
-  background: linear-gradient(135deg, var(--accent-strong), #22d3ee);
+  background: linear-gradient(
+    90deg,
+    #2563eb 0%,
+    #22d3ee 50%,
+    #7dd3fc 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-weight: 800;
 }
+
