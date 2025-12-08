@@ -1,117 +1,203 @@
-// /assets/contact.js
-// Handles the homepage contact form + Cloudflare Turnstile token
+// Cloudflare Pages Function for POST /api/contact
+// Requires environment bindings:
+// - RESEND_API_KEY     (secret from Resend)
+// - TURNSTILE_SECRET   (secret key from Cloudflare Turnstile)
+// - DB_SITE_FORM       (optional D1 binding for storing submissions)
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contact-form");
-  if (!form) return;
+export async function onRequestPost(context) {
+  const { request, env } = context;
 
-  const statusEl = document.getElementById("contact-status");
-  const submitBtn = form.querySelector(".home-submit");
-
-  function setStatus(message) {
-    if (statusEl) {
-      statusEl.textContent = message || "";
-    }
-  }
-
-  function setSubmitting(isSubmitting) {
-    if (submitBtn) {
-      submitBtn.disabled = !!isSubmitting;
-    }
-  }
-
-  async function handleSubmit(evt) {
-    evt.preventDefault();
-
-    // Basic HTML5 validation first
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    setSubmitting(true);
-    setStatus("Sending...");
-
-    // Collect form data, including any hidden inputs
-    const formData = new FormData(form);
-
-    // Read Turnstile token. Cloudflare will inject a hidden input
-    // named "cf-turnstile-response" into the form, or you may have
-    // added it manually.
-    const tokenInput =
-      form.querySelector('input[name="cf-turnstile-response"]');
-    let turnstileToken = tokenInput ? tokenInput.value : null;
-
-    if (!turnstileToken) {
-      // Fallback: if for some reason it was only in FormData
-      const fdToken = formData.get("cf-turnstile-response");
-      if (typeof fdToken === "string" && fdToken.length > 0) {
-        turnstileToken = fdToken;
+  // Helper to send JSON responses
+  const json = (data, init = {}) =>
+    new Response(JSON.stringify(data), {
+      status: init.status || 200,
+      headers: {
+        "Content-Type": "application/json",
+        ...(init.headers || {})
       }
-    }
+    });
 
-    if (!turnstileToken) {
-      setStatus(
-        "Security check failed. Please wait a moment and try again."
-      );
-      setSubmitting(false);
-      return;
-    }
+  // Parse JSON body
+  let body;
+  try {
+    body = await request.json();
+  } catch (err) {
+    return json(
+      { ok: false, error: "Invalid JSON body." },
+      { status: 400 }
+    );
+  }
 
-    // Make sure the payload contains the exact key the Worker expects
-    formData.set("cf-turnstile-response", turnstileToken);
+  const {
+    name,
+    email,
+    company,
+    message,
+    consent,
+    hp_contact,
+    // Turnstile token coming from the form
+    "cf-turnstile-response": turnstileToken
+  } = body || {};
 
-    const payload = Object.fromEntries(formData.entries());
+  // Honeypot: if filled, silently treat as spam
+  if (hp_contact && String(hp_contact).trim() !== "") {
+    // Do not reveal anything special to bots
+    return json({ ok: true, spam: true });
+  }
 
-    try {
-      const res = await fetch("/api/contact", {
+  // Basic validation
+  if (!name || !email || !consent) {
+    return json(
+      { ok: false, error: "Name, email and consent are required." },
+      { status: 400 }
+    );
+  }
+
+  if (!turnstileToken) {
+    return json(
+      { ok: false, error: "Missing Turnstile token." },
+      { status: 400 }
+    );
+  }
+
+  // Verify Turnstile
+  try {
+    const ip =
+      request.headers.get("CF-Connecting-IP") ||
+      request.headers.get("x-real-ip") ||
+      "";
+
+    const verifyRes = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
+        body: new URLSearchParams({
+          secret: env.TURNSTILE_SECRET,
+          response: turnstileToken,
+          remoteip: ip
+        })
+      }
+    );
+
+    const verifyData = await verifyRes.json();
+
+    if (!verifyData.success) {
+      console.warn("Turnstile verification failed:", verifyData);
+      return json(
+        {
+          ok: false,
+          error:
+            "Security check failed. Please wait a moment and try again."
         },
-        body: JSON.stringify(payload)
-      });
-
-      let data = null;
-      try {
-        data = await res.json();
-      } catch (_) {
-        data = null;
-      }
-
-      if (!res.ok || !data || data.ok === false) {
-        const msg =
-          (data && data.error) ||
-          "We could not send the email right now. Please try again later.";
-        setStatus(msg);
-      } else {
-        setStatus(
-          "Thanks! If this was a real request, we will get back to you shortly."
-        );
-        form.reset();
-
-        // Clear honeypot, just in case
-        const hp = form.querySelector("#hp_contact");
-        if (hp) hp.value = "";
-      }
-    } catch (err) {
-      console.error("Contact form error:", err);
-      setStatus(
-        "We could not send the email right now. Please try again later."
+        { status: 400 }
       );
-    } finally {
-      setSubmitting(false);
-
-      // Reset Turnstile widget so the user can submit again
-      if (window.turnstile && typeof window.turnstile.reset === "function") {
-        try {
-          window.turnstile.reset();
-        } catch {
-          // ignore
-        }
-      }
     }
+  } catch (err) {
+    console.error("Turnstile verification error:", err);
+    return json(
+      {
+        ok: false,
+        error:
+          "Security check failed. Please wait a moment and try again."
+      },
+      { status: 400 }
+    );
   }
 
-  form.addEventListener("submit", handleSubmit);
-});
+  // Optional: store in D1 if binding is configured
+  try {
+    if (env.DB_SITE_FORM) {
+      const now = new Date().toISOString();
+      await env.DB_SITE_FORM.prepare(
+        `
+        INSERT INTO Site_Form (
+          created_at,
+          name,
+          email,
+          company,
+          message,
+          consent
+        ) VALUES (?, ?, ?, ?, ?, ?)
+        `
+      )
+        .bind(
+          now,
+          name,
+          email,
+          company || "",
+          message || "",
+          consent ? 1 : 0
+        )
+        .run();
+    }
+  } catch (err) {
+    console.error("D1 insert failed:", err);
+    // Do not fail the whole request because of logging
+  }
+
+  // Send email via Resend
+  try {
+    const resendRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        from: "Podfy <support@podfy.net>",
+        to: ["support@podfy.net"],
+        subject: "New contact request from podfy.net",
+        reply_to: email,
+        html: `
+          <h1>New contact request</h1>
+          <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          <p><strong>Company:</strong> ${escapeHtml(company || "")}</p>
+          <p><strong>Consent:</strong> ${consent ? "Yes" : "No"}</p>
+          <p><strong>Message:</strong></p>
+          <p>${escapeHtml(message || "").replace(/\n/g, "<br>")}</p>
+        `
+      })
+    });
+
+    if (!resendRes.ok) {
+      const text = await resendRes.text();
+      console.error("Resend error:", resendRes.status, text);
+      return json(
+        {
+          ok: false,
+          error:
+            "We could not send the email right now. Please try again later."
+        },
+        { status: 502 }
+      );
+    }
+  } catch (err) {
+    console.error("Resend exception:", err);
+    return json(
+      {
+        ok: false,
+        error:
+          "We could not send the email right now. Please try again later."
+      },
+      { status: 502 }
+    );
+  }
+
+  return json({ ok: true });
+}
+
+// Simple HTML-escaping helper
+function escapeHtml(str) {
+  return String(str).replace(
+    /[&<>"']/g,
+    (ch) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[ch])
+  );
+}
