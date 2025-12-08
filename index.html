@@ -164,8 +164,10 @@
             Tell us how you work today and which option fits you best.
           </p>
 
-          <!-- CONTACT FORM --><form id="contact-form" class="home-contact-form" novalidate>
-  <!-- Honeypot (hidden from users) -->
+          <!-- CONTACT FORM -->
+          
+          <form id="contact-form" class="home-contact-form" novalidate>
+          <!-- Honeypot (hidden from users) -->
   <div class="home-field home-field-hp visually-hidden" aria-hidden="true">
     <label for="hp_contact">Leave this field empty</label>
     <input
@@ -241,14 +243,13 @@
 <!-- inside #contact-form, near the bottom -->
 
 <div class="home-field">
-  <div
-    class="cf-turnstile"
-    data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-    data-theme="auto"
-    data-callback="onTurnstileCompleted"
-    data-error-callback="onTurnstileError"
-    data-expired-callback="onTurnstileExpired"
-  ></div>
+<div class="cf-turnstile"
+     data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+     data-callback="onTurnstileCompleted"
+     data-error-callback="onTurnstileError"
+     data-expired-callback="onTurnstileExpired"
+     data-mode="managed">
+</div>
 </div>
 
 <input
@@ -274,15 +275,15 @@
             Reach us at
             <a href="mailto:support@podfy.net">support@podfy.net</a>.
           </p>
+              <div class="cta-bar">
+      <a href="/free-tier-demo.html" class="btn btn-primary">Demo upload</a>
+      <a href="#contact" class="btn btn-secondary">Request demo</a>
+    </div>
         </aside>
 
       </div>
     </section>
 
-    <div class="cta-bar">
-      <a href="/free-tier-demo.html" class="btn btn-primary">Demo upload</a>
-      <a href="#contact" class="btn btn-secondary">Request demo</a>
-    </div>
   </main>
 
   [[PODFY_FOOTER]]
