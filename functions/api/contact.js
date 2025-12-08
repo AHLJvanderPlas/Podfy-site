@@ -13,13 +13,13 @@
 //   "email": "...",
 //   "company": "...",
 //   "message": "...",
-//   "consent": true,
+//   "consent": true | "on",
 //   "hp_contact": "",
 //   "turnstileToken": "…"
 // }
 
 export const onRequestPost = async (context) => {
-  const { request, env, cf } = context;
+  const { request, env } = context;
 
   try {
     // ---------- Parse request ----------
@@ -43,8 +43,14 @@ export const onRequestPost = async (context) => {
       message = "",
       consent,
       hp_contact = "",
-      turnstileToken,
     } = body;
+
+    // Accept multiple possible token field names, but front-end uses "turnstileToken"
+    const turnstileToken =
+      body.turnstileToken ||
+      body.cf_turnstile_token ||
+      body["cf-turnstile-response"] ||
+      "";
 
     // ---------- Basic validation ----------
     if (hp_contact && hp_contact.trim().length > 0) {
@@ -86,6 +92,11 @@ export const onRequestPost = async (context) => {
       );
     }
 
+    const ip =
+      request.headers.get("cf-connecting-ip") ||
+      request.headers.get("x-real-ip") ||
+      "";
+
     const turnstileRes = await fetch(
       "https://challenges.cloudflare.com/turnstile/v0/siteverify",
       {
@@ -96,7 +107,7 @@ export const onRequestPost = async (context) => {
         body: new URLSearchParams({
           secret: secretKey,
           response: turnstileToken,
-          remoteip: request.headers.get("cf-connecting-ip") || "",
+          remoteip: ip,
         }),
       }
     );
@@ -111,16 +122,16 @@ export const onRequestPost = async (context) => {
       );
     }
 
-    const score = typeof turnstileJson.score === "number"
-      ? turnstileJson.score
-      : null;
+    const score =
+      typeof turnstileJson.score === "number"
+        ? turnstileJson.score
+        : null;
 
     // ---------- Store in D1 ----------
     let dbError = null;
     try {
       if (env.DB) {
         const ua = request.headers.get("user-agent") || "";
-        const ip = request.headers.get("cf-connecting-ip") || "";
         const path = new URL(request.url).pathname;
 
         await env.DB.prepare(
@@ -191,11 +202,14 @@ export const onRequestPost = async (context) => {
     }
 
     if (emailError) {
-      return json({
-        ok: false,
-        error:
-          "We could not send the email right now. Please try again later.",
-      }, 502);
+      return json(
+        {
+          ok: false,
+          error:
+            "We could not send the email right now. Please try again later.",
+        },
+        502
+      );
     }
 
     return json({
