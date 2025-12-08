@@ -71,61 +71,75 @@
     <!-- MAIN -->
     <main id="main" class="container-6xl home-page">
       <!-- HERO CARD -->
-      <section class="home-hero">
-        <article class="card card-hero card-glass">
-          <div class="home-hero-left">
-            <p class="eyebrow">Zero-friction proof of delivery</p>
-            <h1 class="home-hero-title">
-              Proof of Delivery, without the headaches.
-            </h1>
-            <p class="home-hero-lead">
-              Share a link, snap a photo, get instant confirmation.
-              No apps. No logins. Branded, fast and built for logistics teams.
-            </p>
+      <!-- TOP HERO – ORIGINAL, NOW WITH GRADIENT TEXT -->
+  <section class="home-hero-shell">
+    <div class="page-shell">
+      <article class="card card-glass home-hero-card">
+        <header class="home-hero-header">
+          <p class="eyebrow">Zero-friction proof of delivery</p>
 
-            <ul class="home-hero-bullets">
-              <li><strong>No app.</strong> Drivers upload from any phone.</li>
-              <li><strong>Instant notifications.</strong> Teams get email alerts.</li>
-              <li><strong>Your brand.</strong> Logo, colors and safety messages.</li>
-            </ul>
-
-            <div class="home-hero-actions">
-              <a href="https://podfy.app" class="btn btn-primary">Try a demo upload</a>
-              <a href="#plans" class="btn btn-ghost">View plans</a>
-            </div>
-          </div>
-
-          <aside class="home-hero-right card card-glass">
-            <h2 class="home-hero-side-title">What the driver sees</h2>
-            <ol class="home-hero-steps">
-              <li>Open your branded link</li>
-              <li>Take a photo or drop the CMR</li>
-              <li>Optionally add a shipment reference</li>
-              <li>Tap send — your team is notified instantly</li>
-            </ol>
-          </aside>
-        </article>
-      </section>
-
-      <!-- NEW SUB-HEADER -->
-      <section class="home-subhero">
-        <div class="card card-glass home-subhero-card">
-          <h2 class="home-subhero-title">
+          <!-- Gradient only on “proof of deliveries” -->
+          <h1 class="home-hero-title">
             All your
-            <span
-              style="
-                background: linear-gradient(90deg,#38bdf8,#2563eb,#1d4ed8);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-              "
-            >
-              proof of deliveries
-            </span>
+            <span class="text-gradient-blue">proof of deliveries</span>
             in one place.
+          </h1>
+
+          <p class="home-hero-lede">
+            Share a link, snap a photo, get instant confirmation. No apps. No logins.
+            Branded and fast for logistics teams.
+          </p>
+
+          <div class="home-hero-actions">
+            <a href="https://podfy.app" class="btn btn-primary">Try a demo upload</a>
+            <a href="#pricing" class="btn btn-ghost">View plans</a>
+          </div>
+        </header>
+      </article>
+    </div>
+  </section>
+
+  <!-- SUB-HERO – “WITHOUT THE HEADACHES” BLOCK -->
+  <section class="home-subhero-shell">
+    <div class="page-shell">
+      <article class="card card-glass home-subhero card-split">
+        <div class="home-subhero-copy">
+          <p class="eyebrow">Zero-friction proof of delivery</p>
+
+          <!-- Optional: reuse gradient here as well -->
+          <h2 class="home-subhero-title">
+            <span class="text-gradient-blue">Proof of Delivery</span>, without the headaches.
           </h2>
+
+          <p class="home-subhero-lede">
+            Drivers upload from any phone. You get instant notifications in your inbox.
+            No integrations, no apps, just a branded upload page that fits your workflow.
+          </p>
+
+          <ul class="home-subhero-points">
+            <li><strong>No app.</strong> Drivers upload from any phone.</li>
+            <li><strong>Instant notifications.</strong> Teams get email alerts.</li>
+            <li><strong>Your brand.</strong> Logo, colors and safety messages.</li>
+          </ul>
+
+          <div class="home-subhero-actions">
+            <a href="https://podfy.app" class="btn btn-primary">Try a demo upload</a>
+            <a href="#contact" class="btn btn-ghost">Talk to sales</a>
+          </div>
         </div>
-      </section>
+
+        <aside class="home-subhero-aside">
+          <h3 class="home-subhero-aside-title">What the driver sees</h3>
+          <ol class="home-subhero-steps">
+            <li>Open your branded link</li>
+            <li>Take a photo or drop the CMR</li>
+            <li>Optionally add a shipment reference</li>
+            <li>Tap send — your team is notified instantly</li>
+          </ol>
+        </aside>
+      </article>
+    </div>
+  </section>
 
       <!-- HOW IT WORKS -->
       <section id="how-it-works" class="home-section">
