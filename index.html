@@ -285,6 +285,19 @@
 
   <!-- CONTACT FORM HANDLER -->
   <script>
+
+      function onTurnstileSuccess(token) {
+    document.getElementById("turnstile-token").value = token;
+  }
+
+  function onTurnstileExpired() {
+    document.getElementById("turnstile-token").value = "";
+  }
+
+  function onTurnstileError() {
+    document.getElementById("turnstile-token").value = "";
+  }
+    
     const form = document.getElementById("contact-form");
     const statusEl = document.getElementById("contact-status");
 
