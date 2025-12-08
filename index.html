@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -39,196 +39,159 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
   <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB" />
 
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="/assets/styles.css" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/styles.css?v=home-rev1" />
 
-  <!-- Contact / Turnstile logic (lazy Turnstile load) -->
-  <script src="/assets/contact.js" defer></script>
+  <!-- Theme toggler -->
+  <script src="/assets/theme.js" defer></script>
+
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
-<body class="site-body">
-  <div class="site-shell">
-    <!-- HEADER -->
-    <header class="site-header-shell">
-      <div class="site-header container-6xl">
-        <a href="/" class="site-brand">
-          <img src="/assets/podfy-logo.svg" alt="Podfy" />
-        </a>
+<body class="home-body">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
+    Skip to content
+  </a>
 
-        <nav class="site-nav">
-          <a href="#how-it-works">How it works</a>
-          <a href="#features">Features</a>
-          <a href="#plans">Pricing & Plans</a>
-          <a href="/releases">Releases</a>
-        </nav>
+  [[PODFY_HEADER]]
 
-        <div class="site-header-actions">
-          <a href="https://podfy.app" class="btn btn-ghost">Open app</a>
+  <!-- Subheader -->
+  <section class="site-subheader">
+    <div class="site-subheader-container">
+      <div class="site-subheader-inner">
+        <div class="site-subheader-left">
+          <div class="site-subheader-text">
+            <div class="site-subheader-title">PODFY Delivery Portal</div>
+            <div class="site-subheader-subtitle">delivery.podfy.net</div>
+          </div>
+        </div>
+        <div class="site-subheader-right">
+          <a href="/free-tier-demo.html" class="btn btn-primary">Try a demo upload</a>
+          <a href="#contact" class="btn btn-secondary">Talk to sales</a>
         </div>
       </div>
-    </header>
-
-    <!-- MAIN -->
-    <main id="main" class="container-6xl home-page">
-      <!-- HERO CARD -->
-      <!-- TOP HERO – ORIGINAL, NOW WITH GRADIENT TEXT -->
-  <section class="home-hero-shell">
-    <div class="page-shell">
-      <article class="card card-glass home-hero-card">
-        <header class="home-hero-header">
-          <p class="eyebrow">Zero-friction proof of delivery</p>
-
-          <!-- Gradient only on “proof of deliveries” -->
-          <h1 class="home-hero-title">
-            All your
-            <span class="text-gradient-blue">proof of deliveries</span>
-            in one place.
-          </h1>
-
-          <p class="home-hero-lede">
-            Share a link, snap a photo, get instant confirmation. No apps. No logins.
-            Branded and fast for logistics teams.
-          </p>
-
-          <div class="home-hero-actions">
-            <a href="https://podfy.app" class="btn btn-primary">Try a demo upload</a>
-            <a href="#pricing" class="btn btn-ghost">View plans</a>
-          </div>
-        </header>
-      </article>
     </div>
   </section>
 
-  <!-- SUB-HERO – “WITHOUT THE HEADACHES” BLOCK -->
-  <section class="home-subhero-shell">
-    <div class="page-shell">
-      <article class="card card-glass home-subhero card-split">
-        <div class="home-subhero-copy">
-          <p class="eyebrow">Zero-friction proof of delivery</p>
+  <main id="main" class="home-main">
 
-          <!-- Optional: reuse gradient here as well -->
-          <h2 class="home-subhero-title">
-            <span class="text-gradient-blue">Proof of Delivery</span>, without the headaches.
-          </h2>
-
-          <p class="home-subhero-lede">
-            Drivers upload from any phone. You get instant notifications in your inbox.
-            No integrations, no apps, just a branded upload page that fits your workflow.
+    <!-- HERO -->
+    <section class="home-section home-hero">
+      <div class="container home-hero-shell card card-glass">
+        <div class="home-hero-left">
+          <p class="home-kicker">Zero-friction Proof of Delivery</p>
+          <h1 class="home-hero-title">Proof of Delivery, without the headaches.</h1>
+          <p class="home-hero-lead">
+            Share a link, snap a photo, get instant confirmation. No apps. No logins.
+            Branded, fast and built for logistics teams.
           </p>
 
-          <ul class="home-subhero-points">
+          <ul class="icon-list">
             <li><strong>No app.</strong> Drivers upload from any phone.</li>
             <li><strong>Instant notifications.</strong> Teams get email alerts.</li>
             <li><strong>Your brand.</strong> Logo, colors and safety messages.</li>
           </ul>
 
-          <div class="home-subhero-actions">
-            <a href="https://podfy.app" class="btn btn-primary">Try a demo upload</a>
-            <a href="#contact" class="btn btn-ghost">Talk to sales</a>
+          <div class="home-hero-actions">
+            <a href="/free-tier-demo.html" class="btn btn-primary">Try a demo upload</a>
+            <a href="#plans" class="btn btn-secondary">View plans</a>
           </div>
         </div>
 
-        <aside class="home-subhero-aside">
-          <h3 class="home-subhero-aside-title">What the driver sees</h3>
-          <ol class="home-subhero-steps">
-            <li>Open your branded link</li>
-            <li>Take a photo or drop the CMR</li>
-            <li>Optionally add a shipment reference</li>
-            <li>Tap send — your team is notified instantly</li>
-          </ol>
-        </aside>
-      </article>
-    </div>
-  </section>
+        <div class="home-hero-right">
+          <div class="home-hero-card card">
+            <h2 class="home-hero-card-title">What the driver sees</h2>
+            <ol class="home-hero-steps">
+              <li>Open your branded link</li>
+              <li>Take a photo or drop the CMR</li>
+              <li>Optionally add a shipment reference</li>
+              <li>Tap send — your team is notified instantly</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- HOW IT WORKS -->
-      <section id="how-it-works" class="home-section">
-        <header class="home-section-header">
-          <h2>How Podfy fits into your day</h2>
-          <p>Drop it into your existing workflows without integrations or new apps.</p>
-        </header>
+    <!-- VALUE STRIP -->
+    <section class="home-section">
+      <div class="container home-grid-4">
+        <article class="card card-glass">
+          <h3 class="home-card-title">Instant uploads</h3>
+          <p class="home-card-body">
+            Drivers simply snap a photo. No login or app required.
+          </p>
+        </article>
+        <article class="card card-glass">
+          <h3 class="home-card-title">Your brand</h3>
+          <p class="home-card-body">
+            Upload pages show your logo, colors and contact email.
+          </p>
+        </article>
+        <article class="card card-glass">
+          <h3 class="home-card-title">Instant alerts</h3>
+          <p class="home-card-body">
+            Operations receives immediate email confirmation.
+          </p>
+        </article>
+        <article class="card card-glass">
+          <h3 class="home-card-title">Quick setup</h3>
+          <p class="home-card-body">
+            Start in minutes using the free demo.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PLANS -->
+    <section class="home-section" id="plans">
+      <div class="container">
+        <h2 class="home-section-title">Pricing & Plans</h2>
 
         <div class="home-grid-3">
           <article class="card card-glass">
-            <h3>Share a branded link</h3>
-            <p>Send drivers a simple upload link by email, WhatsApp or internal TMS message.</p>
+            <h3 class="home-card-title">Trial (Free)</h3>
+            <p class="home-card-body">Experience the upload flow instantly.</p>
+            <a class="home-card-link" href="/free-tier-demo.html">Try demo</a>
           </article>
+
           <article class="card card-glass">
-            <h3>Drivers upload proof</h3>
-            <p>They scan or snap the CMR, add optional reference fields and submit in seconds.</p>
+            <h3 class="home-card-title">Branded link</h3>
+            <p class="home-card-body">Your logo, colors and contact email.</p>
+            <a class="home-card-link" href="#contact">Request demo</a>
           </article>
+
           <article class="card card-glass">
-            <h3>Your team gets the POD instantly</h3>
-            <p>Podfy forwards the proof to your team and archives the original for later retrieval.</p>
+            <h3 class="home-card-title">Branded + Portal</h3>
+            <p class="home-card-body">Includes a lightweight delivery portal.</p>
+            <a class="home-card-link" href="#contact">Talk to us</a>
           </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- FEATURES -->
-      <section id="features" class="home-section">
-        <header class="home-section-header">
-          <h2>Built for logistics teams, not generic file uploads</h2>
-        </header>
+    <!-- CONTACT -->
+    <section class="home-section" id="contact">
+      <div class="container home-contact-grid">
 
-        <div class="home-grid-3">
-          <article class="card card-glass">
-            <h3>Branded upload page</h3>
-            <p>Your logo, colors and safety information on every upload page.</p>
-          </article>
-          <article class="card card-glass">
-            <h3>Smart file handling</h3>
-            <p>Automatic PDF conversion and standardized filenames keep your archive clean.</p>
-          </article>
-          <article class="card card-glass">
-            <h3>Delivery portal (optional)</h3>
-            <p>Give customers and drivers a self-service portal to view recent PODs.</p>
-          </article>
-        </div>
-      </section>
+        <div class="card card-glass home-contact-card">
+          <h2 class="home-section-title">Talk to sales</h2>
+          <p class="home-section-intro">
+            Tell us how you work today and which option fits you best.
+          </p>
 
-      <!-- PLANS / CTA -->
-      <section id="plans" class="home-section">
-        <header class="home-section-header">
-          <h2>Start simple, grow as you need</h2>
-          <p>Try a manual setup first. When it works, add branding, portals and automation.</p>
-        </header>
-
-        <div class="home-grid-2">
-          <article class="card card-glass">
-            <h3>Free tier</h3>
-            <p>Great for pilots, side projects and testing Podfy with a small team.</p>
-            <ul class="home-list">
-              <li>Branded upload link</li>
-              <li>Automatic PDF conversion</li>
-              <li>Email notifications</li>
-            </ul>
-          </article>
-
-          <article class="card card-glass">
-            <h3>Growing freight teams</h3>
-            <p>For 3PLs and forwarders who want a lightweight POD solution without changing their TMS.</p>
-            <ul class="home-list">
-              <li>Multiple brands and slugs</li>
-              <li>Customer delivery portal</li>
-              <li>Priority support</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <!-- CONTACT / SALES FORM -->
-      <section id="contact" class="home-section home-contact">
-        <article class="card card-glass home-contact-card">
-          <header class="home-section-header">
-            <h2>Talk to sales</h2>
-            <p>Tell us how you work today and which option (Trial, Branded, Portal, AI) fits you best.</p>
-          </header>
-
+          <!-- CONTACT FORM -->
           <form id="contact-form" class="home-contact-form" novalidate>
-            <!-- Honeypot -->
-            <div class="visually-hidden">
+            <!-- Honeypot (hidden from users) -->
+            <div class="home-field home-field-hp visually-hidden" aria-hidden="true">
               <label for="hp_contact">Leave this field empty</label>
-              <input id="hp_contact" name="hp_contact" type="text" tabindex="-1" autocomplete="off" />
+              <input
+                id="hp_contact"
+                name="hp_contact"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
             </div>
 
             <div class="home-field">
@@ -238,8 +201,8 @@
                 name="name"
                 type="text"
                 class="home-input"
-                autocomplete="name"
                 required
+                autocomplete="name"
               />
             </div>
 
@@ -250,8 +213,8 @@
                 name="email"
                 type="email"
                 class="home-input"
-                autocomplete="email"
                 required
+                autocomplete="email"
               />
             </div>
 
@@ -273,7 +236,6 @@
                 name="message"
                 rows="4"
                 class="home-textarea"
-                autocomplete="off"
               ></textarea>
             </div>
 
@@ -287,22 +249,22 @@
                   checked
                 />
                 <span>
-                  I agree to be contacted &amp; accept the
+                  I agree to be contacted & accept the
                   <a href="/privacy.html">Privacy Policy</a>.
                 </span>
               </label>
             </div>
 
-            <!-- Turnstile placeholder – instantiated lazily by contact.js -->
-            <div
-              id="cf-turnstile-container"
-              class="cf-turnstile"
-              data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-              data-size="invisible"
-              data-callback="onTurnstileVerified"
-            ></div>
+            <!-- Turnstile -->
+            <div class="home-field">
+              <div
+                class="cf-turnstile"
+                data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+                data-theme="auto"
+              ></div>
+            </div>
 
-            <p id="contact-status" class="home-form-status" role="status"></p>
+            <p id="contact-status" class="home-status" role="status"></p>
 
             <div class="home-actions">
               <button type="submit" class="btn btn-primary home-submit">
@@ -310,24 +272,74 @@
               </button>
             </div>
           </form>
-        </article>
-      </section>
-    </main>
+        </div>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="container-6xl site-footer-inner">
-        <p>© <span id="year"></span> Podfy. All rights reserved.</p>
-        <nav class="site-footer-nav">
-          <a href="/privacy.html">Privacy</a>
-          <a href="/security.html">Security</a>
-          <a href="/releases">Releases</a>
-        </nav>
+        <aside class="card card-glass home-contact-side">
+          <h3 class="home-card-title">Prefer email?</h3>
+          <p class="home-card-body">
+            Reach us at
+            <a href="mailto:support@podfy.net">support@podfy.net</a>.
+          </p>
+        </aside>
+
       </div>
-      <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-      </script>
-    </footer>
-  </div>
+    </section>
+
+    <div class="cta-bar">
+      <a href="/free-tier-demo.html" class="btn btn-primary">Demo upload</a>
+      <a href="#contact" class="btn btn-secondary">Request demo</a>
+    </div>
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <!-- CONTACT FORM HANDLER -->
+  <script>
+    const form = document.getElementById("contact-form");
+    const statusEl = document.getElementById("contact-status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      statusEl.textContent = "Sending…";
+
+      try {
+        const payload = Object.fromEntries(new FormData(form).entries());
+
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        let data = null;
+        try {
+          data = await res.json();
+        } catch {
+          // Non-JSON response; treat as generic error
+        }
+
+        if (!res.ok || !data || data.ok === false) {
+          const message =
+            (data && (data.error || data.message)) ||
+            "We could not send the email right now. Please try again later.";
+          statusEl.textContent = message;
+          return;
+        }
+
+        statusEl.textContent = "Thanks! We will contact you shortly.";
+        form.reset();
+
+        // Reset Turnstile token so the form can be used again safely
+        if (window.turnstile) {
+          window.turnstile.reset();
+        }
+      } catch (err) {
+        console.error("Contact form error", err);
+        statusEl.textContent =
+          "Something went wrong while sending your request. Please try again.";
+      }
+    });
+  </script>
 </body>
 </html>
