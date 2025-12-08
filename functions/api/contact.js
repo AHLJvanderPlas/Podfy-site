@@ -66,13 +66,19 @@
     }
 
     if (consentInput && !consentInput.checked) {
-      setStatus("Please confirm that we may contact you about your request.", "error");
+      setStatus(
+        "Please confirm that we may contact you about your request.",
+        "error"
+      );
       return false;
     }
 
     // Honeypot: should remain empty; if not, silently pretend it worked.
     if (honeypotInput && honeypotInput.value.trim() !== "") {
-      setStatus("Thanks! If this was a real request, we will get back to you shortly.", "success");
+      setStatus(
+        "Thanks! If this was a real request, we will get back to you shortly.",
+        "success"
+      );
       return false;
     }
 
@@ -89,7 +95,8 @@
 
     turnstilePromise = new Promise((resolve, reject) => {
       const script = document.createElement("script");
-      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.src =
+        "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
       script.async = true;
       script.defer = true;
 
@@ -97,7 +104,9 @@
         if (window.turnstile) {
           resolve(window.turnstile);
         } else {
-          reject(new Error("Turnstile loaded but window.turnstile is missing."));
+          reject(
+            new Error("Turnstile loaded but window.turnstile is missing.")
+          );
         }
       };
 
@@ -136,10 +145,14 @@
           resolve(token);
         },
         "error-callback"() {
-          reject(new Error("Security verification failed. Please try again."));
+          reject(
+            new Error("Security verification failed. Please try again.")
+          );
         },
         "timeout-callback"() {
-          reject(new Error("Security verification timed out. Please try again."));
+          reject(
+            new Error("Security verification timed out. Please try again.")
+          );
         }
       };
 
