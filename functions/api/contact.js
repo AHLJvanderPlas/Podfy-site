@@ -1,203 +1,142 @@
-// Cloudflare Pages Function for POST /api/contact
-// Requires environment bindings:
-// - RESEND_API_KEY     (secret from Resend)
-// - TURNSTILE_SECRET   (secret key from Cloudflare Turnstile)
-// - DB_SITE_FORM       (optional D1 binding for storing submissions)
+// /assets/contact.js
+(function () {
+  const form = document.getElementById("contact-form");
+  if (!form) return;
 
-export async function onRequestPost(context) {
-  const { request, env } = context;
+  const statusEl = document.getElementById("contact-status");
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const tokenInput = document.getElementById("cf_turnstile_token");
 
-  // Helper to send JSON responses
-  const json = (data, init = {}) =>
-    new Response(JSON.stringify(data), {
-      status: init.status || 200,
-      headers: {
-        "Content-Type": "application/json",
-        ...(init.headers || {})
-      }
-    });
+  function setStatus(message, type) {
+    if (!statusEl) return;
+    statusEl.textContent = message || "";
+    // optional hook for styling via [data-status]
+    if (type) {
+      statusEl.dataset.status = type;
+    } else {
+      delete statusEl.dataset.status;
+    }
+  }
 
-  // Parse JSON body
-  let body;
-  try {
-    body = await request.json();
-  } catch (err) {
-    return json(
-      { ok: false, error: "Invalid JSON body." },
-      { status: 400 }
+  // ---- Turnstile callbacks (referenced from data-* attributes) ----
+
+  // Called when Turnstile successfully issues a token
+  window.onTurnstileCompleted = function (token) {
+    if (tokenInput) {
+      tokenInput.value = token || "";
+    }
+  };
+
+  // Called when Turnstile hit an error
+  window.onTurnstileError = function () {
+    if (tokenInput) tokenInput.value = "";
+    setStatus(
+      "Security check failed. Please reload the page and try again.",
+      "error"
     );
-  }
+  };
 
-  const {
-    name,
-    email,
-    company,
-    message,
-    consent,
-    hp_contact,
-    // Turnstile token coming from the form
-    "cf-turnstile-response": turnstileToken
-  } = body || {};
+  // Called when the token expires
+  window.onTurnstileExpired = function () {
+    if (tokenInput) tokenInput.value = "";
+  };
 
-  // Honeypot: if filled, silently treat as spam
-  if (hp_contact && String(hp_contact).trim() !== "") {
-    // Do not reveal anything special to bots
-    return json({ ok: true, spam: true });
-  }
+  // ---- Form submit handler ----
 
-  // Basic validation
-  if (!name || !email || !consent) {
-    return json(
-      { ok: false, error: "Name, email and consent are required." },
-      { status: 400 }
-    );
-  }
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  if (!turnstileToken) {
-    return json(
-      { ok: false, error: "Missing Turnstile token." },
-      { status: 400 }
-    );
-  }
+    // Let the browser highlight missing required fields
+    if (typeof form.reportValidity === "function" && !form.reportValidity()) {
+      return;
+    }
 
-  // Verify Turnstile
-  try {
-    const ip =
-      request.headers.get("CF-Connecting-IP") ||
-      request.headers.get("x-real-ip") ||
-      "";
+    // Ensure we actually have a token from Turnstile
+    if (!tokenInput || !tokenInput.value) {
+      setStatus(
+        "Missing Turnstile token. Please wait for the security check and then try again.",
+        "error"
+      );
+      // try to reset the widget so it can re-issue a token
+      try {
+        if (window.turnstile) {
+          window.turnstile.reset();
+        }
+      } catch (_) {}
+      return;
+    }
 
-    const verifyRes = await fetch(
-      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-      {
+    const originalLabel = submitBtn ? submitBtn.textContent : "";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+    }
+    setStatus("Sending...", "info");
+
+    try {
+      // FormData will include cf_turnstile_token because of the hidden input
+      const formData = new FormData(form);
+
+      // make absolutely sure the value matches the latest token
+      formData.set("cf_turnstile_token", tokenInput.value);
+
+      const payload = Object.fromEntries(formData.entries());
+
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: new URLSearchParams({
-          secret: env.TURNSTILE_SECRET,
-          response: turnstileToken,
-          remoteip: ip
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      let data = null;
+      try {
+        data = await res.json();
+      } catch (_) {
+        // backend might return plain text – ignore JSON errors
       }
-    );
 
-    const verifyData = await verifyRes.json();
+      const ok = res.ok && (!data || data.ok !== false);
 
-    if (!verifyData.success) {
-      console.warn("Turnstile verification failed:", verifyData);
-      return json(
-        {
-          ok: false,
-          error:
-            "Security check failed. Please wait a moment and try again."
-        },
-        { status: 400 }
+      if (!ok) {
+        const msg =
+          (data && (data.error || data.message)) ||
+          "We could not send the email right now. Please try again later.";
+        setStatus(msg, "error");
+
+        // reset token so the user gets a fresh challenge
+        if (tokenInput) tokenInput.value = "";
+        try {
+          if (window.turnstile) {
+            window.turnstile.reset();
+          }
+        } catch (_) {}
+        return;
+      }
+
+      setStatus(
+        "Thanks! If this was a real request, we will get back to you shortly.",
+        "success"
       );
-    }
-  } catch (err) {
-    console.error("Turnstile verification error:", err);
-    return json(
-      {
-        ok: false,
-        error:
-          "Security check failed. Please wait a moment and try again."
-      },
-      { status: 400 }
-    );
-  }
+      form.reset();
 
-  // Optional: store in D1 if binding is configured
-  try {
-    if (env.DB_SITE_FORM) {
-      const now = new Date().toISOString();
-      await env.DB_SITE_FORM.prepare(
-        `
-        INSERT INTO Site_Form (
-          created_at,
-          name,
-          email,
-          company,
-          message,
-          consent
-        ) VALUES (?, ?, ?, ?, ?, ?)
-        `
-      )
-        .bind(
-          now,
-          name,
-          email,
-          company || "",
-          message || "",
-          consent ? 1 : 0
-        )
-        .run();
-    }
-  } catch (err) {
-    console.error("D1 insert failed:", err);
-    // Do not fail the whole request because of logging
-  }
-
-  // Send email via Resend
-  try {
-    const resendRes = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        from: "Podfy <support@podfy.net>",
-        to: ["support@podfy.net"],
-        subject: "New contact request from podfy.net",
-        reply_to: email,
-        html: `
-          <h1>New contact request</h1>
-          <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-          <p><strong>Company:</strong> ${escapeHtml(company || "")}</p>
-          <p><strong>Consent:</strong> ${consent ? "Yes" : "No"}</p>
-          <p><strong>Message:</strong></p>
-          <p>${escapeHtml(message || "").replace(/\n/g, "<br>")}</p>
-        `
-      })
-    });
-
-    if (!resendRes.ok) {
-      const text = await resendRes.text();
-      console.error("Resend error:", resendRes.status, text);
-      return json(
-        {
-          ok: false,
-          error:
-            "We could not send the email right now. Please try again later."
-        },
-        { status: 502 }
+      // clear token + reset widget after a successful send
+      if (tokenInput) tokenInput.value = "";
+      try {
+        if (window.turnstile) {
+          window.turnstile.reset();
+        }
+      } catch (_) {}
+    } catch (err) {
+      console.error("Contact form error", err);
+      setStatus(
+        "We could not send the email right now. Please try again later.",
+        "error"
       );
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
     }
-  } catch (err) {
-    console.error("Resend exception:", err);
-    return json(
-      {
-        ok: false,
-        error:
-          "We could not send the email right now. Please try again later."
-      },
-      { status: 502 }
-    );
-  }
-
-  return json({ ok: true });
-}
-
-// Simple HTML-escaping helper
-function escapeHtml(str) {
-  return String(str).replace(
-    /[&<>"']/g,
-    (ch) =>
-      ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      }[ch])
-  );
-}
+  });
+})();
