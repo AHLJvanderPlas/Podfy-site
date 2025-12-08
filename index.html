@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -39,271 +39,281 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
   <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB" />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="/assets/styles.css?v=home-rev2" />
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="/assets/styles.css" />
 
-  <!-- Theme toggler -->
-  <script src="/assets/theme.js" defer></script>
-
-  <!-- Cloudflare Turnstile -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- Contact / Turnstile logic (lazy Turnstile load) -->
+  <script src="/assets/contact.js" defer></script>
 </head>
 
-<body class="home-body">
+<body class="site-body">
+  <div class="site-shell">
+    <!-- HEADER -->
+    <header class="site-header-shell">
+      <div class="site-header container-6xl">
+        <a href="/" class="site-brand">
+          <img src="/assets/podfy-logo.svg" alt="Podfy" />
+        </a>
 
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
-    Skip to content
-  </a>
+        <nav class="site-nav">
+          <a href="#how-it-works">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#plans">Pricing & Plans</a>
+          <a href="/releases">Releases</a>
+        </nav>
 
-  [[PODFY_HEADER]]
-
-  <!-- Subheader -->
-<section class="site-subheader">
-      <div class="site-subheader-container">
-        <div class="home-hero-left">
-          <p class="home-kicker">Zero-friction Proof of Delivery</p>
-          <h1 class="home-hero-title">Proof of Delivery, without the headaches.</h1>
-          <p class="home-hero-lead">
-            Share a link, snap a photo, get instant confirmation. No apps. No logins.
-            Branded, fast and built for logistics teams.
-          </p>
-
-          <ul class="icon-list">
-            <li><strong>No app.</strong> Drivers upload from any phone.</li>
-            <li><strong>Instant notifications.</strong> Teams get email alerts.</li>
-            <li><strong>Your brand.</strong> Logo, colors and safety messages.</li>
-          </ul>
-
-          <div class="home-hero-actions">
-            <a href="/free-tier-demo.html" class="btn btn-primary">Try a demo upload</a>
-            <a href="#plans" class="btn btn-secondary">View plans</a>
-          </div>
+        <div class="site-header-actions">
+          <a href="https://podfy.app" class="btn btn-ghost">Open app</a>
         </div>
+      </div>
+    </header>
 
-        <div class="home-hero-right">
-          <div class="home-hero-card card">
-            <h2 class="home-hero-card-title">What the driver sees</h2>
+    <!-- MAIN -->
+    <main id="main" class="container-6xl home-page">
+      <!-- HERO CARD -->
+      <section class="home-hero">
+        <article class="card card-hero card-glass">
+          <div class="home-hero-left">
+            <p class="eyebrow">Zero-friction proof of delivery</p>
+            <h1 class="home-hero-title">
+              Proof of Delivery, without the headaches.
+            </h1>
+            <p class="home-hero-lead">
+              Share a link, snap a photo, get instant confirmation.
+              No apps. No logins. Branded, fast and built for logistics teams.
+            </p>
+
+            <ul class="home-hero-bullets">
+              <li><strong>No app.</strong> Drivers upload from any phone.</li>
+              <li><strong>Instant notifications.</strong> Teams get email alerts.</li>
+              <li><strong>Your brand.</strong> Logo, colors and safety messages.</li>
+            </ul>
+
+            <div class="home-hero-actions">
+              <a href="https://podfy.app" class="btn btn-primary">Try a demo upload</a>
+              <a href="#plans" class="btn btn-ghost">View plans</a>
+            </div>
+          </div>
+
+          <aside class="home-hero-right card card-glass">
+            <h2 class="home-hero-side-title">What the driver sees</h2>
             <ol class="home-hero-steps">
               <li>Open your branded link</li>
               <li>Take a photo or drop the CMR</li>
               <li>Optionally add a shipment reference</li>
               <li>Tap send — your team is notified instantly</li>
             </ol>
-          </div>
+          </aside>
+        </article>
+      </section>
+
+      <!-- NEW SUB-HEADER -->
+      <section class="home-subhero">
+        <div class="card card-glass home-subhero-card">
+          <h2 class="home-subhero-title">
+            All your
+            <span
+              style="
+                background: linear-gradient(90deg,#38bdf8,#2563eb,#1d4ed8);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+              "
+            >
+              proof of deliveries
+            </span>
+            in one place.
+          </h2>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- VALUE STRIP -->
-    <section class="home-section">
-      <div class="container home-grid-4">
-        <article class="card card-glass">
-          <h3 class="home-card-title">Instant uploads</h3>
-          <p class="home-card-body">
-            Drivers simply snap a photo. No login or app required.
-          </p>
-        </article>
-        <article class="card card-glass">
-          <h3 class="home-card-title">Your brand</h3>
-          <p class="home-card-body">
-            Upload pages show your logo, colors and contact email.
-          </p>
-        </article>
-        <article class="card card-glass">
-          <h3 class="home-card-title">Instant alerts</h3>
-          <p class="home-card-body">
-            Operations receives immediate email confirmation.
-          </p>
-        </article>
-        <article class="card card-glass">
-          <h3 class="home-card-title">Quick setup</h3>
-          <p class="home-card-body">
-            Start in minutes using the free demo.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- PLANS -->
-    <section class="home-section" id="plans">
-      <div class="container">
-        <h2 class="home-section-title">Pricing & Plans</h2>
+      <!-- HOW IT WORKS -->
+      <section id="how-it-works" class="home-section">
+        <header class="home-section-header">
+          <h2>How Podfy fits into your day</h2>
+          <p>Drop it into your existing workflows without integrations or new apps.</p>
+        </header>
 
         <div class="home-grid-3">
           <article class="card card-glass">
-            <h3 class="home-card-title">Trial (Free)</h3>
-            <p class="home-card-body">Experience the upload flow instantly.</p>
-            <a class="home-card-link" href="/free-tier-demo.html">Try demo</a>
+            <h3>Share a branded link</h3>
+            <p>Send drivers a simple upload link by email, WhatsApp or internal TMS message.</p>
+          </article>
+          <article class="card card-glass">
+            <h3>Drivers upload proof</h3>
+            <p>They scan or snap the CMR, add optional reference fields and submit in seconds.</p>
+          </article>
+          <article class="card card-glass">
+            <h3>Your team gets the POD instantly</h3>
+            <p>Podfy forwards the proof to your team and archives the original for later retrieval.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section id="features" class="home-section">
+        <header class="home-section-header">
+          <h2>Built for logistics teams, not generic file uploads</h2>
+        </header>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <h3>Branded upload page</h3>
+            <p>Your logo, colors and safety information on every upload page.</p>
+          </article>
+          <article class="card card-glass">
+            <h3>Smart file handling</h3>
+            <p>Automatic PDF conversion and standardized filenames keep your archive clean.</p>
+          </article>
+          <article class="card card-glass">
+            <h3>Delivery portal (optional)</h3>
+            <p>Give customers and drivers a self-service portal to view recent PODs.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- PLANS / CTA -->
+      <section id="plans" class="home-section">
+        <header class="home-section-header">
+          <h2>Start simple, grow as you need</h2>
+          <p>Try a manual setup first. When it works, add branding, portals and automation.</p>
+        </header>
+
+        <div class="home-grid-2">
+          <article class="card card-glass">
+            <h3>Free tier</h3>
+            <p>Great for pilots, side projects and testing Podfy with a small team.</p>
+            <ul class="home-list">
+              <li>Branded upload link</li>
+              <li>Automatic PDF conversion</li>
+              <li>Email notifications</li>
+            </ul>
           </article>
 
           <article class="card card-glass">
-            <h3 class="home-card-title">Branded link</h3>
-            <p class="home-card-body">Your logo, colors and contact email.</p>
-            <a class="home-card-link" href="#contact">Request demo</a>
-          </article>
-
-          <article class="card card-glass">
-            <h3 class="home-card-title">Branded + Portal</h3>
-            <p class="home-card-body">Includes a lightweight delivery portal.</p>
-            <a class="home-card-link" href="#contact">Talk to us</a>
+            <h3>Growing freight teams</h3>
+            <p>For 3PLs and forwarders who want a lightweight POD solution without changing their TMS.</p>
+            <ul class="home-list">
+              <li>Multiple brands and slugs</li>
+              <li>Customer delivery portal</li>
+              <li>Priority support</li>
+            </ul>
           </article>
         </div>
+      </section>
+
+      <!-- CONTACT / SALES FORM -->
+      <section id="contact" class="home-section home-contact">
+        <article class="card card-glass home-contact-card">
+          <header class="home-section-header">
+            <h2>Talk to sales</h2>
+            <p>Tell us how you work today and which option (Trial, Branded, Portal, AI) fits you best.</p>
+          </header>
+
+          <form id="contact-form" class="home-contact-form" novalidate>
+            <!-- Honeypot -->
+            <div class="visually-hidden">
+              <label for="hp_contact">Leave this field empty</label>
+              <input id="hp_contact" name="hp_contact" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="home-field">
+              <label class="home-label" for="contact-name">Name</label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                class="home-input"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="home-field">
+              <label class="home-label" for="contact-email">Email</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                class="home-input"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="home-field">
+              <label class="home-label" for="contact-company">Company</label>
+              <input
+                id="contact-company"
+                name="company"
+                type="text"
+                class="home-input"
+                autocomplete="organization"
+              />
+            </div>
+
+            <div class="home-field">
+              <label class="home-label" for="contact-message">Message</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="4"
+                class="home-textarea"
+                autocomplete="off"
+              ></textarea>
+            </div>
+
+            <div class="home-field home-consent">
+              <label class="home-checkbox">
+                <input
+                  id="contact-consent"
+                  name="consent"
+                  type="checkbox"
+                  required
+                  checked
+                />
+                <span>
+                  I agree to be contacted &amp; accept the
+                  <a href="/privacy.html">Privacy Policy</a>.
+                </span>
+              </label>
+            </div>
+
+            <!-- Turnstile placeholder – instantiated lazily by contact.js -->
+            <div
+              id="cf-turnstile-container"
+              class="cf-turnstile"
+              data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+              data-size="invisible"
+              data-callback="onTurnstileVerified"
+            ></div>
+
+            <p id="contact-status" class="home-form-status" role="status"></p>
+
+            <div class="home-actions">
+              <button type="submit" class="btn btn-primary home-submit">
+                Send request
+              </button>
+            </div>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container-6xl site-footer-inner">
+        <p>© <span id="year"></span> Podfy. All rights reserved.</p>
+        <nav class="site-footer-nav">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/security.html">Security</a>
+          <a href="/releases">Releases</a>
+        </nav>
       </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="home-section" id="contact">
-      <div class="container home-contact-grid">
-
-        <div class="card card-glass home-contact-card">
-          <h2 class="home-section-title">Talk to sales</h2>
-          <p class="home-section-intro">
-            Tell us how you work today and which option fits you best.
-          </p>
-
-          <!-- CLEAN SINGLE CONTACT FORM -->
-         <!-- CLEAN SINGLE CONTACT FORM -->
-<form id="contact-form" class="home-contact-form" novalidate>
-  <!-- Honeypot -->
-  <div class="visually-hidden">
-    <label for="hp_contact">Leave this field empty</label>
-    <input
-      id="hp_contact"
-      name="hp_contact"
-      type="text"
-      tabindex="-1"
-      autocomplete="off"
-    />
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    </footer>
   </div>
-
-  <div class="home-field">
-    <label class="home-label" for="contact-name">Name</label>
-    <input
-      id="contact-name"
-      name="name"
-      type="text"
-      class="home-input"
-      required
-      autocomplete="name"
-    />
-  </div>
-
-  <div class="home-field">
-    <label class="home-label" for="contact-email">Email</label>
-    <input
-      id="contact-email"
-      name="email"
-      type="email"
-      class="home-input"
-      required
-      autocomplete="email"
-    />
-  </div>
-
-  <div class="home-field">
-    <label class="home-label" for="contact-company">Company</label>
-    <input
-      id="contact-company"
-      name="company"
-      type="text"
-      class="home-input"
-      autocomplete="organization"
-    />
-  </div>
-
-  <div class="home-field">
-    <label class="home-label" for="contact-message">Message</label>
-    <textarea
-      id="contact-message"
-      name="message"
-      rows="4"
-      class="home-textarea"
-      autocomplete="off"
-    ></textarea>
-  </div>
-
-  <div class="home-field home-consent">
-    <label class="home-checkbox">
-      <input
-        id="contact-consent"
-        name="consent"
-        type="checkbox"
-        required
-        checked
-      />
-      <span>
-        I agree to be contacted &amp; accept the
-        <a href="/privacy.html">Privacy Policy</a>.
-      </span>
-    </label>
-  </div>
-
-  <!-- Turnstile container (invisible, rendered on demand) -->
-  <div
-    id="cf-turnstile-container"
-    class="cf-turnstile"
-    data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-    data-size="invisible"
-    data-callback="onTurnstileVerified"
-  ></div>
-
-  <p id="contact-status" class="home-form-status" role="status"></p>
-
-  <div class="home-actions">
-    <button type="submit" class="btn btn-primary home-submit">
-      Send request
-    </button>
-  </div>
-</form>
-
-
-        </div>
-
-        <aside class="card card-glass home-contact-side">
-          <h3 class="home-card-title">Prefer email?</h3>
-          <p class="home-card-body">
-            Reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>.
-          </p>
-        </aside>
-
-      </div>
-    </section>
-
-    <div class="cta-bar">
-      <a href="/free-tier-demo.html" class="btn btn-primary">Demo upload</a>
-      <a href="#contact" class="btn btn-secondary">Request demo</a>
-    </div>
-  </main>
-
-  [[PODFY_FOOTER]]
-
-  <!-- JS CONTACT HANDLER -->
-  <script>
-    document.getElementById("contact-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const status = document.getElementById("contact-status");
-      status.textContent = "Sending...";
-
-      const payload = Object.fromEntries(new FormData(e.target).entries());
-
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await res.json();
-
-      if (!data.ok) {
-        status.textContent = data.error || "Something went wrong.";
-        return;
-      }
-
-      status.textContent = "Thanks! We’ll contact you shortly.";
-      e.target.reset();
-    });
-  </script>
-
 </body>
 </html>
