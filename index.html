@@ -238,20 +238,20 @@
     </label>
   </div>
 
-  <!-- Hidden Turnstile token -->
-  <input type="hidden" id="turnstile-token" name="turnstileToken" />
+<!-- Turnstile widget -->
+<div
+  class="cf-turnstile"
+  data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+  data-theme="auto">
+</div>
 
-  <!-- Turnstile widget -->
-  <div class="home-field">
-    <div
-      class="cf-turnstile"
-      data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-      data-callback="onTurnstileSuccess"
-      data-error-callback="onTurnstileError"
-      data-expired-callback="onTurnstileExpired"
-      data-theme="auto"
-    ></div>
-  </div>
+<!-- Hidden field for the token (Turnstile may also inject one, this is just safe) -->
+<input
+  type="hidden"
+  id="cf-turnstile-response"
+  name="cf-turnstile-response"
+/>
+
 
   <p id="contact-status" class="home-status" role="status"></p>
 
