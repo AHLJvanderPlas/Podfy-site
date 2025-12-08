@@ -1489,5 +1489,21 @@ html[data-theme="dark"] .home-link {
   border:0;
 }
 
-/* Mobile CTA bar reuse (already existing styles can remain) */
+/* Make the hero sit directly under the main header, like the old subheader */
+.home-main {
+  padding-top: 0;      /* remove leftover top padding that assumed a subheader */
+  margin-top: 0;
+}
 
+.home-hero-subheader {
+  margin-top: 0;       /* no extra gap above hero */
+  padding-top: 1.5rem; /* small breathing room under the nav bar */
+}
+
+/* Gradient accent for the hero headline */
+.hero-heading span {
+  background: linear-gradient(135deg, var(--accent-strong), #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
