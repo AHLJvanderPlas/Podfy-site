@@ -1,577 +1,215 @@
-<!-- PODFY – contact auto-reply email -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>PODFY – We received your request</title>
-    <meta name="color-scheme" content="light dark" />
-    <meta name="supported-color-schemes" content="light dark" />
-    <style>
-      /* Basic reset (kept tiny for email) */
-      body {
-        margin: 0;
-        padding: 0;
-        background: #020617;
-        -webkit-text-size-adjust: 100%;
-      }
-      table {
-        border-collapse: collapse;
-      }
-      img {
-        border: 0;
-        display: block;
-        max-width: 100%;
-      }
-
-      /* Wrapper and card */
-      .outer {
-        width: 100%;
-        background: radial-gradient(circle at top left, #0f172a 0, #020617 55%, #000 100%);
-        padding: 32px 0;
-      }
-      .card {
-        width: 100%;
-        max-width: 720px;
-        margin: 0 auto;
-        border-radius: 24px;
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.98));
-        border: 1px solid rgba(148, 163, 184, 0.12);
-        box-shadow: 0 24px 80px rgba(15, 23, 42, 0.9);
-      }
-      .card-inner {
-        padding: 28px 28px 32px;
-      }
-
-      /* Header / logo */
-      .logo-row {
-        padding-bottom: 16px;
-      }
-      .logo-dark {
-        display: block;
-      }
-      .logo-light {
-        display: none;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          background: #020617;
-        }
-        .outer {
-          background: radial-gradient(circle at top left, #0b1120 0, #020617 60%, #000 100%);
-        }
-        .logo-dark {
-          display: none !important;
-        }
-        .logo-light {
-          display: block !important;
-        }
-      }
-
-      /* Small pill "We have received your request" */
-      .pill-row {
-        padding: 0 0 16px;
-      }
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 14px 6px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(96, 165, 250, 0.45);
-        background: radial-gradient(circle at left, rgba(37, 99, 235, 0.35), rgba(15, 23, 42, 0.95));
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #e5edff;
-        white-space: nowrap;
-      }
-      .pill-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        background: radial-gradient(circle at 30% 30%, #a5b4fc 0, #38bdf8 40%, #1d4ed8 100%);
-        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.35);
-      }
-
-      /* Headings + text */
-      .h1 {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-        font-size: 26px;
-        line-height: 1.25;
-        font-weight: 700;
-        color: #f9fafb;
-        margin: 0 0 10px;
-      }
-      .h1 span.name {
-        background-image: linear-gradient(135deg, #60a5fa, #22d3ee);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-      .lead {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-        font-size: 15px;
-        line-height: 1.6;
-        color: #cbd5f5;
-        margin: 0 0 16px;
-      }
-      .copy {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-        font-size: 14px;
-        line-height: 1.7;
-        color: #9ca3c9;
-        margin: 0 0 16px;
-      }
-
-      /* Feature chips (mirror delivery portal benefits) */
-      .chips {
-        margin: 16px 0 6px;
-      }
-      .chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 12px;
-        margin: 0 8px 8px 0;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.4);
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95));
-        color: #e5edff;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-        font-size: 12px;
-      }
-      .chip-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background: #22c55e;
-      }
-
-      .feature-card {
-        margin-top: 18px;
-        padding: 14px 16px;
-        border-radius: 16px;
-        border: 1px solid rgba(59, 130, 246, 0.45);
-        background: radial-gradient(circle at left, rgba(37, 99, 235, 0.25), rgba(15, 23, 42, 0.96));
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-        font-size: 13px;
-        line-height: 1.6;
-        color: #dbeafe;
-      }
-      .feature-card strong {
-        color: #e5edff;
-      }
-
-      /* CTA buttons */
-      .cta-row {
-        padding: 18px 0 4px;
-      }
-      .btn {
-        display: inline-block;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 999px;
-        padding: 10px 20px;
-        text-align: center;
-        white-space: nowrap;
-      }
-      .btn-primary {
-        background: linear-gradient(135deg, #2563eb, #22d3ee);
-        color: #0b1120 !important;
-        box-shadow: 0 18px 45px rgba(37, 99, 235, 0.65);
-      }
-      .btn-secondary {
-        background: rgba(15, 23, 42, 0.9);
-        color: #e5edff !important;
-        border: 1px solid rgba(148, 163, 184, 0.6);
-      }
-
-      /* Two-column layout for CTAs (stacks on mobile) */
-      .cta-table {
-        width: 100%;
-      }
-      .cta-col {
-        width: 50%;
-      }
-      @media (max-width: 600px) {
-        .card-inner {
-          padding: 22px 18px 26px;
-        }
-        .cta-col {
-          display: block;
-          width: 100% !important;
-          padding-bottom: 12px;
-        }
-      }
-
-      /* Footer */
-      .footer {
-        width: 100%;
-        max-width: 720px;
-        margin: 12px auto 0;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-        font-size: 11px;
-        line-height: 1.5;
-        color: #6b7280;
-        text-align: center;
-      }
-      .footer a {
-        color: #9ca3ff;
-        text-decoration: none;
-      }
-    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>PODFY – Thanks for your message</title>
   </head>
-  <body>
-    <table class="outer" role="presentation" cellpadding="0" cellspacing="0">
-      <tr>
-        <td align="center">
-          <table class="card" role="presentation" cellpadding="0" cellspacing="0">
-            <tr>
-              <td class="card-inner">
-                <!-- Logo -->
-                <table role="presentation" width="100%">
-                  <tr class="logo-row">
-                    <td>
-                      <!-- Dark-on-light logo -->
-                      <img
-                        src="https://podfy.net/assets/podfy-logo-dark-email.png"
-                        width="96"
-                        height="24"
-                        alt="PODFY"
-                        class="logo-dark"
-                      />
-                      <!-- Light-on-dark logo (shown when client supports dark mode) -->
-                      <img
-                        src="https://podfy.net/assets/podfy-logo-light-email.png"
-                        width="96"
-                        height="24"
-                        alt="PODFY"
-                        class="logo-light"
-                      />
-                    </td>
-                  </tr>
-                </table>
+  <body style="margin:0; padding:0; background-color:#020617;">
+    <center style="width:100%; background-color:#020617;">
 
-                <!-- Pill -->
-                <div class="pill-row">
-                  <span class="pill">
-                    <span class="pill-dot"></span>
-                    We have received your request
-                  </span>
-                </div>
-
-                <!-- Heading -->
-                <p class="h1">
-                  Thanks <span class="name">{{name}}</span>, we’re on it.
-                </p>
-
-                <!-- Lead + copy -->
-                <p class="lead">
-                  Your message has landed in the PODFY inbox. We will review your
-                  request and get back to you as fast as possible.
-                </p>
-
-                <p class="copy">
-                  In the meantime, you can already experience how zero-friction
-                  Proof of Delivery works for drivers, recipients and your ops
-                  team.
-                </p>
-
-                <!-- Benefits section -->
-                <div class="chips">
-                  <span class="chip">
-                    <span class="chip-dot"></span>
-                    Instant, passwordless access
-                  </span>
-                  <span class="chip">
-                    <span class="chip-dot"></span>
-                    Driver &amp; recipient friendly
-                  </span>
-                  <span class="chip">
-                    <span class="chip-dot"></span>
-                    Email identity as your key
-                  </span>
-                </div>
-
-                <div class="feature-card">
-                  <strong>Free view · 60 days included.</strong>
-                  See all PODs that were emailed to you for the last
-                  <strong>60 days</strong>. Paid plans can extend retention up to
-                  <strong>7 years</strong> per customer while keeping the same
-                  simple login.
-                </div>
-
-                <!-- CTAs -->
-                <div class="cta-row">
-                  <table class="cta-table" role="presentation">
+      <!-- Outer container -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse; margin:0; padding:24px 0;">
+        <tr>
+          <td align="center" style="padding:0 16px;">
+            <!-- Inner card -->
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:640px; border-collapse:collapse; background-color:#020617; border-radius:16px; border:1px solid #1e293b;">
+              <!-- Header -->
+              <tr>
+                <td style="padding:24px 24px 8px 24px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
                     <tr>
-                      <td class="cta-col" align="left" style="padding-right:8px;">
-                        <p class="copy" style="margin:0 0 8px;">
-                          Try the upload flow yourself in less than a minute.
+                      <td valign="middle">
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                          <tr>
+                            <td valign="middle" style="padding-right:8px;">
+                              <img src="https://podfy.net/assets/podfy-logo-light.png"
+                                   alt="PODFY"
+                                   width="32"
+                                   style="display:block; border:0; outline:none; text-decoration:none;" />
+                            </td>
+                            <td valign="middle">
+                              <span style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#e5e7eb;">
+                                PODFY · Proof of Delivery
+                              </span>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                      <td align="right" valign="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:12px; color:#64748b;">
+                        podfy.net
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Divider -->
+              <tr>
+                <td style="padding:0 24px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                    <tr>
+                      <td style="border-bottom:1px solid #1f2937; font-size:0; line-height:0;">&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Hero / greeting -->
+              <tr>
+                <td style="padding:24px 24px 8px 24px;">
+                  <p style="margin:0 0 8px 0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:14px; color:#e5e7eb;">
+                    Hi
+                    <span style="color:#38bdf8; font-weight:600;">
+                      {{name}}
+                    </span>,
+                  </p>
+                  <h1 style="margin:0 0 12px 0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:24px; line-height:1.3; font-weight:700; color:#f9fafb;">
+                    Thanks for reaching out about PODFY.
+                  </h1>
+                  <p style="margin:0 0 16px 0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:14px; line-height:1.6; color:#cbd5f5;">
+                    This email confirms that we received your contact request and your details safely arrived on our side. We typically respond within one business day, often much faster.
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Status pill -->
+              <tr>
+                <td style="padding:0 24px 16px 24px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                    <tr>
+                      <td style="border-radius:999px; border:1px solid #1d4ed8; background-color:#020617; padding:8px 16px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:12px; color:#bfdbfe;">
+                        <!-- blue dot -->
+                        <span style="display:inline-block; width:8px; height:8px; border-radius:999px; background-color:#38bdf8; margin-right:8px;"></span>
+                        <strong style="color:#e5e7eb;">We have received your request.</strong>
+                        &nbsp;We will get back to you as soon as possible.
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- While you wait section -->
+              <tr>
+                <td style="padding:8px 24px 4px 24px;">
+                  <p style="margin:0 0 8px 0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#64748b; font-weight:600;">
+                    While you wait
+                  </p>
+                  <p style="margin:0 0 12px 0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:14px; line-height:1.6; color:#cbd5f5;">
+                    You can already explore how PODFY removes friction from Proof of Delivery for your team:
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Feature strip -->
+              <tr>
+                <td style="padding:0 24px 16px 24px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse; border-radius:16px; border:1px solid #1e293b; background-color:#020617;">
+                    <tr>
+                      <td style="padding:16px 16px 12px 16px;">
+                        <p style="margin:0 0 6px 0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; color:#e5e7eb; font-weight:600;">
+                          Zero-friction POD capture
                         </p>
-                        <a
-                          href="https://podfy.app/free-tier-demo.html"
-                          class="btn btn-primary"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Try a demo upload
+                        <p style="margin:0 0 12px 0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; line-height:1.6; color:#9ca3af;">
+                          Share a link, drivers snap a photo of the CMR, and your team gets instant confirmation. No apps. No passwords. Works from any phone.
+                        </p>
+                        <ul style="margin:0; padding:0 0 0 18px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; line-height:1.6; color:#9ca3af;">
+                          <li><strong style="color:#e5e7eb;">Free view · 60 days:</strong> see deliveries linked to your email in the delivery portal.</li>
+                          <li><strong style="color:#e5e7eb;">Instant, passwordless access:</strong> we send a one-time magic link to open the portal.</li>
+                          <li><strong style="color:#e5e7eb;">Built for logistics teams:</strong> optimised for drivers, planners and customer service.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- CTAs -->
+              <tr>
+                <td style="padding:4px 24px 20px 24px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                    <tr>
+                      <!-- Button 1 -->
+                      <td align="left" style="padding:0 12px 8px 0;">
+                        <a href="https://podfy.net/free-tier-demo.html"
+                           style="display:inline-block; padding:10px 18px; border-radius:999px; background-color:#2563eb; text-decoration:none; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:600; color:#f9fafb;">
+                          Try the free-tier demo
                         </a>
                       </td>
-                      <td class="cta-col" align="left" style="padding-left:8px;">
-                        <p class="copy" style="margin:12px 0 8px;">
-                          Explore the delivery portal that your drivers and
-                          customers will use.
-                        </p>
-                        <a
-                          href="https://delivery.podfy.net"
-                          class="btn btn-secondary"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Open delivery portal
+
+                      <!-- Button 2 -->
+                      <td align="left" style="padding:0 0 8px 0;">
+                        <a href="https://podfy.app"
+                           style="display:inline-block; padding:10px 18px; border-radius:999px; background-color:#020617; border:1px solid #38bdf8; text-decoration:none; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; color:#e5e7eb;">
+                          See a demo upload in PODFY
                         </a>
                       </td>
                     </tr>
                   </table>
-                </div>
+                </td>
+              </tr>
 
-                <!-- Extra nudge -->
-                <p class="copy" style="margin-top:18px;">
-                  Have examples of your POD process or CMR layout ready? Feel
-                  free to reply to this mail with a couple of screenshots or a
-                  short description. It helps us tune the demo to your
-                  day-to-day reality.
-                </p>
-              </td>
-            </tr>
-          </table>
+              <!-- What happens next -->
+              <tr>
+                <td style="padding:0 24px 16px 24px;">
+                  <p style="margin:0 0 8px 0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#64748b; font-weight:600;">
+                    What happens next
+                  </p>
+                  <ol style="margin:0 0 0 18px; padding:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; line-height:1.6; color:#9ca3af;">
+                    <li>We review your message and how you currently collect PODs.</li>
+                    <li>We reply with a short, concrete proposal – and a link to schedule a call if useful.</li>
+                    <li>Together we map your flows (drivers, warehouse, customers) and shape a lightweight roll-out.</li>
+                  </ol>
+                </td>
+              </tr>
 
-          <!-- Footer -->
-          <div class="footer">
-            <p style="margin:6px 0 2px;">© {{year}} PODFY · Zero-friction POD capture</p>
-            <p style="margin:0 0 4px;">
-              <a href="https://podfy.net">podfy.net</a> ·
-              <a href="https://podfy.net/terms.html">Terms</a> ·
-              <a href="https://podfy.net/privacy.html">Privacy</a>
-            </p>
-            <p style="margin:4px 0 0;">
-              You received this message because you contacted us via
-              podfy.net. If this was not you, you can safely ignore this email.
-            </p>
-          </div>
-        </td>
-      </tr>
-    </table>
+              <!-- Optional echo of message -->
+              <tr>
+                <td style="padding:16px 24px 24px 24px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse; border-radius:12px; border:1px solid #1e293b; background-color:#020617;">
+                    <tr>
+                      <td style="padding:12px 16px;">
+                        <p style="margin:0 0 6px 0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; color:#9ca3af;">
+                          <strong style="color:#e5e7eb;">Your message</strong> (for reference):
+                        </p>
+                        <p style="margin:0; white-space:pre-wrap; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; line-height:1.6; color:#9ca3af;">
+                          {{message}}
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td style="padding:0 24px 24px 24px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+                    <tr>
+                      <td style="border-top:1px solid #1f2937; font-size:0; line-height:0;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td style="padding-top:12px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; line-height:1.5; color:#6b7280;">
+                        <p style="margin:0 0 4px 0;">
+                          You are receiving this email because you submitted a contact form on <a href="https://podfy.net" style="color:#93c5fd; text-decoration:none;">podfy.net</a>.
+                        </p>
+                        <p style="margin:0 0 4px 0;">
+                          PODFY · Zero-friction Proof of Delivery.
+                        </p>
+                        <p style="margin:0;">
+                          <a href="https://podfy.net/privacy.html" style="color:#64748b; text-decoration:none;">Privacy &amp; terms</a>
+                          &nbsp;·&nbsp;
+                          <a href="mailto:support@podfy.net" style="color:#64748b; text-decoration:none;">support@podfy.net</a>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
   </body>
-</html><!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>PODFY – Thanks for contacting us</title>
-
-<style>
-  /* RESET */
-  body {
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    background: #020617;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  }
-  table { border-collapse: collapse; }
-  a { text-decoration: none; }
-
-  /* Podfy gradient backgrounds */
-  .bg-main {
-    background: radial-gradient(circle at top, #1d3557 0%, #020617 55%, #020617 100%);
-    padding: 32px 16px;
-  }
-
-  /* Cards */
-  .card {
-    background: #f9fafb;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.35);
-  }
-
-  /* Theme-aware logo */
-  .logo-dark { display: block; }
-  .logo-light { display: none; }
-
-  @media (prefers-color-scheme: dark) {
-    .card { background: #0f172a !important; color: #e2e8f0; }
-    .logo-dark { display: none !important; }
-    .logo-light { display: block !important; }
-  }
-
-  /* Gradient name */
-  .name-gradient {
-    display: inline-block;
-    background: linear-gradient(135deg, #2563eb, #22d3ee);
-    -webkit-background-clip: text;
-    color: transparent;
-    font-weight: 700;
-  }
-
-  /* Buttons */
-  .btn {
-    display: inline-block;
-    padding: 12px 22px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, #2563eb, #22d3ee);
-    color: #ffffff !important;
-  }
-  .btn-secondary {
-    background: #0f172a;
-    color: #e5e7eb !important;
-    border: 1px solid rgba(148,163,184,0.4);
-  }
-
-  .pill {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    background: #dbeafe;
-    color: #1e293b;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-</style>
-</head>
-
-<body>
-
-<!-- Background wrapper -->
-<table width="100%" class="bg-main" role="presentation">
-<tr><td align="center">
-
-  <!-- CARD -->
-  <table width="100%" role="presentation" class="card" style="max-width:640px;">
-  
-    <!-- HEADER -->
-    <tr>
-      <td style="padding: 20px 24px 16px; background: linear-gradient(135deg,#0f172a,#1d3557);">
-
-        <table width="100%">
-          <tr>
-            <td align="left">
-              <!-- Dark logo (default) -->
-              <img src="https://podfy.net/assets/podfy.svg"
-                   width="140"
-                   alt="PODFY"
-                   class="logo-dark" style="display:block;" />
-
-              <!-- Light logo when dark mode -->
-              <img src="https://podfy.net/assets/podfy-light.svg"
-                   width="140"
-                   alt="PODFY"
-                   class="logo-light" style="display:block;" />
-            </td>
-
-            <td align="right" style="color:#cbd5f5; font-size:12px;">
-              Zero-friction Proof of Delivery
-            </td>
-          </tr>
-        </table>
-
-      </td>
-    </tr>
-
-    <!-- HERO -->
-    <tr>
-      <td style="padding: 28px 28px 8px;">
-        <span class="pill">We have received your request</span>
-
-        <h1 style="margin:16px 0 10px; font-size:24px; line-height:1.3; color:#020617;">
-          Thanks <span class="name-gradient">{{name}}</span>, we will contact you shortly.
-        </h1>
-
-        <p style="margin:0; font-size:14px; line-height:1.6; color:#4b5563;">
-          Your message has arrived safely. A member of the PODFY team will get back to you as quickly as possible — usually within one business day.
-        </p>
-      </td>
-    </tr>
-
-    <!-- NEXT STEPS -->
-    <tr>
-      <td style="padding: 12px 28px 24px;">
-        <h2 style="margin:0 0 8px; font-size:16px; color:#0f172a;">What happens next</h2>
-        <ul style="margin:0 0 16px 18px; padding:0; color:#4b5563; font-size:14px; line-height:1.6;">
-          <li>We review your use case and current POD flow.</li>
-          <li>You receive a tailored reply or a short recommendation.</li>
-          <li>Optionally we schedule a quick walkthrough of PODFY.</li>
-        </ul>
-      </td>
-    </tr>
-
-    <!-- CTAs -->
-    <tr>
-      <td style="padding:0 28px 24px;">
-        <a href="https://podfy.net/free-tier-demo.html" class="btn btn-primary">
-          Free-tier demo
-        </a>
-        <br /><br />
-        <a href="https://podfy.app" class="btn btn-secondary">
-          Try a demo upload
-        </a>
-
-        <p style="margin-top:10px; font-size:12px; color:#6b7280;">
-          Both demos run without login or setup.
-        </p>
-      </td>
-    </tr>
-
-    <!-- BONUS ENGAGEMENT -->
-    <tr>
-      <td style="padding:0 28px 24px;">
-        <h2 style="margin:0 0 8px; font-size:16px; color:#0f172a;">Help us prepare the best recommendation</h2>
-
-        <p style="margin:0 0 8px; font-size:14px; color:#4b5563; line-height:1.6;">
-          Reply to this email with any of these (optional) insights:
-        </p>
-
-        <ul style="margin:0 0 16px 18px; padding:0; font-size:14px; color:#4b5563; line-height:1.6;">
-          <li>Your average POD volume per day or week.</li>
-          <li>If drivers are internal, partner-based, or mixed.</li>
-          <li>Where PODs currently end up (email, ERP, folders, etc.).</li>
-        </ul>
-      </td>
-    </tr>
-
-    <!-- FOOTER -->
-    <tr>
-      <td style="padding:16px 28px 24px; background:#f9fafb; font-size:12px; color:#6b7280;">
-        <p style="margin:0 0 6px;">
-          PODFY — Proof of Delivery, without the headaches.
-        </p>
-        <p style="margin:0 0 6px;">
-          <a href="https://podfy.net" style="color:#6b7280;">Website</a> ·
-          <a href="https://podfy.net/privacy.html" style="color:#6b7280;">Privacy</a>
-        </p>
-        <p style="margin:0; font-size:11px;">
-          You received this email because you submitted a contact request on podfy.net.
-        </p>
-      </td>
-    </tr>
-
-  </table>
-
-</td></tr>
-</table>
-
-</body>
 </html>
