@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>PODFY – Thanks for reaching out</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      /* Basic email resets */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #020617;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "Segoe UI", sans-serif;
+        color: #0b1120;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      a {
+        color: #2563eb;
+        text-decoration: none;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #2563eb, #22d3ee);
+        color: #ffffff !important;
+      }
+      .btn-secondary {
+        background-color: #0f172a;
+        color: #e5e7eb !important;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+      }
+      .text-muted {
+        color: #6b7280;
+      }
+      .pill {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #0f172a;
+        background-color: #dbeafe;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Outer background -->
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background: radial-gradient(circle at top, #1d3557 0, #020617 55%, #020617 100%); padding: 32px 16px;">
+      <tr>
+        <td align="center">
+          <!-- Main card -->
+          <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 640px; background-color: #f9fafb; border-radius: 24px; overflow: hidden; box-shadow: 0 24px 80px rgba(15, 23, 42, 0.40);">
+            <!-- Header -->
+            <tr>
+              <td style="padding: 20px 24px 16px 24px; background: linear-gradient(135deg,#0f172a,#1d3557);">
+                <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                  <tr>
+                    <td align="left" valign="middle">
+                      <img src="https://podfy.net/assets/podfy.svg"
+                           alt="PODFY"
+                           height="28"
+                           style="display:block; max-width:140px;" />
+                    </td>
+                    <td align="right" valign="middle" style="font-size: 12px; color: #cbd5f5;">
+                      Zero-friction Proof of Delivery
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Hero band -->
+            <tr>
+              <td style="padding: 28px 28px 8px 28px;">
+                <span class="pill">We have received your message</span>
+                <h1 style="margin: 16px 0 8px 0; font-size: 24px; line-height: 1.3; color:#020617;">
+                  Thanks{{name ? ' ' + name : ''}}, we will contact you shortly.
+                </h1>
+                <p style="margin: 0; font-size: 14px; line-height: 1.6; color:#4b5563;">
+                  Your request has landed in our inbox. A member of the PODFY team
+                  will review it and get back to you as fast as possible, usually
+                  within one business day.
+                </p>
+              </td>
+            </tr>
+
+            <!-- What happens next -->
+            <tr>
+              <td style="padding: 8px 28px 24px 28px;">
+                <h2 style="margin: 0 0 8px 0; font-size: 16px; color:#0f172a;">
+                  What happens next
+                </h2>
+                <ul style="margin: 0 0 16px 18px; padding: 0; font-size: 14px; line-height: 1.7; color:#4b5563;">
+                  <li>We review your use case and current POD process.</li>
+                  <li>We reply with clarifying questions or a short recommendation.</li>
+                  <li>If helpful, we schedule a quick demo of the PODFY upload flow.</li>
+                </ul>
+              </td>
+            </tr>
+
+            <!-- CTAs -->
+            <tr>
+              <td style="padding: 0 28px 24px 28px;">
+                <table cellpadding="0" cellspacing="0" role="presentation">
+                  <tr>
+                    <td align="left" style="padding-bottom: 12px;">
+                      <a href="https://podfy.net/free-tier-demo.html" class="btn btn-primary">
+                        Explore the free-tier demo
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" style="padding-bottom: 8px;">
+                      <a href="https://podfy.app/" class="btn btn-secondary">
+                        Try a demo upload in PODFY
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+                <p class="text-muted" style="margin: 4px 0 0 0; font-size: 12px; line-height: 1.6;">
+                  These links open our live demo environment. No setup or login is required.
+                </p>
+              </td>
+            </tr>
+
+            <!-- Extra engagement block -->
+            <tr>
+              <td style="padding: 0 28px 24px 28px;">
+                <h2 style="margin: 0 0 8px 0; font-size: 16px; color:#0f172a;">
+                  Help us tailor the demo to your team
+                </h2>
+                <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 1.6; color:#4b5563;">
+                  You can simply reply to this email with a few quick details:
+                </p>
+                <ol style="margin: 0 0 16px 18px; padding: 0; font-size: 14px; line-height: 1.7; color:#4b5563;">
+                  <li>Roughly how many PODs you handle per day or week.</li>
+                  <li>Whether drivers are your own fleet, partners, or both.</li>
+                  <li>Which systems you currently use to store PODs (if any).</li>
+                </ol>
+                <p style="margin: 0; font-size: 14px; line-height: 1.6; color:#4b5563;">
+                  With that context we can show you a flow that looks much closer to your
+                  real-world operation.
+                </p>
+              </td>
+            </tr>
+
+            <!-- Divider -->
+            <tr>
+              <td style="padding: 0 28px;">
+                <hr style="border:none; border-top:1px solid #e5e7eb; margin:0;" />
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td style="padding: 16px 28px 22px 28px; background-color:#f9fafb;">
+                <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                  <tr>
+                    <td align="left" style="font-size: 11px; line-height:1.6; color:#9ca3af;">
+                      PODFY – Proof of Delivery, without the headaches.<br />
+                      Built for logistics teams that want fast, branded and
+                      low-friction POD capture.
+                    </td>
+                    <td align="right" style="font-size: 11px; line-height:1.6; color:#9ca3af;">
+                      <a href="https://podfy.net/" style="color:#6b7280;">Website</a> ·
+                      <a href="https://podfy.net/free-tier-demo.html" style="color:#6b7280;">Free-tier demo</a> ·
+                      <a href="https://podfy.net/privacy.html" style="color:#6b7280;">Privacy</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding-top: 8px; font-size: 10px; color:#9ca3af;">
+                      You are receiving this email because you submitted a contact request on podfy.net.
+                      If this was not you, you can safely ignore this message.
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!-- /Main card -->
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
