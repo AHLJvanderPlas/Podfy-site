@@ -1,251 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>PODFY – Contact Received</title>
+  <meta charset="UTF-8" />
+  <title>PODFY – Contact received</title>
 </head>
+<body style="margin:0; padding:0; background:#020617;">
 
-<body style="margin:0; padding:0; background:#0a0f1f;">
+  <center style="width:100%; background:#020617;">
 
-<center style="width:100%; background:#0a0f1f;">
+    <!-- Outer wrapper -->
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="padding:32px 0;">
+      <tr>
+        <td align="center" style="padding:0 16px;">
 
-  <!-- Outer wrapper -->
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="padding:32px 0;">
-    <tr>
-      <td align="center" style="padding:0 16px;">
+          <!-- Main card -->
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+                 style="max-width:680px; background:#0b1220; border-radius:18px; border:1px solid #1e293b; box-shadow:0 10px 32px rgba(15,23,42,0.7);">
 
-        <!-- CARD -->
-        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-          style="max-width:680px; background:#0d162b; border-radius:18px; border:1px solid #1e2a41; box-shadow:0 8px 25px rgba(0,0,0,0.35);">
+            <!-- HEADER -->
+            <tr>
+              <td style="padding:20px 28px 14px 28px;">
 
-          <!-- HEADER -->
-          <tr>
-            <td style="padding:24px 28px 16px 28px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
 
-              <table role="presentation" width="100%">
-                <tr>
-                  <td align="left" valign="middle" style="font-family:Arial, sans-serif;">
-                    <img src="https://podfy.net/assets/podfy-logo-light.png"
-                         alt="PODFY"
-                         width="40"
-                         style="display:block; border:0; margin-bottom:6px;">
-                    <span style="font-size:13px; font-weight:600; color:#94a3b8; letter-spacing:0.08em;">
-                      PODFY · Proof of Delivery
-                    </span>
-                  </td>
+                    <!-- Logo + title -->
+                    <td valign="middle" align="left" style="font-family:Arial, sans-serif;">
 
-                  <td align="right" valign="middle"
-                      style="font-family:Arial, sans-serif; font-size:12px; color:#64748b;">
-                    podfy.net
-                  </td>
-                </tr>
-              </table>
+                      <!--[if mso]>
+                      <img src="https://podfy.net/assets/podfy-logo-light.png"
+                           width="96"
+                           height="24"
+                           alt="PODFY"
+                           style="display:block; border:0; margin-bottom:6px;" />
+                      <![endif]-->
 
-            </td>
-          </tr>
+                      <!--[if !mso]><!-->
+                      <!-- Inline SVG logo (gray) for modern clients -->
+                      <svg width="96" height="24" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"
+                           aria-label="PODFY"
+                           style="display:block; margin-bottom:6px;">
+                        <rect x="0" y="0" width="120" height="30" rx="6" ry="6" fill="none"/>
+                        <text x="0" y="21"
+                              font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+                              font-size="18"
+                              font-weight="700"
+                              fill="#9ca3af">
+                          PODFY
+                        </text>
+                      </svg>
+                      <!--<![endif]-->
 
-          <!-- GRADIENT HERO -->
-          <tr>
-            <td style="
-              padding:32px 28px 28px 28px;
-              background:#0d162b;
-              background-image:linear-gradient(135deg, rgba(59,130,246,0.22), rgba(14,165,233,0.10));
-              border-bottom:1px solid #1e2a41;
-            ">
+                      <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#94a3b8;">
+                        Zero-friction Proof of Delivery
+                      </span>
+                    </td>
 
-              <p style="margin:0 0 8px 0; font-family:Arial, sans-serif; color:#e2e8f0; font-size:15px;">
-                Hi <span style="color:#38bdf8; font-weight:bold;">{{name}}</span>,
-              </p>
+                    <!-- Right top meta -->
+                    <td valign="middle" align="right"
+                        style="font-family:Arial, sans-serif; font-size:12px; color:#64748b;">
+                      podfy.net
+                    </td>
+                  </tr>
+                </table>
 
-              <h1 style="
-                margin:0 0 12px 0;
-                font-family:Arial, sans-serif;
-                font-weight:700;
-                font-size:26px;
-                line-height:1.25;
-                color:#f8fafc;
+              </td>
+            </tr>
+
+            <!-- HERO / INTRO -->
+            <tr>
+              <td style="
+                padding:24px 28px 24px 28px;
+                background:#020617;
+                background-image:linear-gradient(135deg, rgba(37,99,235,0.35), rgba(15,23,42,0.95));
+                border-top:1px solid #1e293b;
+                border-bottom:1px solid #1e293b;
               ">
-                We received your message.
-              </h1>
 
-              <p style="
-                margin:0;
-                font-family:Arial, sans-serif;
-                font-size:15px;
-                line-height:1.6;
-                color:#cbd5e1;
-              ">
-                Thanks for contacting PODFY. Your request was delivered successfully — we typically respond within one business day, often the same day.
-              </p>
+                <p style="margin:0 0 10px 0; font-family:Arial, sans-serif; color:#e5e7eb; font-size:15px;">
+                  Hi <span style="color:#38bdf8; font-weight:bold;">{{name}}</span>,
+                </p>
 
-            </td>
-          </tr>
+                <h1 style="margin:0 0 10px 0; font-family:Arial, sans-serif; font-weight:700; font-size:24px; line-height:1.3; color:#f9fafb;">
+                  We’ve received your message about PODFY.
+                </h1>
 
-          <!-- STATUS PILL -->
-          <tr>
-            <td style="padding:20px 28px 12px 28px;">
-              <table role="presentation" cellpadding="0" cellspacing="0"
-                     style="border-collapse:collapse;">
-                <tr>
-                  <td style="
-                    padding:10px 20px;
-                    border-radius:999px;
-                    border:1px solid #1d4ed8;
-                    background:#0a1224;
-                    font-family:Arial, sans-serif;
-                    color:#bfdbfe;
-                    font-size:13px;
-                  ">
-                    <span style="display:inline-block; width:10px; height:10px; background:#38bdf8; border-radius:50%; margin-right:10px;"></span>
-                    <strong style="color:#e2e8f0;">Request confirmed</strong> · We’ll reply as soon as possible.
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+                <p style="margin:0; font-family:Arial, sans-serif; font-size:14px; line-height:1.7; color:#cbd5e1;">
+                  Thanks for reaching out. Your request is safely in our inbox and will be reviewed by a person, not a bot. We usually respond within one business day, often sooner.
+                </p>
 
-          <!-- WHILE YOU WAIT -->
-          <tr>
-            <td style="padding:8px 28px 8px 28px;">
-              <p style="margin:0 0 6px 0; color:#64748b; font-size:12px;
-                         font-family:Arial, sans-serif; text-transform:uppercase; font-weight:600;">
-                While you wait
-              </p>
-              <p style="margin:0 0 16px 0; color:#cbd5e1; font-family:Arial, sans-serif; font-size:14px; line-height:1.6;">
-                You can already explore PODFY and see how it simplifies Proof of Delivery for drivers, operations and customer service teams:
-              </p>
-            </td>
-          </tr>
+              </td>
+            </tr>
 
-          <!-- FEATURE PANEL -->
-          <tr>
-            <td style="padding:0 28px 24px 28px;">
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-                     style="background:#0a142a; border-radius:14px; border:1px solid #1e293b;">
+            <!-- STATUS PILL -->
+            <tr>
+              <td style="padding:18px 28px 8px 28px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="
+                      padding:9px 18px;
+                      border-radius:999px;
+                      border:1px solid #1d4ed8;
+                      background:#020617;
+                      font-family:Arial, sans-serif;
+                      font-size:12px;
+                      color:#bfdbfe;
+                    ">
+                      <span style="display:inline-block; width:9px; height:9px; border-radius:999px; background:#38bdf8; margin-right:8px;"></span>
+                      <strong style="color:#e5e7eb;">We have received your request</strong>
+                      &nbsp;· We’ll get back to you as soon as possible.
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
-                <tr>
-                  <td style="padding:20px 20px 16px 20px;">
+            <!-- WHILE YOU WAIT -->
+            <tr>
+              <td style="padding:8px 28px 4px 28px;">
+                <p style="margin:0 0 6px 0; font-family:Arial, sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; color:#64748b;">
+                  While you wait
+                </p>
+                <p style="margin:0 0 14px 0; font-family:Arial, sans-serif; font-size:14px; line-height:1.6; color:#cbd5e1;">
+                  You can already explore how PODFY reduces friction in your Proof of Delivery flow for drivers, planners and customer service.
+                </p>
+              </td>
+            </tr>
 
-                    <h3 style="margin:0 0 8px 0; font-size:15px; color:#e2e8f0; font-family:Arial, sans-serif;">
-                      Zero-friction POD capture
-                    </h3>
+            <!-- FEATURE PANEL (FREE FEATURES) -->
+            <tr>
+              <td style="padding:0 28px 18px 28px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+                       style="background:#020617; border-radius:14px; border:1px solid #1f2937;">
+                  <tr>
+                    <td style="padding:18px 18px 14px 18px;">
 
-                    <p style="margin:0 0 12px 0; font-size:14px; color:#94a3b8; line-height:1.6; font-family:Arial, sans-serif;">
-                      Drivers snap a photo of the CMR, submit instantly from any phone — no app, no account. Your team receives the POD immediately.
-                    </p>
+                      <p style="margin:0 0 8px 0; font-family:Arial, sans-serif; font-size:13px; font-weight:600; color:#e5e7eb;">
+                        What you can try today (no commitment)
+                      </p>
 
-                    <ul style="margin:0; padding:0 0 0 18px; color:#94a3b8; font-size:14px; line-height:1.55; font-family:Arial, sans-serif;">
-                      <li><strong style="color:#e2e8f0;">Free View · 60 days:</strong> Access recent PODs in the delivery portal.</li>
-                      <li><strong style="color:#e2e8f0;">Magic link login:</strong> Fast, passwordless email authentication.</li>
-                      <li><strong style="color:#e2e8f0;">Optimised for logistics:</strong> Built for drivers, planners & customers.</li>
-                    </ul>
+                      <ul style="margin:0 0 8px 18px; padding:0; font-family:Arial, sans-serif; font-size:13px; line-height:1.6; color:#94a3b8;">
+                        <li>
+                          <strong style="color:#e5e7eb;">Free View · 60 days:</strong>
+                          See deliveries sent to your email address in a lightweight portal.
+                        </li>
+                        <li>
+                          <strong style="color:#e5e7eb;">Magic link access:</strong>
+                          Open the portal from your inbox—no username or password to remember.
+                        </li>
+                        <li>
+                          <strong style="color:#e5e7eb;">Driver-friendly upload:</strong>
+                          Drivers scan the CMR from any phone and are done in seconds.
+                        </li>
+                      </ul>
 
-                  </td>
-                </tr>
+                      <p style="margin:0; font-family:Arial, sans-serif; font-size:13px; color:#9ca3af;">
+                        These free features already give you a clear view of how PODFY fits your operation before you decide on a plan.
+                      </p>
 
-              </table>
-            </td>
-          </tr>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
-          <!-- CTAs -->
-          <tr>
-            <td style="padding:0 28px 24px 28px;">
+            <!-- CTAs -->
+            <tr>
+              <td style="padding:4px 28px 18px 28px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <!-- Free-tier demo -->
+                    <td style="padding-right:10px;">
+                      <a href="https://podfy.net/free-tier-demo.html"
+                         style="
+                           display:inline-block;
+                           padding:11px 20px;
+                           background:#2563eb;
+                           border-radius:999px;
+                           color:#ffffff;
+                           font-family:Arial, sans-serif;
+                           font-size:13px;
+                           font-weight:600;
+                           text-decoration:none;
+                         ">
+                        Try the free-tier demo
+                      </a>
+                    </td>
 
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0">
-                <tr>
-                  <!-- Demo button -->
-                  <td style="padding-right:12px;">
-                    <a href="https://podfy.net/free-tier-demo.html"
-                       style="
-                         display:inline-block;
-                         padding:12px 22px;
-                         background:#2563eb;
-                         border-radius:999px;
-                         color:#ffffff;
-                         font-family:Arial, sans-serif;
-                         font-size:14px;
-                         font-weight:600;
-                         text-decoration:none;
-                       ">
-                      Try the free-tier demo
-                    </a>
-                  </td>
+                    <!-- Demo upload -->
+                    <td>
+                      <a href="https://podfy.app"
+                         style="
+                           display:inline-block;
+                           padding:11px 20px;
+                           background:#020617;
+                           border-radius:999px;
+                           border:1px solid #38bdf8;
+                           color:#e5e7eb;
+                           font-family:Arial, sans-serif;
+                           font-size:13px;
+                           font-weight:500;
+                           text-decoration:none;
+                         ">
+                        Try a sample upload
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
-                  <!-- Upload demo button -->
-                  <td>
-                    <a href="https://podfy.app"
-                       style="
-                         display:inline-block;
-                         padding:12px 22px;
-                         background:#0a1224;
-                         border:1px solid #38bdf8;
-                         border-radius:999px;
-                         color:#e2e8f0;
-                         font-family:Arial, sans-serif;
-                         font-size:14px;
-                         font-weight:500;
-                         text-decoration:none;
-                       ">
-                      Try a sample upload
-                    </a>
-                  </td>
-                </tr>
-              </table>
+            <!-- HELP US PREPARE SECTION -->
+            <tr>
+              <td style="padding:0 28px 18px 28px;">
+                <p style="margin:0 0 6px 0; font-family:Arial, sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; color:#64748b;">
+                  Help us prepare the best answer
+                </p>
+                <p style="margin:0 0 10px 0; font-family:Arial, sans-serif; font-size:14px; line-height:1.6; color:#cbd5e1;">
+                  If you want us to be very concrete in our reply, you can simply respond to this email and share any of the following:
+                </p>
+                <ul style="margin:0 0 0 18px; padding:0; font-family:Arial, sans-serif; font-size:13px; line-height:1.6; color:#94a3b8;">
+                  <li>Your typical POD volume per day or per week.</li>
+                  <li>If drivers are internal, external partners, or a mix of both.</li>
+                  <li>Where PODs should end up today (mailboxes, TMS/WMS, shared folders, etc.).</li>
+                </ul>
+              </td>
+            </tr>
 
-            </td>
-          </tr>
+            <!-- MESSAGE ECHO -->
+            <tr>
+              <td style="padding:6px 28px 24px 28px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+                       style="background:#020617; border-radius:12px; border:1px solid #1f2937;">
+                  <tr>
+                    <td style="padding:14px 16px;">
+                      <p style="margin:0 0 6px 0; font-family:Arial, sans-serif; font-size:13px; color:#9ca3af;">
+                        <strong style="color:#e5e7eb;">Your message</strong> (for reference):
+                      </p>
+                      <p style="margin:0; white-space:pre-wrap; font-family:Arial, sans-serif; font-size:13px; line-height:1.6; color:#94a3b8;">
+                        {{message}}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
-          <!-- MESSAGE ECHO -->
-          <tr>
-            <td style="padding:0 28px 28px 28px;">
-              <table role="presentation" width="100%" style="background:#0a142a; border:1px solid #1f2937; border-radius:12px;">
-                <tr>
-                  <td style="padding:16px 18px;">
-                    <p style="margin:0 0 6px 0; font-family:Arial, sans-serif; color:#94a3b8; font-size:14px;">
-                      <strong style="color:#e2e8f0;">Your message</strong> (for reference):
-                    </p>
-                    <p style="margin:0; white-space:pre-wrap; font-family:Arial, sans-serif; font-size:14px; color:#94a3b8; line-height:1.6;">
-                      {{message}}
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+            <!-- FOOTER -->
+            <tr>
+              <td style="padding:0 28px 26px 28px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td style="border-top:1px solid #1e293b; padding-top:12px; font-family:Arial, sans-serif; font-size:11px; line-height:1.6; color:#6b7280;">
 
-          <!-- FOOTER -->
-          <tr>
-            <td style="padding:0 28px 32px 28px;">
+                      <p style="margin:0 0 4px 0;">
+                        You are receiving this email because you submitted a contact request on
+                        <a href="https://podfy.net" style="color:#93c5fd; text-decoration:none;">podfy.net</a>.
+                      </p>
 
-              <table role="presentation" width="100%">
-                <tr>
-                  <td style="border-top:1px solid #1e293b; padding-top:14px;
-                             font-family:Arial, sans-serif; font-size:12px; color:#64748b; line-height:1.5;">
+                      <p style="margin:0 0 4px 0;">
+                        PODFY – Proof of Delivery, without the headaches.
+                      </p>
 
-                    <p style="margin:0 0 4px 0;">You received this email because you contacted us via <a href="https://podfy.net" style="color:#8fbaff; text-decoration:none;">podfy.net</a>.</p>
+                      <p style="margin:0;">
+                        <a href="https://podfy.net/privacy.html" style="color:#6b7280; text-decoration:none;">Privacy &amp; Terms</a>
+                        &nbsp;·&nbsp;
+                        <a href="mailto:support@podfy.net" style="color:#6b7280; text-decoration:none;">support@podfy.net</a>
+                      </p>
 
-                    <p style="margin:0 0 4px 0;">PODFY · Zero-friction Proof of Delivery.</p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
 
-                    <p style="margin:0;">
-                      <a href="https://podfy.net/privacy.html" style="color:#64748b; text-decoration:none;">Privacy & Terms</a>
-                      &nbsp;·&nbsp;
-                      <a href="mailto:support@podfy.net" style="color:#64748b; text-decoration:none;">support@podfy.net</a>
-                    </p>
+          </table>
+          <!-- End main card -->
 
-                  </td>
-                </tr>
-              </table>
+        </td>
+      </tr>
+    </table>
 
-            </td>
-          </tr>
-
-        </table>
-
-      </td>
-    </tr>
-  </table>
-
-</center>
+  </center>
 
 </body>
 </html>
