@@ -1,7 +1,7 @@
 // functions/api/releases.js
 
 export async function onRequestGet({ env, request }) {
-  const db = env.BD;
+  const db = env.DB;
   const url = new URL(request.url);
 
   // Query params: ?page=1&pageSize=25
