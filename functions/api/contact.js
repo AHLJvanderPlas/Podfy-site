@@ -15,7 +15,8 @@
 //   "message": "...",
 //   "consent": true | "on",
 //   "hp_contact": "",
-//   "turnstileToken": "…"
+//   "sector": "...",          // optional
+//   "turnstileToken": "…"     // from hidden field
 // }
 
 export const onRequestPost = async (context) => {
@@ -182,6 +183,71 @@ export const onRequestPost = async (context) => {
       console.error("contact: D1 insert failed:", err);
       dbError = err;
     }
+
+    // ---------- Send email via Resend ----------
+    let emailError = null;
+    try {
+      const apiKey = env.RESEND_API_KEY;
+      if (!apiKey) {
+        console.warn("contact: RESEND_API_KEY not configured, skipping email");
+      } else {
+        const html = buildHtmlEmail({ name, email, company, message });
+        const text = buildTextEmail({ name, email, company, message });
+
+        const resendRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "PODFY <support@podfy.net>",
+            to: ["support@podfy.net"],
+            reply_to: [email],
+            subject: "New contact request from podfy.net",
+            html,
+            text,
+            tags: [{ name: "source", value: "podfy-site-contact" }],
+          }),
+        });
+
+        if (!resendRes.ok) {
+          const body = await safeJson(resendRes);
+          console.error("contact: Resend error:", resendRes.status, body);
+          emailError = new Error(
+            `Resend error ${resendRes.status}: ${JSON.stringify(body)}`
+          );
+        }
+      }
+    } catch (err) {
+      console.error("contact: Resend request failed:", err);
+      emailError = err;
+    }
+
+    if (emailError) {
+      return json(
+        {
+          ok: false,
+          error:
+            "We could not send the email right now. Please try again later.",
+        },
+        502
+      );
+    }
+
+    return json({
+      ok: true,
+      message: "Contact request received.",
+      dbStored: !dbError,
+    });
+  } catch (err) {
+    console.error("contact: unexpected error:", err);
+    return json(
+      { ok: false, error: "Unexpected server error." },
+      500
+    );
+  }
+};
 
 // ---------- Helpers ----------
 
