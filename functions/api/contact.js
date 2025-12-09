@@ -43,6 +43,7 @@ export const onRequestPost = async (context) => {
       message = "",
       consent,
       hp_contact = "",
+      sector = "",
     } = body;
 
     // Accept multiple possible token field names, but front-end uses "turnstileToken"
@@ -133,24 +134,45 @@ export const onRequestPost = async (context) => {
       if (env.DB) {
         const ua = request.headers.get("user-agent") || "";
         const path = new URL(request.url).pathname;
+        const now = new Date().toISOString();
 
         await env.DB.prepare(
           `INSERT INTO Site_Form
-            (name, email, company, message, consent, hp_contact,
-             turnstile_score, user_agent, ip, source_path, created_at)
-           VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, datetime('now'))`
+            (name,
+             email,
+             company,
+             sector,
+             message,
+             consent,
+             hp_contact,
+             turnstile_score,
+             user_agent,
+             ip,
+             source_path,
+             created,
+             first_response,
+             status,
+             created_at)
+           VALUES (?1, ?2, ?3, ?4, ?5,
+                   ?6, ?7, ?8, ?9, ?10,
+                   ?11, ?12, ?13, ?14, ?15)`
         )
           .bind(
-            name,
-            email,
-            company,
-            message,
-            consent === true || consent === "on" ? 1 : 0,
-            hp_contact,
-            score,
-            ua,
-            ip,
-            path
+            name,                                        // ?1
+            email,                                       // ?2
+            company,                                     // ?3
+            sector || null,                              // ?4
+            message,                                     // ?5
+            consent === true || consent === "on" ? 1 : 0,// ?6
+            hp_contact,                                  // ?7
+            score,                                       // ?8
+            ua,                                          // ?9
+            ip,                                          // ?10
+            path,                                        // ?11
+            now,                                         // ?12 created
+            null,                                        // ?13 first_response
+            "new",                                       // ?14 status
+            now                                          // ?15 created_at (existing)
           )
           .run();
       } else {
@@ -160,71 +182,6 @@ export const onRequestPost = async (context) => {
       console.error("contact: D1 insert failed:", err);
       dbError = err;
     }
-
-    // ---------- Send email via Resend ----------
-    let emailError = null;
-    try {
-      const apiKey = env.RESEND_API_KEY;
-      if (!apiKey) {
-        console.warn("contact: RESEND_API_KEY not configured, skipping email");
-      } else {
-        const html = buildHtmlEmail({ name, email, company, message });
-        const text = buildTextEmail({ name, email, company, message });
-
-        const resendRes = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            from: "PODFY <support@podfy.net>",
-            to: ["support@podfy.net"],
-            reply_to: [email],
-            subject: "New contact request from podfy.net",
-            html,
-            text,
-            tags: [{ name: "source", value: "podfy-site-contact" }],
-          }),
-        });
-
-        if (!resendRes.ok) {
-          const body = await safeJson(resendRes);
-          console.error("contact: Resend error:", resendRes.status, body);
-          emailError = new Error(
-            `Resend error ${resendRes.status}: ${JSON.stringify(body)}`
-          );
-        }
-      }
-    } catch (err) {
-      console.error("contact: Resend request failed:", err);
-      emailError = err;
-    }
-
-    if (emailError) {
-      return json(
-        {
-          ok: false,
-          error:
-            "We could not send the email right now. Please try again later.",
-        },
-        502
-      );
-    }
-
-    return json({
-      ok: true,
-      message: "Contact request received.",
-      dbStored: !dbError,
-    });
-  } catch (err) {
-    console.error("contact: unexpected error:", err);
-    return json(
-      { ok: false, error: "Unexpected server error." },
-      500
-    );
-  }
-};
 
 // ---------- Helpers ----------
 
