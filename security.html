@@ -3,44 +3,562 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+
   <title>Security – PODFY</title>
-  <meta name="description" content="Security posture for PODFY." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:"#4B5563",accent:"#2563EB"}}}}}</script>
+  <meta name="description" content="Security posture, controls, and responsible disclosure process for podfy.app and podfy.net." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Light/Dark UI colors -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1D3557" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB" />
+
+  <!-- Global PODFY styles -->
+  <link rel="stylesheet" href="/assets/styles.css?v=home-rev5" />
+  <script src="/assets/theme.js" defer></script>
+
+  <style>
+    .security-main{
+      max-width:var(--container-4xl);
+      margin:0 auto;
+      padding:2.5rem 1rem 3.5rem;
+    }
+    .security-hero{
+      margin-bottom:2.5rem;
+    }
+    .security-kicker{
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--muted);
+      margin-bottom:.35rem;
+    }
+    .security-title{
+      font-size:2.1rem;
+      line-height:1.1;
+      letter-spacing:-.04em;
+      margin:0;
+      color:var(--ink);
+    }
+    .security-subtitle{
+      margin-top:.75rem;
+      font-size:.98rem;
+      color:var(--muted);
+      max-width:40rem;
+    }
+    .security-meta{
+      margin-top:.6rem;
+      font-size:.78rem;
+      color:var(--muted);
+    }
+    .security-meta code{
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:.75em;
+    }
+
+    .security-shortcuts{
+      margin-top:1.75rem;
+    }
+    .security-shortcuts-grid{
+      display:grid;
+      gap:1rem;
+    }
+    @media(min-width:768px){
+      .security-shortcuts-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+      }
+    }
+    @media(min-width:1040px){
+      .security-shortcuts-grid{
+        grid-template-columns:repeat(4,minmax(0,1fr));
+      }
+    }
+
+    .security-shortcut-card{
+      border-radius:.85rem;
+      border:1px solid var(--line);
+      background:var(--surface-strong);
+      padding:.8rem .9rem;
+      font-size:.82rem;
+      display:flex;
+      flex-direction:column;
+      gap:.25rem;
+      box-shadow:0 16px 35px rgba(15,23,42,0.12);
+      transition:transform .16s ease-out, box-shadow .16s ease-out, border-color .16s ease-out;
+    }
+    .security-shortcut-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(96,165,250,0.9);
+      box-shadow:0 20px 50px rgba(15,23,42,0.25);
+    }
+    .security-shortcut-title{
+      font-weight:600;
+      color:var(--ink);
+    }
+    .security-shortcut-body{
+      color:var(--muted);
+    }
+    .security-shortcut-link{
+      margin-top:.15rem;
+      display:inline-flex;
+      align-items:center;
+      gap:.25rem;
+      font-size:.78rem;
+      text-decoration:none;
+      color:var(--brand-primary);
+    }
+    .security-shortcut-link::after{
+      content:"›";
+      font-size:.9em;
+      transform:translateX(0);
+      transition:transform .12s ease-out;
+    }
+    .security-shortcut-link:hover::after{
+      transform:translateX(2px);
+    }
+
+    .security-section{
+      margin-top:2.5rem;
+    }
+    .security-section-header{
+      margin-bottom:.75rem;
+    }
+    .security-section-title{
+      font-size:1.25rem;
+      margin:0 0 .2rem;
+      color:var(--ink);
+    }
+    .security-section-kicker{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+    }
+    .security-section-body{
+      display:flex;
+      flex-direction:column;
+      gap:.85rem;
+    }
+    .security-section p{
+      font-size:.94rem;
+      color:var(--muted);
+      max-width:60rem;
+    }
+    .security-section strong{
+      color:var(--ink);
+    }
+    .security-list{
+      font-size:.92rem;
+      color:var(--muted);
+      padding-left:1.1rem;
+    }
+    .security-list li+li{
+      margin-top:.25rem;
+    }
+    .security-pill-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.4rem;
+      margin-top:.35rem;
+    }
+    .security-pill{
+      font-size:.75rem;
+      padding:.18rem .55rem;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--surface);
+      color:var(--muted);
+    }
+
+    .security-callout{
+      margin-top:1.3rem;
+      padding:.9rem 1rem;
+      border-radius:.9rem;
+      border:1px solid rgba(96,165,250,0.65);
+      background:rgba(37,99,235,0.03);
+      font-size:.9rem;
+      color:var(--muted);
+    }
+    html[data-theme="dark"] .security-callout{
+      background:rgba(15,23,42,0.85);
+    }
+    .security-callout-title{
+      font-weight:600;
+      color:var(--ink);
+      margin-bottom:.2rem;
+    }
+    .security-callout a{
+      color:var(--brand-primary);
+    }
+    .security-mono{
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:.84em;
+    }
+  </style>
 </head>
-<body class="bg-white text-slate-800 antialiased">
-  <main class="mx-auto max-w-3xl px-4 py-12">
-    <a href="/" class="text-sm text-brand-accent">&larr; Back to home</a>
-    <h1 class="mt-2 text-3xl font-bold">Security</h1>
-    <p class="mt-4 text-slate-600 text-sm">Last updated: 2025-08-27</p>
 
-    <h2 class="mt-6 text-xl font-semibold">Transport security</h2>
-    <p class="mt-2">All PODFY properties enforce HTTPS. The app domain (<code>.app</code>) is HSTS-preloaded. We also enable TLS 1.2+ and HTTP/3 on our edge.</p>
+<body class="manual-page">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
+    Skip to content
+  </a>
 
-    <h2 class="mt-6 text-xl font-semibold">Data location & retention</h2>
-    <p class="mt-2">We support EU data residency for product data and allow per-customer retention windows for Proof-of-Delivery (POD) documents.</p>
+  [[PODFY_HEADER]]
 
-    <h2 class="mt-6 text-xl font-semibold">Access control</h2>
-    <p class="mt-2">Role-based access, per-customer isolation, signed URLs for uploads/downloads, and audit logging for views/downloads.</p>
+  <main id="main" class="security-main">
+    <header class="security-hero">
+      <p class="security-kicker">Security at PODFY</p>
+      <h1 class="security-title">How we protect podfy.app and podfy.net</h1>
+      <p class="security-subtitle">
+        PODFY is built for logistics teams that move sensitive proof-of-delivery documents.
+        This page explains our security posture in a way that is useful for customers, auditors, and security reviewers.
+      </p>
+      <p class="security-meta">
+        Last updated: <strong>2025-12-10</strong><br />
+        Scope: <code class="security-mono">podfy.app</code> (application) and <code class="security-mono">podfy.net</code> (website & forms)
+      </p>
 
-    <h2 class="mt-6 text-xl font-semibold">Compliance</h2>
-    <p class="mt-2">We follow GDPR principles and offer a Data Processing Addendum (DPA) for customers where applicable.</p>
+      <section class="security-shortcuts" aria-label="Security shortcuts">
+        <div class="security-shortcuts-grid">
+          <article class="security-shortcut-card">
+            <div class="security-shortcut-title">General security overview</div>
+            <p class="security-shortcut-body">
+              Governance, hosting, edge security, and how we approach secure development.
+            </p>
+            <a href="#general-security" class="security-shortcut-link">Jump to overview</a>
+          </article>
+          <article class="security-shortcut-card">
+            <div class="security-shortcut-title">podfy.app (product)</div>
+            <p class="security-shortcut-body">
+              Data handling, access control, POD storage and retention in the application.
+            </p>
+            <a href="#podfy-app-security" class="security-shortcut-link">Jump to podfy.app</a>
+          </article>
+          <article class="security-shortcut-card">
+            <div class="security-shortcut-title">podfy.net (website)</div>
+            <p class="security-shortcut-body">
+              Marketing site, forms, email flows, and how we separate them from the app.
+            </p>
+            <a href="#podfy-net-security" class="security-shortcut-link">Jump to podfy.net</a>
+          </article>
+          <article class="security-shortcut-card">
+            <div class="security-shortcut-title">Vulnerability reporting</div>
+            <p class="security-shortcut-body">
+              How to report issues, expected timelines, and where our security.txt and policy live.
+            </p>
+            <a href="#vulnerability-reporting" class="security-shortcut-link">Jump to disclosure</a>
+          </article>
+        </div>
+      </section>
+    </header>
 
-    <h2 id="vulnerability-reporting" class="mt-6 text-xl font-semibold">Vulnerability reporting</h2>
-    <p class="mt-2">If you believe you’ve found a security issue, please email <a class="text-brand-accent" href="mailto:info@podfy.net">info@podfy.net</a>.</p>
-    <ul class="mt-2 list-disc pl-6">
-      <li><strong>Acknowledgement:</strong> within <strong>3 business days</strong>.</li>
-      <li><strong>Triage/initial assessment:</strong> within <strong>7 business days</strong>.</li>
-      <li><strong>Remediation targets:</strong> Critical 7d, High 30d, Medium 90d, Low 180d (guidelines).</li>
-    </ul>
-    <p class="mt-2">For scope, rules of engagement, safe harbor, and credit, see our full policy:</p>
-    <ul class="list-disc pl-6">
-      <li><a class="text-brand-accent" href="https://github.com/AHLJvanderPlas/Podfy-site/blob/main/SECURITY.md">PODFY Security Policy (SECURITY.md)</a></li>
-      <li><a class="text-brand-accent" href="/.well-known/security.txt">/.well-known/security.txt</a></li>
-    </ul>
+    <!-- GENERAL SECURITY -->
+    <section id="general-security" class="security-section">
+      <div class="security-section-header">
+        <div class="security-section-kicker">General</div>
+        <h2 class="security-section-title">Security governance & infrastructure</h2>
+      </div>
+      <div class="security-section-body">
+        <p>
+          Security is owned by PODFY’s management team. Day-to-day security decisions are made as if a
+          Chief Information Security Officer (CISO) and Head of Engineering are sitting at the same desk:
+          security is treated as a product requirement, not an afterthought.
+        </p>
 
-    <h2 class="mt-6 text-xl font-semibold">Contact</h2>
-    <p class="mt-2">Security contact: <a class="text-brand-accent" href="mailto:info@podfy.net">info@podfy.net</a>. We aim to acknowledge within 3 business days.</p>
+        <p><strong>Hosting & platform</strong></p>
+        <ul class="security-list">
+          <li>PODFY runs on <strong>Cloudflare’s edge platform</strong>, including Cloudflare Pages and Workers.</li>
+          <li>File storage (for POD documents and related uploads) is handled via an object store (e.g. Cloudflare R2) with strong durability and encryption at rest.</li>
+          <li>Relational/metadata storage is handled via a managed SQL-style service (e.g. Cloudflare D1) with access limited to our application layer.</li>
+          <li>We keep a clear separation between <strong>production</strong> and <strong>non-production</strong> environments.</li>
+        </ul>
+
+        <p><strong>Transport security</strong></p>
+        <ul class="security-list">
+          <li>All PODFY properties enforce <strong>HTTPS</strong>; HTTP is redirected to HTTPS.</li>
+          <li><code class="security-mono>podfy.app</code> is on the HSTS-preloaded <code class="security-mono">.app</code> TLD, which requires HTTPS by design.</li>
+          <li>We use <strong>TLS 1.2+</strong> and support modern cipher suites. HTTP/3/QUIC is enabled on our edge where available.</li>
+        </ul>
+
+        <p><strong>Edge, network & perimeter</strong></p>
+        <ul class="security-list">
+          <li>Traffic is terminated at Cloudflare’s edge, benefiting from <strong>DDoS protection</strong>, a managed <strong>WAF</strong>, bot protections, and rate-limiting capabilities.</li>
+          <li>Where appropriate, we apply additional rules for sensitive routes (upload endpoints, authentication, delivery portals, etc.).</li>
+          <li>No direct SSH/RDP access to production workloads; deployments are pushed via CI/CD.</li>
+        </ul>
+
+        <p><strong>Secrets & configuration</strong></p>
+        <ul class="security-list">
+          <li>API keys, credentials, and signing secrets are stored using the platform’s <strong>encrypted secrets management</strong>, not in source control.</li>
+          <li>Configuration is split per environment (staging/production) and shipped through the deployment pipelines.</li>
+        </ul>
+
+        <p><strong>Secure development lifecycle</strong></p>
+        <ul class="security-list">
+          <li>We favor a <strong>minimal, well-understood stack</strong>: static front-ends, edge functions, and a small set of maintained libraries (for example, <code class="security-mono">pdf-lib</code> for PDF handling and <code class="security-mono">exifr</code> for EXIF parsing).</li>
+          <li>Changes are managed via version control and pull requests; security-sensitive changes (authentication, upload handling, email and portal flows) are reviewed more strictly.</li>
+          <li>We maintain <strong>Content Security Policy (CSP)</strong> headers and iterate on them together with other HTTP security headers (HSTS, X-Content-Type-Options, Referrer-Policy, etc.).</li>
+        </ul>
+
+        <p><strong>Logging, monitoring & auditing</strong></p>
+        <ul class="security-list">
+          <li>Edge and application logs capture enough detail for debugging and incident analysis, without storing unnecessary personal data.</li>
+          <li>Key security events (logins, file uploads, file downloads/views in delivery portals) are logged with tenant and request context where possible.</li>
+          <li>Operational logs are restricted to staff on a need-to-know basis.</li>
+        </ul>
+
+        <p><strong>Compliance posture</strong></p>
+        <ul class="security-list">
+          <li>We design our controls to align with the principles of <strong>ISO&nbsp;27001</strong> and <strong>SOC&nbsp;2</strong>, but we do not claim formal certification at this time.</li>
+          <li>PODFY follows <strong>GDPR</strong> principles for customers in the EU and offers a Data Processing Addendum (DPA) where relevant.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PODFY.APP SECURITY -->
+    <section id="podfy-app-security" class="security-section">
+      <div class="security-section-header">
+        <div class="security-section-kicker">Application</div>
+        <h2 class="security-section-title">podfy.app – product & data security</h2>
+      </div>
+      <div class="security-section-body">
+        <p>
+          <code class="security-mono">podfy.app</code> is the operational interface where customers configure their POD flows,
+          invite users, and manage documents. It is treated as the primary security perimeter.
+        </p>
+
+        <p><strong>Tenant isolation & access control</strong></p>
+        <ul class="security-list">
+          <li>PODFY uses <strong>per-customer tenant isolation</strong> at the data layer. Business entities are scoped to an account, and access is checked on each relevant operation.</li>
+          <li>Role-based access control (<strong>RBAC</strong>) governs who can configure workflows, invite users, or access documents within a tenant.</li>
+          <li>Access to POD documents is further constrained through <strong>signed URLs</strong> or link tokens which are long, unguessable, and time-limited where appropriate.</li>
+          <li>Administrative access by PODFY staff is limited, audited, and based on the principle of least privilege.</li>
+        </ul>
+
+        <p><strong>Authentication & sessions</strong></p>
+        <ul class="security-list">
+          <li>All authentication flows run exclusively over HTTPS.</li>
+          <li>Sessions are maintained via secure cookies or tokens, protected with <strong>Secure</strong> and <strong>HttpOnly</strong> flags where applicable.</li>
+          <li>We apply sensible session expiry windows and may invalidate sessions early as part of incident response or account changes.</li>
+        </ul>
+
+        <p><strong>POD documents, uploads & retention</strong></p>
+        <ul class="security-list">
+          <li>POD documents and related artifacts (scans, PDFs, photos) are stored in an encrypted object store; metadata is stored in a relational store.</li>
+          <li>We support <strong>EU data residency</strong> for production data handling.</li>
+          <li>Customers can define <strong>retention windows</strong> for POD documents; after expiry, files are scheduled for deletion from primary storage.</li>
+          <li>For upcoming multi-file upload and PDF normalisation, processing follows a pipeline that:
+            <ul class="security-list">
+              <li>accepts a controlled set of MIME types (PDF, image formats used for PODs),</li>
+              <li>normalises them into a <strong>branded PDF</strong> for consistency,</li>
+              <li>keeps original files only where functionally necessary.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p><strong>Delivery portals & email-based access</strong></p>
+        <ul class="security-list">
+          <li>PODFY supports <strong>delivery portals</strong> that allow drivers or partners to view a POD via a link sent by email.</li>
+          <li>These links use unguessable tokens and may be:
+            <ul class="security-list">
+              <li>restricted in time (e.g. valid for a limited number of days),</li>
+              <li>restricted in scope (access to one POD or shipment),</li>
+              <li>logged when opened (IP, timestamp, user-agent where appropriate).</li>
+            </ul>
+          </li>
+          <li>We avoid embedding sensitive data directly in URLs; tokens act as references to server-side records.</li>
+        </ul>
+
+        <p><strong>Operational safeguards</strong></p>
+        <ul class="security-list">
+          <li>Critical operations (e.g. changing retention settings, deleting large sets of PODs) may require confirmation flows to reduce operator error.</li>
+          <li>Uploads are protected by request size limits and application-level validation.</li>
+          <li>Background jobs (e.g. PDF compilation, email sending) run with limited privileges and narrow scopes.</li>
+        </ul>
+
+        <div class="security-callout">
+          <div class="security-callout-title">Data residency & backups</div>
+          <p>
+            Production POD data is stored in EU data centres where the underlying platform supports it.
+            Backups and replicas may be geographically redundant within the region used by the platform provider.
+            We do not move customer data outside the chosen region for product functionality without a clear reason and appropriate safeguards.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PODFY.NET SECURITY -->
+    <section id="podfy-net-security" class="security-section">
+      <div class="security-section-header">
+        <div class="security-section-kicker">Website</div>
+        <h2 class="security-section-title">podfy.net – website, forms & email flows</h2>
+      </div>
+      <div class="security-section-body">
+        <p>
+          <code class="security-mono">podfy.net</code> is our public website, including marketing pages, pricing, and contact/demo forms.
+          It is kept intentionally simple and separated from the application runtime.
+        </p>
+
+        <p><strong>Architecture</strong></p>
+        <ul class="security-list">
+          <li>The site is deployed as a <strong>static front-end</strong> on Cloudflare Pages, with dynamic behaviour handled via Workers APIs.</li>
+          <li>There is no direct database access from the browser; form submissions are processed by backend Workers and stored in managed services.</li>
+        </ul>
+
+        <p><strong>Forms & anti-abuse</strong></p>
+        <ul class="security-list">
+          <li>Forms (e.g. “request demo”, contact, pricing configuration) are protected with <strong>Cloudflare Turnstile</strong> or comparable anti-bot mechanisms.</li>
+          <li>Input is validated server-side before being processed or written to storage.</li>
+          <li>We minimise the data collected on the marketing site to what is needed for contact and follow-up.</li>
+        </ul>
+
+        <p><strong>Email templates, auto-replies & portals</strong></p>
+        <ul class="security-list">
+          <li>Outgoing emails (auto-replies, portal invites, driver emails) are rendered using a <strong>templating system</strong> that separates:
+            <ul class="security-list">
+              <li>static branding (logos, colours, general layout), and</li>
+              <li>dynamic data (links, contact details, shipment/POD references).</li>
+            </ul>
+          </li>
+          <li>Links embedded in emails to portals or app features use the same tokenised approach described above and are HTTPS-only.</li>
+          <li>We avoid putting sensitive information in subject lines.</li>
+        </ul>
+
+        <p><strong>Cookies, tracking & analytics</strong></p>
+        <ul class="security-list">
+          <li>PODFY aims for a <strong>low-cookie</strong>, privacy-conscious approach on podfy.net.</li>
+          <li>Where analytics are used, they are configured to avoid collecting unnecessary personal information; details are described in our Privacy Policy.</li>
+        </ul>
+
+        <div class="security-callout">
+          <div class="security-callout-title">Isolation between podfy.net and podfy.app</div>
+          <p>
+            The marketing site and the operational app are treated as separate surfaces:
+            sessions are not shared, databases are distinct, and bugs in one do not automatically imply compromise of the other.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA PROTECTION & PRIVACY -->
+    <section id="data-protection" class="security-section">
+      <div class="security-section-header">
+        <div class="security-section-kicker">Data protection</div>
+        <h2 class="security-section-title">Data protection, privacy & GDPR</h2>
+      </div>
+      <div class="security-section-body">
+        <p>
+          PODFY acts as a <strong>data processor</strong> for POD documents and related data stored in podfy.app,
+          and as a <strong>data controller</strong> for website and commercial contact data on podfy.net.
+        </p>
+
+        <p><strong>Principles</strong></p>
+        <ul class="security-list">
+          <li><strong>Data minimisation:</strong> we collect only the data needed to provide the service or respond to a request.</li>
+          <li><strong>Purpose limitation:</strong> POD data is used only for POD-related processing (storage, retrieval, sharing with authorised parties, audit and reporting).</li>
+          <li><strong>Access limitation:</strong> internal access to customer data is limited to staff who need it for support, operations, or legal reasons.</li>
+        </ul>
+
+        <p><strong>Data subject rights & DPA</strong></p>
+        <ul class="security-list">
+          <li>For EU customers, we support GDPR rights such as access, rectification, and deletion, typically coordinated through the customer (data controller).</li>
+          <li>We offer a <strong>Data Processing Addendum (DPA)</strong> including standard contractual clauses where relevant.</li>
+        </ul>
+
+        <p><strong>Sub-processors</strong></p>
+        <ul class="security-list">
+          <li>PODFY relies on a small number of infrastructure providers (for example, Cloudflare for edge, storage, and databases) and email delivery providers.</li>
+          <li>We aim to keep our list of sub-processors short and subject to data-processing terms aligned with GDPR requirements.</li>
+        </ul>
+
+        <p>
+          More details on privacy, legal bases and data subject rights can be found in our
+          <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- INCIDENT RESPONSE & VULNERABILITY REPORTING -->
+    <section id="incident-response" class="security-section">
+      <div class="security-section-header">
+        <div class="security-section-kicker">Incidents</div>
+        <h2 class="security-section-title">Incident response & vulnerability management</h2>
+      </div>
+      <div class="security-section-body">
+        <p>
+          We treat security incidents as first-class events. The same people shipping features are expected to understand how to contain and remediate issues when they occur.
+        </p>
+
+        <p><strong>Incident response process</strong></p>
+        <ul class="security-list">
+          <li><strong>Detection:</strong> via monitoring alerts, internal reporting, or reports from customers/researchers.</li>
+          <li><strong>Triage:</strong> incidents are quickly classified (Critical / High / Medium / Low) based on impact and likelihood.</li>
+          <li><strong>Containment:</strong> we may revoke tokens, rotate keys, deploy hotfixes, or temporarily disable affected features.</li>
+          <li><strong>Eradication & recovery:</strong> fix the root cause, verify integrity, restore from backups where required.</li>
+          <li><strong>Post-incident review:</strong> document what happened, what we learned, and which controls will be strengthened.</li>
+        </ul>
+
+        <p><strong>Vulnerability remediation targets</strong></p>
+        <ul class="security-list">
+          <li>Critical: target fix or effective mitigation within <strong>7 days</strong>.</li>
+          <li>High: target fix within <strong>30 days</strong>.</li>
+          <li>Medium: target fix within <strong>90 days</strong>.</li>
+          <li>Low: target fix within <strong>180 days</strong>.</li>
+        </ul>
+
+        <div id="vulnerability-reporting" class="security-callout">
+          <div class="security-callout-title">Vulnerability reporting & responsible disclosure</div>
+          <p>
+            If you believe you have found a security issue in podfy.app or podfy.net, please email
+            <a href="mailto:info@podfy.net">info@podfy.net</a> with details.
+          </p>
+          <p>
+            We aim to:
+          </p>
+          <ul class="security-list">
+            <li><strong>Acknowledge</strong> your report within <strong>3 business days</strong>.</li>
+            <li>Provide initial <strong>triage</strong> within <strong>7 business days</strong>.</li>
+            <li>Work with you on remediation according to the severity targets above.</li>
+          </ul>
+          <p>
+            For scope, rules of engagement, safe-harbour language and credit policy, see:
+          </p>
+          <ul class="security-list">
+            <li>
+              <a href="https://github.com/AHLJvanderPlas/Podfy-site/blob/main/SECURITY.md">
+                PODFY Security Policy (SECURITY.md)
+              </a>
+            </li>
+            <li>
+              <a href="/.well-known/security.txt">/.well-known/security.txt</a>
+            </li>
+          </ul>
+          <p>
+            We ask researchers to avoid actions that could harm availability, integrity, or confidentiality for other customers,
+            such as large-scale automated scanning against production, attempting to access other tenants’ data, or using real
+            third-party identities without consent.
+          </p>
+        </div>
+
+        <p><strong>Contact for authorities & customers</strong></p>
+        <ul class="security-list">
+          <li>
+            General security contact: <a href="mailto:support@podfy.net">support@podfy.net</a>.
+          </li>
+          <li>
+            Existing customers can also contact us through their usual account manager or support channel, referencing “Security / Incident”.
+          </li>
+        </ul>
+      </div>
+    </section>
   </main>
+
+  [[PODFY_FOOTER]]
 </body>
 </html>
