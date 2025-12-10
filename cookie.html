@@ -21,277 +21,342 @@
   <script src="/assets/theme.js" defer></script>
 
   <style>
-    .cookie-main{
-      max-width:var(--container-4xl);
-      margin:0 auto;
-      padding:2.5rem 1rem 3.5rem;
+    /* Page shell aligned with index.html style */
+    .page-main{
+      padding:3rem 1rem 4rem;
     }
-    .cookie-hero{
-      margin-bottom:2.5rem;
+    @media (min-width:768px){
+      .page-main{
+        padding:4rem 1.5rem 5rem;
+      }
     }
-    .cookie-kicker{
+
+    .page-grid{
+      display:grid;
+      gap:2rem;
+      align-items:flex-start;
+    }
+    @media (min-width:960px){
+      .page-grid{
+        grid-template-columns:minmax(0,2.1fr) minmax(0,0.9fr);
+      }
+    }
+
+    .page-hero-title{
+      font-size:2.1rem;
+      line-height:1.1;
+      letter-spacing:-.04em;
+      margin:0 0 .5rem;
+      color:var(--ink);
+    }
+    .page-hero-kicker{
       font-size:.8rem;
       text-transform:uppercase;
       letter-spacing:.16em;
       color:var(--muted);
       margin-bottom:.35rem;
     }
-    .cookie-title{
-      font-size:2.1rem;
-      line-height:1.1;
-      letter-spacing:-.04em;
-      margin:0;
-      color:var(--ink);
-    }
-    .cookie-subtitle{
-      margin-top:.75rem;
+    .page-hero-lead{
       font-size:.98rem;
+      color:var(--muted);
+      max-width:40rem;
+      margin-bottom:.9rem;
+    }
+    .page-hero-meta{
+      font-size:.78rem;
       color:var(--muted);
     }
 
-    .cookie-shortcuts{
-      margin-top:1.75rem;
-    }
-    .cookie-grid{
-      display:grid;
-      gap:1rem;
-    }
-    @media(min-width:768px){
-      .cookie-grid{
-        grid-template-columns:repeat(3,minmax(0,1fr));
-      }
-    }
-
-    .cookie-card{
-      border-radius:.85rem;
+    /* Chapter navigation */
+    .page-toc-card{
+      position:relative;
+      border-radius:1rem;
+      padding:1rem 1.1rem;
       border:1px solid var(--line);
       background:var(--surface-strong);
-      padding:.8rem .9rem;
-      font-size:.84rem;
+      box-shadow:0 18px 40px rgba(15,23,42,0.12);
+    }
+    .page-toc-title{
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--muted);
+      margin-bottom:.4rem;
+    }
+    .page-toc-list{
+      list-style:none;
+      padding:0;
+      margin:0;
       display:flex;
       flex-direction:column;
       gap:.25rem;
-      box-shadow:0 16px 35px rgba(15,23,42,0.12);
-      transition:transform .16s ease-out, box-shadow .16s ease-out, border-color .16s ease-out;
     }
-    .cookie-card:hover{
-      transform:translateY(-3px);
-      border-color:rgba(96,165,250,0.9);
-      box-shadow:0 20px 50px rgba(15,23,42,0.25);
-    }
-    .cookie-card-title{
-      font-weight:600;
-      color:var(--ink);
-    }
-    .cookie-card-body{
-      color:var(--muted);
-    }
-    .cookie-card-link{
-      margin-top:.15rem;
-      display:inline-flex;
+    .page-toc-link{
+      display:flex;
       align-items:center;
-      gap:.25rem;
-      font-size:.78rem;
+      gap:.35rem;
+      font-size:.85rem;
       text-decoration:none;
-      color:var(--brand-primary);
+      color:var(--muted);
+      padding:.25rem .35rem;
+      border-radius:.5rem;
+      transition:background .14s ease-out, color .14s ease-out, transform .14s ease-out;
     }
-    .cookie-card-link::after{
-      content:"›";
-      transition:.12s ease-out;
+    .page-toc-link span{
+      font-size:.7rem;
+      opacity:.7;
     }
-    .cookie-card-link:hover::after{
-      transform:translateX(2px);
+    .page-toc-link:hover{
+      background:rgba(148,163,184,0.14);
+      color:var(--ink);
+      transform:translateX(1px);
     }
 
-    .cookie-section{
+    /* Content sections */
+    .page-section{
       margin-top:2.5rem;
     }
-    .cookie-section-title{
-      font-size:1.25rem;
-      margin:0 0 .2rem;
-      color:var(--ink);
+    .page-section:first-of-type{
+      margin-top:2rem;
     }
-    .cookie-section-kicker{
+    .page-section-kicker{
       font-size:.78rem;
       text-transform:uppercase;
       letter-spacing:.14em;
       color:var(--muted);
+      margin-bottom:.2rem;
     }
-    .cookie-section p, .cookie-section li{
+    .page-section-title{
+      font-size:1.25rem;
+      margin:0 0 .4rem;
+      color:var(--ink);
+    }
+    .page-section p,
+    .page-section li{
       font-size:.94rem;
       color:var(--muted);
     }
-    .cookie-list{
+    .page-list{
       padding-left:1.1rem;
+      margin-top:.25rem;
+    }
+    .page-list li + li{
+      margin-top:.15rem;
     }
 
-    .cookie-callout{
-      margin-top:1.4rem;
-      padding:1rem 1.1rem;
+    .page-callout{
+      margin-top:1.3rem;
       border-radius:.9rem;
       border:1px solid rgba(148,163,184,0.7);
       background:rgba(15,23,42,0.03);
+      padding:1rem 1.1rem;
+      font-size:.9rem;
+      color:var(--muted);
     }
-    html[data-theme="dark"] .cookie-callout{
-      background:rgba(15,23,42,0.85);
+    html[data-theme="dark"] .page-callout{
+      background:rgba(15,23,42,0.86);
     }
-    .cookie-callout-title{
+    .page-callout-title{
       font-weight:600;
       color:var(--ink);
-      margin-bottom:.25rem;
+      margin-bottom:.2rem;
+    }
+    .page-callout a{
+      color:var(--brand-primary);
     }
   </style>
 </head>
 
 <body class="manual-page">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
+    Skip to content
+  </a>
+
   [[PODFY_HEADER]]
 
-  <main id="main" class="cookie-main">
-    <header class="cookie-hero">
-      <p class="cookie-kicker">Cookies</p>
-      <h1 class="cookie-title">Cookie Policy</h1>
-      <p class="cookie-subtitle">
-        PODFY prioritises a privacy-conscious, low-cookie architecture. This policy explains whether we set cookies,
-        what we may introduce in the future, and how you can manage your preferences.
-      </p>
+  <main id="main" class="page-main">
+    <div class="site-shell">
+      <!-- Hero + chapter navigation -->
+      <section class="card card-glass page-hero">
+        <div class="page-grid">
+          <header>
+            <p class="page-hero-kicker">Cookies</p>
+            <h1 class="page-hero-title">Cookie Policy</h1>
+            <p class="page-hero-lead">
+              PODFY follows a “minimal and transparent” approach to cookies. We currently do not use
+              marketing or tracking cookies on podfy.net or podfy.app. This page explains what we do
+              today, what might change in the future, and how you stay in control.
+            </p>
+            <p class="page-hero-meta">
+              Last updated: <strong>2025-12-10</strong><br />
+              Scope: <code>podfy.net</code> (website) and <code>podfy.app</code> (operational platform)
+            </p>
+          </header>
 
-      <section class="cookie-shortcuts">
-        <div class="cookie-grid">
-          <article class="cookie-card">
-            <p class="cookie-card-title">Current usage</p>
-            <p class="cookie-card-body">What podfy.net and podfy.app store today.</p>
-            <a href="#current" class="cookie-card-link">Jump to details</a>
-          </article>
-          <article class="cookie-card">
-            <p class="cookie-card-title">Possible future use</p>
-            <p class="cookie-card-body">Analytics, session cookies & consent.</p>
-            <a href="#future" class="cookie-card-link">Jump to future</a>
-          </article>
-          <article class="cookie-card">
-            <p class="cookie-card-title">Managing cookies</p>
-            <p class="cookie-card-body">Your rights and browser controls.</p>
-            <a href="#control" class="cookie-card-link">Jump to controls</a>
-          </article>
+          <aside aria-label="Cookie policy chapters">
+            <div class="page-toc-card">
+              <p class="page-toc-title">Chapters</p>
+              <ul class="page-toc-list">
+                <li>
+                  <a class="page-toc-link" href="#overview">
+                    <span>1</span> Overview
+                  </a>
+                </li>
+                <li>
+                  <a class="page-toc-link" href="#current">
+                    <span>2</span> Current cookie usage
+                  </a>
+                </li>
+                <li>
+                  <a class="page-toc-link" href="#future">
+                    <span>3</span> Possible future cookies
+                  </a>
+                </li>
+                <li>
+                  <a class="page-toc-link" href="#control">
+                    <span>4</span> Managing cookies
+                  </a>
+                </li>
+                <li>
+                  <a class="page-toc-link" href="#contact">
+                    <span>5</span> Questions & contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
         </div>
       </section>
-    </header>
 
-    <!-- CURRENT USAGE -->
-    <section id="current" class="cookie-section">
-      <div class="cookie-section-kicker">Today</div>
-      <h2 class="cookie-section-title">Cookies we currently use</h2>
-
-      <p>
-        As of today, <strong>neither podfy.net nor podfy.app set marketing, tracking, or analytics cookies</strong>.
-        We intentionally avoid unnecessary identifiers and do not use third-party trackers such as Google Analytics,
-        Meta Pixel, LinkedIn Insights, Hotjar, or similar tools.
-      </p>
-
-      <p><strong>podfy.net (website)</strong></p>
-      <ul class="cookie-list">
-        <li>No persistent cookies.</li>
-        <li>No session identifiers stored in the browser.</li>
-        <li>No marketing or behavioural tracking.</li>
-      </ul>
-
-      <p><strong>podfy.app (operational platform)</strong></p>
-      <ul class="cookie-list">
-        <li>We may use a <strong>technical session cookie</strong> if required for authentication, strictly limited to product functionality.</li>
-        <li>Cookies set in the app are:</li>
-        <ul class="cookie-list">
-          <li><strong>Essential</strong></li>
-          <li>Not used for tracking</li>
-          <li>Not shared with third parties</li>
-          <li>Automatically cleared after logout or expiry</li>
-        </ul>
-      </ul>
-
-      <p><strong>No cross-site tracking</strong> is performed between podfy.net and podfy.app, and no commercial identifiers are collected.</p>
-
-      <div class="cookie-callout">
-        <p class="cookie-callout-title">Delivery portals & email links</p>
+      <!-- Sections -->
+      <section id="overview" class="page-section">
+        <div class="page-section-kicker">1. Overview</div>
+        <h2 class="page-section-title">How PODFY thinks about cookies</h2>
         <p>
-          Drivers and partners access POD documents through token-based URLs.  
-          These tokens are <strong>not cookies</strong> and are not stored in the browser.
-          They are one-directional identifiers used to validate access and do not track a user across pages or devices.
+          Many products default to heavy tracking. PODFY does not. Our goal is to operate with
+          little or no cookies by default, especially for marketing and analytics, and to only
+          introduce additional cookies when they are clearly justified and transparently controlled.
         </p>
-      </div>
-    </section>
-
-    <!-- FUTURE COOKIES / ANALYTICS -->
-    <section id="future" class="cookie-section">
-      <div class="cookie-section-kicker">Future</div>
-      <h2 class="cookie-section-title">Possible future cookie usage</h2>
-
-      <p>
-        While PODFY currently operates without cookies beyond those essential to authentication, future versions may
-        introduce optional features that rely on cookies. These would require <strong>explicit consent</strong> under GDPR/ePrivacy.
-      </p>
-
-      <p><strong>Potential future categories</strong></p>
-      <ul class="cookie-list">
-        <li><strong>Analytics cookies</strong> – used for aggregated, anonymised product usage insights.</li>
-        <li><strong>Preference cookies</strong> – e.g., storing dark/light theme or default filters inside podfy.app.</li>
-        <li><strong>Optional functional cookies</strong> – used to enhance user experience, not required for core functionality.</li>
-      </ul>
-
-      <p><strong>We will not deploy these without:</strong></p>
-      <ul class="cookie-list">
-        <li>A prior update of this Cookie Policy</li>
-        <li>Clear, prominent disclosure</li>
-        <li>A consent banner or other opt-in mechanism where required</li>
-      </ul>
-
-      <div class="cookie-callout">
-        <p class="cookie-callout-title">What we will never do</p>
         <p>
-          PODFY will not use cookies for:
+          This policy focuses on browser-level cookies and similar storage technologies (localStorage,
+          sessionStorage). For broader information about personal data, see our
+          <a href="/privacy">Privacy Policy</a>.
         </p>
-        <ul class="cookie-list">
-          <li>Advertising or retargeting</li>
-          <li>Tracking users across third-party sites</li>
-          <li>Profiling drivers or end-users</li>
+      </section>
+
+      <section id="current" class="page-section">
+        <div class="page-section-kicker">2. Today</div>
+        <h2 class="page-section-title">Cookies we currently use</h2>
+        <p>
+          As of the last update, PODFY does <strong>not</strong> use analytics, marketing, or third-party
+          tracking cookies on either podfy.net or podfy.app.
+        </p>
+
+        <p><strong>2.1 podfy.net (website)</strong></p>
+        <ul class="page-list">
+          <li>No persistent cookies are set by the website itself.</li>
+          <li>No cross-site tracking or behavioural profiling.</li>
+          <li>Traffic is still logged at the server/edge level for security and reliability, but this happens without client cookies.</li>
         </ul>
-      </div>
-    </section>
 
-    <!-- CONTROL & RIGHTS -->
-    <section id="control" class="cookie-section">
-      <div class="cookie-section-kicker">Control</div>
-      <h2 class="cookie-section-title">How to manage and delete cookies</h2>
+        <p><strong>2.2 podfy.app (operational platform)</strong></p>
+        <p>
+          The application may rely on <strong>strictly necessary</strong> technical storage to maintain secure
+          sessions or preferences. Where used, these are:
+        </p>
+        <ul class="page-list">
+          <li>Limited to authentication and user experience.</li>
+          <li>Not used for third-party tracking or advertising.</li>
+          <li>Not shared with third parties for their own purposes.</li>
+        </ul>
 
-      <p>
-        Even though PODFY uses almost no cookies today, modern browsers give you full control to block, delete,
-        or restrict them. You can usually find these settings under:
-      </p>
+        <div class="page-callout">
+          <p class="page-callout-title">Delivery portals & email links</p>
+          <p>
+            Drivers and partners access POD documents via unique, tokenised links. These tokens act as
+            one-time or time-limited identifiers in the URL and are validated on the server. They are
+            <strong>not cookies</strong> and are not used to track activity across multiple pages or sites.
+          </p>
+        </div>
+      </section>
 
-      <ul class="cookie-list">
-        <li>Browser settings → Privacy → Cookies</li>
-        <li>Clear browsing data</li>
-        <li>“Block third-party cookies” (safe to enable for PODFY)</li>
-      </ul>
+      <section id="future" class="page-section">
+        <div class="page-section-kicker">3. Future</div>
+        <h2 class="page-section-title">Possible future cookie usage</h2>
+        <p>
+          As PODFY evolves, we may introduce limited cookies to improve the product. If we do,
+          they will be grouped into clear categories:
+        </p>
 
-      <p><strong>If we introduce optional cookies in the future</strong>, podfy.net will provide an in-page preference center allowing you to:</p>
+        <ul class="page-list">
+          <li>
+            <strong>Essential cookies</strong> – required for core functionality (for example, secure login,
+            load balancing, CSRF protection). These do not require consent under EU law but will still be documented.
+          </li>
+          <li>
+            <strong>Preference cookies</strong> – to remember things like language, theme, or default filters inside the app.
+          </li>
+          <li>
+            <strong>Analytics cookies</strong> – anonymous or pseudonymous metrics about product usage to improve reliability and UX.
+          </li>
+        </ul>
 
-      <ul class="cookie-list">
-        <li>Accept all cookies</li>
-        <li>Reject non-essential cookies</li>
-        <li>Fine-tune categories (analytics, preferences, functional)</li>
-      </ul>
+        <p><strong>What we will not use cookies for:</strong></p>
+        <ul class="page-list">
+          <li>Advertising or retargeting campaigns.</li>
+          <li>Selling or renting identifiable browsing profiles.</li>
+          <li>Tracking users across unrelated third-party sites.</li>
+        </ul>
 
-      <p>For privacy and data rights (including access, erasure, and objection), see our <a href="/privacy.html">Privacy Policy</a>.</p>
-    </section>
+        <div class="page-callout">
+          <p class="page-callout-title">Consent and updates</p>
+          <p>
+            If we introduce non-essential cookies (for example analytics), you will see:
+          </p>
+          <ul class="page-list">
+            <li>An updated version of this Cookie Policy.</li>
+            <li>A consent banner or control centre on podfy.net.</li>
+            <li>Options to accept, reject, or fine-tune cookie categories.</li>
+          </ul>
+        </div>
+      </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="cookie-section">
-      <div class="cookie-section-kicker">Contact</div>
-      <h2 class="cookie-section-title">Questions about this policy</h2>
+      <section id="control" class="page-section">
+        <div class="page-section-kicker">4. Control</div>
+        <h2 class="page-section-title">How you can manage cookies</h2>
+        <p>
+          Even though PODFY uses almost no cookies today, you always have control via your browser.
+          Typical locations for cookie settings:
+        </p>
 
-      <p>
-        If you have any questions about cookies, tracking, or privacy at PODFY,
-        you can contact us at <a href="mailto:info@podfy.net">info@podfy.net</a>.
-      </p>
-    </section>
+        <ul class="page-list">
+          <li><strong>Chrome / Edge</strong>: Settings → Privacy and security → Cookies and other site data</li>
+          <li><strong>Firefox</strong>: Settings → Privacy & Security → Cookies and Site Data</li>
+          <li><strong>Safari</strong>: Settings / Preferences → Privacy</li>
+        </ul>
+
+        <p>You can:</p>
+        <ul class="page-list">
+          <li>Block third-party cookies (safe for PODFY).</li>
+          <li>Clear cookies and site data at any time.</li>
+          <li>Set exceptions or stricter controls per site.</li>
+        </ul>
+
+        <p>
+          For rights related to personal data (access, deletion, objection), see our
+          <a href="/privacy">Privacy Policy</a>.
+        </p>
+      </section>
+
+      <section id="contact" class="page-section">
+        <div class="page-section-kicker">5. Questions</div>
+        <h2 class="page-section-title">Questions about this policy</h2>
+        <p>
+          If you have questions about cookies, tracking, or privacy at PODFY, contact us at
+          <a href="mailto:info@podfy.net">info@podfy.net</a>.
+        </p>
+      </section>
+    </div>
   </main>
 
   [[PODFY_FOOTER]]
