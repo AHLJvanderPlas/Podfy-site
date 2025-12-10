@@ -1,14 +1,3 @@
-Here’s the complete pricing.html file with everything wired up:
-	•	Uses your site CSS + subheader-style hero.
-	•	Toggles are aligned at the top and highlight when active.
-	•	“What your team configures” reflects the selected plan.
-	•	Only the Add-ons row grows; table is fixed-layout and left-aligned.
-	•	URL like /pricing/<keyword> calls /api/pricing-factor?code=<keyword> and:
-	•	sets priceFactor = wtp_percent / 100
-	•	multiplies both base prices and add-on increases by this factor.
-
-You can drop this in as pricing.html (keeping [[PODFY_HEADER]] / [[PODFY_FOOTER]] processing as you already do).
-
 <!doctype html>
 <html lang="en">
 <head>
