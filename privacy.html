@@ -3,48 +3,462 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Privacy Policy – PODFY</title>
-  <meta name="description" content="Privacy policy for PODFY." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:"#4B5563",accent:"#2563EB"}}}}}</script>
+
+  <title>Terms of Service – PODFY</title>
+  <meta name="description" content="Terms of Service for podfy.app and podfy.net." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Light/Dark UI colors -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1D3557" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB" />
+
+  <!-- Global PODFY styles -->
+  <link rel="stylesheet" href="/assets/styles.css?v=home-rev5" />
+  <script src="/assets/theme.js" defer></script>
+
+  <style>
+    .legal-main{
+      max-width:var(--container-4xl);
+      margin:0 auto;
+      padding:2.5rem 1rem 3.5rem;
+    }
+    .legal-hero{
+      margin-bottom:2.5rem;
+    }
+    .legal-kicker{
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--muted);
+      margin-bottom:.35rem;
+    }
+    .legal-title{
+      font-size:2.1rem;
+      line-height:1.1;
+      letter-spacing:-.04em;
+      margin:0;
+      color:var(--ink);
+    }
+    .legal-subtitle{
+      margin-top:.75rem;
+      font-size:.98rem;
+      color:var(--muted);
+      max-width:40rem;
+    }
+    .legal-meta{
+      margin-top:.6rem;
+      font-size:.78rem;
+      color:var(--muted);
+    }
+    .legal-meta code{
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:.75em;
+    }
+
+    .legal-shortcuts{
+      margin-top:1.75rem;
+    }
+    .legal-shortcuts-grid{
+      display:grid;
+      gap:1rem;
+    }
+    @media(min-width:768px){
+      .legal-shortcuts-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+      }
+    }
+    @media(min-width:1040px){
+      .legal-shortcuts-grid{
+        grid-template-columns:repeat(4,minmax(0,1fr));
+      }
+    }
+    .legal-shortcut-card{
+      border-radius:.85rem;
+      border:1px solid var(--line);
+      background:var(--surface-strong);
+      padding:.8rem .9rem;
+      font-size:.82rem;
+      display:flex;
+      flex-direction:column;
+      gap:.25rem;
+      box-shadow:0 16px 35px rgba(15,23,42,0.12);
+      transition:transform .16s ease-out, box-shadow .16s ease-out, border-color .16s ease-out;
+    }
+    .legal-shortcut-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(96,165,250,0.9);
+      box-shadow:0 20px 50px rgba(15,23,42,0.25);
+    }
+    .legal-shortcut-title{
+      font-weight:600;
+      color:var(--ink);
+    }
+    .legal-shortcut-body{
+      color:var(--muted);
+    }
+    .legal-shortcut-link{
+      margin-top:.15rem;
+      display:inline-flex;
+      align-items:center;
+      gap:.25rem;
+      font-size:.78rem;
+      text-decoration:none;
+      color:var(--brand-primary);
+    }
+    .legal-shortcut-link::after{
+      content:"›";
+      font-size:.9em;
+      transform:translateX(0);
+      transition:transform .12s ease-out;
+    }
+    .legal-shortcut-link:hover::after{
+      transform:translateX(2px);
+    }
+
+    .legal-section{
+      margin-top:2.5rem;
+    }
+    .legal-section-header{
+      margin-bottom:.75rem;
+    }
+    .legal-section-title{
+      font-size:1.25rem;
+      margin:0 0 .2rem;
+      color:var(--ink);
+    }
+    .legal-section-kicker{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+    }
+    .legal-section-body{
+      display:flex;
+      flex-direction:column;
+      gap:.85rem;
+    }
+    .legal-section p{
+      font-size:.94rem;
+      color:var(--muted);
+      max-width:60rem;
+    }
+    .legal-section strong{
+      color:var(--ink);
+    }
+    .legal-list{
+      font-size:.92rem;
+      color:var(--muted);
+      padding-left:1.1rem;
+    }
+    .legal-list li+li{
+      margin-top:.25rem;
+    }
+    .legal-mono{
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:.84em;
+    }
+
+    .legal-callout{
+      margin-top:1.3rem;
+      padding:.9rem 1rem;
+      border-radius:.9rem;
+      border:1px solid rgba(148,163,184,0.75);
+      background:rgba(15,23,42,0.02);
+      font-size:.9rem;
+      color:var(--muted);
+    }
+    html[data-theme="dark"] .legal-callout{
+      background:rgba(15,23,42,0.85);
+    }
+    .legal-callout-title{
+      font-weight:600;
+      color:var(--ink);
+      margin-bottom:.2rem;
+    }
+    .legal-callout a{
+      color:var(--brand-primary);
+    }
+  </style>
 </head>
-<body class="bg-white text-slate-800 antialiased">
-  <main class="mx-auto max-w-3xl px-4 py-12">
-    <a href="/" class="text-sm text-brand-accent">&larr; Back to home</a>
-    <h1 class="mt-2 text-3xl font-bold">Privacy Policy</h1>
-    <p class="mt-4 text-slate-600 text-sm">Last updated: 2025-08-27</p>
 
-    <h2 class="mt-8 text-xl font-semibold">Who we are</h2>
-    <p class="mt-2"><strong>PODFY</strong>, Van Weede van Dijkveldstraat 25, 2582KP ’s-Gravenhage (The Hague), Netherlands. Contact: <a class="text-brand-accent" href="mailto:info@podfy.net">info@podfy.net</a>.</p>
+<body class="manual-page">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
+    Skip to content
+  </a>
 
-    <h2 class="mt-6 text-xl font-semibold">Scope</h2>
-    <p class="mt-2">This policy covers the marketing site <strong>podfy.net</strong>. The operational product runs on <strong>podfy.app</strong>. Customer data processing for the product is covered by our service terms and (where applicable) a Data Processing Addendum (DPA).</p>
+  [[PODFY_HEADER]]
 
-    <h2 class="mt-6 text-xl font-semibold">Data we process on this site</h2>
-    <ul class="mt-2 list-disc pl-6">
-      <li><strong>Contact form data</strong>: name, email, company, message – used to respond to demo requests.</li>
-      <li><strong>Technical logs</strong>: IP address and user agent – used for security and troubleshooting.</li>
-      <li>We do <strong>not</strong> use marketing cookies or third-party trackers on this site.</li>
-    </ul>
+  <main id="main" class="legal-main">
+    <header class="legal-hero">
+      <p class="legal-kicker">Legal</p>
+      <h1 class="legal-title">Terms of Service</h1>
+      <p class="legal-subtitle">
+        These Terms govern your use of podfy.app (the product) and podfy.net (the website).
+        They are written to be readable for operations teams and acceptable to legal and compliance reviewers.
+      </p>
+      <p class="legal-meta">
+        Last updated: <strong>2025-12-10</strong><br />
+        Provider: <strong>PODFY</strong>, Van Weede van Dijkveldstraat 25, 2582KP ’s-Gravenhage (The Hague), Netherlands –
+        contact: <a href="mailto:info@podfy.net">info@podfy.net</a><br />
+        Scope: <code class="legal-mono">podfy.app</code> (application) and <code class="legal-mono">podfy.net</code> (website)
+      </p>
 
-    <h2 class="mt-6 text-xl font-semibold">Lawful bases</h2>
-    <p class="mt-2">Legitimate interests (responding to your inquiry, securing our site) and, where applicable, consent.</p>
+      <section class="legal-shortcuts" aria-label="Terms shortcuts">
+        <div class="legal-shortcuts-grid">
+          <article class="legal-shortcut-card">
+            <div class="legal-shortcut-title">Overview & definitions</div>
+            <p class="legal-shortcut-body">
+              Who we are, what these Terms cover, and how they interact with your contract.
+            </p>
+            <a href="#overview" class="legal-shortcut-link">Jump to overview</a>
+          </article>
+          <article class="legal-shortcut-card">
+            <div class="legal-shortcut-title">podfy.app terms</div>
+            <p class="legal-shortcut-body">
+              Service description, customer data, account use, availability and support.
+            </p>
+            <a href="#podfy-app-terms" class="legal-shortcut-link">Jump to podfy.app</a>
+          </article>
+          <article class="legal-shortcut-card">
+            <div class="legal-shortcut-title">podfy.net & marketing</div>
+            <p class="legal-shortcut-body">
+              Website use, forms, content, and information we present about the product.
+            </p>
+            <a href="#podfy-net-terms" class="legal-shortcut-link">Jump to podfy.net</a>
+          </article>
+          <article class="legal-shortcut-card">
+            <div class="legal-shortcut-title">Liability & disputes</div>
+            <p class="legal-shortcut-body">
+              Disclaimers, limitations of liability, and governing law.
+            </p>
+            <a href="#liability" class="legal-shortcut-link">Jump to liability</a>
+          </article>
+        </div>
+      </section>
+    </header>
 
-    <h2 class="mt-6 text-xl font-semibold">Retention</h2>
-    <p class="mt-2">Contact requests are retained for up to 12 months unless you ask us to delete earlier. Security logs are retained for 30 days.</p>
+    <!-- OVERVIEW -->
+    <section id="overview" class="legal-section">
+      <div class="legal-section-header">
+        <div class="legal-section-kicker">1. Overview</div>
+        <h2 class="legal-section-title">Scope, parties and hierarchy</h2>
+      </div>
+      <div class="legal-section-body">
+        <p><strong>1.1 Parties.</strong> These Terms of Service (“Terms”) are between you (the customer or visitor) and PODFY (“we”, “us”). If you are using PODFY on behalf of a company or organisation, you represent that you have authority to bind that entity to these Terms.</p>
 
-    <h2 class="mt-6 text-xl font-semibold">Processors / recipients</h2>
-    <ul class="mt-2 list-disc pl-6">
-      <li><strong>Hosting & DNS</strong>: Cloudflare (site hosting and DNS).</li>
-      <li><strong>Contact form</strong>: Formspark (receives form submissions from podfy.net).</li>
-      <li>Operational infrastructure for podfy.app is covered in our Security page and DPA.</li>
-    </ul>
+        <p><strong>1.2 Services in scope.</strong> These Terms cover:</p>
+        <ul class="legal-list">
+          <li><strong>podfy.app</strong>: the operational application used to upload, manage, and share proof-of-delivery (POD) documents and related data.</li>
+          <li><strong>podfy.net</strong>: the public website, including marketing pages, documentation, and contact/demo forms.</li>
+        </ul>
 
-    <h2 class="mt-6 text-xl font-semibold">Your rights</h2>
-    <p class="mt-2">Under GDPR (where applicable), you may request access, correction, deletion, restriction, or portability of your data. Contact us at <a class="text-brand-accent" href="mailto:info@podfy.net">info@podfy.net</a>.</p>
+        <p><strong>1.3 Contract hierarchy.</strong> If you have a separately signed commercial agreement, order form, or Data Processing Addendum (DPA) with us, that document will prevail over these online Terms where they conflict. These Terms then apply on a supplementary basis.</p>
 
-    <h2 class="mt-6 text-xl font-semibold">International transfers</h2>
-    <p class="mt-2">We aim to host EU data in the EU where possible. Where providers process data outside your jurisdiction, we rely on appropriate safeguards (e.g., SCCs).</p>
+        <p><strong>1.4 Changes to the Terms.</strong> We may update these Terms from time to time. For material changes, we will use reasonable efforts to notify existing customers (for example via email or prominent notice in the app). If you continue to use the Services after the updated Terms become effective, you agree to the updated Terms.</p>
+
+        <p><strong>1.5 Definitions (simplified).</strong></p>
+        <ul class="legal-list">
+          <li><strong>“Services”</strong> means podfy.app, podfy.net, and related features and APIs we provide.</li>
+          <li><strong>“Customer Data”</strong> means any data you or your users submit to the Services, including POD documents, references, driver details, and metadata.</li>
+          <li><strong>“User”</strong> means an individual you permit to access the Services (for example, employees, contractors, or drivers).</li>
+        </ul>
+
+        <div class="legal-callout">
+          <div class="legal-callout-title">How these Terms relate to privacy and security</div>
+          <p>
+            These Terms focus on contractual obligations and acceptable use.
+            For technical controls and posture, see the <a href="/security.html">Security page</a>.
+            For how we handle personal data, see the <a href="/privacy.html">Privacy Policy</a> and any applicable DPA.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PODFY.APP TERMS -->
+    <section id="podfy-app-terms" class="legal-section">
+      <div class="legal-section-header">
+        <div class="legal-section-kicker">2. podfy.app</div>
+        <h2 class="legal-section-title">Product use, customer data & responsibilities</h2>
+      </div>
+      <div class="legal-section-body">
+        <p><strong>2.1 Service description.</strong> podfy.app is a software-as-a-service (SaaS) product to help you collect, store, and share proof-of-delivery documents and related logistics information. The product may include email-based access links, delivery portals, branded PDFs, and configuration options for retention and workflows.</p>
+
+        <p><strong>2.2 Customer Data ownership.</strong> You retain ownership of Customer Data. We do not claim ownership of your POD documents, references, or operational data. You grant us a limited licence to process Customer Data only as needed to provide, secure, and support the Services, and as otherwise described in these Terms, our Privacy Policy, and any DPA.</p>
+
+        <p><strong>2.3 Your responsibilities.</strong></p>
+        <ul class="legal-list">
+          <li>Ensure that you have a lawful basis (for example, contract or legitimate interest) to process personal data within the Services.</li>
+          <li>Configure user access and roles appropriately, and keep account details up to date.</li>
+          <li>Ensure that your use of the Services complies with applicable laws and regulations (for example, transport, labour, privacy, and document-retention laws in your jurisdiction).</li>
+        </ul>
+
+        <p><strong>2.4 Account security and access.</strong></p>
+        <ul class="legal-list">
+          <li>You are responsible for protecting login credentials to podfy.app and for actions taken under your accounts, except where caused by our breach of these Terms.</li>
+          <li>You will promptly notify us at <a href="mailto:info@podfy.net">info@podfy.net</a> if you become aware of unauthorised access to your account or Customer Data.</li>
+        </ul>
+
+        <p><strong>2.5 Acceptable use.</strong> You agree not to:</p>
+        <ul class="legal-list">
+          <li>Use the Services to store or transmit unlawful content, or content that infringes third-party rights.</li>
+          <li>Attempt to gain unauthorised access to other customers’ data or to underlying infrastructure.</li>
+          <li>Interfere with or disrupt the integrity or performance of the Services (for example, by attempting to overload upload endpoints).</li>
+          <li>Use the Services for high-risk activities where a fault in POD storage could directly cause loss of life, personal injury, or environmental damage.</li>
+        </ul>
+
+        <p><strong>2.6 Service availability & changes.</strong></p>
+        <ul class="legal-list">
+          <li>We aim for high availability through our edge-based architecture, but the Services may occasionally be unavailable due to planned maintenance or unscheduled incidents.</li>
+          <li>We may modify or improve the Services from time to time (for example, adding multi-file upload or new delivery portal features), provided that such changes do not materially degrade core functionality you rely on.</li>
+        </ul>
+
+        <p><strong>2.7 Beta and preview features.</strong> From time to time, we may make preview or beta features available. These may be labelled “beta”, “preview” or similar. Such features are provided “as is”, may be subject to additional limitations, and may be discontinued or changed without notice.</p>
+
+        <p><strong>2.8 Fees and payment.</strong> Where applicable, pricing and billing terms for podfy.app are set out in your order, quote, or commercial agreement (including any plan levels and add-ons). Invoices are due as described in those documents. We may suspend access for significantly overdue accounts, after providing reasonable notice.</p>
+      </div>
+    </section>
+
+    <!-- PODFY.NET TERMS -->
+    <section id="podfy-net-terms" class="legal-section">
+      <div class="legal-section-header">
+        <div class="legal-section-kicker">3. podfy.net</div>
+        <h2 class="legal-section-title">Website use, content & forms</h2>
+      </div>
+      <div class="legal-section-body">
+        <p><strong>3.1 Website content.</strong> podfy.net provides general information about PODFY, including product descriptions, pricing information, and documentation. We take care to keep the content accurate, but it is provided for information only and may change without prior notice.</p>
+
+        <p><strong>3.2 No legal or professional advice.</strong> Information on podfy.net does not constitute legal, compliance, or professional advice. You remain responsible for determining how to use PODFY in your regulatory and contractual context.</p>
+
+        <p><strong>3.3 Forms and contact requests.</strong></p>
+        <ul class="legal-list">
+          <li>When you submit a contact or demo request, we process your details to respond, as described in the <a href="/privacy.html">Privacy Policy</a>.</li>
+          <li>You agree not to submit unlawful, misleading, or malicious content via our forms.</li>
+        </ul>
+
+        <p><strong>3.4 Third-party links.</strong> podfy.net may contain links to third-party websites or services (for example, documentation, repositories, or integration partners). We are not responsible for those third-party services and their terms or privacy practices.</p>
+
+        <p><strong>3.5 Intellectual property on the website.</strong> All content on podfy.net, including text, logos, graphics, and layouts, is either owned by PODFY or used with permission. You may not copy, redistribute, or modify this content except as reasonably necessary to evaluate or use the Services.</p>
+      </div>
+    </section>
+
+    <!-- DATA PROTECTION & DPA -->
+    <section id="data-protection" class="legal-section">
+      <div class="legal-section-header">
+        <div class="legal-section-kicker">4. Data protection</div>
+        <h2 class="legal-section-title">Privacy, Customer Data & Data Processing Addendum</h2>
+      </div>
+      <div class="legal-section-body">
+        <p><strong>4.1 Roles.</strong> For Customer Data in podfy.app, you (the customer) are typically the <strong>data controller</strong>, and PODFY acts as your <strong>data processor</strong>. For contact and marketing data collected through podfy.net, PODFY acts as the data controller.</p>
+
+        <p><strong>4.2 Privacy Policy.</strong> Our <a href="/privacy.html">Privacy Policy</a> explains in more detail how we process personal data, including website logs, contact requests, and customer account information.</p>
+
+        <p><strong>4.3 Data Processing Addendum (DPA).</strong></p>
+        <ul class="legal-list">
+          <li>For customers subject to GDPR or similar regulations, we offer a DPA containing our processor obligations and, where applicable, standard contractual clauses.</li>
+          <li>Where a signed DPA exists, it forms an integral part of your contract with us and governs processing of Customer Data in addition to these Terms.</li>
+        </ul>
+
+        <p><strong>4.4 Sub-processors.</strong> We rely on a small set of infrastructure providers (for example, Cloudflare for edge hosting, storage, and DNS, and email providers for sending operational emails). We take reasonable steps to ensure these providers offer adequate security and data protection safeguards.</p>
+
+        <p><strong>4.5 Data residency and retention.</strong> We aim to store production data for podfy.app in EU regions where possible, and allow per-customer retention settings for POD documents, as described on the <a href="/security.html">Security page</a> and in your commercial agreement.</p>
+      </div>
+    </section>
+
+    <!-- INTELLECTUAL PROPERTY & LICENSE -->
+    <section id="intellectual-property" class="legal-section">
+      <div class="legal-section-header">
+        <div class="legal-section-kicker">5. IP & license</div>
+        <h2 class="legal-section-title">Intellectual property and permitted use</h2>
+      </div>
+      <div class="legal-section-body">
+        <p><strong>5.1 PODFY IP.</strong> All intellectual property rights in the Services (including underlying software, designs, and documentation) are owned by PODFY or its licensors. These Terms do not transfer ownership to you.</p>
+
+        <p><strong>5.2 Licence to use the Services.</strong> Subject to these Terms and any applicable order, we grant you a non-exclusive, non-transferable licence to access and use the Services for your internal business purposes during the agreed subscription term.</p>
+
+        <p><strong>5.3 Restrictions.</strong> You may not:</p>
+        <ul class="legal-list">
+          <li>Reverse engineer, decompile, or attempt to extract source code from the Services, except where permitted by law.</li>
+          <li>Remove or alter proprietary notices or branding.</li>
+          <li>Use the Services to build a competing product.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TERM, TERMINATION -->
+    <section id="term-termination" class="legal-section">
+      <div class="legal-section-header">
+        <div class="legal-section-kicker">6. Term & termination</div>
+        <h2 class="legal-section-title">Contract duration, suspension & closure</h2>
+      </div>
+      <div class="legal-section-body">
+        <p><strong>6.1 Term.</strong> The term of your access to podfy.app is defined in your order or commercial agreement (for example, monthly or annual subscription). Access to podfy.net is provided on an ongoing basis.</p>
+
+        <p><strong>6.2 Termination by you.</strong> You may terminate your subscription in accordance with your order or commercial agreement. For self-service plans, termination typically takes effect at the end of the current billing period.</p>
+
+        <p><strong>6.3 Suspension or termination by us.</strong> We may suspend or terminate access to the Services if:</p>
+        <ul class="legal-list">
+          <li>You materially breach these Terms and fail to remedy the breach within a reasonable time after notice.</li>
+          <li>We are required to do so by law or by a competent authority.</li>
+          <li>Your use creates a security risk or could materially impact other customers or the platform.</li>
+        </ul>
+
+        <p><strong>6.4 Data export on termination.</strong> We aim to provide a reasonable opportunity for you to export Customer Data upon termination of your subscription, subject to your account being in good standing and to applicable retention periods.</p>
+      </div>
+    </section>
+
+    <!-- LIABILITY & GOVERNING LAW -->
+    <section id="liability" class="legal-section">
+      <div class="legal-section-header">
+        <div class="legal-section-kicker">7. Liability</div>
+        <h2 class="legal-section-title">Warranties, limitation of liability & disputes</h2>
+      </div>
+      <div class="legal-section-body">
+        <p><strong>7.1 Warranties.</strong> We will provide the Services with reasonable skill and care and in accordance with these Terms. Apart from that, and to the maximum extent permitted by law, the Services are provided “as is” and “as available”.</p>
+
+        <p><strong>7.2 Exclusions.</strong> To the fullest extent permitted by law, we exclude all implied warranties, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+
+        <p><strong>7.3 Limitation of liability.</strong> To the extent permitted by law, our aggregate liability arising out of or relating to the Services or these Terms is limited to the greater of:</p>
+        <ul class="legal-list">
+          <li>The amounts you paid for the Services in the twelve (12) months immediately preceding the event giving rise to the claim; or</li>
+          <li>A reasonable minimum amount stated in your specific commercial agreement, if applicable.</li>
+        </ul>
+
+        <p><strong>7.4 Excluded damages.</strong> To the extent permitted by law, neither party will be liable for any indirect, incidental, consequential, special, or punitive damages, or for loss of profit, revenue, or data, even if the party knew or should have known that such damages were possible.</p>
+
+        <p><strong>7.5 Exceptions.</strong> The limitations above do not apply to liability that cannot be excluded under applicable law (for example, liability for death or personal injury caused by negligence, or for intentional misconduct).</p>
+
+        <p><strong>7.6 Governing law and forum.</strong> These Terms are governed by the laws of the Netherlands, without regard to conflict-of-law rules. Any disputes arising out of or in connection with these Terms will be subject to the jurisdiction of the competent courts in The Hague, the Netherlands, unless mandatory law specifies otherwise.</p>
+      </div>
+    </section>
+
+    <!-- MISCELLANEOUS -->
+    <section id="misc" class="legal-section">
+      <div class="legal-section-header">
+        <div class="legal-section-kicker">8. Miscellaneous</div>
+        <h2 class="legal-section-title">Other important terms</h2>
+      </div>
+      <div class="legal-section-body">
+        <p><strong>8.1 Entire agreement.</strong> These Terms, together with any order, DPA, and commercial agreement, constitute the entire agreement between you and PODFY regarding the Services.</p>
+
+        <p><strong>8.2 Assignment.</strong> You may not assign or transfer your rights or obligations under these Terms without our prior written consent. We may assign our rights and obligations, for example in connection with a merger or acquisition, provided this does not reduce your contractual protections.</p>
+
+        <p><strong>8.3 Severability.</strong> If any provision of these Terms is found unenforceable, the remaining provisions will remain in full force and effect, and the unenforceable provision will be replaced with a valid one that comes closest to the intention of the original.</p>
+
+        <p><strong>8.4 No waiver.</strong> A failure by either party to enforce a provision of these Terms is not a waiver of that provision.</p>
+
+        <p><strong>8.5 Contact.</strong> For questions about these Terms, please contact <a href="mailto:info@podfy.net">info@podfy.net</a>.</p>
+      </div>
+    </section>
   </main>
+
+  [[PODFY_FOOTER]]
 </body>
 </html>
