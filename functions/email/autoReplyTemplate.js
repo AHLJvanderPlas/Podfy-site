@@ -3,16 +3,32 @@
 // Builds the auto-reply email (HTML + text) for the contact form.
 // Used by functions/api/contact.js
 
-// --- HTML TEMPLATE WITH TOKENS ---
-//
-// Paste the full HTML template you like into EMAIL_HTML_TEMPLATE.
-// Keep {{name}}, {{companyBlock}}, and {{message}} as tokens.
-
 const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>PODFY – Contact received</title>
+
+  <!-- Hint to modern clients that both schemes are supported -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="supported-color-schemes" content="light dark" />
+
+  <style>
+    /* Default: show light-logo, hide dark-logo */
+    .logo-light { display: block; }
+    .logo-dark { display: none; }
+
+    /* Dark mode aware (works in Apple Mail, many modern clients) */
+    @media (prefers-color-scheme: dark) {
+      .logo-light { display: none !important; }
+      .logo-dark { display: block !important; }
+    }
+
+    @media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+      .logo-light { display: block !important; }
+      .logo-dark { display: none !important; }
+    }
+  </style>
 </head>
 <body style="margin:0; padding:0; background:#020617;">
 <center style="width:100%; background:#020617;">
@@ -31,6 +47,7 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
                 <tr>
                   <td valign="middle" align="left" style="font-family:Arial, sans-serif;">
 
+                    <!-- Outlook / MSO fallback: PNG logo -->
                     <!--[if mso]>
                     <img src="https://podfy.net/assets/podfy-logo-light.png"
                          width="96" height="24"
@@ -39,15 +56,39 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
                     <![endif]-->
 
                     <!--[if !mso]><!-->
-                    <svg width="96" height="24" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"
-                         aria-label="PODFY" style="display:block; margin-bottom:6px;">
-                      <rect width="120" height="30" rx="6" ry="6" fill="none"/>
-                      <text x="0" y="21"
-                            font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
-                            font-size="18" font-weight="700" fill="#9ca3af">
-                        PODFY
-                      </text>
-                    </svg>
+                    <span style="display:inline-block; margin-bottom:6px;">
+                      <!-- Light-mode logo: dark text -->
+                      <svg class="logo-light"
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="120" height="28"
+                           viewBox="0 0 120 30"
+                           aria-label="PODFY">
+                        <rect width="120" height="30" rx="6" ry="6" fill="none" />
+                        <text x="0" y="22"
+                              font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+                              font-size="20"
+                              font-weight="700"
+                              fill="#1D3557">
+                          PODFY
+                        </text>
+                      </svg>
+
+                      <!-- Dark-mode logo: light text -->
+                      <svg class="logo-dark"
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="120" height="28"
+                           viewBox="0 0 120 30"
+                           aria-label="PODFY">
+                        <rect width="120" height="30" rx="6" ry="6" fill="none" />
+                        <text x="0" y="22"
+                              font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+                              font-size="20"
+                              font-weight="700"
+                              fill="#E5E7EB">
+                          PODFY
+                        </text>
+                      </svg>
+                    </span>
                     <!--<![endif]-->
 
                     <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#94a3b8;">
@@ -256,7 +297,6 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
 </center>
 </body>
 </html>`;
-  
 
 // --- PUBLIC API ---
 
@@ -272,12 +312,17 @@ export function buildAutoReply({ name, email, company, message }) {
        </p>`
     : "";
 
-  let html = EMAIL_HTML_TEMPLATE
+  const html = EMAIL_HTML_TEMPLATE
     .replace(/{{name}}/g, escapeHtml(safeName))
     .replace("{{companyBlock}}", companyBlock)
     .replace("{{message}}", escapeHtml(safeMessage));
 
-  const text = buildTextAutoReply({ name: safeName, email, company: safeCompany, message: safeMessage });
+  const text = buildTextAutoReply({
+    name: safeName,
+    email,
+    company: safeCompany,
+    message: safeMessage,
+  });
 
   const subjectBase = "We received your message";
   const subject = safeCompany
@@ -309,7 +354,9 @@ function buildTextAutoReply({ name, company, message }) {
     "",
     "PODFY – Proof of Delivery, without the headaches.",
     "https://podfy.net",
-  ].filter(Boolean).join("\n");
+  ]
+    .filter(Boolean)
+    .join("\n");
 }
 
 // --- ESCAPE ---
