@@ -8,7 +8,7 @@
 // - Sends rich auto-reply using functions/email/autoReplyTemplate.js,
 //   with support@podfy.net in BCC.
 
-import { buildAutoReplyHtml } from "../email/autoReplyTemplate.js";
+import { buildAutoReply } from "../email/autoReplyTemplate.js";
 
 export const onRequestPost = async (context) => {
   const { request, env } = context;
@@ -238,7 +238,7 @@ export const onRequestPost = async (context) => {
     // Auto-reply to user (only try if we still have a valid email)
     if (!emailError && email) {
       try {
-        const autoHtml = buildAutoReplyHtml({
+        const autoHtml = buildAutoReply({
           name,
           email,
           company,
