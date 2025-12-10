@@ -40,7 +40,7 @@
   <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/assets/styles.css?v=pricing-rev1" />
+  <link rel="stylesheet" href="/assets/styles.css?v=pricing-rev2" />
 
   <!-- Theme toggler -->
   <script src="/assets/theme.js" defer></script>
@@ -48,7 +48,7 @@
   <!-- Cloudflare Turnstile -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-  <!-- Pricing-specific layout (kept small, uses existing tokens/components) -->
+  <!-- Pricing-specific layout -->
   <style>
     .pricing-main {
       max-width: var(--container-6xl);
@@ -149,106 +149,6 @@
       color: var(--muted);
     }
 
-    .pricing-layout {
-      margin-top: 1.5rem;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 3.5fr);
-      gap: 1.5rem;
-      align-items: flex-start;
-    }
-
-    @media (max-width: 1024px) {
-      .pricing-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .pricing-upsell-card {
-      position: sticky;
-      top: 5rem; /* below sticky site header */
-    }
-    @media (max-width: 1024px) {
-      .pricing-upsell-card {
-        position: static;
-      }
-    }
-
-    .pricing-upsell-title {
-      margin: 0 0 .25rem;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .pricing-upsell-subtitle {
-      margin: 0 0 1rem;
-      font-size: .85rem;
-      color: var(--muted);
-    }
-
-    .pricing-upsell-list {
-      display: flex;
-      flex-direction: column;
-      gap: .6rem;
-      margin-bottom: .8rem;
-    }
-
-    .pricing-upsell-item {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: .75rem;
-      padding: .55rem .6rem;
-      border-radius: .75rem;
-      background: rgba(15,23,42,0.03);
-    }
-    html[data-theme="dark"] .pricing-upsell-item {
-      background: rgba(15,23,42,0.85);
-    }
-    .pricing-upsell-item.active {
-      background: rgba(37,99,235,0.10);
-      border: 1px solid rgba(37,99,235,0.45);
-    }
-
-    .pricing-upsell-item-main {
-      font-size: .85rem;
-    }
-    .pricing-upsell-item-main strong {
-      display: block;
-      margin-bottom: .1rem;
-    }
-    .pricing-upsell-item-main small {
-      display: block;
-      font-size: .78rem;
-      color: var(--muted);
-    }
-
-    .pricing-upsell-meta {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: .35rem;
-      font-size: .78rem;
-    }
-
-    .pill-pricing {
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.7);
-      padding: .15rem .45rem;
-      font-size: .72rem;
-      color: var(--muted);
-      background: rgba(248,250,252,0.95);
-    }
-    html[data-theme="dark"] .pill-pricing {
-      background: rgba(15,23,42,0.9);
-    }
-
-    .pricing-upsell-footnote {
-      margin-top: .4rem;
-      font-size: .78rem;
-      color: var(--muted);
-    }
-
     .pricing-plans-scroll {
       overflow-x: auto;
     }
@@ -256,7 +156,7 @@
     .pricing-plans-grid {
       min-width: 720px;
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1rem;
     }
 
@@ -370,8 +270,110 @@
       gap: .35rem;
     }
 
+    /* Below-plans layout: left add-ons, right send configuration */
+    .pricing-below-layout {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-below-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .pricing-upsell-card {
+      border-radius: 1rem;
+      border: 1px solid var(--line);
+      background: var(--surface-strong);
+      padding: 1.1rem 1rem 1.2rem;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.16);
+    }
+    html[data-theme="dark"] .pricing-upsell-card {
+      background: rgba(15,23,42,0.96);
+      box-shadow: 0 0 26px rgba(15,23,42,0.85), inset 0 0 38px rgba(15,23,42,0.8);
+    }
+
+    .pricing-upsell-title {
+      margin: 0 0 .25rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .pricing-upsell-subtitle {
+      margin: 0 0 1rem;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .pricing-upsell-list {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      margin-bottom: .8rem;
+    }
+
+    .pricing-upsell-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: .75rem;
+      padding: .55rem .6rem;
+      border-radius: .75rem;
+      background: rgba(15,23,42,0.03);
+    }
+    html[data-theme="dark"] .pricing-upsell-item {
+      background: rgba(15,23,42,0.85);
+    }
+    .pricing-upsell-item.active {
+      background: rgba(37,99,235,0.10);
+      border: 1px solid rgba(37,99,235,0.45);
+    }
+
+    .pricing-upsell-item-main {
+      font-size: .85rem;
+    }
+    .pricing-upsell-item-main strong {
+      display: block;
+      margin-bottom: .1rem;
+    }
+    .pricing-upsell-item-main small {
+      display: block;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    .pricing-upsell-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: .35rem;
+      font-size: .78rem;
+    }
+
+    .pill-pricing {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      padding: .15rem .45rem;
+      font-size: .72rem;
+      color: var(--muted);
+      background: rgba(248,250,252,0.95);
+    }
+    html[data-theme="dark"] .pill-pricing {
+      background: rgba(15,23,42,0.9);
+    }
+
+    .pricing-upsell-footnote {
+      margin-top: .4rem;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
     .pricing-selection-card {
-      margin-top: 2.25rem;
       border-radius: 1rem;
       border: 1px solid var(--line);
       background: var(--surface-strong);
@@ -449,7 +451,7 @@
       color: #dc2626;
     }
 
-    /* Tiny toggle switch reused from previous answer, adjusted slightly */
+    /* Toggle switch */
     .pricing-switch {
       --switch-width: 38px;
       --switch-height: 20px;
@@ -494,7 +496,7 @@
       transform: translateX(18px);
     }
 
-    /* Honeypot field for pricing form */
+    /* Honeypot */
     .pricing-honeypot {
       position: absolute;
       width: 1px;
@@ -526,45 +528,52 @@
               <span>Pricing & configuration</span> for every carrier.
             </h1>
             <p class="pricing-lead">
+              Start with a free delivery-portal plan and grow into advanced automation at your own pace.
               Compare plans, toggle add-ons and see your estimated price per POD in real time.
-              When you are ready, send the configuration to your inbox and we will help you finalise it.
             </p>
             <ul class="pricing-hero-bullets">
-              <li>Usage-based pricing – pay per processed POD.</li>
-              <li>Per-upload retention upgrades and AI options.</li>
-              <li>No payment set-up yet; we invoice afterwards.</li>
+              <li>Always-on free delivery portal with 60-day history available.</li>
+              <li>Usage-based pricing – pay per processed POD on paid plans.</li>
+              <li>Per-upload retention upgrades, white-label and AI options.</li>
             </ul>
             <div class="pricing-hero-actions">
-              <a href="/free-tier-demo.html" class="btn btn-primary">Try a demo upload</a>
-              <a href="#plans" class="btn btn-secondary">Jump to plans</a>
+              <a href="#plans" class="btn btn-primary">Configure my pricing</a>
+              <a href="/free-tier-demo.html" class="btn btn-secondary">Try the free portal</a>
             </div>
           </div>
 
           <aside>
             <h2 class="pricing-hero-side-title">How this configurator works</h2>
             <p class="pricing-hero-side-body">
-              Choose a base plan, then toggle add-ons in the left column. Each plan updates its
+              Pick a base plan, then enable add-ons below the plans. Each plan updates its
               estimated price per POD so you can compare configurations side by side.
             </p>
             <ul class="pricing-hero-side-list">
-              <li>Select a plan that fits your workflows.</li>
+              <li>Choose a plan that fits your workflows.</li>
               <li>Add retention, white-label, AI and more only where you need it.</li>
-              <li>Send the summary to your email – support is automatically BCC’d.</li>
+              <li>Send the summary to your email – support is BCC’d automatically.</li>
             </ul>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- PLANS + UPSELLS -->
+    <!-- PLANS -->
     <section class="home-section" id="plans">
       <div class="container">
-        <div class="pricing-layout">
-          <!-- Upsell column -->
-          <aside class="card card-glass pricing-upsell-card" aria-label="Configure add-ons">
+        <div class="pricing-plans-scroll">
+          <div id="plans-grid" class="pricing-plans-grid">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+        <!-- Below the plans: left add-ons, right send configuration -->
+        <div class="pricing-below-layout">
+          <!-- Add-ons / upsell -->
+          <aside class="pricing-upsell-card" aria-label="Configure add-ons">
             <h2 class="pricing-upsell-title">Configure your add-ons</h2>
             <p class="pricing-upsell-subtitle">
-              Upsells apply per POD. Toggle them to see how each plan changes in rate and content.
+              Add-ons apply per POD. Toggle them to see how each paid plan changes in rate and content.
             </p>
 
             <div id="upsell-list" class="pricing-upsell-list">
@@ -572,80 +581,73 @@
             </div>
 
             <p class="pricing-upsell-footnote">
-              Final pricing and discounts are agreed during onboarding. These rates help you choose
-              the right combination before we talk.
+              Final pricing and discounts are agreed during onboarding. These indicative rates
+              help you choose the right combination before we talk.
             </p>
           </aside>
 
-          <!-- Plans -->
-          <div class="pricing-plans-scroll">
-            <div id="plans-grid" class="pricing-plans-grid">
-              <!-- Filled by JS -->
+          <!-- Send configuration -->
+          <section class="pricing-selection-card" aria-label="Send me my configuration">
+            <div class="pricing-selection-header">
+              <div>
+                <h2 class="pricing-selection-title">Send me my configuration</h2>
+                <p id="selection-summary" class="pricing-selection-summary">
+                  Select a plan above to see your estimated rate and add-ons.
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Selection + email -->
-        <section class="pricing-selection-card" aria-label="Send me my configuration">
-          <div class="pricing-selection-header">
-            <div>
-              <h2 class="pricing-selection-title">Send me my configuration</h2>
-              <p id="selection-summary" class="pricing-selection-summary">
-                Select a plan above to see your estimated rate and add-ons.
-              </p>
-            </div>
-          </div>
-
-          <form id="selection-form" class="pricing-selection-form" novalidate>
-            <!-- Honeypot -->
-            <input
-              type="text"
-              name="website"
-              id="pricing-hp"
-              class="pricing-honeypot"
-              autocomplete="off"
-              tabindex="-1"
-            />
-
-            <div class="pricing-field-group">
-              <label for="selection-email" class="pricing-field-label">Work email</label>
+            <form id="selection-form" class="pricing-selection-form" novalidate>
+              <!-- Honeypot -->
               <input
-                id="selection-email"
-                name="email"
-                type="email"
-                required
-                autocomplete="email"
+                type="text"
+                name="website"
+                id="pricing-hp"
+                class="pricing-honeypot"
+                autocomplete="off"
+                tabindex="-1"
               />
 
-              <!-- Turnstile widget -->
               <div class="pricing-field-group">
-                <label class="pricing-field-label">Verification</label>
-                <div
-                  class="cf-turnstile"
-                  data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-                  data-callback="onPricingTurnstileCompleted"
-                  data-error-callback="onPricingTurnstileError"
-                  data-expired-callback="onPricingTurnstileExpired"
-                  data-theme="auto"
-                ></div>
+                <label for="selection-email" class="pricing-field-label">Work email</label>
+                <input
+                  id="selection-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                />
+
+                <!-- Turnstile widget -->
+                <div class="pricing-field-group">
+                  <label class="pricing-field-label">Verification</label>
+                  <div
+                    class="cf-turnstile"
+                    data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+                    data-callback="onPricingTurnstileCompleted"
+                    data-error-callback="onPricingTurnstileError"
+                    data-expired-callback="onPricingTurnstileExpired"
+                    data-theme="auto"
+                  ></div>
+                </div>
+
+                <input type="hidden" id="pricingTurnstileToken" name="turnstileToken" value="" />
+
+                <p class="pricing-selection-meta">
+                  We will email you a summary of your chosen plan and add-ons.
+                  No automatic sign-up, no spam.
+                </p>
               </div>
 
-              <input type="hidden" id="pricingTurnstileToken" name="turnstileToken" value="" />
-
-              <p class="pricing-selection-meta">
-                We will email you a summary of your chosen plan and add-ons.
-                No automatic sign-up, no spam.
-              </p>
-            </div>
-
-            <div>
-              <button id="selection-submit" type="submit" class="btn btn-primary">
-                Send me my selection
-              </button>
-              <p id="selection-status" class="pricing-selection-status" role="status"></p>
-            </div>
-          </form>
-        </section>
+              <div>
+                <button id="selection-submit" type="submit" class="btn btn-primary">
+                  Send me my selection
+                </button>
+                <p id="selection-status" class="pricing-selection-status" role="status"></p>
+              </div>
+            </form>
+          </section>
+        </div>
       </div>
     </section>
   </main>
@@ -653,9 +655,7 @@
   [[PODFY_FOOTER]]
 
   <script>
-    // =======================
     // Turnstile callbacks
-    // =======================
     function onPricingTurnstileCompleted(token) {
       const hidden = document.getElementById('pricingTurnstileToken');
       if (hidden) hidden.value = token || '';
@@ -669,9 +669,7 @@
       if (hidden) hidden.value = '';
     }
 
-    // =======================
-    // Pricing data model
-    // =======================
+    // Data model
     const PLANS = [
       {
         id: 'free',
@@ -850,10 +848,6 @@
       return '€' + value.toFixed(2).replace('.', ',');
     }
 
-    function isUpsellVisibleForPlan(upsell, plan) {
-      return upsell.visibility.includes(plan.level);
-    }
-
     function getPlanEffectivePrice(plan) {
       let total = plan.basePrice;
       state.activeUpsells.forEach(id => {
@@ -948,7 +942,8 @@
 
     function renderPlans() {
       plansGridEl.innerHTML = '';
-      PLANS.forEach(plan => {
+      // Only render paid plans: skip free
+      PLANS.filter(p => p.level !== 'free').forEach(plan => {
         const card = document.createElement('article');
         card.className = 'pricing-plan-card card-glass' +
           (state.selectedPlanId === plan.id ? ' selected' : '');
@@ -1017,7 +1012,7 @@
         hintBtn.className = 'btn btn-secondary';
         hintBtn.textContent = 'Use this as baseline';
         hintBtn.addEventListener('click', () => {
-          const selectionSection = document.querySelector('.pricing-selection-card');
+          const selectionSection = document.querySelector('.pricing-below-layout');
           if (selectionSection) {
             selectionSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
@@ -1057,9 +1052,7 @@
       `;
     }
 
-    // =======================
     // Form submission
-    // =======================
     selectionFormEl.addEventListener('submit', async (event) => {
       event.preventDefault();
       selectionStatusEl.textContent = '';
@@ -1067,7 +1060,6 @@
 
       const hp = document.getElementById('pricing-hp');
       if (hp && hp.value) {
-        // Honeypot filled – treat as spam
         selectionStatusEl.textContent = 'Something went wrong. Please try again.';
         selectionStatusEl.classList.add('error');
         return;
@@ -1123,14 +1115,16 @@
         },
         upsells: upsellIds,
         upsellLabels,
-        // snapshot for sales / internal reference
-        plansSnapshot: PLANS.map(p => ({
-          id: p.id,
-          name: p.name,
-          level: p.level,
-          pricePerPod: getPlanEffectivePrice(p),
-          retention: getPlanRetentionLabel(p)
-        }))
+        // Only include paid plans in snapshot for consistency with the UI
+        plansSnapshot: PLANS
+          .filter(p => p.level !== 'free')
+          .map(p => ({
+            id: p.id,
+            name: p.name,
+            level: p.level,
+            pricePerPod: getPlanEffectivePrice(p),
+            retention: getPlanRetentionLabel(p)
+          }))
       };
 
       selectionSubmitBtn.disabled = true;
@@ -1175,9 +1169,7 @@
       }
     });
 
-    // =======================
     // Init
-    // =======================
     renderUpsells();
     renderPlans();
     renderSelectionSummary();
