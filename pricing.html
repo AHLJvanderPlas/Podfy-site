@@ -1163,16 +1163,23 @@
 
  async function loadPriceFactorFromUrl() {
   try {
-    const path = (window.location && window.location.pathname) || "";
-    const cleaned = path.replace(/\/+$/, "");
-    const segments = cleaned.split("/").filter(Boolean); // ["pricing"] or ["pricing","keyword"]
+    const loc = window.location || { pathname: "", search: "" };
+    const path = loc.pathname || "";
+    const search = loc.search || "";
 
-    if (!segments.length) return;
-    if (segments[0] !== "pricing") return;
+    // 1) Preferred: ?code=Elite
+    const params = new URLSearchParams(search);
+    let keyword = (params.get("code") || "").trim();
 
-    if (segments.length === 1) return; // plain /pricing
+    // 2) Fallback: /pricing/Elite (if you later fix redirects)
+    if (!keyword) {
+      const cleaned = path.replace(/\/+$/, "");
+      const segments = cleaned.split("/").filter(Boolean); // ["pricing"] or ["pricing","Elite"]
+      if (segments[0] === "pricing" && segments.length > 1) {
+        keyword = segments[1];
+      }
+    }
 
-    const keyword = segments[1];
     if (!keyword) return;
 
     const res = await fetch(
@@ -1186,8 +1193,8 @@
       return;
     }
 
-    priceFactor = data.factor;
-    priceFactorMeta = data;
+    priceFactor = data.factor;          // e.g. 29.7 for Elite
+    priceFactorMeta = data;             // { code, buyer, factor, ... }
 
     console.info("pricing-factor loaded", {
       code: data.code,
