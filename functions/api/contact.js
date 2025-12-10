@@ -28,7 +28,7 @@ export const onRequestPost = async (context) => {
       return json({ ok: false, error: "Invalid JSON body." }, 400);
     }
 
-    // ---------- Extract fields ----------
+    // ---------- Extract fields from JSON ----------
     const {
       name = "",
       email = "",
@@ -46,6 +46,7 @@ export const onRequestPost = async (context) => {
       return json({ ok: true, skipped: true });
     }
 
+    // Basic required fields
     if (!name || !email) {
       return json(
         { ok: false, error: "Name and email are required." },
@@ -72,7 +73,13 @@ export const onRequestPost = async (context) => {
       );
     }
 
-    const turnstileToken = cf_turnstile_token;
+    // Accept multiple possible token field names to be robust
+    const turnstileToken =
+      cf_turnstile_token ||
+      body.turnstileToken ||
+      body["cf-turnstile-response"] ||
+      "";
+
     if (!turnstileToken || typeof turnstileToken !== "string") {
       console.warn("contact: missing Turnstile token in request body");
       return json(
@@ -189,7 +196,7 @@ export const onRequestPost = async (context) => {
 
     let emailError = null;
 
-    // Internal notification
+    // Internal notification email
     try {
       const internalHtml = buildInternalHtmlEmail({
         name,
@@ -225,9 +232,15 @@ export const onRequestPost = async (context) => {
 
       if (!internalRes.ok) {
         const body = await safeJson(internalRes);
-        console.error("contact: Resend internal error:", internalRes.status, body);
+        console.error(
+          "contact: Resend internal error:",
+          internalRes.status,
+          body
+        );
         emailError = new Error(
-          `Resend internal error ${internalRes.status}: ${JSON.stringify(body)}`
+          `Resend internal error ${internalRes.status}: ${JSON.stringify(
+            body
+          )}`
         );
       }
     } catch (err) {
@@ -238,17 +251,12 @@ export const onRequestPost = async (context) => {
     // Auto-reply to user (only try if we still have a valid email)
     if (!emailError && email) {
       try {
-        const autoHtml = buildAutoReply({
+        // Use the shared template module
+        const { subject, html, text } = buildAutoReply({
           name,
           email,
           company,
-          sector,
           message,
-        });
-
-        const autoText = buildAutoReplyText({
-          name,
-          company,
         });
 
         const autoRes = await fetch("https://api.resend.com/emails", {
@@ -262,18 +270,24 @@ export const onRequestPost = async (context) => {
             to: [email],
             bcc: ["support@podfy.net"],
             reply_to: ["support@podfy.net"],
-            subject: "We have received your request – PODFY",
-            html: autoHtml,
-            text: autoText,
+            subject,
+            html,
+            text,
             tags: [{ name: "type", value: "podfy-auto-reply" }],
           }),
         });
 
         if (!autoRes.ok) {
           const body = await safeJson(autoRes);
-          console.error("contact: Resend auto-reply error:", autoRes.status, body);
+          console.error(
+            "contact: Resend auto-reply error:",
+            autoRes.status,
+            body
+          );
           emailError = new Error(
-            `Resend auto-reply error ${autoRes.status}: ${JSON.stringify(body)}`
+            `Resend auto-reply error ${autoRes.status}: ${JSON.stringify(
+              body
+            )}`
           );
         }
       } catch (err) {
@@ -360,28 +374,6 @@ function buildInternalTextEmail({ name, email, company, sector, message }) {
     "",
     "Message:",
     message || "",
-    "",
-  ].join("\n");
-}
-
-// Auto-reply plain-text fallback
-function buildAutoReplyText({ name, company }) {
-  return [
-    `Hi ${name || "there"},`,
-    "",
-    "Thanks for reaching out to PODFY.",
-    "",
-    company
-      ? `We have received your request on behalf of ${company} and will get back to you as soon as possible.`
-      : "We have received your request and will get back to you as soon as possible.",
-    "",
-    "In the meantime, you can:",
-    "- Try a free demo upload: https://podfy.net/free-tier-demo.html",
-    "- Explore plans: https://podfy.net/pricing",
-    "",
-    "Best regards,",
-    "Team PODFY",
-    "support@podfy.net",
     "",
   ].join("\n");
 }
