@@ -147,7 +147,7 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
                   ">
                     <span style="display:inline-block; width:9px; height:9px; background:#22c55e; border-radius:999px; margin-right:8px;"></span>
                     <strong style="color:#e5e7eb;">Configuration captured</strong>
-                    &nbsp;· Our team has a copy and will follow up with you.
+                    &nbsp;· Fill in the form on podfy.net to get things running.
                   </td>
                 </tr>
               </table>
@@ -202,12 +202,13 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
                 Next steps
               </p>
               <p style="margin:0 0 8px 0; font-family:Arial, sans-serif; font-size:13px; line-height:1.6; color:#cbd5e1;">
-                A member of the PODFY team will review this configuration and reach out to you
-                to confirm volumes, integrations and legal retention requirements.
+                When you are ready to move forward, please fill in the short form on the main PODFY page. This configuration
+                email helps you explain which plan and options you prefer.
               </p>
               <ul style="margin:0 0 0 18px; padding:0; font-family:Arial, sans-serif; font-size:13px; line-height:1.6; color:#94a3b8;">
-                <li>Want to speed things up? Simply reply to this email with your estimated POD volume.</li>
-                <li>You can change plans or add-ons at any time — this is not a binding quote.</li>
+                <li>Go to <a href="https://podfy.net/#contact" style="color:#93c5fd; text-decoration:none;">podfy.net</a> and open the contact form.</li>
+                <li>Mention this configuration (plan name, rate and add-ons) in your message.</li>
+                <li>We will then prepare a tailored proposal based on your volumes and legal retention requirements.</li>
               </ul>
             </td>
           </tr>
@@ -225,9 +226,9 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
                   </td>
 
                   <td>
-                    <a href="https://podfy.net/free-tier-demo.html"
+                    <a href="https://podfy.net/#contact"
                        style="display:inline-block; padding:11px 20px; background:#020617; border:1px solid #38bdf8; border-radius:999px; color:#e5e7eb; font-family:Arial, sans-serif; font-size:13px; font-weight:500; text-decoration:none;">
-                      Try the free portal
+                      Fill in the main form
                     </a>
                   </td>
                 </tr>
