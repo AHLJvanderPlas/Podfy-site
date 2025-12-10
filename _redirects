@@ -1,1 +1,5 @@
-/pricing/*   /pricing.html   200
+# Serve pricing.html for /pricing
+/pricing        /pricing.html   200
+
+# Serve the same pricing.html for /pricing/<keyword>
+/pricing/*      /pricing.html   200
