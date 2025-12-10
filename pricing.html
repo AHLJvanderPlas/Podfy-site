@@ -1161,37 +1161,44 @@
 
     // --- Price factor: /pricing/<keyword> -------------------------------------
 
-    async function loadPriceFactorFromUrl() {
-      try {
-        const path = (window.location && window.location.pathname) || "";
-        const cleaned = path.replace(/\/+$/, "");
-        const segments = cleaned.split("/").filter(Boolean); // ["pricing"] or ["pricing","keyword"]
+ async function loadPriceFactorFromUrl() {
+  try {
+    const path = (window.location && window.location.pathname) || "";
+    const cleaned = path.replace(/\/+$/, "");
+    const segments = cleaned.split("/").filter(Boolean); // ["pricing"] or ["pricing","keyword"]
 
-        if (!segments.length) return;
-        if (segments[0] !== "pricing") return;
+    if (!segments.length) return;
+    if (segments[0] !== "pricing") return;
 
-        // /pricing -> no keyword, factor stays 1
-        if (segments.length === 1) return;
+    if (segments.length === 1) return; // plain /pricing
 
-        // /pricing/<keyword>
-        const keyword = segments[1];
-        if (!keyword) return;
+    const keyword = segments[1];
+    if (!keyword) return;
 
-        const res = await fetch(
-          "/api/pricing-factor?code=" + encodeURIComponent(keyword),
-          { method: "GET" }
-        );
-        if (!res.ok) return;
+    const res = await fetch(
+      "/api/pricing-factor?code=" + encodeURIComponent(keyword),
+      { method: "GET" }
+    );
 
-        const data = await res.json();
-        if (!data || typeof data.factor !== "number" || data.factor <= 0) return;
-
-        priceFactor = data.factor;
-        priceFactorMeta = data;
-      } catch (err) {
-        console.error("loadPriceFactorFromUrl error", err);
-      }
+    const data = await res.json().catch(() => null);
+    if (!data || typeof data.factor !== "number" || data.factor <= 0) {
+      console.warn("pricing-factor: invalid payload", data);
+      return;
     }
+
+    priceFactor = data.factor;
+    priceFactorMeta = data;
+
+    console.info("pricing-factor loaded", {
+      code: data.code,
+      factor: data.factor,
+      buyer: data.buyer,
+      error: data.error,
+    });
+  } catch (err) {
+    console.error("loadPriceFactorFromUrl error", err);
+  }
+}
 
     // Turnstile callbacks for pricing form
     function onPricingTurnstileCompleted(token) {
