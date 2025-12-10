@@ -5,50 +5,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
   <title>404 – PODFY</title>
-  <meta name="description" content="The page you were looking for is not configured in this deployment." />
   <meta name="robots" content="noindex, nofollow" />
 
-  <!-- Light/Dark UI colors -->
-  <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1D3557" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0B1220" />
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-  <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB" />
-
-  <!-- Styles (reuse global PODFY design system) -->
   <link rel="stylesheet" href="/assets/styles.css?v=home-rev5" />
 
-  <!-- Theme toggler -->
-  <script src="/assets/theme.js" defer></script>
-
   <style>
-    /* 404-specific layout – scoped and prefixed */
+    /* --- 404 Layout --- */
     .error-404-main{
       max-width:var(--container-6xl);
       margin:0 auto;
       padding:2.5rem 1rem 3rem;
     }
-
-    .error-404-hero{
-      margin:2.5rem 0;
-    }
-
     .error-404-shell{
       display:grid;
-      grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+      grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
       gap:2rem;
       align-items:center;
     }
-
-    @media (max-width: 900px){
-      .error-404-shell{
-        grid-template-columns:minmax(0,1fr);
-      }
+    @media(max-width:900px){
+      .error-404-shell{grid-template-columns:1fr;}
     }
 
     .error-404-kicker{
@@ -58,55 +33,39 @@
       color:var(--muted);
       margin-bottom:.35rem;
     }
-
     .error-404-title{
       font-size:2.1rem;
       line-height:1.1;
-      letter-spacing:-.04em;
-      margin:0 0 .6rem;
+      margin:0 0 .5rem;
       color:var(--ink);
     }
-
     .error-404-title span{
       background:linear-gradient(90deg,#2563EB 0%,#22D3EE 50%,#7DD3FC 100%);
       -webkit-background-clip:text;
-      background-clip:text;
       color:transparent;
       font-weight:800;
     }
-
     .error-404-lead{
-      margin:0 0 1rem;
-      font-size:.96rem;
+      font-size:.95rem;
       color:var(--muted);
       max-width:34rem;
+      margin-bottom:1rem;
     }
 
     .error-404-code{
       margin-top:.85rem;
       padding:.4rem .7rem;
       border-radius:.75rem;
-      border:1px dashed rgba(148,163,184,0.7);
-      background:rgba(15,23,42,0.04);
-      font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      border:1px dashed var(--line);
       font-size:.78rem;
       color:var(--muted);
-      word-break:break-all;
-    }
-
-    html[data-theme="dark"] .error-404-code{
-      background:rgba(15,23,42,0.9);
+      font-family:ui-monospace, monospace;
     }
 
     .error-404-footnote{
       margin-top:.9rem;
       font-size:.78rem;
       color:var(--muted);
-    }
-
-    .error-404-footnote code{
-      font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-      font-size:.75em;
     }
 
     .error-404-actions{
@@ -116,7 +75,7 @@
       gap:.65rem;
     }
 
-    /* Floating tiles with icons */
+    /* --- Tiles --- */
     .error-404-tiles{
       display:grid;
       gap:1rem;
@@ -126,256 +85,181 @@
       border-radius:1rem;
       border:1px solid var(--line);
       background:var(--surface-strong);
-      padding:.9rem 1rem;
-      box-shadow:0 18px 40px rgba(15,23,42,0.14);
+      padding:1rem 1.1rem;
       display:flex;
       align-items:flex-start;
-      gap:.75rem;
-      transition:transform .16s ease-out, box-shadow .16s ease-out, border-color .16s ease-out, background .16s ease-out;
+      gap:.9rem;
+      transition:.15s ease-out;
     }
-
     .error-404-tile:hover{
       transform:translateY(-4px);
-      box-shadow:0 22px 50px rgba(15,23,42,0.25);
-      border-color:rgba(96,165,250,0.85);
-    }
-
-    .error-404-tile:nth-child(2){
-      transform:translateY(6px);
-    }
-
-    .error-404-tile:nth-child(3){
-      transform:translateY(-4px);
-    }
-
-    .error-404-tile:nth-child(4){
-      transform:translateY(4px);
-    }
-
-    html[data-theme="dark"] .error-404-tile{
-      background:rgba(15,23,42,0.96);
-      box-shadow:0 0 25px rgba(15,23,42,0.8),inset 0 0 30px rgba(15,23,42,0.8);
+      border-color:rgba(96,165,250,0.9);
+      box-shadow:0 20px 40px rgba(15,23,42,0.25);
     }
 
     .error-404-icon{
       flex:0 0 auto;
-      width:2.3rem;
-      height:2.3rem;
-      border-radius:.9rem;
+      width:1.6rem;
+      height:1.6rem;
       display:flex;
       align-items:center;
       justify-content:center;
-      background:radial-gradient(circle at 0% 0%,rgba(248,250,252,0.95),rgba(148,163,184,0.4));
-      color:#020617;
+      color:var(--ink);
     }
-
-    .error-404-icon svg{
-      width:1.25rem;
-      height:1.25rem;
+    html[data-theme="dark"] .error-404-icon{
+      color:#e2e8f0;
     }
 
     .error-404-tile-label{
-      font-size:.75rem;
+      font-size:.72rem;
       text-transform:uppercase;
       letter-spacing:.14em;
       color:var(--muted);
       margin-bottom:.1rem;
       font-weight:600;
     }
-
     .error-404-tile-title{
       font-size:.95rem;
       font-weight:600;
-      margin-bottom:.2rem;
-      color:var(--ink);
+      margin-bottom:.25rem;
     }
-
     .error-404-tile-body{
       font-size:.8rem;
       color:var(--muted);
-      margin:0 0 .45rem;
+      margin-bottom:.5rem;
     }
 
-    .error-404-tile-link{
+    .error-404-pill{
       display:inline-flex;
       align-items:center;
       gap:.25rem;
-      font-size:.8rem;
-      color:var(--brand-primary);
-      text-decoration:none;
+      padding:.25rem .7rem;
       border-radius:999px;
-      padding:.2rem .7rem;
-      border:1px solid rgba(148,163,184,0.7);
-      background:rgba(248,250,252,0.98);
+      border:1px solid var(--line);
+      font-size:.75rem;
+      text-decoration:none;
+      color:var(--brand-primary);
+      background:var(--surface);
+      transition:.15s ease-out;
     }
-
-    html[data-theme="dark"] .error-404-tile-link{
-      color:var(--brand-accent);
-      background:rgba(15,23,42,0.96);
-    }
-
-    .error-404-tile-link::after{
-      content:"›";
-      font-size:.9em;
-      transform:translateX(0);
-      transition:transform .14s ease-out;
-    }
-
-    .error-404-tile-link:hover::after{
+    .error-404-pill:hover{
+      border-color:var(--brand-primary);
       transform:translateX(2px);
-    }
-
-    @media (max-width: 600px){
-      .error-404-hero{
-        margin:1.75rem 0 2.5rem;
-      }
     }
   </style>
 </head>
 
 <body class="manual-page">
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
-    Skip to content
-  </a>
-
   [[PODFY_HEADER]]
 
-  <main id="main" class="error-404-main">
+  <main class="error-404-main" id="main">
     <section class="error-404-hero">
       <div class="container">
         <div class="card card-glass error-404-shell">
-          <!-- Left: explanation -->
+
+          <!-- LEFT -->
           <div>
             <p class="error-404-kicker">Routing error</p>
-            <h1 class="error-404-title">
-              <span>404</span> – this lane is not configured
-            </h1>
+            <h1 class="error-404-title"><span>404</span> – this lane does not exist</h1>
+
             <p class="error-404-lead">
-              The URL you tried to reach is not mapped in this deployment. It is either still on a feature branch,
-              never existed, or was last seen in a brave experiment that did not make it to production.
+              The page you're looking for was never deployed, was deleted,
+              or escaped into a dimension where deadlines don’t exist.
             </p>
 
             <div class="error-404-code">
-              <div>status: 404</div>
-              <div>reason: "route_not_found"</div>
-              <div>hint: "pick a documented endpoint instead of guessing"</div>
+              status: 404<br>
+              reason: "route_not_found"<br>
+              tip: "try an actual page instead of improvising"
             </div>
 
             <p class="error-404-footnote">
-              Small secret: if you manage to guess three different non-existing URLs in a row,
-              we quietly promote you to <code>Senior Podfy QA (unofficial)</code>.
+              Fun fact: after five failed URL guesses you unlock <code>Junior Router Engineer</code> status.
+              Not officially recognized, but spiritually important.
             </p>
-
-            <div class="error-404-actions">
-              <a href="/" class="btn btn-secondary">Back to homepage</a>
-              <a href="https://podfy.app" class="btn btn-primary" target="_blank" rel="noopener">
-                Go to the app
-              </a>
-            </div>
           </div>
 
-          <!-- Right: floating tiles -->
-          <aside aria-label="Helpful links">
+          <!-- RIGHT TILES -->
+          <aside>
             <div class="error-404-tiles">
-              <!-- Main page -->
-              <article class="error-404-tile">
-                <div class="error-404-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M4 11.5 12 4l8 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M6 10.5V20h5v-4h2v4h5v-9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
+
+              <!-- HOME -->
+              <div class="error-404-tile">
+                <div class="error-404-icon">
+                  <svg viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" /><path d="M6 10.5V20h5v-4h2v4h5v-9.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
                 </div>
                 <div>
                   <p class="error-404-tile-label">Main site</p>
                   <h2 class="error-404-tile-title">Back to the control tower</h2>
-                  <p class="error-404-tile-body">
-                    Return to the homepage and pick a route that actually exists in the routing table.
-                  </p>
-                  <a class="error-404-tile-link" href="/">
-                    <span>Go to homepage</span>
-                  </a>
+                  <p class="error-404-tile-body">Return to civilisation instead of wandering the URL wilderness.</p>
+                  <a href="/" class="error-404-pill">Back to safety</a>
                 </div>
-              </article>
+              </div>
 
-              <!-- App -->
-              <article class="error-404-tile">
-                <div class="error-404-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="4" y="3.5" width="16" height="17" rx="2.5"
-                          fill="none" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 8h8M8 12h4M8 16h3"
-                          fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                  </svg>
+              <!-- APP -->
+              <div class="error-404-tile">
+                <div class="error-404-icon">
+                  <svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="2.5" stroke="currentColor" stroke-width="1.6" fill="none" /><path d="M8 8h8M8 12h4M8 16h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none" /></svg>
                 </div>
                 <div>
                   <p class="error-404-tile-label">Podfy app</p>
                   <h2 class="error-404-tile-title">Open the live environment</h2>
-                  <p class="error-404-tile-body">
-                    Skip experiments and jump straight into the live POD flow.
-                  </p>
-                  <a class="error-404-tile-link" href="https://podfy.app" target="_blank" rel="noopener">
-                    <span>Launch app</span>
+                  <p class="error-404-tile-body">Leave the broken link and head where the PODs actually flow.</p>
+                  <a href="https://podfy.app" target="_blank" rel="noopener" class="error-404-pill">
+                    Get this thing rolling
                   </a>
                 </div>
-              </article>
+              </div>
 
-              <!-- Terms -->
-              <article class="error-404-tile">
-                <div class="error-404-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M7 4h7l3 3.5V20H7z"
-                          fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
-                    <path d="M9 9h6M9 12.5h4M9 16h3"
-                          fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                  </svg>
+              <!-- TERMS -->
+              <div class="error-404-tile">
+                <div class="error-404-icon">
+                  <svg viewBox="0 0 24 24"><path d="M7 4h7l3 3.5V20H7z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M9 9h6M9 12.5h4M9 16h3" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
                 </div>
                 <div>
                   <p class="error-404-tile-label">Terms</p>
                   <h2 class="error-404-tile-title">Read the fine print</h2>
-                  <p class="error-404-tile-body">
-                    For legal teams and people who actually scroll all the way down.
-                  </p>
-                  <a class="error-404-tile-link" href="/terms.html">
-                    <span>View terms</span>
-                  </a>
+                  <p class="error-404-tile-body">Because nothing says “fun afternoon” like contract language.</p>
+                  <a href="/terms.html" class="error-404-pill">Enjoy the bedtime reading</a>
                 </div>
-              </article>
+              </div>
 
-              <!-- Privacy & security -->
-              <article class="error-404-tile">
-                <div class="error-404-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12 3.5 6 6v5.5c0 4.1 2.5 7.9 6 9 3.5-1.1 6-4.9 6-9V6z"
-                          fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
-                    <path d="M12 10.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                    <circle cx="12" cy="9" r="1" fill="currentColor" />
-                  </svg>
+              <!-- PRIVACY -->
+              <div class="error-404-tile">
+                <div class="error-404-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 3.5 6 6v5.5c0 4.1 2.5 7.9 6 9 3.5-1.1 6-4.9 6-9V6z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round" /><path d="M12 10.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /><circle cx="12" cy="9" r="1" fill="currentColor" /></svg>
                 </div>
                 <div>
-                  <p class="error-404-tile-label">Privacy & security</p>
-                  <h2 class="error-404-tile-title">See how we protect data</h2>
-                  <p class="error-404-tile-body">
-                    Details on how POD documents, drivers and metadata are handled.
-                  </p>
-                  <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
-                    <a class="error-404-tile-link" href="/privacy.html">
-                      <span>Privacy policy</span>
-                    </a>
-                    <a class="error-404-tile-link" href="/security.html">
-                      <span>Security page</span>
-                    </a>
-                  </div>
+                  <p class="error-404-tile-label">Privacy</p>
+                  <h2 class="error-404-tile-title">See how we handle data</h2>
+                  <p class="error-404-tile-body">For the curious souls who inspect cookies for sport.</p>
+                  <a href="/privacy.html" class="error-404-pill">Sniff further</a>
                 </div>
-              </article>
+              </div>
+
+              <!-- SECURITY -->
+              <div class="error-404-tile">
+                <div class="error-404-icon">
+                  <svg viewBox="0 0 24 24"><path d="M7 12v6a2 2 0 0 0 2 2h8.5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M12 3.5 6 6v5.5c0 4.1 2.5 7.9 6 9 3.5-1.1 6-4.9 6-9V6z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M12 10.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="9" r="1" fill="currentColor"/></svg>
+                </div>
+                <div>
+                  <p class="error-404-tile-label">Security</p>
+                  <h2 class="error-404-tile-title">Hardening & controls</h2>
+                  <p class="error-404-tile-body">Perfect for when you want to feel both reassured and mildly paranoid.</p>
+                  <a href="/security.html" class="error-404-pill">
+                    Because paranoia is healthy
+                  </a>
+                </div>
+              </div>
+
             </div>
           </aside>
+
         </div>
       </div>
     </section>
   </main>
 
   [[PODFY_FOOTER]]
-
-  <!-- If you are reading this source: yes, this is the real Easter egg. -->
 </body>
 </html>
