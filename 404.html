@@ -5,85 +5,394 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>404 – Podfy</title>
   <meta name="robots" content="noindex, nofollow" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: { DEFAULT: "#4B5563", accent: "#2563EB" }
-          }
-        }
+
+  <!-- Core site styles (reuse existing CSS) -->
+  <link rel="stylesheet" href="/assets/site.css" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+
+  <style>
+    /* Scoped tweaks for 404 only – everything prefixed to avoid collisions */
+    .error-404-shell{
+      min-height:calc(100vh - 6rem);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:4rem 1.5rem;
+    }
+    @media (min-width: 768px){
+      .error-404-shell{
+        padding:5rem 2rem 6rem;
       }
     }
-  </script>
+    .error-404-layout{
+      max-width:56rem;
+      width:100%;
+      display:grid;
+      grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+      gap:2.5rem;
+      align-items:center;
+    }
+    @media (max-width: 767px){
+      .error-404-layout{
+        grid-template-columns:minmax(0,1fr);
+      }
+    }
+    .error-404-kicker{
+      font-size:.8rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:600;
+      opacity:.7;
+      margin-bottom:.5rem;
+    }
+    .error-404-title{
+      font-size:clamp(2.2rem, 4vw, 2.9rem);
+      line-height:1.05;
+      font-weight:750;
+      margin:0 0 .75rem;
+    }
+    .error-404-lead{
+      font-size:.98rem;
+      line-height:1.6;
+      max-width:34rem;
+      opacity:.85;
+    }
+    .error-404-code{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.35rem .75rem;
+      border-radius:999px;
+      font-size:.75rem;
+      margin-top:1.25rem;
+      background:rgba(148,163,184,.12);
+      border:1px solid rgba(148,163,184,.35);
+    }
+    .error-404-code span{
+      font-family:system-ui, -apple-system, BlinkMacSystemFont, "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:.78rem;
+    }
+    .error-404-grid{
+      display:grid;
+      gap:1.25rem;
+      position:relative;
+    }
+    .error-404-grid::before{
+      content:"";
+      position:absolute;
+      inset:8% 4%;
+      border-radius:1.5rem;
+      background:radial-gradient(circle at 0% 0%, rgba(59,130,246,.5), transparent 60%),
+                 radial-gradient(circle at 100% 100%, rgba(15,23,42,.7), transparent 60%);
+      opacity:.06;
+      pointer-events:none;
+      z-index:-1;
+    }
+    .error-404-tile{
+      border-radius:1.25rem;
+      padding:1rem 1.1rem;
+      background:rgba(15,23,42,.96);
+      color:#e5e7eb;
+      box-shadow:0 18px 40px rgba(15,23,42,.45);
+      border:1px solid rgba(148,163,184,.3);
+      display:flex;
+      align-items:flex-start;
+      gap:.85rem;
+      transform:translateY(0);
+      transition:transform .18s ease-out, box-shadow .18s ease-out, border-color .18s ease-out, background .18s ease-out;
+    }
+    .error-404-tile:hover{
+      transform:translateY(-4px);
+      box-shadow:0 22px 50px rgba(15,23,42,.6);
+      border-color:rgba(96,165,250,.9);
+      background:rgba(15,23,42,.98);
+    }
+    .error-404-tile:nth-child(2){
+      transform:translateY(10px);
+    }
+    .error-404-tile:nth-child(3){
+      transform:translateY(-6px);
+    }
+    .error-404-tile:nth-child(4){
+      transform:translateY(6px);
+    }
+    .error-404-icon{
+      flex:0 0 auto;
+      width:2.25rem;
+      height:2.25rem;
+      border-radius:.85rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:radial-gradient(circle at 0 0, rgba(248,250,252,.9), rgba(148,163,184,.3));
+      color:#020617;
+    }
+    .error-404-icon svg{
+      width:1.2rem;
+      height:1.2rem;
+    }
+    .error-404-tile-label{
+      font-size:.82rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      opacity:.75;
+      margin-bottom:.15rem;
+      font-weight:600;
+    }
+    .error-404-tile-title{
+      font-size:.96rem;
+      font-weight:600;
+      margin-bottom:.25rem;
+    }
+    .error-404-tile-desc{
+      font-size:.8rem;
+      line-height:1.5;
+      opacity:.9;
+      margin-bottom:.5rem;
+    }
+    .error-404-tile a{
+      font-size:.8rem;
+      font-weight:500;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:.25rem;
+      border-radius:999px;
+      padding:.25rem .7rem;
+      background:rgba(15,23,42,.9);
+      border:1px solid rgba(148,163,184,.7);
+    }
+    .error-404-tile a span{
+      opacity:.95;
+    }
+    .error-404-tile a::after{
+      content:"›";
+      font-size:.9em;
+      translate:0 0;
+      transition:translate .16s ease-out;
+    }
+    .error-404-tile a:hover::after{
+      translate:2px 0;
+    }
+    .error-404-footnote{
+      margin-top:1.75rem;
+      font-size:.75rem;
+      opacity:.6;
+    }
+    .error-404-footnote code{
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:.75em;
+      padding:.1rem .3rem;
+      border-radius:.35rem;
+      background:rgba(15,23,42,.9);
+      color:#e5e7eb;
+      border:1px solid rgba(148,163,184,.45);
+    }
+  </style>
 </head>
-<body class="min-h-screen bg-white text-slate-800 antialiased">
-  <main class="mx-auto max-w-3xl px-6 py-16 md:py-24">
-    <div class="flex items-center gap-4 text-brand mb-6">
-      <!-- Podfy cube/arrow/check icon -->
-      <svg width="40" height="40" viewBox="0 0 64 64" aria-hidden="true">
-        <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M8 22l24-12 24 12v20L32 54 8 42V22Z"/>
-          <path d="M32 54V34"/>
-          <path d="M14 36h10"/><path d="M24 36l6 4-6 4"/>
-          <path d="M38 36l4 5 8-10"/>
-        </g>
-      </svg>
-      <span class="text-xl font-semibold tracking-tight">Podfy</span>
-    </div>
+<body class="site-body">
 
-    <h1 class="text-4xl md:text-5xl font-bold tracking-tight">404 — Page not found</h1>
-    <p class="mt-4 text-lg text-slate-600">
-      Are you looking for <span class="font-medium">hacks</span>, <span class="font-medium">Easter eggs</span>, or just the <span class="font-medium">app</span>?
-    </p>
-
-    <div class="mt-8 grid gap-4 sm:grid-cols-2">
-      <!-- Open the app (new tab) -->
-      <a href="https://podfy.app" target="_blank" rel="noopener"
-         class="block rounded-xl bg-brand-accent text-white px-5 py-4 text-center font-medium shadow hover:opacity-95">
-        Open Podfy app (podfy.app)
-      </a>
-
-      <!-- Back home -->
-      <a href="/"
-         class="block rounded-xl border border-slate-300 px-5 py-4 text-center font-medium hover:bg-slate-50">
-        Go to homepage
-      </a>
-    </div>
-
-    <div class="mt-10 grid gap-4 sm:grid-cols-3">
-      <!-- “Hacks” -->
-      <div class="rounded-xl border p-5">
-        <div class="text-sm font-semibold text-slate-700">Hacks</div>
-        <p class="mt-2 text-sm text-slate-600">Security research? Please see our policy and contact us responsibly.</p>
-        <a href="/security.html#vulnerability-reporting" class="mt-3 inline-block text-sm text-brand-accent underline">
-          Read security policy
+  <!-- Site header (reusing standard shell + brand) -->
+  <header class="site-header-shell">
+    <div class="site-shell">
+      <div class="site-header">
+        <a class="site-brand" href="/">
+          <!-- Inline logo so this also works if the favicon fails -->
+          <span class="site-brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" class="site-brand-mark-svg">
+              <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 22l24-12 24 12v20L32 54 8 42V22Z" />
+                <path d="M32 54V34" />
+                <path d="M16 34h10" />
+                <path d="M26 34l6 4-6 4" />
+                <path d="M36 34l4 5 8-10" />
+              </g>
+            </svg>
+          </span>
+          <span class="site-brand-wordmark">Podfy</span>
         </a>
-      </div>
 
-      <!-- “Easter eggs” -->
-      <div class="rounded-xl border p-5">
-        <div class="text-sm font-semibold text-slate-700">Easter eggs</div>
-        <p class="mt-2 text-sm text-slate-600">We keep it lean and professional—no hidden tricks (for now).</p>
-        <a href="/" class="mt-3 inline-block text-sm text-brand-accent underline">
-          Back to homepage
-        </a>
-      </div>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="/#product" class="site-nav-link">Product</a>
+          <a href="/pricing/" class="site-nav-link">Pricing</a>
+          <a href="/security.html" class="site-nav-link">Security</a>
+        </nav>
 
-      <!-- Contact -->
-      <div class="rounded-xl border p-5">
-        <div class="text-sm font-semibold text-slate-700">Need help?</div>
-        <p class="mt-2 text-sm text-slate-600">Questions about Podfy or this page? Get in touch.</p>
-        <a href="mailto:info@podfy.net" class="mt-3 inline-block text-sm text-brand-accent underline">
-          info@podfy.net
-        </a>
+        <div class="site-header-actions">
+          <a href="/#demo" class="btn btn-ghost btn-sm">Book a demo</a>
+          <a href="https://podfy.app" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+            Open app
+          </a>
+        </div>
       </div>
     </div>
+  </header>
 
-    <p class="mt-12 text-xs text-slate-500">
-      Tip: you can also jump straight to the app via <a class="text-brand-accent underline" href="https://podfy.app" target="_blank" rel="noopener">podfy.app</a>.
-    </p>
+  <main class="site-main">
+    <section class="error-404-shell">
+      <div class="error-404-layout">
+        <!-- Copy column -->
+        <div>
+          <p class="error-404-kicker">Routing error</p>
+          <h1 class="error-404-title">
+            404 – This lane is not configured
+          </h1>
+          <p class="error-404-lead">
+            The URL you tried to reach is not mapped in this deployment. It is either still in staging,
+            never existed, or was last seen in a very experimental branch.
+          </p>
+          <div class="error-404-code">
+            <span>status=404</span>
+            <span>reason="route_not_found"</span>
+            <span>retry="try_a_real_page"</span>
+          </div>
+          <p class="error-404-footnote">
+            Hidden feature: if you successfully guess a non-existing page three times in a row,
+            we silently promote you to <code>Senior Podfy QA (unofficial)</code>.
+          </p>
+        </div>
+
+        <!-- Floating tiles column -->
+        <div>
+          <div class="error-404-grid" aria-label="Quick links">
+            <!-- Home -->
+            <article class="error-404-tile">
+              <div class="error-404-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 11.5 12 4l8 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 10.5V20h5v-4h2v4h5v-9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <div class="error-404-tile-label">Main site</div>
+                <div class="error-404-tile-title">Back to the control tower</div>
+                <p class="error-404-tile-desc">
+                  Jump to the homepage and pick a documented route instead of freestyling the URL bar.
+                </p>
+                <a href="/">
+                  <span>Go to homepage</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- App -->
+            <article class="error-404-tile">
+              <div class="error-404-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="4" y="3.5" width="16" height="17" rx="2.5"
+                        fill="none" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M8 8h8M8 12h4M8 16h3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <div class="error-404-tile-label">Podfy app</div>
+                <div class="error-404-tile-title">Open the live environment</div>
+                <p class="error-404-tile-desc">
+                  Go straight to the app and keep moving PODs instead of packets.
+                </p>
+                <a href="https://podfy.app" target="_blank" rel="noopener">
+                  <span>Launch app</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Privacy -->
+            <article class="error-404-tile">
+              <div class="error-404-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3.5 6 6v5.5c0 4.1 2.5 7.9 6 9 3.5-1.1 6-4.9 6-9V6l-6-2.5Z"
+                        fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M12 10.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  <circle cx="12" cy="9" r="1" fill="currentColor"/>
+                </svg>
+              </div>
+              <div>
+                <div class="error-404-tile-label">Privacy</div>
+                <div class="error-404-tile-title">See how we handle your data</div>
+                <p class="error-404-tile-desc">
+                  Read how we treat logs, documents and driver details when they pass through Podfy.
+                </p>
+                <a href="/privacy.html">
+                  <span>Open privacy policy</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Terms & Security -->
+            <article class="error-404-tile">
+              <div class="error-404-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M7 4h7l3 3.5V20H7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M11 8.5h3M9 12h5M9 15.5h3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  <path d="M5 8.5V19a2 2 0 0 0 2 2h8.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <div class="error-404-tile-label">Terms & security</div>
+                <div class="error-404-tile-title">Legal routes and hardening</div>
+                <p class="error-404-tile-desc">
+                  For security researchers and legal teams who typed this URL very deliberately.
+                </p>
+                <div style="display:flex;flex-wrap:wrap;gap:.35rem;">
+                  <a href="/terms.html">
+                    <span>Terms</span>
+                  </a>
+                  <a href="/security.html">
+                    <span>Security</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="site-shell site-footer-shell">
+      <div class="site-footer-main">
+        <div class="site-footer-brand">
+          <span class="site-brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" class="site-brand-mark-svg">
+              <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 22l24-12 24 12v20L32 54 8 42V22Z" />
+                <path d="M32 54V34" />
+                <path d="M16 34h10" />
+                <path d="M26 34l6 4-6 4" />
+                <path d="M36 34l4 5 8-10" />
+              </g>
+            </svg>
+          </span>
+          <span class="site-brand-wordmark">Podfy</span>
+        </div>
+        <div class="site-footer-links">
+          <a href="/terms.html" class="site-footer-link">Terms</a>
+          <a href="/privacy.html" class="site-footer-link">Privacy</a>
+          <a href="/security.html" class="site-footer-link">Security</a>
+          <a href="mailto:info@podfy.net" class="site-footer-link">Contact</a>
+        </div>
+      </div>
+      <div class="site-footer-meta">
+        <span class="site-footer-meta-text">
+          © <span data-current-year>2025</span> Podfy. Simple logistics automations.
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Tiny helper to keep the year in sync if site JS is already included -->
+  <script>
+    (function(){
+      var el = document.querySelector("[data-current-year]");
+      if(el){
+        el.textContent = new Date().getFullYear();
+      }
+    }());
+  </script>
+
+  <!-- If you are reading this comment: yes, this is the actual Easter egg. -->
 </body>
 </html>
