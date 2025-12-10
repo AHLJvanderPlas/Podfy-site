@@ -2,286 +2,977 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>PODFY – Contact received</title>
+  <title>PODFY – Pricing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Assume podfy.net global CSS + header/footer are injected outside this file -->
+  <style>
+    /* Minimal layout helpers – rely on podfy.net variables where possible */
+    :root{
+      --pricing-border: rgba(15,23,42,0.12);
+      --pricing-bg-soft: rgba(148, 163, 184, 0.08);
+      --pricing-accent: var(--accent, #2563eb);
+      --pricing-accent-soft: rgba(37,99,235,0.08);
+      --pricing-highlight-ring: 0 0 0 2px rgba(37,99,235,0.3);
+    }
+
+    .pricing-page{
+      padding-block: 3rem 4rem;
+    }
+    .pricing-header{
+      max-width: 48rem;
+      margin: 0 auto 2.5rem;
+      text-align: center;
+    }
+    .pricing-header h1{
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      margin-bottom: .75rem;
+    }
+    .pricing-header p{
+      font-size: .98rem;
+      color: var(--muted, #6b7280);
+    }
+
+    .pricing-layout{
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 5fr);
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    @media (max-width: 1024px){
+      .pricing-layout{
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Upsell column */
+    .upsell-panel{
+      border-radius: .9rem;
+      border: 1px solid var(--pricing-border);
+      padding: 1.25rem 1.25rem 1.5rem;
+      background: linear-gradient(to bottom right,
+        rgba(148,163,184,0.06),
+        rgba(15,23,42,0.02)
+      );
+      position: sticky;
+      top: 5rem; /* under sticky main header */
+    }
+    @media (max-width: 1024px){
+      .upsell-panel{
+        position: static;
+      }
+    }
+    .upsell-panel h2{
+      font-size: 1rem;
+      margin-bottom: .25rem;
+    }
+    .upsell-panel .subtitle{
+      font-size: .85rem;
+      color: var(--muted, #6b7280);
+      margin-bottom: 1.2rem;
+    }
+    .upsell-list{
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      margin-bottom: 1rem;
+    }
+    .upsell-item{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: .75rem;
+      padding: .6rem .7rem;
+      border-radius: .6rem;
+      background: rgba(15,23,42,0.02);
+    }
+    .upsell-item.active{
+      background: var(--pricing-accent-soft);
+    }
+    .upsell-item-label{
+      font-size: .9rem;
+      line-height: 1.3;
+    }
+    .upsell-item-label span{
+      display: block;
+      font-weight: 500;
+    }
+    .upsell-item-label small{
+      display: block;
+      font-size: .8rem;
+      color: var(--muted, #6b7280);
+    }
+    .upsell-pill{
+      font-size: .8rem;
+      padding: .15rem .45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      white-space: nowrap;
+    }
+
+    .switch{
+      --switch-width: 38px;
+      --switch-height: 20px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .switch input{
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .switch-track{
+      width: var(--switch-width);
+      height: var(--switch-height);
+      border-radius: 999px;
+      background: rgba(148,163,184,0.6);
+      position: relative;
+      transition: background .15s ease-out;
+    }
+    .switch-thumb{
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      box-shadow: 0 1px 3px rgba(15,23,42,0.3);
+      transition: transform .15s ease-out;
+    }
+    .switch input:checked + .switch-track{
+      background: var(--pricing-accent);
+    }
+    .switch input:checked + .switch-track .switch-thumb{
+      transform: translateX(18px);
+    }
+
+    .upsell-footnote{
+      font-size: .78rem;
+      color: var(--muted, #6b7280);
+      margin-top: .75rem;
+    }
+
+    /* Plans grid */
+    .plans-grid{
+      overflow-x: auto;
+    }
+    .plans-grid-inner{
+      min-width: 720px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+    @media (max-width: 768px){
+      .plans-grid-inner{
+        min-width: 0;
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .plan-card{
+      border-radius: .9rem;
+      border: 1px solid var(--pricing-border);
+      padding: 1rem .9rem 1.1rem;
+      background: rgba(15,23,42,0.02);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition:
+        box-shadow .15s ease-out,
+        border-color .15s ease-out,
+        transform .12s ease-out,
+        background .15s ease-out;
+      position: relative;
+    }
+    .plan-card.selected{
+      border-color: var(--pricing-accent);
+      box-shadow: var(--pricing-highlight-ring);
+      background: rgba(37,99,235,0.03);
+      transform: translateY(-2px);
+    }
+    .plan-card-header{
+      margin-bottom: .75rem;
+    }
+    .plan-name{
+      font-size: .9rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--muted, #6b7280);
+      margin-bottom: .35rem;
+    }
+    .plan-title-row{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: .5rem;
+    }
+    .plan-price{
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .plan-price span{
+      font-size: .8rem;
+      font-weight: 400;
+      color: var(--muted, #6b7280);
+      margin-left: .1rem;
+    }
+    .plan-tag{
+      font-size: .7rem;
+      padding: .15rem .45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .plan-highlight-tag{
+      border-color: transparent;
+      background: var(--pricing-accent-soft);
+      color: var(--pricing-accent);
+    }
+    .plan-retention{
+      font-size: .8rem;
+      color: var(--muted, #6b7280);
+      margin-top: .35rem;
+    }
+
+    .plan-features{
+      margin: .6rem 0 .8rem;
+      padding: 0;
+      list-style: none;
+      font-size: .82rem;
+    }
+    .plan-features li{
+      display: flex;
+      align-items: flex-start;
+      gap: .35rem;
+      margin-bottom: .3rem;
+    }
+    .plan-features li::before{
+      content: "•";
+      font-size: .8rem;
+      margin-top: .05rem;
+      color: var(--pricing-accent);
+    }
+    .plan-footnote{
+      font-size: .75rem;
+      color: var(--muted, #6b7280);
+      margin-bottom: .5rem;
+    }
+
+    .plan-actions{
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .35rem;
+      padding: .5rem .8rem;
+      font-size: .82rem;
+      border-radius: .5rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-weight: 500;
+      text-decoration: none;
+      background: transparent;
+    }
+    .btn-primary{
+      background: var(--pricing-accent);
+      color: white;
+      border-color: var(--pricing-accent);
+    }
+    .btn-primary.outline{
+      background: transparent;
+      color: var(--pricing-accent);
+      border-color: var(--pricing-accent);
+    }
+    .btn-ghost{
+      border-color: rgba(148,163,184,0.6);
+      color: inherit;
+      background: rgba(15,23,42,0.01);
+    }
+    .btn[disabled]{
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    /* Selection form */
+    .selection-panel{
+      margin-top: 2.5rem;
+      border-radius: .9rem;
+      border: 1px solid var(--pricing-border);
+      padding: 1.25rem 1.2rem 1.4rem;
+      background: var(--pricing-bg-soft);
+    }
+    .selection-header{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .75rem;
+      align-items: center;
+      margin-bottom: .9rem;
+    }
+    .selection-header h2{
+      font-size: 1rem;
+      margin: 0;
+    }
+    .selection-summary{
+      font-size: .85rem;
+      color: var(--muted, #6b7280);
+    }
+    .selection-summary strong{
+      font-weight: 600;
+      color: inherit;
+    }
+
+    .selection-form{
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.3fr);
+      gap: .75rem;
+      align-items: end;
+    }
+    @media (max-width: 640px){
+      .selection-form{
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .field{
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      font-size: .8rem;
+    }
+    .field label{
+      font-weight: 500;
+    }
+    .field input[type="email"],
+    .field input[type="text"]{
+      font-size: .85rem;
+      padding: .45rem .55rem;
+      border-radius: .4rem;
+      border: 1px solid rgba(148,163,184,0.9);
+      background: rgba(15,23,42,0.03);
+    }
+    .field input[type="text"][data-honeypot]{
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .selection-meta{
+      font-size: .78rem;
+      color: var(--muted, #6b7280);
+      margin-top: .45rem;
+    }
+
+    .selection-status{
+      font-size: .8rem;
+      margin-top: .5rem;
+    }
+    .selection-status.success{
+      color: #16a34a;
+    }
+    .selection-status.error{
+      color: #b91c1c;
+    }
+
+  </style>
 </head>
-<body style="margin:0; padding:0; background:#020617;">
+<body>
 
-  <center style="width:100%; background:#020617;">
+  <!-- Existing injectable header goes here -->
 
-    <!-- Outer wrapper -->
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="padding:32px 0;">
-      <tr>
-        <td align="center" style="padding:0 16px;">
+  <main class="site-main">
+    <section class="pricing-page shell">
+      <header class="pricing-header">
+        <h1>Pricing designed for every delivery</h1>
+        <p>
+          Start for free, then configure exactly what you need.
+          Toggle your add-ons, compare plans, and send yourself the configuration with one click.
+        </p>
+      </header>
 
-          <!-- Main card -->
-          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-                 style="max-width:680px; background:#0b1220; border-radius:18px; border:1px solid #1e293b; box-shadow:0 10px 32px rgba(15,23,42,0.7);">
+      <div class="pricing-layout">
+        <!-- Upsell column -->
+        <aside class="upsell-panel" aria-label="Configure add-ons">
+          <h2>Configure your add-ons</h2>
+          <p class="subtitle">
+            Upsells apply per POD. Toggle them and see how each plan changes.
+          </p>
 
-            <!-- HEADER -->
-            <tr>
-              <td style="padding:20px 28px 14px 28px;">
+          <div class="upsell-list" id="upsell-list">
+            <!-- Rendered by JS, but keep a basic skeleton in case JS is off -->
+          </div>
 
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                  <tr>
+          <p class="upsell-footnote">
+            Final rates and terms are confirmed during onboarding. Prices shown are indicative per POD.
+          </p>
+        </aside>
 
-                    <!-- Logo + title -->
-                    <td valign="middle" align="left" style="font-family:Arial, sans-serif;">
+        <!-- Plans grid -->
+        <div class="plans-grid">
+          <div class="plans-grid-inner" id="plans-grid">
+            <!-- Plan cards rendered by JS -->
+          </div>
+        </div>
+      </div>
 
-                      <!--[if mso]>
-                      <img src="https://podfy.net/assets/podfy-logo-light.png"
-                           width="96"
-                           height="24"
-                           alt="PODFY"
-                           style="display:block; border:0; margin-bottom:6px;" />
-                      <![endif]-->
+      <!-- Selection + email panel -->
+      <section class="selection-panel" aria-label="Send me my selection">
+        <div class="selection-header">
+          <div>
+            <h2>Send me my configuration</h2>
+            <p class="selection-summary" id="selection-summary">
+              Choose a plan above to see your current configuration.
+            </p>
+          </div>
+        </div>
 
-                      <!--[if !mso]><!-->
-                      <!-- Inline SVG logo (gray) for modern clients -->
-                      <svg width="96" height="24" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"
-                           aria-label="PODFY"
-                           style="display:block; margin-bottom:6px;">
-                        <rect x="0" y="0" width="120" height="30" rx="6" ry="6" fill="none"/>
-                        <text x="0" y="21"
-                              font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
-                              font-size="18"
-                              font-weight="700"
-                              fill="#9ca3af">
-                          PODFY
-                        </text>
-                      </svg>
-                      <!--<![endif]-->
+        <form class="selection-form" id="selection-form">
+          <div class="field">
+            <label for="selection-email">Work email</label>
+            <input
+              id="selection-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="you@company.com"
+            />
+            <!-- Honeypot -->
+            <input
+              type="text"
+              name="website"
+              data-honeypot="true"
+              tabindex="-1"
+              autocomplete="off"
+            />
+            <!-- Turnstile placeholder -->
+            <div class="field">
+              <label>Verification</label>
+              <div
+                class="cf-turnstile"
+                data-sitekey="YOUR_TURNSTILE_SITE_KEY"
+              ></div>
+            </div>
+            <p class="selection-meta">
+              We will email you a summary of your chosen plan and add-ons. No automatic sign-up.
+            </p>
+          </div>
 
-                      <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#94a3b8;">
-                        Zero-friction Proof of Delivery
-                      </span>
-                    </td>
+          <div>
+            <button type="submit" class="btn btn-primary" id="selection-submit">
+              Send me my selection
+            </button>
+            <div class="selection-status" id="selection-status" aria-live="polite"></div>
+          </div>
+        </form>
+      </section>
+    </section>
+  </main>
 
-                    <!-- Right top meta -->
-                    <td valign="middle" align="right"
-                        style="font-family:Arial, sans-serif; font-size:12px; color:#64748b;">
-                      podfy.net
-                    </td>
-                  </tr>
-                </table>
+  <!-- Existing injectable footer goes here -->
 
-              </td>
-            </tr>
+  <script>
+    // --- Data model --------------------------------------------------------
 
-            <!-- HERO / INTRO -->
-            <tr>
-              <td style="
-                padding:24px 28px 24px 28px;
-                background:#020617;
-                background-image:linear-gradient(135deg, rgba(37,99,235,0.35), rgba(15,23,42,0.95));
-                border-top:1px solid #1e293b;
-                border-bottom:1px solid #1e293b;
-              ">
+    const PLANS = [
+      {
+        id: 'free',
+        name: 'Free',
+        label: 'Try & learn',
+        highlight: false,
+        basePrice: 0.00,
+        basePriceLabel: 'per POD',
+        baseRetention: '60 days',
+        extendedRetention: 'Not available',
+        longRetention: 'Not available',
+        baseFeatures: [
+          'Delivery portal with 60-day history',
+          'Single user',
+          'Single POD upload',
+          'Standard PODFY branding'
+        ],
+        planLevel: 'free'
+      },
+      {
+        id: 'starter',
+        name: 'Starter',
+        label: 'For small carriers',
+        highlight: false,
+        basePrice: 0.35,
+        basePriceLabel: 'per POD',
+        baseRetention: '1 year',
+        extendedRetention: '3 years',
+        longRetention: '7 years',
+        baseFeatures: [
+          'Branded upload link',
+          'Delivery portal with 1-year history',
+          'Notification emails to carrier & customer',
+          'Single company account'
+        ],
+        planLevel: 'starter'
+      },
+      {
+        id: 'advanced',
+        name: 'Advanced',
+        label: 'Teams & operations',
+        highlight: true,
+        basePrice: 0.55,
+        basePriceLabel: 'per POD',
+        baseRetention: '1 year',
+        extendedRetention: '3 years',
+        longRetention: '7 years',
+        baseFeatures: [
+          'Multi-user environment (admin, planner, driver)',
+          'Configurable fields (reference, vehicle, comments)',
+          'Receive and merge multiple files per POD',
+          'Audit trail per delivery'
+        ],
+        planLevel: 'advanced'
+      },
+      {
+        id: 'pro',
+        name: 'Pro',
+        label: 'Automation & AI',
+        highlight: false,
+        basePrice: 1.20,
+        basePriceLabel: 'per POD',
+        baseRetention: '3 years',
+        extendedRetention: '7 years',
+        longRetention: '10+ years (archive)',
+        baseFeatures: [
+          'All Advanced features',
+          'AI-powered OCR and text search',
+          'Integration options (webhooks, TMS/ERP endpoints)',
+          'Rules engine for auto-routing PODs'
+        ],
+        planLevel: 'pro'
+      },
+      {
+        id: 'enterprise',
+        name: 'Enterprise',
+        label: 'Custom & global',
+        highlight: false,
+        basePrice: 2.50,
+        basePriceLabel: 'per POD (indicative)',
+        baseRetention: 'Custom per contract',
+        extendedRetention: 'Custom per contract',
+        longRetention: 'Custom per contract',
+        baseFeatures: [
+          'Dedicated domain & full white-label',
+          'Isolated R2 storage and sub-accounts',
+          'Custom integrations and SLAs',
+          'Compliance and data-residency options'
+        ],
+        planLevel: 'enterprise'
+      }
+    ];
 
-                <p style="margin:0 0 10px 0; font-family:Arial, sans-serif; color:#e5e7eb; font-size:15px;">
-                  Hi <span style="color:#38bdf8; font-weight:bold;">{{name}}</span>,
-                </p>
+    const UPSELLS = [
+      {
+        id: 'retention_extended',
+        label: 'Extended retention',
+        description: 'Extend your default retention window to the “extended” period per plan.',
+        pricePerPlan: {
+          starter: 0.05,
+          advanced: 0.03,
+          pro: 0.05,
+          enterprise: 0.00, // handled by contract
+          free: 0.00
+        },
+        visibility: ['starter', 'advanced', 'pro', 'enterprise'],
+        impact: 'retention_extended'
+      },
+      {
+        id: 'retention_long',
+        label: 'Long retention',
+        description: 'Keep selected PODs for the longest term per plan, ideal for audits and claims.',
+        pricePerPlan: {
+          starter: 0.10,
+          advanced: 0.07,
+          pro: 0.10,
+          enterprise: 0.00,
+          free: 0.00
+        },
+        visibility: ['starter', 'advanced', 'pro', 'enterprise'],
+        impact: 'retention_long'
+      },
+      {
+        id: 'white_label',
+        label: 'White-label branding',
+        description: 'Remove PODFY branding from PDFs and portal views for your customers.',
+        pricePerPlan: {
+          starter: 0.10,
+          advanced: 0.10,
+          pro: 0.10,
+          enterprise: 0.00,
+          free: 0.00
+        },
+        visibility: ['starter', 'advanced', 'pro', 'enterprise'],
+        impact: 'white_label'
+      },
+      {
+        id: 'multi_file',
+        label: 'Multi-file processing',
+        description: 'Merge multiple photos and documents into one clean, branded POD PDF.',
+        pricePerPlan: {
+          starter: 0.05,
+          advanced: 0.03,
+          pro: 0.03,
+          enterprise: 0.00,
+          free: 0.00
+        },
+        visibility: ['starter', 'advanced', 'pro'],
+        impact: 'multi_file'
+      },
+      {
+        id: 'ocr_ai',
+        label: 'AI OCR',
+        description: 'Apply AI OCR to make PODs fully searchable and extract key reference data.',
+        pricePerPlan: {
+          starter: 0.40,
+          advanced: 0.35,
+          pro: 0.30,
+          enterprise: 0.00,
+          free: 0.00
+        },
+        visibility: ['starter', 'advanced', 'pro', 'enterprise'],
+        impact: 'ocr_ai'
+      }
+    ];
 
-                <h1 style="margin:0 0 10px 0; font-family:Arial, sans-serif; font-weight:700; font-size:24px; line-height:1.3; color:#f9fafb;">
-                  We’ve received your message about PODFY.
-                </h1>
+    const state = {
+      activeUpsells: new Set(),   // set of upsell ids
+      selectedPlanId: null
+    };
 
-                <p style="margin:0; font-family:Arial, sans-serif; font-size:14px; line-height:1.7; color:#cbd5e1;">
-                  Thanks for reaching out. Your request is safely in our inbox and will be reviewed by a person, not a bot. We usually respond within one business day, often sooner.
-                </p>
+    // --- Rendering --------------------------------------------------------
 
-              </td>
-            </tr>
+    const upsellListEl = document.getElementById('upsell-list');
+    const plansGridEl = document.getElementById('plans-grid');
+    const selectionSummaryEl = document.getElementById('selection-summary');
+    const selectionStatusEl = document.getElementById('selection-status');
+    const selectionFormEl = document.getElementById('selection-form');
+    const selectionSubmitBtn = document.getElementById('selection-submit');
 
-            <!-- STATUS PILL -->
-            <tr>
-              <td style="padding:18px 28px 8px 28px;">
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0">
-                  <tr>
-                    <td style="
-                      padding:9px 18px;
-                      border-radius:999px;
-                      border:1px solid #1d4ed8;
-                      background:#020617;
-                      font-family:Arial, sans-serif;
-                      font-size:12px;
-                      color:#bfdbfe;
-                    ">
-                      <span style="display:inline-block; width:9px; height:9px; border-radius:999px; background:#38bdf8; margin-right:8px;"></span>
-                      <strong style="color:#e5e7eb;">We have received your request</strong>
-                      &nbsp;· We’ll get back to you as soon as possible.
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
+    function formatPrice(value){
+      if (value === 0) return 'Free';
+      return '€' + value.toFixed(2).replace('.', ',');
+    }
 
-            <!-- WHILE YOU WAIT -->
-            <tr>
-              <td style="padding:8px 28px 4px 28px;">
-                <p style="margin:0 0 6px 0; font-family:Arial, sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; color:#64748b;">
-                  While you wait
-                </p>
-                <p style="margin:0 0 14px 0; font-family:Arial, sans-serif; font-size:14px; line-height:1.6; color:#cbd5e1;">
-                  You can already explore how PODFY reduces friction in your Proof of Delivery flow for drivers, planners and customer service.
-                </p>
-              </td>
-            </tr>
+    function isUpsellVisibleForPlan(upsell, plan){
+      return upsell.visibility.includes(plan.planLevel);
+    }
 
-            <!-- FEATURE PANEL (FREE FEATURES) -->
-            <tr>
-              <td style="padding:0 28px 18px 28px;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-                       style="background:#020617; border-radius:14px; border:1px solid #1f2937;">
-                  <tr>
-                    <td style="padding:18px 18px 14px 18px;">
+    function getPlanEffectivePrice(plan){
+      let total = plan.basePrice;
+      state.activeUpsells.forEach(upsellId => {
+        const upsell = UPSELLS.find(u => u.id === upsellId);
+        if (!upsell) return;
+        const delta = upsell.pricePerPlan[plan.planLevel] ?? 0;
+        total += delta;
+      });
+      return total;
+    }
 
-                      <p style="margin:0 0 8px 0; font-family:Arial, sans-serif; font-size:13px; font-weight:600; color:#e5e7eb;">
-                        What you can try today (no commitment)
-                      </p>
+    function getPlanRetentionLabel(plan){
+      if (state.activeUpsells.has('retention_long')){
+        return plan.longRetention;
+      }
+      if (state.activeUpsells.has('retention_extended')){
+        return plan.extendedRetention;
+      }
+      return plan.baseRetention;
+    }
 
-                      <ul style="margin:0 0 8px 18px; padding:0; font-family:Arial, sans-serif; font-size:13px; line-height:1.6; color:#94a3b8;">
-                        <li>
-                          <strong style="color:#e5e7eb;">Free View · 60 days:</strong>
-                          See deliveries sent to your email address in a lightweight portal.
-                        </li>
-                        <li>
-                          <strong style="color:#e5e7eb;">Magic link access:</strong>
-                          Open the portal from your inbox—no username or password to remember.
-                        </li>
-                        <li>
-                          <strong style="color:#e5e7eb;">Driver-friendly upload:</strong>
-                          Drivers scan the CMR from any phone and are done in seconds.
-                        </li>
-                      </ul>
+    function getPlanExtraFeatureLines(plan){
+      const extra = [];
 
-                      <p style="margin:0; font-family:Arial, sans-serif; font-size:13px; color:#9ca3af;">
-                        These free features already give you a clear view of how PODFY fits your operation before you decide on a plan.
-                      </p>
+      if (plan.planLevel !== 'free'){
+        if (state.activeUpsells.has('retention_extended') || state.activeUpsells.has('retention_long')){
+          extra.push('Per-POD retention upgrades available for critical deliveries.');
+        }
+      }
 
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
+      if (state.activeUpsells.has('white_label') && plan.planLevel !== 'free'){
+        extra.push('White-label PDFs and portal views for uploaders and recipients.');
+      }
 
-            <!-- CTAs -->
-            <tr>
-              <td style="padding:4px 28px 18px 28px;">
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0">
-                  <tr>
-                    <!-- Free-tier demo -->
-                    <td style="padding-right:10px;">
-                      <a href="https://podfy.net/free-tier-demo.html"
-                         style="
-                           display:inline-block;
-                           padding:11px 20px;
-                           background:#2563eb;
-                           border-radius:999px;
-                           color:#ffffff;
-                           font-family:Arial, sans-serif;
-                           font-size:13px;
-                           font-weight:600;
-                           text-decoration:none;
-                         ">
-                        Try the free-tier demo
-                      </a>
-                    </td>
+      if (state.activeUpsells.has('multi_file') && ['starter','advanced','pro'].includes(plan.planLevel)){
+        extra.push('Merged multi-file PODs with background processing and compression.');
+      }
 
-                    <!-- Demo upload -->
-                    <td>
-                      <a href="https://podfy.app"
-                         style="
-                           display:inline-block;
-                           padding:11px 20px;
-                           background:#020617;
-                           border-radius:999px;
-                           border:1px solid #38bdf8;
-                           color:#e5e7eb;
-                           font-family:Arial, sans-serif;
-                           font-size:13px;
-                           font-weight:500;
-                           text-decoration:none;
-                         ">
-                        Try a sample upload
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
+      if (state.activeUpsells.has('ocr_ai') && plan.planLevel !== 'free'){
+        extra.push('AI-powered OCR applied per selected POD for search and automation.');
+      }
 
-            <!-- HELP US PREPARE SECTION -->
-            <tr>
-              <td style="padding:0 28px 18px 28px;">
-                <p style="margin:0 0 6px 0; font-family:Arial, sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; color:#64748b;">
-                  Help us prepare the best answer
-                </p>
-                <p style="margin:0 0 10px 0; font-family:Arial, sans-serif; font-size:14px; line-height:1.6; color:#cbd5e1;">
-                  If you want us to be very concrete in our reply, you can simply respond to this email and share any of the following:
-                </p>
-                <ul style="margin:0 0 0 18px; padding:0; font-family:Arial, sans-serif; font-size:13px; line-height:1.6; color:#94a3b8;">
-                  <li>Your typical POD volume per day or per week.</li>
-                  <li>If drivers are internal, external partners, or a mix of both.</li>
-                  <li>Where PODs should end up today (mailboxes, TMS/WMS, shared folders, etc.).</li>
-                </ul>
-              </td>
-            </tr>
+      return extra;
+    }
 
-            <!-- MESSAGE ECHO -->
-            <tr>
-              <td style="padding:6px 28px 24px 28px;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-                       style="background:#020617; border-radius:12px; border:1px solid #1f2937;">
-                  <tr>
-                    <td style="padding:14px 16px;">
-                      <p style="margin:0 0 6px 0; font-family:Arial, sans-serif; font-size:13px; color:#9ca3af;">
-                        <strong style="color:#e5e7eb;">Your message</strong> (for reference):
-                      </p>
-                      <p style="margin:0; white-space:pre-wrap; font-family:Arial, sans-serif; font-size:13px; line-height:1.6; color:#94a3b8;">
-                        {{message}}
-                      </p>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
+    function renderUpsells(){
+      upsellListEl.innerHTML = '';
+      UPSELLS.forEach(upsell => {
+        const isActive = state.activeUpsells.has(upsell.id);
+        const item = document.createElement('div');
+        item.className = 'upsell-item' + (isActive ? ' active' : '');
+        item.dataset.upsellId = upsell.id;
 
-            <!-- FOOTER -->
-            <tr>
-              <td style="padding:0 28px 26px 28px;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                  <tr>
-                    <td style="border-top:1px solid #1e293b; padding-top:12px; font-family:Arial, sans-serif; font-size:11px; line-height:1.6; color:#6b7280;">
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'upsell-item-label';
+        labelDiv.innerHTML = `
+          <span>${upsell.label}</span>
+          <small>${upsell.description}</small>
+        `;
 
-                      <p style="margin:0 0 4px 0;">
-                        You are receiving this email because you submitted a contact request on
-                        <a href="https://podfy.net" style="color:#93c5fd; text-decoration:none;">podfy.net</a>.
-                      </p>
+        const rightDiv = document.createElement('div');
+        rightDiv.style.display = 'flex';
+        rightDiv.style.flexDirection = 'column';
+        rightDiv.style.alignItems = 'flex-end';
+        rightDiv.style.gap = '.25rem';
 
-                      <p style="margin:0 0 4px 0;">
-                        PODFY – Proof of Delivery, without the headaches.
-                      </p>
+        const pill = document.createElement('div');
+        pill.className = 'upsell-pill';
+        pill.textContent = '+ up to €0,10 / POD';
 
-                      <p style="margin:0;">
-                        <a href="https://podfy.net/privacy.html" style="color:#6b7280; text-decoration:none;">Privacy &amp; Terms</a>
-                        &nbsp;·&nbsp;
-                        <a href="mailto:support@podfy.net" style="color:#6b7280; text-decoration:none;">support@podfy.net</a>
-                      </p>
+        const switchLabel = document.createElement('label');
+        switchLabel.className = 'switch';
+        switchLabel.innerHTML = `
+          <input type="checkbox" ${isActive ? 'checked' : ''} aria-label="${upsell.label}">
+          <span class="switch-track">
+            <span class="switch-thumb"></span>
+          </span>
+        `;
 
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
+        switchLabel.querySelector('input').addEventListener('change', (e) => {
+          if (e.target.checked){
+            state.activeUpsells.add(upsell.id);
+          }else{
+            state.activeUpsells.delete(upsell.id);
+          }
+          renderUpsells();
+          renderPlans();
+          renderSelectionSummary();
+        });
 
-          </table>
-          <!-- End main card -->
+        rightDiv.appendChild(pill);
+        rightDiv.appendChild(switchLabel);
 
-        </td>
-      </tr>
-    </table>
+        item.appendChild(labelDiv);
+        item.appendChild(rightDiv);
 
-  </center>
+        upsellListEl.appendChild(item);
+      });
+    }
 
+    function renderPlans(){
+      plansGridEl.innerHTML = '';
+
+      PLANS.forEach(plan => {
+        const card = document.createElement('article');
+        card.className = 'plan-card' + (state.selectedPlanId === plan.id ? ' selected' : '');
+        card.dataset.planId = plan.id;
+
+        const effectivePrice = getPlanEffectivePrice(plan);
+        const retentionLabel = getPlanRetentionLabel(plan);
+        const extraFeatureLines = getPlanExtraFeatureLines(plan);
+
+        const header = document.createElement('header');
+        header.className = 'plan-card-header';
+        header.innerHTML = `
+          <div class="plan-name">${plan.name}</div>
+          <div class="plan-title-row">
+            <div class="plan-price">
+              ${formatPrice(effectivePrice)} <span>${plan.basePrice === 0 ? '' : 'per POD'}</span>
+            </div>
+            <div class="plan-tag ${plan.highlight ? 'plan-highlight-tag' : ''}">
+              ${plan.label}
+            </div>
+          </div>
+          <div class="plan-retention">
+            Retention: <strong>${retentionLabel}</strong>
+          </div>
+        `;
+
+        const ul = document.createElement('ul');
+        ul.className = 'plan-features';
+
+        plan.baseFeatures.forEach(text => {
+          const li = document.createElement('li');
+          li.textContent = text;
+          ul.appendChild(li);
+        });
+
+        extraFeatureLines.forEach(text => {
+          const li = document.createElement('li');
+          li.textContent = text;
+          ul.appendChild(li);
+        });
+
+        const footnote = document.createElement('div');
+        footnote.className = 'plan-footnote';
+        footnote.textContent = plan.planLevel === 'enterprise'
+          ? 'Enterprise pricing and options are finalised by quote.'
+          : 'Prices indicative per processed POD. Volume discounts available.';
+
+        const actions = document.createElement('div');
+        actions.className = 'plan-actions';
+
+        const selectBtn = document.createElement('button');
+        selectBtn.type = 'button';
+        selectBtn.className = 'btn btn-primary' + (state.selectedPlanId === plan.id ? '' : ' outline');
+        selectBtn.textContent = state.selectedPlanId === plan.id ? 'Selected' : 'Select this plan';
+
+        selectBtn.addEventListener('click', () => {
+          state.selectedPlanId = plan.id;
+          renderPlans();
+          renderSelectionSummary();
+          selectionStatusEl.textContent = '';
+          selectionStatusEl.className = 'selection-status';
+        });
+
+        const hintBtn = document.createElement('button');
+        hintBtn.type = 'button';
+        hintBtn.className = 'btn btn-ghost';
+        hintBtn.textContent = 'Show detailed breakdown';
+        hintBtn.addEventListener('click', () => {
+          // Simple scroll to form / placeholder for modal or more info
+          document.querySelector('.selection-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        actions.appendChild(selectBtn);
+        actions.appendChild(hintBtn);
+
+        card.appendChild(header);
+        card.appendChild(ul);
+        card.appendChild(footnote);
+        card.appendChild(actions);
+
+        plansGridEl.appendChild(card);
+      });
+    }
+
+    function renderSelectionSummary(){
+      if (!state.selectedPlanId){
+        selectionSummaryEl.innerHTML = 'Choose a plan above to see your current configuration.';
+        return;
+      }
+
+      const plan = PLANS.find(p => p.id === state.selectedPlanId);
+      const effectivePrice = getPlanEffectivePrice(plan);
+      const upsellLabels = Array.from(state.activeUpsells)
+        .map(id => {
+          const u = UPSELLS.find(x => x.id === id);
+          return u ? u.label : null;
+        })
+        .filter(Boolean);
+
+      selectionSummaryEl.innerHTML = `
+        You selected <strong>${plan.name}</strong> with an estimated rate of
+        <strong>${formatPrice(effectivePrice)}</strong> per POD.<br/>
+        Add-ons: ${upsellLabels.length ? upsellLabels.join(', ') : 'none selected yet'}.
+      `;
+    }
+
+    // --- Form submission --------------------------------------------------
+
+    selectionFormEl.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      selectionStatusEl.textContent = '';
+      selectionStatusEl.className = 'selection-status';
+
+      const formData = new FormData(selectionFormEl);
+      const email = formData.get('email');
+      const honeypot = formData.get('website');
+
+      if (honeypot){
+        // Bot – silently ignore
+        selectionStatusEl.textContent = 'Something went wrong. Please try again.';
+        selectionStatusEl.classList.add('error');
+        return;
+      }
+
+      if (!state.selectedPlanId){
+        selectionStatusEl.textContent = 'Please select a plan first.';
+        selectionStatusEl.classList.add('error');
+        return;
+      }
+
+      const selectedPlan = PLANS.find(p => p.id === state.selectedPlanId);
+      const upsellIds = Array.from(state.activeUpsells);
+      const upsellLabels = upsellIds
+        .map(id => {
+          const u = UPSELLS.find(x => x.id === id);
+          return u ? u.label : null;
+        })
+        .filter(Boolean);
+
+      const payload = {
+        email,
+        selectedPlan: {
+          id: selectedPlan.id,
+          name: selectedPlan.name,
+          planLevel: selectedPlan.planLevel,
+          pricePerPod: getPlanEffectivePrice(selectedPlan),
+          retention: getPlanRetentionLabel(selectedPlan)
+        },
+        upsells: upsellIds,
+        upsellLabels,
+        // Optional: include per-plan pricing snapshot for sales
+        plansSnapshot: PLANS.map(p => ({
+          id: p.id,
+          name: p.name,
+          planLevel: p.planLevel,
+          pricePerPod: getPlanEffectivePrice(p),
+          retention: getPlanRetentionLabel(p)
+        }))
+      };
+
+      selectionSubmitBtn.disabled = true;
+      selectionSubmitBtn.textContent = 'Sending…';
+
+      try{
+        // TODO: implement this endpoint in your Worker / backend.
+        const res = await fetch('/api/pricing-selection', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok){
+          throw new Error('Request failed');
+        }
+
+        selectionStatusEl.textContent =
+          'Configuration sent. Please check your inbox. We added support@podfy.net in BCC.';
+        selectionStatusEl.classList.add('success');
+      }catch(err){
+        console.error(err);
+        selectionStatusEl.textContent =
+          'We could not send your configuration right now. Please try again or contact support@podfy.net.';
+        selectionStatusEl.classList.add('error');
+      }finally{
+        selectionSubmitBtn.disabled = false;
+        selectionSubmitBtn.textContent = 'Send me my selection';
+      }
+    });
+
+    // --- Init -------------------------------------------------------------
+
+    renderUpsells();
+    renderPlans();
+    renderSelectionSummary();
+  </script>
 </body>
 </html>
