@@ -3,26 +3,237 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+
   <title>Imprint – PODFY</title>
-  <meta name="description" content="Contact and legal information for PODFY." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:"#4B5563",accent:"#2563EB"}}}}}</script>
+  <meta name="description" content="Imprint, legal notice, and mandatory company information for PODFY." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Light/Dark UI colors -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1D3557" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB" />
+
+  <!-- Global PODFY styles -->
+  <link rel="stylesheet" href="/assets/styles.css?v=home-rev5" />
+  <script src="/assets/theme.js" defer></script>
+
+  <style>
+    .imprint-main{
+      max-width:var(--container-4xl);
+      margin:0 auto;
+      padding:2.5rem 1rem 3.5rem;
+    }
+    .imprint-hero{
+      margin-bottom:2.5rem;
+    }
+    .imprint-kicker{
+      font-size:.8rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:.35rem;
+    }
+    .imprint-title{
+      font-size:2.1rem;
+      line-height:1.1;
+      margin:0;
+      color:var(--ink);
+      letter-spacing:-.04em;
+    }
+    .imprint-subtitle{
+      margin-top:.75rem;
+      font-size:.98rem;
+      color:var(--muted);
+    }
+
+    .imprint-shortcuts{
+      margin-top:1.75rem;
+    }
+    .imprint-shortcuts-grid{
+      display:grid;
+      gap:1rem;
+    }
+    @media(min-width:768px){
+      .imprint-shortcuts-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    .imprint-card{
+      border-radius:.85rem;
+      border:1px solid var(--line);
+      background:var(--surface-strong);
+      padding:.8rem .9rem;
+      font-size:.84rem;
+      display:flex;
+      flex-direction:column;
+      gap:.25rem;
+      box-shadow:0 16px 35px rgba(15,23,42,0.12);
+      transition:transform .16s ease-out, box-shadow .16s ease-out, border-color .16s ease-out;
+    }
+    .imprint-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(96,165,250,0.9);
+      box-shadow:0 20px 50px rgba(15,23,42,0.25);
+    }
+    .imprint-card-title{
+      font-weight:600;
+      color:var(--ink);
+    }
+    .imprint-card-body{
+      color:var(--muted);
+    }
+    .imprint-card-link{
+      display:inline-flex;
+      gap:.25rem;
+      font-size:.78rem;
+      align-items:center;
+      text-decoration:none;
+      color:var(--brand-primary);
+    }
+    .imprint-card-link::after{
+      content:"›";
+      font-size:.9rem;
+      transition:transform .12s ease-out;
+    }
+    .imprint-card-link:hover::after{
+      transform:translateX(2px);
+    }
+
+    .imprint-section{
+      margin-top:2.5rem;
+    }
+    .imprint-section-title{
+      font-size:1.25rem;
+      margin:0 0 .4rem;
+      color:var(--ink);
+    }
+    .imprint-section p, .imprint-section li{
+      font-size:.94rem;
+      color:var(--muted);
+    }
+    .imprint-list{
+      padding-left:1.1rem;
+    }
+
+    .imprint-callout{
+      margin-top:1.5rem;
+      border-radius:.9rem;
+      border:1px solid rgba(148,163,184,0.6);
+      background:rgba(15,23,42,0.02);
+      padding:1rem 1.1rem;
+    }
+    html[data-theme="dark"] .imprint-callout{
+      background:rgba(15,23,42,0.85);
+    }
+    .imprint-callout-title{
+      font-weight:600;
+      color:var(--ink);
+      margin-bottom:.3rem;
+    }
+  </style>
 </head>
-<body class="bg-white text-slate-800 antialiased">
-  <main class="mx-auto max-w-3xl px-4 py-12">
-    <a href="/" class="text-sm text-brand-accent">&larr; Back to home</a>
-    <h1 class="mt-2 text-3xl font-bold">Imprint</h1>
 
-    <p class="mt-4">
-      <strong>PODFY</strong><br/>
-      Van Weede van Dijkveldstraat 25<br/>
-      2582KP ’s-Gravenhage (The Hague), Netherlands
-    </p>
+<body class="manual-page">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2">Skip to content</a>
 
-    <p class="mt-4">KVK number: <strong>83714200</strong></p>
-    <p class="mt-2">VAT ID: <strong>862966851B01</strong></p>
+  [[PODFY_HEADER]]
 
-    <p class="mt-4">Email: <a class="text-brand-accent" href="mailto:info@podfy.net">info@podfy.net</a></p>
+  <main id="main" class="imprint-main">
+    <header class="imprint-hero">
+      <p class="imprint-kicker">Legal Notice</p>
+      <h1 class="imprint-title">Imprint</h1>
+      <p class="imprint-subtitle">
+        This page provides legally required company information, including registered address,
+        business identifiers, and contact details.  
+        It is intended for customers, authorities, partners, and anyone evaluating PODFY’s legal identity.
+      </p>
+
+      <section class="imprint-shortcuts">
+        <div class="imprint-shortcuts-grid">
+          <article class="imprint-card">
+            <p class="imprint-card-title">Company Information</p>
+            <p class="imprint-card-body">Official corporate details and mandatory identifiers.</p>
+            <a href="#company-info" class="imprint-card-link">Jump to details</a>
+          </article>
+
+          <article class="imprint-card">
+            <p class="imprint-card-title">Regulatory & Legal Use</p>
+            <p class="imprint-card-body">When this page is required and what it satisfies.</p>
+            <a href="#usage" class="imprint-card-link">Jump to purpose</a>
+          </article>
+        </div>
+      </section>
+    </header>
+
+    <!-- COMPANY INFO -->
+    <section id="company-info" class="imprint-section">
+      <h2 class="imprint-section-title">Company Information</h2>
+
+      <p><strong>PODFY</strong></p>
+
+      <p>
+        Van Weede van Dijkveldstraat 25<br/>
+        2582KP ’s-Gravenhage (The Hague)<br/>
+        The Netherlands
+      </p>
+
+      <p><strong>Chamber of Commerce (KVK):</strong> 83714200</p>
+      <p><strong>VAT ID:</strong> NL862966851B01</p>
+
+      <p><strong>Email:</strong> <a href="mailto:info@podfy.net">info@podfy.net</a></p>
+
+      <p><strong>Website domains covered:</strong></p>
+      <ul class="imprint-list">
+        <li><code>podfy.net</code> – marketing website</li>
+        <li><code>podfy.app</code> – operational application and POD platform</li>
+      </ul>
+    </section>
+
+    <!-- PURPOSE & WHEN USED -->
+    <section id="usage" class="imprint-section">
+      <h2 class="imprint-section-title">Purpose of This Page</h2>
+
+      <p>
+        The Imprint (“Impressum”) is a legally required disclosure in several European jurisdictions,
+        most notably Germany, Austria, and Switzerland, but also increasingly expected by international auditors.
+      </p>
+
+      <p><strong>You use this page for:</strong></p>
+      <ul class="imprint-list">
+        <li>Corporate transparency and identification for visitors and authorities</li>
+        <li>Legal compliance when serving EU/EEA users</li>
+        <li>Providing a single canonical location for company address and registration numbers</li>
+        <li>Supporting partnerships, procurement checks, and due-diligence processes</li>
+      </ul>
+
+      <div class="imprint-callout">
+        <p class="imprint-callout-title">Do I need to link this from anywhere?</p>
+        <p>
+          Yes. Best practice is to link the Imprint in the site footer together with
+          <a href="/terms.html">Terms</a>,
+          <a href="/privacy.html">Privacy Policy</a>,
+          and <a href="/security.html">Security</a>.
+        </p>
+        <p>
+          This ensures compliance for all visitors regardless of entry point (homepage, pricing pages, portals, etc.).
+        </p>
+      </div>
+
+      <p>
+        The Imprint does not replace the Terms, Privacy Policy, or Security documentation.  
+        Instead, it complements them by providing the **legal identity** behind all PODFY services.
+      </p>
+    </section>
   </main>
+
+  [[PODFY_FOOTER]]
 </body>
 </html>
