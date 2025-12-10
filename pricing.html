@@ -242,7 +242,7 @@
 
     .pricing-config-title-line {
       display: flex;
-      align-items: flex-start; /* align toggles to top */
+      align-items: flex-start;
       justify-content: space-between;
       gap: .5rem;
     }
@@ -538,11 +538,11 @@
             </li>
             <li>
               <span class="pricing-hero-dot"></span>
-              <span><strong>Starter:</strong> branded upload link and 1-year history for small carriers.</span>
+              <span><strong>Starter:</strong> branded upload link and extended retention for small carriers.</span>
             </li>
             <li>
               <span class="pricing-hero-dot"></span>
-              <span><strong>Advanced & Pro:</strong> multi-user teams, longer retention, AI/OCR & integrations.</span>
+              <span><strong>Advanced & Pro:</strong> multi-user teams, long-term retention, OCR and integrations.</span>
             </li>
           </ul>
 
@@ -566,11 +566,11 @@
               </tr>
               <tr>
                 <td>Indicative rate</td>
-                <td id="hero-plan-rate">€0,35 / POD</td>
+                <td id="hero-plan-rate">€0,29 / POD</td>
               </tr>
               <tr>
                 <td>Retention</td>
-                <td id="hero-plan-retention">1 year</td>
+                <td id="hero-plan-retention">120 days</td>
               </tr>
               <tr>
                 <td>Add-ons</td>
@@ -606,14 +606,13 @@
               </label>
             </div>
             <p class="pricing-config-text">
-              Keep POD history longer on each plan. For example, boost from 60 days to 1 year on the free portal or extend
-              paid plans up to 7 years.
+              Give yourself more breathing room on every plan. Starter moves from 120 days to 1 year, Advanced from 1 to 3 years, Pro from 5 to 7 years.
             </p>
           </article>
 
           <article class="pricing-config-card" data-upsell-id="extraUsers">
             <div class="pricing-config-title-line">
-              <span class="pricing-config-name">Extra users &amp; teams</span>
+              <span class="pricing-config-name">No worries retention</span>
               <label class="pricing-toggle">
                 <input type="checkbox" class="pricing-toggle-input" data-upsell-toggle="extraUsers" />
                 <span class="pricing-toggle-track">
@@ -622,14 +621,14 @@
               </label>
             </div>
             <p class="pricing-config-text">
-              Move from a single company account to a multi-user environment with roles, teams and customer-specific
-              access.
+              Stack on top of Extended retention. Starter goes to 3 years, Advanced to 7 years, Pro to 10 years.
+              Turning this on automatically includes Extended retention.
             </p>
           </article>
 
           <article class="pricing-config-card" data-upsell-id="whiteLabel">
             <div class="pricing-config-title-line">
-              <span class="pricing-config-name">Brand &amp; domain</span>
+              <span class="pricing-config-name">White-label documentation</span>
               <label class="pricing-toggle">
                 <input type="checkbox" class="pricing-toggle-input" data-upsell-toggle="whiteLabel" />
                 <span class="pricing-toggle-track">
@@ -638,8 +637,7 @@
               </label>
             </div>
             <p class="pricing-config-text">
-              Upgrade from a standard branded link to full white-label, including your own subdomain and custom
-              email sender.
+              Receive implementation notes, DNS/email guidance and best practices so your team can roll out a white-labeled PODFY setup when ready.
             </p>
           </article>
 
@@ -661,7 +659,7 @@
 
           <article class="pricing-config-card" data-upsell-id="aiOcr">
             <div class="pricing-config-title-line">
-              <span class="pricing-config-name">AI / OCR &amp; integrations</span>
+              <span class="pricing-config-name">Advanced OCR extraction</span>
               <label class="pricing-toggle">
                 <input type="checkbox" class="pricing-toggle-input" data-upsell-toggle="aiOcr" />
                 <span class="pricing-toggle-track">
@@ -670,14 +668,13 @@
               </label>
             </div>
             <p class="pricing-config-text">
-              Extract data from PODs, auto-tag shipments and connect to your TMS, WMS or storage bucket. Ideal for
-              higher volumes.
+              Extract clean text from signed PODs for search, matching and reporting. AI-driven workflows and custom models live in the Enterprise tier.
             </p>
           </article>
         </div>
 
         <p class="pricing-summary-line" id="pricing-summary-line">
-          <strong>Current baseline:</strong> Starter · €0,35 per POD · 1 year retention · no add-ons selected.
+          <strong>Current baseline:</strong> Starter · €0,29 per POD · 120 days retention · no add-ons selected.
         </p>
       </div>
     </section>
@@ -698,18 +695,18 @@
               <header class="pricing-plan-header">
                 <p class="pricing-plan-name">Starter</p>
                 <p class="pricing-plan-price" data-plan-price="starter">
-                  <span class="pricing-price-main" data-price-main="starter">€0,35</span>
+                  <span class="pricing-price-main" data-price-main="starter">€0,29</span>
                   <span class="pricing-price-label">per POD</span>
                 </p>
                 <div class="pricing-pill-usage">For small carriers</div>
                 <p class="pricing-plan-retention">
-                  Retention: <strong data-plan-retention="starter">1 year</strong>
+                  Retention: <strong data-plan-retention="starter">120 days</strong>
                 </p>
               </header>
 
               <ul class="pricing-plan-features">
                 <li>Branded upload link</li>
-                <li>Delivery portal with 1-year history</li>
+                <li>Delivery portal with up to 120-day history (extendable)</li>
                 <li>Notification emails to carrier &amp; customer</li>
                 <li>Single company account</li>
               </ul>
@@ -735,19 +732,19 @@
               <header class="pricing-plan-header">
                 <p class="pricing-plan-name">Advanced</p>
                 <p class="pricing-plan-price" data-plan-price="advanced">
-                  <span class="pricing-price-main" data-price-main="advanced">€0,60</span>
+                  <span class="pricing-price-main" data-price-main="advanced">€0,59</span>
                   <span class="pricing-price-label">per POD</span>
                 </p>
                 <div class="pricing-pill-usage">For multi-user teams</div>
                 <p class="pricing-plan-retention">
-                  Retention: <strong data-plan-retention="advanced">3 years</strong>
+                  Retention: <strong data-plan-retention="advanced">1 year</strong>
                 </p>
               </header>
 
               <ul class="pricing-plan-features">
                 <li>All Starter features</li>
                 <li>Multi-user environment with roles</li>
-                <li>Retention up to 3 years</li>
+                <li>Retention up to 1 year (extendable)</li>
                 <li>Multiple files per POD (optional)</li>
               </ul>
 
@@ -772,20 +769,20 @@
               <header class="pricing-plan-header">
                 <p class="pricing-plan-name">Pro</p>
                 <p class="pricing-plan-price" data-plan-price="pro">
-                  <span class="pricing-price-main" data-price-main="pro">€3,00</span>
+                  <span class="pricing-price-main" data-price-main="pro">€0,99</span>
                   <span class="pricing-price-label">per POD</span>
                 </p>
                 <div class="pricing-pill-usage">For data-driven operations</div>
                 <p class="pricing-plan-retention">
-                  Retention: <strong data-plan-retention="pro">7 years</strong>
+                  Retention: <strong data-plan-retention="pro">5 years</strong>
                 </p>
               </header>
 
               <ul class="pricing-plan-features">
                 <li>All Advanced features</li>
-                <li>AI/OCR for data extraction</li>
+                <li>Retention up to 5 years (extendable)</li>
+                <li>Advanced OCR extraction &amp; search</li>
                 <li>Integration options (TMS/WMS/R2)</li>
-                <li>Extended retention up to 7 years</li>
               </ul>
 
               <p class="pricing-plan-footnote">
@@ -931,19 +928,19 @@
         id: "starter",
         name: "Starter",
         basePrice: 0.29,
-        retention: "1 year"
+        retention: "120 days"
       },
       advanced: {
         id: "advanced",
         name: "Advanced",
         basePrice: 0.59,
-        retention: "3 years"
+        retention: "1 year"
       },
       pro: {
         id: "pro",
         name: "Pro",
-        basePrice: .99,
-        retention: "7 years"
+        basePrice: 0.99,
+        retention: "5 years"
       },
       enterprise: {
         id: "enterprise",
@@ -954,6 +951,28 @@
       }
     };
 
+    // Retention steps per plan depending on retention upsell state
+    const retentionSteps = {
+      starter: {
+        none: "120 days",
+        plus1: "1 year",
+        plus2: "3 years"
+      },
+      advanced: {
+        none: "1 year",
+        plus1: "3 years",
+        plus2: "7 years"
+      },
+      pro: {
+        none: "5 years",
+        plus1: "7 years",
+        plus2: "10 years"
+      },
+      enterprise: {
+        none: "As required"
+      }
+    };
+
     const upsellsModel = {
       retentionPlus: {
         id: "retentionPlus",
@@ -961,23 +980,23 @@
         perPod: 0.05
       },
       extraUsers: {
-        id: "extraUsers",
-        label: "Extra users & teams",
-        perPod: 0.03
+        id: "extraUsers", // now "No worries retention"
+        label: "No worries retention",
+        perPod: 0.05
       },
       whiteLabel: {
         id: "whiteLabel",
-        label: "Brand & domain",
-        perPod: 0.05
+        label: "White-label documentation",
+        perPod: 0.03
       },
       multiFile: {
         id: "multiFile",
         label: "Multi-file & PDF merge",
-        perPod: 0.06
+        perPod: 0.04
       },
       aiOcr: {
         id: "aiOcr",
-        label: "OCR integrations",
+        label: "Advanced OCR extraction",
         perPod: 0.10
       }
     };
@@ -995,6 +1014,11 @@
       return "€" + fixed.replace(".", ",");
     }
 
+    function isUpsellActive(id) {
+      const input = document.querySelector('[data-upsell-toggle="' + id + '"]');
+      return !!(input && input.checked);
+    }
+
     function getActiveUpsells() {
       const toggles = document.querySelectorAll("[data-upsell-toggle]");
       const active = [];
@@ -1005,6 +1029,21 @@
         }
       });
       return active;
+    }
+
+    function getRetentionStage() {
+      const hasPlus2 = isUpsellActive("extraUsers");
+      const hasPlus1 = isUpsellActive("retentionPlus");
+      if (hasPlus2) return "plus2";
+      if (hasPlus1) return "plus1";
+      return "none";
+    }
+
+    function getRetentionLabel(planId) {
+      const steps = retentionSteps[planId];
+      if (!steps) return plansModel[planId]?.retention || "N/A";
+      const stage = getRetentionStage();
+      return steps[stage] || steps.none;
     }
 
     // Base + upsells, all multiplied by priceFactor
@@ -1041,8 +1080,8 @@
         const retentionSpan = document.querySelector('[data-plan-retention="' + planId + '"]');
         const card = document.querySelector('[data-plan-id="' + planId + '"]');
 
-        if (retentionSpan && plan.retention) {
-          retentionSpan.textContent = plan.retention;
+        if (retentionSpan) {
+          retentionSpan.textContent = getRetentionLabel(planId);
         }
 
         if (priceSpan) {
@@ -1075,7 +1114,7 @@
           ? "Custom pricing"
           : formatEuro(displayBase) + " per POD";
 
-        const retention = baselinePlan.retention || "N/A";
+        const retention = getRetentionLabel(baselinePlanId);
         const addonText = activeUpsells.length
           ? activeUpsells.map((u) => u.label).join(", ")
           : "no add-ons selected";
@@ -1109,7 +1148,7 @@
 
       const heroPlan = plansModel[selectedPlanId] || plansModel.starter;
       if (heroName && heroPlan) heroName.textContent = heroPlan.name;
-      if (heroRet && heroPlan) heroRet.textContent = heroPlan.retention || "N/A";
+      if (heroRet && heroPlan) heroRet.textContent = getRetentionLabel(selectedPlanId);
 
       if (heroRate && heroPlan) {
         if (heroPlan.isCustom) {
@@ -1134,6 +1173,14 @@
       // Toggle handlers
       document.querySelectorAll(".pricing-toggle-input").forEach((input) => {
         input.addEventListener("change", () => {
+          const id = input.getAttribute("data-upsell-toggle");
+
+          // "No worries retention" automatically enables Extended retention when turned on
+          if (id === "extraUsers" && input.checked) {
+            const first = document.querySelector('[data-upsell-toggle="retentionPlus"]');
+            if (first && !first.checked) first.checked = true;
+          }
+
           updateUpsellCardState();
           updatePlanCards();
         });
@@ -1159,53 +1206,53 @@
       updatePlanCards();
     }
 
-    // --- Price factor: /pricing/<keyword> -------------------------------------
+    // --- Price factor: ?code=Elite (preferred) or /pricing/Elite (fallback) ---
 
- async function loadPriceFactorFromUrl() {
-  try {
-    const loc = window.location || { pathname: "", search: "" };
-    const path = loc.pathname || "";
-    const search = loc.search || "";
+    async function loadPriceFactorFromUrl() {
+      try {
+        const loc = window.location || { pathname: "", search: "" };
+        const path = loc.pathname || "";
+        const search = loc.search || "";
 
-    // 1) Preferred: ?code=Elite
-    const params = new URLSearchParams(search);
-    let keyword = (params.get("code") || "").trim();
+        // 1) Preferred: ?code=Elite
+        const params = new URLSearchParams(search);
+        let keyword = (params.get("code") || "").trim();
 
-    // 2) Fallback: /pricing/Elite (if you later fix redirects)
-    if (!keyword) {
-      const cleaned = path.replace(/\/+$/, "");
-      const segments = cleaned.split("/").filter(Boolean); // ["pricing"] or ["pricing","Elite"]
-      if (segments[0] === "pricing" && segments.length > 1) {
-        keyword = segments[1];
+        // 2) Fallback: /pricing/Elite (if you later keep that route)
+        if (!keyword) {
+          const cleaned = path.replace(/\/+$/, "");
+          const segments = cleaned.split("/").filter(Boolean);
+          if (segments[0] === "pricing" && segments.length > 1) {
+            keyword = segments[1];
+          }
+        }
+
+        if (!keyword) return;
+
+        const res = await fetch(
+          "/api/pricing-factor?code=" + encodeURIComponent(keyword),
+          { method: "GET" }
+        );
+
+        const data = await res.json().catch(() => null);
+        if (!data || typeof data.factor !== "number" || data.factor <= 0) {
+          console.warn("pricing-factor: invalid payload", data);
+          return;
+        }
+
+        priceFactor = data.factor;      // e.g. 29.7 for Elite
+        priceFactorMeta = data;
+
+        console.info("pricing-factor loaded", {
+          code: data.code,
+          factor: data.factor,
+          buyer: data.buyer,
+          error: data.error,
+        });
+      } catch (err) {
+        console.error("loadPriceFactorFromUrl error", err);
       }
     }
-
-    if (!keyword) return;
-
-    const res = await fetch(
-      "/api/pricing-factor?code=" + encodeURIComponent(keyword),
-      { method: "GET" }
-    );
-
-    const data = await res.json().catch(() => null);
-    if (!data || typeof data.factor !== "number" || data.factor <= 0) {
-      console.warn("pricing-factor: invalid payload", data);
-      return;
-    }
-
-    priceFactor = data.factor;          // e.g. 29.7 for Elite
-    priceFactorMeta = data;             // { code, buyer, factor, ... }
-
-    console.info("pricing-factor loaded", {
-      code: data.code,
-      factor: data.factor,
-      buyer: data.buyer,
-      error: data.error,
-    });
-  } catch (err) {
-    console.error("loadPriceFactorFromUrl error", err);
-  }
-}
 
     // Turnstile callbacks for pricing form
     function onPricingTurnstileCompleted(token) {
@@ -1301,7 +1348,7 @@
             id: selectedPlan.id,
             name: selectedPlan.name,
             basePrice: selectedPlan.basePrice,
-            retention: selectedPlan.retention,
+            retention: getRetentionLabel(selectedPlan.id),
             isCustom: !!selectedPlan.isCustom,
             pricePerPod: selectedPlan.isCustom
               ? null
@@ -1313,6 +1360,7 @@
             id: baselinePlan.id,
             name: baselinePlan.name,
             isCustom: !!baselinePlan.isCustom,
+            retention: getRetentionLabel(baselinePlan.id),
             pricePerPod: baselinePlan.isCustom
               ? null
               : calculatePrice(baselinePlan.id) ?? baselinePlan.basePrice * priceFactor
@@ -1323,7 +1371,7 @@
               id: p.id,
               name: p.name,
               isCustom: !!p.isCustom,
-              retention: p.retention,
+              retention: getRetentionLabel(id),
               pricePerPod: p.isCustom
                 ? null
                 : calculatePrice(p.id) ?? p.basePrice * priceFactor
