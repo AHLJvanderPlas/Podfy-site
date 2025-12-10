@@ -1,7 +1,6 @@
 // functions/email/pricingSelectionTemplate.js
 //
 // Builds the pricing configuration email (HTML + text) for the pricing form.
-// Inspired by functions/email/autoReplyTemplate.js
 
 const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
 <html lang="en">
@@ -124,8 +123,7 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
 
               <p style="margin:0; font-family:Arial, sans-serif; font-size:14px; line-height:1.7; color:#cbd5e1;">
                 Below is a snapshot of the plan and add-ons you selected in the pricing configurator.
-                This is not a formal quote yet, but it gives us a clear starting point to tailor
-                the final rate to your volumes and requirements.
+                This is not a formal quote yet, but it gives you a clear starting point for your internal discussions.
               </p>
 
             </td>
@@ -146,8 +144,8 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
                     color:#bfdbfe;
                   ">
                     <span style="display:inline-block; width:9px; height:9px; background:#22c55e; border-radius:999px; margin-right:8px;"></span>
-                    <strong style="color:#e5e7eb;">Configuration captured</strong>
-                    &nbsp;· Fill in the form on podfy.net to get things running.
+                    <strong style="color:#e5e7eb;">Configuration saved</strong>
+                    &nbsp;· Keep this email as a reference when you fill in the form on podfy.net.
                   </td>
                 </tr>
               </table>
@@ -168,7 +166,7 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
                       <strong>Plan:</strong> {{planName}}
                     </p>
                     <p style="margin:0 0 4px 0; font-family:Arial, sans-serif; font-size:14px; color:#e5e7eb;">
-                      <strong>Estimated rate:</strong> €{{pricePerPod}} per POD
+                      <strong>Indicative rate:</strong> {{rateLine}}
                     </p>
                     <p style="margin:0 0 4px 0; font-family:Arial, sans-serif; font-size:13px; color:#e5e7eb;">
                       <strong>Retention setting:</strong> {{retention}}
@@ -202,8 +200,8 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
                 Next steps
               </p>
               <p style="margin:0 0 8px 0; font-family:Arial, sans-serif; font-size:13px; line-height:1.6; color:#cbd5e1;">
-                When you are ready to move forward, please fill in the short form on the main PODFY page. This configuration
-                email helps you explain which plan and options you prefer.
+                When you are ready to move forward, please fill in the short form on the main PODFY page. This
+                configuration email helps you explain which plan and options you prefer.
               </p>
               <ul style="margin:0 0 0 18px; padding:0; font-family:Arial, sans-serif; font-size:13px; line-height:1.6; color:#94a3b8;">
                 <li>Go to <a href="https://podfy.net/#contact" style="color:#93c5fd; text-decoration:none;">podfy.net</a> and open the contact form.</li>
@@ -273,7 +271,9 @@ const EMAIL_HTML_TEMPLATE = `<!DOCTYPE html>
 </body>
 </html>`;
 
-// --- PUBLIC API ------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Public API
+// ---------------------------------------------------------------------------
 
 export function buildPricingSelectionEmail({
   email,
@@ -283,8 +283,18 @@ export function buildPricingSelectionEmail({
   plansSnapshot,
 }) {
   const safeName = (name || "").trim() || "there";
+
   const planName = selectedPlan?.name || selectedPlan?.id || "Unknown plan";
-  const pricePerPod = Number(selectedPlan?.pricePerPod || 0).toFixed(2);
+  const isCustom = !!selectedPlan?.isCustom;
+  const pricePerPodValue =
+    selectedPlan && selectedPlan.pricePerPod != null
+      ? Number(selectedPlan.pricePerPod)
+      : null;
+
+  const rateLine = isCustom || pricePerPodValue == null
+    ? "Custom pricing (agreed based on your volumes and setup)."
+    : euroPerPod(pricePerPodValue);
+
   const retention = selectedPlan?.retention || "N/A";
 
   const upsellsList = (upsellLabels && upsellLabels.length)
@@ -300,7 +310,7 @@ export function buildPricingSelectionEmail({
   const html = EMAIL_HTML_TEMPLATE
     .replace(/{{name}}/g, escapeHtml(safeName))
     .replace(/{{planName}}/g, escapeHtml(planName))
-    .replace(/{{pricePerPod}}/g, escapeHtml(pricePerPod))
+    .replace(/{{rateLine}}/g, escapeHtml(rateLine))
     .replace(/{{retention}}/g, escapeHtml(retention))
     .replace(/{{upsellsList}}/g, escapeHtml(upsellsList))
     .replace("{{plansTable}}", plansTableHtml);
@@ -308,7 +318,8 @@ export function buildPricingSelectionEmail({
   const text = buildTextEmail({
     name: safeName,
     planName,
-    pricePerPod,
+    isCustom,
+    pricePerPodValue,
     retention,
     upsellsList,
     plansSnapshot,
@@ -319,9 +330,23 @@ export function buildPricingSelectionEmail({
   return { subject, html, text, to: email };
 }
 
-// --- TEXT VERSION ----------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Text version
+// ---------------------------------------------------------------------------
 
-function buildTextEmail({ name, planName, pricePerPod, retention, upsellsList, plansSnapshot }) {
+function buildTextEmail({
+  name,
+  planName,
+  isCustom,
+  pricePerPodValue,
+  retention,
+  upsellsList,
+  plansSnapshot,
+}) {
+  const rateLine = isCustom || pricePerPodValue == null
+    ? "Custom pricing (agreed based on your volumes and setup)."
+    : euroPerPod(pricePerPodValue);
+
   const lines = [
     `Hi ${name},`,
     "",
@@ -331,7 +356,7 @@ function buildTextEmail({ name, planName, pricePerPod, retention, upsellsList, p
     "",
     "Selected plan:",
     `- Plan: ${planName}`,
-    `- Estimated rate: €${pricePerPod} per POD`,
+    `- Indicative rate: ${rateLine}`,
     `- Retention: ${retention}`,
     `- Add-ons: ${upsellsList}`,
     "",
@@ -340,8 +365,16 @@ function buildTextEmail({ name, planName, pricePerPod, retention, upsellsList, p
 
   if (Array.isArray(plansSnapshot) && plansSnapshot.length) {
     plansSnapshot.forEach((p) => {
+      const pName = p.name || p.id || "Unknown";
+      const pIsCustom = !!p.isCustom;
+      const pPriceVal =
+        p.pricePerPod != null ? Number(p.pricePerPod) : null;
+      const pRate = pIsCustom || pPriceVal == null
+        ? "Custom pricing"
+        : euroPerPod(pPriceVal);
+      const pRetention = p.retention || "N/A";
       lines.push(
-        `- ${p.name || p.id}: €${Number(p.pricePerPod || 0).toFixed(2)} per POD · Retention: ${p.retention || "N/A"}`
+        `- ${pName}: ${pRate} · Retention: ${pRetention}`
       );
     });
   } else {
@@ -351,12 +384,12 @@ function buildTextEmail({ name, planName, pricePerPod, retention, upsellsList, p
   lines.push(
     "",
     "Next steps:",
-    "- We will review this configuration and contact you to confirm volumes and requirements.",
-    "- You can reply to this email with your estimated POD volume or questions.",
+    "- When you are ready, visit https://podfy.net/#contact and fill in the main form.",
+    "- Mention this configuration (plan name, rate and add-ons) so we can prepare the right proposal.",
     "",
     "Links:",
     "- Reopen configurator: https://podfy.net/pricing",
-    "- Try the free portal: https://podfy.net/free-tier-demo.html",
+    "- Main form: https://podfy.net/#contact",
     "",
     "PODFY – Proof of Delivery, without the headaches.",
     "https://podfy.net"
@@ -365,13 +398,26 @@ function buildTextEmail({ name, planName, pricePerPod, retention, upsellsList, p
   return lines.join("\n");
 }
 
-// --- HELPERS ----------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+function euroPerPod(value) {
+  const fixed = Number(value || 0).toFixed(2);
+  const withComma = fixed.replace(".", ",");
+  return `€${withComma} per POD`;
+}
 
 function buildPlansTable(plansSnapshot) {
   const rows = plansSnapshot
     .map((p) => {
       const name = escapeHtml(p.name || p.id || "Unknown");
-      const price = "€" + Number(p.pricePerPod || 0).toFixed(2);
+      const isCustom = !!p.isCustom;
+      const priceVal =
+        p.pricePerPod != null ? Number(p.pricePerPod) : null;
+      const price = isCustom || priceVal == null
+        ? "Custom pricing"
+        : escapeHtml(euroPerPod(priceVal));
       const retention = escapeHtml(p.retention || "N/A");
 
       return `
@@ -390,7 +436,7 @@ function buildPlansTable(plansSnapshot) {
       <thead>
         <tr>
           <th align="left" style="padding:6px 8px; border-bottom:1px solid #111827; font-weight:600; color:#cbd5e1;">Plan</th>
-          <th align="left" style="padding:6px 8px; border-bottom:1px solid #111827; font-weight:600; color:#cbd5e1;">Rate per POD</th>
+          <th align="left" style="padding:6px 8px; border-bottom:1px solid #111827; font-weight:600; color:#cbd5e1;">Indicative rate</th>
           <th align="left" style="padding:6px 8px; border-bottom:1px solid #111827; font-weight:600; color:#cbd5e1;">Retention</th>
         </tr>
       </thead>
