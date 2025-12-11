@@ -87,7 +87,7 @@ async function sendEmailWithResend(env, { to, bcc, subject, html, text }) {
   }
 
   const payload = {
-    from: "PODFY <no-reply@podfy.net>",
+    from: "PODFY <support@podfy.net>",
     to: Array.isArray(to) ? to : [to],
     subject,
     html,
