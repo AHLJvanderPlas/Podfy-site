@@ -21,167 +21,168 @@
   <script src="/assets/theme.js" defer></script>
 
   <style>
-    /* -------- PAGE LAYOUT (NEW CONTAINER WRAP) -------- */
+    /* We reuse .home-main + .container for width; only add layout details here */
 
-    .page-container {
-      max-width: var(--container-3xl);
-      margin: 0 auto;
-      padding: 3rem 1.25rem 5rem;
+    .cookie-hero-shell{
+      display:grid;
+      gap:2rem;
+      align-items:flex-start;
     }
-    @media (min-width: 768px) {
-      .page-container {
-        padding: 4rem 2rem 6rem;
+    @media (min-width:980px){
+      .cookie-hero-shell{
+        grid-template-columns:minmax(0,2.1fr) minmax(0,0.9fr);
       }
     }
 
-    /* Hero + TOC grid */
-    .cookie-grid {
-      display: grid;
-      gap: 2rem;
-      align-items: flex-start;
+    .cookie-hero-kicker{
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:.4rem;
+      margin-bottom:.35rem;
     }
-    @media (min-width: 980px) {
-      .cookie-grid {
-        grid-template-columns: minmax(0, 2.1fr) minmax(0, 0.9fr);
+    .cookie-hero-title{
+      font-size:2.2rem;
+      line-height:1.08;
+      letter-spacing:-.035em;
+      margin:0 0 .6rem;
+      color:var(--ink);
+    }
+    .cookie-hero-lead{
+      font-size:1rem;
+      color:var(--muted);
+      max-width:44rem;
+      margin-bottom:1.1rem;
+    }
+    .cookie-hero-meta{
+      font-size:.8rem;
+      color:var(--muted);
+    }
+    .cookie-hero-meta code{
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,"Liberation Mono","Courier New",monospace;
+      font-size:.8em;
+    }
+
+    /* Chapter navigation */
+    .cookie-toc-card{
+      border-radius:1rem;
+      padding:1.1rem 1.2rem;
+      border:1px solid var(--line);
+      background:var(--surface-strong);
+      box-shadow:0 18px 40px rgba(15,23,42,0.12);
+    }
+    .cookie-toc-title{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--muted);
+      margin-bottom:.4rem;
+    }
+    .cookie-toc-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      gap:.25rem;
+    }
+    .cookie-toc-link{
+      display:flex;
+      align-items:center;
+      gap:.45rem;
+      font-size:.85rem;
+      text-decoration:none;
+      color:var(--muted);
+      padding:.3rem .35rem;
+      border-radius:.55rem;
+      transition:background .14s ease-out, color .14s ease-out, transform .14s ease-out;
+    }
+    .cookie-toc-link span:first-child{
+      font-size:.7rem;
+      opacity:.7;
+      width:1.2rem;
+      flex:0 0 auto;
+      text-align:right;
+    }
+    .cookie-toc-link:hover{
+      background:rgba(148,163,184,0.16);
+      color:var(--ink);
+      transform:translateX(1px);
+    }
+
+    /* Content card */
+    .cookie-content-card{
+      border-radius:1rem;
+      border:1px solid var(--line);
+      background:var(--surface-strong);
+      padding:1.7rem 1.75rem 2rem;
+      box-shadow:0 18px 40px rgba(15,23,42,0.12);
+    }
+    @media (max-width:767px){
+      .cookie-content-card{
+        padding:1.4rem 1.25rem 1.7rem;
       }
     }
 
-    /* Hero */
-    .cookie-hero-title {
-      font-size: 2.15rem;
-      font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: -0.035em;
-      margin: 0 0 0.6rem;
+    .cookie-section{
+      margin-top:2.4rem;
     }
-
-    .cookie-hero-lead {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 44rem;
-      margin-bottom: 1.1rem;
+    .cookie-section:first-of-type{
+      margin-top:0;
     }
-
-    .cookie-hero-meta {
-      font-size: .8rem;
-      color: var(--muted);
+    .cookie-section-kicker{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+      margin-bottom:.18rem;
     }
-
-    /* TOC card */
-    .cookie-toc-card {
-      border-radius: 1rem;
-      padding: 1.1rem 1.2rem;
-      border: 1px solid var(--line);
-      background: var(--surface-strong);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    .cookie-section-title{
+      font-size:1.3rem;
+      margin:0 0 .4rem;
+      color:var(--ink);
+      font-weight:600;
     }
-
-    .cookie-toc-title {
-      font-size: .78rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      margin-bottom: .4rem;
-      color: var(--muted);
-    }
-
-    .cookie-toc-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: .25rem;
-    }
-
-    .cookie-toc-link {
-      display: flex;
-      align-items: center;
-      gap: .55rem;
-      font-size: .85rem;
-      padding: .32rem .35rem;
-      border-radius: .55rem;
-      text-decoration: none;
-      color: var(--muted);
-      transition: background .14s ease-out, color .14s ease-out, transform .14s ease-out;
-    }
-
-    .cookie-toc-link:hover {
-      background: rgba(148, 163, 184, 0.15);
-      color: var(--ink);
-      transform: translateX(1.5px);
-    }
-
-    /* Content card (centered) */
-    .cookie-content-card {
-      margin-top: 2.5rem;
-      border-radius: 1rem;
-      border: 1px solid var(--line);
-      background: var(--surface-strong);
-      padding: 1.7rem 1.75rem 2rem;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
-    }
-
-    .cookie-section {
-      margin-top: 2.4rem;
-    }
-    .cookie-section:first-of-type {
-      margin-top: 0;
-    }
-
-    .cookie-section-title {
-      font-size: 1.3rem;
-      margin: 0 0 .4rem;
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    .cookie-section-kicker {
-      font-size: .78rem;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      color: var(--muted);
-      margin-bottom: .18rem;
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-    }
-
     .cookie-section p,
-    .cookie-section li {
-      font-size: .95rem;
-      color: var(--muted);
+    .cookie-section li{
+      font-size:.95rem;
+      color:var(--muted);
+    }
+    .cookie-list{
+      padding-left:1.1rem;
+      margin-top:.25rem;
+    }
+    .cookie-list li+li{
+      margin-top:.15rem;
     }
 
-    .cookie-list {
-      padding-left: 1.1rem;
-      margin-top: .25rem;
+    .cookie-callout{
+      margin-top:1.25rem;
+      padding:1rem 1.15rem;
+      border-radius:.9rem;
+      border:1px solid rgba(148,163,184,0.7);
+      background:rgba(15,23,42,0.04);
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    html[data-theme="dark"] .cookie-callout{
+      background:rgba(15,23,42,0.85);
+    }
+    .cookie-callout-title{
+      font-weight:600;
+      color:var(--ink);
+      margin-bottom:.2rem;
     }
 
-    .cookie-callout {
-      margin-top: 1.25rem;
-      padding: 1rem 1.15rem;
-      border-radius: .9rem;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.035);
-      color: var(--muted);
+    .cookie-contact-link{
+      color:var(--brand-primary);
+      text-decoration:none;
     }
-    html[data-theme="dark"] .cookie-callout {
-      background: rgba(15, 23, 42, .85);
-    }
-
-    .cookie-contact-link {
-      color: var(--brand-primary);
-      text-decoration: none;
-    }
-    .cookie-contact-link:hover {
-      text-decoration: underline;
-    }
-
-    /* Icon sizing */
-    .icon {
-      width: 1rem;
-      height: 1rem;
-      flex: 0 0 auto;
+    .cookie-contact-link:hover{
+      text-decoration:underline;
     }
   </style>
 </head>
@@ -193,28 +194,23 @@
 
   [[PODFY_HEADER]]
 
-  <main id="main" class="cookie-main">
-    <div class="page-container">
-      
-      <!-- HERO CARD -->
-      <section class="card card-glass cookie-hero-card">
-        <div class="cookie-grid">
+  <!-- Same width as homepage: .home-main + .container -->
+  <main id="main" class="home-main">
 
-          <!-- Hero text -->
+    <!-- HERO -->
+    <section class="home-section">
+      <div class="container card card-glass">
+        <div class="cookie-hero-shell">
           <header>
-            <p class="cookie-hero-kicker" style="display:flex;align-items:center;gap:.4rem;">
-              <svg class="icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-              Cookies & Browser Storage
+            <p class="cookie-hero-kicker">
+              Cookies &amp; Browser Storage
             </p>
-
             <h1 class="cookie-hero-title">Cookie Policy</h1>
-
             <p class="cookie-hero-lead">
               PODFY follows a strict “no unnecessary cookies” principle. We currently do not use
               marketing or analytics cookies on podfy.net or podfy.app. This policy explains today’s
               usage, possible future changes, and how you remain in control.
             </p>
-
             <p class="cookie-hero-meta">
               Last updated: <strong>2025-12-10</strong><br />
               Contact: <a href="mailto:support@podfy.net">support@podfy.net</a><br />
@@ -222,44 +218,43 @@
             </p>
           </header>
 
-          <!-- TOC -->
-          <aside>
+          <aside aria-label="Cookie policy chapters">
             <div class="cookie-toc-card">
               <p class="cookie-toc-title">Chapters</p>
               <ul class="cookie-toc-list">
-                <li><a class="cookie-toc-link" href="#overview">1. Overview</a></li>
-                <li><a class="cookie-toc-link" href="#current">2. Current usage</a></li>
-                <li><a class="cookie-toc-link" href="#future">3. Future possibilities</a></li>
-                <li><a class="cookie-toc-link" href="#control">4. Managing cookies</a></li>
-                <li><a class="cookie-toc-link" href="#contact">5. Contact</a></li>
+                <li><a class="cookie-toc-link" href="#overview"><span>1</span>Overview</a></li>
+                <li><a class="cookie-toc-link" href="#current"><span>2</span>Current usage</a></li>
+                <li><a class="cookie-toc-link" href="#future"><span>3</span>Future possibilities</a></li>
+                <li><a class="cookie-toc-link" href="#control"><span>4</span>Managing cookies</a></li>
+                <li><a class="cookie-toc-link" href="#contact"><span>5</span>Contact</a></li>
               </ul>
             </div>
           </aside>
-
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- CONTENT CARD -->
-      <section class="cookie-content-card">
+    <!-- CONTENT -->
+    <section class="home-section">
+      <div class="container cookie-content-card">
 
         <article id="overview" class="cookie-section">
-          <div class="cookie-section-kicker">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="1.5"/></svg>
-            1. Overview
-          </div>
+          <p class="cookie-section-kicker">1. Overview</p>
           <h2 class="cookie-section-title">How PODFY approaches cookies</h2>
           <p>
             Most SaaS products deploy trackers by default. PODFY intentionally avoids this. We keep the
             platform cookie-light and privacy-forward. Only storage that is technically essential may be
             used, and it is never used for advertising or profiling.
           </p>
+          <p>
+            This policy focuses on browser-level cookies and similar technologies such as localStorage and
+            sessionStorage. For broader information about how we process personal data, see our
+            <a href="/privacy">Privacy Policy</a>.
+          </p>
         </article>
 
         <article id="current" class="cookie-section">
-          <div class="cookie-section-kicker">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M5 7h14M5 12h9M5 17h6" stroke="currentColor" stroke-width="1.5"/></svg>
-            2. Current cookie usage
-          </div>
+          <p class="cookie-section-kicker">2. Current usage</p>
           <h2 class="cookie-section-title">Cookies used today</h2>
 
           <p><strong>podfy.net (marketing website)</strong></p>
@@ -272,7 +267,7 @@
           <ul class="cookie-list">
             <li>Only strictly necessary technical cookies may be used.</li>
             <li>These support secure authentication and session integrity.</li>
-            <li>No cookies are shared with third parties.</li>
+            <li>No cookies are shared with third parties for their own purposes.</li>
           </ul>
 
           <div class="cookie-callout">
@@ -285,15 +280,11 @@
         </article>
 
         <article id="future" class="cookie-section">
-          <div class="cookie-section-kicker">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.5"/></svg>
-            3. Possible future cookies
-          </div>
+          <p class="cookie-section-kicker">3. Future possibilities</p>
           <h2 class="cookie-section-title">What might change later</h2>
           <p>
             If PODFY introduces optional features requiring cookies, they will fall into clear categories:
           </p>
-
           <ul class="cookie-list">
             <li><strong>Essential:</strong> authentication, CSRF protection, load balancing.</li>
             <li><strong>Preference:</strong> theme, default filters, language.</li>
@@ -301,7 +292,7 @@
           </ul>
 
           <div class="cookie-callout">
-            <p class="cookie-callout-title">Consent & transparency</p>
+            <p class="cookie-callout-title">Consent &amp; transparency</p>
             <p>
               If non-essential cookies are introduced, you will receive:
             </p>
@@ -314,41 +305,30 @@
         </article>
 
         <article id="control" class="cookie-section">
-          <div class="cookie-section-kicker">
-            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="1.5"/></svg>
-            4. Managing cookies
-          </div>
+          <p class="cookie-section-kicker">4. Managing cookies</p>
           <h2 class="cookie-section-title">How to control or delete cookies</h2>
-
           <p>Modern browsers allow you to manage cookies at any time:</p>
-
           <ul class="cookie-list">
             <li>Chrome / Edge → Settings → Privacy and security → Cookies</li>
-            <li>Firefox → Settings → Privacy & Security → Cookies</li>
+            <li>Firefox → Settings → Privacy &amp; Security → Cookies</li>
             <li>Safari → Preferences → Privacy</li>
           </ul>
-
           <p>You can block third-party cookies, delete stored data, or set exceptions per domain.</p>
         </article>
 
         <article id="contact" class="cookie-section">
-          <div class="cookie-section-kicker">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.5"/></svg>
-            5. Contact
-          </div>
+          <p class="cookie-section-kicker">5. Contact</p>
           <h2 class="cookie-section-title">Questions about this policy</h2>
           <p>
-            For questions about cookies, tracking, or privacy, contact us at  
+            For questions about cookies, tracking, or privacy, contact us at
             <a class="cookie-contact-link" href="mailto:support@podfy.net">support@podfy.net</a>.
           </p>
         </article>
 
-      </section>
-
-    </div>
+      </div>
+    </section>
   </main>
 
   [[PODFY_FOOTER]]
-
 </body>
 </html>
