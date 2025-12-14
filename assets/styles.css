@@ -829,13 +829,17 @@ html[data-theme="dark"] .home-card-link{color:var(--brand-accent)}
   color:var(--muted);
 }
 
-.home-field input,
+.home-field input:not([type="checkbox"]),
 .home-field textarea,
 .home-field select{
-  margin-top:.25rem;
   width:100%;
   max-width:100%;
   box-sizing:border-box;
+}
+
+.home-field input[type="checkbox"]{
+  width:1rem;
+  max-width:none;
 }
 
 /* Consent line (single source of truth) */
