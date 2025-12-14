@@ -1,10 +1,16 @@
 /* /assets/theme.js
    PODFY theme toggle (system → light → dark) + Cloudflare Turnstile theme sync
+   Requires:
+   - Turnstile script: .../api.js?render=explicit
+   - Widget element: id="turnstile-widget" and data-sitekey="..."
 */
 (function () {
   var STORAGE_KEY = "podfy-theme";
   var root = document.documentElement;
   var current = "system";
+
+  // Keep the last rendered Turnstile widget id so we can remove it before re-render.
+  var turnstileWidgetId = null;
 
   function getSystemMode() {
     return window.matchMedia &&
@@ -13,23 +19,40 @@
       : "light";
   }
 
-  // Render or re-render Cloudflare Turnstile using the current effective theme.
-  // Requires the widget container to have: id="turnstile-widget" and data-sitekey="..."
+  function safeFn(name) {
+    if (!name) return null;
+    var fn = window[name];
+    return typeof fn === "function" ? fn : null;
+  }
+
   function renderTurnstile(theme) {
+    // Must have the Turnstile API loaded
     if (!window.turnstile) return;
 
     var el = document.getElementById("turnstile-widget");
     if (!el) return;
 
-    // Clear any previous render so we can re-render cleanly.
+    // If we previously rendered a widget, remove it cleanly
+    if (turnstileWidgetId !== null) {
+      try { window.turnstile.remove(turnstileWidgetId); } catch (e) {}
+      turnstileWidgetId = null;
+    }
+
+    // Ensure container is empty before rendering
     el.innerHTML = "";
 
-    // Render with theme explicitly set to light/dark
-    window.turnstile.render(el, {
+    // Resolve callback functions from data attributes (optional but recommended)
+    var cbName = el.getAttribute("data-callback");
+    var expiredName = el.getAttribute("data-expired-callback");
+    var errorName = el.getAttribute("data-error-callback");
+
+    // Render explicitly with the theme that matches our site toggle
+    turnstileWidgetId = window.turnstile.render(el, {
       sitekey: el.dataset.sitekey,
-      theme: theme
-      // callbacks are still read from the element's data-* attributes
-      // (data-callback, data-expired-callback, data-error-callback)
+      theme: theme, // "light" or "dark"
+      callback: safeFn(cbName) || undefined,
+      "expired-callback": safeFn(expiredName) || undefined,
+      "error-callback": safeFn(errorName) || undefined
     });
   }
 
@@ -50,7 +73,7 @@
       }
     }
 
-    // Keep Turnstile in sync (light/dark). Safe no-op if widget/script not present.
+    // Sync Turnstile with the effective theme
     renderTurnstile(effective);
   }
 
@@ -68,25 +91,22 @@
 
     apply(current);
 
-    // If user is on "system", also react to OS theme changes live.
+    // If user is on "system", react to OS theme changes live
     if (window.matchMedia) {
       var mql = window.matchMedia("(prefers-color-scheme: dark)");
       var onChange = function () {
         if (current === "system") apply("system");
       };
 
-      // Support older Safari
       if (typeof mql.addEventListener === "function") mql.addEventListener("change", onChange);
       else if (typeof mql.addListener === "function") mql.addListener(onChange);
     }
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    var btn = document.getElementById("themeToggle");
-
-    // Always init theme, even if button is not present on this page.
     init();
 
+    var btn = document.getElementById("themeToggle");
     if (!btn) return;
 
     btn.addEventListener("click", function () {
