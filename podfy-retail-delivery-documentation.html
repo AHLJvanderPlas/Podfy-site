@@ -293,10 +293,11 @@
       </div>
     </section>
 
-    <!-- 8. FINAL CTA + CONTACT FORM (updated layout + links) -->
+<!-- 8. FINAL CTA + CONTACT FORM (updated layout) -->
 <section class="home-section" id="contact">
   <div class="container home-contact-grid">
 
+    <!-- LEFT 1/2: FORM -->
     <div class="card card-glass home-contact-card">
       <h2 class="home-section-title">Create a clear delivery record for every site</h2>
       <p class="home-section-intro">
@@ -311,6 +312,7 @@
 
         <!-- Hidden context for backend -->
         <input type="hidden" id="source_page" name="source_page" value="" />
+        <input type="hidden" id="turnstileToken" name="turnstileToken" value="" />
 
         <div class="home-field">
           <label class="home-label" for="contact-name">Name</label>
@@ -332,18 +334,16 @@
           <textarea id="contact-message" name="message" rows="4" class="home-textarea"></textarea>
         </div>
 
-        <!-- Checkbox before the terms text -->
+        <!-- Checkbox aligned on the same line -->
         <div class="home-field home-consent">
-          <label class="home-checkbox">
-            <input id="contact-consent" type="checkbox" name="consent" required checked />
+          <label class="home-checkbox" style="display:flex;align-items:flex-start;gap:.6rem;">
+            <input id="contact-consent" type="checkbox" name="consent" required checked style="margin-top:.2rem;" />
             <span>
               I agree to be contacted and accept the
               <a href="/privacy.html">Privacy Policy</a>.
             </span>
           </label>
         </div>
-
-        <input type="hidden" id="turnstileToken" name="turnstileToken" value="" />
 
         <p id="contact-status" class="home-status" role="status"></p>
 
@@ -352,54 +352,89 @@
           <button type="submit" class="btn btn-primary">Send request</button>
         </div>
 
-        <!-- Turnstile + Prefer email side-by-side -->
-        <div class="home-grid-2" style="margin-top:1rem;">
-          <!-- Left 1/2: Turnstile + explanation -->
-          <div class="card card-glass" style="padding:1rem;">
-            <p class="home-card-body" style="margin:0 0 .75rem 0;">
-              Quick check: we validate in the background that you’re not a spam bot.
-            </p>
+        <!-- Prefer email card ABOVE Turnstile card -->
+        <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
+          <h3 class="home-card-title">Prefer email?</h3>
+          <p class="home-card-body">
+            Reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>
+          </p>
+        </div>
 
-            <div class="home-field home-field-turnstile" style="margin-top:.75rem;">
-              <div
-                class="cf-turnstile"
-                data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-                data-callback="onTurnstileCompleted"
-                data-expired-callback="onTurnstileExpired"
-                data-error-callback="onTurnstileError"
-                data-theme="auto">
-              </div>
+        <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
+          <p class="home-card-body" style="margin:0 0 .75rem 0;">
+            Quick check: we validate in the background that you’re not a spam bot.
+          </p>
+
+          <div class="home-field home-field-turnstile" style="margin-top:.75rem;">
+            <div
+              class="cf-turnstile"
+              data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+              data-callback="onTurnstileCompleted"
+              data-expired-callback="onTurnstileExpired"
+              data-error-callback="onTurnstileError"
+              data-theme="auto">
             </div>
           </div>
-
-          <!-- Right 1/2: Prefer email small card -->
-          <aside class="card card-glass" style="padding:1rem;">
-            <h3 class="home-card-title">Prefer email?</h3>
-            <p class="home-card-body">
-              Reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>
-            </p>
-          </aside>
         </div>
       </form>
     </div>
 
-    <!-- Right floating card: trigger sentences + links -->
+    <!-- RIGHT 1/2: LINKS (sentence cards in 2 columns; whole card is clickable) -->
     <aside class="card card-glass home-contact-side">
       <h3 class="home-card-title">Not sure which page fits?</h3>
       <p class="home-card-body">Pick the closest match:</p>
 
-      <ul class="icon-list">
-        <li><a href="https://podfy.net/podfy-proof-of-delivery-for-carriers">Carriers</a> — “I run a carrier company and need a simple way to collect proof of delivery without forcing drivers to install an app.”</li>
-        <li><a href="https://podfy.net/podfy-digital-delivery-document-storage">Inbound / Receiving</a> — “I manage inbound deliveries and want all delivery documents stored digitally in one central place.”</li>
-        <li><a href="https://podfy.net/podfy-digitize-delivery-documents">Digitize Paper Flow</a> — “We still use paper delivery notes and want to digitize our delivery documents without complexity.”</li>
-        <li><a href="https://podfy.net/podfy-proof-of-delivery-for-shippers">Shippers</a> — “I ship goods and want to receive proof of delivery digitally from any carrier.”</li>
-        <li><a href="https://podfy.net/podfy-proof-of-delivery-for-3pl">3PLs</a> — “I work with multiple carriers and need one standard way to collect proof of delivery from all of them.”</li>
-        <li><a href="https://podfy.net/podfy-construction-delivery-documentation">Construction</a> — “I manage a construction or project site and need clear proof for frequent material deliveries.”</li>
-        <li><a href="https://podfy.net/podfy-retail-delivery-documentation">Retail</a> — “I manage stores and want delivery documents available centrally without burdening store staff.”</li>
-        <li><a href="https://podfy.net/podfy-proof-of-delivery-compliance">Compliance</a> — “I need reliable proof of delivery for audits, disputes, and invoicing.”</li>
-        <li><a href="https://podfy.net/podfy-proof-of-delivery-without-app">No-App / Low-Tech</a> — “My drivers or subcontractors won’t install apps, but I still need proof of delivery.”</li>
-        <li><a href="https://podfy.net/podfy-digital-delivery-documentation">Facilities</a> — “I manage facilities and want a simple digital record of supplier and courier deliveries.”</li>
-      </ul>
+      <div class="home-grid-2">
+        <a class="card card-glass" href="https://podfy.net/podfy-proof-of-delivery-for-carriers" style="display:block;padding:1rem;">
+          <h4 class="home-card-title" style="margin:0 0 .35rem 0;">Carriers</h4>
+          <p class="home-card-body" style="margin:0;">“I run a carrier company and need a simple way to collect proof of delivery without forcing drivers to install an app.”</p>
+        </a>
+
+        <a class="card card-glass" href="https://podfy.net/podfy-digital-delivery-document-storage" style="display:block;padding:1rem;">
+          <h4 class="home-card-title" style="margin:0 0 .35rem 0;">Inbound / Receiving</h4>
+          <p class="home-card-body" style="margin:0;">“I manage inbound deliveries and want all delivery documents stored digitally in one central place.”</p>
+        </a>
+
+        <a class="card card-glass" href="https://podfy.net/podfy-digitize-delivery-documents" style="display:block;padding:1rem;">
+          <h4 class="home-card-title" style="margin:0 0 .35rem 0;">Digitize Paper Flow</h4>
+          <p class="home-card-body" style="margin:0;">“We still use paper delivery notes and want to digitize our delivery documents without complexity.”</p>
+        </a>
+
+        <a class="card card-glass" href="https://podfy.net/podfy-proof-of-delivery-for-shippers" style="display:block;padding:1rem;">
+          <h4 class="home-card-title" style="margin:0 0 .35rem 0;">Shippers</h4>
+          <p class="home-card-body" style="margin:0;">“I ship goods and want to receive proof of delivery digitally from any carrier.”</p>
+        </a>
+
+        <a class="card card-glass" href="https://podfy.net/podfy-proof-of-delivery-for-3pl" style="display:block;padding:1rem;">
+          <h4 class="home-card-title" style="margin:0 0 .35rem 0;">3PLs</h4>
+          <p class="home-card-body" style="margin:0;">“I work with multiple carriers and need one standard way to collect proof of delivery from all of them.”</p>
+        </a>
+
+        <a class="card card-glass" href="https://podfy.net/podfy-construction-delivery-documentation" style="display:block;padding:1rem;">
+          <h4 class="home-card-title" style="margin:0 0 .35rem 0;">Construction</h4>
+          <p class="home-card-body" style="margin:0;">“I manage a construction or project site and need clear proof for frequent material deliveries.”</p>
+        </a>
+
+        <a class="card card-glass" href="https://podfy.net/podfy-retail-delivery-documentation" style="display:block;padding:1rem;">
+          <h4 class="home-card-title" style="margin:0 0 .35rem 0;">Retail</h4>
+          <p class="home-card-body" style="margin:0;">“I manage stores and want delivery documents available centrally without burdening store staff.”</p>
+        </a>
+
+        <a class="card card-glass" href="https://podfy.net/podfy-proof-of-delivery-compliance" style="display:block;padding:1rem;">
+          <h4 class="home-card-title" style="margin:0 0 .35rem 0;">Compliance</h4>
+          <p class="home-card-body" style="margin:0;">“I need reliable proof of delivery for audits, disputes, and invoicing.”</p>
+        </a>
+
+        <a class="card card-glass" href="https://podfy.net/podfy-proof-of-delivery-without-app" style="display:block;padding:1rem;">
+          <h4 class="home-card-title" style="margin:0 0 .35rem 0;">No-App / Low-Tech</h4>
+          <p class="home-card-body" style="margin:0;">“My drivers or subcontractors won’t install apps, but I still need proof of delivery.”</p>
+        </a>
+
+        <a class="card card-glass" href="https://podfy.net/podfy-digital-delivery-documentation" style="display:block;padding:1rem;">
+          <h4 class="home-card-title" style="margin:0 0 .35rem 0;">Facilities</h4>
+          <p class="home-card-body" style="margin:0;">“I manage facilities and want a simple digital record of supplier and courier deliveries.”</p>
+        </a>
+      </div>
     </aside>
 
   </div>
