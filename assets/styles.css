@@ -843,10 +843,6 @@ html[data-theme="dark"] .home-card-link{color:var(--brand-accent)}
   max-width:none;
 }
 
-/* Consent line (single source of truth) */
-.home-field.home-consent{
-  margin:1rem 0;
-}
 .home-field.home-consent .home-checkbox{
   display:flex;
   align-items:center;
