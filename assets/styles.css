@@ -824,6 +824,7 @@ html[data-theme="dark"] .home-card-link{color:var(--brand-accent)}
 
 .home-field{
   display:flex;
+  padding-top: 1rem;
   flex-direction:column;
   font-size:.85rem;
   color:var(--muted);
