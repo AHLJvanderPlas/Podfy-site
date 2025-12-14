@@ -1547,3 +1547,37 @@ html[data-theme="dark"] .home-link {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+/* Audience trigger cards (match "plan card" hover feel without touching existing classes) */
+.home-trigger-card{
+  display:block;
+  padding:1rem;
+  text-decoration:none;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+  will-change: transform;
+}
+
+/* Ensure text inherits normal colors */
+.home-trigger-card .home-card-title,
+.home-trigger-card .home-card-body{
+  color: inherit;
+}
+
+/* Hover/focus highlight like pricing plans (lift + stronger outline/shadow) */
+.home-trigger-card:hover,
+.home-trigger-card:focus-visible{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(2, 6, 23, .12);
+  border-color: rgba(37, 99, 235, .35); /* brand accent-ish; safe even if border already exists */
+}
+
+/* Optional: subtle background tint on hover to improve affordance */
+.home-trigger-card:hover{
+  background: rgba(37, 99, 235, .04);
+}
+
+/* Better keyboard focus ring */
+.home-trigger-card:focus-visible{
+  outline: 2px solid rgba(37, 99, 235, .45);
+  outline-offset: 2px;
+}
