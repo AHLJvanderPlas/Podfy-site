@@ -1,8 +1,10 @@
 /* ==========================================================================
    PODFY – Global Design System
-   --------------------------------------------------------------------------
-   THEME TOKENS
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
+
+/* ==========================================================================
+   0) THEME TOKENS
+   ========================================================================== */
 
 :root{
   --brand-primary:#1D3557;
@@ -29,7 +31,7 @@
 
   --green-400:#22C55E;
   --blue-300:#60A5FA;
-   
+
   --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
   --container-6xl:72rem;
 }
@@ -55,20 +57,36 @@ html[data-theme="dark"]{
   --slate-900:#F8FAFC;
 }
 
-/* --------------------------------------------------------------------------
-   BASE ELEMENTS
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   1) BASE / RESETS
+   ========================================================================== */
 
 html{line-height:1.5;-webkit-text-size-adjust:100%}
+
 body{
   margin:0;
   font-family:var(--font-sans);
   color:var(--ink);
-  background:var(--bg);
   -webkit-font-smoothing:antialiased;
+  /* Background (dark base, overridden below for light) */
+  background:
+    radial-gradient(circle at 0% 0%,  rgba(37, 99, 235, 0.18), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
+    radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.85), #020617);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-/* Resets */
+html[data-theme="light"] body{
+  background:
+    radial-gradient(circle at 0% 0%,  rgba(59, 130, 246, 0.15), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
+    radial-gradient(circle at 50% 100%, rgba(219, 234, 254, 0.9), #eff6ff);
+  color:#020617;
+  background-attachment: fixed;
+}
+
 img{display:block;max-width:100%;height:auto}
 a{text-decoration:none;color:inherit}
 button{font:inherit;cursor:pointer}
@@ -78,10 +96,18 @@ button{font:inherit;cursor:pointer}
   position:absolute;width:1px;height:1px;padding:0;margin:-1px;
   overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
 }
+.visually-hidden{
+  position:absolute;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  border:0;
+}
 
-/* --------------------------------------------------------------------------
-   BUTTON SYSTEM – unified
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   2) BUTTON SYSTEM
+   ========================================================================== */
 
 .btn{
   display:inline-flex;
@@ -115,26 +141,14 @@ html[data-theme="dark"] .btn-secondary{
   background:rgba(255,255,255,0.08);
   color:var(--ink);
 }
-.btn-secondary:hover{
-  transform:translateY(-1px);
-}
+.btn-secondary:hover{transform:translateY(-1px)}
 
-body {
-  /* keep your existing background definition here */
-  /* e.g. background: radial-gradient(...); */
-
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-
-/* --------------------------------------------------------------------------
-   CARD SYSTEM – unified
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   3) CARD SYSTEM
+   ========================================================================== */
 
 .card{
-  box-sizing: border-box;      /* NEW: include padding in the width */
+  box-sizing:border-box;
   border-radius:1rem;
   border:1px solid var(--line);
   background:var(--surface);
@@ -142,9 +156,7 @@ body {
   box-shadow:0 2px 10px rgba(15,23,42,0.05);
 }
 
-.card-glass{
-  backdrop-filter:blur(14px);
-}
+.card-glass{backdrop-filter:blur(14px)}
 html[data-theme="dark"] .card-glass{
   background:rgba(15,23,42,0.85);
   border-color:rgba(148,163,184,0.35);
@@ -153,9 +165,9 @@ html[data-theme="dark"] .card-glass{
     inset 0 0 40px rgba(15,23,42,0.8);
 }
 
-/* --------------------------------------------------------------------------
-   PILL SYSTEM (tags, badges, chips)
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   4) PILL SYSTEM
+   ========================================================================== */
 
 .pill{
   display:inline-flex;
@@ -168,15 +180,13 @@ html[data-theme="dark"] .card-glass{
   background:rgba(248,250,252,0.95);
   color:var(--muted);
 }
-
-html[data-theme="dark"] .pill{
-  background:rgba(15,23,42,0.9);
-}
+html[data-theme="dark"] .pill{background:rgba(15,23,42,0.9)}
 
 .pill-blue{
   background:rgba(37,99,235,0.12);
   color:#2563EB;
 }
+
 .pill-success-dot::before{
   content:"";
   width:6px;height:6px;border-radius:999px;
@@ -184,9 +194,9 @@ html[data-theme="dark"] .pill{
   box-shadow:0 0 0 4px rgba(34,197,94,0.3);
 }
 
-/* --------------------------------------------------------------------------
-   INPUT SYSTEM
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   5) INPUT SYSTEM
+   ========================================================================== */
 
 input[type="text"],
 input[type="email"],
@@ -197,7 +207,9 @@ textarea{
   background:var(--surface);
   color:var(--ink);
   padding:.55rem .75rem;
+  box-sizing:border-box;
 }
+
 html[data-theme="dark"] input[type="text"],
 html[data-theme="dark"] input[type="email"],
 html[data-theme="dark"] textarea{
@@ -206,14 +218,13 @@ html[data-theme="dark"] textarea{
   color:var(--ink);
 }
 
-/* Circle checkbox */
 input[type="checkbox"]{
   width:1rem;height:1rem;
 }
 
-/* --------------------------------------------------------------------------
-   LAYOUT SYSTEM (containers, grid helpers)
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   6) LAYOUT SYSTEM
+   ========================================================================== */
 
 .container{
   max-width:var(--container-6xl);
@@ -222,18 +233,15 @@ input[type="checkbox"]{
 }
 
 /* Match subheader width to page content width */
-.site-subheader-container {
-  max-width: var(--container-6xl);
-  margin: 0 auto;
-  padding: 0 1rem; /* matches the page padding */
+.site-subheader-container{
+  max-width:var(--container-6xl);
+  margin:0 auto;
+  padding:0 1rem;
 }
 
-
-/* Existing utility classes remain unchanged... */
-
-/* --------------------------------------------------------------------------
-   SHELL BARS (header, subheader, hero-top elements)
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   7) SHELL BARS (header/subheader shells)
+   ========================================================================== */
 
 .shell-bar{
   max-width:var(--container-6xl);
@@ -261,46 +269,19 @@ html[data-theme="light"] .shell-bar-glass{
     radial-gradient(circle at 100% 0%, rgba(56,189,248,0.12), transparent 55%),
     linear-gradient(135deg, #E5F0FF, #FFFFFF);
 }
-/* --------------------------------------------------------------------------
-   SITE HEADER
-   -------------------------------------------------------------------------- */
 
-/* Brand logo sizing (reuses current behaviour) */
-.site-brand img{
-  height:1.75rem;
-  width:auto;
-}
-
-/* Desktop nav visibility */
-.site-nav{
-  display:none;
-  gap:1.5rem;
-  font-size:.9rem;
-}
-@media (min-width:768px){
-  .site-nav{display:flex;}
-}
-
-/* Right-side layout */
-.site-header-actions{
-  display:flex;
-  align-items:center;
-  gap:.75rem;
-}
-
-/* Mobile menu button + mobile nav already had basic styles;
-   keep your existing .site-menu-btn and .site-mobile-nav rules.
-   No color overrides needed – they inherit var(--ink)/var(--muted). */
+/* ==========================================================================
+   8) SITE HEADER
+   ========================================================================== */
 
 .site-header-shell{
   position:sticky;
   top:0;
   z-index:40;
-  margin-bottom: 2rem;
+  margin-bottom:2rem;
   background:linear-gradient(180deg, rgba(15,23,42,0.98), rgba(15,23,42,0.96));
   border-bottom:1px solid var(--line);
 }
-
 html[data-theme="light"] .site-header-shell{
   background:linear-gradient(180deg,#FFFFFF,#F8FAFC);
 }
@@ -315,14 +296,13 @@ html[data-theme="light"] .site-header-shell{
   gap:1.5rem;
 }
 
-/* Logo */
+/* Brand */
 .site-brand img{
   height:1.75rem;
   width:auto;
   display:block;
 }
 html[data-theme="dark"] .site-brand img{
-  /* make the SVG logo white in dark mode */
   filter:brightness(0) invert(1);
 }
 
@@ -336,23 +316,20 @@ html[data-theme="dark"] .site-brand img{
   color:var(--muted);
   font-weight:500;
 }
-.site-nav a:hover{
-  color:var(--ink);
-}
+.site-nav a:hover{color:var(--ink)}
 
-/* Show nav on desktop */
 @media (min-width:768px){
   .site-nav{display:flex;}
 }
 
-/* Right-side actions (theme toggle + hamburger) */
+/* Right-side actions */
 .site-header-actions{
   display:flex;
   align-items:center;
   gap:.75rem;
 }
 
-/* Theme toggle pill */
+/* Theme toggle */
 .site-theme-toggle{
   display:inline-flex;
   align-items:center;
@@ -363,9 +340,8 @@ html[data-theme="dark"] .site-brand img{
   background:rgba(15,23,42,0.9);
   color:var(--muted);
 }
-html[data-theme="light"] .site-theme-toggle{
-  background:#FFFFFF;
-}
+html[data-theme="light"] .site-theme-toggle{background:#FFFFFF}
+
 .site-theme-dot{
   width:10px;height:10px;border-radius:999px;
   background:#22C55E;
@@ -377,7 +353,7 @@ html[data-theme="light"] .site-theme-toggle{
   letter-spacing:.09em;
 }
 
-/* Mobile menu button (hamburger) */
+/* Mobile menu button */
 .site-menu-btn{
   display:inline-flex;
   flex-direction:column;
@@ -388,23 +364,20 @@ html[data-theme="light"] .site-theme-toggle{
   border:1px solid rgba(148,163,184,0.6);
   background:rgba(15,23,42,0.9);
 }
-html[data-theme="light"] .site-menu-btn{
-  background:#FFFFFF;
-}
+html[data-theme="light"] .site-menu-btn{background:#FFFFFF}
+
 .site-menu-btn span{
   display:block;
-  width:18px;
-  height:2px;
+  width:18px;height:2px;
   border-radius:999px;
   background:var(--ink);
 }
 
-/* Hide hamburger on desktop */
 @media (min-width:768px){
   .site-menu-btn{display:none;}
 }
 
-/* Mobile nav (slides below header) */
+/* Mobile nav */
 .site-mobile-nav{
   display:none;
   padding:.35rem 1rem .75rem;
@@ -417,21 +390,16 @@ html[data-theme="light"] .site-menu-btn{
   font-size:.9rem;
   color:var(--muted);
 }
-.site-mobile-nav a:hover{
-  color:var(--ink);
-}
-.site-mobile-nav.open{
-  display:block;
-}
+.site-mobile-nav a:hover{color:var(--ink)}
+.site-mobile-nav.open{display:block}
 
-/* Hide mobile nav on desktop */
 @media (min-width:768px){
   .site-mobile-nav{display:none !important;}
 }
 
-/* --------------------------------------------------------------------------
-   SITE FOOTER
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   9) SITE FOOTER
+   ========================================================================== */
 
 .site-footer{
   margin-top:3rem;
@@ -439,10 +407,7 @@ html[data-theme="light"] .site-menu-btn{
   background:var(--surface);
   color:var(--muted);
 }
-
-html[data-theme="dark"] .site-footer{
-  background:#020617;
-}
+html[data-theme="dark"] .site-footer{background:#020617}
 
 .site-footer-inner{
   max-width:var(--container-6xl);
@@ -461,21 +426,473 @@ html[data-theme="dark"] .site-footer{
   gap:1rem;
   font-size:.8rem;
 }
-.site-footer-nav a{
-  color:var(--muted);
-}
-.site-footer-nav a:hover{
-  color:var(--ink);
-}
+.site-footer-nav a{color:var(--muted)}
+.site-footer-nav a:hover{color:var(--ink)}
 
 .site-footer-meta{
   font-size:.78rem;
   color:var(--muted);
 }
 
-/* --------------------------------------------------------------------------
-   FREE-TIER DEMO COMPONENTS
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   10) RELEASE PAGE
+   ========================================================================== */
+
+.release-page .release-cards-view{margin-top:1.5rem}
+
+.release-card{
+  position:relative;
+  float:none;
+  width:100%;
+  margin:1.5rem 0 2rem;
+  border-radius:1.5rem;
+}
+
+.release-card-header{
+  display:flex;
+  flex-direction:column;
+  gap:.5rem;
+}
+
+.release-card-header-line{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.35rem;
+  align-items:baseline;
+  font-size:.8rem;
+  color:var(--muted);
+}
+
+.release-card-date{font-weight:500}
+.release-card-version{
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.release-card-deploy{opacity:.9}
+
+.release-card-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.4rem;
+}
+
+.release-card-body{
+  margin-top:.75rem;
+  font-size:.9rem;
+}
+
+.release-columns{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  margin-top:.4rem;
+}
+
+.release-column{min-width:0}
+
+.release-section-label{
+  font-size:.78rem;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  font-weight:600;
+  color:var(--muted);
+  margin-bottom:.35rem;
+}
+
+.release-columns ul{margin:.1rem 0 .2rem 1.1rem;padding:0}
+.release-columns li{margin-bottom:.25rem}
+
+@media (min-width:900px){
+  .release-card{margin:1.75rem 0 2.25rem}
+
+  .release-card-header{
+    flex-direction:row;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:1.25rem;
+  }
+
+  .release-card-tags{justify-content:flex-end}
+
+  .release-columns{
+    flex-direction:row;
+    gap:2.5rem;
+  }
+
+  .release-column{flex:1 1 0}
+}
+
+.release-table-view{display:none}
+
+/* Tag chips */
+.release-tags,
+.manual-chip-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.4rem;
+}
+
+.release-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:.25rem;
+  padding:3px 10px;
+  border-radius:999px;
+  font-size:.7rem;
+  line-height:1;
+  white-space:nowrap;
+  border:1px solid rgba(37,99,235,0.65);
+  color:var(--brand-accent);
+  background:rgba(37,99,235,0.10);
+}
+html[data-theme="light"] .release-tag{
+  border-color:rgba(59,130,246,0.55);
+  background:rgba(59,130,246,0.08);
+}
+html[data-theme="dark"] .release-tag{
+  border-color:rgba(96,165,250,0.9);
+  background:rgba(37,99,235,0.20);
+}
+
+/* ==========================================================================
+   11) SUBHEADER SEARCH (used on releases)
+   ========================================================================== */
+
+.site-subheader-inner{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:1.5rem;
+}
+
+.site-subheader-left{
+  flex:1 1 0;
+  min-width:0;
+}
+
+.site-subheader-search{
+  flex:1 1 0;
+  width:100%;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.site-subheader-search .shell-bar-search{
+  flex:1 1 0;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.site-subheader-search .search-input{
+  width:100%;
+  max-width:420px;
+  padding:.75rem 1.1rem;
+  border-radius:999px;
+  border:1px solid var(--line-soft, rgba(148,163,184,0.6));
+  font-size:.9rem;
+  background:rgba(15,23,42,0.04);
+  color:var(--ink);
+  outline:none;
+  transition:border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+.site-subheader-search .search-input::placeholder{color:var(--muted)}
+
+html[data-theme="dark"] .site-subheader-search .search-input{
+  background:rgba(15,23,42,0.5);
+  border-color:rgba(148,163,184,0.45);
+  color:#e5e7eb;
+}
+html[data-theme="light"] .site-subheader-search .search-input{
+  background:rgba(255,255,255,0.85);
+  border-color:rgba(148,163,184,0.55);
+  color:#020617;
+}
+
+@media (max-width:768px){
+  .site-subheader-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .site-subheader-search{
+    width:100%;
+    justify-content:flex-start;
+  }
+  .site-subheader-search .shell-bar-search{width:100%}
+  .site-subheader-search .search-input{max-width:none}
+}
+
+/* ==========================================================================
+   12) HOME / AUDIENCE PAGES
+   ========================================================================== */
+
+.home-main{
+  max-width:var(--container-6xl);
+  margin:0 auto;
+  padding:0 1rem 3rem; /* sits directly under header */
+  margin-top:0;
+}
+
+.home-section{margin:2.5rem 0}
+
+/* Hero shell */
+.home-hero-shell{
+  display:grid;
+  grid-template-columns:minmax(0, 1.3fr) minmax(0, 1fr);
+  gap:2rem;
+  align-items:center;
+}
+
+@media (max-width:900px){
+  .home-hero-shell{grid-template-columns:minmax(0, 1fr)}
+}
+
+.home-hero-left,
+.home-hero-right{min-width:0}
+
+.home-hero-subheader{
+  margin-top:0;
+  padding-top:1.5rem;
+}
+
+.home-kicker{
+  font-size:.8rem;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--muted);
+  margin-bottom:.5rem;
+}
+
+.home-hero-title{
+  font-size:2.1rem;
+  line-height:1.1;
+  letter-spacing:-.04em;
+  margin:0 0 .6rem;
+  color:var(--ink);
+}
+
+.hero-heading span{
+  background:linear-gradient(90deg,#2563eb 0%,#22d3ee 50%,#7dd3fc 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-weight:800;
+}
+
+.home-hero-lead{
+  margin:0 0 1rem;
+  font-size:.98rem;
+  color:var(--muted);
+}
+
+.home-hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem;
+  margin-bottom:.6rem;
+}
+
+.home-hero-footnote{
+  font-size:.75rem;
+  color:var(--muted);
+}
+
+.icon-list{
+  list-style:none;
+  padding:0;
+  margin:0 0 1.2rem;
+}
+.icon-list li{
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  margin-bottom:.45rem;
+  font-size:.9rem;
+  color:var(--muted);
+}
+.icon-list .icon{
+  width:20px;height:20px;
+  flex-shrink:0;
+}
+
+/* Right hero card */
+.home-hero-card{border-radius:1rem}
+.home-hero-card-title{
+  margin:0 0 .5rem;
+  font-size:.95rem;
+  font-weight:600;
+  color:var(--ink);
+}
+.home-hero-steps{
+  margin:0 0 .5rem 1.1rem;
+  padding:0;
+  font-size:.85rem;
+  color:var(--muted);
+}
+.home-hero-steps li{margin-bottom:.25rem}
+.home-hero-mini{font-size:.78rem;color:var(--muted)}
+
+/* Grid helpers */
+.home-grid-4,
+.home-grid-3,
+.home-grid-2{
+  display:grid;
+  gap:1.2rem;
+}
+
+.home-grid-4{grid-template-columns:repeat(4, minmax(0, 1fr))}
+.home-grid-3{grid-template-columns:repeat(3, minmax(0, 1fr))}
+.home-grid-2{grid-template-columns:repeat(2, minmax(0, 1fr))}
+
+@media (max-width:1024px){
+  .home-grid-4{grid-template-columns:repeat(2, minmax(0, 1fr))}
+}
+@media (max-width:800px){
+  .home-grid-4,
+  .home-grid-3,
+  .home-grid-2{grid-template-columns:minmax(0, 1fr)}
+}
+
+/* Section headings */
+.home-section-title{
+  font-size:1.6rem;
+  margin:0 0 .4rem;
+  color:var(--brand-primary);
+}
+html[data-theme="dark"] .home-section-title{color:var(--ink)}
+
+.home-section-intro{
+  margin:0 0 1.2rem;
+  font-size:.9rem;
+  color:var(--muted);
+}
+
+/* Cards text */
+.home-card-title{
+  margin:0 0 .35rem;
+  font-size:1rem;
+  font-weight:600;
+  color:var(--ink);
+}
+.home-card-body{
+  margin:0;
+  font-size:.9rem;
+  color:var(--muted);
+}
+.home-card-link{
+  display:inline-block;
+  margin-top:.7rem;
+  font-size:.8rem;
+  color:var(--brand-primary);
+  text-decoration:underline;
+}
+html[data-theme="dark"] .home-card-link{color:var(--brand-accent)}
+
+/* Misc */
+.home-step-kicker{
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--muted);
+  margin-bottom:.35rem;
+}
+.home-faq-question{font-weight:600;cursor:pointer}
+
+/* ==========================================================================
+   13) CONTACT SECTION (HOME + AUDIENCES)
+   ========================================================================== */
+
+.home-contact-grid{
+  display:grid;
+  gap:1.5rem;
+  align-items:start;
+}
+
+/* 1/2 + 1/2 on desktop */
+@media (min-width:960px){
+  .home-contact-grid{
+    grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.home-contact-card,
+.home-contact-side{
+  width:100%;
+  max-width:none;
+}
+
+.home-field{
+  display:flex;
+  flex-direction:column;
+  font-size:.85rem;
+  color:var(--muted);
+}
+
+.home-field input,
+.home-field textarea,
+.home-field select{
+  margin-top:.25rem;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+/* Consent line (single source of truth) */
+.home-field.home-consent{
+  margin:1rem 0;
+}
+.home-field.home-consent .home-checkbox{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  margin:0;
+}
+.home-field.home-consent .home-checkbox input[type="checkbox"]{
+  margin:0;
+  flex:0 0 auto;
+}
+.home-field.home-consent .home-checkbox span{margin:0}
+
+/* Turnstile spacing */
+.home-field-turnstile{
+  margin-top:.75rem;
+  margin-bottom:.25rem;
+}
+
+/* Links styling helper */
+.home-link{
+  color:var(--brand-primary);
+  text-decoration:underline;
+}
+html[data-theme="dark"] .home-link{color:var(--brand-accent)}
+
+/* Trigger cards (audience picker) */
+.home-trigger-card{
+  display:block;
+  padding:1rem;
+  text-decoration:none;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+  will-change:transform;
+}
+.home-trigger-card .home-card-title,
+.home-trigger-card .home-card-body{color:inherit}
+
+.home-trigger-card:hover,
+.home-trigger-card:focus-visible{
+  transform:translateY(-2px);
+  box-shadow:0 16px 40px rgba(2, 6, 23, .12);
+  border-color:rgba(37, 99, 235, .35);
+  background:rgba(37, 99, 235, .04);
+}
+.home-trigger-card:focus-visible{
+  outline:2px solid rgba(37, 99, 235, .45);
+  outline-offset:2px;
+}
+
+/* ==========================================================================
+   14) FREE-TIER DEMO / MANUAL PAGE
+   ========================================================================== */
 
 .manual-page{
   background:
@@ -491,21 +908,16 @@ html[data-theme="dark"] .site-footer{
   padding:1rem 1rem 2.5rem;
 }
 
-/* Hero layout */
-
 .manual-hero{
   margin-top:1.5rem;
   margin-bottom:3rem;
   display:grid;
-  grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+  grid-template-columns:minmax(0, 1.3fr) minmax(0, 1fr);
   gap:1.25rem;
   align-items:flex-start;
 }
-
 @media (max-width:960px){
-  .manual-hero{
-    grid-template-columns:minmax(0,1fr);
-  }
+  .manual-hero{grid-template-columns:minmax(0, 1fr)}
 }
 
 .manual-hero-main{
@@ -523,7 +935,6 @@ html[data-theme="light"] .manual-hero-main{
     radial-gradient(circle at 40% 120%, rgba(56,189,248,0.20), transparent 60%),
     linear-gradient(135deg,#E5F0FF,#FFFFFF);
 }
-
 .manual-hero-main::before{
   content:"";
   position:absolute;
@@ -535,36 +946,26 @@ html[data-theme="light"] .manual-hero-main{
   mix-blend-mode:soft-light;
   pointer-events:none;
 }
-
 .manual-hero-inner{position:relative;z-index:1;}
 
-/* Hero text */
-
-/* Outer container */
-.manual-hero-kicker {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.03);      /* glass look */
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
+.manual-hero-kicker{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  padding:.25rem .75rem;
+  border-radius:999px;
 }
-
-/* The little dot */
-.manual-hero-kicker-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: var(--green-400);
-  flex-shrink: 0;
+.manual-hero-kicker-dot{
+  width:10px;height:10px;border-radius:999px;
+  background:var(--green-400);
+  flex-shrink:0;
 }
-
-/* Inner pill */
-.manual-hero-kicker .pill-blue {
-  border: 1px solid rgba(90, 150, 255, 0.5);  /* visible in dark mode */
-  background: rgba(30, 60, 160, 0.25);        /* subtle blue glass */
-  color: var(--blue-300);
+.manual-hero-kicker .pill-blue{
+  border:1px solid rgba(90,150,255,0.5);
+  background:rgba(30,60,160,0.25);
+  color:var(--blue-300);
 }
 
 .manual-hero-title{
@@ -574,9 +975,7 @@ html[data-theme="light"] .manual-hero-main{
   letter-spacing:-.04em;
   color:#E5E7EB;
 }
-html[data-theme="light"] .manual-hero-title{
-  color:#0F172A;
-}
+html[data-theme="light"] .manual-hero-title{color:#0F172A}
 
 .manual-hero-title span{
   background:linear-gradient(135deg,#2563EB,#22C1EE);
@@ -593,8 +992,6 @@ html[data-theme="light"] .manual-hero-title{
   max-width:40rem;
 }
 
-/* Hero pills */
-
 .manual-hero-pills{
   display:flex;
   flex-wrap:wrap;
@@ -602,7 +999,6 @@ html[data-theme="light"] .manual-hero-title{
   margin:.4rem 0 .8rem;
   font-size:.78rem;
 }
-
 .manual-hero-pill{
   display:inline-flex;
   align-items:center;
@@ -613,17 +1009,12 @@ html[data-theme="light"] .manual-hero-title{
   background:rgba(15,23,42,0.7);
   color:var(--muted);
 }
-html[data-theme="light"] .manual-hero-pill{
-  background:rgba(255,255,255,0.94);
-}
-
+html[data-theme="light"] .manual-hero-pill{background:rgba(255,255,255,0.94)}
 .manual-hero-pill-dot{
   width:6px;height:6px;border-radius:999px;
   background:#22C55E;
   box-shadow:0 0 0 4px rgba(34,197,94,0.3);
 }
-
-/* Hero note */
 
 .manual-hero-note{
   margin-top:.75rem;
@@ -634,11 +1025,7 @@ html[data-theme="light"] .manual-hero-pill{
   font-size:.78rem;
   color:var(--muted);
 }
-html[data-theme="light"] .manual-hero-note{
-  background:rgba(255,255,255,0.98);
-}
-
-/* Right-hand side */
+html[data-theme="light"] .manual-hero-note{background:rgba(255,255,255,0.98)}
 
 .manual-hero-side{
   display:flex;
@@ -673,7 +1060,7 @@ html[data-theme="dark"] .manual-side-card{
   padding:0;
   font-size:.8rem;
 }
-.manual-side-list li{margin-bottom:.25rem;}
+.manual-side-list li{margin-bottom:.25rem}
 
 .manual-side-badges{
   display:flex;
@@ -690,26 +1077,18 @@ html[data-theme="dark"] .manual-side-card{
   color:var(--muted);
   background:rgba(248,250,252,0.96);
 }
-html[data-theme="dark"] .manual-side-badge{
-  background:rgba(15,23,42,0.96);
-}
-
-/* Section grid */
+html[data-theme="dark"] .manual-side-badge{background:rgba(15,23,42,0.96)}
 
 .manual-sections{
   margin-top:1.2rem;
   margin-bottom:1.6rem;
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
   gap:.95rem;
 }
 @media (max-width:960px){
-  .manual-sections{
-    grid-template-columns:minmax(0,1fr);
-  }
+  .manual-sections{grid-template-columns:minmax(0, 1fr)}
 }
-
-/* Cards */
 
 .manual-card{
   position:relative;
@@ -749,14 +1128,14 @@ html[data-theme="dark"] .manual-card{
   color:var(--muted);
   line-height:1.5;
 }
-.manual-card-body p{margin:0 0 .35rem;}
+.manual-card-body p{margin:0 0 .35rem}
 
 .manual-list{
   margin:.2rem 0 .3rem 1.1rem;
   padding:0;
   font-size:.8rem;
 }
-.manual-list li{margin-bottom:.25rem;}
+.manual-list li{margin-bottom:.25rem}
 
 .manual-chip-row{
   margin-top:.5rem;
@@ -765,41 +1144,30 @@ html[data-theme="dark"] .manual-card{
   gap:.35rem;
 }
 
+/* Manual chips (keep the softer feel) */
 .manual-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:.25rem;
+  padding:3px 10px;
   border-radius:999px;
-  padding:.2rem .55rem;
   font-size:.7rem;
+  line-height:1;
   border:1px solid rgba(148,163,184,0.75);
-  background:rgba(248,250,252,0.96);
   color:var(--muted);
+  background:rgba(15,23,42,0.06);
 }
-html[data-theme="dark"] .manual-chip{
-  background:rgba(15,23,42,0.94);
+html[data-theme="light"] .manual-chip{background:rgba(255,255,255,0.9)}
+html[data-theme="dark"] .manual-chip{background:rgba(15,23,42,0.94)}
+
+.manual-card-highlight{
+  background:linear-gradient(145deg, rgba(255,255,255,0.65), rgba(230,240,255,0.45));
+  border:1px solid rgba(140,160,200,0.4);
 }
-
-/* Card variant with hero-style background (used for last block) */
-
-/* Light mode */
-.manual-card-highlight {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.65),
-    rgba(230, 240, 255, 0.45)
-  );
-  border: 1px solid rgba(140, 160, 200, 0.4);
+html[data-theme="dark"] .manual-card-highlight{
+  background:linear-gradient(145deg, rgba(30,40,70,0.7), rgba(20,25,50,0.9));
+  border:1px solid rgba(90,110,150,0.4);
 }
-
-/* Dark mode */
-html[data-theme="dark"] .manual-card-highlight {
-  background: linear-gradient(
-    145deg,
-    rgba(30, 40, 70, 0.7),
-    rgba(20, 25, 50, 0.9)
-  );
-  border: 1px solid rgba(90, 110, 150, 0.4);
-}
-
-/* Reference / code boxes */
 
 .manual-ref-box{
   margin-top:.35rem;
@@ -811,11 +1179,7 @@ html[data-theme="dark"] .manual-card-highlight {
   font-size:.72rem;
   word-break:break-all;
 }
-html[data-theme="dark"] .manual-ref-box{
-  background:#0F172A;
-}
-
-/* Upgrade callout inside last card */
+html[data-theme="dark"] .manual-ref-box{background:#0F172A}
 
 .manual-upgrade-callout{
   margin-top:.4rem;
@@ -826,9 +1190,7 @@ html[data-theme="dark"] .manual-ref-box{
   font-size:.8rem;
   color:var(--muted);
 }
-html[data-theme="light"] .manual-upgrade-callout{
-  background:rgba(255,255,255,0.95);
-}
+html[data-theme="light"] .manual-upgrade-callout{background:rgba(255,255,255,0.95)}
 
 .manual-upgrade-actions{
   margin-top:.6rem;
@@ -836,8 +1198,6 @@ html[data-theme="light"] .manual-upgrade-callout{
   flex-wrap:wrap;
   gap:.45rem;
 }
-
-/* Floating contact card */
 
 .manual-contact-card{
   margin-top:1.4rem;
@@ -847,9 +1207,7 @@ html[data-theme="light"] .manual-upgrade-callout{
   padding:1rem 1.1rem .95rem;
   box-shadow:0 18px 50px rgba(15,23,42,0.6);
 }
-html[data-theme="light"] .manual-contact-card{
-  background:#FFFFFF;
-}
+html[data-theme="light"] .manual-contact-card{background:#FFFFFF}
 
 .manual-contact-title{
   margin:0 0 .35rem;
@@ -869,762 +1227,4 @@ html[data-theme="light"] .manual-contact-card{
   font-size:.78rem;
   color:var(--muted);
   margin-bottom:.7rem;
-}
-
-/* =========================================================
-   1. Site background – reuse delivery portal style
-   ========================================================= */
-
-body {
-  /* dark-mode base, overridden below for light */
-  background:
-    radial-gradient(circle at 0% 0%,  rgba(37, 99, 235, 0.18), transparent 55%),
-    radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
-    radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.85), #020617);
-  color: var(--ink);
-  /* keep gradient fixed to viewport instead of the full document */
-  background-attachment: fixed;
-}
-
-html[data-theme="light"] body {
-  background:
-    radial-gradient(circle at 0% 0%,  rgba(59, 130, 246, 0.15), transparent 55%),
-    radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
-    radial-gradient(circle at 50% 100%, rgba(219, 234, 254, 0.9), #eff6ff);
-  color: #020617;
-  background-attachment: fixed;
-}
-
-/* --------------------------------------------------------------------------
-   RELEASE CARDS  (desktop + mobile)
-   -------------------------------------------------------------------------- */
-
-/* Container: rely on .container for centering and horizontal padding
-   so the cards line up perfectly with the subheader. */
-.release-page .release-cards-view {
-  margin-top: 1.5rem;
-}
-
-/* Mobile-first: single column card */
-.release-card {
-  position: relative;
-  float: none;
-  width: 100%;
-  margin: 1.5rem 0 2rem;
-  border-radius: 1.5rem;
-}
-
-/* Header row (title + tags) */
-.release-card-header {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
-
-/* first line: date · version · deploy */
-.release-card-header-line {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .35rem;
-  align-items: baseline;
-  font-size: .8rem;
-  color: var(--muted);
-}
-
-.release-card-date {
-  font-weight: 500;
-}
-.release-card-version {
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-}
-.release-card-deploy {
-  opacity: .9;
-}
-
-/* Tags row */
-.release-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .4rem;
-}
-
-/* Card body */
-.release-card-body {
-  margin-top: .75rem;
-  font-size: .9rem;
-}
-
-/* “New” / “Fixes” two-column layout on desktop */
-.release-columns {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-top: .4rem;
-}
-
-.release-column {
-  min-width: 0;
-}
-
-.release-section-label {
-  font-size: .78rem;
-  text-transform: uppercase;
-  letter-spacing: .09em;
-  font-weight: 600;
-  color: var(--muted);
-  margin-bottom: .35rem;
-}
-
-/* list styles reused from previous version */
-.release-columns ul {
-  margin: .1rem 0 .2rem 1.1rem;
-  padding: 0;
-}
-.release-columns li {
-  margin-bottom: .25rem;
-}
-
-/* Desktop: still a single card per row, but “New/Fixes” side-by-side */
-@media (min-width: 900px) {
-  .release-card {
-    margin: 1.75rem 0 2.25rem;
-  }
-
-  .release-card-header {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1.25rem;
-  }
-
-  .release-card-tags {
-    justify-content: flex-end;
-  }
-
-  .release-columns {
-    flex-direction: row;
-    gap: 2.5rem;
-  }
-
-  .release-column {
-    flex: 1 1 0;
-  }
-}
-
-/* Legacy table stays hidden */
-.release-table-view {
-  display: none;
-}
-
-/* =========================================================
-   2. Tag chips – align with delivery portal “View POD” chip
-   ========================================================= */
-
-/* container for tag rows (releases + manual chips still work) */
-.release-tags,
-.manual-chip-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-/* release tags – new chip style */
-.release-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  line-height: 1;
-  white-space: nowrap;
-
-  border: 1px solid rgba(37, 99, 235, 0.65);
-  color: var(--brand-accent);
-  background: rgba(37, 99, 235, 0.10);
-}
-
-html[data-theme="light"] .release-tag {
-  border-color: rgba(59, 130, 246, 0.55);
-  background: rgba(59, 130, 246, 0.08);
-}
-
-html[data-theme="dark"] .release-tag {
-  border-color: rgba(96, 165, 250, 0.9);
-  background: rgba(37, 99, 235, 0.20);
-}
-
-/* If you want the manual page chips to match as well, keep this.
-   If you prefer the existing softer chips there, you can delete it. */
-.manual-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  line-height: 1;
-
-  border: 1px solid rgba(148, 163, 184, 0.75);
-  color: var(--muted);
-  background: rgba(15, 23, 42, 0.06);
-}
-
-html[data-theme="light"] .manual-chip {
-  background: rgba(255, 255, 255, 0.9);
-}
-
-/* =========================================================
-   3. Releases search field – responsive layout
-   ========================================================= */
-
-/* Subheader shell: text on the left, search on the right */
-.site-subheader-inner {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.5rem;
-}
-
-.site-subheader-left {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-/* Right side: search takes roughly half of the bar on desktop */
-.site-subheader-search {
-  flex: 1 1 0;
-  max-width: none;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* Inner wrapper so we can stretch the field */
-.site-subheader-search .shell-bar-search {
-  flex: 1 1 0;
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* Pill-style search input */
-.site-subheader-search .search-input {
-  width: 100%;
-  max-width: 420px;             /* “right half” on desktop */
-  padding: .75rem 1.1rem;
-  border-radius: 999px;
-  border: 1px solid var(--line-soft, rgba(148,163,184,0.6));
-  font-size: .9rem;
-  background: rgba(15,23,42,0.04);
-  color: var(--ink);
-  outline: none;
-  transition:
-    border-color 150ms ease,
-    box-shadow 150ms ease,
-    background-color 150ms ease;
-}
-
-.site-subheader-search .search-input::placeholder {
-  color: var(--muted);
-}
-
-/* Light / dark variations */
-html[data-theme="dark"] .site-subheader-search .search-input {
-  background: rgba(15,23,42,0.5);
-  border-color: rgba(148,163,184,0.45);
-  color: #e5e7eb;
-}
-
-html[data-theme="light"] .site-subheader-search .search-input {
-  background: rgba(255,255,255,0.85);
-  border-color: rgba(148,163,184,0.55);
-  color: #020617;
-}
-
-/* Mobile: search moves under the text and spans full width */
-@media (max-width: 768px) {
-  .site-subheader-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .site-subheader-search {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .site-subheader-search .shell-bar-search {
-    width: 100%;
-  }
-
-  .site-subheader-search .search-input {
-    max-width: none; /* full width on mobile */
-  }
-}
-
-/* =========================================================
-   HOME PAGE LAYOUT
-   ========================================================= */
-
-.home-main {
-  max-width: var(--container-6xl);
-  margin: 0 auto;
-  padding: 2.5rem 1rem 3rem;
-}
-
-/* Generic section spacing */
-.home-section {
-  margin: 2.5rem 0;
-}
-
-/* HERO */
-
-.home-hero-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: 2rem;
-  align-items: center;
-}
-
-@media (max-width: 900px) {
-  .home-hero-shell {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-.home-hero-left {
-  min-width: 0;
-}
-
-.home-hero-right {
-  min-width: 0;
-}
-
-.home-kicker {
-  font-size: .8rem;
-  text-transform: uppercase;
-  letter-spacing: .16em;
-  color: var(--muted);
-  margin-bottom: .5rem;
-}
-
-.home-hero-title {
-  font-size: 2.1rem;
-  line-height: 1.1;
-  letter-spacing: -.04em;
-  margin: 0 0 .6rem;
-  color: var(--ink);
-}
-
-.home-hero-lead {
-  margin: 0 0 1rem;
-  font-size: .98rem;
-  color: var(--muted);
-}
-
-.icon-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.2rem;
-}
-
-.icon-list li {
-  display: flex;
-  align-items: center;
-  gap: .55rem;
-  margin-bottom: .45rem;
-  font-size: .9rem;
-  color: var(--muted);
-}
-
-.icon-list .icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-
-.home-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem;
-  margin-bottom: .6rem;
-}
-
-.home-hero-footnote {
-  font-size: .75rem;
-  color: var(--muted);
-}
-
-/* Right-hand hero card */
-
-.home-hero-card {
-  border-radius: 1rem;
-}
-
-.home-hero-card-title {
-  margin: 0 0 .5rem;
-  font-size: .95rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.home-hero-steps {
-  margin: 0 0 .5rem 1.1rem;
-  padding: 0;
-  font-size: .85rem;
-  color: var(--muted);
-}
-
-.home-hero-steps li {
-  margin-bottom: .25rem;
-}
-
-.home-hero-mini {
-  font-size: .78rem;
-  color: var(--muted);
-}
-
-/* GRID HELPERS */
-
-.home-grid-4,
-.home-grid-3,
-.home-grid-2 {
-  display: grid;
-  gap: 1.2rem;
-}
-
-.home-grid-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.home-grid-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.home-grid-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-@media (max-width: 1024px) {
-  .home-grid-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 800px) {
-  .home-grid-4,
-  .home-grid-3,
-  .home-grid-2 {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-/* Section headers */
-
-.home-section-title {
-  font-size: 1.6rem;
-  margin: 0 0 .4rem;
-  color: var(--brand-primary);
-}
-
-html[data-theme="dark"] .home-section-title {
-  color: var(--ink);
-}
-
-.home-section-intro {
-  margin: 0 0 1.2rem;
-  font-size: .9rem;
-  color: var(--muted);
-}
-
-/* Cards */
-
-.home-card-title {
-  margin: 0 0 .35rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.home-card-body {
-  margin: 0;
-  font-size: .9rem;
-  color: var(--muted);
-}
-
-.home-card-link {
-  display: inline-block;
-  margin-top: .7rem;
-  font-size: .8rem;
-  color: var(--brand-primary);
-  text-decoration: underline;
-}
-
-html[data-theme="dark"] .home-card-link {
-  color: var(--brand-accent);
-}
-
-/* Steps */
-
-.home-step-kicker {
-  font-size: .75rem;
-  text-transform: uppercase;
-  letter-spacing: .16em;
-  color: var(--muted);
-  margin-bottom: .35rem;
-}
-
-/* FAQ */
-
-.home-faq-question {
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* CONTACT */
-
-.home-contact-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
-@media (min-width: 960px) {
-  .home-contact-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-}
-
-.home-form {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: .75rem;
-}
-
-/* Hide honeypot field visually but keep it in DOM */
-.home-honeypot {
-  display: none !important;
-}
-
-.home-field {
-  display: flex;
-  flex-direction: column;
-  font-size: .85rem;
-  color: var(--muted);
-}
-
-/* Ensure all home inputs are styled and stay inside the card */
-.home-field input,
-.home-field textarea,
-.home-field select {
-  margin-top: .25rem;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-/* Keep checkbox label tidy */
-.home-consent {
-  display: flex;
-  align-items: flex-start;
-  gap: .45rem;
-  font-size: .8rem;
-  color: var(--muted);
-}
-
-.home-consent input[type="checkbox"] {
-  margin-top: .15rem;
-}
-
-
-.home-consent input[type="checkbox"] {
-  margin-top: .15rem;
-}
-
-.home-link {
-  color: var(--brand-primary);
-  text-decoration: underline;
-}
-
-html[data-theme="dark"] .home-link {
-  color: var(--brand-accent);
-}
-
-.home-form-status {
-  margin-top: .25rem;
-  font-size: .8rem;
-  color: var(--muted);
-}
-
-.home-form-status-error {
-  color: #f97373;
-}
-
-.home-contact-side {
-  font-size: .9rem;
-}
-
-.home-contact-subtitle {
-  margin: 1.2rem 0 .35rem;
-  font-size: .85rem;
-  font-weight: 600;
-}
-
-.home-contact-links {
-  list-style: disc;
-  margin: 0 0 0 1.1rem;
-  padding: 0;
-  font-size: .85rem;
-}
-
-.visually-hidden {
-  position:absolute;
-  width:1px;
-  height:1px;
-  padding:0;
-  margin:-1px;
-  overflow:hidden;
-  clip:rect(0,0,0,0);
-  border:0;
-}
-
-/* Make the hero sit directly under the main header, like the old subheader */
-.home-main {
-  padding-top: 0;      /* remove leftover top padding that assumed a subheader */
-  margin-top: 0;
-}
-
-.home-hero-subheader {
-  margin-top: 0;       /* no extra gap above hero */
-  padding-top: 1.5rem; /* small breathing room under the nav bar */
-}
-
-.hero-heading span {
-  background: linear-gradient(
-    90deg,
-    #2563eb 0%,
-    #22d3ee 50%,
-    #7dd3fc 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 800;
-}
-
-/* Make consent line and checkbox align nicely */
-.home-checkbox {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-/* Small visual offset so the tick is vertically centered vs. text */
-.home-checkbox input[type="checkbox"] {
-  margin-top: 0.15rem;
-}
-
-/* Space between privacy line and Turnstile widget */
-.home-field.home-consent {
-  margin-bottom: 0.5rem;
-}
-
-/* Extra space around the Turnstile widget */
-.home-field-turnstile {
-  margin-top: 0.5rem;
-  margin-bottom: 0.25rem;
-}
-
-/* Optional: make the hidden honeypot really hidden but still accessible */
-.home-field-hp.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-/* Audience trigger cards (match "plan card" hover feel without touching existing classes) */
-.home-trigger-card{
-  display:block;
-  padding:1rem;
-  text-decoration:none;
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-  will-change: transform;
-}
-
-/* Ensure text inherits normal colors */
-.home-trigger-card .home-card-title,
-.home-trigger-card .home-card-body{
-  color: inherit;
-}
-
-/* Hover/focus highlight like pricing plans (lift + stronger outline/shadow) */
-.home-trigger-card:hover,
-.home-trigger-card:focus-visible{
-  transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(2, 6, 23, .12);
-  border-color: rgba(37, 99, 235, .35); /* brand accent-ish; safe even if border already exists */
-}
-
-/* Optional: subtle background tint on hover to improve affordance */
-.home-trigger-card:hover{
-  background: rgba(37, 99, 235, .04);
-}
-
-/* Better keyboard focus ring */
-.home-trigger-card:focus-visible{
-  outline: 2px solid rgba(37, 99, 235, .45);
-  outline-offset: 2px;
-}
-/* Consent row spacing */
-.home-consent{
-  margin: 1rem 0;
-}
-
-/* Align checkbox with left edge of inputs and keep text right next to it */
-.home-consent .home-checkbox{
-  display:flex;
-  align-items:center;
-  gap:.6rem;
-  margin:0;
-}
-
-/* Prevent the checkbox from drifting/centering */
-.home-consent .home-checkbox input[type="checkbox"]{
-  margin:0;
-  flex: 0 0 auto;
-}
-
-/* Keep the sentence snug */
-.home-consent .home-checkbox span{
-  margin:0;
-}
-
-/* Consent row: aligned with inputs + 1rem space above/below */
-.home-field.home-consent{
-  margin: 1rem 0;
-}
-
-/* Force label to align left like inputs and keep text directly after */
-.home-field.home-consent .home-checkbox{
-  display:flex;
-  align-items:center;
-  gap:.6rem;
-  margin:0;
-}
-
-/* Checkbox stays on the left edge; no extra top offset */
-.home-field.home-consent .home-checkbox input[type="checkbox"]{
-  margin:0;
-  flex: 0 0 auto;
-}
-
-/* Tight text */
-.home-field.home-consent .home-checkbox span{
-  margin:0;
 }
