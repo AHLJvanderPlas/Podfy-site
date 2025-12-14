@@ -1392,7 +1392,7 @@ html[data-theme="dark"] .home-card-link {
 
 @media (min-width: 960px) {
   .home-contact-grid {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, .9fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
 
@@ -1602,5 +1602,29 @@ html[data-theme="dark"] .home-link {
 
 /* Keep the sentence snug */
 .home-consent .home-checkbox span{
+  margin:0;
+}
+
+/* Consent row: aligned with inputs + 1rem space above/below */
+.home-field.home-consent{
+  margin: 1rem 0;
+}
+
+/* Force label to align left like inputs and keep text directly after */
+.home-field.home-consent .home-checkbox{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  margin:0;
+}
+
+/* Checkbox stays on the left edge; no extra top offset */
+.home-field.home-consent .home-checkbox input[type="checkbox"]{
+  margin:0;
+  flex: 0 0 auto;
+}
+
+/* Tight text */
+.home-field.home-consent .home-checkbox span{
   margin:0;
 }
