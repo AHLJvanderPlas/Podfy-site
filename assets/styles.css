@@ -1581,3 +1581,26 @@ html[data-theme="dark"] .home-link {
   outline: 2px solid rgba(37, 99, 235, .45);
   outline-offset: 2px;
 }
+/* Consent row spacing */
+.home-consent{
+  margin: 1rem 0;
+}
+
+/* Align checkbox with left edge of inputs and keep text right next to it */
+.home-consent .home-checkbox{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  margin:0;
+}
+
+/* Prevent the checkbox from drifting/centering */
+.home-consent .home-checkbox input[type="checkbox"]{
+  margin:0;
+  flex: 0 0 auto;
+}
+
+/* Keep the sentence snug */
+.home-consent .home-checkbox span{
+  margin:0;
+}
