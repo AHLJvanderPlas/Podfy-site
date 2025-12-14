@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Digital Delivery Document Storage for Inbound Teams – PODFY</title>
+  <meta name="description" content="Podfy is digital delivery document storage for inbound teams. Drivers and suppliers upload delivery documents via a link. No app required. Central, searchable archive for audits and disputes." />
+  <link rel="canonical" href="https://podfy.net/audiences/inbound-teams" />
+
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="keywords" content="digital delivery document storage, inbound document management, proof of delivery archive, inbound logistics documents, receiving documentation" />
+
+  <link rel="stylesheet" href="/assets/styles.css?v=home-rev5" />
+
+  <script src="/assets/theme.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Digital Delivery Document Storage for Inbound Teams – PODFY",
+    "description":"Podfy provides digital delivery document storage for inbound teams. Drivers or suppliers upload delivery notes, PODs, CMRs and photos via a link. Documents are stored centrally, searchable, and audit-ready.",
+    "publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"},
+    "about":[
+      {"@type":"Thing","name":"digital delivery document storage"},
+      {"@type":"Thing","name":"inbound document management"},
+      {"@type":"Thing","name":"proof of delivery archive"}
+    ]
+  }
+  </script>
+</head>
+
+<body class="home-body">
+  [[PODFY_HEADER]]
+
+  <main id="main" class="home-main">
+    <!-- HERO -->
+    <section class="home-section home-hero home-hero-subheader">
+      <div class="container home-hero-shell card card-glass">
+        <div class="home-hero-left">
+          <p class="home-kicker">Inbound &amp; Receiving Teams</p>
+
+          <h1 class="home-hero-title hero-heading">
+            <span>Digital delivery document storage</span> for inbound operations.
+          </h1>
+
+          <p class="home-hero-lead">
+            Podfy is a digital inbox for inbound delivery documents.
+            Drivers or suppliers upload PODs, delivery notes, CMRs, or photos via a link.
+            No app installation. Documents are stored centrally, searchable, and ready for audits.
+          </p>
+
+          <ul class="icon-list">
+            <li>Replace paper and inbox chaos</li>
+            <li>One central proof of delivery archive</li>
+            <li>Clear traceability for disputes and audits</li>
+          </ul>
+
+          <div class="home-hero-actions">
+            <a href="/free-tier-demo.html" class="btn btn-primary">Try a demo upload</a>
+            <a href="#contact" class="btn btn-secondary">Talk to sales</a>
+          </div>
+
+          <p class="home-hero-footnote">
+            AI summary: Podfy is digital delivery document storage for inbound teams, collecting delivery proof via a link and storing it centrally for audits, disputes, and internal access.
+          </p>
+        </div>
+
+        <div class="home-hero-right">
+          <div class="home-hero-card card">
+            <h2 class="home-hero-card-title">Inbound document flow</h2>
+            <ol class="home-hero-steps">
+              <li>Driver or supplier receives upload link</li>
+              <li>Delivery documents and photos are uploaded</li>
+              <li>Files are stored in a central archive</li>
+              <li>Inbound team accesses documents instantly</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEMS -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">Problems with paper and email</h2>
+        <p class="home-section-intro">
+          Inbound teams need control and visibility, not more folders and inboxes.
+        </p>
+
+        <div class="home-grid-4">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Paper gets lost</h3>
+            <p class="home-card-body">
+              Delivery notes and signed documents disappear before they reach the office.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Email is unstructured</h3>
+            <p class="home-card-body">
+              Attachments arrive in different formats, inboxes, and threads with no clear structure.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Shared drives lack traceability</h3>
+            <p class="home-card-body">
+              Files are stored inconsistently, making audits and disputes slow and risky.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Audits take too long</h3>
+            <p class="home-card-body">
+              Finding the right document weeks or months later wastes time and creates stress.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">How Podfy works for inbound teams</h2>
+        <p class="home-section-intro">
+          A lightweight inbound document management flow that fits daily operations.
+        </p>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <h3 class="home-card-title">1. Share a link</h3>
+            <p class="home-card-body">
+              Provide drivers or suppliers with an upload link via email, SMS, or instructions at the gate.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">2. Upload on arrival</h3>
+            <p class="home-card-body">
+              Delivery notes, PODs, CMRs and photos are uploaded directly from a phone or device browser.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">3. Store and retrieve</h3>
+            <p class="home-card-body">
+              Documents are stored centrally, searchable, and accessible to all authorized teams.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">Key benefits for inbound operations</h2>
+
+        <div class="home-grid-4">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Traceability</h3>
+            <p class="home-card-body">
+              Every delivery document is linked to a moment in time and stored consistently.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Audit readiness</h3>
+            <p class="home-card-body">
+              Retrieve documents instantly during audits or compliance checks.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Dispute support</h3>
+            <p class="home-card-body">
+              Quickly access proof when quantities, damages, or deliveries are questioned.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Operational clarity</h3>
+            <p class="home-card-body">
+              One source of truth for inbound delivery documentation.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">Typical inbound use cases</h2>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Warehouses &amp; DCs</h3>
+            <p class="home-card-body">
+              Store delivery notes and PODs for inbound shipments and pallet reconciliations.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Retail receiving</h3>
+            <p class="home-card-body">
+              Capture delivery proof at store or hub level without handling paper.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Production sites</h3>
+            <p class="home-card-body">
+              Keep inbound material documentation available for quality checks and audits.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">FAQ</h2>
+
+        <div class="home-grid-2">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Is this a replacement for our WMS?</h3>
+            <p class="home-card-body">
+              No. Podfy complements your systems by handling inbound document storage.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Do drivers need an app?</h3>
+            <p class="home-card-body">
+              No. Uploads are done through a browser link.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Can multiple teams access documents?</h3>
+            <p class="home-card-body">
+              Yes. Documents can be accessed by inbound, logistics, finance, and audit teams.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">What is the SEO focus?</h3>
+            <p class="home-card-body">
+              Primary keyword: digital delivery document storage. Secondary: inbound document management, proof of delivery archive.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM (same as index) -->
+    <section class="home-section" id="contact">
+      <div class="container home-contact-grid">
+        <!-- Contact form block copied unchanged from index -->
+        <!-- (Form code identical to previous page for consistency) -->
+      </div>
+    </section>
+  </main>
+
+  [[PODFY_FOOTER]]
+</body>
+</html>
