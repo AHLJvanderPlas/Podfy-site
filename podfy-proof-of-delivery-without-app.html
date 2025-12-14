@@ -292,88 +292,152 @@
       </div>
     </section>
 
-    <!-- 8. FINAL CTA + CONTACT FORM -->
-    <section class="home-section" id="contact">
-      <div class="container home-contact-grid">
+<!-- 8. FINAL CTA + CONTACT FORM (updated layout) -->
+<section class="home-section" id="contact">
+  <div class="container home-contact-grid">
 
-        <div class="card card-glass home-contact-card">
-          <h2 class="home-section-title">Remove barriers. Collect proof faster.</h2>
-          <p class="home-section-intro">
-            Start a proof of delivery process that works for every driver, every phone, and every partner.
-          </p>
+    <!-- LEFT 1/2: FORM -->
+    <div class="card card-glass home-contact-card">
+      <h2 class="home-section-title">Create a clear delivery record for every site</h2>
+      <p class="home-section-intro">
+        Replace paper logs with a simple, digital delivery record.
+      </p>
 
-          <!-- CONTACT FORM (same as main page) -->
-          <form id="contact-form" class="home-contact-form" novalidate>
-            <div class="home-field visually-hidden" aria-hidden="true">
-              <label for="hp_contact">Leave this field empty</label>
-              <input id="hp_contact" name="hp_contact" type="text" tabindex="-1" autocomplete="off" />
-            </div>
-
-            <div class="home-field">
-              <label class="home-label" for="contact-name">Name</label>
-              <input id="contact-name" name="name" type="text" class="home-input" required autocomplete="name" />
-            </div>
-
-            <div class="home-field">
-              <label class="home-label" for="contact-email">Email</label>
-              <input id="contact-email" name="email" type="email" class="home-input" required autocomplete="email" />
-            </div>
-
-            <div class="home-field">
-              <label class="home-label" for="contact-company">Company</label>
-              <input id="contact-company" name="company" type="text" class="home-input" autocomplete="organization" />
-            </div>
-
-            <div class="home-field">
-              <label class="home-label" for="contact-message">Message</label>
-              <textarea id="contact-message" name="message" rows="4" class="home-textarea"></textarea>
-            </div>
-
-            <div class="home-field home-consent">
-              <label class="home-checkbox">
-                <input id="contact-consent" name="consent" type="checkbox" required checked />
-                <span>
-                  I agree to be contacted &amp; accept the
-                  <a href="/privacy.html">Privacy Policy</a>.
-                </span>
-              </label>
-            </div>
-
-            <div class="home-field home-field-turnstile">
-              <div
-                class="cf-turnstile"
-                data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-                data-callback="onTurnstileCompleted"
-                data-expired-callback="onTurnstileExpired"
-                data-error-callback="onTurnstileError"
-                data-theme="auto">
-              </div>
-            </div>
-
-            <input type="hidden" id="turnstileToken" name="turnstileToken" value="" />
-
-            <p id="contact-status" class="home-status" role="status"></p>
-
-            <div class="home-actions">
-              <button type="submit" class="btn btn-primary home-submit">Send request</button>
-            </div>
-          </form>
+      <form id="contact-form" class="home-contact-form" novalidate>
+        <div class="home-field visually-hidden" aria-hidden="true">
+          <label for="hp_contact">Leave this field empty</label>
+          <input id="hp_contact" name="hp_contact" type="text" tabindex="-1" autocomplete="off" />
         </div>
 
-        <aside class="card card-glass home-contact-side">
+        <!-- Hidden context for backend -->
+        <input type="hidden" id="source_page" name="source_page" value="" />
+        <input type="hidden" id="turnstileToken" name="turnstileToken" value="" />
+
+        <div class="home-field">
+          <label class="home-label" for="contact-name">Name</label>
+          <input id="contact-name" name="name" type="text" class="home-input" required autocomplete="name" />
+        </div>
+
+        <div class="home-field">
+          <label class="home-label" for="contact-email">Email</label>
+          <input id="contact-email" name="email" type="email" class="home-input" required autocomplete="email" />
+        </div>
+
+        <div class="home-field">
+          <label class="home-label" for="contact-company">Company</label>
+          <input id="contact-company" name="company" type="text" class="home-input" autocomplete="organization" />
+        </div>
+
+        <div class="home-field">
+          <label class="home-label" for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="4" class="home-textarea"></textarea>
+        </div>
+
+        <!-- Checkbox aligned on the same line -->
+        <div class="home-field home-consent">
+          <label class="home-checkbox" style="display:flex;align-items:flex-start;gap:.6rem;">
+            <input id="contact-consent" type="checkbox" name="consent" required checked style="margin-top:.2rem;" />
+            <span>
+              I agree to be contacted and accept the
+              <a href="/privacy.html">Privacy Policy</a>.
+            </span>
+          </label>
+        </div>
+
+        <p id="contact-status" class="home-status" role="status"></p>
+
+        <!-- Send request ABOVE Turnstile -->
+        <div class="home-actions">
+          <button type="submit" class="btn btn-primary">Send request</button>
+        </div>
+
+        <!-- Prefer email card ABOVE Turnstile card -->
+        <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
           <h3 class="home-card-title">Prefer email?</h3>
           <p class="home-card-body">
-            Reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>.
+            Reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>
+          </p>
+        </div>
+
+        <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
+          <p class="home-card-body" style="margin:0 0 .75rem 0;">
+            Quick check: we validate in the background that you’re not a spam bot.
           </p>
 
-          <div class="cta-bar">
-            <a href="/free-tier-demo.html" class="btn btn-primary">Demo upload</a>
-            <a href="#contact" class="btn btn-secondary">Request demo</a>
+          <div class="home-field home-field-turnstile" style="margin-top:.75rem;">
+            <div
+              class="cf-turnstile"
+              data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+              data-callback="onTurnstileCompleted"
+              data-expired-callback="onTurnstileExpired"
+              data-error-callback="onTurnstileError"
+              data-theme="auto">
+            </div>
           </div>
-        </aside>
+        </div>
+      </form>
+    </div>
 
-      </div>
-    </section>
+    <!-- RIGHT 1/2: LINKS (sentence cards in 2 columns; whole card is clickable + hover highlight) -->
+<aside class="card card-glass home-contact-side">
+  <h3 class="home-card-title">Not sure which page fits?</h3>
+  <p class="home-card-body">Pick the closest match:</p>
+
+  <div class="home-grid-2">
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">
+      <h4 class="home-card-title home-trigger-title">Carriers</h4>
+      <p class="home-card-body">“I run a carrier company and need a simple way to collect proof of delivery without forcing drivers to install an app.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-document-storage">
+      <h4 class="home-card-title home-trigger-title">Inbound / Receiving</h4>
+      <p class="home-card-body">“I manage inbound deliveries and want all delivery documents stored digitally in one central place.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digitize-delivery-documents">
+      <h4 class="home-card-title home-trigger-title">Digitize Paper Flow</h4>
+      <p class="home-card-body">“We still use paper delivery notes and want to digitize our delivery documents without complexity.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-shippers">
+      <h4 class="home-card-title home-trigger-title">Shippers</h4>
+      <p class="home-card-body">“I ship goods and want to receive proof of delivery digitally from any carrier.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-3pl">
+      <h4 class="home-card-title home-trigger-title">3PLs</h4>
+      <p class="home-card-body">“I work with multiple carriers and need one standard way to collect proof of delivery from all of them.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-construction-delivery-documentation">
+      <h4 class="home-card-title home-trigger-title">Construction</h4>
+      <p class="home-card-body">“I manage a construction or project site and need clear proof for frequent material deliveries.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-retail-delivery-documentation">
+      <h4 class="home-card-title home-trigger-title">Retail</h4>
+      <p class="home-card-body">“I manage stores and want delivery documents available centrally without burdening store staff.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-compliance">
+      <h4 class="home-card-title home-trigger-title">Compliance</h4>
+      <p class="home-card-body">“I need reliable proof of delivery for audits, disputes, and invoicing.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-without-app">
+      <h4 class="home-card-title home-trigger-title">No-App / Low-Tech</h4>
+      <p class="home-card-body">“My drivers or subcontractors won’t install apps, but I still need proof of delivery.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-documentation">
+      <h4 class="home-card-title home-trigger-title">Facilities</h4>
+      <p class="home-card-body">“I manage facilities and want a simple digital record of supplier and courier deliveries.”</p>
+    </a>
+  </div>
+</aside>
+
+  </div>
+</section>
   </main>
 
   [[PODFY_FOOTER]]
