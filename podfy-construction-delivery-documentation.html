@@ -30,6 +30,52 @@
   }
   </script>
 </head>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do drivers or suppliers need to install an app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Podfy works through a browser link sent via SMS, WhatsApp, or email. Drivers and suppliers can upload delivery documents or photos without installing an app, creating an account, or receiving training."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can multiple projects or construction sites use Podfy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Each project or site can have its own document flow, making it easy to separate deliveries while keeping everything centrally accessible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of documents and proof can be uploaded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Delivery notes, PODs, CMRs, and photos can be uploaded and stored together per delivery or project."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Podfy suitable for audits, claims, and disputes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All delivery documents and photos are stored centrally and can be retrieved later for disputes, claims, or audits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Podfy handle security and GDPR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Podfy is designed with GDPR compliance in mind and stores documents securely with controlled access for authorized users."
+      }
+    }
+  ]
+}
 
 <body class="home-body">
   [[PODFY_HEADER]]
@@ -302,41 +348,59 @@
 </section>
     
     <!-- 7. FAQ -->
-    <section class="home-section">
-      <div class="container">
-        <h2 class="home-section-title">FAQ</h2>
+<section class="home-section">
+  <div class="container">
+    <h2 class="home-section-title">FAQ</h2>
 
-        <div class="home-grid-2">
-          <article class="card card-glass">
-            <h3 class="home-card-title">Do drivers need to install an app?</h3>
-            <p class="home-card-body">
-              No. Uploading works through a simple browser link.
-            </p>
-          </article>
+    <div class="home-grid-2">
+      <article class="card card-glass">
+        <h3 class="home-card-title">Do drivers or suppliers need to install an app?</h3>
+        <p class="home-card-body">
+          No. Podfy works entirely through a browser link sent via SMS, WhatsApp, or email.
+          Drivers and suppliers can upload delivery documents or photos immediately without installing an app, creating an account, or receiving training.
+          This is ideal for construction sites where many external parties deliver.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Can multiple sites use Podfy?</h3>
-            <p class="home-card-body">
-              Yes. Each project or site can have its own document flow.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Can multiple projects or construction sites use Podfy?</h3>
+        <p class="home-card-body">
+          Yes. Each project or site can have its own document flow and delivery records.
+          This makes it easy to separate deliveries per location, project phase, or contractor,
+          while still keeping everything centrally accessible.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Can photos be added as proof?</h3>
-            <p class="home-card-body">
-              Yes. Photos can be uploaded alongside documents.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">What types of documents and proof can be uploaded?</h3>
+        <p class="home-card-body">
+          Podfy supports delivery notes, PODs, CMRs, and photos.
+          Photos are often used on construction sites to document quantities, damage, or delivery conditions.
+          All files are stored together per delivery or project.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Is it suitable for audits and disputes?</h3>
-            <p class="home-card-body">
-              Yes. Documents are stored centrally and can be retrieved later.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Is Podfy suitable for audits, claims, and disputes?</h3>
+        <p class="home-card-body">
+          Yes. All delivery documents and photos are stored centrally and can be retrieved later.
+          This helps resolve disputes about deliveries, shortages, or damages
+          and supports internal reviews or external audits without searching through emails or paper folders.
+        </p>
+      </article>
+
+      <article class="card card-glass">
+        <h3 class="home-card-title">How does Podfy handle security and GDPR?</h3>
+        <p class="home-card-body">
+          Podfy is designed with GDPR compliance in mind.
+          Documents are stored securely and access is controlled by your organization.
+          This ensures delivery data is handled responsibly while remaining easy to access for authorized users.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
 
 <!-- 8. FINAL CTA + CONTACT FORM (updated layout) -->
   <section class="home-section" id="contact">
