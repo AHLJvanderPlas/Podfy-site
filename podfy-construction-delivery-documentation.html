@@ -16,66 +16,46 @@
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Proof of Delivery for Construction – PODFY",
-    "description":"Podfy is a simple delivery documentation solution for construction and project-based sites. Drivers and suppliers upload delivery notes and photos via a link, without installing an app. Documents are stored centrally per project.",
-    "publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"},
-    "about":[
-      {"@type":"Thing","name":"proof of delivery for construction"},
-      {"@type":"Thing","name":"construction delivery documentation"},
-      {"@type":"Thing","name":"site delivery proof"}
-    ]
-  }
-  </script>
-</head>
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"Proof of Delivery for Construction – PODFY",
+  "description":"Podfy is a simple delivery documentation solution for construction and project-based sites. Drivers and suppliers upload delivery notes and photos via a link, without installing an app. Documents are stored centrally per project.",
+  "publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"},
+  "about":[
+    {"@type":"Thing","name":"proof of delivery for construction"},
+    {"@type":"Thing","name":"construction delivery documentation"},
+    {"@type":"Thing","name":"site delivery proof"}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Do drivers or suppliers need to install an app?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Podfy works through a browser link sent via SMS, WhatsApp, or email. Drivers and suppliers can upload delivery documents or photos without installing an app, creating an account, or receiving training."
+    { "@type": "Question", "name": "Do drivers or suppliers need to install an app?",
+      "acceptedAnswer": {"@type": "Answer", "text": "No. Podfy works through a browser link sent via SMS, WhatsApp, or email. Drivers and suppliers can upload delivery documents or photos without installing an app, creating an account, or receiving training."}
+    },
+    { "@type": "Question", "name": "Can multiple projects or construction sites use Podfy?",
+      "acceptedAnswer": {"@type": "Answer","text": "Yes. Each project or site can have its own document flow, making it easy to separate deliveries while keeping everything centrally accessible."}
+    },
+    { "@type": "Question", "name": "What types of documents and proof can be uploaded?",
+      "acceptedAnswer": {"@type": "Answer","text": "Delivery notes, PODs, CMRs, and photos can be uploaded and stored together per delivery or project."
       }
     },
-    {
-      "@type": "Question",
-      "name": "Can multiple projects or construction sites use Podfy?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Each project or site can have its own document flow, making it easy to separate deliveries while keeping everything centrally accessible."
-      }
+    { "@type": "Question", "name": "Is Podfy suitable for audits, claims, and disputes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. All delivery documents and photos are stored centrally and can be retrieved later for disputes, claims, or audits."}
     },
-    {
-      "@type": "Question",
-      "name": "What types of documents and proof can be uploaded?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Delivery notes, PODs, CMRs, and photos can be uploaded and stored together per delivery or project."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Podfy suitable for audits, claims, and disputes?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. All delivery documents and photos are stored centrally and can be retrieved later for disputes, claims, or audits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How does Podfy handle security and GDPR?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Podfy is designed with GDPR compliance in mind and stores documents securely with controlled access for authorized users."
-      }
+    { "@type": "Question", "name": "How does Podfy handle security and GDPR?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Podfy is designed with GDPR compliance in mind and stores documents securely with controlled access for authorized users."}
     }
   ]
 }
+</script>
+
+</head>
 
 <body class="home-body">
   [[PODFY_HEADER]]
