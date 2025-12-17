@@ -29,6 +29,34 @@
     ]
   }
   </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Do couriers, suppliers, or contractors need to install an app?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Podfy works through a browser link sent via SMS, WhatsApp, or email. Couriers, suppliers, and contractors can upload documents or photos without installs, logins, or training." }
+    },
+    { "@type": "Question", "name": "What documents can we capture with Podfy?",
+      "acceptedAnswer": { "@type": "Answer", "text": "You can capture delivery notes, PODs, photos, and other delivery-related documents. Many facilities teams also use photos to document delivery condition, location drop-off, or packaging issues." }
+    },
+    { "@type": "Question", "name": "Can we use Podfy across multiple sites or buildings?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Podfy can be used across multiple locations so each site can maintain its own delivery record while your organization keeps a central overview." }
+    },
+    { "@type": "Question", "name": "Is Podfy easy for reception or security staff to use?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Podfy is designed to be simple: share a link, upload the document or photo, and it is stored centrally. This makes it suitable for reception desks, security teams, or any on-site staff with limited time." }
+    },
+    { "@type": "Question", "name": "How does Podfy help with audits, incidents, and vendor disputes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Podfy creates a searchable delivery record so you can quickly retrieve proof when something is missing, disputed, or investigated. This helps with incident reviews, vendor disputes, and audit requests without searching through emails or paper folders." }
+    },
+    { "@type": "Question", "name": "How does Podfy handle security and GDPR?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Podfy is designed with GDPR compliance in mind. Documents are stored securely and access is controlled by your organization so only authorized users can view delivery records." }
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body class="home-body">
@@ -305,40 +333,69 @@
     
     <!-- 7. FAQ -->
     <section class="home-section">
-      <div class="container">
-        <h2 class="home-section-title">FAQ</h2>
+  <div class="container">
+    <h2 class="home-section-title">FAQ</h2>
 
-        <div class="home-grid-2">
-          <article class="card card-glass">
-            <h3 class="home-card-title">Do suppliers need to install an app?</h3>
-            <p class="home-card-body">
-              No. They only open a link and upload the document or photo.
-            </p>
-          </article>
+    <div class="home-grid-2">
+      <article class="card card-glass">
+        <h3 class="home-card-title">Do couriers, suppliers, or contractors need to install an app?</h3>
+        <p class="home-card-body">
+          No. Podfy works through a simple browser link sent via SMS, WhatsApp, or email.
+          Couriers, suppliers, and contractors can upload delivery documents or photos immediately
+          without installing an app, creating an account, or receiving training.
+          This is ideal for facilities with many external visitors.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Can deliveries be separated by site?</h3>
-            <p class="home-card-body">
-              Yes. Documents can be organized per building or location.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">What documents can we capture with Podfy?</h3>
+        <p class="home-card-body">
+          Podfy supports delivery notes, PODs, and photos.
+          Facilities teams often use photos to record where items were dropped off,
+          document packaging condition, or confirm delivery at reception or security.
+          All files are stored together per delivery.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Can reception staff use this easily?</h3>
-            <p class="home-card-body">
-              Yes. The process is designed for quick handover situations.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Can we use Podfy across multiple sites or buildings?</h3>
+        <p class="home-card-body">
+          Yes. Podfy can be used across multiple sites or buildings.
+          Each location can have its own delivery records,
+          while your organization keeps a central overview across all facilities.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Is it suitable for audits or incidents?</h3>
-            <p class="home-card-body">
-              Yes. Delivery records can be retrieved later when needed.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Is Podfy easy for reception or security staff to use?</h3>
+        <p class="home-card-body">
+          Yes. Podfy is designed for simplicity.
+          Sharing a link and uploading a document or photo takes seconds,
+          making it easy for reception desks, security teams, or on-site staff with limited time.
+        </p>
+      </article>
+
+      <article class="card card-glass">
+        <h3 class="home-card-title">How does Podfy help with audits, incidents, and vendor disputes?</h3>
+        <p class="home-card-body">
+          Podfy creates a searchable delivery record for each site.
+          When an item is missing, disputed, or investigated,
+          delivery proof can be retrieved quickly without searching through emails or paper folders.
+        </p>
+      </article>
+
+      <article class="card card-glass">
+        <h3 class="home-card-title">How does Podfy handle security and GDPR?</h3>
+        <p class="home-card-body">
+          Podfy is designed with GDPR compliance in mind.
+          Delivery documents are stored securely and access is controlled by your organization,
+          ensuring sensitive delivery information remains protected and accessible only to authorized users.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
 
 <!-- 8. FINAL CTA + CONTACT FORM (updated layout) -->
   <section class="home-section" id="contact">

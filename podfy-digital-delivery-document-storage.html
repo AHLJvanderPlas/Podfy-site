@@ -30,6 +30,37 @@
     ]
   }
   </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Do suppliers or drivers need to install an app?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Podfy works through a browser link sent via SMS, WhatsApp, or email. Suppliers and drivers can upload documents without installs, logins, or training." }
+    },
+    { "@type": "Question", "name": "Can inbound teams register a delivery themselves?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Inbound teams can register deliveries themselves when a driver or supplier does not upload. They can add documents, photos, and a reference such as a PO number to ensure every inbound delivery is recorded." }
+    },
+    { "@type": "Question", "name": "Can we use a PO number or reference to find deliveries later?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Many inbound teams use the PO number as the reference so deliveries can be found and matched quickly. A consistent reference improves retrieval speed for receiving, invoicing, and claims." }
+    },
+    { "@type": "Question", "name": "What documents can we store in Podfy?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Podfy can store delivery notes, PODs, CMRs, packing slips, and photos. Photos are often used to document packaging condition, visible damage, shortages, or delivery context." }
+    },
+    { "@type": "Question", "name": "Where do we access submitted documents?",
+      "acceptedAnswer": { "@type": "Answer", "text": "All submitted documents are accessible centrally in the Podfy delivery portal at delivery.podfy.net. This provides a single place for receiving teams, operations, and finance to retrieve delivery proof." }
+    },
+    { "@type": "Question", "name": "How does Podfy support audits, disputes, and compliance?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Podfy keeps inbound documents centrally stored and searchable, making it easier to retrieve proof for audits, claims, disputes, or internal reviews without searching through emails or paper folders." }
+    },
+    { "@type": "Question", "name": "How does Podfy handle security and GDPR?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Podfy is designed with GDPR compliance in mind. Documents are stored securely and access is controlled by your organization so only authorized users can view delivery records." }
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body class="home-body">
@@ -270,40 +301,77 @@
     
     <!-- FAQ -->
     <section class="home-section">
-      <div class="container">
-        <h2 class="home-section-title">FAQ</h2>
+  <div class="container">
+    <h2 class="home-section-title">FAQ</h2>
 
-        <div class="home-grid-2">
-          <article class="card card-glass">
-            <h3 class="home-card-title">Is this a replacement for our WMS?</h3>
-            <p class="home-card-body">
-              No. Podfy complements your systems by handling inbound document storage.
-            </p>
-          </article>
+    <div class="home-grid-2">
+      <article class="card card-glass">
+        <h3 class="home-card-title">Do suppliers or drivers need to install an app?</h3>
+        <p class="home-card-body">
+          No. Podfy works through a simple browser link sent via SMS, WhatsApp, or email.
+          Suppliers and drivers can upload documents without installing an app, creating an account, or receiving training.
+          This makes it easy to collect documents from many external parties.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Do drivers need an app?</h3>
-            <p class="home-card-body">
-              No. Uploads are done through a browser link.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Can inbound teams register a delivery themselves?</h3>
+        <p class="home-card-body">
+          Yes. Inbound teams can register deliveries themselves when a driver or supplier does not upload.
+          They can add delivery documents, photos, and a reference such as the PO number.
+          This ensures every inbound delivery is recorded, even during peak hours.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Can multiple teams access documents?</h3>
-            <p class="home-card-body">
-              Yes. Documents can be accessed by inbound, logistics, finance, and audit teams.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Can we use a PO number or reference to find deliveries later?</h3>
+        <p class="home-card-body">
+          Yes. Many inbound teams use the PO number as the reference so deliveries can be found and matched quickly.
+          A consistent reference improves retrieval speed for receiving, invoicing, and claims handling.
+          It also reduces confusion when multiple deliveries arrive on the same day.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">What is the SEO focus?</h3>
-            <p class="home-card-body">
-              Primary keyword: digital delivery document storage. Secondary: inbound document management, proof of delivery archive.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+      <article class="card card-glass">
+        <h3 class="home-card-title">What documents can we store in Podfy?</h3>
+        <p class="home-card-body">
+          Podfy can store delivery notes, PODs, CMRs, packing slips, and photos.
+          Photos are often used to document packaging condition, visible damage, shortages, or delivery context.
+          Keeping everything together makes disputes and follow-up significantly easier.
+        </p>
+      </article>
+
+      <article class="card card-glass">
+        <h3 class="home-card-title">Where do we access submitted documents?</h3>
+        <p class="home-card-body">
+          All submitted documents are accessible centrally in the
+          <a href="https://delivery.podfy.net" target="_blank" rel="noopener">Podfy delivery portal</a>.
+          This gives receiving teams, operations, and finance one place to retrieve delivery proof without relying on email chains.
+        </p>
+      </article>
+
+      <article class="card card-glass">
+        <h3 class="home-card-title">How does Podfy support audits, disputes, and compliance?</h3>
+        <p class="home-card-body">
+          Podfy keeps inbound documents centrally stored and searchable.
+          When an audit, claim, or dispute happens, your team can retrieve proof quickly without searching through emails or paper folders.
+          This supports consistent documentation and reduces operational friction.
+        </p>
+      </article>
+
+      <article class="card card-glass">
+        <h3 class="home-card-title">How does Podfy handle security and GDPR?</h3>
+        <p class="home-card-body">
+          Podfy is designed with GDPR compliance in mind.
+          Documents are stored securely and access is controlled by your organization,
+          ensuring delivery records remain protected and accessible only to authorized users.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
 
 <!-- 8. FINAL CTA + CONTACT FORM (updated layout) -->
   <section class="home-section" id="contact">

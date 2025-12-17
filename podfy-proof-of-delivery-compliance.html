@@ -29,6 +29,33 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How does Podfy handle security and GDPR?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Podfy is designed with GDPR compliance in mind. Documents are stored securely and access is controlled by your organization so only authorized users can view delivery records." }
+    },
+    { "@type": "Question", "name": "Is Podfy suitable for audits and compliance checks?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Podfy keeps delivery documents stored centrally and searchable so teams can retrieve proof quickly during audits, compliance checks, or internal reviews." }
+    },
+    { "@type": "Question", "name": "What proof can we store for disputes and claims?",
+      "acceptedAnswer": { "@type": "Answer", "text": "You can store PODs, delivery notes, CMRs, and photos. Many teams also add photos to document delivery condition, damage, or packaging issues for claims." }
+    },
+    { "@type": "Question", "name": "How quickly can we retrieve delivery proof when it is requested?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Delivery proof is stored centrally in Podfy and can be retrieved quickly without searching through emails, shared drives, or paper folders." }
+    },
+    { "@type": "Question", "name": "Do drivers need to install an app to provide proof?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Drivers upload delivery documents through a browser link sent via SMS, WhatsApp, or email. This reduces adoption issues and improves consistency of proof collection." }
+    },
+    { "@type": "Question", "name": "Does Podfy replace our ERP, DMS, or claims tooling?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Podfy complements existing systems by simplifying proof collection and storage. It provides a reliable delivery document archive without requiring a complex implementation." }
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body class="home-body">
@@ -303,40 +330,67 @@
     
     <!-- 7. FAQ -->
     <section class="home-section">
-      <div class="container">
-        <h2 class="home-section-title">FAQ</h2>
+  <div class="container">
+    <h2 class="home-section-title">FAQ</h2>
 
-        <div class="home-grid-2">
-          <article class="card card-glass">
-            <h3 class="home-card-title">Are documents timestamped?</h3>
-            <p class="home-card-body">
-              Yes. Each upload is automatically timestamped.
-            </p>
-          </article>
+    <div class="home-grid-2">
+      <article class="card card-glass">
+        <h3 class="home-card-title">How does Podfy handle security and GDPR?</h3>
+        <p class="home-card-body">
+          Podfy is designed with GDPR compliance in mind.
+          Delivery documents are stored securely and access is controlled by your organization,
+          so only authorized users can view delivery records.
+          This helps teams digitize proof of delivery while keeping control over sensitive information.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">How long are documents stored?</h3>
-            <p class="home-card-body">
-              Documents are stored according to your chosen retention settings.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Is Podfy suitable for audits and compliance checks?</h3>
+        <p class="home-card-body">
+          Yes. Podfy keeps proof of delivery documents and photos stored centrally and searchable.
+          That means audit requests can be handled quickly without collecting files from multiple inboxes, folders, or people.
+          It also supports internal reviews where traceability and consistency matter.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Can documents be exported?</h3>
-            <p class="home-card-body">
-              Yes. Documents can be downloaded or shared when needed.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">What proof can we store for disputes and claims?</h3>
+        <p class="home-card-body">
+          Podfy supports PODs, delivery notes, CMRs, and photos.
+          Many teams also use photos to document delivery condition, damage, packaging issues, or drop-off context.
+          Storing everything together makes claims handling and dispute resolution faster and clearer.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Is Podfy GDPR compliant?</h3>
-            <p class="home-card-body">
-              Podfy is designed with GDPR principles in mind for data handling.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+      <article class="card card-glass">
+        <h3 class="home-card-title">How quickly can we retrieve delivery proof when it is requested?</h3>
+        <p class="home-card-body">
+          Proof is stored centrally so it can be retrieved quickly when a customer, auditor, or internal stakeholder asks for it.
+          This reduces delays in invoicing and avoids time lost searching through emails, shared drives, or paper folders.
+        </p>
+      </article>
+
+      <article class="card card-glass">
+        <h3 class="home-card-title">Do drivers need to install an app to provide proof?</h3>
+        <p class="home-card-body">
+          No. Drivers upload delivery documents via a simple browser link sent through SMS, WhatsApp, or email.
+          Removing app installs and logins reduces friction and improves consistency in proof collection,
+          especially when subcontractors or temporary drivers are involved.
+        </p>
+      </article>
+
+      <article class="card card-glass">
+        <h3 class="home-card-title">Does Podfy replace our ERP, DMS, or claims tooling?</h3>
+        <p class="home-card-body">
+          No. Podfy is a lightweight layer for collecting and storing delivery proof.
+          It complements your existing systems by making document collection fast and consistent,
+          without requiring a complex document management implementation.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
 
 <!-- 8. FINAL CTA + CONTACT FORM (updated layout) -->
   <section class="home-section" id="contact">
