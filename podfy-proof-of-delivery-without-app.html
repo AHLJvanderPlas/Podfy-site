@@ -1,149 +1,444 @@
-<!-- 8. FINAL CTA + CONTACT FORM (updated layout) -->
-  <section class="home-section" id="contact">
-    <div class="container">
-      <h2 class="home-section-title">Get a solution for your case</h2>
-       <div class="home-contact-grid">
-<!-- LEFT 1/2: FORM -->
-      <div class="card card-glass home-contact-card">
-         <h3 class="home-card-title">Select your use-case</h3>
-         <p class="home-card-body">Tell us how you work today and how we can help.</p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-        <form id="contact-form" class="home-contact-form" novalidate>
-          <div class="home-field visually-hidden" aria-hidden="true">
-            <label for="hp_contact">Leave this field empty</label>
-            <input id="hp_contact" name="hp_contact" type="text" tabindex="-1" autocomplete="off" />
+  <title>Proof of Delivery Without an App (Any Phone)</title>
+  <meta name="description" content="Collect delivery documents from drivers and subcontractors without installs, logins, or training—just a link." />
+  <link rel="canonical" href="https://podfy.net/podfy-proof-of-delivery-without-app" />
+
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="keywords" content="proof of delivery without app, no-app POD solution, low-tech delivery documentation" />
+
+  <link rel="stylesheet" href="/assets/styles.css?v=home-rev5" />
+  <script src="/assets/theme.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Proof of Delivery Without App – PODFY",
+    "description":"Podfy is a no-app proof of delivery solution for low-tech delivery environments. Drivers upload delivery documents via a simple link, and documents are stored centrally and searchable for office teams and customers.",
+    "publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"},
+    "about":[
+      {"@type":"Thing","name":"proof of delivery without app"},
+      {"@type":"Thing","name":"no-app POD solution"},
+      {"@type":"Thing","name":"low-tech delivery documentation"}
+    ]
+  }
+  </script>
+</head>
+
+<body class="home-body">
+  [[PODFY_HEADER]]
+
+  <main id="main" class="home-main">
+    <!-- 1. HERO -->
+    <section class="home-section home-hero home-hero-subheader">
+      <div class="container home-hero-shell card card-glass">
+        <div class="home-hero-left">
+          <p class="home-kicker">No-App / Low-Tech Environments</p>
+
+          <h1 class="home-hero-title hero-heading">
+            <span>Proof of delivery without app</span> installs, logins, or training.
+          </h1>
+
+          <p class="home-hero-lead">
+            Podfy is built for real-world delivery teams where phones differ and digital skills vary.
+            Send a link by SMS, WhatsApp, or email. Drivers upload PODs, delivery notes, CMRs, or photos in the browser.
+            No app. No account. No onboarding.
+          </p>
+
+          <ul class="icon-list">
+            <li>Works on any phone with a browser</li>
+            <li>Drivers can use it once or every day</li>
+            <li>Office gets a central, searchable archive</li>
+          </ul>
+
+          <div class="home-hero-actions">
+            <a href="/free-tier-demo.html" class="btn btn-primary">Upload a POD in 60 seconds</a>
+            <a href="#contact" class="btn btn-secondary">Talk to us</a>
           </div>
 
-<!-- Hidden context for backend -->
-          <input type="hidden" id="source_page" name="source_page" value="" />
-          <input type="hidden" id="turnstileToken" name="turnstileToken" value="" />
+          <p class="home-hero-footnote">
+            AI summary: Podfy is a no-app proof of delivery solution that lets drivers upload delivery documents via a link and stores them centrally for fast access in low-tech environments.
+          </p>
+        </div>
 
-          <div class="home-field">
-            <label class="home-label" for="contact-name">Name</label>
-            <input id="contact-name" name="name" type="text" class="home-input" required autocomplete="name" />
+        <div class="home-hero-right">
+          <div class="home-hero-card card">
+            <h2 class="home-hero-card-title">Zero-barrier workflow</h2>
+            <ol class="home-hero-steps">
+              <li>Send upload link</li>
+              <li>Driver uploads documents/photos</li>
+              <li>Stored centrally</li>
+              <li>Office can access instantly</li>
+            </ol>
           </div>
-
-          <div class="home-field">
-            <label class="home-label" for="contact-email">Email</label>
-            <input id="contact-email" name="email" type="email" class="home-input" required autocomplete="email" />
-          </div>
-
-          <div class="home-field">
-            <label class="home-label" for="contact-company">Company</label>
-            <input id="contact-company" name="company" type="text" class="home-input" autocomplete="organization" />
-          </div>
-
-          <div class="home-field">
-            <label class="home-label" for="contact-message">Message</label>
-            <textarea id="contact-message" name="message" rows="4" class="home-textarea"></textarea>
-          </div>
-
-<!-- Checkbox aligned on the same line -->
-          <div class="home-field home-consent">
-            <label class="home-checkbox" style="display:flex;align-items:flex-start;gap:.6rem;">
-              <input id="contact-consent" type="checkbox" name="consent" required checked style="margin-top:.2rem;" />
-              <span>
-                I agree to be contacted and accept the
-                <a href="/privacy.html">Privacy Policy</a>.
-              </span>
-            </label>
-          </div>
-        <p id="contact-status" class="home-status" role="status"></p>
-
-<!-- Send request ABOVE Turnstile -->
-          <div class="home-actions">
-            <button type="submit" class="btn btn-primary">Send request</button>
-          </div>
-
-<!-- Prefer email card ABOVE Turnstile card -->
-          <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
-            <h3 class="home-card-title">Prefer email?</h3>
-            <p class="home-card-body">
-              Reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>
-            </p>
-          </div>
-
-          <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
-            <p class="home-card-body" style="margin:0 0 .75rem 0;">
-              Quick check: we validate in the background that you’re not a spam bot.
-            </p>
-
-            <div class="home-field home-field-turnstile" style="margin-top:.75rem;">
-              <div
-                class="cf-turnstile"
-                data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-                data-callback="onTurnstileCompleted"
-                data-expired-callback="onTurnstileExpired"
-                data-error-callback="onTurnstileError"
-                data-theme="auto">
-              </div>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
+    </section>
 
-        <!-- RIGHT 1/2: LINKS (sentence cards in 2 columns; whole card is clickable + hover highlight) -->
-      <aside class="card card-glass home-contact-side">
-        <h3 class="home-card-title">Select your use-case</h3>
-        <p class="home-card-body">Click the tile that fits your story</p>
+    <!-- 2. WHY APP SYSTEMS FAIL -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">Why app-based systems fail in the real world</h2>
+        <p class="home-section-intro">
+          Driver apps can work in controlled fleets. In mixed environments, they often don’t.
+        </p>
+
+        <div class="home-grid-4">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Different phones</h3>
+            <p class="home-card-body">
+              Android, iPhone, older devices, limited storage, outdated versions.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Subcontractors and temp drivers</h3>
+            <p class="home-card-body">
+              You can’t enforce installs on partners who work for multiple clients.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Resistance to downloads</h3>
+            <p class="home-card-body">
+              “Another app” means friction: permissions, logins, updates, and pushback.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Documents go missing</h3>
+            <p class="home-card-body">
+              When the app isn’t used, proof ends up in the cab, in a photo roll, or not at all.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. HOW PODFY WORKS (3 STEPS) -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">How Podfy works without an app</h2>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <h3 class="home-card-title">1. Send an upload link</h3>
+            <p class="home-card-body">
+              Share a link via SMS, WhatsApp, or email. No setup on the driver side.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">2. Upload documents or photos</h3>
+            <p class="home-card-body">
+              Drivers upload PODs, CMRs, delivery notes, and photos directly in the browser.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">3. Store and access instantly</h3>
+            <p class="home-card-body">
+              Documents are stored centrally, searchable, and available for office staff and customers.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. WHY TEAMS CHOOSE PODFY -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">Why teams choose Podfy for low-tech environments</h2>
+
+        <div class="home-grid-4">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Works on any phone</h3>
+            <p class="home-card-body">
+              If it can open a link, it can upload proof.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">No onboarding</h3>
+            <p class="home-card-body">
+              Drivers don’t need accounts, logins, or training.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Inclusive for all drivers</h3>
+            <p class="home-card-body">
+              Works for mixed skills and mixed languages with a simple flow.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Faster collection</h3>
+            <p class="home-card-body">
+              Less chasing. Proof arrives closer to delivery time.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. TYPICAL USE CASES -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">Typical no-app use cases</h2>
+
+        <div class="home-grid-4">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Subcontracted transport</h3>
+            <p class="home-card-body">
+              Collect PODs from partners without forcing tools on them.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Seasonal drivers</h3>
+            <p class="home-card-body">
+              Temporary staff can use the link immediately, with no onboarding.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Rural or remote deliveries</h3>
+            <p class="home-card-body">
+              Simple workflows are more reliable in challenging environments.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">High turnover operations</h3>
+            <p class="home-card-body">
+              Keep a consistent proof flow even when drivers change frequently.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. WHAT PODFY DOES NOT REQUIRE -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">What Podfy does not require</h2>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <h3 class="home-card-title">No smartphone app</h3>
+            <p class="home-card-body">
+              Everything works in the browser.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">No user accounts for drivers</h3>
+            <p class="home-card-body">
+              Drivers upload via link without creating logins.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">No IT support</h3>
+            <p class="home-card-body">
+              You can start without projects, training programs, or rollouts.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="home-section">
+      <div class="container">
+        <h2 class="home-section-title">FAQ</h2>
 
         <div class="home-grid-2">
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">
-            <h4 class="home-card-title home-trigger-title">Carriers</h4>
-            <p class="home-card-body">“I run a carrier company and need a simple way to collect proof of delivery without forcing drivers to install an app.”</p>
-          </a>
+          <article class="card card-glass">
+            <h3 class="home-card-title">Do drivers need to install anything?</h3>
+            <p class="home-card-body">
+              No. They only open a link and upload.
+            </p>
+          </article>
 
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-document-storage">
-            <h4 class="home-card-title home-trigger-title">Inbound / Receiving</h4>
-            <p class="home-card-body">“I manage inbound deliveries and want all delivery documents stored digitally in one central place.”</p>
-          </a>
+          <article class="card card-glass">
+            <h3 class="home-card-title">Does it work on older phones?</h3>
+            <p class="home-card-body">
+              Yes, as long as the phone has a browser and can open links.
+            </p>
+          </article>
 
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digitize-delivery-documents">
-            <h4 class="home-card-title home-trigger-title">Digitize Paper Flow</h4>
-            <p class="home-card-body">“We still use paper delivery notes and want to digitize our delivery documents without complexity.”</p>
-          </a>
+          <article class="card card-glass">
+            <h3 class="home-card-title">Is training required?</h3>
+            <p class="home-card-body">
+              No. The flow is designed to be self-explanatory.
+            </p>
+          </article>
 
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-shippers">
-            <h4 class="home-card-title home-trigger-title">Shippers</h4>
-            <p class="home-card-body">“I ship goods and want to receive proof of delivery digitally from any carrier.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-3pl">
-            <h4 class="home-card-title home-trigger-title">3PLs</h4>
-            <p class="home-card-body">“I work with multiple carriers and need one standard way to collect proof of delivery from all of them.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-construction-delivery-documentation">
-            <h4 class="home-card-title home-trigger-title">Construction</h4>
-            <p class="home-card-body">“I manage a construction or project site and need clear proof for frequent material deliveries.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-retail-delivery-documentation">
-            <h4 class="home-card-title home-trigger-title">Retail</h4>
-            <p class="home-card-body">“I manage stores and want delivery documents available centrally without burdening store staff.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-compliance">
-            <h4 class="home-card-title home-trigger-title">Compliance</h4>
-            <p class="home-card-body">“I need reliable proof of delivery for audits, disputes, and invoicing.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-without-app">
-            <h4 class="home-card-title home-trigger-title">No-App / Low-Tech</h4>
-            <p class="home-card-body">“My drivers or subcontractors won’t install apps, but I still need proof of delivery.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-documentation">
-            <h4 class="home-card-title home-trigger-title">Facilities</h4>
-            <p class="home-card-body">“I manage facilities and want a simple digital record of supplier and courier deliveries.”</p>
-          </a>
+          <article class="card card-glass">
+            <h3 class="home-card-title">Can partners use it once or repeatedly?</h3>
+            <p class="home-card-body">
+              Both. A one-time driver can use it immediately, and regular partners can use it daily.
+            </p>
+          </article>
         </div>
-      </aside>
+      </div>
+    </section>
+
+<!-- 8. FINAL CTA + CONTACT FORM (updated layout) -->
+<section class="home-section" id="contact">
+  <div class="container home-contact-grid">
+
+    <!-- LEFT 1/2: FORM -->
+    <div class="card card-glass home-contact-card">
+      <h2 class="home-section-title">Create a clear delivery record for every site</h2>
+      <p class="home-section-intro">
+        Replace paper logs with a simple, digital delivery record.
+      </p>
+
+      <form id="contact-form" class="home-contact-form" novalidate>
+        <div class="home-field visually-hidden" aria-hidden="true">
+          <label for="hp_contact">Leave this field empty</label>
+          <input id="hp_contact" name="hp_contact" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Hidden context for backend -->
+        <input type="hidden" id="source_page" name="source_page" value="" />
+        <input type="hidden" id="turnstileToken" name="turnstileToken" value="" />
+
+        <div class="home-field">
+          <label class="home-label" for="contact-name">Name</label>
+          <input id="contact-name" name="name" type="text" class="home-input" required autocomplete="name" />
+        </div>
+
+        <div class="home-field">
+          <label class="home-label" for="contact-email">Email</label>
+          <input id="contact-email" name="email" type="email" class="home-input" required autocomplete="email" />
+        </div>
+
+        <div class="home-field">
+          <label class="home-label" for="contact-company">Company</label>
+          <input id="contact-company" name="company" type="text" class="home-input" autocomplete="organization" />
+        </div>
+
+        <div class="home-field">
+          <label class="home-label" for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="4" class="home-textarea"></textarea>
+        </div>
+
+        <!-- Checkbox aligned on the same line -->
+        <div class="home-field home-consent">
+          <label class="home-checkbox" style="display:flex;align-items:flex-start;gap:.6rem;">
+            <input id="contact-consent" type="checkbox" name="consent" required checked style="margin-top:.2rem;" />
+            <span>
+              I agree to be contacted and accept the
+              <a href="/privacy.html">Privacy Policy</a>.
+            </span>
+          </label>
+        </div>
+
+        <p id="contact-status" class="home-status" role="status"></p>
+
+        <!-- Send request ABOVE Turnstile -->
+        <div class="home-actions">
+          <button type="submit" class="btn btn-primary">Send request</button>
+        </div>
+
+        <!-- Prefer email card ABOVE Turnstile card -->
+        <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
+          <h3 class="home-card-title">Prefer email?</h3>
+          <p class="home-card-body">
+            Reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>
+          </p>
+        </div>
+
+        <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
+          <p class="home-card-body" style="margin:0 0 .75rem 0;">
+            Quick check: we validate in the background that you’re not a spam bot.
+          </p>
+
+          <div class="home-field home-field-turnstile" style="margin-top:.75rem;">
+            <div
+              class="cf-turnstile"
+              data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+              data-callback="onTurnstileCompleted"
+              data-expired-callback="onTurnstileExpired"
+              data-error-callback="onTurnstileError"
+              data-theme="auto">
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
+
+    <!-- RIGHT 1/2: LINKS (sentence cards in 2 columns; whole card is clickable + hover highlight) -->
+<aside class="card card-glass home-contact-side">
+  <h3 class="home-card-title">Not sure which page fits?</h3>
+  <p class="home-card-body">Pick the closest match:</p>
+
+  <div class="home-grid-2">
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">
+      <h4 class="home-card-title home-trigger-title">Carriers</h4>
+      <p class="home-card-body">“I run a carrier company and need a simple way to collect proof of delivery without forcing drivers to install an app.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-document-storage">
+      <h4 class="home-card-title home-trigger-title">Inbound / Receiving</h4>
+      <p class="home-card-body">“I manage inbound deliveries and want all delivery documents stored digitally in one central place.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digitize-delivery-documents">
+      <h4 class="home-card-title home-trigger-title">Digitize Paper Flow</h4>
+      <p class="home-card-body">“We still use paper delivery notes and want to digitize our delivery documents without complexity.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-shippers">
+      <h4 class="home-card-title home-trigger-title">Shippers</h4>
+      <p class="home-card-body">“I ship goods and want to receive proof of delivery digitally from any carrier.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-3pl">
+      <h4 class="home-card-title home-trigger-title">3PLs</h4>
+      <p class="home-card-body">“I work with multiple carriers and need one standard way to collect proof of delivery from all of them.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-construction-delivery-documentation">
+      <h4 class="home-card-title home-trigger-title">Construction</h4>
+      <p class="home-card-body">“I manage a construction or project site and need clear proof for frequent material deliveries.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-retail-delivery-documentation">
+      <h4 class="home-card-title home-trigger-title">Retail</h4>
+      <p class="home-card-body">“I manage stores and want delivery documents available centrally without burdening store staff.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-compliance">
+      <h4 class="home-card-title home-trigger-title">Compliance</h4>
+      <p class="home-card-body">“I need reliable proof of delivery for audits, disputes, and invoicing.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-without-app">
+      <h4 class="home-card-title home-trigger-title">No-App / Low-Tech</h4>
+      <p class="home-card-body">“My drivers or subcontractors won’t install apps, but I still need proof of delivery.”</p>
+    </a>
+
+    <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-documentation">
+      <h4 class="home-card-title home-trigger-title">Facilities</h4>
+      <p class="home-card-body">“I manage facilities and want a simple digital record of supplier and courier deliveries.”</p>
+    </a>
+  </div>
+</aside>
+
   </div>
 </section>
-
-</main>
+  </main>
 
   [[PODFY_FOOTER]]
 
