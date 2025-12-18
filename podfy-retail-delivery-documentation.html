@@ -646,5 +646,11 @@
       });
     })();
   </script>
+  <script>
+  (function () {
+    const el = document.getElementById("source_page");
+    if (el) el.value = window.location.href;
+  })();
+  </script>
 </body>
 </html>
