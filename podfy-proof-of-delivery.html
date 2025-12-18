@@ -31,54 +31,39 @@
   }
   </script>
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"Do drivers need an app to provide proof of delivery?",
-        "acceptedAnswer":{"@type":"Answer","text":"No. Podfy works through a link that opens in the browser, so drivers do not need to install an app or create an account. This improves completion rates when you work with subcontractors, ad-hoc carriers, or high turnover. Proof is available centrally as soon as the upload is completed."}
-      },
-      {
-        "@type":"Question",
-        "name":"What can count as proof of delivery?",
-        "acceptedAnswer":{"@type":"Answer","text":"Proof of delivery can be a signed delivery note, a CMR, a POD document, photos of delivered goods, timestamps, and any additional notes that confirm what was delivered, where, and when."}
-      },
-      {
-        "@type":"Question",
-        "name":"Can inbound or receiving teams register deliveries too?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. Inbound teams can use the same link-based workflow to upload delivery documents or photos when carriers arrive, so the site keeps a consistent record even when drivers change or suppliers use different processes."}
-      },
-      {
-        "@type":"Question",
-        "name":"Where is proof of delivery stored?",
-        "acceptedAnswer":{"@type":"Answer","text":"Podfy stores delivery documents centrally so office teams can search and retrieve them quickly. Proof can also be made available through the Podfy delivery portal at delivery.podfy.net for internal teams and customers."}
-      },
-      {
-        "@type":"Question",
-        "name":"Can we add references like PO numbers, shipment IDs, or project numbers?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. You can capture a reference (for example PO number, shipment ID, store number, or project code) so documents can be linked to the right delivery and found later without searching through email attachments."}
-      },
-      {
-        "@type":"Question",
-        "name":"Is Podfy suitable for audits and disputes?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. Central storage and fast retrieval help teams respond to disputes and audits with the correct delivery proof. The goal is practical traceability without introducing complex document management systems."}
-      },
-      {
-        "@type":"Question",
-        "name":"How quickly are documents available after delivery?",
-        "acceptedAnswer":{"@type":"Answer","text":"As soon as the upload is completed, documents are available centrally. That reduces delays that usually happen when paper is scanned later or when drivers send proof days after delivery."}
-      },
-      {
-        "@type":"Question",
-        "name":"Can Podfy replace a TMS, WMS, or ERP?",
-        "acceptedAnswer":{"@type":"Answer","text":"No. Podfy focuses on delivery documentation intake and retrieval. It is designed to complement existing systems by making proof of delivery collection simple and consistent across carriers, suppliers, sites, and stores."}
-      }
-    ]
-  }
-  </script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    { "@type":"Question", "name":"Do drivers need an app to provide proof of delivery?",
+      "acceptedAnswer":{"@type":"Answer","text":"No. Podfy works through a link that opens in the browser, so drivers do not need to install an app or create an account. This improves completion rates when you work with subcontractors, ad-hoc carriers, or high turnover. Proof is available centrally as soon as the upload is completed."}
+    },
+    { "@type":"Question", "name":"What can count as proof of delivery?",
+      "acceptedAnswer":{"@type":"Answer","text":"Proof of delivery can be a signed delivery note, a CMR, a POD document, photos of delivered goods, timestamps, and any additional notes that confirm what was delivered, where, and when. The right combination depends on dispute risk and customer requirements. Podfy helps you collect these proof types consistently without relying on paper returns or app adoption."}
+    },
+    { "@type":"Question", "name":"Can inbound or receiving teams register deliveries too?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. Inbound teams can use the same link-based workflow to upload delivery documents or photos when carriers arrive. This creates a consistent record even when drivers change or suppliers use different processes. It also helps ensure every delivery is registered during peak hours."}
+    },
+    { "@type":"Question", "name":"Where is proof of delivery stored?",
+      "acceptedAnswer":{"@type":"Answer","text":"Podfy stores delivery documents centrally so office teams can search and retrieve them quickly. Proof can also be made available through the Podfy delivery portal at delivery.podfy.net for authorized access. This reduces time spent searching through inboxes, shared drives, or paper folders."}
+    },
+    { "@type":"Question", "name":"Can we add references like PO numbers, shipment IDs, or project numbers?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. You can capture a reference such as a PO number, shipment ID, store number, project code, or site name. This links proof to the correct delivery and makes retrieval reliable later. A consistent reference also reduces errors when multiple deliveries happen on the same day."}
+    },
+    { "@type":"Question", "name":"Is Podfy suitable for audits and disputes?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. Central storage and fast retrieval help teams respond to disputes and audits with the correct delivery proof. This is useful for claims such as shortages, damage, or ‘not delivered’ situations. The goal is practical traceability without introducing complex document management systems."}
+    },
+    { "@type":"Question", "name":"How quickly are documents available after delivery?",
+      "acceptedAnswer":{"@type":"Answer","text":"As soon as the upload is completed, documents are available centrally. That reduces delays that usually happen when paper is scanned later or when drivers send proof days after delivery. Faster availability also helps customer service and invoicing teams respond sooner."}
+    },
+    { "@type":"Question", "name":"Can Podfy replace a TMS, WMS, or ERP?",
+      "acceptedAnswer":{"@type":"Answer","text":"No. Podfy focuses on delivery documentation intake and retrieval. It is designed to complement existing systems by making proof of delivery collection simple and consistent across carriers, suppliers, sites, and stores. This keeps implementation lightweight while improving operational reliability."}
+    }
+  ]
+}
+</script>
+
   <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -506,70 +491,87 @@
     </section>
 
     <!-- 9. FAQ -->
-    <section class="home-section" id="faq">
-      <div class="container">
-        <h2 class="home-section-title">FAQ</h2>
+<section class="home-section" id="faq">
+  <div class="container">
+    <h2 class="home-section-title">FAQ</h2>
 
-        <div class="home-grid-2">
-          <article class="card card-glass">
-            <h3 class="home-card-title">Do drivers need an app?</h3>
-            <p class="home-card-body">
-              No. Podfy works through a link that opens in the browser, so drivers do not need to install an app or create an account. This improves completion rates when you work with subcontractors, ad-hoc carriers, or high turnover. Proof is available centrally as soon as the upload is completed.
+    <div class="home-grid-2">
+      <article class="card card-glass">
+        <h3 class="home-card-title">Do drivers need an app to provide proof of delivery?</h3>
+        <p class="home-card-body">
+          No. Podfy works through a link that opens in the browser, so drivers do not need to install an app or create an account.
+          This improves completion rates when you work with subcontractors, ad-hoc carriers, or high turnover.
+          Proof is available centrally as soon as the upload is completed.
+        </p>
+      </article>
 
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">What can count as proof of delivery?</h3>
+        <p class="home-card-body">
+          Proof of delivery can be a signed delivery note, a CMR, a POD document, photos of delivered goods, timestamps, and any additional notes that confirm what was delivered, where, and when.
+          The right combination depends on dispute risk and customer requirements.
+          Podfy helps you collect these proof types consistently without relying on paper returns or app adoption.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">What documents can be used as proof of delivery?</h3>
-            <p class="home-card-body">
-              PODs, signed delivery notes, CMRs, delivery receipts, and photos can all be used. The best setup depends on your dispute risk and customer requirements.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Can inbound or receiving teams register deliveries too?</h3>
+        <p class="home-card-body">
+          Yes. Inbound teams can use the same link-based workflow to upload delivery documents or photos when carriers arrive.
+          This creates a consistent record even when drivers change or suppliers use different processes.
+          It also helps ensure every delivery is registered during peak hours.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Can inbound teams upload proof too?</h3>
-            <p class="home-card-body">
-              Yes. Receiving teams can upload delivery documents and photos when a carrier arrives. This is useful when drivers change frequently or when you want a consistent inbound record.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Where is proof of delivery stored?</h3>
+        <p class="home-card-body">
+          Podfy stores delivery documents centrally so office teams can search and retrieve them quickly.
+          Proof can also be made available through the Podfy delivery portal at
+          <a class="home-card-link" href="https://delivery.podfy.net" target="_blank" rel="noopener">delivery.podfy.net</a>
+          for authorized access.
+          This reduces time spent searching through inboxes, shared drives, or paper folders.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Where is delivery proof stored?</h3>
-            <p class="home-card-body">
-              Proof is stored centrally so it can be found quickly. You can also provide access through the delivery portal at <a class="home-card-link" href="https://delivery.podfy.net" target="_blank" rel="noopener">delivery.podfy.net</a>.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Can we add references like PO numbers, shipment IDs, or project numbers?</h3>
+        <p class="home-card-body">
+          Yes. You can capture a reference such as a PO number, shipment ID, store number, project code, or site name.
+          This links proof to the correct delivery and makes retrieval reliable later.
+          A consistent reference also reduces errors when multiple deliveries happen on the same day.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Can we add references like PO or shipment ID?</h3>
-            <p class="home-card-body">
-              Yes. References such as PO numbers, shipment IDs, project codes, or store numbers help link proof to the correct delivery and speed up retrieval later.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Is Podfy suitable for audits and disputes?</h3>
+        <p class="home-card-body">
+          Yes. Central storage and fast retrieval help teams respond to disputes and audits with the correct delivery proof.
+          This is useful for claims such as shortages, damage, or “not delivered” situations.
+          The goal is practical traceability without introducing complex document management systems.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">Is this suitable for audits and disputes?</h3>
-            <p class="home-card-body">
-              Yes. Central storage and fast retrieval reduce time spent hunting for proof. It also helps reduce billing delays when customers require POD to invoice.
-            </p>
-          </article>
+      <article class="card card-glass">
+        <h3 class="home-card-title">How quickly are documents available after delivery?</h3>
+        <p class="home-card-body">
+          As soon as the upload is completed, documents are available centrally.
+          That reduces delays that usually happen when paper is scanned later or when drivers send proof days after delivery.
+          Faster availability also helps customer service and invoicing teams respond sooner.
+        </p>
+      </article>
 
-          <article class="card card-glass">
-            <h3 class="home-card-title">How quickly is proof available?</h3>
-            <p class="home-card-body">
-              As soon as an upload is completed, documents are available centrally. That avoids the common “scan later” backlog and late POD submissions.
-            </p>
-          </article>
-
-          <article class="card card-glass">
-            <h3 class="home-card-title">Is Podfy a TMS or WMS?</h3>
-            <p class="home-card-body">
-              No. Podfy focuses on delivery documentation intake and retrieval. It complements existing systems by making POD collection simple and consistent.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+      <article class="card card-glass">
+        <h3 class="home-card-title">Can Podfy replace a TMS, WMS, or ERP?</h3>
+        <p class="home-card-body">
+          No. Podfy focuses on delivery documentation intake and retrieval.
+          It is designed to complement existing systems by making proof of delivery collection simple and consistent across carriers, suppliers, sites, and stores.
+          This keeps implementation lightweight while improving operational reliability.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
 
 <!-- 10. FINAL CTA + CONTACT FORM (updated layout) -->
   <section class="home-section" id="contact">
