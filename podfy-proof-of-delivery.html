@@ -39,7 +39,7 @@
       {
         "@type":"Question",
         "name":"Do drivers need an app to provide proof of delivery?",
-        "acceptedAnswer":{"@type":"Answer","text":"No. With Podfy you can collect proof of delivery through a simple link sent via SMS, WhatsApp, or email. Drivers upload documents and photos in the browser, without installing an app or creating an account."}
+        "acceptedAnswer":{"@type":"Answer","text":"No. Podfy works through a link that opens in the browser, so drivers do not need to install an app or create an account. This improves completion rates when you work with subcontractors, ad-hoc carriers, or high turnover. Proof is available centrally as soon as the upload is completed."}
       },
       {
         "@type":"Question",
@@ -79,7 +79,19 @@
     ]
   }
   </script>
-  
+  <script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"SoftwareApplication",
+  "name":"Podfy",
+  "applicationCategory":"BusinessApplication",
+  "operatingSystem":"Web",
+  "url":"https://podfy.net",
+  "description":"Link-based proof of delivery and delivery document intake without driver apps. Collect PODs, CMRs, delivery notes and photos and store them centrally for fast retrieval.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free demo available; pricing varies by usage."}
+}
+</script>
+
 </head>
 
 <body class="home-body">
@@ -128,6 +140,18 @@
               <li>Timestamps and basic delivery details</li>
               <li>Reference (PO / shipment / project / store)</li>
             </ol>
+            <nav class="home-toc card-glass" aria-label="On this page" style="margin-top:1rem; padding:0.75rem 0.9rem;">
+              <ul class="home-card-body" style="margin:0; padding-left:1.1rem;">
+                <li><a class="home-card-link" href="#what-is-pod">What is proof of delivery?</a></li>
+                <li><a class="home-card-link" href="#why-pod-fails">Why POD breaks down</a></li>
+                <li><a class="home-card-link" href="#legacy-vs-modern">Legacy vs modern POD</a></li>
+                <li><a class="home-card-link" href="#how-podfy-works">How Podfy works</a></li>
+                <li><a class="home-card-link" href="#use-cases">Use cases</a></li>
+                <li><a class="home-card-link" href="#security-gdpr">Security &amp; GDPR</a></li>
+                <li><a class="home-card-link" href="#faq">FAQ</a></li>
+              </ul>
+            </nav>
+
             <p class="home-hero-mini">
               The right mix depends on your operation, customer requirements, and dispute risk.
             </p>
@@ -491,7 +515,8 @@
           <article class="card card-glass">
             <h3 class="home-card-title">Do drivers need an app?</h3>
             <p class="home-card-body">
-              No. Podfy works through a link that opens in the browser. This reduces friction with subcontractors, ad-hoc carriers, and high-turnover operations.
+              No. Podfy works through a link that opens in the browser, so drivers do not need to install an app or create an account. This improves completion rates when you work with subcontractors, ad-hoc carriers, or high turnover. Proof is available centrally as soon as the upload is completed.
+
             </p>
           </article>
 
@@ -554,8 +579,8 @@
        <div class="home-contact-grid">
 <!-- LEFT 1/2: FORM -->
       <div class="card card-glass home-contact-card">
-         <h3 class="home-card-title">Select your use-case</h3>
-         <p class="home-card-body">Tell us how you work today and how we can help.</p>
+         <h3 class="home-card-title">Get advice for your proof of delivery flow</h3>
+          <p class="home-card-body">Tell us your situation and we’ll suggest the best setup and a quote within 24 hours.</p>
 
         <form id="contact-form" class="home-contact-form" novalidate>
           <div class="home-field visually-hidden" aria-hidden="true">
@@ -810,6 +835,12 @@
         setSubmitting(false);
       }
     });
+  })();
+</script>
+<script>
+  (function () {
+    const el = document.getElementById("source_page");
+    if (el) el.value = window.location.href;
   })();
 </script>
 
