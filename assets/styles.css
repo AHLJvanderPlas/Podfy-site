@@ -1229,3 +1229,48 @@ html[data-theme="light"] .manual-contact-card{background:#FFFFFF}
   color:var(--muted);
   margin-bottom:.7rem;
 }
+/* =========================================================
+   HERO TOC PILL NAV
+   ========================================================= */
+
+.home-toc-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.45rem;
+  margin:0;
+}
+
+.home-toc-pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.35rem .7rem;
+  border-radius:999px;
+  font-size:.78rem;
+  line-height:1;
+  border:1px solid rgba(148,163,184,0.6);
+  background:rgba(255,255,255,0.75);
+  color:var(--muted);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+  will-change:transform;
+}
+
+html[data-theme="dark"] .home-toc-pill{
+  background:rgba(15,23,42,0.55);
+  border-color:rgba(148,163,184,0.35);
+  color:var(--muted);
+}
+
+.home-toc-pill:hover,
+.home-toc-pill:focus-visible{
+  transform:translateY(-1px);
+  box-shadow:0 12px 30px rgba(2,6,23,.12);
+  border-color:rgba(37,99,235,.35);
+  background:rgba(37,99,235,.04);
+  outline:none;
+}
+
+.home-toc-pill:focus-visible{
+  outline:2px solid rgba(37,99,235,.45);
+  outline-offset:2px;
+}
