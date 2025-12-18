@@ -1,0 +1,734 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Proof of Delivery (POD) Explained – Modern Delivery Proof Without Apps | PODFY</title>
+  <meta name="description" content="Proof of delivery explained in practical terms: what it is, why it fails in real life, and how modern teams collect PODs and delivery documents without apps or paperwork using Podfy." />
+  <link rel="canonical" href="https://podfy.net/podfy-proof-of-delivery" />
+
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+
+  <link rel="stylesheet" href="/assets/styles.css?v=home-rev5" />
+  <script src="/assets/theme.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Proof of Delivery (POD) Explained – PODFY",
+    "description":"A practical, authoritative explanation of proof of delivery: what it is, why it breaks down, and how modern teams collect POD without apps using Podfy.",
+    "publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"},
+    "about":[
+      {"@type":"Thing","name":"proof of delivery"},
+      {"@type":"Thing","name":"proof of delivery documents"},
+      {"@type":"Thing","name":"delivery documentation"},
+      {"@type":"Thing","name":"POD dispute resolution"},
+      {"@type":"Thing","name":"delivery document archive"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"Do drivers need an app to provide proof of delivery?",
+        "acceptedAnswer":{"@type":"Answer","text":"No. With Podfy you can collect proof of delivery through a simple link sent via SMS, WhatsApp, or email. Drivers upload documents and photos in the browser, without installing an app or creating an account."}
+      },
+      {
+        "@type":"Question",
+        "name":"What can count as proof of delivery?",
+        "acceptedAnswer":{"@type":"Answer","text":"Proof of delivery can be a signed delivery note, a CMR, a POD document, photos of delivered goods, timestamps, and any additional notes that confirm what was delivered, where, and when."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can inbound or receiving teams register deliveries too?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. Inbound teams can use the same link-based workflow to upload delivery documents or photos when carriers arrive, so the site keeps a consistent record even when drivers change or suppliers use different processes."}
+      },
+      {
+        "@type":"Question",
+        "name":"Where is proof of delivery stored?",
+        "acceptedAnswer":{"@type":"Answer","text":"Podfy stores delivery documents centrally so office teams can search and retrieve them quickly. Proof can also be made available through the Podfy delivery portal at delivery.podfy.net for internal teams and customers."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can we add references like PO numbers, shipment IDs, or project numbers?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. You can capture a reference (for example PO number, shipment ID, store number, or project code) so documents can be linked to the right delivery and found later without searching through email attachments."}
+      },
+      {
+        "@type":"Question",
+        "name":"Is Podfy suitable for audits and disputes?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. Central storage and fast retrieval help teams respond to disputes and audits with the correct delivery proof. The goal is practical traceability without introducing complex document management systems."}
+      },
+      {
+        "@type":"Question",
+        "name":"How quickly are documents available after delivery?",
+        "acceptedAnswer":{"@type":"Answer","text":"As soon as the upload is completed, documents are available centrally. That reduces delays that usually happen when paper is scanned later or when drivers send proof days after delivery."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can Podfy replace a TMS, WMS, or ERP?",
+        "acceptedAnswer":{"@type":"Answer","text":"No. Podfy focuses on delivery documentation intake and retrieval. It is designed to complement existing systems by making proof of delivery collection simple and consistent across carriers, suppliers, sites, and stores."}
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    /* Turnstile callbacks (works with the existing implicit widget) */
+    function onTurnstileCompleted(token) {
+      var hidden = document.getElementById("turnstileToken");
+      if (hidden) hidden.value = token || "";
+    }
+    function onTurnstileExpired() {
+      var hidden = document.getElementById("turnstileToken");
+      if (hidden) hidden.value = "";
+    }
+    function onTurnstileError() {
+      var hidden = document.getElementById("turnstileToken");
+      if (hidden) hidden.value = "";
+    }
+  </script>
+</head>
+
+<body class="home-body">
+  [[PODFY_HEADER]]
+
+  <main id="main" class="home-main">
+
+    <!-- 1. HERO -->
+    <section class="home-section home-hero home-hero-subheader">
+      <div class="container home-hero-shell card card-glass">
+        <div class="home-hero-left">
+          <p class="home-kicker">Proof of Delivery Hub</p>
+
+          <h1 class="home-hero-title hero-heading">
+            <span>Proof of Delivery</span> explained for real operations.
+          </h1>
+
+          <p class="home-hero-lead">
+            Proof of delivery (POD) is the evidence that a delivery happened, and that the right goods arrived at the right place.
+            This page explains what POD is, why it breaks down in practice, and how modern teams collect delivery proof without apps or paperwork.
+          </p>
+
+          <ul class="icon-list">
+            <li>Clear definition of proof of delivery and what counts as POD</li>
+            <li>Practical breakdown of why POD goes missing or arrives late</li>
+            <li>Modern link-based collection approach used by Podfy</li>
+          </ul>
+
+          <div class="home-hero-actions">
+            <a href="/free-tier-demo.html" class="btn btn-primary">Try a demo upload</a>
+            <a href="#contact" class="btn btn-secondary">Get advice for your flow</a>
+          </div>
+
+          <p class="home-hero-footnote">
+            Podfy is a no-app way to collect proof of delivery: share a link, upload documents and photos, and store them centrally for fast retrieval.
+          </p>
+        </div>
+
+        <div class="home-hero-right">
+          <div class="home-hero-card card">
+            <h2 class="home-hero-card-title">What “proof of delivery” can include</h2>
+            <ol class="home-hero-steps">
+              <li>Signed delivery note / POD document</li>
+              <li>CMR or transport documents</li>
+              <li>Photos of the delivery or goods</li>
+              <li>Timestamps and basic delivery details</li>
+              <li>Reference (PO / shipment / project / store)</li>
+            </ol>
+            <p class="home-hero-mini">
+              The right mix depends on your operation, customer requirements, and dispute risk.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. WHAT IS POD -->
+    <section class="home-section" id="what-is-pod">
+      <div class="container">
+        <h2 class="home-section-title">What is proof of delivery?</h2>
+        <p class="home-section-intro">
+          Proof of delivery (POD) is the evidence that a delivery was completed. It typically includes a document, a signature, a photo, or a timestamped record that confirms what was delivered and when.
+        </p>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <p class="home-step-kicker">Evidence</p>
+            <h3 class="home-card-title">What counts as POD</h3>
+            <p class="home-card-body">
+              A POD can be a signed delivery note, a CMR, a delivery receipt, photos of delivered goods, or a timestamped upload that links the proof to a reference.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Why it matters</p>
+            <h3 class="home-card-title">Invoicing and accountability</h3>
+            <p class="home-card-body">
+              POD is often required to invoice, confirm service completion, and prove that the delivery responsibility was transferred to the receiver.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Risk control</p>
+            <h3 class="home-card-title">Disputes and audits</h3>
+            <p class="home-card-body">
+              When claims happen (shortages, damages, “not delivered”), POD is the fastest way to resolve questions and reduce time spent searching.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. WHY POD BREAKS DOWN -->
+    <section class="home-section" id="why-pod-fails">
+      <div class="container">
+        <h2 class="home-section-title">Why proof of delivery breaks down in practice</h2>
+        <p class="home-section-intro">
+          Most POD problems are not “software problems”. They happen because delivery is messy: many people, many devices, and many handovers.
+        </p>
+
+        <div class="home-grid-4">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Paper gets lost</h3>
+            <p class="home-card-body">
+              Delivery notes and CMRs disappear before anyone scans them, or they sit in a cab until it’s too late.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Drivers forget</h3>
+            <p class="home-card-body">
+              Proof is not sent after delivery, especially in high-pressure routes or when the process requires extra steps.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Apps don’t get installed</h3>
+            <p class="home-card-body">
+              Subcontractors, ad-hoc carriers, and temporary drivers often refuse installs, logins, or training.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Proof arrives too late</h3>
+            <p class="home-card-body">
+              Late POD delays invoicing and slows customer service. Teams end up chasing documents across inboxes.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Many partners, many processes</h3>
+            <p class="home-card-body">
+              Every carrier or supplier uses a different format, so documents end up inconsistent and hard to match to deliveries.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Scattered storage</h3>
+            <p class="home-card-body">
+              Proof ends up in email threads, shared drives, personal folders, or chat apps. Retrieval becomes slow and unreliable.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">No single reference</h3>
+            <p class="home-card-body">
+              Without a PO, shipment, project, or store reference, teams can’t reliably find the correct proof later.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Too much manual work</h3>
+            <p class="home-card-body">
+              Scanning, renaming, and filing creates bottlenecks. The backlog grows, and the team loses control.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. LEGACY VS MODERN -->
+    <section class="home-section" id="legacy-vs-modern">
+      <div class="container">
+        <h2 class="home-section-title">Legacy POD vs modern POD</h2>
+        <p class="home-section-intro">
+          There are three common ways POD is collected. Each has trade-offs. The goal is reliability with minimal friction for the people actually doing the delivery or receiving.
+        </p>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <p class="home-step-kicker">Approach</p>
+            <h3 class="home-card-title">Paper-based POD</h3>
+            <p class="home-card-body">
+              Works without technology, but creates delays and loss risk. Proof is often scanned later and stored inconsistently.
+            </p>
+            <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
+              <li>High loss risk</li>
+              <li>Slow retrieval</li>
+              <li>Manual handling overhead</li>
+            </ul>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Approach</p>
+            <h3 class="home-card-title">App-based POD</h3>
+            <p class="home-card-body">
+              Can be powerful, but requires installs, accounts, and adoption. It often fails when you work with external partners.
+            </p>
+            <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
+              <li>Depends on compliance and training</li>
+              <li>Harder with subcontractors</li>
+              <li>Varies by device and OS</li>
+            </ul>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Approach</p>
+            <h3 class="home-card-title">Link-based / browser POD (Podfy)</h3>
+            <p class="home-card-body">
+              A simple link works on any phone. Drivers, suppliers, and inbound teams can upload proof without an app, and office teams get central storage.
+            </p>
+            <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
+              <li>No app and no login for drivers</li>
+              <li>Consistent intake across partners</li>
+              <li>Central search and retrieval</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. HOW PODFY WORKS -->
+    <section class="home-section" id="how-podfy-works">
+      <div class="container">
+        <h2 class="home-section-title">How modern POD works with Podfy</h2>
+        <p class="home-section-intro">
+          Podfy is designed to remove friction at the collection step. You don’t need drivers to adopt new tools to get reliable delivery proof.
+        </p>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <h3 class="home-card-title">1. Share an upload link</h3>
+            <p class="home-card-body">
+              Send a link via SMS, WhatsApp, or email. This works with carriers, suppliers, subcontractors, or inbound staff.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">2. Upload documents and photos</h3>
+            <p class="home-card-body">
+              Users upload PODs, delivery notes, CMRs, or photos directly in the browser. No app installation or account required.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">3. Add a reference</h3>
+            <p class="home-card-body">
+              Capture a reference such as a PO number, shipment ID, project code, store number, or site name so retrieval stays simple.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">4. Central storage and retrieval</h3>
+            <p class="home-card-body">
+              Documents are stored centrally and searchable for operations, customer service, finance, and compliance teams.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">5. Access in the delivery portal</h3>
+            <p class="home-card-body">
+              Proof can be accessed via the Podfy delivery portal at <a class="home-card-link" href="https://delivery.podfy.net" target="_blank" rel="noopener">delivery.podfy.net</a>.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Designed for the real world</h3>
+            <p class="home-card-body">
+              Mixed devices, varying skills, external partners, and high turnover are normal. Podfy keeps the workflow simple enough to survive that reality.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. USE CASE OVERVIEW -->
+    <section class="home-section" id="use-cases">
+      <div class="container">
+        <h2 class="home-section-title">Who uses proof of delivery?</h2>
+        <p class="home-section-intro">
+          Proof of delivery is used across industries. The core need is the same: collect delivery evidence reliably and retrieve it quickly when needed.
+        </p>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Carriers</h3>
+            <p class="home-card-body">Collect PODs without forcing drivers to install apps.</p>
+            <a class="home-card-link" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">View carriers page</a>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Shippers</h3>
+            <p class="home-card-body">Receive PODs digitally from any carrier and share them internally.</p>
+            <a class="home-card-link" href="https://podfy.net/podfy-proof-of-delivery-for-shippers">View shippers page</a>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">3PLs</h3>
+            <p class="home-card-body">Standardize POD collection across multiple carriers and partners.</p>
+            <a class="home-card-link" href="https://podfy.net/podfy-proof-of-delivery-for-3pl">View 3PL page</a>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Inbound / Receiving</h3>
+            <p class="home-card-body">Create a digital inbox for delivery documents and fast retrieval.</p>
+            <a class="home-card-link" href="https://podfy.net/podfy-digital-delivery-document-storage">View inbound page</a>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Retail &amp; stores</h3>
+            <p class="home-card-body">Keep store deliveries consistent and visible to head office.</p>
+            <a class="home-card-link" href="https://podfy.net/podfy-retail-delivery-documentation">View retail page</a>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Construction sites</h3>
+            <p class="home-card-body">Capture delivery notes and photos on uncontrolled, changing sites.</p>
+            <a class="home-card-link" href="https://podfy.net/podfy-construction-delivery-documentation">View construction page</a>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Facilities</h3>
+            <p class="home-card-body">Maintain a digital delivery log for multi-supplier sites.</p>
+            <a class="home-card-link" href="https://podfy.net/podfy-digital-delivery-documentation">View facilities page</a>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Compliance &amp; audits</h3>
+            <p class="home-card-body">Reduce disputes and audit effort with a central POD archive.</p>
+            <a class="home-card-link" href="https://podfy.net/podfy-proof-of-delivery-compliance">View compliance page</a>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">No-app / low-tech</h3>
+            <p class="home-card-body">Collect POD when app adoption is unrealistic or inconsistent.</p>
+            <a class="home-card-link" href="https://podfy.net/podfy-proof-of-delivery-without-app">View no-app page</a>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Paper flow digitization</h3>
+            <p class="home-card-body">Start paperless without scanners or complex document systems.</p>
+            <a class="home-card-link" href="https://podfy.net/podfy-digitize-delivery-documents">View digitization page</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SECURITY / GDPR / AUDITS -->
+    <section class="home-section" id="security-gdpr">
+      <div class="container">
+        <h2 class="home-section-title">Security, GDPR, and audit readiness</h2>
+        <p class="home-section-intro">
+          Delivery documents can contain customer details, addresses, signatures, and commercially sensitive information. That is why storage and retrieval need to be consistent and controlled.
+        </p>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Why POD data is sensitive</h3>
+            <p class="home-card-body">
+              POD often contains personal data and business data. Keeping it spread across inboxes and folders increases risk and slows response times.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Central storage matters</h3>
+            <p class="home-card-body">
+              Central storage improves traceability. It also reduces “who has the document?” confusion during disputes, audits, and customer escalations.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">GDPR-aware handling (practical)</h3>
+            <p class="home-card-body">
+              A consistent intake process helps teams handle delivery proof in a GDPR-aware way: fewer copies, less uncontrolled sharing, and clearer ownership.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. WHAT PODFY IS / IS NOT -->
+    <section class="home-section" id="what-podfy-is">
+      <div class="container">
+        <h2 class="home-section-title">What Podfy is (and is not)</h2>
+        <p class="home-section-intro">
+          Podfy focuses on delivery documentation: collecting proof reliably and making it easy to retrieve. It is designed to complement your existing systems.
+        </p>
+
+        <div class="home-grid-2">
+          <article class="card card-glass">
+            <h3 class="home-card-title">What Podfy is</h3>
+            <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
+              <li>A simple, no-app way to collect delivery documents</li>
+              <li>A central place to store and retrieve PODs, CMRs, delivery notes, and photos</li>
+              <li>A practical layer for multi-carrier and multi-site environments</li>
+              <li>A delivery portal for access and sharing (delivery.podfy.net)</li>
+            </ul>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">What Podfy does not try to replace</h3>
+            <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
+              <li>ERP systems</li>
+              <li>TMS route planning or dispatching tools</li>
+              <li>WMS or warehouse execution systems</li>
+              <li>Complex document governance platforms</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. FAQ -->
+    <section class="home-section" id="faq">
+      <div class="container">
+        <h2 class="home-section-title">FAQ</h2>
+
+        <div class="home-grid-2">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Do drivers need an app?</h3>
+            <p class="home-card-body">
+              No. Podfy works through a link that opens in the browser. This reduces friction with subcontractors, ad-hoc carriers, and high-turnover operations.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">What documents can be used as proof of delivery?</h3>
+            <p class="home-card-body">
+              PODs, signed delivery notes, CMRs, delivery receipts, and photos can all be used. The best setup depends on your dispute risk and customer requirements.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Can inbound teams upload proof too?</h3>
+            <p class="home-card-body">
+              Yes. Receiving teams can upload delivery documents and photos when a carrier arrives. This is useful when drivers change frequently or when you want a consistent inbound record.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Where is delivery proof stored?</h3>
+            <p class="home-card-body">
+              Proof is stored centrally so it can be found quickly. You can also provide access through the delivery portal at <a class="home-card-link" href="https://delivery.podfy.net" target="_blank" rel="noopener">delivery.podfy.net</a>.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Can we add references like PO or shipment ID?</h3>
+            <p class="home-card-body">
+              Yes. References such as PO numbers, shipment IDs, project codes, or store numbers help link proof to the correct delivery and speed up retrieval later.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Is this suitable for audits and disputes?</h3>
+            <p class="home-card-body">
+              Yes. Central storage and fast retrieval reduce time spent hunting for proof. It also helps reduce billing delays when customers require POD to invoice.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">How quickly is proof available?</h3>
+            <p class="home-card-body">
+              As soon as an upload is completed, documents are available centrally. That avoids the common “scan later” backlog and late POD submissions.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Is Podfy a TMS or WMS?</h3>
+            <p class="home-card-body">
+              No. Podfy focuses on delivery documentation intake and retrieval. It complements existing systems by making POD collection simple and consistent.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CTA + CONTACT (same form as index) -->
+    <section class="home-section" id="contact">
+      <div class="container home-contact-grid">
+
+        <div class="card card-glass home-contact-card">
+          <h2 class="home-section-title">Get help setting up your proof of delivery flow</h2>
+          <p class="home-section-intro">
+            Tell us how you collect POD today. We’ll suggest the simplest rollout for your operation and provide a practical quote.
+          </p>
+
+          <!-- CONTACT FORM -->
+<form id="contact-form" class="home-contact-form" novalidate>
+  <!-- Honeypot (hidden from users) -->
+  <div class="home-field home-field-hp visually-hidden" aria-hidden="true">
+    <label for="hp_contact">Leave this field empty</label>
+    <input
+      id="hp_contact"
+      name="hp_contact"
+      type="text"
+      tabindex="-1"
+      autocomplete="off"
+    />
+  </div>
+
+  <div class="home-field">
+    <label class="home-label" for="contact-name">Name</label>
+    <input
+      id="contact-name"
+      name="name"
+      type="text"
+      class="home-input"
+      required
+      autocomplete="name"
+    />
+  </div>
+
+  <div class="home-field">
+    <label class="home-label" for="contact-email">Email</label>
+    <input
+      id="contact-email"
+      name="email"
+      type="email"
+      class="home-input"
+      required
+      autocomplete="email"
+    />
+  </div>
+
+  <div class="home-field">
+    <label class="home-label" for="contact-company">Company</label>
+    <input
+      id="contact-company"
+      name="company"
+      type="text"
+      class="home-input"
+      autocomplete="organization"
+    />
+  </div>
+
+  <div class="home-field">
+    <label class="home-label" for="contact-message">Message</label>
+    <textarea
+      id="contact-message"
+      name="message"
+      rows="4"
+      class="home-textarea"
+      placeholder="Example: We need PODs from multiple carriers, and we want to search by shipment or PO."
+    ></textarea>
+  </div>
+
+  <!-- Hidden input: where the form was filled -->
+  <input type="hidden" name="source_page" value="/podfy-proof-of-delivery" />
+
+  <div class="home-field home-consent">
+    <label class="home-checkbox">
+      <input type="checkbox" name="consent" required checked />
+      <span>
+        I agree to be contacted and accept the
+        <a href="/privacy.html">Privacy Policy</a>.
+      </span>
+    </label>
+  </div>
+
+  <div class="home-field home-field-turnstile">
+    <div class="cf-turnstile"
+      data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+      data-callback="onTurnstileCompleted"
+      data-expired-callback="onTurnstileExpired"
+      data-error-callback="onTurnstileError"
+      data-theme="auto"></div>
+  </div>
+
+  <!-- Hidden field where we store the Turnstile token -->
+  <input type="hidden" id="turnstileToken" name="turnstileToken" />
+
+  <p id="contact-status" class="home-status" role="status"></p>
+
+  <div class="home-actions">
+    <button type="submit" class="btn btn-primary">Send request</button>
+  </div>
+</form>
+        </div>
+
+        <aside class="card card-glass home-contact-side">
+          <h3 class="home-card-title">Select your use-case</h3>
+          <p class="home-card-body">Click the tile that fits your story</p>
+
+          <div class="home-grid-2">
+            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">
+              <h4 class="home-card-title home-trigger-title">Carriers</h4>
+              <p class="home-card-body">“I run a carrier company and need a simple way to collect proof of delivery without forcing drivers to install an app.”</p>
+            </a>
+
+            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-document-storage">
+              <h4 class="home-card-title home-trigger-title">Inbound / Receiving</h4>
+              <p class="home-card-body">“I manage inbound deliveries and want all delivery documents stored digitally in one central place.”</p>
+            </a>
+
+            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digitize-delivery-documents">
+              <h4 class="home-card-title home-trigger-title">Digitize Paper Flow</h4>
+              <p class="home-card-body">“We still use paper delivery notes and want to digitize our delivery documents without complexity.”</p>
+            </a>
+
+            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-shippers">
+              <h4 class="home-card-title home-trigger-title">Shippers</h4>
+              <p class="home-card-body">“I ship goods and want to receive proof of delivery digitally from any carrier.”</p>
+            </a>
+
+            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-3pl">
+              <h4 class="home-card-title home-trigger-title">3PLs</h4>
+              <p class="home-card-body">“I work with multiple carriers and need one standard way to collect proof of delivery from all of them.”</p>
+            </a>
+
+            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-construction-delivery-documentation">
+              <h4 class="home-card-title home-trigger-title">Construction</h4>
+              <p class="home-card-body">“I manage a construction or project site and need clear proof for frequent material deliveries.”</p>
+            </a>
+
+            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-retail-delivery-documentation">
+              <h4 class="home-card-title home-trigger-title">Retail</h4>
+              <p class="home-card-body">“I manage stores and want delivery documents available centrally without burdening store staff.”</p>
+            </a>
+
+            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-compliance">
+              <h4 class="home-card-title home-trigger-title">Compliance</h4>
+              <p class="home-card-body">“I need reliable proof of delivery for audits, disputes, and invoicing.”</p>
+            </a>
+
+            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-without-app">
+              <h4 class="home-card-title home-trigger-title">No-App / Low-Tech</h4>
+              <p class="home-card-body">“My drivers or subcontractors won’t install apps, but I still need proof of delivery.”</p>
+            </a>
+
+            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-documentation">
+              <h4 class="home-card-title home-trigger-title">Facilities</h4>
+              <p class="home-card-body">“I manage facilities and want a simple digital record of supplier and courier deliveries.”</p>
+            </a>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+</body>
+</html>
+```
