@@ -11,7 +11,7 @@
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="keywords" content="proof of delivery compliance, delivery document audit trail, POD dispute resolution" />
 
-  <link rel="stylesheet" href="/assets/styles.css?v=home-rev5" />
+  <link rel="stylesheet" href="/assets/styles.css?v=home-rev9" />
   <script src="/assets/theme.js" defer></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
@@ -399,8 +399,10 @@
        <div class="home-contact-grid">
 <!-- LEFT 1/2: FORM -->
       <div class="card card-glass home-contact-card">
-         <h3 class="home-card-title">Select your use-case</h3>
-         <p class="home-card-body">Tell us how you work today and how we can help.</p>
+         <h3 class="home-card-title">Get a quote for audit-ready delivery proof</h3>
+          <p class="home-card-body">
+            Central, secure documentation for audits and disputes. Quote within 24 hours.
+          </p>
 
         <form id="contact-form" class="home-contact-form" novalidate>
           <div class="home-field visually-hidden" aria-hidden="true">
@@ -464,7 +466,6 @@
 
             <div class="home-field home-field-turnstile" style="margin-top:.75rem;">
               <div  
-                id="turnstile-widget"
                 class="cf-turnstile"
                 data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
                 data-callback="onTurnstileCompleted"
@@ -478,8 +479,10 @@
 
         <!-- RIGHT 1/2: LINKS (sentence cards in 2 columns; whole card is clickable + hover highlight) -->
       <aside class="card card-glass home-contact-side">
-        <h3 class="home-card-title">Select your use-case</h3>
-        <p class="home-card-body">Click the tile that fits your story</p>
+        <h3 class="home-card-title">Get a quote for site delivery logging</h3>
+        <p class="home-card-body">
+          Simple registration for reception and security teams. Quote within 24 hours.
+        </p>
 
         <div class="home-grid-2">
           <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">
@@ -543,45 +546,88 @@
 
   <!-- CONTACT FORM HANDLER (same as main page) -->
   <script>
-    function onTurnstileCompleted(token){document.getElementById('turnstileToken').value=token||'';}
-    function onTurnstileExpired(){document.getElementById('turnstileToken').value='';}
-    function onTurnstileError(){document.getElementById('turnstileToken').value='';}
+    function onTurnstileCompleted(token) {
+      const hidden = document.getElementById("turnstileToken");
+      if (hidden) hidden.value = token || "";
+    }
+    function onTurnstileExpired() {
+      const hidden = document.getElementById("turnstileToken");
+      if (hidden) hidden.value = "";
+    }
+    function onTurnstileError() {
+      const hidden = document.getElementById("turnstileToken");
+      if (hidden) hidden.value = "";
+    }
 
-    (function(){
-      const form=document.getElementById('contact-form');
-      if(!form)return;
-      const status=document.getElementById('contact-status');
-      const btn=form.querySelector('button[type="submit"]');
+    (function () {
+      const form = document.getElementById("contact-form");
+      if (!form) return;
 
-      form.addEventListener('submit',async e=>{
+      const statusEl = document.getElementById("contact-status");
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      function setStatus(message) {
+        if (statusEl) statusEl.textContent = message || "";
+      }
+      function setSubmitting(on) {
+        if (submitBtn) submitBtn.disabled = !!on;
+      }
+
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        if(form.reportValidity && !form.reportValidity())return;
 
-        const token=document.getElementById('turnstileToken').value;
-        if(!token){status.textContent='Security check failed. Please try again.';return;}
+        if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
 
-        btn.disabled=true;
-        status.textContent='Sending…';
+        const tokenInput = document.getElementById("turnstileToken");
+        const token = tokenInput ? tokenInput.value : "";
+        if (!token) {
+          setStatus("Security check failed. Please wait for the challenge and try again.");
+          try {
+            if (window.turnstile && typeof window.turnstile.reset === "function") window.turnstile.reset();
+          } catch (_) {}
+          return;
+        }
 
-        try{
-          const payload=Object.fromEntries(new FormData(form).entries());
-          const res=await fetch('/api/contact',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify(payload)
+        setSubmitting(true);
+        setStatus("Sending…");
+
+        try {
+          const payload = Object.fromEntries(new FormData(form).entries());
+
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
           });
-          const data=await res.json().catch(()=>null);
-          if(!res.ok||!data||data.ok===false){
-            status.textContent=(data&&data.message)||'Failed to send message.';
+
+          let data = null;
+          try { data = await res.json(); } catch (_) {}
+
+          if (!res.ok || !data || data.ok === false) {
+            const msg =
+              (data && (data.error || data.message)) ||
+              "We could not send the email right now. Please try again later.";
+            setStatus(msg);
+
+            if (tokenInput) tokenInput.value = "";
+            try {
+              if (window.turnstile && typeof window.turnstile.reset === "function") window.turnstile.reset();
+            } catch (_) {}
             return;
           }
+
+          setStatus("Thanks! We will contact you shortly.");
           form.reset();
-          status.textContent='Thanks! We will contact you shortly.';
-        }catch(e){
-          status.textContent='Failed to send message.';
-        }finally{
-          btn.disabled=false;
-          try{window.turnstile.reset();}catch(e){}
+
+          if (tokenInput) tokenInput.value = "";
+          try {
+            if (window.turnstile && typeof window.turnstile.reset === "function") window.turnstile.reset();
+          } catch (_) {}
+        } catch (err) {
+          console.error("Contact form error", err);
+          setStatus("We could not send the email right now. Please try again later.");
+        } finally {
+          setSubmitting(false);
         }
       });
     })();
