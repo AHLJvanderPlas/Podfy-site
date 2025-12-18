@@ -80,22 +80,7 @@
     ]
   }
   </script>
-
-  <script>
-    /* Turnstile callbacks (works with the existing implicit widget) */
-    function onTurnstileCompleted(token) {
-      var hidden = document.getElementById("turnstileToken");
-      if (hidden) hidden.value = token || "";
-    }
-    function onTurnstileExpired() {
-      var hidden = document.getElementById("turnstileToken");
-      if (hidden) hidden.value = "";
-    }
-    function onTurnstileError() {
-      var hidden = document.getElementById("turnstileToken");
-      if (hidden) hidden.value = "";
-    }
-  </script>
+  
 </head>
 
 <body class="home-body">
@@ -563,172 +548,271 @@
       </div>
     </section>
 
-    <!-- 10. CTA + CONTACT (same form as index) -->
-    <section class="home-section" id="contact">
-      <div class="container home-contact-grid">
+<!-- 10. FINAL CTA + CONTACT FORM (updated layout) -->
+  <section class="home-section" id="contact">
+    <div class="container">
+      <h2 class="home-section-title">Get a solution for your case</h2>
+       <div class="home-contact-grid">
+<!-- LEFT 1/2: FORM -->
+      <div class="card card-glass home-contact-card">
+         <h3 class="home-card-title">Select your use-case</h3>
+         <p class="home-card-body">Tell us how you work today and how we can help.</p>
 
-        <div class="card card-glass home-contact-card">
-          <h2 class="home-section-title">Get help setting up your proof of delivery flow</h2>
-          <p class="home-section-intro">
-            Tell us how you collect POD today. We’ll suggest the simplest rollout for your operation and provide a practical quote.
-          </p>
-
-          <!-- CONTACT FORM -->
-<form id="contact-form" class="home-contact-form" novalidate>
-  <!-- Honeypot (hidden from users) -->
-  <div class="home-field home-field-hp visually-hidden" aria-hidden="true">
-    <label for="hp_contact">Leave this field empty</label>
-    <input
-      id="hp_contact"
-      name="hp_contact"
-      type="text"
-      tabindex="-1"
-      autocomplete="off"
-    />
-  </div>
-
-  <div class="home-field">
-    <label class="home-label" for="contact-name">Name</label>
-    <input
-      id="contact-name"
-      name="name"
-      type="text"
-      class="home-input"
-      required
-      autocomplete="name"
-    />
-  </div>
-
-  <div class="home-field">
-    <label class="home-label" for="contact-email">Email</label>
-    <input
-      id="contact-email"
-      name="email"
-      type="email"
-      class="home-input"
-      required
-      autocomplete="email"
-    />
-  </div>
-
-  <div class="home-field">
-    <label class="home-label" for="contact-company">Company</label>
-    <input
-      id="contact-company"
-      name="company"
-      type="text"
-      class="home-input"
-      autocomplete="organization"
-    />
-  </div>
-
-  <div class="home-field">
-    <label class="home-label" for="contact-message">Message</label>
-    <textarea
-      id="contact-message"
-      name="message"
-      rows="4"
-      class="home-textarea"
-      placeholder="Example: We need PODs from multiple carriers, and we want to search by shipment or PO."
-    ></textarea>
-  </div>
-
-  <!-- Hidden input: where the form was filled -->
-  <input type="hidden" name="source_page" value="/podfy-proof-of-delivery" />
-
-  <div class="home-field home-consent">
-    <label class="home-checkbox">
-      <input type="checkbox" name="consent" required checked />
-      <span>
-        I agree to be contacted and accept the
-        <a href="/privacy.html">Privacy Policy</a>.
-      </span>
-    </label>
-  </div>
-
-  <div class="home-field home-field-turnstile">
-    <div class="cf-turnstile"
-      data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-      data-callback="onTurnstileCompleted"
-      data-expired-callback="onTurnstileExpired"
-      data-error-callback="onTurnstileError"
-      data-theme="auto"></div>
-  </div>
-
-  <!-- Hidden field where we store the Turnstile token -->
-  <input type="hidden" id="turnstileToken" name="turnstileToken" />
-
-  <p id="contact-status" class="home-status" role="status"></p>
-
-  <div class="home-actions">
-    <button type="submit" class="btn btn-primary">Send request</button>
-  </div>
-</form>
-        </div>
-
-        <aside class="card card-glass home-contact-side">
-          <h3 class="home-card-title">Select your use-case</h3>
-          <p class="home-card-body">Click the tile that fits your story</p>
-
-          <div class="home-grid-2">
-            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">
-              <h4 class="home-card-title home-trigger-title">Carriers</h4>
-              <p class="home-card-body">“I run a carrier company and need a simple way to collect proof of delivery without forcing drivers to install an app.”</p>
-            </a>
-
-            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-document-storage">
-              <h4 class="home-card-title home-trigger-title">Inbound / Receiving</h4>
-              <p class="home-card-body">“I manage inbound deliveries and want all delivery documents stored digitally in one central place.”</p>
-            </a>
-
-            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digitize-delivery-documents">
-              <h4 class="home-card-title home-trigger-title">Digitize Paper Flow</h4>
-              <p class="home-card-body">“We still use paper delivery notes and want to digitize our delivery documents without complexity.”</p>
-            </a>
-
-            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-shippers">
-              <h4 class="home-card-title home-trigger-title">Shippers</h4>
-              <p class="home-card-body">“I ship goods and want to receive proof of delivery digitally from any carrier.”</p>
-            </a>
-
-            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-3pl">
-              <h4 class="home-card-title home-trigger-title">3PLs</h4>
-              <p class="home-card-body">“I work with multiple carriers and need one standard way to collect proof of delivery from all of them.”</p>
-            </a>
-
-            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-construction-delivery-documentation">
-              <h4 class="home-card-title home-trigger-title">Construction</h4>
-              <p class="home-card-body">“I manage a construction or project site and need clear proof for frequent material deliveries.”</p>
-            </a>
-
-            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-retail-delivery-documentation">
-              <h4 class="home-card-title home-trigger-title">Retail</h4>
-              <p class="home-card-body">“I manage stores and want delivery documents available centrally without burdening store staff.”</p>
-            </a>
-
-            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-compliance">
-              <h4 class="home-card-title home-trigger-title">Compliance</h4>
-              <p class="home-card-body">“I need reliable proof of delivery for audits, disputes, and invoicing.”</p>
-            </a>
-
-            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-without-app">
-              <h4 class="home-card-title home-trigger-title">No-App / Low-Tech</h4>
-              <p class="home-card-body">“My drivers or subcontractors won’t install apps, but I still need proof of delivery.”</p>
-            </a>
-
-            <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-documentation">
-              <h4 class="home-card-title home-trigger-title">Facilities</h4>
-              <p class="home-card-body">“I manage facilities and want a simple digital record of supplier and courier deliveries.”</p>
-            </a>
+        <form id="contact-form" class="home-contact-form" novalidate>
+          <div class="home-field visually-hidden" aria-hidden="true">
+            <label for="hp_contact">Leave this field empty</label>
+            <input id="hp_contact" name="hp_contact" type="text" tabindex="-1" autocomplete="off" />
           </div>
-        </aside>
 
+<!-- Hidden context for backend -->
+          <input type="hidden" id="source_page" name="source_page" value="" />
+          <input type="hidden" id="turnstileToken" name="turnstileToken" value="" />
+
+          <div class="home-field">
+            <label class="home-label" for="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" class="home-input" required autocomplete="name" />
+          </div>
+
+          <div class="home-field">
+            <label class="home-label" for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" class="home-input" required autocomplete="email" />
+          </div>
+
+          <div class="home-field">
+            <label class="home-label" for="contact-company">Company</label>
+            <input id="contact-company" name="company" type="text" class="home-input" autocomplete="organization" />
+          </div>
+
+          <div class="home-field">
+            <label class="home-label" for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="4" class="home-textarea"></textarea>
+          </div>
+
+<!-- Checkbox aligned on the same line -->
+          <div class="home-field home-consent">
+            <label class="home-checkbox" style="display:flex;align-items:flex-start;gap:.6rem;">
+              <input id="contact-consent" type="checkbox" name="consent" required checked style="margin-top:.2rem;" />
+              <span>
+                I agree to be contacted and accept the
+                <a href="/privacy.html">Privacy Policy</a>.
+              </span>
+            </label>
+          </div>
+        <p id="contact-status" class="home-status" role="status"></p>
+
+<!-- Send request ABOVE Turnstile -->
+          <div class="home-actions">
+            <button type="submit" class="btn btn-primary">Send request</button>
+          </div>
+
+<!-- Prefer email card ABOVE Turnstile card -->
+          <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
+            <h3 class="home-card-title">Prefer email?</h3>
+            <p class="home-card-body">
+              Reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>
+            </p>
+          </div>
+
+          <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
+            <p class="home-card-body" style="margin:0 0 .75rem 0;">
+              Quick check: we validate in the background that you’re not a spam bot.
+            </p>
+
+            <div class="home-field home-field-turnstile" style="margin-top:.75rem;">
+              <div
+                id="turnstile-widget"
+                class="cf-turnstile"
+                data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+                data-callback="onTurnstileCompleted"
+                data-expired-callback="onTurnstileExpired"
+                data-error-callback="onTurnstileError">
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-    </section>
+
+        <!-- RIGHT 1/2: LINKS (sentence cards in 2 columns; whole card is clickable + hover highlight) -->
+      <aside class="card card-glass home-contact-side">
+        <h3 class="home-card-title">Select your use-case</h3>
+        <p class="home-card-body">Click the tile that fits your story</p>
+
+        <div class="home-grid-2">
+          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">
+            <h4 class="home-card-title home-trigger-title">Carriers</h4>
+            <p class="home-card-body">“I run a carrier company and need a simple way to collect proof of delivery without forcing drivers to install an app.”</p>
+          </a>
+
+          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-document-storage">
+            <h4 class="home-card-title home-trigger-title">Inbound / Receiving</h4>
+            <p class="home-card-body">“I manage inbound deliveries and want all delivery documents stored digitally in one central place.”</p>
+          </a>
+
+          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digitize-delivery-documents">
+            <h4 class="home-card-title home-trigger-title">Digitize Paper Flow</h4>
+            <p class="home-card-body">“We still use paper delivery notes and want to digitize our delivery documents without complexity.”</p>
+          </a>
+
+          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-shippers">
+            <h4 class="home-card-title home-trigger-title">Shippers</h4>
+            <p class="home-card-body">“I ship goods and want to receive proof of delivery digitally from any carrier.”</p>
+          </a>
+
+          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-3pl">
+            <h4 class="home-card-title home-trigger-title">3PLs</h4>
+            <p class="home-card-body">“I work with multiple carriers and need one standard way to collect proof of delivery from all of them.”</p>
+          </a>
+
+          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-construction-delivery-documentation">
+            <h4 class="home-card-title home-trigger-title">Construction</h4>
+            <p class="home-card-body">“I manage a construction or project site and need clear proof for frequent material deliveries.”</p>
+          </a>
+
+          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-retail-delivery-documentation">
+            <h4 class="home-card-title home-trigger-title">Retail</h4>
+            <p class="home-card-body">“I manage stores and want delivery documents available centrally without burdening store staff.”</p>
+          </a>
+
+          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-compliance">
+            <h4 class="home-card-title home-trigger-title">Compliance</h4>
+            <p class="home-card-body">“I need reliable proof of delivery for audits, disputes, and invoicing.”</p>
+          </a>
+
+          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-without-app">
+            <h4 class="home-card-title home-trigger-title">No-App / Low-Tech</h4>
+            <p class="home-card-body">“My drivers or subcontractors won’t install apps, but I still need proof of delivery.”</p>
+          </a>
+
+          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-documentation">
+            <h4 class="home-card-title home-trigger-title">Facilities</h4>
+            <p class="home-card-body">“I manage facilities and want a simple digital record of supplier and courier deliveries.”</p>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
 
   </main>
 
   [[PODFY_FOOTER]]
+
+  <!-- CONTACT FORM HANDLER -->
+<script>
+  // Cloudflare Turnstile callbacks – names must match data-* attributes
+  function onTurnstileCompleted(token) {
+    const hidden = document.getElementById("turnstileToken");
+    if (hidden) hidden.value = token || "";
+  }
+
+  function onTurnstileExpired() {
+    const hidden = document.getElementById("turnstileToken");
+    if (hidden) hidden.value = "";
+  }
+
+  function onTurnstileError() {
+    const hidden = document.getElementById("turnstileToken");
+    if (hidden) hidden.value = "";
+  }
+
+  (function () {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+
+    const statusEl = document.getElementById("contact-status");
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    function setStatus(message) {
+      if (statusEl) {
+        statusEl.textContent = message || "";
+      }
+    }
+
+    function setSubmitting(on) {
+      if (submitBtn) {
+        submitBtn.disabled = !!on;
+      }
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // HTML5 validation first
+      if (typeof form.reportValidity === "function" && !form.reportValidity()) {
+        return;
+      }
+
+      // Ensure we have a Turnstile token
+      const tokenInput = document.getElementById("turnstileToken");
+      const token = tokenInput ? tokenInput.value : "";
+      if (!token) {
+        setStatus(
+          "Security check failed. Please wait for the challenge and try again."
+        );
+        try {
+          if (window.turnstile && typeof window.turnstile.reset === "function") {
+            window.turnstile.reset();
+          }
+        } catch (_) {}
+        return;
+      }
+
+      setSubmitting(true);
+      setStatus("Sending…");
+
+      try {
+        const payload = Object.fromEntries(new FormData(form).entries());
+
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        let data = null;
+        try {
+          data = await res.json();
+        } catch (_) {
+          // If not JSON, keep data=null
+        }
+
+        if (!res.ok || !data || data.ok === false) {
+          const msg =
+            (data && (data.error || data.message)) ||
+            "We could not send the email right now. Please try again later.";
+          setStatus(msg);
+
+          // Reset token so user gets a fresh challenge
+          if (tokenInput) tokenInput.value = "";
+          try {
+            if (window.turnstile && typeof window.turnstile.reset === "function") {
+              window.turnstile.reset();
+            }
+          } catch (_) {}
+          return;
+        }
+
+        setStatus("Thanks! We will contact you shortly.");
+        form.reset();
+
+        // Clear token + reset widget after success
+        if (tokenInput) tokenInput.value = "";
+        try {
+          if (window.turnstile && typeof window.turnstile.reset === "function") {
+            window.turnstile.reset();
+          }
+        } catch (_) {}
+      } catch (err) {
+        console.error("Contact form error", err);
+        setStatus(
+          "We could not send the email right now. Please try again later."
+        );
+      } finally {
+        setSubmitting(false);
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
-```
