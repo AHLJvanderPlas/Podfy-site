@@ -1231,6 +1231,7 @@ html[data-theme="light"] .manual-contact-card{background:#FFFFFF}
 }
 /* =========================================================
    HERO TOC PILL NAV
+   (pill-style chapter links like the Terms page)
    ========================================================= */
 
 .home-toc-pills{
@@ -1274,3 +1275,4 @@ html[data-theme="dark"] .home-toc-pill{
   outline:2px solid rgba(37,99,235,.45);
   outline-offset:2px;
 }
+
