@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Missing Proof of Delivery (POD) – Causes, Impact, and Prevention | PODFY</title>
+  <meta name="description" content="Missing proof of delivery is common and expensive: it delays invoicing, creates disputes, and wastes admin time. Learn why POD goes missing and how modern link-based collection prevents it." />
+  <link rel="canonical" href="https://podfy.net/podfy-missing-proof-of-delivery" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+
+  <link rel="stylesheet" href="/assets/styles.css?v=home-rev10" />
+  <script src="/assets/theme.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <!-- FAQPage schema (must match visible FAQ exactly) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      { "@type":"Question", "name":"What if proof of delivery is missing?",
+        "acceptedAnswer":{  "@type":"Answer", "text":"Treat it as a retrieval task with a deadline. First, confirm the reference (PO, shipment ID, store/site, date) and identify who should have the proof (driver, carrier, supplier, or receiving team). Then request the missing document or photos immediately while the delivery is still recent. If missing POD is frequent, the fix is usually a simpler collection step that happens at delivery, not more chasing later."
+        }
+      },
+      {
+        "@type":"Question", "name":"Can deliveries still be invoiced without POD?",
+        "acceptedAnswer":{  "@type":"Answer", "text":"Sometimes, but it depends on your agreements and customer expectations. Many teams invoice based on dispatch or confirmed receipt, but missing POD increases the chance of disputes, delayed payment, and manual checks. A reliable proof flow reduces exceptions and makes billing faster and calmer."
+        }
+      },
+      {
+        "@type":"Question", "name":"Why does proof of delivery go missing so often?",
+        "acceptedAnswer":{  "@type":"Answer", "text":"Because delivery is a handover with time pressure, mixed devices, and many external parties. Paper can be lost, photos stay on phones, and app-based steps are skipped when drivers are subcontracted or temporary. In many operations, there is also no single reference used consistently, which makes proof hard to match and retrieve later."
+        }
+      },
+      {
+        "@type":"Question", "name":"Can inbound teams register delivery proof themselves?",
+        "acceptedAnswer":{  "@type":"Answer", "text":"Yes. Many organizations solve missing POD by letting the receiving team capture the delivery note or photos at the moment of receipt. This creates a consistent record even if the driver changes, the supplier uses a different process, or the carrier does not send proof on time. The key is a workflow that is quick enough for peak hours."
+        }
+      },
+      {
+        "@type":"Question", "name":"Does missing POD increase dispute risk?",
+        "acceptedAnswer":{  "@type":"Answer", "text":"Yes. When proof is missing, disputes take longer and often become opinion-based. Claims like “not delivered”, shortages, and damage are harder to resolve without the correct document, photo, timestamp, and reference. Reliable capture at delivery reduces both the number and the duration of disputes."
+        }
+      },
+      {
+        "@type":"Question", "name":"How quickly should proof of delivery be collected?",
+        "acceptedAnswer":{  "@type":"Answer", "text":"Ideally at the time of delivery or receiving, before the driver leaves the site. The longer you wait, the higher the chance the document gets lost, the photo is forgotten, or the context disappears. A good rule is: collect the proof the same day, and make it available centrally immediately."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="home-body">
+  [[PODFY_HEADER]]
+
+  <main id="main" class="home-main">
+
+    <!-- HERO -->
+    <section class="home-section home-hero home-hero-subheader">
+      <div class="container home-hero-shell card card-glass">
+        <div class="home-hero-left">
+          <p class="home-kicker">POD Problem Guide</p>
+
+          <h1 class="home-hero-title hero-heading">
+            <span>Missing proof of delivery</span> is common — and usually a process issue.
+          </h1>
+
+          <p class="home-hero-lead">
+            Missing proof of delivery (POD) means the delivery may have happened, but the evidence did not arrive where it needs to be.
+            The result is delays, disputes, and time spent chasing documents long after the delivery is done.
+          </p>
+
+          <ul class="icon-list">
+            <li>Invoicing slows down when POD is missing or arrives late</li>
+            <li>Disputes become harder to resolve without clear evidence</li>
+            <li>Admin work grows: calls, emails, scanning, and searching</li>
+          </ul>
+
+          <div class="home-hero-actions">
+            <a href="#prevent" class="btn btn-primary">See how to prevent missing POD</a>
+            <a href="#contact" class="btn btn-secondary">Talk to us about your flow</a>
+          </div>
+
+          <p class="home-hero-footnote">
+            This page supports the broader topic: <a class="home-card-link" href="https://podfy.net/podfy-proof-of-delivery">Proof of Delivery (POD) explained</a>.
+          </p>
+        </div>
+
+        <div class="home-hero-right">
+          <div class="home-hero-card card">
+            <h2 class="home-hero-card-title">What “missing POD” looks like</h2>
+            <ol class="home-hero-steps">
+              <li>The delivery is completed, but no document arrives</li>
+              <li>Proof exists, but it’s stuck in email/WhatsApp or on a phone</li>
+              <li>The wrong reference is used, so proof can’t be found later</li>
+              <li>Paper is scanned days later (or never)</li>
+              <li>A partner uses a different system and does not share proof</li>
+            </ol>
+            <p class="home-hero-mini">
+              The fix is usually not “more checking”. It is making the proof step easier and more consistent at delivery.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1 -->
+    <section class="home-section" id="meaning">
+      <div class="container">
+        <h2 class="home-section-title">What does “missing proof of delivery” mean?</h2>
+        <p class="home-section-intro">
+          When teams say POD is missing, they usually mean one of these things: the proof was never captured, it was captured but not sent,
+          or it was sent but not stored in a place where the office can find it quickly.
+        </p>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <p class="home-step-kicker">Common reality</p>
+            <h3 class="home-card-title">Delivery happened, proof didn’t</h3>
+            <p class="home-card-body">
+              The goods arrived, but the signed note, photo, or CMR never made it back to the office team that needs it.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Typical example</p>
+            <h3 class="home-card-title">Paper is lost or delayed</h3>
+            <p class="home-card-body">
+              A paper delivery note exists, but it is misplaced, sits in a vehicle, or gets scanned too late to support invoicing.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Search problem</p>
+            <h3 class="home-card-title">Proof exists, but cannot be found</h3>
+            <p class="home-card-body">
+              A photo was taken or a file was emailed, but it is stored in the wrong place or missing a usable reference.
+            </p>
+          </article>
+        </div>
+
+        <p class="home-section-intro" style="margin-top:1rem;">
+          If you want the full definition of what counts as proof of delivery, see
+          <a class="home-card-link" href="https://podfy.net/podfy-proof-of-delivery">Proof of Delivery (POD) explained</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section class="home-section" id="causes">
+      <div class="container">
+        <h2 class="home-section-title">Why proof of delivery goes missing</h2>
+        <p class="home-section-intro">
+          Missing POD is rarely about people not caring. It is usually a workflow that adds friction at the worst moment: during a handover, under time pressure.
+        </p>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Paper-based processes</h3>
+            <p class="home-card-body">
+              Paper is easy at the door, but hard to control afterwards. Documents get lost, damaged, or scanned too late.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Driver forgetfulness</h3>
+            <p class="home-card-body">
+              When the proof step is “send it later”, it competes with the next stop. The more steps, the more missing POD.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">App refusal or non-adoption</h3>
+            <p class="home-card-body">
+              Subcontractors, temporary drivers, and external partners often skip installs, logins, and training — so proof is not captured.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Subcontractors and ad-hoc carriers</h3>
+            <p class="home-card-body">
+              Different parties use different tools. Proof becomes inconsistent, scattered, and hard to match to deliveries.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Inconsistent receiving methods</h3>
+            <p class="home-card-body">
+              Inbound teams may accept deliveries in different ways depending on the shift, site, or pressure — making the record unreliable.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">No clear reference</h3>
+            <p class="home-card-body">
+              Without a consistent PO, shipment, store, or project reference, proof is easy to lose — even if it was collected.
+            </p>
+          </article>
+        </div>
+
+        <p class="home-section-intro" style="margin-top:1rem;">
+          Related audiences often impacted by missing POD:
+          <a class="home-card-link" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">Carriers</a>
+          and
+          <a class="home-card-link" href="https://podfy.net/podfy-digital-delivery-document-storage">Inbound / Receiving</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="home-section" id="today">
+      <div class="container">
+        <h2 class="home-section-title">What teams do today when POD is missing</h2>
+        <p class="home-section-intro">
+          When proof is missing, teams fall back to manual recovery. It works sometimes — but it does not scale when volumes grow.
+        </p>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <p class="home-step-kicker">Recovery</p>
+            <h3 class="home-card-title">Chasing drivers and partners</h3>
+            <p class="home-card-body">
+              Phone calls, emails, and reminders — often repeated — to get a photo or scan sent after the fact.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Searching</p>
+            <h3 class="home-card-title">Looking through inboxes and chats</h3>
+            <p class="home-card-body">
+              Proof is hidden in threads: “it was sent somewhere”, but not linked to a reference that makes it retrievable.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Backlog</p>
+            <h3 class="home-card-title">Scanning late (or not at all)</h3>
+            <p class="home-card-body">
+              Documents arrive days later, are scanned in batches, and still end up inconsistently named or filed.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Billing impact</p>
+            <h3 class="home-card-title">Delays and exceptions</h3>
+            <p class="home-card-body">
+              Invoicing pauses, approvals take longer, and teams spend time validating deliveries instead of moving forward.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Customer impact</p>
+            <h3 class="home-card-title">Disputes drag on</h3>
+            <p class="home-card-body">
+              Without the correct proof package (document + context), disputes turn into long email chains and escalations.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <p class="home-step-kicker">Reality</p>
+            <h3 class="home-card-title">It becomes a routine problem</h3>
+            <p class="home-card-body">
+              Teams accept missing POD as “normal”, and build manual workarounds that consume time every week.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section class="home-section" id="prevent">
+      <div class="container">
+        <h2 class="home-section-title">How modern teams prevent missing POD</h2>
+        <p class="home-section-intro">
+          Prevention usually comes from one change: make proof capture easy enough to happen at delivery, on any phone, with a consistent reference — then store it centrally.
+        </p>
+
+        <div class="home-grid-3">
+          <article class="card card-glass">
+            <h3 class="home-card-title">Capture via link (not via app)</h3>
+            <p class="home-card-body">
+              A browser link works across devices and partners. It removes installs, accounts, and training barriers.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Collect proof at the moment</h3>
+            <p class="home-card-body">
+              Upload the document or take a photo when the handover happens, not later in the day.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Use a consistent reference</h3>
+            <p class="home-card-body">
+              PO, shipment ID, store, project, site — choose one pattern so retrieval stays reliable when you need it.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Central storage and fast retrieval</h3>
+            <p class="home-card-body">
+              Stop spreading proof across inboxes and drives. One place makes disputes and audits faster to handle.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Works for inbound teams too</h3>
+            <p class="home-card-body">
+              Receiving teams can capture proof when carriers arrive. This reduces reliance on driver follow-up.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Designed for mixed reality</h3>
+            <p class="home-card-body">
+              Subcontractors, temporary staff, different phones, busy sites — the workflow should survive normal variation.
+            </p>
+          </article>
+        </div>
+
+        <p class="home-section-intro" style="margin-top:1rem;">
+          For the broader context, see <a class="home-card-link" href="https://podfy.net/podfy-proof-of-delivery">Proof of Delivery (POD) explained</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section class="home-section" id="fits">
+      <div class="container">
+        <h2 class="home-section-title">How this fits into proof of delivery overall</h2>
+        <p class="home-section-intro">
+          Missing POD is one of the most common operational failure points in delivery documentation.
+          If you want the complete overview (what counts as POD, collection methods, and use cases), go to
+          <a class="home-card-link" href="https://podfy.net/podfy-proof-of-delivery">Proof of Delivery (POD) explained</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="home-section" id="faq">
+      <div class="container">
+        <h2 class="home-section-title">FAQ</h2>
+
+        <div class="home-grid-2">
+          <article class="card card-glass">
+            <h3 class="home-card-title">What if proof of delivery is missing?</h3>
+            <p class="home-card-body">
+              Treat it as a retrieval task with a deadline. First, confirm the reference (PO, shipment ID, store/site, date) and identify who should have the proof (driver, carrier, supplier, or receiving team).
+              Then request the missing document or photos immediately while the delivery is still recent.
+              If missing POD is frequent, the fix is usually a simpler collection step that happens at delivery, not more chasing later.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Can deliveries still be invoiced without POD?</h3>
+            <p class="home-card-body">
+              Sometimes, but it depends on your agreements and customer expectations.
+              Many teams invoice based on dispatch or confirmed receipt, but missing POD increases the chance of disputes, delayed payment, and manual checks.
+              A reliable proof flow reduces exceptions and makes billing faster and calmer.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Why does proof of delivery go missing so often?</h3>
+            <p class="home-card-body">
+              Because delivery is a handover with time pressure, mixed devices, and many external parties.
+              Paper can be lost, photos stay on phones, and app-based steps are skipped when drivers are subcontracted or temporary.
+              In many operations, there is also no single reference used consistently, which makes proof hard to match and retrieve later.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Can inbound teams register delivery proof themselves?</h3>
+            <p class="home-card-body">
+              Yes. Many organizations solve missing POD by letting the receiving team capture the delivery note or photos at the moment of receipt.
+              This creates a consistent record even if the driver changes, the supplier uses a different process, or the carrier does not send proof on time.
+              The key is a workflow that is quick enough for peak hours.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">Does missing POD increase dispute risk?</h3>
+            <p class="home-card-body">
+              Yes. When proof is missing, disputes take longer and often become opinion-based.
+              Claims like “not delivered”, shortages, and damage are harder to resolve without the correct document, photo, timestamp, and reference.
+              Reliable capture at delivery reduces both the number and the duration of disputes.
+            </p>
+          </article>
+
+          <article class="card card-glass">
+            <h3 class="home-card-title">How quickly should proof of delivery be collected?</h3>
+            <p class="home-card-body">
+              Ideally at the time of delivery or receiving, before the driver leaves the site.
+              The longer you wait, the higher the chance the document gets lost, the photo is forgotten, or the context disappears.
+              A good rule is: collect the proof the same day, and make it available centrally immediately.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA + CONTACT (reuse your standard block + working Turnstile) -->
+    <section class="home-section" id="contact">
+      <div class="container">
+        <h2 class="home-section-title">Get help preventing missing proof of delivery</h2>
+
+        <div class="home-contact-grid">
+          <!-- LEFT: FORM -->
+          <div class="card card-glass home-contact-card">
+            <h3 class="home-card-title">Tell us how your deliveries work today</h3>
+            <p class="home-card-body">
+              We’ll show you a simple way to prevent missing POD without adding friction for drivers, partners, or receiving teams.
+            </p>
+
+            <form id="contact-form" class="home-contact-form" novalidate>
+              <div class="home-field visually-hidden" aria-hidden="true">
+                <label for="hp_contact">Leave this field empty</label>
+                <input id="hp_contact" name="hp_contact" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <!-- Hidden context for backend -->
+              <input type="hidden" id="source_page" name="source_page" value="" />
+              <input type="hidden" id="turnstileToken" name="turnstileToken" value="" />
+
+              <div class="home-field">
+                <label class="home-label" for="contact-name">Name</label>
+                <input id="contact-name" name="name" type="text" class="home-input" required autocomplete="name" />
+              </div>
+
+              <div class="home-field">
+                <label class="home-label" for="contact-email">Email</label>
+                <input id="contact-email" name="email" type="email" class="home-input" required autocomplete="email" />
+              </div>
+
+              <div class="home-field">
+                <label class="home-label" for="contact-company">Company</label>
+                <input id="contact-company" name="company" type="text" class="home-input" autocomplete="organization" />
+              </div>
+
+              <div class="home-field">
+                <label class="home-label" for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" rows="4" class="home-textarea"></textarea>
+              </div>
+
+              <div class="home-field home-consent">
+                <label class="home-checkbox" style="display:flex;align-items:flex-start;gap:.6rem;">
+                  <input id="contact-consent" type="checkbox" name="consent" required checked style="margin-top:.2rem;" />
+                  <span>
+                    I agree to be contacted and accept the
+                    <a href="/privacy.html">Privacy Policy</a>.
+                  </span>
+                </label>
+              </div>
+
+              <p id="contact-status" class="home-status" role="status"></p>
+
+              <!-- Send request ABOVE Turnstile -->
+              <div class="home-actions">
+                <button type="submit" class="btn btn-primary">Send request</button>
+              </div>
+
+              <!-- Prefer email -->
+              <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
+                <h3 class="home-card-title">Prefer email?</h3>
+                <p class="home-card-body">
+                  Reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>
+                </p>
+              </div>
+
+              <!-- Turnstile -->
+              <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
+                <p class="home-card-body" style="margin:0 0 .75rem 0;">
+                  Quick check: we validate in the background that you’re not a spam bot.
+                </p>
+
+                <div class="home-field home-field-turnstile" style="margin-top:.75rem;">
+                  <div
+                    id="turnstile-widget"
+                    class="cf-turnstile"
+                    data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+                    data-callback="onTurnstileCompleted"
+                    data-expired-callback="onTurnstileExpired"
+                    data-error-callback="onTurnstileError">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- RIGHT: LINKS -->
+          <aside class="card card-glass home-contact-side">
+            <h3 class="home-card-title">Related use-cases</h3>
+            <p class="home-card-body">If missing POD is common in your flow, these pages are often relevant:</p>
+
+            <div class="home-grid-2">
+              <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">
+                <p class="home-step-kicker">Use case</p>
+                <h3 class="home-card-title">Carriers (Small &amp; Midsize)</h3>
+                <p class="home-card-body">
+                  Collect POD without forcing driver app installs. Share a link, get documents back centrally, and stop chasing after the route.
+                </p>
+                <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
+                  <li>No app, no login, no training</li>
+                  <li>Drivers upload PODs, CMRs, photos</li>
+                  <li>Office retrieves and shares instantly</li>
+                </ul>
+              </a>
+
+              <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-document-storage">
+                <p class="home-step-kicker">Use case</p>
+                <h3 class="home-card-title">Inbound / Receiving Teams</h3>
+                <p class="home-card-body">
+                  Capture proof at the receiving desk so deliveries never disappear into email threads, paper piles, or shift changes.
+                </p>
+                <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
+                  <li>Simple intake during peak hours</li>
+                  <li>One searchable POD inbox</li>
+                  <li>Faster dispute handling</li>
+                </ul>
+              </a>
+
+              <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-without-app">
+                <p class="home-step-kicker">Use case</p>
+                <h3 class="home-card-title">No-App / Low-Tech Environments</h3>
+                <p class="home-card-body">
+                  When app adoption is unrealistic, link-based capture keeps proof collection reliable across mixed phones and mixed skills.
+                </p>
+                <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
+                  <li>Works on older phones</li>
+                  <li>Great for subcontractors</li>
+                  <li>Higher completion rates</li>
+                </ul>
+              </a>
+
+              <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery">
+                <p class="home-step-kicker">Hub</p>
+                <h3 class="home-card-title">Proof of Delivery (POD) explained</h3>
+                <p class="home-card-body">
+                  The complete overview: what POD is, why it breaks down in practice, and how modern teams collect and store proof reliably.
+                </p>
+                <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
+                  <li>Definitions and examples</li>
+                  <li>Legacy vs modern approaches</li>
+                  <li>Use-case overview</li>
+                </ul>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <!-- CONTACT FORM HANDLER -->
+  <script>
+    // Cloudflare Turnstile callbacks – names must match data-* attributes
+    function onTurnstileCompleted(token) {
+      const hidden = document.getElementById("turnstileToken");
+      if (hidden) hidden.value = token || "";
+    }
+
+    function onTurnstileExpired() {
+      const hidden = document.getElementById("turnstileToken");
+      if (hidden) hidden.value = "";
+    }
+
+    function onTurnstileError() {
+      const hidden = document.getElementById("turnstileToken");
+      if (hidden) hidden.value = "";
+    }
+
+    (function () {
+      const form = document.getElementById("contact-form");
+      if (!form) return;
+
+      const statusEl = document.getElementById("contact-status");
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      function setStatus(message) {
+        if (statusEl) statusEl.textContent = message || "";
+      }
+
+      function setSubmitting(on) {
+        if (submitBtn) submitBtn.disabled = !!on;
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // HTML5 validation first
+        if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+
+        // Ensure we have a Turnstile token
+        const tokenInput = document.getElementById("turnstileToken");
+        const token = tokenInput ? tokenInput.value : "";
+        if (!token) {
+          setStatus("Security check failed. Please wait for the challenge and try again.");
+          try {
+            if (window.turnstile && typeof window.turnstile.reset === "function") window.turnstile.reset();
+          } catch (_) {}
+          return;
+        }
+
+        setSubmitting(true);
+        setStatus("Sending…");
+
+        try {
+          const payload = Object.fromEntries(new FormData(form).entries());
+
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          let data = null;
+          try { data = await res.json(); } catch (_) {}
+
+          if (!res.ok || !data || data.ok === false) {
+            const msg =
+              (data && (data.error || data.message)) ||
+              "We could not send the email right now. Please try again later.";
+            setStatus(msg);
+
+            if (tokenInput) tokenInput.value = "";
+            try {
+              if (window.turnstile && typeof window.turnstile.reset === "function") window.turnstile.reset();
+            } catch (_) {}
+            return;
+          }
+
+          setStatus("Thanks! We will contact you shortly.");
+          form.reset();
+
+          if (tokenInput) tokenInput.value = "";
+          try {
+            if (window.turnstile && typeof window.turnstile.reset === "function") window.turnstile.reset();
+          } catch (_) {}
+        } catch (err) {
+          console.error("Contact form error", err);
+          setStatus("We could not send the email right now. Please try again later.");
+        } finally {
+          setSubmitting(false);
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const el = document.getElementById("source_page");
+      if (el) el.value = window.location.href;
+    })();
+  </script>
+
+</body>
+</html>
