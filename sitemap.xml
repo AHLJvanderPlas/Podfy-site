@@ -1,128 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Best-practice notes applied:
+       - Only include canonical URLs (drop /index.html duplicate)
+       - Don’t include 404 pages
+       - Use consistent trailing slashes (none here) and exact public URLs
+       - Optional fields (lastmod/changefreq/priority) omitted unless you can keep them accurate
+  -->
+
   <!-- Core -->
-  <url>
-    <loc>https://podfy.net/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://podfy.net/</loc></url>
+  <url><loc>https://podfy.net/pricing.html</loc></url>
+  <url><loc>https://podfy.net/companies.html</loc></url>
+  <url><loc>https://podfy.net/free-tier-demo.html</loc></url>
 
-  <url>
-    <loc>https://podfy.net/free-tier-demo.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- Product / docs -->
+  <url><loc>https://podfy.net/releases.html</loc></url>
 
-  <url>
-    <loc>https://podfy.net/terms</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <!-- Audience pages (10 use-cases) -->
+  <url><loc>https://podfy.net/podfy-proof-of-delivery-for-carriers</loc></url>
+  <url><loc>https://podfy.net/podfy-digital-delivery-document-storage</loc></url>
+  <url><loc>https://podfy.net/podfy-digitize-delivery-documents</loc></url>
+  <url><loc>https://podfy.net/podfy-proof-of-delivery-for-shippers</loc></url>
+  <url><loc>https://podfy.net/podfy-proof-of-delivery-for-3pl</loc></url>
+  <url><loc>https://podfy.net/podfy-construction-delivery-documentation</loc></url>
+  <url><loc>https://podfy.net/podfy-retail-delivery-documentation</loc></url>
+  <url><loc>https://podfy.net/podfy-proof-of-delivery-compliance</loc></url>
+  <url><loc>https://podfy.net/podfy-proof-of-delivery-without-app</loc></url>
+  <url><loc>https://podfy.net/podfy-digital-delivery-documentation</loc></url>
 
-  <url>
-    <loc>https://podfy.net/privacy.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <!-- Proof of Delivery hub + supporting pages -->
+  <url><loc>https://podfy.net/podfy-proof-of-delivery.html</loc></url>
+  <url><loc>https://podfy.net/podfy-missing-proof-of-delivery.html</loc></url>
+  <url><loc>https://podfy.net/podfy-proof-of-delivery-disputes.html</loc></url>
+  <url><loc>https://podfy.net/podfy-proof-of-delivery-invoicing.html</loc></url>
 
-  <!-- Proof of Delivery Hub -->
-  <url>
-    <loc>https://podfy.net/podfy-proof-of-delivery</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Hub-support educational pages -->
-  <url>
-    <loc>https://podfy.net/missing-proof-of-delivery</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/proof-of-delivery-disputes</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/proof-of-delivery-invoicing</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/photo-proof-of-delivery</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/digital-vs-paper-proof-of-delivery</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Audience / use-case pages (your canonical URLs) -->
-  <url>
-    <loc>https://podfy.net/podfy-proof-of-delivery-for-carriers</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/podfy-digital-delivery-document-storage</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/podfy-digitize-delivery-documents</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/podfy-proof-of-delivery-for-shippers</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/podfy-proof-of-delivery-for-3pl</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/podfy-construction-delivery-documentation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/podfy-retail-delivery-documentation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/podfy-proof-of-delivery-compliance</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/podfy-proof-of-delivery-without-app</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://podfy.net/podfy-digital-delivery-documentation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- Legal / policy (keep only if these are indexable canonical pages) -->
+  <url><loc>https://podfy.net/terms.html</loc></url>
+  <url><loc>https://podfy.net/privacy.html</loc></url>
+  <url><loc>https://podfy.net/cookie.html</loc></url>
+  <url><loc>https://podfy.net/imprint.html</loc></url>
+  <url><loc>https://podfy.net/security.html</loc></url>
+  <url><loc>https://podfy.net/responsible-disclosure.html</loc></url>
 
 </urlset>
