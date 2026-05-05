@@ -379,24 +379,6 @@
     -->
 
     <!-- ================================================================
-         CHANGELOG TEASER — last 3 releases (trust signal: active product)
-         ================================================================ -->
-    <section class="v2-section" aria-labelledby="changelog-teaser-heading">
-      <div class="container">
-        <div class="v2-section-header">
-          <div>
-            <p class="v2-eyebrow">Recent releases</p>
-            <h2 class="v2-section-title" id="changelog-teaser-heading">What shipped recently</h2>
-          </div>
-          <a href="/changelog" class="v2-link" style="white-space:nowrap;">See all &rarr;</a>
-        </div>
-        <div id="home-changelog" class="v2-changelog-list" aria-live="polite">
-          <!-- populated by fetch below -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
          WHO USES PODFY — 4 primary audience tiles (Carriers · 3PLs · Shippers · Construction)
          Retail and Digitise link from /solutions/ hub page
          ================================================================ -->
@@ -433,37 +415,6 @@
         <p style="margin-top:1rem;font-size:.85rem;color:var(--v2-muted);"><a href="/solutions/" class="v2-link">All solutions &rarr;</a></p>
       </div>
     </section>
-
-    <script>
-    /* Changelog teaser — last 3 releases */
-    (function () {
-      var el = document.getElementById('home-changelog');
-      if (!el) return;
-      fetch('/api/releases?limit=3')
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (d) {
-          if (!d || !d.releases || !d.releases.length) {
-            el.innerHTML = '<p style="font-size:.85rem;color:var(--v2-muted);"><a href="/changelog" class="v2-link">View release notes &rarr;</a></p>';
-            return;
-          }
-          var html = '';
-          d.releases.slice(0, 3).forEach(function (r) {
-            var tags = (r.tags || '').split(',').filter(Boolean).map(function (t) {
-              return '<span class="v2-changelog-tag">' + t.trim().replace(/</g,'&lt;') + '</span>';
-            }).join('');
-            html += '<div class="v2-changelog-entry">';
-            html += '<span class="v2-changelog-date">' + (r.release_date || '') + '</span>';
-            if (tags) html += '<div class="v2-changelog-tags">' + tags + '</div>';
-            html += '<p class="v2-changelog-desc">' + (r.description || '').replace(/</g,'&lt;') + '</p>';
-            html += '</div>';
-          });
-          el.innerHTML = html;
-        })
-        .catch(function () {
-          el.innerHTML = '<p style="font-size:.85rem;color:var(--v2-muted);"><a href="/changelog" class="v2-link">View release notes &rarr;</a></p>';
-        });
-    })();
-    </script>
 
 
   </main>
