@@ -1,21 +1,42 @@
 <!doctype html>
+<!-- i18n:strings
+  eyebrow:   PROOF OF DELIVERY · WITHOUT THE APP
+  h1-line1:  Send a link.
+  h1-line2:  Get the CMR back
+  h1-line3:  before Friday.
+  hero-sub:  Dutch and Benelux carriers and 3PLs use Podfy to collect signed delivery proof from any driver — no app, no account, no training required.
+  cta-primary:  Try the live demo
+  cta-ghost:    15-min walkthrough
+  trust-1:   11s median upload
+  trust-2:   0 apps installed
+  trust-3:   EU-WEUR hosting
+  trust-4:   Last shipped
+  how-title: How it works
+  how-1-h:   Driver opens link
+  how-1-p:   Send a URL by WhatsApp, SMS, or email. Any phone, any carrier. No account, no download.
+  how-2-h:   Snaps the CMR
+  how-2-p:   Photo, PDF, or scan. GPS stamp added automatically. Reference logged against your slug.
+  how-3-h:   Office gets stamped PDF
+  how-3-p:   Email notification in seconds. Document searchable in the portal. Ready for invoicing or audit.
+  changelog-title: Latest updates
+-->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title>PODFY — Proof of Delivery, without the headaches.</title>
-  <meta name="description" content="Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast. Try a demo upload or talk to sales." />
-  <link rel="canonical" href="https://podfy.net/">
+  <title>PODFY — Proof of delivery, without the app.</title>
+  <meta name="description" content="Send a driver a link, get a stamped and archived CMR back in seconds. No app installed. Built for Dutch and Benelux carriers, 3PLs, and logistics teams." />
+  <link rel="canonical" href="https://podfy.net/" />
 
-  <!-- Basic SEO -->
+  <!-- SEO -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="format-detection" content="telephone=no,address=no,email=no" />
-  <meta name="keywords" content="proof of delivery, POD, CMR upload, logistics, 3PL, carriers, warehouse operations, branded upload link, no integration, quick setup, Cloudflare R2" />
+  <meta name="keywords" content="proof of delivery, POD, CMR upload, no app delivery, Benelux logistics, 3PL, carrier POD, EU hosting" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="PODFY — Proof of Delivery, without the headaches." />
-  <meta property="og:description" content="Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast." />
+  <meta property="og:title" content="PODFY — Proof of delivery, without the app." />
+  <meta property="og:description" content="Send a link. Get the CMR back before Friday. No app, no account. Built for EU carriers and 3PLs." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://podfy.net/" />
   <meta property="og:image" content="https://podfy.net/assets/og-image.png" />
@@ -23,488 +44,287 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PODFY — Proof of Delivery, without the headaches." />
-  <meta name="twitter:description" content="Share a link, snap a photo, get instant confirmation. No apps. No logins. Branded and fast." />
+  <meta name="twitter:title" content="PODFY — Proof of delivery, without the app." />
+  <meta name="twitter:description" content="Send a link. Get the CMR back before Friday. No app, no account." />
   <meta name="twitter:image" content="https://podfy.net/assets/og-image.png" />
 
-  <!-- Light/Dark UI colors -->
+  <!-- Colour scheme -->
   <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1D3557" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0B1220" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-  <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB" />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="/assets/styles.css?v=home-rev9" />
+  <!-- Hreflang — NL path declared now; content ships in Sprint 4 -->
+  <link rel="alternate" hreflang="en" href="https://podfy.net/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
 
-  <!-- Theme toggler -->
+  <!-- Styles: base system + v2 visual layer -->
+  <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
+  <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r1" />
+
+  <!-- Theme init + changelog fetch (no Turnstile on this page) -->
   <script src="/assets/theme.js" defer></script>
-
-  <!-- Cloudflare Turnstile -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="/assets/last-shipped.js" defer></script>
 </head>
 
-<body class="home-body">
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
-    Skip to content
-  </a>
+<body class="v2">
+  <a href="#main" class="sr-only">Skip to content</a>
 
   [[PODFY_HEADER]]
 
-  <main id="main" class="home-main">
+  <main id="main" class="v2-main">
 
-    <!-- HERO -->
-    <section class="home-section home-hero home-hero-subheader">
-      <div class="container home-hero-shell card card-glass">
-        <div class="home-hero-left">
-          <p class="home-kicker">Zero-friction Proof of Delivery</p>
-            <h1 class="home-hero-title hero-heading">
-              <span>Proof of Delivery</span>
-              , without the headaches.
+    <!-- ================================================================
+         HERO
+         §3.1 · Working draft headline — confirm with maintainer before
+         final merge to main.
+         ================================================================ -->
+    <section class="v2-hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="v2-hero-grid">
+
+          <!-- Left: copy -->
+          <div class="v2-hero-copy">
+            <p class="v2-eyebrow" aria-hidden="true">Proof of delivery · without the app</p>
+            <h1 class="v2-hero-title" id="hero-heading">
+              Send a link.<br>
+              Get the CMR back<br>
+              before <em>Friday.</em>
             </h1>
-              <p class="home-hero-lead">
-                Share a link, snap a photo, get instant confirmation. No apps. No logins.
-                Branded, fast and built for logistics teams.
-              <a href="/podfy-proof-of-delivery">What is proof of delivery?</a>
+            <p class="v2-hero-sub">
+              Dutch and Benelux carriers and 3PLs use Podfy to collect signed delivery proof from any driver — no app, no account, no training required.
             </p>
-          <ul class="icon-list">
-            <li><strong>No app.</strong> Drivers upload from any phone.</li>
-            <li><strong>Instant notifications.</strong> Teams get email alerts.</li>
-            <li><strong>Your brand.</strong> Logo, colors and safety messages.</li>
-          </ul>
-
-          <div class="home-hero-actions">
-            <a href="/free-tier-demo.html" class="btn btn-primary">Try a demo upload</a>
-            <a href="#plans" class="btn btn-secondary">View plans</a>
+            <div class="v2-hero-actions">
+              <!-- TODO Sprint 2: update href to /demo once that page exists -->
+              <a href="/free-tier-demo.html" class="v2-btn v2-btn-primary">Try the live demo &rarr;</a>
+              <a href="/free-tier-demo.html#how" class="v2-btn v2-btn-ghost">15-min walkthrough</a>
+            </div>
           </div>
-        </div>
 
-        <div class="home-hero-right">
-          <div class="home-hero-card card">
-            <h2 class="home-hero-card-title">What the driver sees</h2>
-            <ol class="home-hero-steps">
-              <li>Open your branded link</li>
-              <li>Take a photo or drop the CMR</li>
-              <li>Optionally add a shipment reference</li>
-              <li>Tap send — your team is notified instantly</li>
-            </ol>
+          <!-- Right: receipt mock (CSS-only, aria-hidden) -->
+          <div class="v2-hero-visual" aria-hidden="true">
+            <div class="v2-receipt v2-hero-receipt">
+              <div class="v2-receipt-perforation"></div>
+              <div class="v2-receipt-inner">
+                <p class="v2-receipt-brand">Trans van Dijck B.V.</p>
+                <p class="v2-receipt-ref">REF&nbsp;&nbsp;TDV-2025-04-22-0041</p>
+                <hr class="v2-receipt-hr" />
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Driver</span>
+                  <span class="v2-receipt-value">J. Kowalski</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Date</span>
+                  <span class="v2-receipt-value">2025-04-22 · 14:37 CET</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">GPS</span>
+                  <span class="v2-receipt-value">52.37°N&nbsp;4.89°E</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">File</span>
+                  <span class="v2-receipt-value">cmr_0041.pdf</span>
+                </div>
+                <hr class="v2-receipt-hr" />
+                <div class="v2-receipt-status">
+                  <span class="v2-stamp-mark">Delivered</span>
+                </div>
+              </div>
+              <div class="v2-receipt-perforation"></div>
+            </div>
           </div>
-            <p class="home-hero-footnote">
-             New to proof of delivery or comparing approaches? Read our practical explanation of <a href="/podfy-proof-of-delivery">Proof of Delivery (POD) explained</a>
-            , what it is, why it fails in real operations, and how modern teams collect delivery proof without apps.
-          </p>
+
         </div>
       </div>
     </section>
 
-<!-- VALUE STRIP -->
-<section class="home-section">
-  <div class="container home-grid-4">
-    <article class="card card-glass">
-      <h3 class="home-card-title">No-app uploads</h3>
-      <p class="home-card-body">
-        Drivers, suppliers, and subcontractors upload PODs, CMRs, delivery notes, or photos via a simple link. No app, login, or training required.
-      </p>
-    </article>
-
-    <article class="card card-glass">
-      <h3 class="home-card-title">Works in real environments</h3>
-      <p class="home-card-body">
-        Designed for construction sites, stores, warehouses, facilities, and low-tech environments where controlled workflows are unrealistic.
-      </p>
-    </article>
-
-    <article class="card card-glass">
-      <h3 class="home-card-title">Central delivery record</h3>
-      <p class="home-card-body">
-        All delivery documents are stored centrally, searchable, timestamped, and available for operations, finance, audits, and disputes.
-      </p>
-    </article>
-
-    <article class="card card-glass">
-      <h3 class="home-card-title">Standard across partners</h3>
-      <p class="home-card-body">
-        One neutral process for carriers, 3PLs, suppliers, and stores—without forcing technology adoption on external partners.
-      </p>
-    </article>
-  </div>
-</section>
-
-<!-- PLANS -->
-<section class="home-section" id="plans">
-  <div class="container">
-    <h2 class="home-section-title">Pricing &amp; Plans</h2>
-    <div class="home-grid-3">
-      <!-- Trial -->
-      <article class="card card-glass">
-        <p class="home-step-kicker">Trial</p>
-        <h3 class="home-card-title">Free Demo</h3>
-        <p class="home-card-body">
-          Test the upload flow instantly. See how drivers upload PODs, CMRs, delivery notes, and photos without an app.
-        </p>
-        <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
-          <li>Upload via link (SMS / WhatsApp / email)</li>
-          <li>Works on any phone</li>
-          <li>Instantly shareable documents</li>
+    <!-- ================================================================
+         TRUST BELT — 4 facts in mono caps
+         The "last shipped" date is populated by last-shipped.js
+         ================================================================ -->
+    <section class="v2-trust-belt" aria-label="Key facts">
+      <div class="container">
+        <ul class="v2-trust-list" role="list">
+          <li class="v2-trust-item">11s median upload</li>
+          <li class="v2-trust-item">0 apps installed</li>
+          <li class="v2-trust-item">EU&thinsp;&middot;&thinsp;WEUR hosting</li>
+          <li class="v2-trust-item">
+            Last shipped&nbsp;<a href="/changelog" class="v2-trust-link" id="v2-last-shipped" aria-label="View changelog">&rarr;</a>
+          </li>
         </ul>
-        <a class="home-card-link" href="/free-tier-demo.html">Try the demo upload</a>
-      </article>
+      </div>
+    </section>
 
-      <!-- Starter -->
-      <article class="card card-glass">
-        <p class="home-step-kicker">Plan</p>
-        <h3 class="home-card-title">Starter</h3>
-        <p class="home-card-body">
-          For small teams that need a simple POD inbox and fast retrieval. Keep it lightweight and operational.
-        </p>
-        <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
-          <li>Central POD storage</li>
-          <li>Searchable access for office teams</li>
-          <li>Baseline retention included</li>
-        </ul>
-        <a class="home-card-link" href="#contact">Fill the form for a quote</a>
-      </article>
+    <!-- ================================================================
+         PROOF STRIP — 3 receipt-style cards with realistic POD examples.
+         No stock photos. No driver portraits.
+         ================================================================ -->
+    <section class="v2-section" aria-labelledby="proof-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="proof-heading">What it looks like in practice</h2>
+        <div class="v2-proof-grid">
 
-      <!-- Advanced -->
-      <article class="card card-glass">
-        <p class="home-step-kicker">Plan</p>
-        <h3 class="home-card-title">Advanced</h3>
-        <p class="home-card-body">
-          More control for growing operations: better retention, smoother intake across suppliers and carriers, and stronger traceability.
-        </p>
-        <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
-          <li>Longer retention options</li>
-          <li>Improved inbound document management</li>
-          <li>Advanced extraction options available</li>
-        </ul>
-        <a class="home-card-link" href="#contact">Get a personal quote</a>
-      </article>
-
-      <!-- Pro -->
-      <article class="card card-glass">
-        <p class="home-step-kicker">Plan</p>
-        <h3 class="home-card-title">Pro</h3>
-        <p class="home-card-body">
-          For teams coordinating many carriers, sites, or stores. Standardize collection without forcing apps or onboarding.
-        </p>
-        <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
-          <li>Multi-team / multi-location ready</li>
-          <li>Higher-volume workflows</li>
-          <li>Extended retention options</li>
-        </ul>
-        <a class="home-card-link" href="#contact">Request pricing</a>
-      </article>
-
-      <!-- Add-ons -->
-      <article class="card card-glass">
-        <p class="home-step-kicker">Add-ons</p>
-        <h3 class="home-card-title">Branding &amp; White Label</h3>
-        <p class="home-card-body">
-          Keep the experience consistent for drivers and partners with your branding and white-label documentation.
-        </p>
-        <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
-          <li>Branded upload experience</li>
-          <li>White-label documentation</li>
-          <li>Operational contact details</li>
-        </ul>
-        <a class="home-card-link" href="#contact">Ask about add-ons</a>
-      </article>
-
-      <!-- Custom -->
-      <article class="card card-glass">
-        <p class="home-step-kicker">Custom</p>
-        <h3 class="home-card-title">Custom &amp; Enterprise</h3>
-        <p class="home-card-body">
-          When you need specific retention, higher volumes, or tailored workflows. We keep it practical: clear scope, clear rollout.
-        </p>
-        <ul class="home-card-body" style="margin-top:.75rem; padding-left:1.1rem;">
-          <li>Custom retention and volume</li>
-          <li>Optional AI capabilities (when needed)</li>
-          <li>Implementation support</li>
-        </ul>
-        <a class="home-card-link" href="#contact">Contact us for scope</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- 8. FINAL CTA + CONTACT FORM (updated layout) -->
-  <section class="home-section" id="contact">
-    <div class="container">
-      <h2 class="home-section-title">Get a solution for your case</h2>
-       <div class="home-contact-grid">
-<!-- LEFT 1/2: FORM -->
-      <div class="card card-glass home-contact-card">
-         <h3 class="home-card-title">Lets connect!</h3>
-         <p class="home-card-body">Tell us how you work today and how we can help.</p>
-
-        <form id="contact-form" class="home-contact-form" novalidate>
-          <div class="home-field visually-hidden" aria-hidden="true">
-            <label for="hp_contact">Leave this field empty</label>
-            <input id="hp_contact" name="hp_contact" type="text" tabindex="-1" autocomplete="off" />
-          </div>
-
-<!-- Hidden context for backend -->
-          <input type="hidden" id="source_page" name="source_page" value="" />
-          <input type="hidden" id="turnstileToken" name="turnstileToken" value="" />
-
-          <div class="home-field">
-            <label class="home-label" for="contact-name">Name</label>
-            <input id="contact-name" name="name" type="text" class="home-input" required autocomplete="name" />
-          </div>
-
-          <div class="home-field">
-            <label class="home-label" for="contact-email">Email</label>
-            <input id="contact-email" name="email" type="email" class="home-input" required autocomplete="email" />
-          </div>
-
-          <div class="home-field">
-            <label class="home-label" for="contact-company">Company</label>
-            <input id="contact-company" name="company" type="text" class="home-input" autocomplete="organization" />
-          </div>
-
-          <div class="home-field">
-            <label class="home-label" for="contact-message">Message</label>
-            <textarea id="contact-message" name="message" rows="4" class="home-textarea"></textarea>
-          </div>
-
-<!-- Checkbox aligned on the same line -->
-          <div class="home-field home-consent">
-            <label class="home-checkbox" style="display:flex;align-items:flex-start;gap:.6rem;">
-              <input id="contact-consent" type="checkbox" name="consent" required checked style="margin-top:.2rem;" />
-              <span>
-                I agree to be contacted and accept the
-                <a href="/privacy.html">Privacy Policy</a>.
-              </span>
-            </label>
-          </div>
-        <p id="contact-status" class="home-status" role="status"></p>
-
-<!-- Send request ABOVE Turnstile -->
-          <div class="home-actions">
-            <button type="submit" class="btn btn-primary">Send request</button>
-          </div>
-
-<!-- Prefer email card ABOVE Turnstile card -->
-          <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
-            <h3 class="home-card-title">Prefer email?</h3>
-            <p class="home-card-body">
-              Reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>
-            </p>
-          </div>
-
-          <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
-            <p class="home-card-body" style="margin:0 0 .75rem 0;">
-              Quick check: we validate in the background that you’re not a spam bot.
-            </p>
-
-            <div class="home-field home-field-turnstile" style="margin-top:.75rem;">
-              <div
-                id="turnstile-widget"
-                class="cf-turnstile"
-                data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-                data-callback="onTurnstileCompleted"
-                data-expired-callback="onTurnstileExpired"
-                data-error-callback="onTurnstileError">
+          <!-- Card 1: Carrier, CMR, NL -->
+          <div class="v2-receipt v2-proof-receipt" aria-label="Example POD — carrier CMR">
+            <div class="v2-receipt-perforation"></div>
+            <div class="v2-receipt-inner">
+              <p class="v2-receipt-brand">Carrier&nbsp;·&nbsp;NL</p>
+              <p class="v2-receipt-ref">REF&nbsp;&nbsp;TDV-2025-04-14-0088</p>
+              <hr class="v2-receipt-hr" />
+              <div class="v2-receipt-row">
+                <span class="v2-receipt-label">Date</span>
+                <span class="v2-receipt-value">2025-04-14 · 09:04</span>
+              </div>
+              <div class="v2-receipt-row">
+                <span class="v2-receipt-label">GPS</span>
+                <span class="v2-receipt-value">52.37°N&nbsp;4.90°E</span>
+              </div>
+              <div class="v2-receipt-row">
+                <span class="v2-receipt-label">File</span>
+                <span class="v2-receipt-value">cmr_0088.pdf</span>
+              </div>
+              <hr class="v2-receipt-hr" />
+              <div class="v2-receipt-status">
+                <span class="v2-stamp-mark">Delivered</span>
               </div>
             </div>
+            <div class="v2-receipt-perforation"></div>
           </div>
-          <div class="card card-glass" style="padding:1rem;margin-top:1rem;">
-            <h3 class="home-card-title">Need Some extra explenation?</h3>
-            <p class="home-card-body">
-            Comparing approaches? Read our practical explanation of <a href="/podfy-proof-of-delivery">Proof of Delivery (POD) explained</a>
-            , what it is, why it fails in real operations, and how modern teams collect delivery proof without apps.
-            </p>
+
+          <!-- Card 2: 3PL subcontractor, BE -->
+          <div class="v2-receipt v2-proof-receipt" aria-label="Example POD — 3PL subcontractor">
+            <div class="v2-receipt-perforation"></div>
+            <div class="v2-receipt-inner">
+              <p class="v2-receipt-brand">3PL Sub&nbsp;·&nbsp;BE</p>
+              <p class="v2-receipt-ref">REF&nbsp;&nbsp;BLG-2025-04-20-1092</p>
+              <hr class="v2-receipt-hr" />
+              <div class="v2-receipt-row">
+                <span class="v2-receipt-label">Date</span>
+                <span class="v2-receipt-value">2025-04-20 · 11:22</span>
+              </div>
+              <div class="v2-receipt-row">
+                <span class="v2-receipt-label">GPS</span>
+                <span class="v2-receipt-value">50.85°N&nbsp;4.35°E</span>
+              </div>
+              <div class="v2-receipt-row">
+                <span class="v2-receipt-label">File</span>
+                <span class="v2-receipt-value">delivery_note.jpg</span>
+              </div>
+              <hr class="v2-receipt-hr" />
+              <div class="v2-receipt-status">
+                <span class="v2-stamp-mark">Delivered</span>
+              </div>
+            </div>
+            <div class="v2-receipt-perforation"></div>
           </div>
-        </form>
-      </div>
 
-        <!-- RIGHT 1/2: LINKS (sentence cards in 2 columns; whole card is clickable + hover highlight) -->
-      <aside class="card card-glass home-contact-side">
-        <h3 class="home-card-title">Select your use-case</h3>
-        <p class="home-card-body">Click the tile that fits your story</p>
+          <!-- Card 3: Site delivery, construction, NL -->
+          <div class="v2-receipt v2-proof-receipt" aria-label="Example POD — construction site">
+            <div class="v2-receipt-perforation"></div>
+            <div class="v2-receipt-inner">
+              <p class="v2-receipt-brand">Site&nbsp;·&nbsp;NL</p>
+              <p class="v2-receipt-ref">REF&nbsp;&nbsp;BPN-2025-04-19-007</p>
+              <hr class="v2-receipt-hr" />
+              <div class="v2-receipt-row">
+                <span class="v2-receipt-label">Date</span>
+                <span class="v2-receipt-value">2025-04-19 · 16:51</span>
+              </div>
+              <div class="v2-receipt-row">
+                <span class="v2-receipt-label">GPS</span>
+                <span class="v2-receipt-value">51.92°N&nbsp;4.48°E</span>
+              </div>
+              <div class="v2-receipt-row">
+                <span class="v2-receipt-label">File</span>
+                <span class="v2-receipt-value">photo_gate.jpg</span>
+              </div>
+              <hr class="v2-receipt-hr" />
+              <div class="v2-receipt-status">
+                <span class="v2-stamp-mark">Delivered</span>
+              </div>
+            </div>
+            <div class="v2-receipt-perforation"></div>
+          </div>
 
-        <div class="home-grid-2">
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-carriers">
-            <h4 class="home-card-title home-trigger-title">Carriers</h4>
-            <p class="home-card-body">“I run a carrier company and need a simple way to collect proof of delivery without forcing drivers to install an app.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-document-storage">
-            <h4 class="home-card-title home-trigger-title">Inbound / Receiving</h4>
-            <p class="home-card-body">“I manage inbound deliveries and want all delivery documents stored digitally in one central place.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digitize-delivery-documents">
-            <h4 class="home-card-title home-trigger-title">Digitize Paper Flow</h4>
-            <p class="home-card-body">“We still use paper delivery notes and want to digitize our delivery documents without complexity.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-shippers">
-            <h4 class="home-card-title home-trigger-title">Shippers</h4>
-            <p class="home-card-body">“I ship goods and want to receive proof of delivery digitally from any carrier.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-for-3pl">
-            <h4 class="home-card-title home-trigger-title">3PLs</h4>
-            <p class="home-card-body">“I work with multiple carriers and need one standard way to collect proof of delivery from all of them.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-construction-delivery-documentation">
-            <h4 class="home-card-title home-trigger-title">Construction</h4>
-            <p class="home-card-body">“I manage a construction or project site and need clear proof for frequent material deliveries.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-retail-delivery-documentation">
-            <h4 class="home-card-title home-trigger-title">Retail</h4>
-            <p class="home-card-body">“I manage stores and want delivery documents available centrally without burdening store staff.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-compliance">
-            <h4 class="home-card-title home-trigger-title">Compliance</h4>
-            <p class="home-card-body">“I need reliable proof of delivery for audits, disputes, and invoicing.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-proof-of-delivery-without-app">
-            <h4 class="home-card-title home-trigger-title">No-App / Low-Tech</h4>
-            <p class="home-card-body">“My drivers or subcontractors won’t install apps, but I still need proof of delivery.”</p>
-          </a>
-
-          <a class="card card-glass home-trigger-card" href="https://podfy.net/podfy-digital-delivery-documentation">
-            <h4 class="home-card-title home-trigger-title">Facilities</h4>
-            <p class="home-card-body">“I manage facilities and want a simple digital record of supplier and courier deliveries.”</p>
-          </a>
         </div>
-      </aside>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         HOW IT WORKS — 3 columns, no generic icons
+         ================================================================ -->
+    <section class="v2-section" aria-labelledby="how-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="how-heading">How it works</h2>
+        <div class="v2-how-grid">
+
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">01</p>
+            <h3>Driver opens link</h3>
+            <p>Send a URL by WhatsApp, SMS, or email. Any phone, any carrier. No account, no download, no training — if your driver is a subcontractor with a four-year-old Android, Podfy still works.</p>
+          </div>
+
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">02</p>
+            <h3>Snaps the CMR</h3>
+            <p>Photo, PDF, or scan. GPS stamp and timestamp are added automatically. The reference is logged against your account. File goes to EU storage immediately.</p>
+          </div>
+
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">03</p>
+            <h3>Office gets stamped PDF</h3>
+            <p>Email notification fires in seconds. The document is searchable in the portal, ready for invoicing, dispute resolution, or audit — without opening a ticket.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         CUSTOMER STORY
+         TODO: First customer story must be a named NL or BE carrier.
+         Awaiting customer sign-off before this section goes live.
+         Leave commented until maintainer confirms the quote and name.
+
+    <section class="v2-section" aria-labelledby="customer-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="customer-heading">From the depot</h2>
+        <blockquote class="v2-quote-block">
+          <p class="v2-quote-text">"[Quote text — to be confirmed.]"</p>
+          <footer class="v2-quote-attr">
+            <span class="v2-quote-name">[Name]</span>
+            <span>[Role]</span>
+            <span>[Company], NL</span>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+         ================================================================ -->
+
+    <!-- ================================================================
+         CHANGELOG TEASER
+         Populated at runtime by last-shipped.js (/api/releases)
+         ================================================================ -->
+    <section class="v2-section" aria-labelledby="changelog-heading">
+      <div class="container">
+        <div class="v2-section-header">
+          <h2 class="v2-section-title" id="changelog-heading">Latest updates</h2>
+          <a href="/changelog" class="v2-link">Full changelog &rarr;</a>
+        </div>
+        <div id="v2-changelog-teaser" class="v2-changelog-list">
+          <p class="v2-muted-sm">Loading recent updates&hellip;</p>
+        </div>
+      </div>
+    </section>
 
   </main>
 
   [[PODFY_FOOTER]]
-
-  <!-- CONTACT FORM HANDLER -->
-<script>
-  // Cloudflare Turnstile callbacks – names must match data-* attributes
-  function onTurnstileCompleted(token) {
-    const hidden = document.getElementById("turnstileToken");
-    if (hidden) hidden.value = token || "";
-  }
-
-  function onTurnstileExpired() {
-    const hidden = document.getElementById("turnstileToken");
-    if (hidden) hidden.value = "";
-  }
-
-  function onTurnstileError() {
-    const hidden = document.getElementById("turnstileToken");
-    if (hidden) hidden.value = "";
-  }
-
-  (function () {
-    const form = document.getElementById("contact-form");
-    if (!form) return;
-
-    const statusEl = document.getElementById("contact-status");
-    const submitBtn = form.querySelector('button[type="submit"]');
-
-    function setStatus(message) {
-      if (statusEl) {
-        statusEl.textContent = message || "";
-      }
-    }
-
-    function setSubmitting(on) {
-      if (submitBtn) {
-        submitBtn.disabled = !!on;
-      }
-    }
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      // HTML5 validation first
-      if (typeof form.reportValidity === "function" && !form.reportValidity()) {
-        return;
-      }
-
-      // Ensure we have a Turnstile token
-      const tokenInput = document.getElementById("turnstileToken");
-      const token = tokenInput ? tokenInput.value : "";
-      if (!token) {
-        setStatus(
-          "Security check failed. Please wait for the challenge and try again."
-        );
-        try {
-          if (window.turnstile && typeof window.turnstile.reset === "function") {
-            window.turnstile.reset();
-          }
-        } catch (_) {}
-        return;
-      }
-
-      setSubmitting(true);
-      setStatus("Sending…");
-
-      try {
-        const payload = Object.fromEntries(new FormData(form).entries());
-
-        const res = await fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-
-        let data = null;
-        try {
-          data = await res.json();
-        } catch (_) {
-          // If not JSON, keep data=null
-        }
-
-        if (!res.ok || !data || data.ok === false) {
-          const msg =
-            (data && (data.error || data.message)) ||
-            "We could not send the email right now. Please try again later.";
-          setStatus(msg);
-
-          // Reset token so user gets a fresh challenge
-          if (tokenInput) tokenInput.value = "";
-          try {
-            if (window.turnstile && typeof window.turnstile.reset === "function") {
-              window.turnstile.reset();
-            }
-          } catch (_) {}
-          return;
-        }
-
-        setStatus("Thanks! We will contact you shortly.");
-        form.reset();
-
-        // Clear token + reset widget after success
-        if (tokenInput) tokenInput.value = "";
-        try {
-          if (window.turnstile && typeof window.turnstile.reset === "function") {
-            window.turnstile.reset();
-          }
-        } catch (_) {}
-      } catch (err) {
-        console.error("Contact form error", err);
-        setStatus(
-          "We could not send the email right now. Please try again later."
-        );
-      } finally {
-        setSubmitting(false);
-      }
-    });
-  })();
-</script>
 
 </body>
 </html>

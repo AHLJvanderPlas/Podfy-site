@@ -1276,3 +1276,181 @@ html[data-theme="dark"] .home-toc-pill{
   outline-offset:2px;
 }
 
+/* ==========================================================================
+   15) V2 HEADER ADDITIONS
+   (trust pill + locale switcher — used on all pages via the shared partial)
+   ========================================================================== */
+
+.site-trust-pill{
+  font-family:ui-monospace,"Menlo","Consolas",monospace;
+  font-size:.63rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:3px 8px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  color:var(--muted);
+  white-space:nowrap;
+  display:none; /* hidden below 640px */
+}
+@media(min-width:640px){
+  .site-trust-pill{display:inline-block}
+}
+
+.site-locale{
+  position:relative;
+}
+
+.site-locale-btn{
+  font:inherit;
+  font-size:.75rem;
+  letter-spacing:.05em;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--muted);
+  padding:.22rem .5rem;
+  border-radius:3px;
+  cursor:pointer;
+  line-height:1.4;
+}
+.site-locale-btn:hover{color:var(--ink);border-color:var(--ink)}
+
+.site-locale-menu{
+  display:none;
+  position:absolute;
+  right:0;
+  top:calc(100% + 6px);
+  background:var(--surface-strong,#fff);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:.3rem;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+  min-width:52px;
+  z-index:60;
+}
+html[data-theme="dark"] .site-locale-menu{background:#152238}
+
+.site-locale-menu.open{display:block}
+
+.site-locale-item{
+  display:block;
+  padding:.28rem .6rem;
+  font-size:.78rem;
+  border-radius:2px;
+  text-align:center;
+  white-space:nowrap;
+}
+a.site-locale-item{color:var(--ink);font-weight:600;text-decoration:none}
+a.site-locale-item:hover{background:var(--tint-50)}
+.site-locale-disabled{color:var(--muted);opacity:.45;cursor:not-allowed}
+
+/* ==========================================================================
+   16) V2 FOOTER GRID
+   (4-column footer — replaces .site-footer for v2 pages via .site-footer-v2)
+   ========================================================================== */
+
+.site-footer-v2{
+  margin-top:0;
+  border-top:1px solid var(--line);
+  background:var(--surface);
+  padding:2.5rem 0 1.75rem;
+  color:var(--muted);
+  font-size:.85rem;
+}
+html[data-theme="dark"] .site-footer-v2{background:#020617}
+
+.site-footer-grid{
+  max-width:var(--container-6xl);
+  margin:0 auto;
+  padding:0 1rem;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:2rem;
+  margin-bottom:2rem;
+}
+@media(max-width:900px){.site-footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.site-footer-grid{grid-template-columns:1fr}}
+
+.site-footer-col-heading{
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-weight:600;
+  color:var(--ink);
+  margin:0 0 .75rem;
+}
+
+.site-footer-col ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:.38rem;
+}
+
+.site-footer-col a{
+  color:var(--muted);
+  font-size:.82rem;
+  text-decoration:none;
+}
+.site-footer-col a:hover{color:var(--ink)}
+
+.site-footer-col p{
+  margin:0 0 .4rem;
+  font-size:.82rem;
+}
+.site-footer-col p a{color:var(--muted);text-decoration:underline}
+.site-footer-col p a:hover{color:var(--ink)}
+
+.site-footer-bottom-bar{
+  max-width:var(--container-6xl);
+  margin:0 auto;
+  padding:1.25rem 1rem 0;
+  border-top:1px solid var(--line);
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem 2rem;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.site-footer-company{
+  font-size:.72rem;
+  color:var(--muted);
+  margin:0;
+  line-height:1.7;
+}
+.site-footer-company a{color:var(--muted);text-decoration:underline}
+.site-footer-company a:hover{color:var(--ink)}
+
+.site-footer-copy{
+  font-size:.72rem;
+  color:var(--muted);
+  margin:0;
+  display:flex;
+  align-items:center;
+  gap:.65rem;
+}
+
+.site-footer-eu-badge{
+  font-family:ui-monospace,"Menlo",monospace;
+  font-size:.62rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:2px 7px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  color:var(--muted);
+}
+
+.site-footer-locale-row{
+  display:flex;
+  gap:.5rem;
+  margin-top:.8rem;
+  font-size:.8rem;
+}
+.site-footer-locale-active{color:var(--ink);font-weight:600}
+.site-footer-locale-inactive{color:var(--muted);opacity:.45;cursor:not-allowed}
+
+
