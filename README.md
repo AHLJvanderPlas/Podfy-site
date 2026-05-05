@@ -59,7 +59,7 @@ Push to `main` → auto-deploys to production.
 | File | Role |
 |------|------|
 | `assets/styles.css?v=v2-r1` | Base tokens (header/footer shells) |
-| `assets/styles.v2.css?v=v2-r3` | v2 component library — use this version on all pages |
+| `assets/styles.v2.css?v=v2-r4` | v2 component library — use this version on all pages |
 | `assets/theme.js` | System/light/dark theme toggle |
 | `partials/header.html` | Injected via `[[PODFY_HEADER]]` |
 | `partials/footer.html` | Injected via `[[PODFY_FOOTER]]` |

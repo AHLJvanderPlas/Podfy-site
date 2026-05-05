@@ -7,9 +7,7 @@
    Until then, system serif/sans/mono fallbacks apply.
    ========================================================================== */
 
-/*
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-*/
 
 /* ==========================================================================
    1) V2 TOKENS — Light (default)
@@ -115,7 +113,7 @@ html[data-theme="dark"] body.v2 {
 .v2-eyebrow {
   font-family: var(--v2-font-mono);
   font-size: 0.7rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--v2-muted);
   margin: 0 0 0.85rem;
@@ -192,7 +190,7 @@ html[data-theme="dark"] .v2-receipt {
 /* Perforation row: a repeating row of small circles */
 .v2-receipt-perforation {
   height: 10px;
-  background-color: var(--v2-paper-2);
+  background-color: var(--v2-card);
   background-image: radial-gradient(
     circle,
     var(--v2-line-2) 2.5px,
@@ -247,7 +245,12 @@ html[data-theme="dark"] .v2-receipt {
 .v2-receipt-value {
   text-align: right;
   color: var(--v2-ink-2);
-  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+/* GPS coordinates should not wrap mid-coordinate */
+.v2-receipt-value[data-type="gps"] {
+  white-space: nowrap;
+  overflow-wrap: normal;
 }
 
 .v2-receipt-status {
@@ -263,7 +266,7 @@ html[data-theme="dark"] .v2-receipt {
   color: var(--v2-stamp);
   font-family: var(--v2-font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   transform: rotate(-2deg);
   transform-origin: left center;
@@ -360,7 +363,7 @@ html[data-theme="dark"] .v2-receipt {
 .v2-trust-item {
   font-family: var(--v2-font-mono);
   font-size: 0.68rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--v2-muted);
   padding: 0.2rem 1.25rem 0.2rem 0;
@@ -427,7 +430,7 @@ html[data-theme="dark"] .v2-receipt {
 .v2-how-step-num {
   font-family: var(--v2-font-mono);
   font-size: 0.67rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--v2-muted);
   padding-bottom: 0.75rem;
@@ -613,9 +616,11 @@ html[data-theme="dark"] .v2-receipt {
   margin: 0 0 0.6rem;
 }
 
+/* CTA block em: weight-only, no stamp color — stamp reserved for hero once per page */
 .v2-cta-block h2 em {
   font-style: italic;
-  color: var(--v2-stamp);
+  font-weight: 600;
+  color: inherit;
 }
 
 .v2-cta-block p {
@@ -1190,7 +1195,7 @@ html[data-theme="dark"] .v2-receipt {
 /* ── Inline CTA banner (mid-page, guide pages) ───────────────────────────── */
 .v2-inline-cta { background: var(--v2-ink); color: var(--v2-paper); padding: 2.5rem 0; margin: 3rem 0; }
 .v2-inline-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-.v2-inline-cta-label { font-family: var(--v2-font-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; opacity: .6; margin-bottom: .3rem; }
+.v2-inline-cta-label { font-family: var(--v2-font-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; opacity: .6; margin-bottom: .3rem; }
 .v2-inline-cta-text { font-family: var(--v2-font-serif); font-size: 1.2rem; font-weight: 500; flex: 1; min-width: 180px; }
 
 /* ── Comparison table ────────────────────────────────────────────────────── */
@@ -1236,3 +1241,339 @@ html[data-theme="dark"] .v2-receipt {
 .v2-aud-tile-name { font-weight: 700; font-size: 1.05rem; font-family: var(--v2-font-serif); }
 .v2-aud-tile-desc { font-size: .875rem; color: var(--v2-muted); line-height: 1.5; flex: 1; margin-top: .2rem; }
 .v2-aud-tile-arrow { font-family: var(--v2-font-mono); font-size: .72rem; color: var(--v2-stamp); margin-top: .75rem; }
+
+/* ==========================================================================
+   21) HERO STAMP — scaled stamp mark inside display headlines
+   ========================================================================== */
+
+/* Use <span class="v2-hero-stamp"> inside .v2-hero-title for punchline word */
+.v2-hero-stamp {
+  display: inline-block;
+  font-family: var(--v2-font-mono);
+  font-size: 0.72em; /* ~80% of surrounding serif size */
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--v2-stamp);
+  border: 1.5px solid var(--v2-stamp);
+  padding: 4px 14px 4px 12px;
+  transform: rotate(-2deg);
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   22) STAT BAND — replaces flat trust belt on homepage
+   ========================================================================== */
+
+.v2-stat-band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding: 1.5rem 0;
+}
+
+.v2-stat-band-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 1.5rem 0 0;
+  border-right: 1px solid var(--v2-line);
+  padding-left: 1.5rem;
+}
+.v2-stat-band-item:first-child { padding-left: 0; }
+.v2-stat-band-item:last-child { border-right: none; }
+
+.v2-stat-band-num {
+  font-family: var(--v2-font-mono);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--v2-ink);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.v2-stat-band-label {
+  font-family: var(--v2-font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+}
+
+.v2-stat-band-item.v2-stat-band-live .v2-stat-band-num {
+  color: var(--v2-stamp);
+}
+.v2-stat-band-item.v2-stat-band-live .v2-stat-band-label a {
+  color: var(--v2-stamp);
+  text-decoration: none;
+}
+.v2-stat-band-item.v2-stat-band-live .v2-stat-band-label a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .v2-stat-band {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 0;
+  }
+  .v2-stat-band-item {
+    border-right: none;
+    padding-left: 0;
+  }
+  .v2-stat-band-item:nth-child(odd) {
+    border-right: 1px solid var(--v2-line);
+    padding-right: 1.5rem;
+  }
+}
+@media (max-width: 400px) {
+  .v2-stat-band { grid-template-columns: 1fr; gap: 1rem; }
+  .v2-stat-band-item { border-right: none !important; padding-right: 0 !important; }
+}
+
+/* ==========================================================================
+   23) PROOF STRIP ARTIFACTS — phone mock, PDF mock, portal row mock
+   ========================================================================== */
+
+/* Shared card wrapper for all three artifacts */
+.v2-proof-artifact {
+  border: 1px solid var(--v2-line);
+  border-radius: var(--v2-radius-lg);
+  background: var(--v2-card);
+  overflow: hidden;
+  font-family: var(--v2-font-mono);
+}
+
+.v2-proof-artifact-label {
+  font-family: var(--v2-font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+  padding: 0.6rem 1rem;
+  background: var(--v2-paper-2);
+  border-bottom: 1px solid var(--v2-line);
+}
+
+/* ── Phone mock (artifact 1) ─────────────────────────────────────────────── */
+.v2-proof-phone-body {
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.v2-proof-phone-brand {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--v2-ink);
+  margin: 0;
+}
+
+.v2-proof-phone-ref {
+  font-size: 0.63rem;
+  color: var(--v2-muted);
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.v2-proof-phone-cambtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--v2-ink);
+  color: var(--v2-paper);
+  border-radius: var(--v2-radius);
+  padding: 0.55rem 1rem;
+  font-family: var(--v2-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+/* ── PDF mock (artifact 2) ───────────────────────────────────────────────── */
+.v2-proof-pdf-body {
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transform: rotate(0.4deg);
+  transform-origin: center;
+}
+
+.v2-proof-pdf-heading {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--v2-ink);
+  margin: 0 0 0.35rem;
+}
+
+.v2-proof-pdf-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.67rem;
+  gap: 0.5rem;
+}
+
+.v2-proof-pdf-row-label {
+  color: var(--v2-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.v2-proof-pdf-row-val {
+  color: var(--v2-ink-2);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.v2-proof-pdf-hr {
+  border: none;
+  border-top: 1px dashed var(--v2-line-2);
+  margin: 0.35rem 0;
+}
+
+.v2-proof-pdf-stamp-row {
+  margin-top: 0.5rem;
+}
+
+/* ── Portal mock (artifact 3) ────────────────────────────────────────────── */
+.v2-proof-portal-head {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 1.2fr;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: var(--v2-paper-2);
+  border-bottom: 1px solid var(--v2-line);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+}
+
+.v2-proof-portal-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 1.2fr;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--v2-line);
+  font-size: 0.67rem;
+  color: var(--v2-ink-2);
+  align-items: center;
+}
+
+.v2-proof-portal-row:last-child {
+  border-bottom: none;
+  opacity: 0.55;
+}
+
+.v2-proof-portal-row .v2-stamp-mark {
+  font-size: 0.55rem;
+  padding: 2px 6px;
+  transform: rotate(-1.5deg);
+}
+
+/* ==========================================================================
+   24) RECORD GRID — 2×2 layout for "what every record contains"
+   ========================================================================== */
+
+.v2-record-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 640px) {
+  .v2-record-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ==========================================================================
+   25) V2 HEADER / FOOTER OVERRIDES — apply v2 tokens to legacy partial classes
+   ========================================================================== */
+
+/* Trust pill: stamp-style treatment */
+body.v2 .site-trust-pill {
+  font-family: var(--v2-font-mono);
+  color: var(--v2-stamp);
+  border-color: var(--v2-stamp);
+  background: transparent;
+  letter-spacing: 0.06em;
+  font-size: 0.62rem;
+}
+
+/* Nav links: v2 sans + correct muted/ink colors */
+body.v2 .site-nav a {
+  font-family: var(--v2-font-sans);
+  color: var(--v2-muted);
+  font-size: 0.875rem;
+}
+body.v2 .site-nav a:hover { color: var(--v2-ink); }
+
+body.v2 .site-mobile-nav a {
+  font-family: var(--v2-font-sans);
+  color: var(--v2-ink-2);
+}
+
+/* Header shell: v2 paper background, v2 border */
+body.v2 .site-header-shell {
+  background: var(--v2-paper);
+  border-bottom: 1px solid var(--v2-line);
+}
+html[data-theme="dark"] body.v2 .site-header-shell {
+  background: var(--v2-paper);
+}
+html[data-theme="light"] body.v2 .site-header-shell {
+  background: var(--v2-paper);
+}
+
+/* Footer: v2 paper background, v2 tokens */
+body.v2 .site-footer-v2 {
+  background: var(--v2-paper-2);
+  border-top: 1px solid var(--v2-line);
+  color: var(--v2-muted);
+}
+html[data-theme="dark"] body.v2 .site-footer-v2 {
+  background: var(--v2-paper-2);
+}
+body.v2 .site-footer-col-heading {
+  font-family: var(--v2-font-mono);
+  letter-spacing: 0.06em;
+  color: var(--v2-ink-2);
+}
+body.v2 .site-footer-col a { color: var(--v2-muted); }
+body.v2 .site-footer-col a:hover { color: var(--v2-ink); }
+body.v2 .site-footer-company { color: var(--v2-muted); font-family: var(--v2-font-mono); font-size: 0.72rem; }
+body.v2 .site-footer-eu-badge {
+  font-family: var(--v2-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--v2-stamp);
+  color: var(--v2-stamp);
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-left: 0.5rem;
+}
+
+/* ==========================================================================
+   26) PREFERS-REDUCED-MOTION — honour OS setting
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  #v2-progress { transition: none !important; }
+  .v2-faq-answer { transition: none !important; }
+}

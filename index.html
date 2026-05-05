@@ -3,7 +3,7 @@
   eyebrow:   PROOF OF DELIVERY · WITHOUT THE APP
   h1-line1:  Send a link.
   h1-line2:  Get the CMR back
-  h1-line3:  before Friday.
+  h1-line3:  the same day.
   hero-sub:  Dutch and Benelux carriers and 3PLs use Podfy to collect signed delivery proof from any driver — no app, no account, no training required.
   cta-primary:  Try the live demo
   cta-ghost:    15-min walkthrough
@@ -65,8 +65,8 @@
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
 
   <!-- Styles: base system + v2 visual layer -->
-  <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
-  <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r1" />
+  <link rel="stylesheet" href="/assets/styles.css?v=v2-r4" />
+  <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r4" />
 
   <!-- Structured data: Organization + WebSite entity signals for SEO and AI -->
   <script type="application/ld+json">
@@ -112,7 +112,7 @@
             <h1 class="v2-hero-title" id="hero-heading">
               Send a link.<br>
               Get the CMR back<br>
-              before <em>Friday.</em>
+              <span class="v2-hero-stamp">the same day.</span>
             </h1>
             <p class="v2-hero-sub">
               Dutch and Benelux carriers and 3PLs use Podfy to collect signed delivery proof from any driver — no app, no account, no training required.
@@ -161,110 +161,120 @@
     </section>
 
     <!-- ================================================================
-         TRUST BELT — 4 facts in mono caps
-         The "last shipped" date is populated by last-shipped.js
+         STAT BAND — 4 numbered facts, large mono numerals
          ================================================================ -->
     <section class="v2-trust-belt" aria-label="Key facts">
       <div class="container">
-        <ul class="v2-trust-list" role="list">
-          <li class="v2-trust-item">11s median upload</li>
-          <li class="v2-trust-item">0 apps installed</li>
-          <li class="v2-trust-item">EU&thinsp;&middot;&thinsp;WEUR hosting</li>
-          <li class="v2-trust-item">
-            Last shipped&nbsp;<a href="/changelog" class="v2-trust-link" id="v2-last-shipped" aria-label="View changelog">&rarr;</a>
-          </li>
-        </ul>
+        <div class="v2-stat-band">
+          <div class="v2-stat-band-item">
+            <span class="v2-stat-band-num">11 s</span>
+            <span class="v2-stat-band-label">Median upload</span>
+          </div>
+          <div class="v2-stat-band-item">
+            <span class="v2-stat-band-num">0</span>
+            <span class="v2-stat-band-label">Apps installed</span>
+          </div>
+          <div class="v2-stat-band-item">
+            <span class="v2-stat-band-num">7 years</span>
+            <span class="v2-stat-band-label">EU archive retention</span>
+          </div>
+          <div class="v2-stat-band-item v2-stat-band-live">
+            <span class="v2-stat-band-num" id="v2-last-shipped-num">&rarr;</span>
+            <span class="v2-stat-band-label"><a href="/changelog">Latest release</a></span>
+          </div>
+        </div>
       </div>
     </section>
 
+    <script>
+    /* Populate last-shipped date in stat band */
+    (function () {
+      fetch('/api/releases?limit=1')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          var el = document.getElementById('v2-last-shipped-num');
+          if (!el) return;
+          var rel = d && d.releases && d.releases[0];
+          if (rel && rel.release_date) el.textContent = rel.release_date;
+        })
+        .catch(function () {});
+    })();
+    </script>
+
     <!-- ================================================================
-         PROOF STRIP — 3 receipt-style cards with realistic POD examples.
-         No stock photos. No driver portraits.
+         PROOF STRIP — 3 distinct artifacts telling the full story:
+         driver's phone → stamped record → portal archive
          ================================================================ -->
     <section class="v2-section" aria-labelledby="proof-heading">
       <div class="container">
         <h2 class="v2-section-title" id="proof-heading">What it looks like in practice</h2>
         <div class="v2-proof-grid">
 
-          <!-- Card 1: Carrier, CMR, NL -->
-          <div class="v2-receipt v2-proof-receipt" aria-label="Example POD — carrier CMR">
-            <div class="v2-receipt-perforation"></div>
-            <div class="v2-receipt-inner">
-              <p class="v2-receipt-brand">Carrier&nbsp;·&nbsp;NL</p>
-              <p class="v2-receipt-ref">REF&nbsp;&nbsp;TDV-2025-04-14-0088</p>
+          <!-- Artifact 1: The driver's view — upload link on phone -->
+          <div class="v2-proof-artifact" aria-label="Driver upload page — no app required">
+            <p class="v2-proof-artifact-label">01 &mdash; The driver&rsquo;s view</p>
+            <div class="v2-proof-phone-body">
+              <p class="v2-proof-phone-brand">Trans van Dijck B.V.</p>
+              <p class="v2-proof-phone-ref">REF&nbsp;&nbsp;TDV-2025-04-22-0041</p>
               <hr class="v2-receipt-hr" />
-              <div class="v2-receipt-row">
-                <span class="v2-receipt-label">Date</span>
-                <span class="v2-receipt-value">2025-04-14 · 09:04</span>
-              </div>
-              <div class="v2-receipt-row">
-                <span class="v2-receipt-label">GPS</span>
-                <span class="v2-receipt-value">52.37°N&nbsp;4.90°E</span>
-              </div>
-              <div class="v2-receipt-row">
-                <span class="v2-receipt-label">File</span>
-                <span class="v2-receipt-value">cmr_0088.pdf</span>
-              </div>
-              <hr class="v2-receipt-hr" />
-              <div class="v2-receipt-status">
-                <span class="v2-stamp-mark">Delivered</span>
+              <p class="v2-proof-phone-ref" style="margin-top:.25rem;">Any phone. No account. No install.</p>
+              <div class="v2-proof-phone-cambtn" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="2" y="7" width="20" height="15" rx="2"/><circle cx="12" cy="14.5" r="3.5"/><path d="M16 7l-1.5-3h-5L8 7"/></svg>
+                Take photo
               </div>
             </div>
-            <div class="v2-receipt-perforation"></div>
           </div>
 
-          <!-- Card 2: 3PL subcontractor, BE -->
-          <div class="v2-receipt v2-proof-receipt" aria-label="Example POD — 3PL subcontractor">
-            <div class="v2-receipt-perforation"></div>
-            <div class="v2-receipt-inner">
-              <p class="v2-receipt-brand">3PL Sub&nbsp;·&nbsp;BE</p>
-              <p class="v2-receipt-ref">REF&nbsp;&nbsp;BLG-2025-04-20-1092</p>
-              <hr class="v2-receipt-hr" />
-              <div class="v2-receipt-row">
-                <span class="v2-receipt-label">Date</span>
-                <span class="v2-receipt-value">2025-04-20 · 11:22</span>
+          <!-- Artifact 2: The stamped PDF record -->
+          <div class="v2-proof-artifact" aria-label="Stamped delivery record PDF">
+            <p class="v2-proof-artifact-label">02 &mdash; The record you receive</p>
+            <div class="v2-proof-pdf-body">
+              <p class="v2-proof-pdf-heading">Delivery Record</p>
+              <hr class="v2-proof-pdf-hr" />
+              <div class="v2-proof-pdf-row">
+                <span class="v2-proof-pdf-row-label">GPS</span>
+                <span class="v2-proof-pdf-row-val">52.37&deg;N&thinsp;&middot;&thinsp;4.89&deg;E</span>
               </div>
-              <div class="v2-receipt-row">
-                <span class="v2-receipt-label">GPS</span>
-                <span class="v2-receipt-value">50.85°N&nbsp;4.35°E</span>
+              <div class="v2-proof-pdf-row">
+                <span class="v2-proof-pdf-row-label">Date</span>
+                <span class="v2-proof-pdf-row-val">2025-04-22&thinsp;&middot;&thinsp;14:37</span>
               </div>
-              <div class="v2-receipt-row">
-                <span class="v2-receipt-label">File</span>
-                <span class="v2-receipt-value">delivery_note.jpg</span>
+              <div class="v2-proof-pdf-row">
+                <span class="v2-proof-pdf-row-label">REF</span>
+                <span class="v2-proof-pdf-row-val">TDV-2025-04-22-0041</span>
               </div>
-              <hr class="v2-receipt-hr" />
-              <div class="v2-receipt-status">
+              <div class="v2-proof-pdf-row">
+                <span class="v2-proof-pdf-row-label">File</span>
+                <span class="v2-proof-pdf-row-val">cmr_0041.pdf</span>
+              </div>
+              <hr class="v2-proof-pdf-hr" />
+              <div class="v2-proof-pdf-stamp-row">
                 <span class="v2-stamp-mark">Delivered</span>
               </div>
             </div>
-            <div class="v2-receipt-perforation"></div>
           </div>
 
-          <!-- Card 3: Site delivery, construction, NL -->
-          <div class="v2-receipt v2-proof-receipt" aria-label="Example POD — construction site">
-            <div class="v2-receipt-perforation"></div>
-            <div class="v2-receipt-inner">
-              <p class="v2-receipt-brand">Site&nbsp;·&nbsp;NL</p>
-              <p class="v2-receipt-ref">REF&nbsp;&nbsp;BPN-2025-04-19-007</p>
-              <hr class="v2-receipt-hr" />
-              <div class="v2-receipt-row">
-                <span class="v2-receipt-label">Date</span>
-                <span class="v2-receipt-value">2025-04-19 · 16:51</span>
-              </div>
-              <div class="v2-receipt-row">
-                <span class="v2-receipt-label">GPS</span>
-                <span class="v2-receipt-value">51.92°N&nbsp;4.48°E</span>
-              </div>
-              <div class="v2-receipt-row">
-                <span class="v2-receipt-label">File</span>
-                <span class="v2-receipt-value">photo_gate.jpg</span>
-              </div>
-              <hr class="v2-receipt-hr" />
-              <div class="v2-receipt-status">
-                <span class="v2-stamp-mark">Delivered</span>
-              </div>
+          <!-- Artifact 3: The portal archive -->
+          <div class="v2-proof-artifact" aria-label="Delivery portal archive — searchable by reference">
+            <p class="v2-proof-artifact-label">03 &mdash; The archive</p>
+            <div class="v2-proof-portal-head" aria-hidden="true">
+              <span>Reference</span>
+              <span>Date</span>
+              <span>Driver</span>
+              <span>Status</span>
             </div>
-            <div class="v2-receipt-perforation"></div>
+            <div class="v2-proof-portal-row">
+              <span>TDV-0041</span>
+              <span>2025-04-22</span>
+              <span>J. Kowalski</span>
+              <span class="v2-stamp-mark">Delivered</span>
+            </div>
+            <div class="v2-proof-portal-row">
+              <span>BLG-1092</span>
+              <span>2025-04-20</span>
+              <span>M. Nowak</span>
+              <span class="v2-stamp-mark">Delivered</span>
+            </div>
           </div>
 
         </div>
@@ -323,32 +333,28 @@
          ================================================================ -->
 
     <!-- ================================================================
-         WHAT EVERY UPLOAD CONTAINS
+         WHAT EVERY UPLOAD CONTAINS — 2×2 grid
          ================================================================ -->
     <section class="v2-section" aria-labelledby="record-heading" style="background:var(--v2-card);border-top:1px solid var(--v2-line);border-bottom:1px solid var(--v2-line);">
       <div class="container">
         <p class="v2-eyebrow">What you get</p>
         <h2 class="v2-section-title" id="record-heading">What every Podfy record contains</h2>
-        <div class="v2-how-grid">
+        <div class="v2-record-grid">
           <div class="v2-how-step">
-            <p class="v2-how-step-num">Record 01</p>
-            <h3>The document</h3>
+            <p class="v2-how-step-num">The document</p>
             <p>The original uploaded file — signed CMR, delivery note, or photo. Stored as-is in EU-WEUR. Retrievable on demand for 7 years.</p>
           </div>
           <div class="v2-how-step">
-            <p class="v2-how-step-num">Record 02</p>
-            <h3>GPS coordinates</h3>
+            <p class="v2-how-step-num">GPS coordinates</p>
             <p>Latitude and longitude captured the moment the camera fires — not at upload. Server-stored, tamper-evident. Confirms the correct delivery location.</p>
           </div>
           <div class="v2-how-step">
-            <p class="v2-how-step-num">Record 03</p>
-            <h3>Timestamp</h3>
-            <p>Exact date and time of the upload, logged server-side. Cannot be retroactively altered. Establishes when the delivery happened — not when the paperwork arrived.</p>
+            <p class="v2-how-step-num">Timestamp</p>
+            <p>Exact date and time logged server-side. Cannot be retroactively altered. Establishes when the delivery happened — not when the paperwork arrived.</p>
           </div>
           <div class="v2-how-step">
-            <p class="v2-how-step-num">Record 04</p>
-            <h3>Reference linkage</h3>
-            <p>The PO number, CMR reference, or shipment ID links the record to your invoice and purchase order. Every delivery retrievable by the identifier your finance team uses.</p>
+            <p class="v2-how-step-num">Reference linkage</p>
+            <p>The PO number, CMR reference, or shipment ID links the record to your invoice. Every delivery retrievable by the identifier your finance team uses.</p>
           </div>
         </div>
       </div>
@@ -357,7 +363,7 @@
     <!-- ================================================================
          MID-PAGE CTA
          ================================================================ -->
-    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">See it in 30 seconds</p><p class="v2-inline-cta-text">Open the driver link on your phone, photograph any document, watch the stamped record appear.</p></div><a href="/demo" class="v2-btn v2-btn-primary">Try the demo &rarr;</a></div></div></div>
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">See it in 30 seconds</p><p class="v2-inline-cta-text">Open the driver link on your phone, photograph any document, watch the stamped record appear.</p></div><div style="display:flex;flex-direction:column;gap:.6rem;align-items:flex-start;"><a href="/demo" class="v2-btn v2-btn-primary">Try the demo &rarr;</a><a href="/pricing" style="font-family:var(--v2-font-mono);font-size:.72rem;color:var(--v2-paper);opacity:.7;text-decoration:none;letter-spacing:.04em;">Or see the rate card &rarr;</a></div></div></div></div>
 
     <!-- ================================================================
          SOCIAL PROOF — activate when first customer reference is confirmed
@@ -373,7 +379,26 @@
     -->
 
     <!-- ================================================================
-         WHO USES PODFY — audience tiles linking to /solutions/
+         CHANGELOG TEASER — last 3 releases (trust signal: active product)
+         ================================================================ -->
+    <section class="v2-section" aria-labelledby="changelog-teaser-heading">
+      <div class="container">
+        <div class="v2-section-header">
+          <div>
+            <p class="v2-eyebrow">Recent releases</p>
+            <h2 class="v2-section-title" id="changelog-teaser-heading">What shipped recently</h2>
+          </div>
+          <a href="/changelog" class="v2-link" style="white-space:nowrap;">See all &rarr;</a>
+        </div>
+        <div id="home-changelog" class="v2-changelog-list" aria-live="polite">
+          <!-- populated by fetch below -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         WHO USES PODFY — 4 primary audience tiles (Carriers · 3PLs · Shippers · Construction)
+         Retail and Digitise link from /solutions/ hub page
          ================================================================ -->
     <section class="v2-section" aria-labelledby="audience-heading">
       <div class="container">
@@ -404,21 +429,41 @@
             <p class="v2-aud-tile-desc">Unattended drops and unmanned gates — GPS photo before anyone else touches the goods.</p>
             <span class="v2-aud-tile-arrow">See solution &rarr;</span>
           </a>
-          <a class="v2-aud-tile" href="/solutions/retail/">
-            <p class="v2-aud-tile-industry">Retail</p>
-            <p class="v2-aud-tile-name">Retail teams</p>
-            <p class="v2-aud-tile-desc">Store drop documentation with shortage and damage capture at handover.</p>
-            <span class="v2-aud-tile-arrow">See solution &rarr;</span>
-          </a>
-          <a class="v2-aud-tile" href="/solutions/digitize/">
-            <p class="v2-aud-tile-industry">Digitisation</p>
-            <p class="v2-aud-tile-name">Paper to digital</p>
-            <p class="v2-aud-tile-desc">Parallel running — no hard cutover, no compliance gap, paper phases out naturally.</p>
-            <span class="v2-aud-tile-arrow">See solution &rarr;</span>
-          </a>
         </div>
+        <p style="margin-top:1rem;font-size:.85rem;color:var(--v2-muted);"><a href="/solutions/" class="v2-link">All solutions &rarr;</a></p>
       </div>
     </section>
+
+    <script>
+    /* Changelog teaser — last 3 releases */
+    (function () {
+      var el = document.getElementById('home-changelog');
+      if (!el) return;
+      fetch('/api/releases?limit=3')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          if (!d || !d.releases || !d.releases.length) {
+            el.innerHTML = '<p style="font-size:.85rem;color:var(--v2-muted);"><a href="/changelog" class="v2-link">View release notes &rarr;</a></p>';
+            return;
+          }
+          var html = '';
+          d.releases.slice(0, 3).forEach(function (r) {
+            var tags = (r.tags || '').split(',').filter(Boolean).map(function (t) {
+              return '<span class="v2-changelog-tag">' + t.trim().replace(/</g,'&lt;') + '</span>';
+            }).join('');
+            html += '<div class="v2-changelog-entry">';
+            html += '<span class="v2-changelog-date">' + (r.release_date || '') + '</span>';
+            if (tags) html += '<div class="v2-changelog-tags">' + tags + '</div>';
+            html += '<p class="v2-changelog-desc">' + (r.description || '').replace(/</g,'&lt;') + '</p>';
+            html += '</div>';
+          });
+          el.innerHTML = html;
+        })
+        .catch(function () {
+          el.innerHTML = '<p style="font-size:.85rem;color:var(--v2-muted);"><a href="/changelog" class="v2-link">View release notes &rarr;</a></p>';
+        });
+    })();
+    </script>
 
 
   </main>
