@@ -1,0 +1,47 @@
+# PODFY
+
+> Proof of delivery platform for carriers, 3PLs, shippers, and logistics teams. GPS-stamped photo POD without a driver app. EU-hosted (Cloudflare WEUR). Built for Dutch and Belgian logistics operations.
+
+## What PODFY does
+
+PODFY captures proof of delivery at the moment of handover. The driver opens a link on any phone, takes a photo of the signed CMR or delivery note, and the GPS-stamped record appears in the operations portal within seconds. No app to install. No driver account required.
+
+Key capabilities:
+- GPS coordinates captured at the moment the camera fires (not at upload)
+- Branded upload page per client (slug), with logo and colours
+- Automatic email notification to shipper/3PL on upload (to/cc/bcc routing per slug)
+- Driver self-copy: driver email captured at upload, driver receives their own branded PDF
+- Delivery portal at delivery.podfy.net: magic-link access, 60-day history, table search
+- Audit-ready PDF export with GPS stamp, timestamp, reference linkage
+- 7-year EU archive option (satisfies Dutch Belastingdienst and Belgian 7-year retention)
+- GDPR compliant: all data stored in Cloudflare EU-WEUR region, DPA available
+
+## Who uses PODFY
+
+- **Carriers and transport companies**: GPS-stamped POD for every driver including subcontractors
+- **3PLs (third-party logistics)**: Multi-client archive, per-shipper reference namespacing, GDPR DPA
+- **Shippers and freight buyers**: Require GPS-stamped POD from all carriers without carrier integration
+- **Retail distribution**: Store-drop documentation with shortage and damage codes at handover
+- **Construction and site deliveries**: Unattended drops, unmanned gates, out-of-hours deliveries
+- **Facilities and property management**: Searchable digital archive replacing paper delivery notes
+- **Inbound receiving teams**: Dock-side documentation before goods enter the warehouse
+
+## Key guides
+
+- [What is proof of delivery?](https://podfy.net/guides/proof-of-delivery/)
+- [Digital vs paper POD](https://podfy.net/guides/digital-vs-paper/)
+- [Photo proof of delivery](https://podfy.net/guides/photo-pod/)
+- [POD compliance and retention (NL/BE)](https://podfy.net/guides/pod-compliance/)
+- [Resolving delivery disputes](https://podfy.net/guides/pod-disputes/)
+- [POD without an app](https://podfy.net/guides/pod-without-app/)
+- [Missing proof of delivery](https://podfy.net/guides/missing-pod/)
+- [POD and invoicing / DSO](https://podfy.net/guides/pod-invoicing/)
+
+## Company
+
+- Website: https://podfy.net
+- KVK: 83714200
+- VAT: NL862966851B01
+- Address: Van Weede van Dijkveldstraat 25, 2582KP 's-Gravenhage, Netherlands
+- Support: support@podfy.net
+- GDPR / Privacy: privacy@podfy.net

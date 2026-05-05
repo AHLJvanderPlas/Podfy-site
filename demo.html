@@ -31,7 +31,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
 
   <link rel="alternate" hreflang="en" href="https://podfy.net/demo" />
-  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/demo" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/demo" />
 
   <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
@@ -127,6 +126,12 @@
             <p>Open the delivery portal link above in a separate tab (or on a desktop). Your upload appears within seconds, with the timestamp, GPS label, and a downloadable stamped PDF.</p>
           </div>
 
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">04 — Driver side</p>
+            <h3>Driver gets their own copy</h3>
+            <p>If the driver enters their email at upload, they receive a branded PDF confirmation automatically — their personal record of the delivery. They can also view their own delivery history at <a href="https://delivery.podfy.net" target="_blank" rel="noreferrer" class="v2-link">delivery.podfy.net</a> via magic link.</p>
+          </div>
+
         </div>
       </div>
     </section>
@@ -149,20 +154,15 @@
               </p>
             </div>
           </div>
-          <div>
-            <!-- QR placeholder — TODO: generate and add a real QR PNG for the demo slug URL -->
-            <div class="v2-receipt" style="max-width:200px;text-align:center;" aria-label="QR code for demo upload — scan with phone camera">
-              <div class="v2-receipt-perforation"></div>
-              <div class="v2-receipt-inner">
-                <p class="v2-receipt-brand" style="font-size:0.68rem;margin-bottom:0.5rem;">SCAN TO TRY ON PHONE</p>
-                <div style="width:100%;aspect-ratio:1;background:var(--v2-line);border-radius:2px;display:flex;align-items:center;justify-content:center;">
-                  <!-- TODO Sprint 3: replace with real QR image for https://podfy.app/demo -->
-                  <span style="font-size:0.62rem;color:var(--v2-muted);font-family:var(--v2-font-mono);text-align:center;padding:0.5rem;line-height:1.5;">QR image<br>coming soon</span>
-                </div>
-                <p style="font-size:0.62rem;color:var(--v2-muted);margin:0.5rem 0 0;font-family:var(--v2-font-mono);">podfy.app/demo</p>
-              </div>
-              <div class="v2-receipt-perforation"></div>
-            </div>
+          <div style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
+            <a href="https://podfy.app/demo" target="_blank" rel="noreferrer"
+               class="v2-btn v2-btn-primary"
+               style="display:inline-flex;align-items:center;gap:.75rem;padding:.85rem 1.5rem;font-size:1rem;"
+               aria-label="Open Podfy demo upload on your phone">
+              <img src="/assets/podfy.svg" alt="" width="60" height="17" aria-hidden="true" style="filter:brightness(0) invert(1);" />
+              Open driver link &rarr;
+            </a>
+            <p style="font-size:.8rem;color:var(--v2-muted);font-family:var(--v2-font-mono);">podfy.app/demo &nbsp;·&nbsp; no sign-up</p>
           </div>
         </div>
       </div>

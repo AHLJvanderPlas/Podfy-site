@@ -68,6 +68,25 @@
   <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
   <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r1" />
 
+  <!-- Structured data: Organization + WebSite entity signals for SEO and AI -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization",
+    "name":"PODFY","url":"https://podfy.net","logo":"https://podfy.net/assets/podfy.svg",
+    "description":"Proof of delivery platform for carriers, 3PLs and logistics teams. GPS-stamped photo POD without an app. EU-hosted.",
+    "contactPoint":{"@type":"ContactPoint","email":"support@podfy.net","contactType":"customer support"},
+    "address":{"@type":"PostalAddress","streetAddress":"Van Weede van Dijkveldstraat 25","addressLocality":"'s-Gravenhage","postalCode":"2582KP","addressCountry":"NL"},
+    "vatID":"NL862966851B01",
+    "areaServed":["NL","BE","DE","FR","EU"],
+    "sameAs":[]
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite",
+    "name":"PODFY","url":"https://podfy.net",
+    "potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://podfy.net/changelog?q={search_term_string}"},"query-input":"required name=search_term_string"}
+  }
+  </script>
+
   <!-- Theme init + changelog fetch (no Turnstile on this page) -->
   <script src="/assets/theme.js" defer></script>
   <script src="/assets/last-shipped.js" defer></script>
@@ -304,6 +323,56 @@
       </div>
     </section>
          ================================================================ -->
+
+    <!-- ================================================================
+         WHAT EVERY UPLOAD CONTAINS
+         ================================================================ -->
+    <section class="v2-section" aria-labelledby="record-heading" style="background:var(--v2-card);border-top:1px solid var(--v2-line);border-bottom:1px solid var(--v2-line);">
+      <div class="container">
+        <p class="v2-eyebrow">What you get</p>
+        <h2 class="v2-section-title" id="record-heading">What every Podfy record contains</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Record 01</p>
+            <h3>The document</h3>
+            <p>The original uploaded file — signed CMR, delivery note, or photo. Stored as-is in EU-WEUR. Retrievable on demand for 7 years.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Record 02</p>
+            <h3>GPS coordinates</h3>
+            <p>Latitude and longitude captured the moment the camera fires — not at upload. Server-stored, tamper-evident. Confirms the correct delivery location.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Record 03</p>
+            <h3>Timestamp</h3>
+            <p>Exact date and time of the upload, logged server-side. Cannot be retroactively altered. Establishes when the delivery happened — not when the paperwork arrived.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Record 04</p>
+            <h3>Reference linkage</h3>
+            <p>The PO number, CMR reference, or shipment ID links the record to your invoice and purchase order. Every delivery retrievable by the identifier your finance team uses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         MID-PAGE CTA
+         ================================================================ -->
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">See it in 30 seconds</p><p class="v2-inline-cta-text">Open the driver link on your phone, photograph any document, watch the stamped record appear.</p></div><a href="/demo" class="v2-btn v2-btn-primary">Try the demo &rarr;</a></div></div></div>
+
+    <!-- ================================================================
+         SOCIAL PROOF — activate when first customer reference is confirmed
+         ================================================================ -->
+    <!--
+    <section class="v2-section" aria-labelledby="proof-social-heading">
+      <div class="container" style="text-align:center;">
+        <p class="v2-eyebrow">Trusted by</p>
+        <h2 class="v2-section-title" id="proof-social-heading" style="font-size:1.2rem;">Used by logistics teams across the Netherlands and Belgium</h2>
+        <p style="font-size:.9rem;color:var(--v2-muted);margin-bottom:1.5rem;">Customer logos — activate when sign-off obtained</p>
+      </div>
+    </section>
+    -->
 
     <!-- ================================================================
          WHO USES PODFY — audience tiles linking to /solutions/

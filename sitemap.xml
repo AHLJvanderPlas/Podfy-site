@@ -4,32 +4,32 @@
 
   <!-- PODFY sitemap — v2 canonical + /solutions/ + /guides/  Updated: 2026-05-05 -->
 
-  <url><loc>https://podfy.net/</loc><xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/" /><xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/" /></url>
-  <url><loc>https://podfy.net/nl/</loc></url>
-  <url><loc>https://podfy.net/demo</loc></url>
-  <url><loc>https://podfy.net/pricing</loc></url>
-  <url><loc>https://podfy.net/changelog</loc></url>
-  <url><loc>https://podfy.net/contact</loc></url>
-  <url><loc>https://podfy.net/trust</loc></url>
+  <url><loc>https://podfy.net/</loc><lastmod>2026-05-05</lastmod><changefreq>weekly</changefreq><priority>1.0</priority><xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/" /><xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/" /></url>
+  <url><loc>https://podfy.net/nl/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq></url>
+  <url><loc>https://podfy.net/demo</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://podfy.net/pricing</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://podfy.net/changelog</loc><lastmod>2026-05-05</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://podfy.net/contact</loc><lastmod>2026-05-05</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://podfy.net/trust</loc><lastmod>2026-05-05</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
 
-  <url><loc>https://podfy.net/solutions/</loc></url>
-  <url><loc>https://podfy.net/solutions/carriers/</loc></url>
-  <url><loc>https://podfy.net/solutions/3pl/</loc></url>
-  <url><loc>https://podfy.net/solutions/shippers/</loc></url>
-  <url><loc>https://podfy.net/solutions/retail/</loc></url>
-  <url><loc>https://podfy.net/solutions/construction/</loc></url>
-  <url><loc>https://podfy.net/solutions/facilities/</loc></url>
-  <url><loc>https://podfy.net/solutions/inbound/</loc></url>
-  <url><loc>https://podfy.net/solutions/digitize/</loc></url>
+  <url><loc>https://podfy.net/solutions/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://podfy.net/solutions/carriers/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://podfy.net/solutions/3pl/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://podfy.net/solutions/shippers/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://podfy.net/solutions/retail/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://podfy.net/solutions/construction/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://podfy.net/solutions/facilities/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://podfy.net/solutions/inbound/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://podfy.net/solutions/digitize/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <url><loc>https://podfy.net/guides/</loc></url>
-  <url><loc>https://podfy.net/guides/proof-of-delivery/</loc></url>
-  <url><loc>https://podfy.net/guides/digital-vs-paper/</loc></url>
-  <url><loc>https://podfy.net/guides/missing-pod/</loc></url>
-  <url><loc>https://podfy.net/guides/pod-disputes/</loc></url>
-  <url><loc>https://podfy.net/guides/pod-invoicing/</loc></url>
-  <url><loc>https://podfy.net/guides/pod-compliance/</loc></url>
-  <url><loc>https://podfy.net/guides/photo-pod/</loc></url>
-  <url><loc>https://podfy.net/guides/pod-without-app/</loc></url>
+  <url><loc>https://podfy.net/guides/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://podfy.net/guides/proof-of-delivery/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://podfy.net/guides/digital-vs-paper/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://podfy.net/guides/missing-pod/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://podfy.net/guides/pod-disputes/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://podfy.net/guides/pod-invoicing/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://podfy.net/guides/pod-compliance/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://podfy.net/guides/photo-pod/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://podfy.net/guides/pod-without-app/</loc><lastmod>2026-05-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
 </urlset>
