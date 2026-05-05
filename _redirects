@@ -75,3 +75,18 @@
 
 /podfy-proof-of-delivery                        /  301
 /podfy-proof-of-delivery.html                   /  301
+
+# ── Legal pages → /trust consolidation (Sprint 3 Set C) ─────────────────────
+
+/privacy                            /trust#privacy      301
+/privacy.html                       /trust#privacy      301
+/terms                              /trust#terms        301
+/terms.html                         /trust#terms        301
+/cookie                             /trust#cookies      301
+/cookie.html                        /trust#cookies      301
+/security                           /trust#security     301
+/security.html                      /trust#security     301
+/imprint                            /trust#imprint      301
+/imprint.html                       /trust#imprint      301
+/responsible-disclosure             /trust#disclosure   301
+/responsible-disclosure.html        /trust#disclosure   301

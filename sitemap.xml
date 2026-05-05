@@ -5,7 +5,7 @@
   <!--
     PODFY sitemap — canonical v2 pages only
     Sprint 2 collapse: 17 SEO pages removed (now 301 → /carriers, /inbound, /site-deliveries, /)
-    Sprint 3 will add: /changelog (replacing /releases), /trust (replacing legal pages)
+    Sprint 3 added: /changelog (replacing /releases), /trust (replacing legal pages)
     Locale roots declared for hreflang; NL content ships Sprint 4.
   -->
 
@@ -67,12 +67,11 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/contact" />
   </url>
 
-  <!-- ── Legal — kept until /trust consolidation in Sprint 3 ──────────── -->
-  <url><loc>https://podfy.net/terms</loc></url>
-  <url><loc>https://podfy.net/privacy</loc></url>
-  <url><loc>https://podfy.net/cookie</loc></url>
-  <url><loc>https://podfy.net/imprint</loc></url>
-  <url><loc>https://podfy.net/security</loc></url>
-  <url><loc>https://podfy.net/responsible-disclosure</loc></url>
+  <!-- ── Legal — consolidated into /trust (Sprint 3 Set C) ───────────── -->
+  <url>
+    <loc>https://podfy.net/trust</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/trust" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/trust" />
+  </url>
 
 </urlset>
