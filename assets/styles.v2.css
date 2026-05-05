@@ -533,7 +533,214 @@ html[data-theme="dark"] .v2-receipt {
 }
 
 /* ==========================================================================
-   13) RESPONSIVE UTILITIES
+   13) AUDIENCE PAGES
+   ========================================================================== */
+
+/* Narrower hero for inner pages */
+.v2-aud-hero {
+  padding: 2.75rem 0 2rem;
+}
+
+.v2-aud-hero .v2-hero-title {
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+}
+
+/* Prose narrative — the "situation" paragraphs */
+.v2-prose {
+  max-width: 44rem;
+}
+
+.v2-prose p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--v2-ink-2);
+  margin: 0 0 1rem;
+}
+
+.v2-prose p:last-child { margin-bottom: 0; }
+
+.v2-prose strong { color: var(--v2-ink); font-weight: 600; }
+
+/* Open FAQ — no accordion, just Q then A */
+.v2-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.v2-faq-item {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--v2-line);
+}
+.v2-faq-item:last-child { border-bottom: 1px solid var(--v2-line); }
+
+.v2-faq-q {
+  font-family: var(--v2-font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--v2-ink);
+  margin: 0 0 0.45rem;
+}
+
+.v2-faq-a {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--v2-muted);
+  margin: 0;
+  max-width: 42rem;
+}
+
+/* Bottom CTA block */
+.v2-cta-block {
+  text-align: center;
+  padding: 3.5rem 0 1rem;
+  border-top: 1px solid var(--v2-line);
+}
+
+.v2-cta-block .v2-stamp-mark {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  transform: rotate(-1.5deg);
+}
+
+.v2-cta-block h2 {
+  font-family: var(--v2-font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 500;
+  color: var(--v2-ink);
+  margin: 0 0 0.6rem;
+}
+
+.v2-cta-block h2 em {
+  font-style: italic;
+  color: var(--v2-stamp);
+}
+
+.v2-cta-block p {
+  font-size: 0.95rem;
+  color: var(--v2-muted);
+  margin: 0 0 1.5rem;
+}
+
+.v2-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+/* Check list (tick marks) */
+.v2-check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.v2-check-list li {
+  font-size: 0.92rem;
+  color: var(--v2-ink-2);
+  padding-left: 1.4rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.v2-check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--v2-delivered);
+  font-family: var(--v2-font-mono);
+  font-size: 0.8rem;
+  top: 0.1em;
+}
+
+/* Two-column content grid (prose + visual) */
+.v2-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .v2-two-col { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ==========================================================================
+   14) CONTACT / DEMO FORMS
+   ========================================================================== */
+
+.v2-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.v2-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.v2-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--v2-ink-2);
+  letter-spacing: 0.02em;
+}
+
+.v2-input,
+.v2-textarea {
+  font-family: var(--v2-font-sans);
+  font-size: 0.9rem;
+  color: var(--v2-ink);
+  background: var(--v2-card);
+  border: 1px solid var(--v2-line);
+  border-radius: var(--v2-radius);
+  padding: 0.55rem 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.v2-input:focus,
+.v2-textarea:focus {
+  outline: none;
+  border-color: var(--v2-ink-2);
+}
+
+.v2-textarea { resize: vertical; min-height: 100px; }
+
+.v2-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.84rem;
+  color: var(--v2-muted);
+  line-height: 1.5;
+}
+
+.v2-consent input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  accent-color: var(--v2-stamp);
+}
+
+.v2-status {
+  font-size: 0.85rem;
+  color: var(--v2-muted);
+  min-height: 1.2em;
+}
+
+/* ==========================================================================
+   15) RESPONSIVE UTILITIES
    ========================================================================== */
 
 @media (max-width: 360px) {
