@@ -5,8 +5,6 @@
 #
 # Redirects are processed before static files, so old .html files
 # that still exist in the repo are also covered.
-#
-# Sprint 3 will add: /trust consolidation redirects for legal pages (Set C)
 
 # ── Changelog ─────────────────────────────────────────────────────────────
 
@@ -20,63 +18,65 @@
 /companies                              /      301
 /companies.html                         /      301
 
-# ── Carrier & 3PL audience pages → /carriers ──────────────────────────────
+# ── Legacy audience pages → /solutions/ ────────────────────────────────────
 
-/podfy-proof-of-delivery-for-carriers           /carriers  301
-/podfy-proof-of-delivery-for-carriers.html      /carriers  301
+/podfy-proof-of-delivery-for-carriers           /solutions/carriers/     301
+/podfy-proof-of-delivery-for-carriers.html      /solutions/carriers/     301
 
-/podfy-proof-of-delivery-for-3pl                /carriers  301
-/podfy-proof-of-delivery-for-3pl.html           /carriers  301
+/podfy-proof-of-delivery-for-3pl                /solutions/3pl/          301
+/podfy-proof-of-delivery-for-3pl.html           /solutions/3pl/          301
 
-/podfy-proof-of-delivery-without-app            /carriers  301
-/podfy-proof-of-delivery-without-app.html       /carriers  301
+/podfy-proof-of-delivery-for-shippers           /solutions/shippers/     301
+/podfy-proof-of-delivery-for-shippers.html      /solutions/shippers/     301
 
-/podfy-digital-delivery-document-storage        /carriers  301
-/podfy-digital-delivery-document-storage.html   /carriers  301
+/podfy-retail-delivery-documentation            /solutions/retail/       301
+/podfy-retail-delivery-documentation.html       /solutions/retail/       301
 
-/podfy-digitize-delivery-documents              /carriers  301
-/podfy-digitize-delivery-documents.html         /carriers  301
+/podfy-construction-delivery-documentation      /solutions/construction/ 301
+/podfy-construction-delivery-documentation.html /solutions/construction/ 301
 
-/podfy-digital-delivery-documentation           /carriers  301
-/podfy-digital-delivery-documentation.html      /carriers  301
+/podfy-digital-delivery-documentation           /solutions/facilities/   301
+/podfy-digital-delivery-documentation.html      /solutions/facilities/   301
 
-/podfy-digital-vs-paper-proof-of-delivery       /carriers  301
-/podfy-digital-vs-paper-proof-of-delivery.html  /carriers  301
+/podfy-digital-delivery-document-storage        /solutions/inbound/      301
+/podfy-digital-delivery-document-storage.html   /solutions/inbound/      301
 
-/podfy-photo-proof-of-delivery                  /carriers  301
-/podfy-photo-proof-of-delivery.html             /carriers  301
+/podfy-digitize-delivery-documents              /solutions/digitize/     301
+/podfy-digitize-delivery-documents.html         /solutions/digitize/     301
 
-/podfy-proof-of-delivery-compliance             /carriers  301
-/podfy-proof-of-delivery-compliance.html        /carriers  301
+# ── Legacy guide pages → /guides/ ──────────────────────────────────────────
 
-/podfy-proof-of-delivery-disputes               /carriers  301
-/podfy-proof-of-delivery-disputes.html          /carriers  301
+/podfy-proof-of-delivery                        /guides/proof-of-delivery/  301
+/podfy-proof-of-delivery.html                   /guides/proof-of-delivery/  301
 
-/podfy-proof-of-delivery-invoicing              /carriers  301
-/podfy-proof-of-delivery-invoicing.html         /carriers  301
+/podfy-digital-vs-paper-proof-of-delivery       /guides/digital-vs-paper/   301
+/podfy-digital-vs-paper-proof-of-delivery.html  /guides/digital-vs-paper/   301
 
-/podfy-missing-proof-of-delivery                /carriers  301
-/podfy-missing-proof-of-delivery.html           /carriers  301
+/podfy-missing-proof-of-delivery                /guides/missing-pod/        301
+/podfy-missing-proof-of-delivery.html           /guides/missing-pod/        301
 
-# ── Inbound / receiving audience pages → /inbound ─────────────────────────
+/podfy-proof-of-delivery-disputes               /guides/pod-disputes/       301
+/podfy-proof-of-delivery-disputes.html          /guides/pod-disputes/       301
 
-/podfy-proof-of-delivery-for-shippers           /inbound  301
-/podfy-proof-of-delivery-for-shippers.html      /inbound  301
+/podfy-proof-of-delivery-invoicing              /guides/pod-invoicing/      301
+/podfy-proof-of-delivery-invoicing.html         /guides/pod-invoicing/      301
 
-/podfy-retail-delivery-documentation            /inbound  301
-/podfy-retail-delivery-documentation.html       /inbound  301
+/podfy-proof-of-delivery-compliance             /guides/pod-compliance/     301
+/podfy-proof-of-delivery-compliance.html        /guides/pod-compliance/     301
 
-# ── Construction / site audience page → /site-deliveries ──────────────────
+/podfy-photo-proof-of-delivery                  /guides/photo-pod/          301
+/podfy-photo-proof-of-delivery.html             /guides/photo-pod/          301
 
-/podfy-construction-delivery-documentation      /site-deliveries  301
-/podfy-construction-delivery-documentation.html /site-deliveries  301
+/podfy-proof-of-delivery-without-app            /guides/pod-without-app/    301
+/podfy-proof-of-delivery-without-app.html       /guides/pod-without-app/    301
 
-# ── Generic POD hub pages → homepage ──────────────────────────────────────
+# ── Broad audience pages → matching /solutions/ (keep old URLs working) ───
 
-/podfy-proof-of-delivery                        /  301
-/podfy-proof-of-delivery.html                   /  301
+/carriers                               /solutions/carriers/     301
+/inbound                                /solutions/inbound/      301
+/site-deliveries                        /solutions/construction/ 301
 
-# ── Legal pages → /trust consolidation (Sprint 3 Set C) ─────────────────────
+# ── Legal pages → /trust consolidation ─────────────────────────────────────
 
 /privacy                            /trust#privacy      301
 /privacy.html                       /trust#privacy      301

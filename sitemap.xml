@@ -2,76 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!--
-    PODFY sitemap — canonical v2 pages only
-    Sprint 2 collapse: 17 SEO pages removed (now 301 → /carriers, /inbound, /site-deliveries, /)
-    Sprint 3 added: /changelog (replacing /releases), /trust (replacing legal pages)
-    Locale roots declared for hreflang; NL content ships Sprint 4.
-  -->
+  <!-- PODFY sitemap — v2 canonical + /solutions/ + /guides/  Updated: 2026-05-05 -->
 
-  <!-- ── Core audience pages ───────────────────────────────────────────── -->
-  <url>
-    <loc>https://podfy.net/</loc>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
-  </url>
+  <url><loc>https://podfy.net/</loc><xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/" /><xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/" /></url>
+  <url><loc>https://podfy.net/nl/</loc></url>
+  <url><loc>https://podfy.net/demo</loc></url>
+  <url><loc>https://podfy.net/pricing</loc></url>
+  <url><loc>https://podfy.net/changelog</loc></url>
+  <url><loc>https://podfy.net/contact</loc></url>
+  <url><loc>https://podfy.net/trust</loc></url>
 
-  <url>
-    <loc>https://podfy.net/carriers</loc>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/carriers" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/carriers" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/carriers" />
-  </url>
+  <url><loc>https://podfy.net/solutions/</loc></url>
+  <url><loc>https://podfy.net/solutions/carriers/</loc></url>
+  <url><loc>https://podfy.net/solutions/3pl/</loc></url>
+  <url><loc>https://podfy.net/solutions/shippers/</loc></url>
+  <url><loc>https://podfy.net/solutions/retail/</loc></url>
+  <url><loc>https://podfy.net/solutions/construction/</loc></url>
+  <url><loc>https://podfy.net/solutions/facilities/</loc></url>
+  <url><loc>https://podfy.net/solutions/inbound/</loc></url>
+  <url><loc>https://podfy.net/solutions/digitize/</loc></url>
 
-  <url>
-    <loc>https://podfy.net/inbound</loc>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/inbound" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/inbound" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/inbound" />
-  </url>
-
-  <url>
-    <loc>https://podfy.net/site-deliveries</loc>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/site-deliveries" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/site-deliveries" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/site-deliveries" />
-  </url>
-
-  <!-- ── Product / demo ────────────────────────────────────────────────── -->
-  <url>
-    <loc>https://podfy.net/demo</loc>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/demo" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/demo" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/demo" />
-  </url>
-
-  <url>
-    <loc>https://podfy.net/pricing</loc>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/pricing" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/pricing" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/pricing" />
-  </url>
-
-  <url>
-    <loc>https://podfy.net/changelog</loc>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/changelog" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/changelog" />
-  </url>
-
-  <!-- ── Contact ───────────────────────────────────────────────────────── -->
-  <url>
-    <loc>https://podfy.net/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/contact" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/contact" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/contact" />
-  </url>
-
-  <!-- ── Legal — consolidated into /trust (Sprint 3 Set C) ───────────── -->
-  <url>
-    <loc>https://podfy.net/trust</loc>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/trust" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/trust" />
-  </url>
+  <url><loc>https://podfy.net/guides/</loc></url>
+  <url><loc>https://podfy.net/guides/proof-of-delivery/</loc></url>
+  <url><loc>https://podfy.net/guides/digital-vs-paper/</loc></url>
+  <url><loc>https://podfy.net/guides/missing-pod/</loc></url>
+  <url><loc>https://podfy.net/guides/pod-disputes/</loc></url>
+  <url><loc>https://podfy.net/guides/pod-invoicing/</loc></url>
+  <url><loc>https://podfy.net/guides/pod-compliance/</loc></url>
+  <url><loc>https://podfy.net/guides/photo-pod/</loc></url>
+  <url><loc>https://podfy.net/guides/pod-without-app/</loc></url>
 
 </urlset>

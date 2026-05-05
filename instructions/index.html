@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Site Owner Instructions — PODFY</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0E1116; --muted: #5A6473; --paper: #F5F2EA; --card: #FBF9F3;
+      --stamp: #D24A1F; --delivered: #1F6B47; --border: #E4E2DC;
+      --mono: "JetBrains Mono", "Menlo", "Consolas", monospace;
+      --sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+      --serif: Georgia, serif;
+    }
+    body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; }
+    a { color: var(--stamp); }
+
+    /* ── Lock screen ── */
+    #lock { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
+    .lock-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem 2rem; max-width: 400px; width: 100%; text-align: center; }
+    .lock-title { font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 1rem; }
+    .lock-input { width: 100%; padding: .6rem .9rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem; background: var(--paper); color: var(--ink); margin-bottom: .75rem; font-family: var(--mono); }
+    .lock-input:focus { outline: 2px solid var(--stamp); border-color: var(--stamp); }
+    .lock-btn { width: 100%; padding: .65rem; background: var(--ink); color: var(--paper); border: none; border-radius: 4px; font-size: .875rem; font-weight: 600; cursor: pointer; font-family: var(--sans); }
+    .lock-btn:hover { opacity: .8; }
+    .lock-error { font-size: .8rem; color: var(--stamp); margin-top: .5rem; display: none; }
+
+    /* ── Content ── */
+    #content { display: none; max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .page-header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 3rem; }
+    .page-eyebrow { font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .16em; color: var(--muted); margin-bottom: .5rem; }
+    .page-title { font-size: 1.75rem; font-weight: 700; }
+    .page-meta { font-size: .85rem; color: var(--muted); margin-top: .4rem; }
+
+    h2 { font-size: 1.15rem; font-weight: 700; margin: 2.5rem 0 .75rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); }
+    h3 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 .4rem; }
+    p { font-size: .9375rem; color: #3a3a3a; margin-bottom: .85rem; line-height: 1.7; }
+    ul, ol { padding-left: 1.4rem; margin-bottom: .85rem; }
+    li { font-size: .9375rem; color: #3a3a3a; line-height: 1.7; margin-bottom: .2rem; }
+    code { font-family: var(--mono); font-size: .8rem; background: var(--border); padding: 1px 5px; border-radius: 3px; }
+    pre { font-family: var(--mono); font-size: .78rem; background: var(--ink); color: var(--paper); padding: 1rem 1.25rem; border-radius: 4px; overflow-x: auto; margin-bottom: 1rem; line-height: 1.5; }
+    pre code { background: none; padding: 0; font-size: inherit; }
+
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 2px; font-family: var(--mono); font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    .badge-active { background: #d4edda; color: var(--delivered); border: 1px solid #b8dfc6; }
+    .badge-niche { background: #fff3cd; color: #856404; border: 1px solid #ffd879; }
+    .badge-legacy { background: #fde8e3; color: var(--stamp); border: 1px solid #f7c4b8; }
+    .badge-notconn { background: var(--border); color: var(--muted); border: 1px solid #d0ccc0; }
+
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; font-size: .875rem; }
+    th, td { padding: .55rem .85rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { font-family: var(--mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+
+    .callout { border-left: 3px solid var(--stamp); background: #fef8f6; padding: .85rem 1rem; border-radius: 0 4px 4px 0; margin-bottom: 1rem; }
+    .callout-ok { border-left-color: var(--delivered); background: #f4faf7; }
+    .callout p { margin-bottom: 0; }
+
+    .toc { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 2.5rem; }
+    .toc h2 { font-size: .75rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: .1em; border-bottom: none; padding-bottom: 0; margin: 0 0 .6rem; }
+    .toc ul { padding-left: 1.2rem; margin: 0; }
+    .toc li { margin-bottom: .2rem; font-size: .85rem; }
+    .toc a { color: var(--muted); text-decoration: none; }
+    .toc a:hover { color: var(--stamp); }
+
+    .lock-logout { position: fixed; top: 1rem; right: 1.5rem; font-family: var(--mono); font-size: .7rem; color: var(--muted); background: none; border: 1px solid var(--border); padding: .3rem .7rem; border-radius: 3px; cursor: pointer; }
+    .lock-logout:hover { color: var(--stamp); border-color: var(--stamp); }
+  </style>
+</head>
+<body>
+
+<!-- ── LOCK SCREEN ── -->
+<div id="lock">
+  <div class="lock-card">
+    <p class="lock-title">PODFY Site Owner Instructions</p>
+    <input id="lock-pw" type="password" class="lock-input" placeholder="Password" autocomplete="current-password" />
+    <button class="lock-btn" onclick="unlock()">Enter</button>
+    <p class="lock-error" id="lock-err">Incorrect password.</p>
+  </div>
+</div>
+
+<!-- ── CONTENT ── -->
+<div id="content">
+  <button class="lock-logout" onclick="lockOut()">Lock</button>
+
+  <div class="page-header">
+    <p class="page-eyebrow">Internal / Site Owner</p>
+    <h1 class="page-title">PODFY Site Instructions</h1>
+    <p class="page-meta">podfy.net &mdash; Cloudflare Pages &middot; Last reviewed May 2026</p>
+  </div>
+
+  <nav class="toc">
+    <h2>On this page</h2>
+    <ul>
+      <li><a href="#architecture">1. Site architecture overview</a></li>
+      <li><a href="#databases">2. Database status &mdash; what is connected</a></li>
+      <li><a href="#changelog">3. Managing the changelog (Site_Releases)</a></li>
+      <li><a href="#forms">4. Viewing contact submissions (Site_Form)</a></li>
+      <li><a href="#pricing">5. Custom pricing segments (Site_Buyer)</a></li>
+      <li><a href="#deploy">6. Deployment workflow</a></li>
+      <li><a href="#pages">7. Site page structure</a></li>
+      <li><a href="#env">8. Environment variables &amp; secrets</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── 1. ARCHITECTURE ── -->
+  <h2 id="architecture">1. Site architecture overview</h2>
+  <p>The PODFY marketing site (<strong>podfy.net</strong>) is hosted on Cloudflare Pages as a static site with server-side logic handled by Cloudflare Pages Functions (in the <code>/functions</code> directory). It is one of five repos in the Podfy ecosystem, but it is <strong>completely independent</strong> of the other four apps.</p>
+
+  <table>
+    <thead><tr><th>Repo / App</th><th>Domain</th><th>Database</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Podfy-site</strong> (this site)</td><td>podfy.net</td><td>podfy-public</td><td>Marketing site — no user auth</td></tr>
+      <tr><td>Podfy-app</td><td>podfy.app</td><td>podfy-main</td><td>Driver upload interface</td></tr>
+      <tr><td>podfy-admin</td><td>admin.podfy.net</td><td>podfy-main</td><td>Admin dashboard (JWT auth)</td></tr>
+      <tr><td>podfy-portal</td><td>portal.podfy.net</td><td>podfy-main</td><td>Customer portal (magic link)</td></tr>
+      <tr><td>Podfy-delivery</td><td>delivery.podfy.net</td><td>podfy-main</td><td>Delivery portal (magic link)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-ok">
+    <p><strong>podfy-site</strong> connects <em>only</em> to the <strong>podfy-public</strong> D1 database. The production database (<code>podfy-main</code>) is not accessible from this site and contains no site data.</p>
+  </div>
+
+  <!-- ── 2. DATABASES ── -->
+  <h2 id="databases">2. Database status — what is connected</h2>
+  <p>The site uses one D1 database: <strong>podfy-public</strong> (ID: <code>8b8e12db-2a7d-47eb-8d12-8a548e71da64</code>). It has three tables:</p>
+
+  <table>
+    <thead><tr><th>Table</th><th>Status</th><th>Connected to</th><th>Owner can</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>Site_Releases</code></td>
+        <td><span class="badge badge-active">Active</span></td>
+        <td><code>/api/releases</code>, <code>/changelog.rss</code>, changelog page</td>
+        <td>Add, edit, publish/unpublish release entries</td>
+      </tr>
+      <tr>
+        <td><code>Site_Form</code></td>
+        <td><span class="badge badge-active">Active</span></td>
+        <td><code>/api/contact</code> (contact form), <code>/api/subscribe</code> (newsletter)</td>
+        <td>Read submissions, update <code>status</code> and <code>first_response</code></td>
+      </tr>
+      <tr>
+        <td><code>Site_Buyer</code></td>
+        <td><span class="badge badge-niche">Active — niche</span></td>
+        <td><code>/api/pricing-factor</code> — called from pricing page with <code>?code=</code> URL param</td>
+        <td>Add buyer segment keywords &amp; custom pricing multipliers</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Other databases — not connected to this site</h3>
+  <table>
+    <thead><tr><th>Database</th><th>Status for site</th><th>Belongs to</th></tr></thead>
+    <tbody>
+      <tr><td>podfy-main</td><td><span class="badge badge-notconn">Not connected</span></td><td>Podfy-app, podfy-admin, podfy-portal, Podfy-delivery</td></tr>
+      <tr><td>podfy-themes-staging</td><td><span class="badge badge-notconn">Not connected</span></td><td>podfy-app-qa (QA environment only)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ── 3. CHANGELOG ── -->
+  <h2 id="changelog">3. Managing the changelog (Site_Releases)</h2>
+  <p>The <code>/changelog</code> page fetches release entries from <code>Site_Releases</code> via <code>GET /api/releases</code>. The RSS feed at <code>/changelog.rss</code> also reads from this table.</p>
+
+  <h3>Table columns</h3>
+  <table>
+    <thead><tr><th>Column</th><th>Type</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>id</code></td><td>INTEGER PK</td><td>Auto-incremented</td></tr>
+      <tr><td><code>release_date</code></td><td>TEXT (YYYY-MM-DD)</td><td>Shown as the release date</td></tr>
+      <tr><td><code>version</code></td><td>TEXT</td><td>e.g. <code>v2.14.1</code> — used as the changelog entry title</td></tr>
+      <tr><td><code>deployment_ref</code></td><td>TEXT</td><td>Internal CF deployment ref (optional)</td></tr>
+      <tr><td><code>new_features</code></td><td>TEXT</td><td>One bullet per line (newline-separated)</td></tr>
+      <tr><td><code>fixes</code></td><td>TEXT</td><td>One bullet per line (newline-separated)</td></tr>
+      <tr><td><code>area_tags</code></td><td>TEXT</td><td>Comma-separated tags e.g. <code>portal,app</code></td></tr>
+      <tr><td><code>is_published</code></td><td>INTEGER (0/1)</td><td>Only rows with <code>is_published = 1</code> are shown publicly</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Adding a new release via Wrangler CLI</h3>
+  <pre><code>wrangler d1 execute podfy-public --remote --command \
+  "INSERT INTO Site_Releases (release_date, version, new_features, fixes, area_tags, is_published)
+   VALUES ('2026-05-05', 'v2.15.0',
+     'Guides section launched with 8 topic pages
+Solutions section launched with 8 audience pages',
+     '',
+     'site,seo',
+     1)"</code></pre>
+
+  <h3>Adding a new release via D1 Dashboard</h3>
+  <ol>
+    <li>Go to <a href="https://dash.cloudflare.com" target="_blank">dash.cloudflare.com</a> → D1 → <strong>podfy-public</strong></li>
+    <li>Click <strong>Console</strong> tab</li>
+    <li>Run an INSERT statement like the one above</li>
+    <li>The changelog page fetches live — no redeploy needed</li>
+  </ol>
+
+  <h3>Drafting (not yet visible)</h3>
+  <p>Set <code>is_published = 0</code> to save a draft entry that won't show publicly. Set it to <code>1</code> when ready to publish.</p>
+
+  <!-- ── 4. FORMS ── -->
+  <h2 id="forms">4. Viewing contact submissions (Site_Form)</h2>
+  <p>Contact form submissions (<code>/contact</code> page) and changelog newsletter subscriptions are stored in <code>Site_Form</code>. An internal email notification is also sent via Resend on each submission, but the D1 record is the persistent archive.</p>
+
+  <h3>Table columns relevant to you</h3>
+  <table>
+    <thead><tr><th>Column</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>name</code></td><td>Submitter name</td></tr>
+      <tr><td><code>email</code></td><td>Submitter email (lowercase)</td></tr>
+      <tr><td><code>company</code></td><td>Company name (from contact form)</td></tr>
+      <tr><td><code>sector</code></td><td>Industry/sector selected, or <code>changelog-subscription</code> for newsletter sign-ups</td></tr>
+      <tr><td><code>message</code></td><td>Free-text message</td></tr>
+      <tr><td><code>source_path</code></td><td>URL path of the form that was submitted (e.g. <code>/contact</code>, <code>/changelog</code>)</td></tr>
+      <tr><td><code>status</code></td><td><code>new</code> → update to <code>replied</code> or <code>closed</code> when handled</td></tr>
+      <tr><td><code>first_response</code></td><td>Timestamp of first response (fill manually or via admin)</td></tr>
+      <tr><td><code>created_at</code></td><td>When the form was submitted (ISO timestamp)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Viewing submissions</h3>
+  <pre><code>-- All new contact form submissions
+SELECT id, name, email, company, message, created_at
+FROM Site_Form
+WHERE sector != 'changelog-subscription' AND status = 'new'
+ORDER BY created_at DESC;
+
+-- Changelog newsletter subscribers
+SELECT id, name, email, created_at
+FROM Site_Form
+WHERE sector = 'changelog-subscription'
+ORDER BY created_at DESC;</code></pre>
+
+  <h3>Marking as replied</h3>
+  <pre><code>UPDATE Site_Form SET status = 'replied', first_response = datetime('now') WHERE id = 42;</code></pre>
+
+  <!-- ── 5. PRICING ── -->
+  <h2 id="pricing">5. Custom pricing segments (Site_Buyer)</h2>
+  <p>The pricing page supports a secret URL parameter: <code>/pricing?code=KEYWORD</code>. When a valid keyword is found in <code>Site_Buyer</code>, the pricing calculator uses a custom multiplier (the <code>wtp_percent</code> value). This is used for sales conversations — e.g. share a custom pricing URL with a high-value prospect.</p>
+
+  <h3>Table columns</h3>
+  <table>
+    <thead><tr><th>Column</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>id</code></td><td>Auto-incremented PK</td></tr>
+      <tr><td><code>segment</code></td><td>Human-readable segment name (shown in pricing UI), e.g. <code>Elite Shipper</code></td></tr>
+      <tr><td><code>keyword</code></td><td>Secret URL parameter value — keep this private per prospect</td></tr>
+      <tr><td><code>wtp_percent</code></td><td>Pricing multiplier. <code>1.0</code> = standard price, <code>1.5</code> = 50% premium, <code>0.8</code> = 20% discount</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Adding a custom prospect code</h3>
+  <pre><code>INSERT INTO Site_Buyer (segment, keyword, wtp_percent)
+VALUES ('DHL Special', 'dhl2026secret', 1.25);</code></pre>
+  <p>Then share the URL: <code>https://podfy.net/pricing?code=dhl2026secret</code></p>
+
+  <div class="callout">
+    <p><strong>Note:</strong> The keyword is treated as case-sensitive. Keep prospect-specific codes private — anyone with the URL can see the custom pricing.</p>
+  </div>
+
+  <!-- ── 6. DEPLOYMENT ── -->
+  <h2 id="deploy">6. Deployment workflow</h2>
+  <p>All changes go through the <code>qa</code> branch first. Only Podfy-site's <code>main</code> branch is protected — direct pushes are rejected.</p>
+  <pre><code># 1. Make changes on qa branch
+git checkout qa
+
+# 2. Stage and commit
+git add [files]
+git commit -m "Your description"
+
+# 3. Push — Cloudflare auto-deploys to qa (no QA Pages project for site yet)
+git push origin qa
+
+# 4. Open PR: qa → main on GitHub
+# Visit: https://github.com/AHLJvanderPlas/Podfy-site
+
+# 5. Merge PR → Cloudflare auto-deploys to production (podfy.net)</code></pre>
+
+  <div class="callout">
+    <p><strong>D1 changes</strong> (changelog entries, form status updates) take effect immediately without redeployment — the site fetches live data from the database on every request.</p>
+  </div>
+
+  <!-- ── 7. PAGES ── -->
+  <h2 id="pages">7. Site page structure</h2>
+  <p>All HTML pages use the <code>[[PODFY_HEADER]]</code> and <code>[[PODFY_FOOTER]]</code> template markers, which are injected at request time by <code>/functions/_middleware.js</code>. The <code>body.v2</code> class enables the v2 design system.</p>
+
+  <table>
+    <thead><tr><th>URL</th><th>File</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>/</td><td>index.html</td><td>Homepage</td></tr>
+      <tr><td>/demo</td><td>demo.html</td><td>Live demo embed</td></tr>
+      <tr><td>/pricing</td><td>pricing.html</td><td>Pricing calculator</td></tr>
+      <tr><td>/contact</td><td>contact.html</td><td>Contact form (writes to Site_Form)</td></tr>
+      <tr><td>/changelog</td><td>changelog.html</td><td>Reads from Site_Releases</td></tr>
+      <tr><td>/changelog.rss</td><td>functions/changelog.rss.js</td><td>RSS feed from Site_Releases</td></tr>
+      <tr><td>/trust</td><td>trust.html</td><td>Privacy, terms, cookie, security (all in one)</td></tr>
+      <tr><td>/carriers</td><td>carriers.html</td><td>Audience: Carriers &amp; 3PLs</td></tr>
+      <tr><td>/inbound</td><td>inbound.html</td><td>Audience: Inbound &amp; Receiving</td></tr>
+      <tr><td>/site-deliveries</td><td>site-deliveries.html</td><td>Audience: Construction &amp; Sites</td></tr>
+      <tr><td>/solutions/</td><td>solutions/index.html</td><td>Solutions index (8 personas)</td></tr>
+      <tr><td>/solutions/carriers/</td><td>solutions/carriers/index.html</td><td>Detailed: Carrier persona</td></tr>
+      <tr><td>/solutions/3pl/</td><td>solutions/3pl/index.html</td><td>Detailed: 3PL persona</td></tr>
+      <tr><td>/solutions/shippers/</td><td>solutions/shippers/index.html</td><td>Detailed: Shippers persona</td></tr>
+      <tr><td>/solutions/retail/</td><td>solutions/retail/index.html</td><td>Detailed: Retail persona</td></tr>
+      <tr><td>/solutions/construction/</td><td>solutions/construction/index.html</td><td>Detailed: Construction persona</td></tr>
+      <tr><td>/solutions/facilities/</td><td>solutions/facilities/index.html</td><td>Detailed: Facilities persona</td></tr>
+      <tr><td>/solutions/inbound/</td><td>solutions/inbound/index.html</td><td>Detailed: Inbound teams persona</td></tr>
+      <tr><td>/solutions/digitize/</td><td>solutions/digitize/index.html</td><td>Detailed: Paper digitization persona</td></tr>
+      <tr><td>/guides/</td><td>guides/index.html</td><td>Guides index</td></tr>
+      <tr><td>/guides/proof-of-delivery/</td><td>guides/proof-of-delivery/index.html</td><td>Hub: What is POD?</td></tr>
+      <tr><td>/guides/digital-vs-paper/</td><td>guides/digital-vs-paper/index.html</td><td>Guide: Digital vs paper POD</td></tr>
+      <tr><td>/guides/missing-pod/</td><td>guides/missing-pod/index.html</td><td>Guide: Missing POD</td></tr>
+      <tr><td>/guides/pod-disputes/</td><td>guides/pod-disputes/index.html</td><td>Guide: POD disputes</td></tr>
+      <tr><td>/guides/pod-invoicing/</td><td>guides/pod-invoicing/index.html</td><td>Guide: POD &amp; invoicing</td></tr>
+      <tr><td>/guides/pod-compliance/</td><td>guides/pod-compliance/index.html</td><td>Guide: POD compliance</td></tr>
+      <tr><td>/guides/photo-pod/</td><td>guides/photo-pod/index.html</td><td>Guide: Photo POD</td></tr>
+      <tr><td>/guides/pod-without-app/</td><td>guides/pod-without-app/index.html</td><td>Guide: POD without app</td></tr>
+      <tr><td>/instructions/</td><td>instructions/index.html</td><td>This page (password protected)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>_redirects logic</h3>
+  <p>All old <code>podfy-*.html</code> legacy URLs redirect (301) to their new clean URL equivalents. Legal pages redirect to the consolidated <code>/trust</code> page. See <code>_redirects</code> at the repo root.</p>
+
+  <!-- ── 8. ENV ── -->
+  <h2 id="env">8. Environment variables &amp; secrets</h2>
+  <p>Set in the Cloudflare Pages dashboard under <strong>Settings → Environment variables</strong> for the <code>podfy-site</code> project.</p>
+
+  <table>
+    <thead><tr><th>Variable</th><th>Type</th><th>Used by</th></tr></thead>
+    <tbody>
+      <tr><td><code>RESEND_API_KEY</code></td><td>Secret</td><td>api/contact.js, api/subscribe.js — sending emails</td></tr>
+      <tr><td><code>TURNSTILE_SECRET</code></td><td>Secret</td><td>api/contact.js, api/subscribe.js — bot protection</td></tr>
+      <tr><td><code>PORTAL_SESSION_SECRET</code></td><td>Secret</td><td>Reserved for future portal session feature</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p><strong>Turnstile sitekey</strong> (public, in HTML): <code>0x4AAAAAACFOR78WSLkw_gB7</code> — used in contact form and subscribe form HTML.</p>
+  </div>
+
+</div>
+
+<script>
+  const HASH = "96a67fef8cc3b05cf7c2e3da71889a97c0ddf0c4a18e4a9a66e9e2882a26e37b"; // sha256 of "Podfy2026!"
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function unlock() {
+    const pw = document.getElementById("lock-pw").value;
+    const h = await sha256(pw);
+    if (h === HASH) {
+      sessionStorage.setItem("pod_inst", "1");
+      show();
+    } else {
+      document.getElementById("lock-err").style.display = "block";
+    }
+  }
+
+  function show() {
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  }
+
+  function lockOut() {
+    sessionStorage.removeItem("pod_inst");
+    document.getElementById("content").style.display = "none";
+    document.getElementById("lock").style.display = "flex";
+    document.getElementById("lock-pw").value = "";
+  }
+
+  // Allow Enter key
+  document.getElementById("lock-pw")?.addEventListener("keydown", e => {
+    if (e.key === "Enter") unlock();
+  });
+
+  // Auto-unlock if session is valid
+  if (sessionStorage.getItem("pod_inst") === "1") show();
+</script>
+
+</body>
+</html>

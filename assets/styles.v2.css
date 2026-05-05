@@ -1140,3 +1140,90 @@ html[data-theme="dark"] .v2-receipt {
   .v2-hero-title { font-size: 1.85rem; }
   .v2-btn { padding: 0.55rem 1rem; font-size: 0.82rem; }
 }
+
+/* ==========================================================================
+   19) SOLUTIONS & GUIDES COMPONENTS
+   ========================================================================== */
+
+/* ── Breadcrumb ──────────────────────────────────────────────────────────── */
+.v2-breadcrumb { border-bottom: 1px solid var(--v2-line); padding: .5rem 0; background: var(--v2-paper); }
+.v2-breadcrumb-list { display: flex; align-items: center; gap: .5rem; list-style: none; margin: 0; padding: 0; font-family: var(--v2-font-mono); font-size: .72rem; color: var(--v2-muted); }
+.v2-breadcrumb-list li + li::before { content: "·"; margin-right: .5rem; color: var(--v2-line-2); }
+.v2-breadcrumb-list a { color: var(--v2-muted); text-decoration: none; }
+.v2-breadcrumb-list a:hover { color: var(--v2-ink); }
+
+/* ── Before/After contrast strip ─────────────────────────────────────────── */
+.v2-contrast-strip { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; padding: 2.5rem 0; }
+@media (max-width: 640px) { .v2-contrast-strip { grid-template-columns: 1fr; gap: 1.5rem; } .v2-contrast-divider { display: none; } }
+.v2-contrast-label { font-family: var(--v2-font-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .75rem; font-weight: 600; }
+.v2-contrast-before .v2-contrast-label { color: var(--v2-stamp); }
+.v2-contrast-after .v2-contrast-label { color: var(--v2-delivered); }
+.v2-contrast-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .5rem; font-size: .9rem; line-height: 1.6; }
+.v2-contrast-before .v2-contrast-list li::before { content: "✗  "; color: var(--v2-stamp); }
+.v2-contrast-after .v2-contrast-list li::before { content: "✓  "; color: var(--v2-delivered); }
+.v2-contrast-divider { width: 1px; background: var(--v2-line); align-self: stretch; }
+
+/* ── Guide cards (cross-tier links) ──────────────────────────────────────── */
+.v2-guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.v2-guide-card { display: flex; flex-direction: column; gap: .5rem; padding: 1.25rem; border: 1px solid var(--v2-line); border-left: 3px solid var(--v2-stamp); border-radius: var(--v2-radius); background: var(--v2-card); text-decoration: none; color: var(--v2-ink); transition: box-shadow .15s; }
+.v2-guide-card:hover { box-shadow: 0 2px 12px color-mix(in srgb, var(--v2-stamp) 15%, transparent); }
+.v2-guide-tag { font-family: var(--v2-font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: var(--v2-stamp); }
+.v2-guide-title { font-size: .975rem; font-weight: 600; line-height: 1.3; margin: 0; }
+.v2-guide-desc { font-size: .85rem; color: var(--v2-muted); flex: 1; line-height: 1.55; }
+.v2-guide-arrow { font-family: var(--v2-font-mono); font-size: .75rem; color: var(--v2-stamp); margin-top: auto; }
+
+/* ── TOC strip (guide pages) ─────────────────────────────────────────────── */
+.v2-toc { border-bottom: 1px solid var(--v2-line); padding: .75rem 0; position: sticky; top: 0; background: var(--v2-paper); z-index: 10; }
+.v2-toc-list { display: flex; gap: .5rem; overflow-x: auto; scrollbar-width: none; list-style: none; margin: 0; padding: 0; }
+.v2-toc-list::-webkit-scrollbar { display: none; }
+.v2-toc-pill { display: inline-block; padding: .3rem .85rem; border: 1px solid var(--v2-line); border-radius: 2rem; font-family: var(--v2-font-mono); font-size: .72rem; color: var(--v2-muted); text-decoration: none; white-space: nowrap; transition: background .12s, color .12s, border-color .12s; }
+.v2-toc-pill:hover, .v2-toc-pill.active { background: var(--v2-stamp); color: var(--v2-paper); border-color: var(--v2-stamp); }
+
+/* ── Audience selector grid ───────────────────────────────────────────────── */
+.v2-audience-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.v2-audience-tile { display: flex; flex-direction: column; gap: .4rem; padding: 1.25rem; border: 1px solid var(--v2-line); border-radius: var(--v2-radius); background: var(--v2-card); text-decoration: none; color: var(--v2-ink); transition: border-color .12s, box-shadow .12s; }
+.v2-audience-tile:hover { border-color: var(--v2-stamp); box-shadow: 0 2px 8px color-mix(in srgb, var(--v2-stamp) 12%, transparent); }
+.v2-audience-industry { font-family: var(--v2-font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--v2-muted); }
+.v2-audience-role { font-size: 1.05rem; font-weight: 700; margin: 0; }
+.v2-audience-quote { font-size: .8rem; color: var(--v2-muted); font-style: italic; line-height: 1.5; }
+
+/* ── Inline CTA banner (mid-page, guide pages) ───────────────────────────── */
+.v2-inline-cta { background: var(--v2-ink); color: var(--v2-paper); padding: 2.5rem 0; margin: 3rem 0; }
+.v2-inline-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.v2-inline-cta-label { font-family: var(--v2-font-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; opacity: .6; margin-bottom: .3rem; }
+.v2-inline-cta-text { font-family: var(--v2-font-serif); font-size: 1.2rem; font-weight: 500; flex: 1; min-width: 180px; }
+
+/* ── Comparison table ────────────────────────────────────────────────────── */
+.v2-comparison-table { width: 100%; border-collapse: collapse; font-size: .875rem; margin-top: 1.25rem; }
+.v2-comparison-table th, .v2-comparison-table td { padding: .65rem 1rem; border-bottom: 1px solid var(--v2-line); text-align: left; }
+.v2-comparison-table th { font-family: var(--v2-font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: var(--v2-muted); background: var(--v2-card); }
+.v2-col-paper { color: var(--v2-muted); }
+.v2-col-digital { background: color-mix(in srgb, var(--v2-delivered) 6%, transparent); font-weight: 500; }
+
+/* ── Reading progress bar ────────────────────────────────────────────────── */
+#v2-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--v2-stamp); width: 0%; z-index: 9999; transition: width .1s linear; pointer-events: none; }
+
+/* ── FAQ accordion (solutions + guide pages) ─────────────────────────────── */
+.v2-faq-accordion { display: flex; flex-direction: column; gap: 0; }
+.v2-faq-btn { width: 100%; text-align: left; background: none; border: none; border-top: 1px solid var(--v2-line); padding: 1rem 0; font-family: var(--v2-font-serif); font-size: 1rem; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--v2-ink); gap: 1rem; }
+.v2-faq-btn::after { content: "+"; font-family: var(--v2-font-mono); font-size: 1.1rem; color: var(--v2-muted); transition: transform .15s; flex-shrink: 0; }
+.v2-faq-acc-item.open .v2-faq-btn::after { transform: rotate(45deg); }
+.v2-faq-acc-item:last-child .v2-faq-answer { border-bottom: 1px solid var(--v2-line); }
+.v2-faq-answer { max-height: 0; overflow: hidden; transition: max-height .22s ease; font-size: .9375rem; color: var(--v2-muted); line-height: 1.7; padding: 0; }
+.v2-faq-acc-item.open .v2-faq-answer { max-height: 800px; padding-bottom: 1rem; }
+
+/* ── Subscribe form strip ────────────────────────────────────────────────── */
+.v2-subscribe-strip { background: var(--v2-card); border: 1px solid var(--v2-line); border-radius: var(--v2-radius); padding: 1.5rem; margin-top: 2rem; }
+.v2-subscribe-strip h3 { font-family: var(--v2-font-serif); font-size: 1.05rem; font-weight: 500; margin: 0 0 .3rem; }
+.v2-subscribe-strip p { font-size: .875rem; color: var(--v2-muted); margin: 0 0 1rem; }
+.v2-subscribe-row { display: flex; gap: .5rem; flex-wrap: wrap; }
+.v2-subscribe-input { flex: 1; min-width: 200px; padding: .55rem .9rem; border: 1px solid var(--v2-line); border-radius: var(--v2-radius); font-size: .875rem; background: var(--v2-paper); color: var(--v2-ink); font-family: var(--v2-font-sans); }
+.v2-subscribe-input:focus { outline: 2px solid var(--v2-stamp); border-color: var(--v2-stamp); }
+
+/* ── Related solutions tiles ─────────────────────────────────────────────── */
+.v2-sol-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.v2-sol-tile { display: flex; flex-direction: column; gap: .4rem; padding: 1.1rem 1.25rem; border: 1px solid var(--v2-line); border-radius: var(--v2-radius); background: var(--v2-card); text-decoration: none; color: var(--v2-ink); transition: border-color .12s; }
+.v2-sol-tile:hover { border-color: var(--v2-stamp); }
+.v2-sol-tile-industry { font-family: var(--v2-font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--v2-muted); }
+.v2-sol-tile-name { font-weight: 700; font-size: .975rem; }
+.v2-sol-tile-arrow { font-family: var(--v2-font-mono); font-size: .72rem; color: var(--v2-stamp); margin-top: auto; }
