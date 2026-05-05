@@ -1,46 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Best-practice notes applied:
-       - Only include canonical URLs (drop /index.html duplicate)
-       - Don’t include 404 pages
-       - Use consistent trailing slashes (none here) and exact public URLs
-       - Optional fields (lastmod/changefreq/priority) omitted unless you can keep them accurate
+  <!--
+    PODFY sitemap — canonical v2 pages only
+    Sprint 2 collapse: 17 SEO pages removed (now 301 → /carriers, /inbound, /site-deliveries, /)
+    Sprint 3 will add: /changelog (replacing /releases), /trust (replacing legal pages)
+    Locale roots declared for hreflang; NL content ships Sprint 4.
   -->
 
-  <!-- Core -->
-  <url><loc>https://podfy.net/</loc></url>
-  <url><loc>https://podfy.net/pricing.html</loc></url>
-  <url><loc>https://podfy.net/companies.html</loc></url>
-  <url><loc>https://podfy.net/free-tier-demo.html</loc></url>
+  <!-- ── Core audience pages ───────────────────────────────────────────── -->
+  <url>
+    <loc>https://podfy.net/</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
+  </url>
 
-  <!-- Product / docs -->
-  <url><loc>https://podfy.net/releases.html</loc></url>
+  <url>
+    <loc>https://podfy.net/carriers</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/carriers" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/carriers" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/carriers" />
+  </url>
 
-  <!-- Audience pages (10 use-cases) -->
-  <url><loc>https://podfy.net/podfy-proof-of-delivery-for-carriers</loc></url>
-  <url><loc>https://podfy.net/podfy-digital-delivery-document-storage</loc></url>
-  <url><loc>https://podfy.net/podfy-digitize-delivery-documents</loc></url>
-  <url><loc>https://podfy.net/podfy-proof-of-delivery-for-shippers</loc></url>
-  <url><loc>https://podfy.net/podfy-proof-of-delivery-for-3pl</loc></url>
-  <url><loc>https://podfy.net/podfy-construction-delivery-documentation</loc></url>
-  <url><loc>https://podfy.net/podfy-retail-delivery-documentation</loc></url>
-  <url><loc>https://podfy.net/podfy-proof-of-delivery-compliance</loc></url>
-  <url><loc>https://podfy.net/podfy-proof-of-delivery-without-app</loc></url>
-  <url><loc>https://podfy.net/podfy-digital-delivery-documentation</loc></url>
+  <url>
+    <loc>https://podfy.net/inbound</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/inbound" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/inbound" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/inbound" />
+  </url>
 
-  <!-- Proof of Delivery hub + supporting pages -->
-  <url><loc>https://podfy.net/podfy-proof-of-delivery.html</loc></url>
-  <url><loc>https://podfy.net/podfy-missing-proof-of-delivery.html</loc></url>
-  <url><loc>https://podfy.net/podfy-proof-of-delivery-disputes.html</loc></url>
-  <url><loc>https://podfy.net/podfy-proof-of-delivery-invoicing.html</loc></url>
+  <url>
+    <loc>https://podfy.net/site-deliveries</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/site-deliveries" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/site-deliveries" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/site-deliveries" />
+  </url>
 
-  <!-- Legal / policy (keep only if these are indexable canonical pages) -->
-  <url><loc>https://podfy.net/terms.html</loc></url>
-  <url><loc>https://podfy.net/privacy.html</loc></url>
-  <url><loc>https://podfy.net/cookie.html</loc></url>
-  <url><loc>https://podfy.net/imprint.html</loc></url>
-  <url><loc>https://podfy.net/security.html</loc></url>
-  <url><loc>https://podfy.net/responsible-disclosure.html</loc></url>
+  <!-- ── Product / demo ────────────────────────────────────────────────── -->
+  <url>
+    <loc>https://podfy.net/demo</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/demo" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/demo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/demo" />
+  </url>
+
+  <url>
+    <loc>https://podfy.net/pricing</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/pricing" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/pricing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/pricing" />
+  </url>
+
+  <!-- /releases kept until Sprint 3 rebuilds it as /changelog -->
+  <url>
+    <loc>https://podfy.net/releases</loc>
+  </url>
+
+  <!-- ── Contact ───────────────────────────────────────────────────────── -->
+  <url>
+    <loc>https://podfy.net/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/contact" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/contact" />
+  </url>
+
+  <!-- ── Legal — kept until /trust consolidation in Sprint 3 ──────────── -->
+  <url><loc>https://podfy.net/terms</loc></url>
+  <url><loc>https://podfy.net/privacy</loc></url>
+  <url><loc>https://podfy.net/cookie</loc></url>
+  <url><loc>https://podfy.net/imprint</loc></url>
+  <url><loc>https://podfy.net/security</loc></url>
+  <url><loc>https://podfy.net/responsible-disclosure</loc></url>
 
 </urlset>
