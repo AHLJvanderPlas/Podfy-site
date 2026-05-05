@@ -224,32 +224,46 @@
             </div>
           </div>
 
-          <!-- Artifact 2: The stamped PDF record -->
+          <!-- Artifact 2: The stamped PDF record — document-page layout, not a receipt -->
           <div class="v2-proof-artifact" aria-label="Stamped delivery record PDF">
             <p class="v2-proof-artifact-label">02 &mdash; The record you receive</p>
             <div class="v2-proof-pdf-body">
-              <p class="v2-proof-pdf-heading">Delivery Record</p>
-              <hr class="v2-proof-pdf-hr" />
-              <div class="v2-proof-pdf-row">
-                <span class="v2-proof-pdf-row-label">GPS</span>
-                <span class="v2-proof-pdf-row-val">52.37&deg;N&thinsp;&middot;&thinsp;4.89&deg;E</span>
+
+              <!-- Letterhead row -->
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
+                <span style="font-family:var(--v2-font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--v2-muted);">PODFY</span>
+                <span style="font-family:var(--v2-font-serif);font-size:0.78rem;font-weight:600;color:var(--v2-ink);">Delivery Record</span>
               </div>
-              <div class="v2-proof-pdf-row">
-                <span class="v2-proof-pdf-row-label">Date</span>
-                <span class="v2-proof-pdf-row-val">2025-04-22&thinsp;&middot;&thinsp;14:37</span>
+
+              <!-- Scanned-document photo area -->
+              <div style="background:var(--v2-paper-2);border:1px solid var(--v2-line);height:3.25rem;display:flex;align-items:center;justify-content:center;margin-bottom:0.6rem;" aria-hidden="true">
+                <span style="font-family:var(--v2-font-mono);font-size:0.58rem;letter-spacing:0.06em;color:var(--v2-muted);">cmr_0041.pdf &mdash; 1 page</span>
               </div>
-              <div class="v2-proof-pdf-row">
-                <span class="v2-proof-pdf-row-label">REF</span>
-                <span class="v2-proof-pdf-row-val">TDV-2025-04-22-0041</span>
+
+              <!-- 2-column metadata grid -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.35rem 1rem;font-family:var(--v2-font-mono);font-size:0.67rem;margin-bottom:0.6rem;">
+                <div>
+                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">GPS</span>
+                  <span style="color:var(--v2-ink-2);">52.37&deg;N &middot; 4.89&deg;E</span>
+                </div>
+                <div>
+                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">Timestamp</span>
+                  <span style="color:var(--v2-ink-2);">2025-04-22&thinsp;14:37</span>
+                </div>
+                <div>
+                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">REF</span>
+                  <span style="color:var(--v2-ink-2);">TDV-0041</span>
+                </div>
+                <div>
+                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">Checksum</span>
+                  <span style="color:var(--v2-ink-2);">sha256:a3f4&hellip;</span>
+                </div>
               </div>
-              <div class="v2-proof-pdf-row">
-                <span class="v2-proof-pdf-row-label">File</span>
-                <span class="v2-proof-pdf-row-val">cmr_0041.pdf</span>
-              </div>
-              <hr class="v2-proof-pdf-hr" />
+
               <div class="v2-proof-pdf-stamp-row">
                 <span class="v2-stamp-mark">Delivered</span>
               </div>
+
             </div>
           </div>
 
