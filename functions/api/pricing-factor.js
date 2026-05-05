@@ -18,7 +18,7 @@ export async function onRequest({ request, env }) {
   }
 
   // CHANGE THIS to match your binding name from the Pages/D1 config
-  const db = env.DB_THEMES || env.DB || env.PODFY_THEMES_QA;
+  const db = env.DB;
 
   if (!db) {
     // Binding not configured – fail soft but tell you why in the payload
