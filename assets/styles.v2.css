@@ -740,7 +740,400 @@ html[data-theme="dark"] .v2-receipt {
 }
 
 /* ==========================================================================
-   15) RESPONSIVE UTILITIES
+   15) PRICING TABLES (Sprint 3)
+   ========================================================================== */
+
+/* Plan comparison table */
+.v2-price-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 2rem 0;
+}
+.v2-price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  min-width: 560px;
+}
+.v2-price-table th,
+.v2-price-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--v2-line);
+  vertical-align: top;
+}
+.v2-price-table thead th {
+  font-family: var(--v2-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+  background: var(--v2-paper-2);
+  white-space: nowrap;
+}
+.v2-price-table thead th:first-child {
+  border-radius: 2px 0 0 0;
+}
+.v2-price-table thead th:last-child {
+  border-radius: 0 2px 0 0;
+}
+.v2-price-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.v2-price-table tbody tr:nth-child(even) td {
+  background: var(--v2-paper-2);
+}
+.v2-price-table .v2-price-row-label {
+  color: var(--v2-ink-2);
+  font-weight: 500;
+}
+.v2-price-rate {
+  font-family: var(--v2-font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--v2-ink);
+}
+.v2-price-rate-custom {
+  font-family: var(--v2-font-mono);
+  font-size: 0.9rem;
+  color: var(--v2-muted);
+  font-style: italic;
+}
+.v2-price-check {
+  color: var(--v2-delivered);
+  font-size: 0.85rem;
+}
+.v2-price-dash {
+  color: var(--v2-muted);
+  font-size: 0.85rem;
+}
+
+/* Add-ons table */
+.v2-addons-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 1.5rem 0;
+}
+.v2-addons-table td {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--v2-line);
+  vertical-align: top;
+}
+.v2-addons-table tr:last-child td {
+  border-bottom: none;
+}
+.v2-addons-table .v2-addon-name {
+  font-weight: 500;
+  color: var(--v2-ink);
+  padding-right: 1.5rem;
+  width: 40%;
+}
+.v2-addons-table .v2-addon-price {
+  font-family: var(--v2-font-mono);
+  font-size: 0.85rem;
+  color: var(--v2-stamp);
+  white-space: nowrap;
+  padding-right: 1.5rem;
+  width: 20%;
+}
+.v2-addons-table .v2-addon-desc {
+  color: var(--v2-muted);
+  font-size: 0.83rem;
+}
+
+/* Worked examples */
+.v2-examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+.v2-example-card {
+  border: 1px solid var(--v2-line);
+  border-radius: 2px;
+  padding: 1.25rem 1.25rem 1rem;
+  background: var(--v2-card);
+}
+.v2-example-label {
+  font-family: var(--v2-font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--v2-muted);
+  margin-bottom: 0.5rem;
+}
+.v2-example-scenario {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--v2-ink);
+  margin-bottom: 0.75rem;
+}
+.v2-example-calc {
+  font-family: var(--v2-font-mono);
+  font-size: 0.8rem;
+  color: var(--v2-muted);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+.v2-example-total {
+  border-top: 1px solid var(--v2-line-2);
+  padding-top: 0.5rem;
+  font-family: var(--v2-font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--v2-ink);
+}
+.v2-example-total-label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--v2-muted);
+  margin-left: 0.25rem;
+}
+
+/* ==========================================================================
+   16) TRUST / LEGAL PAGE (Sprint 3)
+   ========================================================================== */
+
+.v2-trust-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-top: 2rem;
+}
+@media (max-width: 860px) {
+  .v2-trust-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+.v2-trust-toc {
+  position: sticky;
+  top: 5rem;
+}
+@media (max-width: 860px) {
+  .v2-trust-toc {
+    position: static;
+  }
+}
+.v2-trust-toc-title {
+  font-family: var(--v2-font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--v2-muted);
+  margin-bottom: 0.75rem;
+}
+.v2-trust-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.v2-trust-toc-list li {
+  margin-bottom: 0.25rem;
+}
+.v2-trust-toc-list a {
+  font-size: 0.83rem;
+  color: var(--v2-muted);
+  text-decoration: none;
+  display: block;
+  padding: 0.2rem 0;
+  border-left: 2px solid transparent;
+  padding-left: 0.5rem;
+  transition: color 0.12s, border-color 0.12s;
+}
+.v2-trust-toc-list a:hover {
+  color: var(--v2-ink);
+  border-left-color: var(--v2-stamp);
+}
+.v2-trust-toc-list a.active {
+  color: var(--v2-ink);
+  border-left-color: var(--v2-stamp);
+  font-weight: 500;
+}
+.v2-trust-section {
+  padding-top: 2.5rem;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--v2-line);
+}
+.v2-trust-section:first-child {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+.v2-trust-section-eyebrow {
+  font-family: var(--v2-font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--v2-muted);
+  margin-bottom: 0.5rem;
+}
+.v2-trust-section h2 {
+  font-family: var(--v2-font-serif);
+  font-size: 1.4rem;
+  color: var(--v2-ink);
+  margin: 0 0 1rem;
+}
+.v2-trust-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--v2-ink);
+  margin: 1.5rem 0 0.4rem;
+}
+.v2-trust-section p,
+.v2-trust-section li {
+  font-size: 0.9rem;
+  color: var(--v2-muted);
+  line-height: 1.65;
+}
+.v2-trust-section ul,
+.v2-trust-section ol {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 1rem;
+}
+.v2-trust-section li + li {
+  margin-top: 0.25rem;
+}
+.v2-trust-section a {
+  color: var(--v2-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.v2-trust-updated {
+  font-family: var(--v2-font-mono);
+  font-size: 0.75rem;
+  color: var(--v2-muted);
+  margin-top: 1rem;
+}
+
+/* ==========================================================================
+   17) CHANGELOG PAGE (Sprint 3)
+   ========================================================================== */
+
+.v2-changelog-entry {
+  border-top: 1px solid var(--v2-line);
+  padding: 2rem 0 0.5rem;
+}
+.v2-changelog-entry:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.v2-changelog-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+.v2-changelog-date {
+  font-family: var(--v2-font-mono);
+  font-size: 0.78rem;
+  color: var(--v2-muted);
+}
+.v2-changelog-version {
+  font-family: var(--v2-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--v2-ink);
+  background: var(--v2-paper-2);
+  border: 1px solid var(--v2-line);
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+}
+.v2-changelog-tag {
+  font-family: var(--v2-font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--v2-stamp);
+  border: 1px solid var(--v2-stamp);
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+}
+.v2-changelog-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+@media (max-width: 640px) {
+  .v2-changelog-body {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+.v2-changelog-col-label {
+  font-family: var(--v2-font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--v2-muted);
+  margin-bottom: 0.4rem;
+}
+.v2-changelog-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.v2-changelog-col li {
+  font-size: 0.875rem;
+  color: var(--v2-ink-2);
+  padding: 0.2rem 0 0.2rem 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+.v2-changelog-col li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--v2-muted);
+}
+.v2-changelog-search {
+  width: 100%;
+  max-width: 360px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  background: var(--v2-card);
+  border: 1px solid var(--v2-line-2);
+  color: var(--v2-ink);
+  border-radius: 2px;
+  font-family: inherit;
+  margin-bottom: 2rem;
+}
+.v2-changelog-search:focus {
+  outline: 2px solid var(--v2-stamp);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+.v2-changelog-rss {
+  font-family: var(--v2-font-mono);
+  font-size: 0.75rem;
+  color: var(--v2-muted);
+  text-decoration: none;
+  border: 1px solid var(--v2-line);
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.v2-changelog-rss:hover {
+  border-color: var(--v2-stamp);
+  color: var(--v2-stamp);
+}
+.v2-changelog-pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--v2-line);
+}
+
+/* ==========================================================================
+   18) RESPONSIVE UTILITIES
    ========================================================================== */
 
 @media (max-width: 360px) {

@@ -1,924 +1,366 @@
 <!doctype html>
+<!-- i18n:strings
+  title: Pricing — PODFY
+  h1-line1: Pay per POD.
+  h1-line2: Nothing else.
+  cta-primary: Book 15 minutes
+-->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title>PODFY — Pricing & Configuration</title>
-  <meta name="description" content="Configure PODFY pricing per POD. Compare Starter, Advanced, Pro and Enterprise and send yourself a configuration overview." />
-  <link rel="canonical" href="https://podfy.net/pricing">
+  <title>Pricing — PODFY</title>
+  <meta name="description" content="PODFY pricing is per processed POD. No monthly seat fees, no setup costs. Starter from €0.29 per POD. See the full rate card and add-ons." />
+  <link rel="canonical" href="https://podfy.net/pricing" />
 
-  <!-- Basic SEO -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="format-detection" content="telephone=no,address=no,email=no" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="PODFY — Pricing & Configuration" />
-  <meta property="og:description" content="Configure PODFY pricing per POD. Compare Starter, Advanced, Pro and Enterprise and send yourself a configuration overview." />
+  <meta property="og:title" content="Pricing — PODFY" />
+  <meta property="og:description" content="Pay per processed POD. No seat fees. Starter from €0.29. Rate card, add-ons, and worked examples." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://podfy.net/pricing" />
   <meta property="og:image" content="https://podfy.net/assets/og-image.png" />
-  <meta property="og:site_name" content="PODFY" />
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PODFY — Pricing & Configuration" />
-  <meta name="twitter:description" content="Configure PODFY pricing per POD. Compare Starter, Advanced, Pro and Enterprise and send yourself a configuration overview." />
-  <meta name="twitter:image" content="https://podfy.net/assets/og-image.png" />
 
-  <!-- Light/Dark UI colors -->
   <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1D3557" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0B1220" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
 
-  <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-  <link rel="mask-icon" href="/assets/podfy-favicon.svg" color="#2563EB" />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="/assets/styles.css?v=home-rev5" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/pricing" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/pricing" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/pricing" />
 
-  <!-- Theme toggler -->
+  <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
+  <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r3" />
   <script src="/assets/theme.js" defer></script>
-
-  <!-- Cloudflare Turnstile -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-  <style>
-    /* PAGE WRAPPER */
-    .pricing-main {
-      max-width: var(--container-6xl);
-      margin: 0 auto;
-      padding: 2.5rem 1rem 3rem;
-    }
-
-    /* HERO – subheader-style */
-    .pricing-hero-shell {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-      gap: 2rem;
-      align-items: center;
-      padding-bottom: 1.5rem; /* tweak: extra bottom breathing room */
-    }
-    @media (max-width: 900px) {
-      .pricing-hero-shell {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .pricing-hero-eyebrow {
-      font-size: .8rem;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: var(--muted);
-      margin-bottom: .35rem;
-    }
-
-    .pricing-hero-title {
-      font-size: 2rem;
-      line-height: 1.15;
-      letter-spacing: -.03em;
-      margin: 0 0 .6rem;
-      color: var(--ink);
-    }
-
-    .pricing-hero-title span {
-      background: linear-gradient(135deg,#2563EB,#22C1EE);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .pricing-hero-lead {
-      margin: 0 0 1rem;
-      font-size: .95rem;
-      color: var(--muted);
-    }
-
-    .pricing-hero-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 1.2rem;
-      font-size: .88rem;
-      color: var(--muted);
-    }
-    .pricing-hero-list li {
-      display: flex;
-      gap: .45rem;
-      align-items: flex-start;
-      margin-bottom: .35rem;
-    }
-    .pricing-hero-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      margin-top: .35rem;
-      background: linear-gradient(135deg,#2563eb,#22d3ee);
-      flex-shrink: 0;
-    }
-
-    .pricing-hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem;
-      margin-top: .4rem;
-    }
-
-    .pricing-hero-card-title {
-      margin: 0 0 .4rem;
-      font-size: .9rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .pricing-hero-mini {
-      margin: 0 0 .4rem;
-      font-size: .78rem;
-      color: var(--muted);
-    }
-
-    .pricing-hero-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .8rem;
-      color: var(--muted);
-      table-layout: fixed;
-    }
-    .pricing-hero-table td {
-      padding: .25rem 0;
-      border-bottom: 1px dashed rgba(148,163,184,0.4);
-      text-align: left;
-      vertical-align: top;
-    }
-    .pricing-hero-table td:first-child {
-      font-weight: 500;
-      color: var(--ink);
-      width: 40%;
-      padding-right: .75rem;
-    }
-    #hero-plan-addons {
-      word-break: break-word;
-    }
-
-    /* CONFIGURATOR STRIP */
-    .pricing-config-section {
-      margin-top: 2.5rem;
-    }
-
-    .pricing-config-header {
-      margin-bottom: 1rem;
-    }
-
-    .pricing-config-kicker {
-      font-size: .75rem;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: var(--muted);
-      margin: 0 0 .25rem;
-    }
-
-    .pricing-config-title {
-      margin: 0 0 .3rem;
-      font-size: 1.4rem;
-      color: var(--brand-primary);
-    }
-    html[data-theme="dark"] .pricing-config-title {
-      color: var(--ink);
-    }
-
-    .pricing-config-intro {
-      margin: 0;
-      font-size: .9rem;
-      color: var(--muted);
-    }
-
-    .pricing-config-grid {
-      display: grid;
-      gap: 1rem;
-      margin-top: 1.25rem;
-      align-items: flex-start; /* tweak: make all cards top-aligned */
-    }
-    @media (min-width: 960px) {
-      .pricing-config-grid {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-      }
-    }
-    @media (max-width: 959px) and (min-width: 720px) {
-      .pricing-config-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-    @media (max-width: 719px) {
-      .pricing-config-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .pricing-config-card {
-      position: relative;
-      border-radius: 1rem;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      padding: .9rem 1rem;
-      box-shadow: 0 2px 10px rgba(15,23,42,0.06);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start; /* tweak: explanation text starts at the top as well */
-      gap: .35rem;
-      font-size: .82rem;
-      transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
-    }
-    html[data-theme="dark"] .pricing-config-card {
-      background: rgba(15,23,42,0.9);
-      border-color: rgba(148,163,184,0.45);
-      box-shadow: 0 16px 40px rgba(15,23,42,0.7);
-    }
-    .pricing-config-card.is-active {
-      border-color: rgba(37,99,235,0.8);
-      box-shadow:
-        0 0 0 1px rgba(37,99,235,0.5),
-        0 18px 40px rgba(37,99,235,0.35);
-      transform: translateY(-1px);
-    }
-
-    .pricing-config-title-line {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: .5rem;
-      width: 100%;
-    }
-
-    .pricing-config-name {
-      font-size: .83rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .pricing-config-text {
-      margin: 0;
-      font-size: .8rem;
-      color: var(--muted);
-    }
-
-    /* Toggle switch */
-    .pricing-toggle {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      width: 38px;
-      height: 20px;
-      border-radius: 999px;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .pricing-toggle-track {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-      background: rgba(148,163,184,0.6);
-      transition: background 140ms ease, box-shadow 140ms ease;
-      box-shadow: inset 0 0 0 1px rgba(15,23,42,0.08);
-    }
-    .pricing-toggle-knob {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      background: #ffffff;
-      box-shadow: 0 1px 4px rgba(15,23,42,0.4);
-      transition: transform 140ms ease;
-    }
-    .pricing-toggle-input {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-    }
-    .pricing-toggle-input:checked + .pricing-toggle-track {
-      background: linear-gradient(135deg,#2563eb,#22d3ee);
-      box-shadow: 0 0 0 1px rgba(56,189,248,0.7);
-    }
-    .pricing-toggle-input:checked + .pricing-toggle-track .pricing-toggle-knob {
-      transform: translateX(18px);
-    }
-
-    /* PLANS GRID */
-    .pricing-plans-section {
-      margin-top: 2.5rem;
-    }
-    .pricing-plans-grid {
-      display: grid;
-      gap: 1.3rem;
-    }
-    @media (min-width: 960px) {
-      .pricing-plans-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-    }
-    @media (max-width: 959px) and (min-width: 720px) {
-      .pricing-plans-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-    @media (max-width: 719px) {
-      .pricing-plans-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .pricing-plan {
-      position: relative;
-      border-radius: 1.4rem;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      padding: 1.2rem 1.3rem;
-      box-shadow: 0 2px 12px rgba(15,23,42,0.07);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 280px;
-      overflow: visible;
-      transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
-    }
-    html[data-theme="dark"] .pricing-plan {
-      background: rgba(15,23,42,0.9);
-      border-color: rgba(148,163,184,0.45);
-      box-shadow: 0 18px 40px rgba(15,23,42,0.8);
-    }
-    .pricing-plan-selected {
-      border-color: rgba(37,99,235,0.9);
-      box-shadow:
-        0 0 0 1px rgba(37,99,235,0.55),
-        0 20px 40px rgba(37,99,235,0.35);
-      transform: translateY(-2px);
-    }
-
-    .pricing-plan-header {
-      margin-bottom: .4rem;
-    }
-    .pricing-plan-name {
-      font-size: .82rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 .25rem;
-    }
-    .pricing-plan-price {
-      margin: 0;
-      font-size: .88rem;
-      color: var(--muted);
-    }
-    .pricing-price-main {
-      display: inline-block;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-right: .15rem;
-    }
-    .pricing-price-label {
-      font-size: .85rem;
-      color: var(--muted);
-    }
-    .pricing-pill-usage {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: .18rem .6rem;
-      font-size: .72rem;
-      border: 1px solid rgba(148,163,184,0.6);
-      color: var(--muted);
-      background: rgba(248,250,252,0.96);
-      margin-top: .35rem;
-    }
-    html[data-theme="dark"] .pricing-pill-usage {
-      background: rgba(15,23,42,0.96);
-    }
-
-    .pricing-plan-retention {
-      margin: .3rem 0 .6rem;
-      font-size: .85rem;
-      color: var(--muted);
-    }
-    .pricing-plan-retention strong {
-      color: var(--ink);
-    }
-
-    .pricing-plan-features {
-      margin: 0 0 .75rem;
-      padding-left: 1rem;
-      font-size: .82rem;
-      color: var(--muted);
-    }
-    .pricing-plan-features li {
-      margin-bottom: .35rem;
-    }
-
-    .pricing-plan-footnote {
-      margin: 0 0 .6rem;
-      font-size: .78rem;
-      color: var(--muted);
-    }
-
-    .pricing-plan-actions {
-      display: flex;
-      flex-direction: column;
-      gap: .4rem;
-      margin-top: .4rem;
-    }
-
-    .pricing-plan-btn {
-      width: 100%;
-      justify-content: center;
-      font-size: .85rem;
-    }
-
-    /* SEND CONFIGURATION CARD */
-    .pricing-send-section {
-      margin-top: 2.75rem;
-    }
-
-    .pricing-send-card {
-      border-radius: 1.3rem;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      padding: 1.3rem 1.3rem 1.2rem;
-      box-shadow: 0 2px 12px rgba(15,23,42,0.07);
-    }
-    html[data-theme="dark"] .pricing-send-card {
-      background: rgba(15,23,42,0.9);
-      border-color: rgba(148,163,184,0.45);
-      box-shadow: 0 18px 40px rgba(15,23,42,0.8);
-    }
-
-    .pricing-send-headline {
-      margin: 0 0 .2rem;
-      font-size: 1.1rem;
-      color: var(--ink);
-    }
-    .pricing-send-intro {
-      margin: 0 0 1rem;
-      font-size: .86rem;
-      color: var(--muted);
-    }
-
-    .pricing-form {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1rem;
-      align-items: flex-start;
-    }
-    @media (min-width: 720px) {
-      .pricing-form {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      }
-    }
-
-    .pricing-send-left {
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-    }
-
-    .pricing-send-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .pricing-form-status {
-      margin-top: .3rem;
-      font-size: .8rem;
-      color: var(--muted);
-    }
-    .pricing-form-status-error {
-      color: #f97373;
-    }
-
-    .pricing-send-note {
-      margin: .7rem 0 0;
-      font-size: .8rem;
-      color: var(--muted);
-    }
-
-    .pricing-summary-line {
-      margin-top: .4rem;
-      font-size: .8rem;
-      color: var(--muted);
-    }
-    .pricing-summary-line strong {
-      color: var(--ink);
-    }
-  </style>
 </head>
 
-<body class="home-body">
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
-    Skip to content
-  </a>
-
+<body class="v2">
+  <a href="#main" class="sr-only">Skip to content</a>
   [[PODFY_HEADER]]
 
-  <main id="main" class="pricing-main">
+  <main id="main" class="v2-main">
 
-    <!-- HERO (subheader-style) -->
-    <section class="home-section home-hero home-hero-subheader">
-      <div class="container card card-glass pricing-hero-shell">
-        <div>
-          <p class="pricing-hero-eyebrow">Pricing & configuration</p>
-          <h1 class="pricing-hero-title hero-heading">
-            <span>Pay-per-POD</span>, tailored to your workflow.
-          </h1>
-          <p class="pricing-hero-lead">
-            Start with a free delivery portal and grow to branded links, advanced retention and integrations.
-            Use the configurator to see how options change your indicative rate per processed POD.
-          </p>
+    <!-- HERO -->
+    <section class="v2-aud-hero" aria-labelledby="pricing-heading">
+      <div class="container">
+        <div class="v2-hero-grid">
 
-          <ul class="pricing-hero-list">
-            <li>
-              <span class="pricing-hero-dot"></span>
-              <span><strong>Free plan:</strong> delivery portal with 60-day history.</span>
-            </li>
-            <li>
-              <span class="pricing-hero-dot"></span>
-              <span><strong>Starter:</strong> branded upload link and extended retention for small carriers.</span>
-            </li>
-            <li>
-              <span class="pricing-hero-dot"></span>
-              <span><strong>Advanced & Pro:</strong> multi-user teams, long-term retention, OCR and integrations.</span>
-            </li>
-          </ul>
-
-          <div class="pricing-hero-actions">
-            <a href="/free-tier-demo.html" class="btn btn-primary">Try the free delivery portal</a>
-            <a href="https://podfy.net/#contact" class="btn btn-secondary">Discuss a custom setup</a>
-          </div>
-        </div>
-
-        <!-- “Application” preview in top-right -->
-        <div>
-          <div class="home-hero-card card">
-            <h2 class="pricing-hero-card-title">What your team configures</h2>
-            <p class="pricing-hero-mini">
-              Choose a baseline plan, toggle add-ons and see the resulting rate per POD.
+          <div>
+            <p class="v2-eyebrow">Pricing · No monthly seat fees</p>
+            <h1 class="v2-hero-title" id="pricing-heading">
+              Pay per POD.<br>
+              <em>Nothing else.</em>
+            </h1>
+            <p class="v2-hero-sub">
+              You pay for each proof of delivery that is processed — no base fee, no per-seat charge, no setup cost. Pilot with a handful of drivers. Scale without renegotiating.
             </p>
-            <table class="pricing-hero-table">
+            <div class="v2-hero-actions">
+              <a href="/contact" class="v2-btn v2-btn-primary">Book 15 minutes &rarr;</a>
+              <a href="/demo" class="v2-btn v2-btn-ghost">Try the demo first</a>
+            </div>
+          </div>
+
+          <div aria-hidden="true">
+            <div class="v2-receipt v2-hero-receipt">
+              <div class="v2-receipt-perforation"></div>
+              <div class="v2-receipt-inner">
+                <p class="v2-receipt-brand">Invoice example</p>
+                <p class="v2-receipt-ref">Starter · April 2025</p>
+                <hr class="v2-receipt-hr" />
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">PODs processed</span>
+                  <span class="v2-receipt-value">200</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Rate</span>
+                  <span class="v2-receipt-value">&euro;0,29 / POD</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Retention</span>
+                  <span class="v2-receipt-value">120 days</span>
+                </div>
+                <hr class="v2-receipt-hr" />
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Total excl. VAT</span>
+                  <span class="v2-receipt-value">&euro;58,00</span>
+                </div>
+                <div class="v2-receipt-status">
+                  <span class="v2-stamp-mark">No surprises</span>
+                </div>
+              </div>
+              <div class="v2-receipt-perforation"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RATE CARD -->
+    <section class="v2-section" aria-labelledby="rate-card-heading" id="rate-card">
+      <div class="container">
+        <h2 class="v2-section-title" id="rate-card-heading">Rate card</h2>
+        <p class="v2-prose" style="margin-bottom:0;">
+          All prices are indicative and exclude VAT. Volume discounts are available — bring your monthly POD count when you contact us.
+        </p>
+
+        <div class="v2-price-table-wrap">
+          <table class="v2-price-table" aria-label="Plan rate card">
+            <thead>
               <tr>
-                <td>Selected plan</td>
-                <td id="hero-plan-name">Starter</td>
+                <th scope="col">Feature</th>
+                <th scope="col">Starter</th>
+                <th scope="col">Advanced</th>
+                <th scope="col">Pro</th>
+                <th scope="col">Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="v2-price-row-label">Rate per POD</td>
+                <td><span class="v2-price-rate">&euro;0,29</span></td>
+                <td><span class="v2-price-rate">&euro;0,59</span></td>
+                <td><span class="v2-price-rate">&euro;0,99</span></td>
+                <td><span class="v2-price-rate-custom">Custom</span></td>
               </tr>
               <tr>
-                <td>Indicative rate</td>
-                <td id="hero-plan-rate">€0,29 / POD</td>
+                <td class="v2-price-row-label">Document retention</td>
+                <td>120 days</td>
+                <td>1 year</td>
+                <td>5 years</td>
+                <td>As required</td>
               </tr>
               <tr>
-                <td>Retention</td>
-                <td id="hero-plan-retention">120 days</td>
+                <td class="v2-price-row-label">Branded upload link</td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
               </tr>
               <tr>
-                <td>Add-ons</td>
-                <td id="hero-plan-addons">None selected (yet)</td>
+                <td class="v2-price-row-label">GPS stamp + timestamped PDF</td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
               </tr>
+              <tr>
+                <td class="v2-price-row-label">Delivery portal access</td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+              </tr>
+              <tr>
+                <td class="v2-price-row-label">Email notification on upload</td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+              </tr>
+              <tr>
+                <td class="v2-price-row-label">Multi-user portal roles</td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+              </tr>
+              <tr>
+                <td class="v2-price-row-label">Multiple files per POD</td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td>Add-on</td>
+                <td><span class="v2-price-check">Yes</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+              </tr>
+              <tr>
+                <td class="v2-price-row-label">Advanced OCR extraction</td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td>Add-on</td>
+                <td><span class="v2-price-check">Yes</span></td>
+              </tr>
+              <tr>
+                <td class="v2-price-row-label">TMS / WMS integration</td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td>Add-on</td>
+                <td><span class="v2-price-check">Yes</span></td>
+              </tr>
+              <tr>
+                <td class="v2-price-row-label">White-label portals &amp; domains</td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+              </tr>
+              <tr>
+                <td class="v2-price-row-label">Contract-based retention &amp; compliance</td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td><span class="v2-price-dash">&mdash;</span></td>
+                <td><span class="v2-price-check">Yes</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADD-ONS -->
+    <section class="v2-section" aria-labelledby="addons-heading" id="addons">
+      <div class="container">
+        <div class="v2-two-col">
+          <div>
+            <h2 class="v2-section-title" id="addons-heading">Add-ons</h2>
+            <p class="v2-prose" style="margin-bottom:1rem;">
+              Add-ons stack on top of your base plan rate. Each is priced per processed POD.
+            </p>
+
+            <table class="v2-addons-table" aria-label="Add-on pricing">
+              <tbody>
+                <tr>
+                  <td class="v2-addon-name">Extended retention</td>
+                  <td class="v2-addon-price">+&euro;0,05 / POD</td>
+                  <td class="v2-addon-desc">Starter: 120 days &rarr; 1 year. Advanced: 1 &rarr; 3 years. Pro: 5 &rarr; 7 years.</td>
+                </tr>
+                <tr>
+                  <td class="v2-addon-name">No-worries retention</td>
+                  <td class="v2-addon-price">+&euro;0,05 / POD</td>
+                  <td class="v2-addon-desc">Stacks on extended retention. Starter: 3 years. Advanced: 7 years. Pro: 10 years.</td>
+                </tr>
+                <tr>
+                  <td class="v2-addon-name">Multi-file &amp; PDF merge</td>
+                  <td class="v2-addon-price">+&euro;0,04 / POD</td>
+                  <td class="v2-addon-desc">Multiple photos or files per upload, merged into one branded PDF.</td>
+                </tr>
+                <tr>
+                  <td class="v2-addon-name">Advanced OCR extraction</td>
+                  <td class="v2-addon-price">+&euro;0,10 / POD</td>
+                  <td class="v2-addon-desc">Text extraction from signed documents for portal search and reporting.</td>
+                </tr>
+                <tr>
+                  <td class="v2-addon-name">White-label documentation</td>
+                  <td class="v2-addon-price">+&euro;0,03 / POD</td>
+                  <td class="v2-addon-desc">Implementation notes, DNS and email configuration guidance for a white-labelled setup.</td>
+                </tr>
+              </tbody>
             </table>
           </div>
+
+          <div>
+            <h2 class="v2-section-title">What is included in every plan</h2>
+            <ul class="v2-check-list">
+              <li>EU-WEUR data residency — no data leaves the EU</li>
+              <li>No app to install for drivers or receiving staff</li>
+              <li>GPS coordinates captured at upload time, not submit time</li>
+              <li>Offline queuing — uploads held until signal returns</li>
+              <li>Any browser, any phone from 2018 onwards</li>
+              <li>Data Processing Agreement available on request</li>
+              <li>7-year audit archive option available (all plans)</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- PLANS GRID -->
-    <section class="home-section pricing-plans-section" id="plans">
+    <!-- WORKED EXAMPLES -->
+    <section class="v2-section" aria-labelledby="examples-heading" id="examples">
       <div class="container">
-        <h2 class="home-section-title">Plans</h2>
-        <p class="home-section-intro">
-          All plans are pay-per-use. The free plan gives you a delivery portal with 60-day history. Paid plans add
-          branding, longer retention and integrations.
+        <h2 class="v2-section-title" id="examples-heading">Worked examples</h2>
+        <p class="v2-prose" style="margin-bottom:0;">
+          These are indicative costs. Actual pricing depends on volume and configuration. Contact us for a quote based on your operation.
         </p>
 
-        <div class="pricing-plans-grid">
-          <!-- STARTER -->
-          <article class="pricing-plan" data-plan-id="starter">
-            <div>
-              <header class="pricing-plan-header">
-                <p class="pricing-plan-name">Starter</p>
-                <p class="pricing-plan-price" data-plan-price="starter">
-                  <span class="pricing-price-main" data-price-main="starter">€0,29</span>
-                  <span class="pricing-price-label">per POD</span>
-                </p>
-                <div class="pricing-pill-usage">For small carriers</div>
-                <p class="pricing-plan-retention">
-                  Retention: <strong data-plan-retention="starter">120 days</strong>
-                </p>
-              </header>
+        <div class="v2-examples-grid">
+          <div class="v2-example-card">
+            <p class="v2-example-label">Example 1 — Small carrier</p>
+            <p class="v2-example-scenario">200 PODs/month · Starter plan</p>
+            <p class="v2-example-calc">200 PODs &times; &euro;0,29<br>No add-ons</p>
+            <div class="v2-example-total">&euro;58,00 <span class="v2-example-total-label">/ month excl. VAT</span></div>
+          </div>
 
-              <ul class="pricing-plan-features">
-                <li>Branded upload link</li>
-                <li>Delivery portal with up to 120-day history (extendable)</li>
-                <li>Notification emails to carrier &amp; customer</li>
-                <li>Single company account</li>
-              </ul>
+          <div class="v2-example-card">
+            <p class="v2-example-label">Example 2 — Multi-route 3PL</p>
+            <p class="v2-example-scenario">800 PODs/month · Advanced + multi-file</p>
+            <p class="v2-example-calc">800 PODs &times; &euro;0,59 base<br>+ &euro;0,04 multi-file add-on<br>= &euro;0,63 / POD</p>
+            <div class="v2-example-total">&euro;504,00 <span class="v2-example-total-label">/ month excl. VAT</span></div>
+          </div>
 
-              <p class="pricing-plan-footnote">
-                Indicative rate per processed POD. Volume discounts are available.
-              </p>
-            </div>
+          <div class="v2-example-card">
+            <p class="v2-example-label">Example 3 — Construction company</p>
+            <p class="v2-example-scenario">300 PODs/month · Pro plan (7-year archive)</p>
+            <p class="v2-example-calc">300 PODs &times; &euro;0,99 base<br>+ &euro;0,05 extended retention</p>
+            <div class="v2-example-total">&euro;312,00 <span class="v2-example-total-label">/ month excl. VAT</span></div>
+          </div>
 
-            <div class="pricing-plan-actions">
-              <button type="button" class="btn btn-primary pricing-plan-btn" data-select-plan="starter">
-                Select this plan
-              </button>
-              <button type="button" class="btn btn-secondary pricing-plan-btn" data-baseline-plan="starter">
-                Use this as baseline
-              </button>
-            </div>
-          </article>
-
-          <!-- ADVANCED -->
-          <article class="pricing-plan" data-plan-id="advanced">
-            <div>
-              <header class="pricing-plan-header">
-                <p class="pricing-plan-name">Advanced</p>
-                <p class="pricing-plan-price" data-plan-price="advanced">
-                  <span class="pricing-price-main" data-price-main="advanced">€0,59</span>
-                  <span class="pricing-price-label">per POD</span>
-                </p>
-                <div class="pricing-pill-usage">For multi-user teams</div>
-                <p class="pricing-plan-retention">
-                  Retention: <strong data-plan-retention="advanced">1 year</strong>
-                </p>
-              </header>
-
-              <ul class="pricing-plan-features">
-                <li>All Starter features</li>
-                <li>Multi-user environment with roles</li>
-                <li>Retention up to 1 year (extendable)</li>
-                <li>Multiple files per POD (optional)</li>
-              </ul>
-
-              <p class="pricing-plan-footnote">
-                Indicative rate per processed POD. Ideal when you handle higher POD volumes with several users.
-              </p>
-            </div>
-
-            <div class="pricing-plan-actions">
-              <button type="button" class="btn btn-primary pricing-plan-btn" data-select-plan="advanced">
-                Select this plan
-              </button>
-              <button type="button" class="btn btn-secondary pricing-plan-btn" data-baseline-plan="advanced">
-                Use this as baseline
-              </button>
-            </div>
-          </article>
-
-          <!-- PRO -->
-          <article class="pricing-plan" data-plan-id="pro">
-            <div>
-              <header class="pricing-plan-header">
-                <p class="pricing-plan-name">Pro</p>
-                <p class="pricing-plan-price" data-plan-price="pro">
-                  <span class="pricing-price-main" data-price-main="pro">€0,99</span>
-                  <span class="pricing-price-label">per POD</span>
-                </p>
-                <div class="pricing-pill-usage">For data-driven operations</div>
-                <p class="pricing-plan-retention">
-                  Retention: <strong data-plan-retention="pro">5 years</strong>
-                </p>
-              </header>
-
-              <ul class="pricing-plan-features">
-                <li>All Advanced features</li>
-                <li>Retention up to 5 years (extendable)</li>
-                <li>Advanced OCR extraction &amp; search</li>
-                <li>Integration options (TMS/WMS/R2)</li>
-              </ul>
-
-              <p class="pricing-plan-footnote">
-                Indicative rate per processed POD. Built for scale with automation, compliance and systems integration.
-              </p>
-            </div>
-
-            <div class="pricing-plan-actions">
-              <button type="button" class="btn btn-primary pricing-plan-btn" data-select-plan="pro">
-                Select this plan
-              </button>
-              <button type="button" class="btn btn-secondary pricing-plan-btn" data-baseline-plan="pro">
-                Use this as baseline
-              </button>
-            </div>
-          </article>
-
-          <!-- ENTERPRISE -->
-          <article class="pricing-plan" data-plan-id="enterprise">
-            <div>
-              <header class="pricing-plan-header">
-                <p class="pricing-plan-name">Enterprise</p>
-                <p class="pricing-plan-price" data-plan-price="enterprise">
-                  <span class="pricing-price-main" data-price-main="enterprise">Custom</span>
-                </p>
-                <div class="pricing-pill-usage">For complex or white-label setups</div>
-                <p class="pricing-plan-retention">
-                  Retention: <strong data-plan-retention="enterprise">As required</strong>
-                </p>
-              </header>
-
-              <ul class="pricing-plan-features">
-                <li>White-label portals &amp; user domains</li>
-                <li>Isolated accounts per customer or team</li>
-                <li>Direct R2 access &amp; custom integrations</li>
-                <li>Contract-based retention and compliance</li>
-              </ul>
-
-              <p class="pricing-plan-footnote">
-                Custom pricing based on required volume, legal retention and integration scope.
-              </p>
-            </div>
-
-            <div class="pricing-plan-actions">
-              <button type="button" class="btn btn-primary pricing-plan-btn" data-select-plan="enterprise">
-                Select this plan
-              </button>
-              <button type="button" class="btn btn-secondary pricing-plan-btn" data-baseline-plan="enterprise">
-                Use this as baseline
-              </button>
-            </div>
-          </article>
+          <div class="v2-example-card">
+            <p class="v2-example-label">Example 4 — Inbound retailer</p>
+            <p class="v2-example-scenario">1 500 PODs/month · Advanced + 3-year retention</p>
+            <p class="v2-example-calc">1 500 PODs &times; &euro;0,59 base<br>+ &euro;0,05 extended retention<br>= &euro;0,64 / POD</p>
+            <div class="v2-example-total">&euro;960,00 <span class="v2-example-total-label">/ month excl. VAT</span></div>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- CONFIGURATOR STRIP (above plans) -->
-    <section class="home-section pricing-config-section">
-      <div class="container">
-        <header class="pricing-config-header">
-          <p class="pricing-config-kicker">Configurator</p>
-          <h2 class="pricing-config-title">Tune your rate per POD</h2>
-          <p class="pricing-config-intro">
-            Start with a plan and switch options on or off. We calculate an indicative per-POD rate, so you can
-            see what matches your operation before talking to sales.
-          </p>
-        </header>
-
-        <div class="pricing-config-grid">
-          <article class="pricing-config-card" data-upsell-id="retentionPlus">
-            <div class="pricing-config-title-line">
-              <span class="pricing-config-name">Extended retention</span>
-              <label class="pricing-toggle">
-                <input type="checkbox" class="pricing-toggle-input" data-upsell-toggle="retentionPlus" />
-                <span class="pricing-toggle-track">
-                  <span class="pricing-toggle-knob"></span>
-                </span>
-              </label>
-            </div>
-            <p class="pricing-config-text">
-              Give yourself more breathing room on every plan. Starter moves from 120 days to 1 year, Advanced from 1 to 3 years, Pro from 5 to 7 years.
-            </p>
-          </article>
-
-          <article class="pricing-config-card" data-upsell-id="extraUsers">
-            <div class="pricing-config-title-line">
-              <span class="pricing-config-name">No worries retention</span>
-              <label class="pricing-toggle">
-                <input type="checkbox" class="pricing-toggle-input" data-upsell-toggle="extraUsers" />
-                <span class="pricing-toggle-track">
-                  <span class="pricing-toggle-knob"></span>
-                </span>
-              </label>
-            </div>
-            <p class="pricing-config-text">
-              Stack on top of Extended retention. Starter goes to 3 years, Advanced to 7 years, Pro to 10 years.
-              Turning this on automatically includes Extended retention.
-            </p>
-          </article>
-
-          <article class="pricing-config-card" data-upsell-id="whiteLabel">
-            <div class="pricing-config-title-line">
-              <span class="pricing-config-name">White-label documentation</span>
-              <label class="pricing-toggle">
-                <input type="checkbox" class="pricing-toggle-input" data-upsell-toggle="whiteLabel" />
-                <span class="pricing-toggle-track">
-                  <span class="pricing-toggle-knob"></span>
-                </span>
-              </label>
-            </div>
-            <p class="pricing-config-text">
-              Receive implementation notes, DNS/email guidance and best practices so your team can roll out a white-labeled PODFY setup when ready.
-            </p>
-          </article>
-
-          <article class="pricing-config-card" data-upsell-id="multiFile">
-            <div class="pricing-config-title-line">
-              <span class="pricing-config-name">Multi-file &amp; PDF merge</span>
-              <label class="pricing-toggle">
-                <input type="checkbox" class="pricing-toggle-input" data-upsell-toggle="multiFile" />
-                <span class="pricing-toggle-track">
-                  <span class="pricing-toggle-knob"></span>
-                </span>
-              </label>
-            </div>
-            <p class="pricing-config-text">
-              Allow drivers to upload multiple images and documents per POD. Files are merged into a branded PDF in the
-              background.
-            </p>
-          </article>
-
-          <article class="pricing-config-card" data-upsell-id="aiOcr">
-            <div class="pricing-config-title-line">
-              <span class="pricing-config-name">Advanced OCR extraction</span>
-              <label class="pricing-toggle">
-                <input type="checkbox" class="pricing-toggle-input" data-upsell-toggle="aiOcr" />
-                <span class="pricing-toggle-track">
-                  <span class="pricing-toggle-knob"></span>
-                </span>
-              </label>
-            </div>
-            <p class="pricing-config-text">
-              Extract clean text from signed PODs for search, matching and reporting. AI-driven workflows and custom models live in the Enterprise tier.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-    
-    <!-- SEND CONFIGURATION -->
-    <section class="home-section pricing-send-section">
-      <div class="container">
-        <div class="pricing-send-card">
-          <h2 class="pricing-send-headline">Send this configuration to yourself</h2>
-          <p class="pricing-send-intro">
-            Enter your email to receive a summary of your selected plan, indicative rate and add-ons.
-            When you are ready, use the main contact form to share volumes and requirements so we can finalise pricing.
-          </p>
-        <p class="pricing-summary-line" id="pricing-summary-line">
-          <strong>Current baseline:</strong> Starter · €0,29 per POD · 120 days retention · no add-ons selected.
+        <p class="v2-prose" style="margin-top:1rem;font-size:0.83rem;">
+          All examples exclude VAT. Volume discounts reduce the per-POD rate for higher volumes. The Enterprise plan includes volume pricing negotiated per contract.
         </p>
+      </div>
+    </section>
 
-          <form id="pricing-form" class="pricing-form" novalidate>
-            <!-- Honeypot -->
-            <div class="home-field home-field-hp visually-hidden" aria-hidden="true">
-              <label for="hp_pricing">Leave this field empty</label>
-              <input
-                id="hp_pricing"
-                name="hp_pricing"
-                type="text"
-                tabindex="-1"
-                autocomplete="off"
-              />
-            </div>
+    <!-- FAQ -->
+    <section class="v2-section" aria-labelledby="pricing-faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="pricing-faq-heading">Pricing questions</h2>
+        <div class="v2-faq-list">
 
-            <!-- Left: email + button -->
-            <div class="pricing-send-left">
-              <div class="home-field">
-                <label class="home-label" for="pricing-email">Work email</label>
-                <input
-                  id="pricing-email"
-                  name="email"
-                  type="email"
-                  class="home-input"
-                  required
-                  autocomplete="email"
-                  placeholder="you@example.com"
-                />
-              </div>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Is there a minimum commitment or monthly fee?</p>
+            <p class="v2-faq-a">No. You pay only for PODs that are processed. If a month has zero uploads, the cost is zero. There is no base fee, no seat fee, and no setup charge.</p>
+          </div>
 
-              <button type="submit" class="btn btn-primary pricing-plan-btn">
-                Send configuration
-              </button>
-            </div>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">What counts as a processed POD?</p>
+            <p class="v2-faq-a">A POD is counted when a file is successfully uploaded, GPS-stamped, and a PDF is generated. Failed or duplicate submissions do not count.</p>
+          </div>
 
-            <!-- Right: centered turnstile -->
-            <div class="pricing-send-right">
-              <div class="home-field home-field-turnstile">
-                <div
-                  class="cf-turnstile"
-                  data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-                  data-callback="onPricingTurnstileCompleted"
-                  data-error-callback="onPricingTurnstileError"
-                  data-expired-callback="onPricingTurnstileExpired"
-                  data-theme="auto"
-                ></div>
-              </div>
-            </div>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">How does billing work?</p>
+            <p class="v2-faq-a">Billing is monthly in arrears based on the actual number of processed PODs. Invoices are issued per slug (client brand). Volume discounts are applied automatically once agreed thresholds are met.</p>
+          </div>
 
-            <input
-              type="hidden"
-              id="pricingTurnstileToken"
-              name="turnstileToken"
-              value=""
-            />
-          </form>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Can I change plans mid-contract?</p>
+            <p class="v2-faq-a">Yes. Plan changes take effect at the start of the next billing month. There is no penalty for upgrading or downgrading. Data remains intact when moving between plans.</p>
+          </div>
 
-          <p id="pricing-form-status" class="pricing-form-status" role="status"></p>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Is the 7-year audit archive available on all plans?</p>
+            <p class="v2-faq-a">Yes. The 7-year archive option can be added to any plan as a retention add-on. It satisfies Belastingdienst requirements and is available on request during onboarding.</p>
+          </div>
 
-          <p class="pricing-send-note">
-            Want to move forward? After reviewing the configuration in your inbox, visit the
-            <a href="https://podfy.net/#contact" class="home-link">main contact form</a> to share volumes and
-            special requirements. We will then prepare a tailored proposal.
-          </p>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Do you offer volume discounts?</p>
+            <p class="v2-faq-a">Yes, for operations processing more than 2 000 PODs per month. Contact us with your monthly volume and we will prepare a proposal with a stepped rate card.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="v2-cta-block" aria-label="Get pricing">
+      <div class="container">
+        <span class="v2-stamp-mark" aria-hidden="true">No monthly fee &middot; Pay per POD</span>
+        <h2>Bring your monthly volume.<br>We will build a <em>rate card for you.</em></h2>
+        <p>Fifteen minutes. We will walk you through the upload flow, show you a portal demo, and give you indicative pricing based on your actual numbers.</p>
+        <div class="v2-cta-actions">
+          <a href="/contact" class="v2-btn v2-btn-primary">Book 15 minutes &rarr;</a>
+          <a href="/demo" class="v2-btn v2-btn-ghost">Try the demo first</a>
         </div>
       </div>
     </section>
@@ -926,516 +368,5 @@
   </main>
 
   [[PODFY_FOOTER]]
-
-  <script>
-    // --- Plan & upsell model -------------------------------------------------
-    const plansModel = {
-      starter: {
-        id: "starter",
-        name: "Starter",
-        basePrice: 0.29,
-        retention: "120 days"
-      },
-      advanced: {
-        id: "advanced",
-        name: "Advanced",
-        basePrice: 0.59,
-        retention: "1 year"
-      },
-      pro: {
-        id: "pro",
-        name: "Pro",
-        basePrice: 0.99,
-        retention: "5 years"
-      },
-      enterprise: {
-        id: "enterprise",
-        name: "Enterprise",
-        basePrice: null,
-        retention: "As required",
-        isCustom: true
-      }
-    };
-
-    // Retention steps per plan depending on retention upsell state
-    const retentionSteps = {
-      starter: {
-        none: "120 days",
-        plus1: "1 year",
-        plus2: "3 years"
-      },
-      advanced: {
-        none: "1 year",
-        plus1: "3 years",
-        plus2: "7 years"
-      },
-      pro: {
-        none: "5 years",
-        plus1: "7 years",
-        plus2: "10 years"
-      },
-      enterprise: {
-        none: "As required"
-      }
-    };
-
-    const upsellsModel = {
-      retentionPlus: {
-        id: "retentionPlus",
-        label: "Extended retention",
-        perPod: 0.05
-      },
-      extraUsers: {
-        id: "extraUsers", // now "No worries retention"
-        label: "No worries retention",
-        perPod: 0.05
-      },
-      whiteLabel: {
-        id: "whiteLabel",
-        label: "White-label documentation",
-        perPod: 0.03
-      },
-      multiFile: {
-        id: "multiFile",
-        label: "Multi-file & PDF merge",
-        perPod: 0.04
-      },
-      aiOcr: {
-        id: "aiOcr",
-        label: "Advanced OCR extraction",
-        perPod: 0.10
-      }
-    };
-
-    // URL-based factor, default 1.0
-    let priceFactor = 1;
-    let priceFactorMeta = null;
-
-    let baselinePlanId = "starter";
-    let selectedPlanId = "starter";
-
-    function formatEuro(value) {
-      if (value == null) return "–";
-      const fixed = value.toFixed(2);
-      return "€" + fixed.replace(".", ",");
-    }
-
-    function isUpsellActive(id) {
-      const input = document.querySelector('[data-upsell-toggle="' + id + '"]');
-      return !!(input && input.checked);
-    }
-
-    function getActiveUpsells() {
-      const toggles = document.querySelectorAll("[data-upsell-toggle]");
-      const active = [];
-      toggles.forEach((input) => {
-        if (input.checked) {
-          const id = input.getAttribute("data-upsell-toggle");
-          if (upsellsModel[id]) active.push(upsellsModel[id]);
-        }
-      });
-      return active;
-    }
-
-    function getRetentionStage() {
-      const hasPlus2 = isUpsellActive("extraUsers");
-      const hasPlus1 = isUpsellActive("retentionPlus");
-      if (hasPlus2) return "plus2";
-      if (hasPlus1) return "plus1";
-      return "none";
-    }
-
-    function getRetentionLabel(planId) {
-      const steps = retentionSteps[planId];
-      if (!steps) return plansModel[planId]?.retention || "N/A";
-      const stage = getRetentionStage();
-      return steps[stage] || steps.none;
-    }
-
-    // Base + upsells, all multiplied by priceFactor
-    function calculatePrice(planId) {
-      const plan = plansModel[planId];
-      if (!plan) return null;
-      if (plan.isCustom) return null;
-
-      const baseRaw = plan.basePrice || 0;
-      const activeUpsells = getActiveUpsells();
-      const extraRaw = activeUpsells.reduce(
-        (sum, u) => sum + (u.perPod || 0),
-        0
-      );
-
-      const totalRaw = baseRaw + extraRaw;
-      return totalRaw * priceFactor;
-    }
-
-    function updateUpsellCardState() {
-      document.querySelectorAll(".pricing-config-card").forEach((card) => {
-        const id = card.getAttribute("data-upsell-id");
-        if (!id) return;
-        const input = card.querySelector('[data-upsell-toggle="' + id + '"]');
-        const active = input && input.checked;
-        card.classList.toggle("is-active", !!active);
-      });
-    }
-
-    function updatePlanCards() {
-      Object.keys(plansModel).forEach((planId) => {
-        const plan = plansModel[planId];
-        const priceSpan = document.querySelector('[data-price-main="' + planId + '"]');
-        const retentionSpan = document.querySelector('[data-plan-retention="' + planId + '"]');
-        const card = document.querySelector('[data-plan-id="' + planId + '"]');
-
-        if (retentionSpan) {
-          retentionSpan.textContent = getRetentionLabel(planId);
-        }
-
-        if (priceSpan) {
-          if (plan.isCustom) {
-            priceSpan.textContent = "Custom";
-          } else {
-            const computed = calculatePrice(planId);
-            const display = computed != null ? computed : plan.basePrice * priceFactor;
-            priceSpan.textContent = formatEuro(display);
-          }
-        }
-
-        if (card) {
-          card.classList.toggle("pricing-plan-selected", planId === selectedPlanId);
-        }
-      });
-
-      const activeUpsells = getActiveUpsells();
-      const baselinePlan = plansModel[baselinePlanId];
-
-      const summaryEl = document.getElementById("pricing-summary-line");
-      if (summaryEl && baselinePlan) {
-        const computedBase = calculatePrice(baselinePlanId);
-        const displayBase =
-          baselinePlan.isCustom
-            ? null
-            : (computedBase != null ? computedBase : baselinePlan.basePrice * priceFactor);
-
-        const price = baselinePlan.isCustom
-          ? "Custom pricing"
-          : formatEuro(displayBase) + " per POD";
-
-        const retention = getRetentionLabel(baselinePlanId);
-        const addonText = activeUpsells.length
-          ? activeUpsells.map((u) => u.label).join(", ")
-          : "no add-ons selected";
-
-        let factorLabel = "";
-        if (priceFactorMeta && priceFactor !== 1) {
-          const name = priceFactorMeta.buyer || priceFactorMeta.code;
-          factorLabel = name
-            ? ` · calibrated for ${name}`
-            : " · calibrated factor applied";
-        }
-
-        summaryEl.innerHTML =
-          "<strong>Current baseline:</strong> " +
-          baselinePlan.name +
-          " · " +
-          price +
-          " · " +
-          retention +
-          " retention · " +
-          addonText +
-          factorLabel +
-          ".";
-      }
-
-      // Update hero preview based on SELECTED plan
-      const heroName = document.getElementById("hero-plan-name");
-      const heroRate = document.getElementById("hero-plan-rate");
-      const heroRet = document.getElementById("hero-plan-retention");
-      const heroAddons = document.getElementById("hero-plan-addons");
-
-      const heroPlan = plansModel[selectedPlanId] || plansModel.starter;
-      if (heroName && heroPlan) heroName.textContent = heroPlan.name;
-      if (heroRet && heroPlan) heroRet.textContent = getRetentionLabel(selectedPlanId);
-
-      if (heroRate && heroPlan) {
-        if (heroPlan.isCustom) {
-          heroRate.textContent = "Custom pricing";
-        } else {
-          const computedHero = calculatePrice(heroPlan.id);
-          const displayHero =
-            computedHero != null ? computedHero : heroPlan.basePrice * priceFactor;
-          heroRate.textContent = formatEuro(displayHero) + " / POD";
-        }
-      }
-
-      if (heroAddons) {
-        heroAddons.textContent =
-          activeUpsells.length
-            ? activeUpsells.map((u) => u.label).join(", ")
-            : "None selected (yet)";
-      }
-    }
-
-    function initPricingPage() {
-      // Toggle handlers
-      document.querySelectorAll(".pricing-toggle-input").forEach((input) => {
-        input.addEventListener("change", () => {
-          const id = input.getAttribute("data-upsell-toggle");
-
-          // "No worries retention" automatically enables Extended retention when turned on
-          if (id === "extraUsers" && input.checked) {
-            const first = document.querySelector('[data-upsell-toggle="retentionPlus"]');
-            if (first && !first.checked) first.checked = true;
-          }
-
-          updateUpsellCardState();
-          updatePlanCards();
-        });
-      });
-
-      // Plan selection + baseline selection
-      document.querySelectorAll("[data-select-plan]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          selectedPlanId = btn.getAttribute("data-select-plan");
-          updatePlanCards();
-        });
-      });
-
-      document.querySelectorAll("[data-baseline-plan]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          baselinePlanId = btn.getAttribute("data-baseline-plan");
-          selectedPlanId = baselinePlanId;
-          updatePlanCards();
-        });
-      });
-
-      updateUpsellCardState();
-      updatePlanCards();
-    }
-
-    // --- Price factor: ?code=Elite (preferred) or /pricing/Elite (fallback) ---
-
-    async function loadPriceFactorFromUrl() {
-      try {
-        const loc = window.location || { pathname: "", search: "" };
-        const path = loc.pathname || "";
-        const search = loc.search || "";
-
-        // 1) Preferred: ?code=Elite
-        const params = new URLSearchParams(search);
-        let keyword = (params.get("code") || "").trim();
-
-        // 2) Fallback: /pricing/Elite
-        if (!keyword) {
-          const cleaned = path.replace(/\/+$/, "");
-          const segments = cleaned.split("/").filter(Boolean);
-          if (segments[0] === "pricing" && segments.length > 1) {
-            keyword = segments[1];
-          }
-        }
-
-        if (!keyword) return;
-
-        const res = await fetch(
-          "/api/pricing-factor?code=" + encodeURIComponent(keyword),
-          { method: "GET" }
-        );
-
-        const data = await res.json().catch(() => null);
-        if (!data || typeof data.factor !== "number" || data.factor <= 0) {
-          console.warn("pricing-factor: invalid payload", data);
-          return;
-        }
-
-        priceFactor = data.factor;      // e.g. 29.7 for Elite
-        priceFactorMeta = data;
-
-        console.info("pricing-factor loaded", {
-          code: data.code,
-          factor: data.factor,
-          buyer: data.buyer,
-          error: data.error,
-        });
-      } catch (err) {
-        console.error("loadPriceFactorFromUrl error", err);
-      }
-    }
-
-    // Turnstile callbacks for pricing form
-    function onPricingTurnstileCompleted(token) {
-      const hidden = document.getElementById("pricingTurnstileToken");
-      if (hidden) hidden.value = token || "";
-    }
-    function onPricingTurnstileExpired() {
-      const hidden = document.getElementById("pricingTurnstileToken");
-      if (hidden) hidden.value = "";
-    }
-    function onPricingTurnstileError() {
-      const hidden = document.getElementById("pricingTurnstileToken");
-      if (hidden) hidden.value = "";
-    }
-
-    window.onPricingTurnstileCompleted = onPricingTurnstileCompleted;
-    window.onPricingTurnstileExpired = onPricingTurnstileExpired;
-    window.onPricingTurnstileError = onPricingTurnstileError;
-
-    // Pricing form submit
-    (async function () {
-      const form = document.getElementById("pricing-form");
-      if (!form) return;
-
-      // 1) Load factor from URL (if any)
-      await loadPriceFactorFromUrl();
-
-      // 2) Then init pricing logic so prices render with the factor
-      initPricingPage();
-
-      const statusEl = document.getElementById("pricing-form-status");
-      const submitBtn = form.querySelector('button[type="submit"]');
-
-      function setStatus(message, isError) {
-        if (!statusEl) return;
-        statusEl.textContent = message || "";
-        statusEl.classList.toggle("pricing-form-status-error", !!isError);
-      }
-
-      function setSubmitting(on) {
-        if (submitBtn) submitBtn.disabled = !!on;
-      }
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        // Honey pot
-        const hp = form.querySelector("#hp_pricing");
-        if (hp && hp.value) {
-          setStatus("Something went wrong. Please try again.", true);
-          return;
-        }
-
-        if (typeof form.reportValidity === "function" && !form.reportValidity()) {
-          return;
-        }
-
-        const tokenInput = document.getElementById("pricingTurnstileToken");
-        const token = tokenInput ? tokenInput.value : "";
-        if (!token) {
-          setStatus(
-            "Security check failed. Please wait for the challenge and try again.",
-            true
-          );
-          try {
-            if (window.turnstile && typeof window.turnstile.reset === "function") {
-              window.turnstile.reset();
-            }
-          } catch (_) {}
-          return;
-        }
-
-        const emailInput = document.getElementById("pricing-email");
-        if (!emailInput || !emailInput.value) {
-          setStatus("Please enter your email address.", true);
-          return;
-        }
-
-        setSubmitting(true);
-        setStatus("Sending configuration…", false);
-
-        const activeUpsells = getActiveUpsells();
-        const selectedPlan = plansModel[selectedPlanId] || plansModel.starter;
-        const baselinePlan = plansModel[baselinePlanId] || selectedPlan;
-
-        const upsellLabels = activeUpsells.map((u) => u.label);
-        const upsellIds = activeUpsells.map((u) => u.id);
-
-        const payload = {
-          email: emailInput.value,
-          name: "",
-          selectedPlan: {
-            id: selectedPlan.id,
-            name: selectedPlan.name,
-            basePrice: selectedPlan.basePrice,
-            retention: getRetentionLabel(selectedPlan.id),
-            isCustom: !!selectedPlan.isCustom,
-            pricePerPod: selectedPlan.isCustom
-              ? null
-              : calculatePrice(selectedPlan.id) ?? selectedPlan.basePrice * priceFactor
-          },
-          upsells: upsellIds,
-          upsellLabels,
-          baselinePlan: {
-            id: baselinePlan.id,
-            name: baselinePlan.name,
-            isCustom: !!baselinePlan.isCustom,
-            retention: getRetentionLabel(baselinePlan.id),
-            pricePerPod: baselinePlan.isCustom
-              ? null
-              : calculatePrice(baselinePlan.id) ?? baselinePlan.basePrice * priceFactor
-          },
-          plansSnapshot: Object.keys(plansModel).map((id) => {
-            const p = plansModel[id];
-            return {
-              id: p.id,
-              name: p.name,
-              isCustom: !!p.isCustom,
-              retention: getRetentionLabel(id),
-              pricePerPod: p.isCustom
-                ? null
-                : calculatePrice(p.id) ?? p.basePrice * priceFactor
-            };
-          }),
-          turnstileToken: token,
-          priceFactor,
-          priceFactorMeta
-        };
-
-        try {
-          const res = await fetch("/api/pricing-selection", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
-
-          let data = null;
-          try {
-            data = await res.json();
-          } catch (_) {}
-
-          if (!res.ok || !data || data.ok === false) {
-            const msg =
-              (data && (data.error || data.message)) ||
-              "We could not send the configuration right now. Please try again later.";
-            setStatus(msg, true);
-            if (tokenInput) tokenInput.value = "";
-            try {
-              if (window.turnstile && typeof window.turnstile.reset === "function") {
-                window.turnstile.reset();
-              }
-            } catch (_) {}
-            return;
-          }
-
-          setStatus(
-            "Configuration sent. Please check your inbox. When you are ready, use the main contact form on podfy.net to share your volumes and requirements.",
-            false
-          );
-          form.reset();
-          if (tokenInput) tokenInput.value = "";
-          try {
-            if (window.turnstile && typeof window.turnstile.reset === "function") {
-              window.turnstile.reset();
-            }
-          } catch (_) {}
-        } catch (err) {
-          console.error("Pricing form error", err);
-          setStatus(
-            "We could not send the configuration right now. Please try again later.",
-            true
-          );
-        } finally {
-          setSubmitting(false);
-        }
-      });
-    })();
-  </script>
 </body>
 </html>
