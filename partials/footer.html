@@ -1,27 +1,69 @@
-<footer class="site-footer">
-  <div class="site-footer-inner">
+<footer class="site-footer-v2">
 
-    <div class="site-footer-brandline">
-      <strong>PODFY</strong> – lightweight, zero-friction POD capture.
+  <div class="site-footer-grid">
+
+    <!-- Col 1: Product -->
+    <div class="site-footer-col">
+      <p class="site-footer-col-heading">Product</p>
+      <ul>
+        <!-- TODO Sprint 2: update Demo href to /demo -->
+        <li><a href="/free-tier-demo.html">Demo</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+      </ul>
     </div>
 
-    <nav class="site-footer-nav">
-      <a href="/releases">Releases</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-      <a href="/cookie">Cookie Policy</a>
-      <a href="/security">Security</a>
-      <a href="/imprint">Imprint</a>
-    </nav>
+    <!-- Col 2: Audiences -->
+    <div class="site-footer-col">
+      <p class="site-footer-col-heading">For</p>
+      <ul>
+        <li><a href="/carriers">Carriers &amp; 3PLs</a></li>
+        <li><a href="/inbound">Inbound &amp; Receiving</a></li>
+        <li><a href="/site-deliveries">Site Deliveries</a></li>
+      </ul>
+    </div>
 
-    <div class="site-footer-meta">
-      © <span id="podfyFooterYear"></span> PODFY. All rights reserved.
+    <!-- Col 3: Trust -->
+    <div class="site-footer-col">
+      <p class="site-footer-col-heading">Trust &amp; Legal</p>
+      <ul>
+        <!-- TODO Sprint 3: update hrefs to /trust#section anchors -->
+        <li><a href="/security">Security</a></li>
+        <li><a href="/privacy">Privacy &amp; GDPR</a></li>
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/imprint">Imprint</a></li>
+        <li><a href="/.well-known/security.txt">security.txt</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 4: Contact + locale -->
+    <div class="site-footer-col">
+      <p class="site-footer-col-heading">Contact</p>
+      <p><a href="mailto:support@podfy.net">support@podfy.net</a></p>
+      <div class="site-footer-locale-row" aria-label="Language">
+        <a href="/" class="site-footer-locale-active">EN</a>
+        <span class="site-footer-locale-inactive" title="Dutch — coming soon">NL</span>
+        <span class="site-footer-locale-inactive" title="German — coming soon">DE</span>
+      </div>
     </div>
 
   </div>
 
+  <!-- Bottom bar: company details + copyright + EU badge -->
+  <div class="site-footer-bottom-bar">
+    <p class="site-footer-company">
+      PODFY &nbsp;&middot;&nbsp; KVK 83714200 &nbsp;&middot;&nbsp; VAT NL862966851B01
+      &nbsp;&middot;&nbsp; Van Weede van Dijkveldstraat 25, 2582KP 's-Gravenhage, NL
+      &nbsp;&middot;&nbsp; GDPR: <a href="mailto:privacy@podfy.net">privacy@podfy.net</a>
+    </p>
+    <p class="site-footer-copy">
+      &copy; <span class="v2-footer-year"></span> PODFY. All rights reserved.
+      <span class="site-footer-eu-badge">EU &middot; WEUR</span>
+    </p>
+  </div>
+
   <script>
-    const yf = document.getElementById("podfyFooterYear");
-    if (yf) yf.textContent = new Date().getFullYear();
+    var yEl = document.querySelector(".v2-footer-year");
+    if (yEl) yEl.textContent = new Date().getFullYear();
   </script>
 </footer>

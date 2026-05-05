@@ -1,0 +1,542 @@
+/* ==========================================================================
+   PODFY v2 — Document-grade visual system
+   Loaded after styles.css on v2 pages (body.v2).
+   Fonts: Source Serif 4 + Inter + JetBrains Mono are referenced below.
+   NOTE: Google Fonts CDN requires adding fonts.googleapis.com / fonts.gstatic.com
+   to the CSP in _headers before activating the @import line below.
+   Until then, system serif/sans/mono fallbacks apply.
+   ========================================================================== */
+
+/*
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+*/
+
+/* ==========================================================================
+   1) V2 TOKENS — Light (default)
+   ========================================================================== */
+
+body.v2 {
+  --v2-ink:        #0E1116;
+  --v2-ink-2:      #2A2F37;
+  --v2-muted:      #5A6473;
+  --v2-line:       #E4E2DC;
+  --v2-line-2:     #CFCBC0;
+  --v2-paper:      #F5F2EA;
+  --v2-paper-2:    #EDE8DC;
+  --v2-card:       #FBF9F3;
+  --v2-stamp:      #D24A1F;
+  --v2-stamp-ink:  #7A2B12;
+  --v2-delivered:  #1F6B47;
+  --v2-bad:        #A33A2A;
+
+  --v2-font-serif: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  --v2-font-sans:  "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --v2-font-mono:  "JetBrains Mono", ui-monospace, "Menlo", "Consolas", monospace;
+
+  --v2-radius:     4px;
+  --v2-radius-lg:  6px;
+}
+
+/* Dark overrides */
+html[data-theme="dark"] body.v2 {
+  --v2-ink:        #F0EDE5;
+  --v2-ink-2:      #D0CBC0;
+  --v2-muted:      #8E8880;
+  --v2-line:       #2A2720;
+  --v2-line-2:     #35302A;
+  --v2-paper:      #12100D;
+  --v2-paper-2:    #1A1814;
+  --v2-card:       #1E1C17;
+  --v2-stamp:      #E05A30;
+  --v2-stamp-ink:  #C04820;
+  --v2-delivered:  #2D8A5A;
+  --v2-bad:        #C04030;
+}
+
+/* ==========================================================================
+   2) BODY RESET — override styles.css gradient backgrounds on v2 pages
+   ========================================================================== */
+
+html body.v2,
+html[data-theme="light"] body.v2,
+html[data-theme="dark"] body.v2 {
+  background: var(--v2-paper);
+  background-image: none;
+  background-attachment: unset;
+  color: var(--v2-ink);
+  font-family: var(--v2-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   3) CONTAINER & LAYOUT
+   ========================================================================== */
+
+.v2-main {
+  padding-bottom: 4rem;
+}
+
+/* Container already provided by styles.css .container; reuse in v2 context */
+.v2-section {
+  padding: 3rem 0;
+  border-top: 1px solid var(--v2-line);
+}
+
+.v2-section-title {
+  font-family: var(--v2-font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--v2-ink);
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.v2-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.v2-section-header .v2-section-title {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   4) TYPOGRAPHY UTILITIES
+   ========================================================================== */
+
+.v2-mono {
+  font-family: var(--v2-font-mono);
+  letter-spacing: 0.04em;
+}
+
+.v2-eyebrow {
+  font-family: var(--v2-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+  margin: 0 0 0.85rem;
+}
+
+.v2-link {
+  font-size: 0.85rem;
+  color: var(--v2-stamp);
+  text-decoration: none;
+  font-family: var(--v2-font-sans);
+}
+.v2-link:hover { text-decoration: underline; }
+
+.v2-muted-sm {
+  font-size: 0.85rem;
+  color: var(--v2-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   5) BUTTON SYSTEM v2 — square corners, no shadow, ink on paper
+   ========================================================================== */
+
+.v2-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--v2-radius);
+  font-family: var(--v2-font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.v2-btn-primary {
+  background: var(--v2-ink);
+  color: var(--v2-paper);
+}
+.v2-btn-primary:hover { opacity: 0.8; }
+
+.v2-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--v2-line-2);
+  color: var(--v2-ink);
+}
+.v2-btn-ghost:hover { border-color: var(--v2-ink); }
+
+/* ==========================================================================
+   6) RECEIPT COMPONENT — CSS-only thermal receipt with perforations
+   ========================================================================== */
+
+.v2-receipt {
+  font-family: var(--v2-font-mono);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--v2-ink-2);
+  background: var(--v2-card);
+  border: 1px solid var(--v2-line);
+  border-radius: var(--v2-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(14,17,22,0.07), 0 2px 6px rgba(14,17,22,0.04);
+}
+
+html[data-theme="dark"] .v2-receipt {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* Perforation row: a repeating row of small circles */
+.v2-receipt-perforation {
+  height: 10px;
+  background-color: var(--v2-paper-2);
+  background-image: radial-gradient(
+    circle,
+    var(--v2-line-2) 2.5px,
+    transparent 2.5px
+  );
+  background-size: 14px 10px;
+  background-repeat: repeat-x;
+  background-position: 7px center;
+}
+
+.v2-receipt-inner {
+  padding: 1rem 1.15rem 0.85rem;
+}
+
+.v2-receipt-brand {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--v2-ink);
+  margin: 0 0 0.15rem;
+}
+
+.v2-receipt-ref {
+  font-size: 0.67rem;
+  color: var(--v2-muted);
+  margin: 0 0 0.7rem;
+  letter-spacing: 0.04em;
+}
+
+.v2-receipt-hr {
+  border: none;
+  border-top: 1px dashed var(--v2-line-2);
+  margin: 0.55rem 0;
+}
+
+.v2-receipt-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.2rem 0;
+  font-size: 0.7rem;
+}
+
+.v2-receipt-label {
+  color: var(--v2-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  flex-shrink: 0;
+}
+
+.v2-receipt-value {
+  text-align: right;
+  color: var(--v2-ink-2);
+  word-break: break-all;
+}
+
+.v2-receipt-status {
+  margin-top: 0.65rem;
+  display: flex;
+}
+
+/* Stamp mark: rotated, stamp-colored border + text */
+.v2-stamp-mark {
+  display: inline-block;
+  padding: 3px 10px;
+  border: 1.5px solid var(--v2-stamp);
+  color: var(--v2-stamp);
+  font-family: var(--v2-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+}
+
+/* ==========================================================================
+   7) HERO SECTION
+   ========================================================================== */
+
+.v2-hero {
+  padding: 3.5rem 0 2.5rem;
+}
+
+.v2-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 3.5rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .v2-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.v2-hero-title {
+  font-family: var(--v2-font-serif);
+  font-size: clamp(2.1rem, 4.5vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+  color: var(--v2-ink);
+}
+
+.v2-hero-title em {
+  font-style: italic;
+  color: var(--v2-stamp);
+}
+
+.v2-hero-sub {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--v2-muted);
+  margin: 0 0 1.75rem;
+  max-width: 38rem;
+}
+
+.v2-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.v2-hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Hero receipt: full-width within visual column */
+.v2-hero-receipt {
+  width: 100%;
+  max-width: 320px;
+}
+
+@media (max-width: 900px) {
+  .v2-hero-visual { justify-content: flex-start; }
+  .v2-hero-receipt { max-width: 280px; }
+}
+
+/* ==========================================================================
+   8) TRUST BELT
+   ========================================================================== */
+
+.v2-trust-belt {
+  border-top: 1px solid var(--v2-line);
+  border-bottom: 1px solid var(--v2-line);
+  padding: 0.85rem 0;
+}
+
+.v2-trust-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+
+.v2-trust-item {
+  font-family: var(--v2-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+  padding: 0.2rem 1.25rem 0.2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.v2-trust-item + .v2-trust-item::before {
+  content: "·";
+  padding-right: 1.25rem;
+  color: var(--v2-line-2);
+}
+
+.v2-trust-link {
+  color: var(--v2-stamp);
+  text-decoration: none;
+  font-family: var(--v2-font-mono);
+}
+.v2-trust-link:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .v2-trust-list { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .v2-trust-item + .v2-trust-item::before { display: none; }
+}
+
+/* ==========================================================================
+   9) PROOF STRIP — 3 receipt-style cards
+   ========================================================================== */
+
+.v2-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .v2-proof-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .v2-proof-grid { grid-template-columns: 1fr; }
+}
+
+/* Proof strip receipts: full-width, no max-width cap */
+.v2-proof-receipt {
+  max-width: none;
+}
+
+/* ==========================================================================
+   10) HOW IT WORKS
+   ========================================================================== */
+
+.v2-how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .v2-how-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+.v2-how-step-num {
+  font-family: var(--v2-font-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--v2-line);
+  margin-bottom: 0.85rem;
+}
+
+.v2-how-step h3 {
+  font-family: var(--v2-font-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--v2-ink);
+  margin: 0 0 0.5rem;
+}
+
+.v2-how-step p {
+  font-size: 0.9rem;
+  color: var(--v2-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ==========================================================================
+   11) CUSTOMER STORY / QUOTE BLOCK
+   ========================================================================== */
+
+.v2-quote-block {
+  border-left: 2px solid var(--v2-stamp);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0;
+}
+
+.v2-quote-text {
+  font-family: var(--v2-font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--v2-ink);
+  margin: 0 0 1rem;
+}
+
+.v2-quote-attr {
+  font-size: 0.8rem;
+  color: var(--v2-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.75rem;
+  font-family: var(--v2-font-mono);
+  letter-spacing: 0.04em;
+}
+
+.v2-quote-name { font-weight: 600; color: var(--v2-ink-2); }
+
+/* ==========================================================================
+   12) CHANGELOG TEASER
+   ========================================================================== */
+
+.v2-changelog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.v2-changelog-entry {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--v2-line);
+  border-radius: var(--v2-radius);
+  background: var(--v2-card);
+}
+
+.v2-changelog-date {
+  font-family: var(--v2-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--v2-muted);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.v2-changelog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.v2-changelog-tag {
+  font-family: var(--v2-font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border: 1px solid var(--v2-line-2);
+  border-radius: 2px;
+  color: var(--v2-muted);
+}
+
+.v2-changelog-desc {
+  font-size: 0.875rem;
+  color: var(--v2-ink-2);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   13) RESPONSIVE UTILITIES
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  .v2-hero-title { font-size: 1.85rem; }
+  .v2-btn { padding: 0.55rem 1rem; font-size: 0.82rem; }
+}

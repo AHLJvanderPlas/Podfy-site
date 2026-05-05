@@ -1,77 +1,102 @@
 <header class="site-header-shell">
   <div class="site-header-inner">
+
     <!-- Brand -->
-    <a href="/" class="site-brand" aria-label="Podfy home">
-      <img src="/assets/podfy.svg" alt="PODFY">
+    <a href="/" class="site-brand" aria-label="PODFY home">
+      <img src="/assets/podfy.svg" alt="PODFY" width="72" height="20" />
     </a>
 
-    <!-- Desktop navigation -->
-    <nav id="primaryNav" class="site-nav">
-      <a href="/#how">How it works</a>
-      <a href="/#value">Benefits</a>
-      <a href="/#features">Features</a>
-      <a href="/#solutions">Pricing &amp; Plans</a>
-      <a href="/#faq">FAQ</a>
+    <!-- Desktop nav: Demo · Carriers · Inbound · Pricing · Changelog -->
+    <nav id="primaryNav" class="site-nav" aria-label="Primary navigation">
+      <a href="/free-tier-demo.html">Demo</a>
+      <a href="/carriers">Carriers</a>
+      <a href="/inbound">Inbound</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/changelog">Changelog</a>
     </nav>
 
-    <!-- Header actions: theme toggle -->
+    <!-- Right cluster: trust pill · locale · theme · hamburger -->
     <div class="site-header-actions">
-      <button type="button"
-              class="site-theme-toggle"
-              id="themeToggle"
-              data-mode="system"
-              aria-label="Toggle color mode">
+
+      <!-- EU trust pill — always visible on ≥640 px -->
+      <span class="site-trust-pill" aria-label="Hosted in EU, Cloudflare WEUR region">EU&thinsp;&middot;&thinsp;WEUR</span>
+
+      <!-- Locale switcher — EN active; NL/DE/FR declared for hreflang, not yet translated -->
+      <div class="site-locale" id="localeWrapper" aria-label="Language">
+        <button
+          class="site-locale-btn"
+          id="localeBtn"
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-controls="localeMenu">EN &#9662;</button>
+        <div
+          class="site-locale-menu"
+          id="localeMenu"
+          role="listbox"
+          aria-label="Select language">
+          <a href="/" class="site-locale-item site-locale-active" role="option" aria-selected="true">EN</a>
+          <span class="site-locale-item site-locale-disabled" role="option" aria-selected="false" aria-disabled="true" title="Dutch — coming soon">NL</span>
+          <span class="site-locale-item site-locale-disabled" role="option" aria-selected="false" aria-disabled="true" title="German — coming soon">DE</span>
+          <span class="site-locale-item site-locale-disabled" role="option" aria-selected="false" aria-disabled="true" title="French — coming soon">FR</span>
+        </div>
+      </div>
+
+      <!-- Theme toggle (cycles System → Light → Dark) -->
+      <button
+        type="button"
+        class="site-theme-toggle"
+        id="themeToggle"
+        data-mode="system"
+        aria-label="Toggle colour mode">
         <span class="site-theme-dot"></span>
         <span class="site-theme-label">System</span>
       </button>
+
+      <!-- Mobile hamburger (hidden ≥768 px) -->
+      <button
+        type="button"
+        id="menuBtn"
+        class="site-menu-btn"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileNav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
     </div>
   </div>
 
-  <!-- Mobile nav -->
-  <nav id="mobileNav" class="site-mobile-nav md:hidden" aria-label="Mobile navigation">
-    <a href="/#how">How it works</a>
-    <a href="/#value">Benefits</a>
-    <a href="/#features">Features</a>
-    <a href="/#solutions">Pricing &amp; Plans</a>
-    <a href="/#faq">FAQ</a>
+  <!-- Mobile nav drawer -->
+  <nav id="mobileNav" class="site-mobile-nav" aria-label="Mobile navigation">
+    <a href="/free-tier-demo.html">Demo</a>
+    <a href="/carriers">Carriers</a>
+    <a href="/inbound">Inbound</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/changelog">Changelog</a>
+    <a href="/trust" style="margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--line);">Trust &amp; Security</a>
   </nav>
 
   <script>
+    /* FOUC prevention: apply saved theme immediately, before paint */
     (function () {
-      // Theme toggle (unchanged from your version)
-      var STORAGE_KEY = "podfy-theme";
-      var toggle = document.getElementById("themeToggle");
-      if (toggle) {
-        function applyTheme(mode) {
-          var root = document.documentElement;
-          if (mode === "system") {
-            root.removeAttribute("data-theme");
-          } else {
-            root.setAttribute("data-theme", mode);
-          }
-          toggle.dataset.mode = mode;
-          toggle.querySelector(".site-theme-label").textContent =
-            mode.charAt(0).toUpperCase() + mode.slice(1);
-          try { localStorage.setItem(STORAGE_KEY, mode); } catch (e) {}
-        }
+      try {
+        var stored = localStorage.getItem("podfy-theme");
+        var effective = (stored === "light" || stored === "dark")
+          ? stored
+          : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", effective);
+      } catch (e) {}
+    })();
 
-        var stored = null;
-        try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-        if (stored === "light" || stored === "dark" || stored === "system") {
-          applyTheme(stored);
-        }
+    /* Mobile nav + locale switcher — progressive enhancement */
+    document.addEventListener("DOMContentLoaded", function () {
 
-        toggle.addEventListener("click", function () {
-          var current = toggle.dataset.mode || "system";
-          var next = current === "system" ? "light"
-                   : current === "light" ? "dark"
-                   : "system";
-          applyTheme(next);
-        });
-      }
-
-      // Mobile nav
-      var menuBtn = document.getElementById("menuBtn");
+      /* Mobile menu toggle */
+      var menuBtn  = document.getElementById("menuBtn");
       var mobileNav = document.getElementById("mobileNav");
       if (menuBtn && mobileNav) {
         menuBtn.addEventListener("click", function () {
@@ -79,6 +104,22 @@
           menuBtn.setAttribute("aria-expanded", String(open));
         });
       }
-    })();
+
+      /* Locale switcher toggle */
+      var localeBtn  = document.getElementById("localeBtn");
+      var localeMenu = document.getElementById("localeMenu");
+      if (localeBtn && localeMenu) {
+        localeBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var open = localeMenu.classList.toggle("open");
+          localeBtn.setAttribute("aria-expanded", String(open));
+        });
+        document.addEventListener("click", function () {
+          localeMenu.classList.remove("open");
+          if (localeBtn) localeBtn.setAttribute("aria-expanded", "false");
+        });
+      }
+
+    });
   </script>
 </header>
