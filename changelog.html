@@ -32,7 +32,7 @@
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/changelog" />
 
   <!-- RSS feed -->
-  <link rel="alternate" type="application/rss+xml" title="PODFY Changelog" href="https://podfy.net/changelog.xml" />
+  <link rel="alternate" type="application/rss+xml" title="PODFY Changelog" href="https://podfy.net/changelog.rss" />
 
   <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
   <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r3" />
@@ -55,7 +55,7 @@
             <h1 class="v2-section-title" id="changelog-heading" style="margin-bottom:0.25rem;">Changelog</h1>
             <p id="changelog-meta" style="font-family:var(--v2-font-mono);font-size:0.75rem;color:var(--v2-muted);margin:0;">Loading&hellip;</p>
           </div>
-          <a href="/changelog.xml" class="v2-changelog-rss" aria-label="RSS feed for PODFY changelog">
+          <a href="/changelog.rss" class="v2-changelog-rss" aria-label="RSS feed for PODFY changelog">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>
             </svg>
@@ -94,9 +94,138 @@
       </div>
     </section>
 
+    <!-- ── Changelog subscription ──────────────────────────────────────── -->
+    <section class="v2-section" aria-labelledby="sub-heading" style="border-top:1px solid var(--v2-border);padding-top:2.5rem;padding-bottom:3rem;">
+      <div class="container" style="max-width:36rem;">
+        <p class="v2-eyebrow">Stay in the loop</p>
+        <h2 class="v2-section-title" id="sub-heading" style="font-size:1.4rem;margin-bottom:.5rem;">Get notified of new releases</h2>
+        <p style="font-size:.9rem;color:var(--v2-muted);margin-bottom:1.5rem;">One email per release. No marketing, no newsletters. Unsubscribe any time.</p>
+
+        <!-- Success state (hidden until confirmed) -->
+        <div id="sub-success" style="display:none;">
+          <div class="v2-receipt" style="max-width:22rem;">
+            <div class="v2-receipt-perforation"></div>
+            <div class="v2-receipt-inner">
+              <p class="v2-receipt-brand">PODFY Changelog</p>
+              <hr class="v2-receipt-hr" />
+              <div class="v2-receipt-row">
+                <span class="v2-receipt-label">Status</span>
+                <span class="v2-receipt-value">Subscribed</span>
+              </div>
+              <hr class="v2-receipt-hr" />
+              <div class="v2-receipt-status"><span class="v2-stamp-mark">Done</span></div>
+            </div>
+            <div class="v2-receipt-perforation"></div>
+          </div>
+        </div>
+
+        <!-- Error banner -->
+        <p id="sub-error" role="alert" style="display:none;font-size:.875rem;color:var(--v2-bad);margin-bottom:1rem;"></p>
+
+        <!-- Form -->
+        <form id="sub-form" class="v2-form" novalidate>
+          <!-- Honeypot -->
+          <input type="text" name="hp_sub" id="hp_sub" autocomplete="off" tabindex="-1" aria-hidden="true"
+            style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" />
+          <input type="hidden" id="sub-turnstile-token" name="cf_turnstile_token" value="" />
+
+          <div class="v2-form-row" style="display:flex;gap:.75rem;flex-wrap:wrap;">
+            <div class="v2-form-group" style="flex:1;min-width:10rem;">
+              <label class="v2-form-label" for="sub-name">Name <span style="color:var(--v2-muted);font-weight:400;">(optional)</span></label>
+              <input type="text" id="sub-name" name="name" class="v2-form-input" autocomplete="name" placeholder="Jan de Vries" />
+            </div>
+            <div class="v2-form-group" style="flex:2;min-width:14rem;">
+              <label class="v2-form-label" for="sub-email">Email address</label>
+              <input type="email" id="sub-email" name="email" class="v2-form-input" autocomplete="email" placeholder="jan@carrier.nl" required />
+            </div>
+          </div>
+
+          <!-- Turnstile widget -->
+          <div class="cf-turnstile"
+            data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+            data-callback="onSubTurnstileCompleted"
+            data-theme="auto"
+            style="margin:.75rem 0;"></div>
+
+          <button type="submit" id="sub-btn" class="v2-btn v2-btn-primary" disabled>
+            Yes please &rarr;
+          </button>
+        </form>
+      </div>
+    </section>
+
   </main>
 
+  <!-- Turnstile (subscription form only) -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   [[PODFY_FOOTER]]
+
+  <script>
+  /* Subscription form */
+  (function () {
+    function onSubTurnstileCompleted(token) {
+      var el = document.getElementById("sub-turnstile-token");
+      if (el) el.value = token;
+      var btn = document.getElementById("sub-btn");
+      if (btn) btn.disabled = false;
+    }
+    window.onSubTurnstileCompleted = onSubTurnstileCompleted;
+
+    var form    = document.getElementById("sub-form");
+    var btn     = document.getElementById("sub-btn");
+    var errorEl = document.getElementById("sub-error");
+    var success = document.getElementById("sub-success");
+
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = (document.getElementById("sub-email") || {}).value || "";
+      var name  = (document.getElementById("sub-name")  || {}).value || "";
+      var token = (document.getElementById("sub-turnstile-token") || {}).value || "";
+      var hp    = (document.getElementById("hp_sub") || {}).value || "";
+
+      if (!email) {
+        showError("Please enter your email address.");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "Sending\u2026";
+      if (errorEl) errorEl.style.display = "none";
+
+      fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name, email: email, hp_sub: hp, cf_turnstile_token: token }),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.ok) {
+            form.style.display = "none";
+            if (success) success.style.display = "block";
+          } else {
+            showError(data.error || "Something went wrong. Please try again.");
+            btn.disabled = false;
+            btn.textContent = "Yes please \u2192";
+          }
+        })
+        .catch(function () {
+          showError("Unable to subscribe right now. Please try again.");
+          btn.disabled = false;
+          btn.textContent = "Yes please \u2192";
+        });
+    });
+
+    function showError(msg) {
+      if (errorEl) {
+        errorEl.textContent = msg;
+        errorEl.style.display = "block";
+      }
+    }
+  })();
+  </script>
 
   <script>
   (function () {
