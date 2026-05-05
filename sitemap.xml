@@ -53,9 +53,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/pricing" />
   </url>
 
-  <!-- /releases kept until Sprint 3 rebuilds it as /changelog -->
   <url>
-    <loc>https://podfy.net/releases</loc>
+    <loc>https://podfy.net/changelog</loc>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/changelog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/changelog" />
   </url>
 
   <!-- ── Contact ───────────────────────────────────────────────────────── -->

@@ -6,8 +6,12 @@
 # Redirects are processed before static files, so old .html files
 # that still exist in the repo are also covered.
 #
-# Sprint 3 will add: /releases → /changelog  (once changelog.html is built)
-# Sprint 3 will add: /trust consolidation redirects for legal pages
+# Sprint 3 will add: /trust consolidation redirects for legal pages (Set C)
+
+# ── Changelog ─────────────────────────────────────────────────────────────
+
+/releases                               /changelog  301
+/releases.html                          /changelog  301
 
 # ── Legacy demo & companies ────────────────────────────────────────────────
 

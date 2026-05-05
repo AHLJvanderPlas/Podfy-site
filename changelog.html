@@ -1,0 +1,268 @@
+<!doctype html>
+<!-- i18n:strings
+  title: Changelog — PODFY
+  h1: What shipped.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Changelog — PODFY</title>
+  <meta name="description" content="A complete history of PODFY releases: new features, fixes, and platform updates. Updated with every deployment." />
+  <link rel="canonical" href="https://podfy.net/changelog" />
+
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:title" content="Changelog — PODFY" />
+  <meta property="og:description" content="Every PODFY release: new features, fixes, and platform updates." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://podfy.net/changelog" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+  <link rel="alternate" hreflang="en" href="https://podfy.net/changelog" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/changelog" />
+
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" title="PODFY Changelog" href="https://podfy.net/changelog.xml" />
+
+  <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
+  <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r3" />
+  <script src="/assets/theme.js" defer></script>
+</head>
+
+<body class="v2">
+  <a href="#main" class="sr-only">Skip to content</a>
+  [[PODFY_HEADER]]
+
+  <main id="main" class="v2-main">
+
+    <section class="v2-section" style="padding-top:3rem;" aria-labelledby="changelog-heading">
+      <div class="container">
+
+        <!-- Header row -->
+        <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+          <div>
+            <p class="v2-eyebrow">What shipped</p>
+            <h1 class="v2-section-title" id="changelog-heading" style="margin-bottom:0.25rem;">Changelog</h1>
+            <p id="changelog-meta" style="font-family:var(--v2-font-mono);font-size:0.75rem;color:var(--v2-muted);margin:0;">Loading&hellip;</p>
+          </div>
+          <a href="/changelog.xml" class="v2-changelog-rss" aria-label="RSS feed for PODFY changelog">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>
+            </svg>
+            RSS
+          </a>
+        </div>
+
+        <!-- Search -->
+        <label for="changelog-search" class="sr-only">Search changelog</label>
+        <input
+          type="search"
+          id="changelog-search"
+          class="v2-changelog-search"
+          placeholder="Search by version, feature, or tag&hellip;"
+          autocomplete="off" />
+
+        <!-- Loading / empty / error states -->
+        <p id="changelog-loading" style="font-size:0.875rem;color:var(--v2-muted);">Fetching releases&hellip;</p>
+        <p id="changelog-empty" style="display:none;font-size:0.875rem;color:var(--v2-muted);">No releases match your search.</p>
+        <p id="changelog-error" role="alert" style="display:none;font-size:0.875rem;color:var(--v2-bad);">Unable to load changelog. Please refresh.</p>
+
+        <!-- Entries rendered here -->
+        <div id="changelog-entries"></div>
+
+        <!-- Pagination -->
+        <div class="v2-changelog-pagination" id="changelog-pagination" style="display:none;">
+          <button id="changelog-prev" type="button" class="v2-btn v2-btn-ghost" style="font-size:0.83rem;padding:0.4rem 0.9rem;">
+            &larr; Previous
+          </button>
+          <span id="changelog-page-info" style="font-family:var(--v2-font-mono);font-size:0.75rem;color:var(--v2-muted);"></span>
+          <button id="changelog-next" type="button" class="v2-btn v2-btn-ghost" style="font-size:0.83rem;padding:0.4rem 0.9rem;">
+            Next &rarr;
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script>
+  (function () {
+    var API = "/api/releases";
+    var PAGE_SIZE = 20;
+
+    var allEntries = [];
+    var totalEntries = 0;
+    var currentPage = 1;
+    var totalPages = 1;
+    var currentFilter = "";
+
+    var loadingEl  = document.getElementById("changelog-loading");
+    var emptyEl    = document.getElementById("changelog-empty");
+    var errorEl    = document.getElementById("changelog-error");
+    var metaEl     = document.getElementById("changelog-meta");
+    var entriesEl  = document.getElementById("changelog-entries");
+    var searchEl   = document.getElementById("changelog-search");
+    var paginEl    = document.getElementById("changelog-pagination");
+    var prevBtn    = document.getElementById("changelog-prev");
+    var nextBtn    = document.getElementById("changelog-next");
+    var pageInfoEl = document.getElementById("changelog-page-info");
+
+    function esc(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function toListItems(text) {
+      if (!text) return "";
+      return text
+        .split(/\r?\n/)
+        .map(function (l) { return l.trim(); })
+        .filter(Boolean)
+        .map(function (l) { return "<li>" + esc(l) + "</li>"; })
+        .join("");
+    }
+
+    function tagsFrom(str) {
+      if (!str) return [];
+      return str.split(",").map(function (t) { return t.trim(); }).filter(Boolean);
+    }
+
+    function renderEntries(list) {
+      if (!list.length) {
+        entriesEl.innerHTML = "";
+        return;
+      }
+
+      entriesEl.innerHTML = list.map(function (r) {
+        var tags = tagsFrom(r.area_tags);
+        var tagsHtml = tags.map(function (t) {
+          return '<span class="v2-changelog-tag">' + esc(t) + "</span>";
+        }).join(" ");
+
+        var newItems = toListItems(r.new_features);
+        var fixItems = toListItems(r.fixes);
+
+        var newCol = newItems
+          ? '<div class="v2-changelog-col"><p class="v2-changelog-col-label">New</p><ul>' + newItems + "</ul></div>"
+          : "";
+        var fixCol = fixItems
+          ? '<div class="v2-changelog-col"><p class="v2-changelog-col-label">Fixes</p><ul>' + fixItems + "</ul></div>"
+          : "";
+
+        var bodyHtml = (newCol || fixCol)
+          ? '<div class="v2-changelog-body">' + newCol + fixCol + "</div>"
+          : "";
+
+        var buildRef = r.deployment_ref
+          ? ' &middot; Build: <span style="opacity:.7">' + esc(r.deployment_ref) + "</span>"
+          : "";
+
+        return [
+          '<article class="v2-changelog-entry" id="v-' + esc(r.version || "").replace(/[^0-9a-z]/gi, "-") + '">',
+            '<div class="v2-changelog-meta">',
+              '<span class="v2-changelog-date">' + esc(r.release_date || "") + '</span>',
+              r.version ? '<span class="v2-changelog-version">' + esc(r.version) + '</span>' : "",
+              tagsHtml,
+              '<span style="font-family:var(--v2-font-mono);font-size:0.72rem;color:var(--v2-muted);">' + buildRef + "</span>",
+            '</div>',
+            bodyHtml,
+          '</article>'
+        ].join("");
+      }).join("");
+    }
+
+    function updatePagination() {
+      if (!paginEl) return;
+      if (totalEntries <= PAGE_SIZE && currentPage === 1) {
+        paginEl.style.display = "none";
+        return;
+      }
+      paginEl.style.display = "flex";
+      if (pageInfoEl) pageInfoEl.textContent = "Page " + currentPage + " of " + (totalPages || 1);
+      if (prevBtn) prevBtn.disabled = currentPage <= 1;
+      if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
+    }
+
+    function applyFilter(filter) {
+      filter = (typeof filter === "string" ? filter : currentFilter).toLowerCase().trim();
+      currentFilter = filter;
+
+      var filtered = allEntries.filter(function (r) {
+        if (!filter) return true;
+        var blob = [r.version, r.release_date, r.deployment_ref, r.fixes, r.new_features, r.area_tags]
+          .join(" ").toLowerCase();
+        return blob.indexOf(filter) !== -1;
+      });
+
+      loadingEl.style.display = "none";
+
+      if (!filtered.length) {
+        emptyEl.style.display = "block";
+        entriesEl.innerHTML = "";
+        if (metaEl) metaEl.textContent = "No results on page " + currentPage + " of " + (totalPages || 1) + ".";
+        updatePagination();
+        return;
+      }
+
+      emptyEl.style.display = "none";
+      if (metaEl) metaEl.textContent = filtered.length + " of " + totalEntries + " releases (page " + currentPage + " of " + (totalPages || 1) + ")";
+
+      renderEntries(filtered);
+      updatePagination();
+    }
+
+    function loadPage(page) {
+      currentPage = page || 1;
+      loadingEl.style.display = "block";
+      emptyEl.style.display = "none";
+      errorEl.style.display = "none";
+      entriesEl.innerHTML = "";
+
+      fetch(API + "?page=" + currentPage + "&pageSize=" + PAGE_SIZE)
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          allEntries = data.items || [];
+          totalEntries = data.total || allEntries.length;
+          totalPages = data.totalPages || 1;
+          currentPage = data.page || currentPage;
+          applyFilter(currentFilter);
+        })
+        .catch(function () {
+          loadingEl.style.display = "none";
+          errorEl.style.display = "block";
+          if (metaEl) metaEl.textContent = "Unable to load.";
+        });
+    }
+
+    if (searchEl) {
+      searchEl.addEventListener("input", function () {
+        applyFilter(searchEl.value || "");
+      });
+    }
+    if (prevBtn) prevBtn.addEventListener("click", function () { if (currentPage > 1) loadPage(currentPage - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { if (currentPage < totalPages) loadPage(currentPage + 1); });
+
+    loadPage(1);
+  })();
+  </script>
+</body>
+</html>
