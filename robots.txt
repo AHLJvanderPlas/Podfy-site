@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /instructions/
 
 Sitemap: https://podfy.net/sitemap.xml
