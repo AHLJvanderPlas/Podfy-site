@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Proof of Delivery and Invoicing — How POD Affects Cash Flow | PODFY</title>
+  <meta name="description" content="How missing or delayed proof of delivery blocks invoice approval, increases Days Sales Outstanding, and what finance and operations teams can do about it." />
+  <link rel="canonical" href="https://podfy.net/guides/pod-invoicing/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/pod-invoicing/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/pod-invoicing/" />
+  <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
+  <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r3" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+    {"@type":"ListItem","position":2,"name":"Guides","item":"https://podfy.net/guides/"},
+    {"@type":"ListItem","position":3,"name":"POD and Invoicing","item":"https://podfy.net/guides/pod-invoicing/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Why do logistics companies need POD before issuing an invoice?",
+      "acceptedAnswer":{"@type":"Answer","text":"Most B2B customers will not approve a freight invoice without delivery confirmation. The POD is the trigger that moves the invoice from 'in progress' to 'payable'. Without it, the invoice sits in dispute regardless of whether the delivery was completed."}},
+    {"@type":"Question","name":"How does a missing POD affect Days Sales Outstanding (DSO)?",
+      "acceptedAnswer":{"@type":"Answer","text":"Every invoice on hold adds to DSO. A carrier with a 5% POD gap and average invoice terms of 30 days can expect an effective DSO of 35–45 days across the affected invoices. For a business billing €300,000/month, this represents €45,000–75,000 in delayed receivables at any time."}},
+    {"@type":"Question","name":"Can we issue an invoice before the POD is received?",
+      "acceptedAnswer":{"@type":"Answer","text":"You can issue the invoice, but the customer's AP team will likely put it on hold until the POD is provided. Some customers have SLAs that require POD within 48 hours of delivery for invoice processing. Issuing without POD just moves the delay downstream."}},
+    {"@type":"Question","name":"What is the fastest way to get POD same-day for invoicing?",
+      "acceptedAnswer":{"@type":"Answer","text":"Capture it at delivery. With Podfy, the driver uploads via a browser link at the gate — the GPS-stamped document is in the portal within seconds and the invoice trigger is available the same day, not 3–5 days later."}},
+    {"@type":"Question","name":"How do I calculate the cost of my POD gap?",
+      "acceptedAnswer":{"@type":"Answer","text":"Take your average daily revenue, multiply by your estimated POD gap percentage, and multiply by average delay days. Example: €10,000 average daily billing × 5% gap × 7 delay days = €3,500 in working capital tied up per week due to missing PODs."}}
+  ]}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Skip to content</a>
+  [[PODFY_HEADER]]
+  <nav class="v2-breadcrumb" aria-label="Breadcrumb"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/">PODFY</a></li><li><a href="/guides/">Guides</a></li><li aria-current="page">POD and Invoicing</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Guide &middot; POD and Finance</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">No POD.<br>No invoice approval.<br><em>It's that simple.</em></h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">How missing proof of delivery stalls cash flow, inflates DSO, and what finance and operations teams can do to fix the root cause — not just chase individual documents.</p>
+      </div>
+    </section>
+    <nav class="v2-toc" aria-label="On this page"><div class="container"><ul class="v2-toc-list">
+      <li><a class="v2-toc-pill" href="#pod-invoice-link">POD and invoicing</a></li>
+      <li><a class="v2-toc-pill" href="#dso-impact">DSO impact</a></li>
+      <li><a class="v2-toc-pill" href="#calculate">Calculate your gap</a></li>
+      <li><a class="v2-toc-pill" href="#fix">Fix the root cause</a></li>
+      <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+    </ul></div></nav>
+
+    <section class="v2-section" id="pod-invoice-link" aria-labelledby="link-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="link-heading">How POD connects to invoice approval</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>In most B2B logistics relationships, the POD document is the trigger for invoice payment. The customer's accounts payable team will not approve a freight invoice until they can confirm receipt. This is not a bureaucratic choice — it is standard procurement policy in most medium and large enterprises.</p>
+            <p>For the carrier or supplier side, this creates a direct dependency: you cannot get paid until you can prove delivery. The faster you can provide proof, the faster you get paid. A 5-day POD delay is a 5-day cash flow delay — consistently, on every affected invoice.</p>
+            <p><strong>The POD is not administrative overhead. It is the payment trigger.</strong></p>
+          </div>
+          <div>
+            <ul class="v2-check-list" style="margin-top:.5rem;">
+              <li>Most enterprise AP teams require POD before approval</li>
+              <li>48–72 hour POD SLAs are common in logistics contracts</li>
+              <li>Missing POD = invoice on hold, regardless of delivery status</li>
+              <li>Each day of delay adds to DSO</li>
+              <li>Disputed invoices take 4–8 weeks to resolve</li>
+              <li>Finance teams lose visibility: are invoices held or lost?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Trigger invoices the same day</p><p class="v2-inline-cta-text">Driver uploads at the gate. POD is ready before the invoice is sent.</p></div><a href="/demo" class="v2-btn v2-btn-primary">See the demo &rarr;</a></div></div></div>
+
+    <section class="v2-section" id="dso-impact" aria-labelledby="dso-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="dso-heading">The DSO impact of a POD gap</h2>
+        <div class="v2-prose">
+          <p>Days Sales Outstanding (DSO) measures how long it takes from issuing an invoice to receiving payment. A POD gap — where a percentage of deliveries don't have confirmed proof — creates a systematic DSO inflation that is invisible in most accounting systems until you look for it.</p>
+          <p>Example: a carrier with €300,000/month in revenue, 5% POD gap, and 30-day payment terms is typically sitting on €7,500–€15,000 in invoices that are held specifically because of missing PODs. This is working capital that could be in your account.</p>
+          <p>The hidden cost is not just the delayed payment — it is the time your finance team spends chasing each case individually, the risk of invoice disputes escalating into write-offs, and the customer relationship strain of repeatedly asking clients to approve invoices without complete documentation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="calculate" aria-labelledby="calc-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="calc-heading">Calculate your POD gap cost</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step"><p class="v2-how-step-num">Input 01</p><h3>Average daily billing</h3><p>Take your monthly freight revenue and divide by working days. Example: €300,000/month ÷ 22 days = €13,600/day average billing.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Input 02</p><h3>POD gap percentage</h3><p>What percentage of your deliveries currently have no confirmed proof? Even 3–5% is significant. Sub-contractor-heavy routes typically run 10–20%.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Result</p><h3>Working capital on hold</h3><p>Daily billing × POD gap % × average delay days = weekly working capital held up by missing PODs. A 5% gap at 7 days delay = 2.5% of weekly revenue tied up.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="fix" aria-labelledby="fix-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="fix-heading">Fixing the root cause, not the symptoms</h2>
+        <div class="v2-contrast-strip">
+          <div class="v2-contrast-before"><p class="v2-contrast-label">Symptom treatment</p><ul class="v2-contrast-list"><li>Finance team chases driver after the fact</li><li>Dispatch team calls consignee for confirmation</li><li>Manual emails to AP to explain missing documents</li><li>Invoice put on partial hold pending full POD</li><li>Same problem repeats next week</li></ul></div>
+          <div class="v2-contrast-divider" aria-hidden="true"></div>
+          <div class="v2-contrast-after"><p class="v2-contrast-label">Root cause fix</p><ul class="v2-contrast-list"><li>Link sent with dispatch — driver uploads at gate</li><li>POD in portal before the invoice is prepared</li><li>No chasing — proof arrives automatically</li><li>Finance sees complete POD list by end of day</li><li>Invoice approval cycle matches delivery cycle</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Frequently asked questions</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Why do logistics companies need POD before issuing an invoice?</button><div class="v2-faq-answer"><p>Most B2B customers will not approve a freight invoice without delivery confirmation. The POD is the trigger that moves the invoice from 'in progress' to 'payable'. Without it, the invoice sits in dispute regardless of whether the delivery was completed.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">How does a missing POD affect Days Sales Outstanding?</button><div class="v2-faq-answer"><p>Every invoice on hold adds to DSO. A carrier with a 5% POD gap and 30-day payment terms can expect an effective DSO of 35–45 days on affected invoices. For a business billing €300,000/month, this represents up to €75,000 in delayed receivables at any time.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Can we issue an invoice before the POD is received?</button><div class="v2-faq-answer"><p>You can issue the invoice, but the customer's AP team will put it on hold until POD is provided. Issuing without POD just moves the delay downstream — it does not speed up payment.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">What is the fastest way to get same-day POD for invoicing?</button><div class="v2-faq-answer"><p>Capture it at delivery. With Podfy, the driver uploads at the gate and the GPS-stamped document is in your portal within seconds — the invoice trigger is available the same day, not 3–5 days later.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">How do I calculate the cost of my POD gap?</button><div class="v2-faq-answer"><p>Average daily billing × POD gap % × average delay days = weekly working capital held. Example: €13,600/day × 5% × 7 days = €4,760 in working capital tied up per week from missing PODs alone.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="guides-heading"><div class="container"><p class="v2-eyebrow">Related reading</p><h2 class="v2-section-title" id="guides-heading">Related challenges</h2><div class="v2-guide-grid"><a class="v2-guide-card" href="/guides/pod-disputes/"><span class="v2-guide-tag">Guide</span><h3 class="v2-guide-title">Resolving delivery disputes</h3><p class="v2-guide-desc">When invoice holds turn into formal disputes.</p><span class="v2-guide-arrow">Read guide &rarr;</span></a><a class="v2-guide-card" href="/guides/missing-pod/"><span class="v2-guide-tag">Guide</span><h3 class="v2-guide-title">What to do when a POD is missing</h3><p class="v2-guide-desc">Recovery steps before it blocks the invoice.</p><span class="v2-guide-arrow">Read guide &rarr;</span></a><a class="v2-guide-card" href="/guides/pod-compliance/"><span class="v2-guide-tag">Guide</span><h3 class="v2-guide-title">POD compliance and audit retention</h3><p class="v2-guide-desc">How long you need to keep PODs and how to do it efficiently.</p><span class="v2-guide-arrow">Read guide &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-labelledby="sol-heading"><div class="container"><p class="v2-eyebrow">This affects</p><h2 class="v2-section-title" id="sol-heading">Who this is relevant for</h2><div class="v2-sol-grid"><a class="v2-sol-tile" href="/solutions/carriers/"><p class="v2-sol-tile-industry">Transport</p><p class="v2-sol-tile-name">Carriers</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a><a class="v2-sol-tile" href="/solutions/shippers/"><p class="v2-sol-tile-industry">Supply chain</p><p class="v2-sol-tile-name">Shippers</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a><a class="v2-sol-tile" href="/solutions/3pl/"><p class="v2-sol-tile-industry">Logistics</p><p class="v2-sol-tile-name">3PLs</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-label="Guide hub"><div class="container"><p style="font-size:.9rem;color:var(--v2-muted);">Part of the Podfy guide series &rarr; <a href="/guides/proof-of-delivery/" class="v2-link">What is Proof of Delivery?</a></p></div></section>
+    <section class="v2-section" aria-label="Stay updated"><div class="container" style="max-width:40rem;"><div class="v2-subscribe-strip"><h3>See how Podfy is evolving</h3><p>Get release notes by email when new features ship.</p><form class="v2-subscribe-row" onsubmit="handleSubscribe(event)"><input type="email" name="email" class="v2-subscribe-input" placeholder="your@email.com" required /><button type="submit" class="v2-btn v2-btn-primary">Subscribe &rarr;</button></form><p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p></div></div></section>
+    <section class="v2-cta-block" aria-label="Get started"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">Same-day POD</span><h2>Invoice on the day<br>of <em>delivery.</em></h2><p>Fifteen minutes. We will walk through the invoicing workflow and portal search.</p><div class="v2-cta-actions"><a href="/contact" class="v2-btn v2-btn-primary">Book 15 minutes &rarr;</a><a href="/demo" class="v2-btn v2-btn-ghost">Try the demo first</a></div></div></section>
+  </main>
+  [[PODFY_FOOTER]]
+  <script>
+    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);const el=document.getElementById('v2-progress');if(el)el.style.width=Math.min(p*100,100)+'%';});
+    document.querySelectorAll('.v2-faq-btn').forEach(btn=>{btn.addEventListener('click',()=>btn.closest('.v2-faq-acc-item').classList.toggle('open'));});
+    async function handleSubscribe(e){e.preventDefault();const email=e.target.querySelector('[name=email]').value;const msg=document.getElementById('subscribe-msg');try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})});const d=await r.json();msg.style.display='block';msg.textContent=d.ok?'Subscribed. Thank you!':(d.error||'Something went wrong.');msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)';if(d.ok)e.target.reset();}catch{msg.style.display='block';msg.textContent='Could not subscribe right now.';}}
+  </script>
+</body>
+</html>

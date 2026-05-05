@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Proof of Delivery Compliance and Audit Retention | PODFY</title>
+  <meta name="description" content="How long you need to keep proof of delivery documents, what EU regulations require, and how to build an audit-ready delivery record archive without complex systems." />
+  <link rel="canonical" href="https://podfy.net/guides/pod-compliance/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/pod-compliance/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/pod-compliance/" />
+  <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
+  <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r3" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+    {"@type":"ListItem","position":2,"name":"Guides","item":"https://podfy.net/guides/"},
+    {"@type":"ListItem","position":3,"name":"POD Compliance","item":"https://podfy.net/guides/pod-compliance/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How long must proof of delivery documents be retained in the Netherlands and Belgium?",
+      "acceptedAnswer":{"@type":"Answer","text":"For Dutch businesses: the Belastingdienst requires financial records, including delivery documentation used for invoicing, to be retained for 7 years. In Belgium, a similar 7-year retention applies for commercial records. CMR documents for international road transport are governed by the CMR Convention, which establishes a 1-year claim period but a 3-year window for fraudulent acts."}},
+    {"@type":"Question","name":"Does Podfy store data in the EU?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. All delivery documents stored via Podfy are held in Cloudflare's EU-WEUR (Western Europe) region. No data leaves the EU. Podfy can provide a Data Processing Agreement (DPA) for GDPR compliance purposes."}},
+    {"@type":"Question","name":"What counts as an audit-ready delivery record?",
+      "acceptedAnswer":{"@type":"Answer","text":"An audit-ready delivery record should include: the document itself (signed CMR or delivery note), a timestamp showing when it was submitted, GPS coordinates confirming the delivery location, and a reference linking it to the invoice or PO. All four elements are captured automatically in Podfy."}},
+    {"@type":"Question","name":"Can Podfy records be exported for an audit package?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. Delivery records can be exported as PDFs from the Podfy portal. Bulk export by date range or reference prefix is available. This is typically what auditors and Belastingdienst inspections require."}},
+    {"@type":"Question","name":"Is GPS-stamped digital evidence accepted in Dutch and Belgian courts?",
+      "acceptedAnswer":{"@type":"Answer","text":"Generally yes, for commercial disputes. GPS-stamped, timestamped digital records created by a third-party system are considered reliable evidence in Dutch and Belgian commercial proceedings. They supplement, and in practice often replace, paper CMR originals in dispute resolution."}}
+  ]}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Skip to content</a>
+  [[PODFY_HEADER]]
+  <nav class="v2-breadcrumb" aria-label="Breadcrumb"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/">PODFY</a></li><li><a href="/guides/">Guides</a></li><li aria-current="page">POD Compliance</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Guide &middot; Compliance &amp; Audit</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">How long must you keep<br>proof of delivery?<br><em>Answered.</em></h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">Retention requirements for Dutch and Belgian logistics operations, what makes a delivery record audit-ready, and how to build a compliant archive without adding complexity.</p>
+      </div>
+    </section>
+    <nav class="v2-toc" aria-label="On this page"><div class="container"><ul class="v2-toc-list">
+      <li><a class="v2-toc-pill" href="#retention">Retention requirements</a></li>
+      <li><a class="v2-toc-pill" href="#gdpr">GDPR and data residency</a></li>
+      <li><a class="v2-toc-pill" href="#audit-ready">Audit-ready records</a></li>
+      <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+    </ul></div></nav>
+
+    <section class="v2-section" id="retention" aria-labelledby="ret-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="ret-heading">Retention requirements for logistics businesses</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p><strong>Netherlands (Belastingdienst).</strong> Dutch tax law (Wet op de omzetbelasting and Algemene wet inzake rijksbelastingen) requires financial and commercial records — including delivery documentation used as the basis for invoicing — to be retained for 7 years. Records must be accessible and legible for tax inspection.</p>
+            <p><strong>Belgium.</strong> Belgian commercial record-keeping (Code des sociétés et des associations) requires 7-year retention for accounting documents. VAT-related records, including those documenting supply of services, must be accessible for Belgian tax authority review.</p>
+            <p><strong>CMR Convention.</strong> For cross-border road freight under the CMR Convention, claims must be brought within 1 year (3 years for fraudulent acts). While this is shorter than domestic retention requirements, best practice is to retain CMR records for the full 7-year commercial retention period.</p>
+          </div>
+          <div>
+            <ul class="v2-check-list" style="margin-top:.5rem;">
+              <li>7-year retention required in NL and BE</li>
+              <li>Records must be accessible and legible</li>
+              <li>Digital records are accepted if they meet integrity requirements</li>
+              <li>CMR 1-year claim window; 3-year fraud window</li>
+              <li>EU GDPR applies to any personal data in delivery records</li>
+              <li>Data residency: EU-hosted for GDPR compliance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">7-year EU archive — included</p><p class="v2-inline-cta-text">Every Podfy record is stored in EU-WEUR with full audit export capability.</p></div><a href="/demo" class="v2-btn v2-btn-primary">See the demo &rarr;</a></div></div></div>
+
+    <section class="v2-section" id="gdpr" aria-labelledby="gdpr-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="gdpr-heading">GDPR and data residency</h2>
+        <div class="v2-prose">
+          <p>Delivery documents often contain personal data: driver names, vehicle license plates, GPS locations tied to individuals, and customer contact information. Under GDPR, this data must be processed and stored in accordance with the Regulation — and for organizations subject to Dutch or Belgian law, storage within the EU is strongly preferred.</p>
+          <p>All data stored via Podfy is processed in Cloudflare's EU-WEUR (Western Europe) region. No data crosses EU borders. This satisfies Dutch and Belgian GDPR data residency expectations without requiring a supplementary legal instrument (SCC).</p>
+          <p>For procurement and compliance purposes, Podfy provides a Data Processing Agreement (DPA). This is required if you process personal data of EU residents on behalf of a controller — for example, if you are a 3PL processing delivery records on behalf of shipper clients.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="audit-ready" aria-labelledby="audit-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="audit-heading">What makes a delivery record audit-ready</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step"><p class="v2-how-step-num">Element 01</p><h3>The document</h3><p>A legible copy of the signed CMR, delivery note, or photo evidence. Must be retrievable on request. Podfy stores the original uploaded file, not a re-processed version.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Element 02</p><h3>Timestamp and GPS</h3><p>The exact time of delivery and the GPS coordinates, captured at the moment of upload. These establish that the document was created at the delivery point at a specific time — not fabricated after the fact.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Element 03</p><h3>Reference linkage</h3><p>The record must be linkable to the invoice and purchase order. A consistent reference system (PO number, shipment ID, or CMR number) in the upload means every record can be retrieved by the identifier your finance team uses.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Frequently asked questions</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">How long must POD documents be retained in the Netherlands and Belgium?</button><div class="v2-faq-answer"><p>7 years in both jurisdictions for commercial and financial records. CMR documents for cross-border freight have a 1-year claims window but best practice is to retain for the full 7-year period. Podfy's 7-year archive option covers both requirements.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Does Podfy store data in the EU?</button><div class="v2-faq-answer"><p>Yes. All data is stored in Cloudflare's EU-WEUR (Western Europe) region. No data leaves the EU. A Data Processing Agreement is available for organizations with formal GDPR compliance requirements.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">What counts as an audit-ready delivery record?</button><div class="v2-faq-answer"><p>An audit-ready record includes: the document itself (signed CMR or delivery note), a timestamp, GPS coordinates confirming location, and a reference linking it to the invoice or PO. All four are captured automatically in every Podfy submission.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Can Podfy records be exported for an audit package?</button><div class="v2-faq-answer"><p>Yes. Delivery records can be exported as PDFs from the portal, individually or in bulk by date range or reference prefix. This is typically what Belastingdienst or Belgian FSMA inspections require.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Is GPS-stamped digital evidence accepted in Dutch and Belgian courts?</button><div class="v2-faq-answer"><p>Generally yes for commercial disputes. GPS-stamped, timestamped digital records created by a third-party system are considered reliable evidence in Dutch and Belgian commercial proceedings. They supplement, and often replace, paper CMR originals in dispute resolution.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="guides-heading"><div class="container"><p class="v2-eyebrow">Related reading</p><h2 class="v2-section-title" id="guides-heading">Related guides</h2><div class="v2-guide-grid"><a class="v2-guide-card" href="/guides/pod-invoicing/"><span class="v2-guide-tag">Guide</span><h3 class="v2-guide-title">POD and invoicing</h3><p class="v2-guide-desc">How POD connects to invoice approval and cash flow.</p><span class="v2-guide-arrow">Read guide &rarr;</span></a><a class="v2-guide-card" href="/guides/pod-disputes/"><span class="v2-guide-tag">Guide</span><h3 class="v2-guide-title">Resolving delivery disputes</h3><p class="v2-guide-desc">When an audit trail becomes evidence in a dispute.</p><span class="v2-guide-arrow">Read guide &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-labelledby="sol-heading"><div class="container"><p class="v2-eyebrow">This affects</p><h2 class="v2-section-title" id="sol-heading">Who this is relevant for</h2><div class="v2-sol-grid"><a class="v2-sol-tile" href="/solutions/3pl/"><p class="v2-sol-tile-industry">Logistics</p><p class="v2-sol-tile-name">3PLs</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a><a class="v2-sol-tile" href="/solutions/retail/"><p class="v2-sol-tile-industry">Retail</p><p class="v2-sol-tile-name">Retail teams</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a><a class="v2-sol-tile" href="/solutions/construction/"><p class="v2-sol-tile-industry">Construction</p><p class="v2-sol-tile-name">Site deliveries</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-label="Guide hub"><div class="container"><p style="font-size:.9rem;color:var(--v2-muted);">Part of the Podfy guide series &rarr; <a href="/guides/proof-of-delivery/" class="v2-link">What is Proof of Delivery?</a></p></div></section>
+    <section class="v2-section" aria-label="Stay updated"><div class="container" style="max-width:40rem;"><div class="v2-subscribe-strip"><h3>See how Podfy is evolving</h3><p>Get release notes by email when new features ship.</p><form class="v2-subscribe-row" onsubmit="handleSubscribe(event)"><input type="email" name="email" class="v2-subscribe-input" placeholder="your@email.com" required /><button type="submit" class="v2-btn v2-btn-primary">Subscribe &rarr;</button></form><p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p></div></div></section>
+    <section class="v2-cta-block" aria-label="Get started"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">EU hosted · 7yr archive</span><h2>Audit-ready on day one.<br><em>No filing cabinets.</em></h2><p>Fifteen minutes. We will show you the portal, export function, and DPA process.</p><div class="v2-cta-actions"><a href="/contact" class="v2-btn v2-btn-primary">Book 15 minutes &rarr;</a><a href="/demo" class="v2-btn v2-btn-ghost">Try the demo first</a></div></div></section>
+  </main>
+  [[PODFY_FOOTER]]
+  <script>
+    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);const el=document.getElementById('v2-progress');if(el)el.style.width=Math.min(p*100,100)+'%';});
+    document.querySelectorAll('.v2-faq-btn').forEach(btn=>{btn.addEventListener('click',()=>btn.closest('.v2-faq-acc-item').classList.toggle('open'));});
+    async function handleSubscribe(e){e.preventDefault();const email=e.target.querySelector('[name=email]').value;const msg=document.getElementById('subscribe-msg');try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})});const d=await r.json();msg.style.display='block';msg.textContent=d.ok?'Subscribed. Thank you!':(d.error||'Something went wrong.');msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)';if(d.ok)e.target.reset();}catch{msg.style.display='block';msg.textContent='Could not subscribe right now.';}}
+  </script>
+</body>
+</html>

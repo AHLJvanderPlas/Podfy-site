@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Photo Proof of Delivery — GPS-Stamped Visual Evidence | PODFY</title>
+  <meta name="description" content="Why photo proof of delivery is the strongest dispute defence, how to document unattended deliveries and damage at handover, and what makes a photo record court-admissible." />
+  <link rel="canonical" href="https://podfy.net/guides/photo-pod/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/photo-pod/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/photo-pod/" />
+  <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
+  <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r3" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+    {"@type":"ListItem","position":2,"name":"Guides","item":"https://podfy.net/guides/"},
+    {"@type":"ListItem","position":3,"name":"Photo POD","item":"https://podfy.net/guides/photo-pod/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Does photo proof of delivery replace a signed CMR?",
+      "acceptedAnswer":{"@type":"Answer","text":"In most commercial disputes: yes, a GPS-stamped photo is more persuasive than a signed CMR because it shows the physical state of the goods at the point of delivery. However, for international road freight governed by the CMR Convention, the paper CMR document may still be legally required. Best practice is to capture both: the photo for speed and dispute defence, and the paper CMR original for formal compliance."}},
+    {"@type":"Question","name":"What should a photo proof of delivery capture?",
+      "acceptedAnswer":{"@type":"Answer","text":"At minimum: the goods at the delivery point (showing condition and quantity), any damage visible at handover, the delivery location (address sign, gate, or recognisable landmark), and — for unattended deliveries — the secure placement of the goods. The GPS coordinates and timestamp are captured automatically by Podfy at the moment the photo is taken."}},
+    {"@type":"Question","name":"How does GPS-stamping work in Podfy?",
+      "acceptedAnswer":{"@type":"Answer","text":"When the driver opens the Podfy upload link and takes a photo, the browser requests GPS coordinates at the moment the camera fires. These coordinates are attached to the upload record in the Podfy database — not embedded in the image EXIF (which can be stripped), but stored server-side with a verified timestamp. This makes the location data tamper-evident."}},
+    {"@type":"Question","name":"What is chain-of-custody photography in logistics?",
+      "acceptedAnswer":{"@type":"Answer","text":"Chain-of-custody photography means capturing the state of goods at every handover point: loading, transfer, and delivery. Each photo is timestamped and GPS-located, creating an unbroken visual record. If damage is later claimed, the chain-of-custody photos show exactly where and when it occurred — or didn't. Podfy supports multi-photo uploads per delivery reference."}},
+    {"@type":"Question","name":"Can photo POD be used for unattended deliveries?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes — this is one of the strongest use cases. For unattended deliveries (e.g. to a side gate, a parcel locker, or a construction site), a GPS-stamped photo of the goods in place is the only verifiable evidence that delivery occurred. A signed document cannot exist for an unattended handover, so photo POD becomes the primary proof."}},
+    {"@type":"Question","name":"Is photo evidence accepted in Dutch and Belgian courts for commercial disputes?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. GPS-stamped, server-timestamped photos stored by a third-party system are accepted as reliable evidence in Dutch and Belgian commercial proceedings. The key factors are: the timestamp cannot be altered retroactively, the GPS coordinates are stored independently of the image file, and the third-party system (Podfy) provides audit-exportable records."}}
+  ]}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Skip to content</a>
+  [[PODFY_HEADER]]
+  <nav class="v2-breadcrumb" aria-label="Breadcrumb"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/">PODFY</a></li><li><a href="/guides/">Guides</a></li><li aria-current="page">Photo POD</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Guide &middot; Photo Evidence</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">Photo proof of delivery.<br>Your strongest<br><em>dispute defence.</em></h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">Why GPS-stamped photos outperform signatures in commercial disputes, how to document unattended deliveries and damage at handover, and what makes photo evidence court-admissible.</p>
+      </div>
+    </section>
+    <nav class="v2-toc" aria-label="On this page"><div class="container"><ul class="v2-toc-list">
+      <li><a class="v2-toc-pill" href="#photo-vs-signature">Photo vs signature</a></li>
+      <li><a class="v2-toc-pill" href="#unattended">Unattended deliveries</a></li>
+      <li><a class="v2-toc-pill" href="#damage">Damage documentation</a></li>
+      <li><a class="v2-toc-pill" href="#chain-of-custody">Chain of custody</a></li>
+      <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+    </ul></div></nav>
+
+    <section class="v2-section" id="photo-vs-signature" aria-labelledby="phsig-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="phsig-heading">Photo vs signature: which wins in a dispute?</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>A signature on a CMR confirms that <em>someone</em> received <em>something</em> at <em>some point</em>. It does not show what condition the goods were in, whether the quantity was correct, or where exactly the handover took place. In the most common disputes — damaged goods, short delivery, wrong location — a signature answers none of the questions.</p>
+            <p>A GPS-stamped photo answers all three. It shows the physical state of the goods at the moment of delivery, the location where they were placed, and the timestamp of the handover. This is why GPS-stamped photo evidence consistently outperforms signature-only documentation in Dutch and Belgian commercial proceedings.</p>
+            <p>Signatures still have value: they demonstrate consent to receive. Best practice is to capture both — but where only one is possible (unattended delivery, subcontractor handover, no printer available), the photo is the stronger record.</p>
+          </div>
+          <div>
+            <table class="v2-comparison-table" style="margin-top:.5rem;">
+              <thead><tr><th>Evidence type</th><th class="v2-col-paper">Signature only</th><th class="v2-col-digital">GPS photo (Podfy)</th></tr></thead>
+              <tbody>
+                <tr><td>Proves delivery occurred</td><td class="v2-col-paper">Yes</td><td class="v2-col-digital">Yes</td></tr>
+                <tr><td>Shows condition of goods</td><td class="v2-col-paper">No</td><td class="v2-col-digital">Yes</td></tr>
+                <tr><td>Confirms delivery location</td><td class="v2-col-paper">No</td><td class="v2-col-digital">Yes — GPS coords</td></tr>
+                <tr><td>Works for unattended delivery</td><td class="v2-col-paper">No</td><td class="v2-col-digital">Yes</td></tr>
+                <tr><td>Works for subcontractors</td><td class="v2-col-paper">Inconsistent</td><td class="v2-col-digital">Yes — any phone</td></tr>
+                <tr><td>Tamper-evident timestamp</td><td class="v2-col-paper">No</td><td class="v2-col-digital">Yes — server-stored</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">GPS photo POD — no app required</p><p class="v2-inline-cta-text">Drivers open a link, take a photo. GPS and timestamp are captured automatically.</p></div><a href="/demo" class="v2-btn v2-btn-primary">See the demo &rarr;</a></div></div></div>
+
+    <section class="v2-section" id="unattended" aria-labelledby="unatt-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="unatt-heading">Documenting unattended deliveries</h2>
+        <div class="v2-prose">
+          <p>Unattended delivery — dropping goods at a gate, a loading bay, a parcel locker, or a construction site without a recipient present — is one of the highest-risk scenarios in last-mile logistics. There is no signature, no counter-party acknowledgement, and no way to verify delivery after the driver has left. The only evidence is what the driver captures at the moment of placement.</p>
+          <p>A GPS-stamped photo solves this completely. The photo shows the goods in place, the timestamp confirms when, and the GPS coordinates confirm where. If a receiver later claims non-delivery, the photo record answers the dispute immediately — without driver recall or paper trail reconstruction.</p>
+          <p>For construction site deliveries, this matters even more. Multiple subcontractors may access a site; goods can move between the drop and the morning shift. A timestamped photo at the moment of placement establishes what was delivered and where, before anything else touches it.</p>
+        </div>
+        <div class="v2-how-grid" style="margin-top:2rem;">
+          <div class="v2-how-step"><p class="v2-how-step-num">Capture 01</p><h3>Goods in place</h3><p>Photo shows the delivery clearly positioned at the agreed drop point. Quantity visible. No damage visible at time of placement. Location recognisable from the image.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Capture 02</p><h3>Location marker</h3><p>A second photo showing the address, gate number, bay label, or recognisable landmark confirms that the drop point matches the delivery instruction. Useful when GPS alone is insufficiently precise.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Capture 03</p><h3>Secure placement</h3><p>For high-value or weather-sensitive goods: a photo showing the goods protected (under cover, secured, or locked in a designated area) supports the driver's duty-of-care and limits liability for post-delivery damage.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="damage" aria-labelledby="damage-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="damage-heading">Damage and condition documentation at handover</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>Damage claims are the most expensive delivery disputes. The question is always the same: was the damage present at the time of delivery, or did it occur afterwards? Without photo evidence at handover, neither party can answer this definitively — and the dispute defaults to the party with the more credible argument.</p>
+            <p>Photo documentation at handover shifts this entirely. If goods arrive damaged, the driver photographs the damage before unloading. If goods arrive undamaged, the photo confirms their condition at delivery. Either way, the record is created at the moment that matters.</p>
+            <p><strong>For drivers:</strong> photographing damage protects against false claims. A GPS-stamped photo of damaged packaging, taken before the goods enter the receiver's premises, establishes that the damage was visible at handover and the driver reported it correctly.</p>
+            <p><strong>For shippers and 3PLs:</strong> condition photos at every handover point allow damage to be attributed to the correct leg of the journey — carrier transit, final delivery, or post-delivery handling. This is critical for insurance claims and carrier liability disputes under the CMR Convention.</p>
+          </div>
+          <div>
+            <ul class="v2-check-list" style="margin-top:.5rem;">
+              <li>Photograph damage before unloading — establishes pre-delivery state</li>
+              <li>Capture packaging condition, not just contents</li>
+              <li>Multiple angles for significant damage</li>
+              <li>Annotate with delivery issue code in Podfy (damage / shortage / refusal)</li>
+              <li>GPS timestamp cannot be backdated — tamper-evident record</li>
+              <li>Photo + issue code triggers automatic notification to shipper in Podfy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="chain-of-custody" aria-labelledby="coc-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="coc-heading">Chain-of-custody photography</h2>
+        <div class="v2-prose">
+          <p>In multi-leg shipments — warehouse to cross-dock, cross-dock to final delivery — damage can occur at any transfer point. Without photo evidence at each handover, it is impossible to attribute responsibility. The carrier at the end of the chain bears the claim, even if the damage occurred earlier.</p>
+          <p>Chain-of-custody photography means capturing the state of goods at every handover: outbound loading, inbound receiving at each depot, and final delivery. Each photo record is GPS-stamped and timestamped, creating an unbroken visual audit trail.</p>
+          <p>Podfy supports multiple photo uploads per reference. A shipment can have an outbound loading photo, a transit transfer photo, and a final delivery photo — all linked by the same PO number or CMR reference. If a damage claim arises, the chain of photos shows exactly where condition changed.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Frequently asked questions</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Does photo proof of delivery replace a signed CMR?</button><div class="v2-faq-answer"><p>In most commercial disputes: yes. A GPS-stamped photo is more persuasive because it shows the physical state of goods and location at delivery — things a signature doesn't capture. For international CMR compliance, the paper CMR may still be legally required. Best practice: capture both, use the photo for disputes.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">What should a photo proof of delivery capture?</button><div class="v2-faq-answer"><p>At minimum: goods at the delivery point (condition and quantity visible), any damage present at handover, and the delivery location. For unattended deliveries: secure placement of the goods. GPS and timestamp are captured automatically by Podfy at the moment of upload.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">How does GPS-stamping work in Podfy?</button><div class="v2-faq-answer"><p>When the driver opens the Podfy link and uploads, the browser captures GPS coordinates at that moment. These are stored server-side — not in the image EXIF, which can be stripped — with a verified timestamp. The location data is tamper-evident and exportable for audit purposes.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Can photo POD be used for unattended deliveries?</button><div class="v2-faq-answer"><p>Yes — this is one of the strongest use cases. A GPS-stamped photo of goods placed at an unattended drop point is the only verifiable evidence of delivery when no signature is possible. Construction sites, side gates, parcel lockers, and out-of-hours drops all benefit from photo POD.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">What is chain-of-custody photography?</button><div class="v2-faq-answer"><p>Capturing the state of goods at every handover point in a multi-leg shipment: loading, transfer, and final delivery. Each photo is GPS-timestamped and linked to the same reference. If damage is claimed, the chain of photos shows where and when it occurred — or proves it didn't happen during your leg.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Is photo evidence accepted in Dutch and Belgian courts?</button><div class="v2-faq-answer"><p>Yes, for commercial disputes. GPS-stamped, server-timestamped photos from a third-party system are accepted as reliable evidence in Dutch and Belgian commercial proceedings. The key factors: the timestamp is stored server-side (not in the image), GPS coordinates are independently verified, and Podfy provides exportable audit records.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="guides-heading"><div class="container"><p class="v2-eyebrow">Related reading</p><h2 class="v2-section-title" id="guides-heading">Related guides</h2><div class="v2-guide-grid"><a class="v2-guide-card" href="/guides/pod-disputes/"><span class="v2-guide-tag">Guide</span><h3 class="v2-guide-title">Resolving delivery disputes</h3><p class="v2-guide-desc">When photo evidence becomes the deciding factor in a dispute.</p><span class="v2-guide-arrow">Read guide &rarr;</span></a><a class="v2-guide-card" href="/guides/missing-pod/"><span class="v2-guide-tag">Guide</span><h3 class="v2-guide-title">Missing proof of delivery</h3><p class="v2-guide-desc">What to do when the delivery record was never captured.</p><span class="v2-guide-arrow">Read guide &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-labelledby="sol-heading"><div class="container"><p class="v2-eyebrow">This affects</p><h2 class="v2-section-title" id="sol-heading">Who this is relevant for</h2><div class="v2-sol-grid"><a class="v2-sol-tile" href="/solutions/carriers/"><p class="v2-sol-tile-industry">Transport</p><p class="v2-sol-tile-name">Carriers</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a><a class="v2-sol-tile" href="/solutions/retail/"><p class="v2-sol-tile-industry">Retail</p><p class="v2-sol-tile-name">Retail teams</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a><a class="v2-sol-tile" href="/solutions/construction/"><p class="v2-sol-tile-industry">Construction</p><p class="v2-sol-tile-name">Site deliveries</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-label="Guide hub"><div class="container"><p style="font-size:.9rem;color:var(--v2-muted);">Part of the Podfy guide series &rarr; <a href="/guides/proof-of-delivery/" class="v2-link">What is Proof of Delivery?</a></p></div></section>
+    <section class="v2-section" aria-label="Stay updated"><div class="container" style="max-width:40rem;"><div class="v2-subscribe-strip"><h3>See how Podfy is evolving</h3><p>Get release notes by email when new features ship.</p><form class="v2-subscribe-row" onsubmit="handleSubscribe(event)"><input type="email" name="email" class="v2-subscribe-input" placeholder="your@email.com" required /><button type="submit" class="v2-btn v2-btn-primary">Subscribe &rarr;</button></form><p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p></div></div></section>
+    <section class="v2-cta-block" aria-label="Get started"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">GPS stamped · No app</span><h2>Photo evidence that holds up.<br><em>From any phone.</em></h2><p>Drivers open a link, take a photo. GPS and timestamp captured. No app to install.</p><div class="v2-cta-actions"><a href="/contact" class="v2-btn v2-btn-primary">Book 15 minutes &rarr;</a><a href="/demo" class="v2-btn v2-btn-ghost">Try the demo first</a></div></div></section>
+  </main>
+  [[PODFY_FOOTER]]
+  <script>
+    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);const el=document.getElementById('v2-progress');if(el)el.style.width=Math.min(p*100,100)+'%';});
+    document.querySelectorAll('.v2-faq-btn').forEach(btn=>{btn.addEventListener('click',()=>btn.closest('.v2-faq-acc-item').classList.toggle('open'));});
+    async function handleSubscribe(e){e.preventDefault();const email=e.target.querySelector('[name=email]').value;const msg=document.getElementById('subscribe-msg');try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})});const d=await r.json();msg.style.display='block';msg.textContent=d.ok?'Subscribed. Thank you!':(d.error||'Something went wrong.');msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)';if(d.ok)e.target.reset();}catch{msg.style.display='block';msg.textContent='Could not subscribe right now.';}}</script>
+</body>
+</html>

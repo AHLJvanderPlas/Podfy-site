@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>What is Proof of Delivery? Complete Guide — PODFY</title>
+  <meta name="description" content="Proof of delivery explained in practical terms: what it is, why it fails, and how modern logistics teams collect PODs without apps or paperwork." />
+  <link rel="canonical" href="https://podfy.net/guides/proof-of-delivery/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/proof-of-delivery/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/proof-of-delivery/" />
+  <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
+  <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r3" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+      {"@type":"ListItem","position":2,"name":"Guides","item":"https://podfy.net/guides/"},
+      {"@type":"ListItem","position":3,"name":"What is Proof of Delivery?","item":"https://podfy.net/guides/proof-of-delivery/"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"What is proof of delivery (POD)?",
+        "acceptedAnswer":{"@type":"Answer","text":"Proof of delivery is the evidence that a shipment was completed and received. It can be a signed delivery note, a CMR document, a photo of delivered goods, a GPS-stamped timestamp, or a combination. The right format depends on your dispute risk and customer requirements."}},
+      {"@type":"Question","name":"Do drivers need an app to provide proof of delivery?",
+        "acceptedAnswer":{"@type":"Answer","text":"No. With Podfy, drivers use a browser link — no app install, no account, no training. This makes POD collection reliable for subcontractors, temp staff, and mixed device environments."}},
+      {"@type":"Question","name":"What can count as proof of delivery?",
+        "acceptedAnswer":{"@type":"Answer","text":"Proof of delivery can be a signed delivery note, a CMR, a photo of the delivered goods, a GPS-stamped timestamp, or a digital record of all of these together. The key requirement is that the proof identifies what was delivered, where, and when."}},
+      {"@type":"Question","name":"Can inbound or receiving teams register deliveries too?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. Inbound teams can use the same link-based workflow to upload delivery documents when carriers arrive at the dock. This creates a consistent record even when drivers change or suppliers use different processes."}},
+      {"@type":"Question","name":"Where is proof of delivery stored?",
+        "acceptedAnswer":{"@type":"Answer","text":"Podfy stores delivery documents centrally so office teams can search and retrieve them by reference, date, or driver. All data is hosted in Cloudflare's EU-WEUR region for GDPR compliance."}},
+      {"@type":"Question","name":"Is Podfy suitable for audits and disputes?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. Central storage with GPS timestamps and timestamped uploads means you can respond to 'not delivered', shortage, or damage claims in seconds rather than days. The portal makes it simple to retrieve the right document without searching email or shared drives."}},
+      {"@type":"Question","name":"How quickly are documents available after delivery?",
+        "acceptedAnswer":{"@type":"Answer","text":"As soon as the upload completes, the document is in the portal. This eliminates the typical 3–5 day gap when paper CMRs travel back with the driver or in the post."}},
+      {"@type":"Question","name":"Can Podfy replace a TMS, WMS, or ERP?",
+        "acceptedAnswer":{"@type":"Answer","text":"No. Podfy focuses on delivery documentation intake and retrieval. It is designed to complement existing systems, not replace them — keeping implementation lightweight while improving operational reliability."}}
+    ]
+  }
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Skip to content</a>
+  [[PODFY_HEADER]]
+
+  <nav class="v2-breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="v2-breadcrumb-list">
+        <li><a href="/">PODFY</a></li>
+        <li><a href="/guides/">Guides</a></li>
+        <li aria-current="page">What is Proof of Delivery?</li>
+      </ol>
+    </div>
+  </nav>
+
+  <main id="main" class="v2-main">
+
+    <!-- HERO -->
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Guide &middot; Proof of Delivery Hub</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:40rem;">
+          What is proof of delivery?<br>
+          <em>The complete guide.</em>
+        </h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">
+          Everything logistics, transport, and receiving teams need to understand about POD: what it is, why it breaks down in practice, and how modern operations collect it without apps or paper chasing.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOC -->
+    <nav class="v2-toc" aria-label="On this page">
+      <div class="container">
+        <ul class="v2-toc-list">
+          <li><a class="v2-toc-pill" href="#what-is-pod">What is POD?</a></li>
+          <li><a class="v2-toc-pill" href="#why-it-matters">Why it matters</a></li>
+          <li><a class="v2-toc-pill" href="#pod-types">POD types</a></li>
+          <li><a class="v2-toc-pill" href="#where-it-fails">Where it fails</a></li>
+          <li><a class="v2-toc-pill" href="#modern-pod">Modern POD</a></li>
+          <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- CONTENT: WHAT IS POD -->
+    <section class="v2-section" id="what-is-pod" aria-labelledby="what-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="what-heading">What is proof of delivery?</h2>
+        <div class="v2-prose">
+          <p>Proof of delivery (POD) is any document or record that confirms a shipment was delivered to the correct recipient, at the correct location, at a specific time. In physical freight and logistics, a POD is the evidence you use when a customer says the delivery never arrived, a driver disputes a timestamp, or an auditor asks for records.</p>
+          <p>The most common form is a signed delivery note or CMR document: the consignee signs that they received the goods, and a copy goes back to the shipper or carrier. In practice, getting that signed copy back in a useful, searchable format is where most operations fail.</p>
+          <p>Modern proof of delivery adds GPS coordinates, a timestamp, and optionally a photo of the goods at the delivery point — all captured on the driver's phone and transferred to a central record before the truck leaves the yard.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT: WHY IT MATTERS -->
+    <section class="v2-section" id="why-it-matters" aria-labelledby="why-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="why-heading">Why proof of delivery matters</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>Without POD, three things go wrong:</p>
+            <p><strong>Invoice disputes.</strong> Finance teams cannot issue or approve invoices for deliveries that have no confirmed receipt. A missing CMR can hold up a €40,000 invoice for weeks while everyone chases paper.</p>
+            <p><strong>Claims exposure.</strong> If a customer reports goods as undelivered, damaged, or short-shipped, you have no evidence to respond with. The longer the gap between delivery and the claim, the harder it is to reconstruct what actually happened.</p>
+            <p><strong>Audit gaps.</strong> Regulatory environments in many EU countries require delivery records to be retained for 5–7 years. Paper-based systems make this almost impossible to maintain consistently.</p>
+          </div>
+          <div>
+            <ul class="v2-check-list">
+              <li>Faster invoice approval — no POD gap</li>
+              <li>Claims resolved in minutes, not weeks</li>
+              <li>GPS + timestamp removes date disputes</li>
+              <li>7-year audit-ready archive on EU infrastructure</li>
+              <li>Searchable by reference, route, or date</li>
+              <li>Works for subcontractors with no training</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT: POD TYPES -->
+    <section class="v2-section" id="pod-types" aria-labelledby="types-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="types-heading">Types of proof of delivery</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Paper POD</p>
+            <h3>Signed delivery note / CMR</h3>
+            <p>The consignee signs a paper document at delivery. The driver keeps one copy and returns one to the office — usually days later. Blurry WhatsApp photos and lost documents are common failure modes.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Digital POD</p>
+            <h3>Link-based photo upload</h3>
+            <p>Driver opens a browser link, photographs the signed CMR or delivery note, and taps send. GPS coordinates and timestamp are captured at that moment. The stamped PDF is in the portal within seconds.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">App-based POD</p>
+            <h3>Driver app with signature capture</h3>
+            <p>Requires the driver to install and maintain an app. Works well for employed, fixed-route drivers but breaks down for subcontractors, temp staff, and multi-carrier operations where each carrier uses a different app.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEFORE/AFTER -->
+    <section class="v2-section" aria-label="Before and after comparison">
+      <div class="container">
+        <h2 class="v2-section-title">Paper vs digital POD: what changes</h2>
+        <div class="v2-contrast-strip">
+          <div class="v2-contrast-before">
+            <p class="v2-contrast-label">Paper process</p>
+            <ul class="v2-contrast-list">
+              <li>Driver keeps signed CMR in the cab</li>
+              <li>Office calls to chase after 3–5 days</li>
+              <li>WhatsApp photo, wrong orientation, illegible</li>
+              <li>Someone re-keys the reference manually</li>
+              <li>Invoice goes on hold</li>
+              <li>Customer still disputes the date</li>
+            </ul>
+          </div>
+          <div class="v2-contrast-divider" aria-hidden="true"></div>
+          <div class="v2-contrast-after">
+            <p class="v2-contrast-label">Digital POD (Podfy)</p>
+            <ul class="v2-contrast-list">
+              <li>Driver uploads at the gate via link</li>
+              <li>Office gets notification within seconds</li>
+              <li>Stamped PDF with GPS and timestamp</li>
+              <li>Reference captured on upload</li>
+              <li>Invoice ready same day</li>
+              <li>GPS timestamp closes the date dispute</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT: WHERE IT FAILS -->
+    <section class="v2-section" id="where-it-fails" aria-labelledby="fails-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="fails-heading">Where proof of delivery breaks down</h2>
+        <div class="v2-prose">
+          <p>Most POD failures are not driver problems — they are process problems. The four root causes:</p>
+          <p><strong>The return loop.</strong> Paper documents travel with the driver and only reach the office when the driver returns to the depot. Routes with multi-day turnarounds can mean a 5-day gap between delivery and POD receipt.</p>
+          <p><strong>No-app blockers.</strong> Requiring drivers to install and maintain an app creates a hard failure mode with subcontractors, temporary drivers, and anyone using an older phone. Completion rates drop below 60% in mixed-driver operations that require app installs.</p>
+          <p><strong>The reference gap.</strong> If the POD doesn't include the exact reference your finance team uses, the record is useless for invoice approval. Manual re-entry creates errors and takes time.</p>
+          <p><strong>Unstructured storage.</strong> Email inboxes and shared drives are not searchable delivery archives. Finding a specific POD for a dispute two months later takes hours — if it can be found at all.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INLINE CTA -->
+    <div class="v2-inline-cta">
+      <div class="container">
+        <div class="v2-inline-cta-inner">
+          <div>
+            <p class="v2-inline-cta-label">See it in action</p>
+            <p class="v2-inline-cta-text">A driver uploads a CMR in 11 seconds. Watch the live demo.</p>
+          </div>
+          <a href="/demo" class="v2-btn v2-btn-primary">Try the demo &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT: MODERN POD -->
+    <section class="v2-section" id="modern-pod" aria-labelledby="modern-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="modern-heading">How modern POD works</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">01 — Dispatch</p>
+            <h3>One link per shipment</h3>
+            <p>A unique URL is generated per delivery reference. It can be included in a dispatch message via WhatsApp, SMS, or TMS. The driver doesn't need to register anything.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">02 — At the gate</p>
+            <h3>Photo or file upload</h3>
+            <p>The driver opens the link, photographs the signed CMR or delivery note, and taps send. GPS coordinates are captured at the moment the camera fires — not when the upload completes. Works offline; queues for upload when signal returns.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">03 — Centrally</p>
+            <h3>Stamped PDF in the portal</h3>
+            <p>The document is processed, GPS-stamped, and available in the Podfy portal within seconds. Your team receives an email notification. The record is searchable by reference, date, driver, or route — immediately.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO THIS AFFECTS -->
+    <section class="v2-section" aria-labelledby="who-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="who-heading">Which teams this affects</h2>
+        <p class="v2-muted-sm" style="margin-bottom:0;">Find your use case and see how Podfy fits your operation.</p>
+        <div class="v2-audience-grid">
+          <a class="v2-audience-tile" href="/solutions/carriers/">
+            <p class="v2-audience-industry">Transport</p>
+            <h3 class="v2-audience-role">Carriers</h3>
+            <p class="v2-audience-quote">"My subcontractors won't install an app."</p>
+          </a>
+          <a class="v2-audience-tile" href="/solutions/3pl/">
+            <p class="v2-audience-industry">Logistics</p>
+            <h3 class="v2-audience-role">3PLs</h3>
+            <p class="v2-audience-quote">"We manage 12 carrier partners and need one standard."</p>
+          </a>
+          <a class="v2-audience-tile" href="/solutions/shippers/">
+            <p class="v2-audience-industry">Supply chain</p>
+            <h3 class="v2-audience-role">Shippers</h3>
+            <p class="v2-audience-quote">"We receive from 40 suppliers on different processes."</p>
+          </a>
+          <a class="v2-audience-tile" href="/solutions/retail/">
+            <p class="v2-audience-industry">Retail</p>
+            <h3 class="v2-audience-role">Retail teams</h3>
+            <p class="v2-audience-quote">"We need POD at the store level, not just DC."</p>
+          </a>
+          <a class="v2-audience-tile" href="/solutions/construction/">
+            <p class="v2-audience-industry">Construction</p>
+            <h3 class="v2-audience-role">Site deliveries</h3>
+            <p class="v2-audience-quote">"The supplier's invoice says 12 loads. We counted 11."</p>
+          </a>
+          <a class="v2-audience-tile" href="/solutions/facilities/">
+            <p class="v2-audience-industry">Facilities</p>
+            <h3 class="v2-audience-role">Facilities teams</h3>
+            <p class="v2-audience-quote">"Deliveries come to 30 buildings. Nothing is centralized."</p>
+          </a>
+          <a class="v2-audience-tile" href="/solutions/inbound/">
+            <p class="v2-audience-industry">Operations</p>
+            <h3 class="v2-audience-role">Inbound &amp; receiving</h3>
+            <p class="v2-audience-quote">"Our dock staff sign for everything but nothing is searchable."</p>
+          </a>
+          <a class="v2-audience-tile" href="/solutions/digitize/">
+            <p class="v2-audience-industry">Digitization</p>
+            <h3 class="v2-audience-role">Paper to digital</h3>
+            <p class="v2-audience-quote">"We still run on paper and WhatsApp. We need to change."</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Frequently asked questions</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">What is proof of delivery (POD)?</button>
+            <div class="v2-faq-answer"><p>Proof of delivery is the evidence that a shipment was completed and received. It can be a signed delivery note, a CMR document, a photo of delivered goods, a GPS-stamped timestamp, or a combination. The right format depends on your dispute risk and customer requirements.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Do drivers need an app to provide proof of delivery?</button>
+            <div class="v2-faq-answer"><p>No. With Podfy, drivers use a browser link — no app install, no account, no training. This makes POD collection reliable for subcontractors, temp staff, and mixed-device environments where app installation is impractical.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">What can count as proof of delivery?</button>
+            <div class="v2-faq-answer"><p>Proof of delivery can be a signed delivery note, a CMR, a photo of the delivered goods, a GPS-stamped timestamp, or a digital record combining all of these. The key requirement is that the proof identifies what was delivered, where, and when.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Can inbound or receiving teams register deliveries too?</button>
+            <div class="v2-faq-answer"><p>Yes. Inbound teams can use the same link-based workflow to upload delivery documents when carriers arrive at the dock. This creates a consistent record even when drivers change or suppliers use different processes.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">How quickly are documents available after delivery?</button>
+            <div class="v2-faq-answer"><p>As soon as the upload completes, the document is in the portal and your team receives an email notification. This eliminates the typical 3–5 day gap when paper CMRs travel back with the driver.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Is Podfy suitable for audits and disputes?</button>
+            <div class="v2-faq-answer"><p>Yes. Central storage with GPS timestamps means you can respond to 'not delivered', shortage, or damage claims in seconds rather than days. All records are stored in Cloudflare's EU-WEUR region, GDPR-aligned and available for 7-year retention.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Can Podfy replace a TMS, WMS, or ERP?</button>
+            <div class="v2-faq-answer"><p>No. Podfy focuses on delivery documentation intake and retrieval. It is designed to complement existing systems by making POD collection simple and consistent across carriers, suppliers, sites, and stores.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED GUIDES -->
+    <section class="v2-section" aria-labelledby="guides-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Related reading</p>
+        <h2 class="v2-section-title" id="guides-heading">Dive deeper</h2>
+        <div class="v2-guide-grid">
+          <a class="v2-guide-card" href="/guides/missing-pod/">
+            <span class="v2-guide-tag">Guide</span>
+            <h3 class="v2-guide-title">What to do when a POD goes missing</h3>
+            <p class="v2-guide-desc">Recovery steps, root causes, and how to prevent it happening again.</p>
+            <span class="v2-guide-arrow">Read guide &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/guides/pod-disputes/">
+            <span class="v2-guide-tag">Guide</span>
+            <h3 class="v2-guide-title">Resolving delivery disputes with POD evidence</h3>
+            <p class="v2-guide-desc">How to handle not-delivered, shortage, and damage claims systematically.</p>
+            <span class="v2-guide-arrow">Read guide &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/guides/pod-without-app/">
+            <span class="v2-guide-tag">Guide</span>
+            <h3 class="v2-guide-title">Proof of delivery without an app</h3>
+            <p class="v2-guide-desc">Why app-based POD fails in mixed-driver environments and what works instead.</p>
+            <span class="v2-guide-arrow">Read guide &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBSCRIBE -->
+    <section class="v2-section" aria-label="Stay updated">
+      <div class="container" style="max-width:40rem;">
+        <div class="v2-subscribe-strip">
+          <h3>See how Podfy is evolving</h3>
+          <p>Get release notes by email when new features ship.</p>
+          <form class="v2-subscribe-row" id="subscribe-form" onsubmit="handleSubscribe(event)">
+            <input type="hidden" name="hp_sub" value="" id="hp_sub" style="display:none;" />
+            <input type="email" name="email" class="v2-subscribe-input" placeholder="your@email.com" required />
+            <button type="submit" class="v2-btn v2-btn-primary">Subscribe &rarr;</button>
+          </form>
+          <p id="subscribe-msg" style="display:none;font-size:.85rem;color:var(--v2-delivered);margin-top:.5rem;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="v2-cta-block" aria-label="Get started">
+      <div class="container">
+        <span class="v2-stamp-mark" aria-hidden="true">No app · EU hosted</span>
+        <h2>Ready to collect POD<br>on <em>every delivery?</em></h2>
+        <p>Fifteen minutes. We will show you the upload flow, the portal, and the PDF output.</p>
+        <div class="v2-cta-actions">
+          <a href="/contact" class="v2-btn v2-btn-primary">Book 15 minutes &rarr;</a>
+          <a href="/demo" class="v2-btn v2-btn-ghost">Try the demo first</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script>
+    // Reading progress
+    window.addEventListener('scroll', () => {
+      const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const el = document.getElementById('v2-progress');
+      if (el) el.style.width = Math.min(p * 100, 100) + '%';
+    });
+    // TOC scroll spy
+    const pills = document.querySelectorAll('.v2-toc-pill');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          pills.forEach(p => p.classList.remove('active'));
+          const active = document.querySelector('.v2-toc-pill[href="#' + e.target.id + '"]');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+    // FAQ accordion
+    document.querySelectorAll('.v2-faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.v2-faq-acc-item');
+        item.classList.toggle('open');
+      });
+    });
+    // Subscribe
+    async function handleSubscribe(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.querySelector('[name=email]').value;
+      const msg = document.getElementById('subscribe-msg');
+      try {
+        const r = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email, hp_sub: '' })
+        });
+        const d = await r.json();
+        msg.style.display = 'block';
+        msg.textContent = d.ok ? 'Subscribed. Thank you!' : (d.error || 'Something went wrong.');
+        msg.style.color = d.ok ? 'var(--v2-delivered)' : 'var(--v2-stamp)';
+        if (d.ok) form.reset();
+      } catch { msg.style.display = 'block'; msg.textContent = 'Could not subscribe right now.'; }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Missing Proof of Delivery — What to Do | PODFY</title>
+  <meta name="description" content="A POD is missing. Here's how to recover it, resolve the dispute, and prevent it from happening again with a structured delivery documentation process." />
+  <link rel="canonical" href="https://podfy.net/guides/missing-pod/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/missing-pod/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/missing-pod/" />
+  <link rel="stylesheet" href="/assets/styles.css?v=v2-r1" />
+  <link rel="stylesheet" href="/assets/styles.v2.css?v=v2-r3" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+    {"@type":"ListItem","position":2,"name":"Guides","item":"https://podfy.net/guides/"},
+    {"@type":"ListItem","position":3,"name":"Missing POD","item":"https://podfy.net/guides/missing-pod/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Why do proof of delivery documents go missing?",
+      "acceptedAnswer":{"@type":"Answer","text":"The most common cause is the paper return loop: signed documents travel with the driver back to depot, get separated in the cab, or are never scanned. Sub-contracted drivers, multi-leg routes, and high-turnover fleets are the highest-risk segments."}},
+    {"@type":"Question","name":"Can a missing POD be recovered after the fact?",
+      "acceptedAnswer":{"@type":"Answer","text":"Sometimes. The fastest recovery is to contact the consignee and ask for a delivery confirmation email or a signed photo if they kept a copy. If you use Podfy, the GPS-stamped upload record can serve as primary evidence even if the paper original is lost."}},
+    {"@type":"Question","name":"How long does a missing POD typically delay invoicing?",
+      "acceptedAnswer":{"@type":"Answer","text":"Typically 5–14 days for smaller operations, and longer for enterprise customers with formal dispute resolution processes. In contested cases, resolution can take 4–8 weeks."}},
+    {"@type":"Question","name":"What is the best way to prevent missing PODs?",
+      "acceptedAnswer":{"@type":"Answer","text":"Capture proof at the moment of delivery — not after the truck returns. A link-based system like Podfy captures the GPS timestamp and upload file before the driver leaves the delivery point, eliminating the return-loop failure mode entirely."}},
+    {"@type":"Question","name":"Does a GPS timestamp count as proof if the paper POD is lost?",
+      "acceptedAnswer":{"@type":"Answer","text":"In most commercial dispute contexts, yes. A GPS-stamped photo upload with a timestamp and reference number is stronger evidence than a paper signature that cannot be located. It shows location, time, and document in one record."}}
+  ]}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Skip to content</a>
+  [[PODFY_HEADER]]
+
+  <nav class="v2-breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="v2-breadcrumb-list">
+        <li><a href="/">PODFY</a></li>
+        <li><a href="/guides/">Guides</a></li>
+        <li aria-current="page">Missing POD</li>
+      </ol>
+    </div>
+  </nav>
+
+  <main id="main" class="v2-main">
+
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Guide &middot; Missing Proof of Delivery</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">
+          The POD is missing.<br>
+          <em>Here's what to do.</em>
+        </h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">
+          Recovery steps, root cause analysis, and how to prevent missing PODs from blocking invoices and escalating into disputes. Practical guidance for carriers, shippers, and inbound teams.
+        </p>
+      </div>
+    </section>
+
+    <nav class="v2-toc" aria-label="On this page">
+      <div class="container">
+        <ul class="v2-toc-list">
+          <li><a class="v2-toc-pill" href="#why-pods-go-missing">Why PODs go missing</a></li>
+          <li><a class="v2-toc-pill" href="#immediate-steps">Immediate steps</a></li>
+          <li><a class="v2-toc-pill" href="#invoice-impact">Invoice impact</a></li>
+          <li><a class="v2-toc-pill" href="#prevention">Prevention</a></li>
+          <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="v2-section" id="why-pods-go-missing" aria-labelledby="why-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="why-heading">Why proof of delivery documents go missing</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>Most POD losses trace to the same root cause: the document was created at the delivery point but had to physically travel back to the office. That journey is where things break down.</p>
+            <p><strong>The paper return loop.</strong> A driver signs the CMR at the gate, keeps a copy in the cab, and returns to depot eventually — sometimes days later, sometimes on a different vehicle, sometimes not at all if the driver changes route mid-week. The 48–120 hour gap is where the document disappears.</p>
+            <p><strong>Sub-contracted delivery segments.</strong> If a 3PL hands a shipment to a sub-carrier for the final leg, the POD process is now outside your direct control. Sub-drivers may use different systems, lose paper, or simply not return documents through your channel.</p>
+            <p><strong>Informal workarounds.</strong> WhatsApp photos of signed CMRs are common but unreliable — untagged, impossible to search, and easily missed in a busy chat thread. Email attachments go to inboxes that aren't monitored or searchable by reference.</p>
+          </div>
+          <div>
+            <ul class="v2-check-list" style="margin-top:.5rem;">
+              <li>Paper return loop: 48–120 hour delay</li>
+              <li>Sub-carrier handoffs break the document chain</li>
+              <li>WhatsApp photos — unstructured and unsearchable</li>
+              <li>Driver turnover: departing driver takes the documents</li>
+              <li>Multi-stop routes: wrong copies returned for wrong deliveries</li>
+              <li>No reference on the document: can't match to the invoice</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta">
+      <div class="container">
+        <div class="v2-inline-cta-inner">
+          <div>
+            <p class="v2-inline-cta-label">Prevent every future missing POD</p>
+            <p class="v2-inline-cta-text">Podfy captures GPS and document at the gate — before the truck moves.</p>
+          </div>
+          <a href="/demo" class="v2-btn v2-btn-primary">See the demo &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="v2-section" id="immediate-steps" aria-labelledby="steps-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="steps-heading">Immediate recovery steps</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Step 01</p>
+            <h3>Contact the driver directly</h3>
+            <p>If you know which driver handled the delivery, ask immediately. Many missing PODs are still in the cab — unsent, unfiled. Request a photo via WhatsApp as a stopgap while you arrange a formal copy.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Step 02</p>
+            <h3>Ask the consignee</h3>
+            <p>The receiving party may have their copy of the signed CMR or delivery note. A written email confirmation from the consignee stating date, time, and reference can substitute as secondary evidence in most commercial disputes.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Step 03</p>
+            <h3>Check digital records</h3>
+            <p>If you use a TMS, carrier portal, or any upload system, check for any digital record under the shipment reference. Even an incomplete or low-quality record is better than nothing when a customer disputes payment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="invoice-impact" aria-labelledby="invoice-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="invoice-heading">How missing PODs affect invoicing</h2>
+        <div class="v2-prose">
+          <p>The direct financial impact of a missing POD is an invoice put on hold. In most B2B logistics relationships, the customer's accounts payable team will not approve a freight invoice without delivery confirmation. For a carrier running €300,000/month in freight, a 5% POD gap means €15,000 in invoices are delayed at any given time.</p>
+          <p>The secondary impact is dispute escalation. A missing POD that cannot be recovered within 2 weeks typically becomes a formal dispute. Resolution involves your commercial team, the customer's procurement team, and sometimes external mediation — all for a document that cost €0 to capture digitally at the gate.</p>
+          <p>For finance teams, the metric to watch is Days Sales Outstanding (DSO). Every day a POD is missing adds to DSO for that invoice. Operations with poor POD capture rates consistently show higher DSO than the industry average.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="prevention" aria-labelledby="prev-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="prev-heading">Preventing missing PODs</h2>
+        <div class="v2-contrast-strip">
+          <div class="v2-contrast-before">
+            <p class="v2-contrast-label">Paper process</p>
+            <ul class="v2-contrast-list">
+              <li>Driver takes paper copy from gate</li>
+              <li>CMR lives in cab for days</li>
+              <li>Document return depends on driver diligence</li>
+              <li>Sub-carrier handoffs break the chain</li>
+              <li>Invoice held until document arrives</li>
+            </ul>
+          </div>
+          <div class="v2-contrast-divider" aria-hidden="true"></div>
+          <div class="v2-contrast-after">
+            <p class="v2-contrast-label">Digital (Podfy)</p>
+            <ul class="v2-contrast-list">
+              <li>Driver uploads at the gate via link</li>
+              <li>GPS-stamped record in portal within seconds</li>
+              <li>No return loop — document is already central</li>
+              <li>Works for sub-carriers — no app required</li>
+              <li>Invoice ready the same day</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Frequently asked questions</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Why do proof of delivery documents go missing?</button>
+            <div class="v2-faq-answer"><p>The most common cause is the paper return loop: signed documents travel with the driver back to depot, get separated in the cab, or are never scanned. Sub-contracted drivers, multi-leg routes, and high-turnover fleets are the highest-risk segments.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Can a missing POD be recovered after the fact?</button>
+            <div class="v2-faq-answer"><p>Sometimes. The fastest recovery is to contact the consignee for a delivery confirmation or to ask the driver for a photo from their phone. If you use Podfy, the GPS-stamped upload record serves as primary evidence even if the paper original is lost.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">How long does a missing POD typically delay invoicing?</button>
+            <div class="v2-faq-answer"><p>Typically 5–14 days for smaller operations, and longer for enterprise customers with formal AP processes. In contested cases where the POD cannot be recovered, resolution can take 4–8 weeks.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Does a GPS timestamp count as proof if the paper POD is lost?</button>
+            <div class="v2-faq-answer"><p>In most commercial dispute contexts, yes. A GPS-stamped photo upload with a timestamp and reference number is stronger evidence than a paper signature that cannot be located. It confirms location, time, and document content in one record.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">What is the best way to prevent missing PODs?</button>
+            <div class="v2-faq-answer"><p>Capture proof at the moment of delivery — before the driver leaves the gate. A link-based system like Podfy captures GPS coordinates and the upload file at the delivery point, eliminating the return-loop failure mode entirely. Works for subcontractors with no training or app install required.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="guides-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Related reading</p>
+        <h2 class="v2-section-title" id="guides-heading">Related challenges</h2>
+        <div class="v2-guide-grid">
+          <a class="v2-guide-card" href="/guides/pod-disputes/">
+            <span class="v2-guide-tag">Guide</span>
+            <h3 class="v2-guide-title">Resolving delivery disputes with POD evidence</h3>
+            <p class="v2-guide-desc">When a missing POD turns into a formal dispute — how to handle it.</p>
+            <span class="v2-guide-arrow">Read guide &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/guides/pod-invoicing/">
+            <span class="v2-guide-tag">Guide</span>
+            <h3 class="v2-guide-title">POD and invoicing: the cash flow link</h3>
+            <p class="v2-guide-desc">How missing PODs affect DSO and what finance teams can do about it.</p>
+            <span class="v2-guide-arrow">Read guide &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="sol-heading">
+      <div class="container">
+        <p class="v2-eyebrow">This affects</p>
+        <h2 class="v2-section-title" id="sol-heading">Who this is relevant for</h2>
+        <div class="v2-sol-grid">
+          <a class="v2-sol-tile" href="/solutions/carriers/"><p class="v2-sol-tile-industry">Transport</p><p class="v2-sol-tile-name">Carriers</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a>
+          <a class="v2-sol-tile" href="/solutions/shippers/"><p class="v2-sol-tile-industry">Supply chain</p><p class="v2-sol-tile-name">Shippers</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a>
+          <a class="v2-sol-tile" href="/solutions/3pl/"><p class="v2-sol-tile-industry">Logistics</p><p class="v2-sol-tile-name">3PLs</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-label="Guide hub"><div class="container"><p style="font-size:.9rem;color:var(--v2-muted);">Part of the Podfy guide series &rarr; <a href="/guides/proof-of-delivery/" class="v2-link">What is Proof of Delivery?</a></p></div></section>
+
+    <section class="v2-section" aria-label="Stay updated"><div class="container" style="max-width:40rem;"><div class="v2-subscribe-strip"><h3>See how Podfy is evolving</h3><p>Get release notes by email when new features ship.</p><form class="v2-subscribe-row" onsubmit="handleSubscribe(event)"><input type="email" name="email" class="v2-subscribe-input" placeholder="your@email.com" required /><button type="submit" class="v2-btn v2-btn-primary">Subscribe &rarr;</button></form><p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p></div></div></section>
+
+    <section class="v2-cta-block" aria-label="Get started"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">No app · EU hosted</span><h2>Stop chasing PODs.<br>Capture them <em>at the gate.</em></h2><p>Fifteen minutes. We'll show you the upload flow for your network type.</p><div class="v2-cta-actions"><a href="/contact" class="v2-btn v2-btn-primary">Book 15 minutes &rarr;</a><a href="/demo" class="v2-btn v2-btn-ghost">Try the demo first</a></div></div></section>
+
+  </main>
+  [[PODFY_FOOTER]]
+  <script>
+    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);const el=document.getElementById('v2-progress');if(el)el.style.width=Math.min(p*100,100)+'%';});
+    document.querySelectorAll('.v2-faq-btn').forEach(btn=>{btn.addEventListener('click',()=>btn.closest('.v2-faq-acc-item').classList.toggle('open'));});
+    async function handleSubscribe(e){e.preventDefault();const email=e.target.querySelector('[name=email]').value;const msg=document.getElementById('subscribe-msg');try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})});const d=await r.json();msg.style.display='block';msg.textContent=d.ok?'Subscribed. Thank you!':(d.error||'Something went wrong.');msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)';if(d.ok)e.target.reset();}catch{msg.style.display='block';msg.textContent='Could not subscribe right now.';}}
+  </script>
+</body>
+</html>
