@@ -1227,3 +1227,12 @@ html[data-theme="dark"] .v2-receipt {
 .v2-sol-tile-industry { font-family: var(--v2-font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--v2-muted); }
 .v2-sol-tile-name { font-weight: 700; font-size: .975rem; }
 .v2-sol-tile-arrow { font-family: var(--v2-font-mono); font-size: .72rem; color: var(--v2-stamp); margin-top: auto; }
+
+/* ── Audience selector grid (solutions/index.html) ───────────────────────── */
+.v2-aud-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+.v2-aud-tile { display: flex; flex-direction: column; gap: .35rem; padding: 1.4rem 1.5rem; border: 1px solid var(--v2-line); border-radius: var(--v2-radius); background: var(--v2-card); text-decoration: none; color: var(--v2-ink); transition: border-color .12s, box-shadow .12s; }
+.v2-aud-tile:hover { border-color: var(--v2-stamp); box-shadow: 0 2px 12px color-mix(in srgb, var(--v2-stamp) 10%, transparent); }
+.v2-aud-tile-industry { font-family: var(--v2-font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--v2-muted); }
+.v2-aud-tile-name { font-weight: 700; font-size: 1.05rem; font-family: var(--v2-font-serif); }
+.v2-aud-tile-desc { font-size: .875rem; color: var(--v2-muted); line-height: 1.5; flex: 1; margin-top: .2rem; }
+.v2-aud-tile-arrow { font-family: var(--v2-font-mono); font-size: .72rem; color: var(--v2-stamp); margin-top: .75rem; }
