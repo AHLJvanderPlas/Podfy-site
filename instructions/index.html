@@ -429,7 +429,7 @@ git push origin qa
 
   <!-- ── 10. COMPANIES VIEWER ── -->
   <h2 id="companies">10. Companies &amp; themes viewer</h2>
-  <p>Loads live from <code>https://podfy.app/themes.json</code>. Shows all customer slugs with their brand settings. Color values are rendered with their actual colour as the cell background. Logo, favicon and mailTo columns are hidden.</p>
+  <p>Loads live from <code>https://podfy.app/api/brands</code> (D1-backed). Shows all customer slugs with their brand settings. Color values are rendered with their actual colour as the cell background. Logo, email_recipients and notes_internal columns are hidden.</p>
 
   <div class="tool-box">
     <div class="co-toolbar">
@@ -558,7 +558,7 @@ git push origin qa
     });
     return out;
   }
-  var CO_HIDDEN = new Set(["logo","favicon","mailTo","__logoAbs","__faviconAbs"]);
+  var CO_HIDDEN = new Set(["logo","favicon","mailTo","__logoAbs","__faviconAbs","email_recipients","notes_internal"]);
   function renderCompanies() {
     var q = (document.getElementById("co-search")?.value||"").toLowerCase();
     var rows = _companies.filter(r=>JSON.stringify(r).toLowerCase().includes(q));
@@ -588,7 +588,7 @@ git push origin qa
   async function loadCompanies() {
     document.getElementById("co-status").textContent = "Loading…";
     try {
-      var r = await fetch("https://podfy.app/themes.json",{headers:{"Accept":"application/json"}});
+      var r = await fetch("https://podfy.app/api/brands",{headers:{"Accept":"application/json"}});
       if(!r.ok) throw new Error(r.status+" "+r.statusText);
       var json = await r.json();
       _companies = Array.isArray(json)
