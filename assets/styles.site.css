@@ -1280,3 +1280,138 @@ html[data-theme="dark"] .v2-receipt {
   #v2-progress   { transition: none !important; }
   .v2-faq-answer { transition: none !important; }
 }
+
+/* ============================================================
+   /demo page additions — v2-demo-* only, tokens only
+   ============================================================ */
+
+.v2-demo-step-block { margin-top: 1.75rem; }
+
+/* 4.1 Reference launcher */
+.v2-demo-launcher { display: flex; gap: 0.5rem; align-items: stretch; }
+.v2-demo-launcher input {
+  flex: 1; min-width: 0;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--v2-line);
+  background: var(--v2-card);
+  color: var(--v2-ink);
+  border-radius: var(--v2-radius);
+  font-family: var(--v2-font-mono);
+  font-size: 0.85rem;
+}
+.v2-demo-launcher input:focus {
+  outline: 2px solid var(--v2-stamp);
+  outline-offset: 1px;
+}
+.v2-demo-launcher-meta {
+  margin: 0.4rem 0 0;
+  font-family: var(--v2-font-mono);
+  font-size: 0.72rem;
+  color: var(--v2-muted);
+}
+
+/* 4.2 Inline tip */
+.v2-demo-tip {
+  margin-top: 0.85rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--v2-line);
+  background: var(--v2-card);
+  border-radius: var(--v2-radius);
+}
+.v2-demo-tip-tag {
+  font-family: var(--v2-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--v2-stamp);
+  margin: 0 0 0.25rem;
+}
+.v2-demo-tip p { margin: 0; font-size: 0.85rem; line-height: 1.6; color: var(--v2-ink-2); }
+
+/* 4.3 QR toggle + drawer */
+.v2-demo-qr-toggle { margin-top: 1rem; }
+.v2-demo-qr {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--v2-line);
+  background: var(--v2-card);
+  border-radius: var(--v2-radius);
+}
+.v2-demo-qr[hidden] { display: none; }
+.v2-demo-qr-inner { display: flex; align-items: center; gap: 1rem; }
+.v2-demo-qr-inner img {
+  flex: 0 0 auto;
+  background: #fff;   /* QR readability — intentional, not a token */
+  padding: 6px;
+  border: 1px solid var(--v2-line);
+  border-radius: 4px;
+}
+.v2-demo-qr-cap { margin: 0; font-size: 0.85rem; color: var(--v2-muted); line-height: 1.55; }
+
+/* 4.4 Two-role grid */
+.v2-demo-roles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+@media (max-width: 720px) { .v2-demo-roles { grid-template-columns: 1fr; } }
+.v2-demo-role {
+  border: 1px solid var(--v2-line);
+  background: var(--v2-card);
+  padding: 1.5rem;
+  border-radius: var(--v2-radius);
+}
+.v2-demo-role h3 {
+  font-family: var(--v2-font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0.25rem 0 0.65rem;
+  color: var(--v2-ink);
+}
+.v2-demo-role p { margin: 0 0 0.75rem; line-height: 1.65; }
+.v2-demo-role p:last-of-type { margin-bottom: 0; }
+.v2-demo-role-tag {
+  font-family: var(--v2-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+  margin: 0 0 0.4rem;
+}
+.v2-demo-role-meta { font-family: var(--v2-font-mono); font-size: 0.72rem; color: var(--v2-muted); margin-top: 0.5rem; }
+
+/* 4.5 "You'll see:" line on each step */
+.v2-demo-script-expect {
+  margin-top: 0.85rem !important;
+  padding-top: 0.65rem;
+  border-top: 1px dashed var(--v2-line-2);
+  font-family: var(--v2-font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  color: var(--v2-muted);
+}
+.v2-demo-script-expect::before { content: "\2192\00A0\00A0"; color: var(--v2-stamp); font-weight: 500; }
+
+/* 4.6 Real / Placeholder disclaimer */
+.v2-demo-disclaimer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--v2-line);
+  background: var(--v2-card);
+  border-radius: var(--v2-radius);
+  margin-top: 1.5rem;
+}
+@media (max-width: 720px) { .v2-demo-disclaimer { grid-template-columns: 1fr; gap: 1.25rem; } }
+.v2-demo-disclaimer-tag {
+  font-family: var(--v2-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 0.65rem;
+}
+.v2-demo-disclaimer-tag[data-tone="real"]        { color: var(--v2-delivered); }
+.v2-demo-disclaimer-tag[data-tone="placeholder"] { color: var(--v2-stamp); }
+.v2-demo-disclaimer .v2-check-list[data-style="x"] li::before { content: "\2717"; color: var(--v2-stamp); }

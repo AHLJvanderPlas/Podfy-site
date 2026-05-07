@@ -1,9 +1,14 @@
 <!doctype html>
 <!-- i18n:strings
   title: Try PODFY — Live Demo
-  h1-line1: See what a driver sees.
-  h1-line2: Then see what your <em>office sees.</em>
-  cta-primary: Open the demo upload
+  eyebrow: Live demo · No sign-up · ~30 seconds
+  h1-line1: You are the driver.
+  h1-line2: You are also
+  h1-stamp: the office.
+  hero-sub: Open the link below on your phone, photograph any document, and watch the stamped, GPS-located PDF arrive in the delivery portal — exactly the way a real driver and a real dispatcher experience it.
+  step-01-eyebrow: Step 01 · Open the driver upload form
+  cta-primary: Open upload →
+  cta-qr: Or scan QR with your phone
 -->
 <html lang="en">
 <head>
@@ -33,7 +38,7 @@
   <link rel="alternate" hreflang="en" href="https://podfy.net/demo" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/demo" />
 
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
   <script src="/assets/theme.js" defer></script>
 </head>
 
@@ -43,49 +48,58 @@
 
   <main id="main" class="v2-main">
 
-    <!-- HERO -->
+    <!-- ══ 1. HERO ══ -->
     <section class="v2-aud-hero" aria-labelledby="demo-heading">
       <div class="container">
         <div class="v2-hero-grid">
 
           <div>
-            <p class="v2-eyebrow">Try the product · No sign-up</p>
+            <p class="v2-eyebrow">Live demo · No sign-up · ~30 seconds</p>
             <h1 class="v2-hero-title" id="demo-heading">
-              See what a driver sees.<br>
-              Then see what your<br>
-              <em>office sees.</em>
+              You are the driver.<br>
+              You are also<br>
+              <span class="v2-hero-stamp">the office.</span>
             </h1>
             <p class="v2-hero-sub">
-              A real upload link. A real delivery portal. No sign-up, no setup — the whole loop in under 30 seconds.
+              Open the link below on your phone, photograph any document, and watch the
+              stamped, GPS-located PDF arrive in the delivery portal — exactly the way a
+              real driver and a real dispatcher experience it.
             </p>
 
-            <!-- ── STEP 1: Upload ── -->
-            <div style="margin-top:1.75rem;">
-              <p style="margin:0 0 .5rem;font-family:var(--v2-font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--v2-muted);">Step 1 &mdash; Open the driver upload form</p>
-              <div style="display:flex;gap:.5rem;align-items:stretch;">
-                <input id="demo-ref-input" type="text" maxlength="40" placeholder="Reference (optional)"
-                       style="flex:1;min-width:0;padding:.6rem .75rem;border:1px solid var(--v2-border);border-radius:4px;font-size:.85rem;font-family:var(--v2-font-mono);background:var(--v2-surface,#fff);color:var(--v2-ink);" />
-                <a id="demo-link-hero" href="https://podfy.app/demo" target="_blank" rel="noreferrer" class="v2-btn v2-btn-primary" data-demo-link style="white-space:nowrap;">
-                  Open upload &rarr;
-                </a>
+            <!-- Step 01 — launcher -->
+            <div class="v2-demo-step-block">
+              <p class="v2-eyebrow">Step 01 · Open the driver upload form</p>
+              <div class="v2-demo-launcher">
+                <input id="demo-ref-input" type="text" maxlength="40"
+                       placeholder="Reference (optional)" />
+                <a id="demo-link-hero" href="https://podfy.app/demo"
+                   target="_blank" rel="noreferrer"
+                   class="v2-btn v2-btn-primary" data-demo-link>Open upload &rarr;</a>
               </div>
-              <p style="margin:.4rem 0 0;font-size:.75rem;color:var(--v2-muted);">
-                Type a reference to pre-fill it on the form &nbsp;&middot;&nbsp; link: <code id="demo-url-preview">podfy.app/demo</code>
+              <p class="v2-demo-launcher-meta">
+                Type a reference to pre-fill it on the form &middot; link: <code id="demo-url-preview">podfy.app/demo</code>
               </p>
-              <div style="margin-top:.85rem;padding:.7rem 1rem;border-left:3px solid var(--v2-accent,#D24A1F);border-radius:4px;background:var(--v2-surface);font-size:.8rem;color:var(--v2-ink);line-height:1.65;">
-                <strong>Want your confirmation email?</strong> Fill in the <em>Copy Email</em> field on the upload form with your own address — you'll receive a real PDF confirmation.
-              </div>
-            </div>
 
-            <!-- ── STEP 2: Portal ── -->
-            <div style="margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--v2-border);">
-              <p style="margin:0 0 .5rem;font-family:var(--v2-font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--v2-muted);">Step 2 &mdash; Watch it arrive in the delivery portal</p>
-              <p style="margin:0 0 1rem;font-size:.9rem;color:var(--v2-ink);line-height:1.65;">
-                Open the portal in a separate tab before or after uploading. Your POD appears within seconds — stamped, GPS-labelled, and ready to download.
-              </p>
-              <a href="https://delivery.podfy.net/" target="_blank" rel="noreferrer" class="v2-btn v2-btn-ghost">
-                Open delivery portal &rarr;
-              </a>
+              <aside class="v2-demo-tip">
+                <p class="v2-demo-tip-tag">Tip · Real email</p>
+                <p>Fill in <em>Copy Email</em> on the upload form with your address — you'll get the same branded PDF a real driver receives.</p>
+              </aside>
+
+              <!-- QR drawer -->
+              <button type="button" id="demo-qr-toggle"
+                      class="v2-btn v2-btn-ghost v2-demo-qr-toggle"
+                      aria-controls="demo-qr" aria-expanded="false">
+                Or scan QR with your phone
+              </button>
+              <div class="v2-demo-qr" id="demo-qr" hidden>
+                <div class="v2-demo-qr-inner">
+                  <img id="demo-qr-img" src="/assets/demo-qr.svg"
+                       alt="QR code linking to podfy.app/demo" width="128" height="128" />
+                  <p class="v2-demo-qr-cap">
+                    Scan with your phone camera. Opens <code>podfy.app/demo</code>. Nothing to install.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -125,7 +139,41 @@
       </div>
     </section>
 
-    <!-- WHAT YOU WILL DO -->
+    <!-- ══ 2. TRUST BELT ══ -->
+    <div class="v2-trust-belt">
+      <div class="container">
+        <ul class="v2-trust-list">
+          <li class="v2-trust-item">11s median upload</li>
+          <li class="v2-trust-item">No app, no account</li>
+          <li class="v2-trust-item">EU-WEUR storage</li>
+          <li class="v2-trust-item">Demo data auto-deletes in 24 h</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ══ 3. TWO-ROLE EXPLAINER ══ -->
+    <section class="v2-section" aria-labelledby="roles-heading">
+      <div class="container">
+        <p class="v2-eyebrow">How the demo works</p>
+        <h2 class="v2-section-title" id="roles-heading">You play both sides.</h2>
+        <div class="v2-demo-roles">
+          <article class="v2-demo-role">
+            <p class="v2-demo-role-tag">Role 01 · You, on your phone</p>
+            <h3>The driver</h3>
+            <p>Open the upload link, point the camera at any document — a coffee receipt is fine — and tap send. That's the driver's full job.</p>
+            <p class="v2-demo-role-meta">Uses: your phone camera · GPS, if you allow it</p>
+          </article>
+          <article class="v2-demo-role">
+            <p class="v2-demo-role-tag">Role 02 · You, on this screen</p>
+            <h3>The dispatcher</h3>
+            <p>Switch to the delivery portal in another tab and watch the stamped PDF appear with reference, GPS, and timestamp — the record an operations team would search by tomorrow.</p>
+            <p class="v2-demo-role-meta">Uses: this browser · same EU storage as production</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 4. FOUR-STEP SCRIPT ══ -->
     <section class="v2-section" aria-labelledby="steps-heading">
       <div class="container">
         <h2 class="v2-section-title" id="steps-heading">The full loop in four steps</h2>
@@ -133,85 +181,97 @@
 
           <div class="v2-how-step">
             <p class="v2-how-step-num">01 — Driver side</p>
-            <h3>Open the driver link on your phone</h3>
-            <p>Type an optional reference number and tap <em>Open upload</em>. You will see the upload page a driver sees — your brand, one button, no login. Photograph any document: a delivery note, this page, your hand.</p>
+            <h3>Open the driver upload form</h3>
+            <p>Type an optional reference number above and tap <em>Open upload</em>. You will see the upload page a driver sees — one button, no login. Photograph any document: a delivery note, this page, your hand.</p>
+            <p class="v2-demo-script-expect">You'll see: a one-button camera screen branded with the demo slug.</p>
           </div>
 
           <div class="v2-how-step">
             <p class="v2-how-step-num">02 — Submit</p>
             <h3>Tap send</h3>
             <p>Your location is requested when you tap send — if you grant permission, GPS coordinates are added to the stamp. Enter a reference number if you like, or leave it blank. The upload completes in seconds on a standard 4G connection.</p>
+            <p class="v2-demo-script-expect">You'll see: an upload-progress line, then a "Sent" confirmation.</p>
           </div>
 
           <div class="v2-how-step">
             <p class="v2-how-step-num">03 — Office side</p>
             <h3>Watch it arrive in the portal</h3>
-            <p>Open the delivery portal link above in a separate tab (or on a desktop). Your upload appears within seconds, with the timestamp, GPS label, and a downloadable stamped PDF.</p>
+            <p>Open the <a href="https://delivery.podfy.net" target="_blank" rel="noreferrer" class="v2-link">delivery portal</a> in a separate tab. Your upload appears within seconds, with the timestamp, GPS label, and a downloadable stamped PDF.</p>
+            <p class="v2-demo-script-expect">You'll see: a fresh row in the portal — reference, GPS, timestamp, downloadable PDF.</p>
           </div>
 
           <div class="v2-how-step">
             <p class="v2-how-step-num">04 — Driver side</p>
             <h3>Driver gets their own copy</h3>
-            <p>If the driver fills in the <strong>Copy Email</strong> field at upload, they receive a branded PDF confirmation automatically — their personal record of the delivery. For this demo, fill in your own email there to see the full flow. Drivers can also view their history at <a href="https://delivery.podfy.net" target="_blank" rel="noreferrer" class="v2-link">delivery.podfy.net</a> via magic link.</p>
+            <p>If you filled in the <em>Copy Email</em> field at upload, a branded PDF confirmation arrives at your address — the same record a real driver receives and can access again at <a href="https://delivery.podfy.net" target="_blank" rel="noreferrer" class="v2-link">delivery.podfy.net</a> via magic link.</p>
+            <p class="v2-demo-script-expect">You'll see: a branded confirmation email arrive at the address you entered.</p>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- SEND TO PHONE -->
-    <section class="v2-section" aria-labelledby="mobile-heading">
+    <!-- ══ 5. REAL / PLACEHOLDER ══ -->
+    <section class="v2-section" aria-labelledby="real-heading">
       <div class="container">
-        <div class="v2-two-col">
+        <p class="v2-eyebrow">Honest about the demo</p>
+        <h2 class="v2-section-title" id="real-heading">What's real, what's a placeholder.</h2>
+        <div class="v2-demo-disclaimer">
           <div>
-            <h2 class="v2-section-title" id="mobile-heading">Try it on a real phone</h2>
-            <div class="v2-prose">
-              <p>
-                The upload experience is designed for a driver's phone, not a desktop browser. For the most realistic demo, open the driver link on your mobile device.
-              </p>
-              <p>
-                <strong>On your phone:</strong> tap the "Open the driver link" button above. Your phone's camera will open. Photograph anything — the screen in front of you counts.
-              </p>
-              <p>
-                <strong>On a desktop:</strong> open the driver link in this browser, allow camera access when prompted, and use your webcam to capture a document.
-              </p>
-            </div>
+            <p class="v2-demo-disclaimer-tag" data-tone="real">Real</p>
+            <ul class="v2-check-list">
+              <li>EU-WEUR storage and stamping flow</li>
+              <li>The PDF the office receives</li>
+              <li>GPS, timestamp, and the magic-link history view</li>
+            </ul>
           </div>
-          <div style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
-            <a id="demo-link-phone" href="https://podfy.app/demo" target="_blank" rel="noreferrer" data-demo-link
-               class="v2-btn v2-btn-primary"
-               style="display:inline-flex;align-items:center;gap:.75rem;padding:.85rem 1.5rem;font-size:1rem;"
-               aria-label="Open Podfy demo upload on your phone">
-              <img src="/assets/podfy.svg" alt="" width="60" height="17" aria-hidden="true" style="filter:brightness(0) invert(1);" />
-              Open upload &rarr;
-            </a>
-            <p style="font-size:.8rem;color:var(--v2-muted);font-family:var(--v2-font-mono);">podfy.app/demo &nbsp;·&nbsp; no sign-up</p>
+          <div>
+            <p class="v2-demo-disclaimer-tag" data-tone="placeholder">Placeholder</p>
+            <ul class="v2-check-list" data-style="x">
+              <li>The branded slug (your real customer slug differs)</li>
+              <li>Any uploaded image — auto-deleted within 24 hours</li>
+              <li>Email notifications outside the <em>Copy Email</em> field</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- AUDIENCE SELECTOR -->
-    <section class="v2-section" aria-labelledby="demo-aud-heading">
+    <!-- ══ 6. FAQ ══ -->
+    <section class="v2-section" aria-labelledby="faq-heading">
       <div class="container">
-        <p class="v2-eyebrow">Your operation</p>
-        <h2 class="v2-section-title" id="demo-aud-heading">See how it fits your role</h2>
-        <div class="v2-sol-grid">
-          <a class="v2-sol-tile" href="/solutions/carriers/"><p class="v2-sol-tile-industry">Transport</p><p class="v2-sol-tile-name">Carriers</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a>
-          <a class="v2-sol-tile" href="/solutions/3pl/"><p class="v2-sol-tile-industry">Logistics</p><p class="v2-sol-tile-name">3PLs</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a>
-          <a class="v2-sol-tile" href="/solutions/shippers/"><p class="v2-sol-tile-industry">Procurement</p><p class="v2-sol-tile-name">Shippers</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a>
-          <a class="v2-sol-tile" href="/solutions/retail/"><p class="v2-sol-tile-industry">Retail</p><p class="v2-sol-tile-name">Retail teams</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a>
-          <a class="v2-sol-tile" href="/solutions/construction/"><p class="v2-sol-tile-industry">Construction</p><p class="v2-sol-tile-name">Site deliveries</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a>
-          <a class="v2-sol-tile" href="/solutions/digitize/"><p class="v2-sol-tile-industry">Digitisation</p><p class="v2-sol-tile-name">Paper to digital</p><span class="v2-sol-tile-arrow">See solution &rarr;</span></a>
+        <p class="v2-eyebrow">Questions</p>
+        <h2 class="v2-section-title" id="faq-heading">Frequently asked</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Do I have to install anything?</button>
+            <div class="v2-faq-answer"><p>No. The upload form runs in your phone's browser — no app, no account, no download. The delivery portal is also a browser link.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">What happens to the document I upload?</button>
+            <div class="v2-faq-answer"><p>It is stored on EU-WEUR infrastructure under the demo slug and auto-deleted within 24 hours. It is never used for training or shared outside your session.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Will the photograph be visible to anyone else?</button>
+            <div class="v2-faq-answer"><p>The demo slug is public, so anyone with the portal link can see recent demo uploads. Do not upload anything confidential — use a blank sheet or a non-sensitive document instead.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Can I use my real CMR?</button>
+            <div class="v2-faq-answer"><p>Technically yes, but we recommend against it — the demo portal is not access-controlled. Use a placeholder document; the stamping and portal flow are identical.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">How is this different from a 15-minute walkthrough?</button>
+            <div class="v2-faq-answer"><p>The DIY demo uses a shared slug with no branding. A 15-minute walkthrough runs the same loop with your actual slug, your logo, and a reference from your real operations — so you see exactly what your drivers and dispatchers would see.</p></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- ══ 7. BOTTOM CTA ══ -->
     <section class="v2-cta-block" aria-label="Book a walkthrough">
       <div class="container">
         <span class="v2-stamp-mark" aria-hidden="true">30 seconds to first POD</span>
-        <h2>Want a walkthrough with<br>your own <em>reference numbers?</em></h2>
+        <h2>Want a walkthrough with<br>your own <span class="v2-hero-stamp">reference numbers?</span></h2>
         <p>We will run the full loop using your slug, your branding, and a reference from your actual operations. Takes 15 minutes.</p>
         <div class="v2-cta-actions">
           <a href="/contact" class="v2-btn v2-btn-primary">Book 15 minutes &rarr;</a>
@@ -225,19 +285,40 @@
 
   <script>
     (function () {
-      const BASE = 'https://podfy.app/demo';
-      const input   = document.getElementById('demo-ref-input');
-      const preview = document.getElementById('demo-url-preview');
-      const links   = document.querySelectorAll('[data-demo-link]');
+      var BASE    = 'https://podfy.app/demo';
+      var input   = document.getElementById('demo-ref-input');
+      var preview = document.getElementById('demo-url-preview');
+      var links   = document.querySelectorAll('[data-demo-link]');
       if (!input) return;
+
       function update() {
-        const ref = input.value.replace(/[^A-Za-z0-9._-]/g, '').slice(0, 40);
-        const url = ref ? BASE + '/' + encodeURIComponent(ref) : BASE;
+        var ref = input.value.replace(/[^A-Za-z0-9._-]/g, '').slice(0, 40);
+        var url = ref ? BASE + '/' + encodeURIComponent(ref) : BASE;
         if (preview) preview.textContent = url.replace('https://', '');
         links.forEach(function (a) { a.href = url; });
       }
       input.addEventListener('input', update);
+
+      // QR drawer toggle
+      var qrBtn = document.getElementById('demo-qr-toggle');
+      var qrBox = document.getElementById('demo-qr');
+      if (qrBtn && qrBox) {
+        qrBtn.addEventListener('click', function () {
+          var open = !qrBox.hasAttribute('hidden');
+          if (open) { qrBox.setAttribute('hidden', ''); qrBtn.setAttribute('aria-expanded', 'false'); }
+          else      { qrBox.removeAttribute('hidden');  qrBtn.setAttribute('aria-expanded', 'true'); }
+        });
+      }
     })();
+
+    // FAQ accordion
+    document.querySelectorAll('.v2-faq-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.v2-faq-acc-item');
+        var open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
   </script>
 </body>
 </html>
