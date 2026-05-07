@@ -56,12 +56,26 @@
               <em>office sees.</em>
             </h1>
             <p class="v2-hero-sub">
-              Open a real Podfy upload link on your phone, photograph any document, and watch the stamped and GPS-located PDF appear in the delivery portal. The whole loop in under 30 seconds.
+              Open a real Podfy upload link on your phone, photograph any document, and watch the stamped PDF appear in the delivery portal. GPS is added if you grant location permission. The whole loop in under 30 seconds.
             </p>
             <div class="v2-hero-actions">
-              <!-- TODO: confirm the demo slug at podfy.app — replace /demo with the actual slug if different -->
-              <a href="https://podfy.app/demo" target="_blank" rel="noreferrer" class="v2-btn v2-btn-primary">Open the driver link &rarr;</a>
+              <a id="demo-link-hero" href="https://podfy.app/demo" target="_blank" rel="noreferrer" class="v2-btn v2-btn-primary" data-demo-link>Open the driver link &rarr;</a>
               <a href="https://delivery.podfy.net/" target="_blank" rel="noreferrer" class="v2-btn v2-btn-ghost">Open the portal</a>
+            </div>
+
+            <!-- Reference pre-fill -->
+            <div style="margin-top:1.25rem;">
+              <p style="margin:0 0 .4rem;font-family:var(--v2-font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--v2-muted);">Optional: add a reference number</p>
+              <input id="demo-ref-input" type="text" maxlength="40" placeholder="e.g. CMR-2024-001"
+                     style="width:100%;box-sizing:border-box;padding:.5rem .75rem;border:1px solid var(--v2-border);border-radius:4px;font-size:.85rem;font-family:var(--v2-font-mono);background:var(--v2-surface,#fff);color:var(--v2-ink);" />
+              <p style="margin:.35rem 0 0;font-size:.75rem;color:var(--v2-muted);">Pre-fills the reference on the upload form. Link: <code id="demo-url-preview">podfy.app/demo</code></p>
+            </div>
+
+            <!-- Email callout -->
+            <div style="margin-top:1rem;padding:.75rem 1rem;border:1px solid var(--v2-border);border-left:3px solid var(--v2-accent,#D24A1F);border-radius:4px;background:var(--v2-surface);">
+              <p style="margin:0;font-size:.8rem;color:var(--v2-ink);line-height:1.65;">
+                <strong>Want a real confirmation email?</strong> Fill in the <em>Copy Email</em> field on the upload form with your own address. The demo uses the driver email flow — you'll receive an actual PDF confirmation.
+              </p>
             </div>
           </div>
 
@@ -116,7 +130,7 @@
           <div class="v2-how-step">
             <p class="v2-how-step-num">02 — Submit</p>
             <h3>Tap send</h3>
-            <p>GPS coordinates are captured the moment you tap. Enter a reference number if you like, or leave it blank for the demo. The upload completes in seconds on a standard 4G connection.</p>
+            <p>Your location is requested when you tap send — if you grant permission, GPS coordinates are added to the stamp. Enter a reference number if you like, or leave it blank. The upload completes in seconds on a standard 4G connection.</p>
           </div>
 
           <div class="v2-how-step">
@@ -128,7 +142,7 @@
           <div class="v2-how-step">
             <p class="v2-how-step-num">04 — Driver side</p>
             <h3>Driver gets their own copy</h3>
-            <p>If the driver enters their email at upload, they receive a branded PDF confirmation automatically — their personal record of the delivery. They can also view their own delivery history at <a href="https://delivery.podfy.net" target="_blank" rel="noreferrer" class="v2-link">delivery.podfy.net</a> via magic link.</p>
+            <p>If the driver fills in the <strong>Copy Email</strong> field at upload, they receive a branded PDF confirmation automatically — their personal record of the delivery. For this demo, fill in your own email there to see the full flow. Drivers can also view their history at <a href="https://delivery.podfy.net" target="_blank" rel="noreferrer" class="v2-link">delivery.podfy.net</a> via magic link.</p>
           </div>
 
         </div>
@@ -154,7 +168,7 @@
             </div>
           </div>
           <div style="display:flex;flex-direction:column;gap:1rem;justify-content:center;">
-            <a href="https://podfy.app/demo" target="_blank" rel="noreferrer"
+            <a id="demo-link-phone" href="https://podfy.app/demo" target="_blank" rel="noreferrer" data-demo-link
                class="v2-btn v2-btn-primary"
                style="display:inline-flex;align-items:center;gap:.75rem;padding:.85rem 1.5rem;font-size:1rem;"
                aria-label="Open Podfy demo upload on your phone">
@@ -198,5 +212,22 @@
   </main>
 
   [[PODFY_FOOTER]]
+
+  <script>
+    (function () {
+      const BASE = 'https://podfy.app/demo';
+      const input   = document.getElementById('demo-ref-input');
+      const preview = document.getElementById('demo-url-preview');
+      const links   = document.querySelectorAll('[data-demo-link]');
+      if (!input) return;
+      function update() {
+        const ref = input.value.replace(/[^A-Za-z0-9._-]/g, '').slice(0, 40);
+        const url = ref ? BASE + '/' + encodeURIComponent(ref) : BASE;
+        if (preview) preview.textContent = url.replace('https://', '');
+        links.forEach(function (a) { a.href = url; });
+      }
+      input.addEventListener('input', update);
+    })();
+  </script>
 </body>
 </html>
