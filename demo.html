@@ -56,26 +56,36 @@
               <em>office sees.</em>
             </h1>
             <p class="v2-hero-sub">
-              Open a real Podfy upload link on your phone, photograph any document, and watch the stamped PDF appear in the delivery portal. GPS is added if you grant location permission. The whole loop in under 30 seconds.
+              A real upload link. A real delivery portal. No sign-up, no setup — the whole loop in under 30 seconds.
             </p>
-            <div class="v2-hero-actions">
-              <a id="demo-link-hero" href="https://podfy.app/demo" target="_blank" rel="noreferrer" class="v2-btn v2-btn-primary" data-demo-link>Open the driver link &rarr;</a>
-              <a href="https://delivery.podfy.net/" target="_blank" rel="noreferrer" class="v2-btn v2-btn-ghost">Open the portal</a>
-            </div>
 
-            <!-- Reference pre-fill -->
-            <div style="margin-top:1.25rem;">
-              <p style="margin:0 0 .4rem;font-family:var(--v2-font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--v2-muted);">Optional: add a reference number</p>
-              <input id="demo-ref-input" type="text" maxlength="40" placeholder="e.g. CMR-2024-001"
-                     style="width:100%;box-sizing:border-box;padding:.5rem .75rem;border:1px solid var(--v2-border);border-radius:4px;font-size:.85rem;font-family:var(--v2-font-mono);background:var(--v2-surface,#fff);color:var(--v2-ink);" />
-              <p style="margin:.35rem 0 0;font-size:.75rem;color:var(--v2-muted);">Pre-fills the reference on the upload form. Link: <code id="demo-url-preview">podfy.app/demo</code></p>
-            </div>
-
-            <!-- Email callout -->
-            <div style="margin-top:1rem;padding:.75rem 1rem;border:1px solid var(--v2-border);border-left:3px solid var(--v2-accent,#D24A1F);border-radius:4px;background:var(--v2-surface);">
-              <p style="margin:0;font-size:.8rem;color:var(--v2-ink);line-height:1.65;">
-                <strong>Want a real confirmation email?</strong> Fill in the <em>Copy Email</em> field on the upload form with your own address. The demo uses the driver email flow — you'll receive an actual PDF confirmation.
+            <!-- ── STEP 1: Upload ── -->
+            <div style="margin-top:1.75rem;">
+              <p style="margin:0 0 .5rem;font-family:var(--v2-font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--v2-muted);">Step 1 &mdash; Open the driver upload form</p>
+              <div style="display:flex;gap:.5rem;align-items:stretch;">
+                <input id="demo-ref-input" type="text" maxlength="40" placeholder="Reference (optional)"
+                       style="flex:1;min-width:0;padding:.6rem .75rem;border:1px solid var(--v2-border);border-radius:4px;font-size:.85rem;font-family:var(--v2-font-mono);background:var(--v2-surface,#fff);color:var(--v2-ink);" />
+                <a id="demo-link-hero" href="https://podfy.app/demo" target="_blank" rel="noreferrer" class="v2-btn v2-btn-primary" data-demo-link style="white-space:nowrap;">
+                  Open upload &rarr;
+                </a>
+              </div>
+              <p style="margin:.4rem 0 0;font-size:.75rem;color:var(--v2-muted);">
+                Type a reference to pre-fill it on the form &nbsp;&middot;&nbsp; link: <code id="demo-url-preview">podfy.app/demo</code>
               </p>
+              <div style="margin-top:.85rem;padding:.7rem 1rem;border-left:3px solid var(--v2-accent,#D24A1F);border-radius:4px;background:var(--v2-surface);font-size:.8rem;color:var(--v2-ink);line-height:1.65;">
+                <strong>Want your confirmation email?</strong> Fill in the <em>Copy Email</em> field on the upload form with your own address — you'll receive a real PDF confirmation.
+              </div>
+            </div>
+
+            <!-- ── STEP 2: Portal ── -->
+            <div style="margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--v2-border);">
+              <p style="margin:0 0 .5rem;font-family:var(--v2-font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--v2-muted);">Step 2 &mdash; Watch it arrive in the delivery portal</p>
+              <p style="margin:0 0 1rem;font-size:.9rem;color:var(--v2-ink);line-height:1.65;">
+                Open the portal in a separate tab before or after uploading. Your POD appears within seconds — stamped, GPS-labelled, and ready to download.
+              </p>
+              <a href="https://delivery.podfy.net/" target="_blank" rel="noreferrer" class="v2-btn v2-btn-ghost">
+                Open delivery portal &rarr;
+              </a>
             </div>
           </div>
 
@@ -124,7 +134,7 @@
           <div class="v2-how-step">
             <p class="v2-how-step-num">01 — Driver side</p>
             <h3>Open the driver link on your phone</h3>
-            <p>Click the button above (or scan the QR below on a second device). You will see the upload page a driver sees — your brand, one button, no login. Photograph any document: a delivery note, this page, your hand.</p>
+            <p>Type an optional reference number and tap <em>Open upload</em>. You will see the upload page a driver sees — your brand, one button, no login. Photograph any document: a delivery note, this page, your hand.</p>
           </div>
 
           <div class="v2-how-step">
@@ -173,7 +183,7 @@
                style="display:inline-flex;align-items:center;gap:.75rem;padding:.85rem 1.5rem;font-size:1rem;"
                aria-label="Open Podfy demo upload on your phone">
               <img src="/assets/podfy.svg" alt="" width="60" height="17" aria-hidden="true" style="filter:brightness(0) invert(1);" />
-              Open driver link &rarr;
+              Open upload &rarr;
             </a>
             <p style="font-size:.8rem;color:var(--v2-muted);font-family:var(--v2-font-mono);">podfy.app/demo &nbsp;·&nbsp; no sign-up</p>
           </div>
