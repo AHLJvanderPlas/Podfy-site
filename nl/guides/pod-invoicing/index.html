@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>POD en facturatie — Hoe bewijs van aflevering de cashflow beïnvloedt | PODFY</title>
+  <meta name="description" content="Hoe ontbrekend of vertraagd bewijs van aflevering factuurgoedkeuring blokkeert, de DSO verhoogt en wat financiële en operationele teams eraan kunnen doen." />
+  <link rel="canonical" href="https://podfy.net/nl/guides/pod-invoicing/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/pod-invoicing/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/guides/pod-invoicing/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/pod-invoicing/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+    {"@type":"ListItem","position":2,"name":"Gidsen","item":"https://podfy.net/nl/guides/"},
+    {"@type":"ListItem","position":3,"name":"POD en facturatie","item":"https://podfy.net/nl/guides/pod-invoicing/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Waarom hebben logistieke bedrijven POD nodig voordat ze een factuur uitsturen?",
+      "acceptedAnswer":{"@type":"Answer","text":"De meeste B2B-klanten keuren een vrachtfactuur niet goed zonder leveringsbevestiging. De POD is de trigger die de factuur verplaatst van 'in behandeling' naar 'betaalbaar'. Zonder POD staat de factuur in betwisting, ongeacht of de levering is voltooid."}},
+    {"@type":"Question","name":"Hoe beïnvloedt een ontbrekende POD de Days Sales Outstanding (DSO)?",
+      "acceptedAnswer":{"@type":"Answer","text":"Elke factuur in de wacht verhoogt de DSO. Een vervoerder met een POD-gat van 5% en gemiddelde betalingstermijnen van 30 dagen kan een effectieve DSO van 35–45 dagen verwachten op de betrokken facturen. Voor een bedrijf dat €300.000/maand factureert, vertegenwoordigt dit €45.000–75.000 aan vertraagde vorderingen."}},
+    {"@type":"Question","name":"Kunnen we een factuur uitsturen voordat de POD is ontvangen?",
+      "acceptedAnswer":{"@type":"Answer","text":"U kunt de factuur uitsturen, maar het crediteurenteam van de klant zal hem waarschijnlijk in de wacht zetten totdat de POD is verstrekt. De vertraging verplaatsen stroomafwaarts versnelt de betaling niet."}},
+    {"@type":"Question","name":"Wat is de snelste manier om dezelfde dag POD te krijgen voor facturatie?",
+      "acceptedAnswer":{"@type":"Answer","text":"Leg het vast bij aflevering. Met Podfy uploadt de chauffeur via een browserlink bij de poort — het GPS-gestempelde document staat binnen seconden in het portal en de factuurtrigger is dezelfde dag beschikbaar, niet 3–5 dagen later."}},
+    {"@type":"Question","name":"Hoe bereken ik de kosten van mijn POD-gat?",
+      "acceptedAnswer":{"@type":"Answer","text":"Neem uw gemiddelde dagelijkse omzet, vermenigvuldig met uw geschatte POD-gat percentage en vermenigvuldig met gemiddelde vertragingsdagen. Voorbeeld: €10.000 gemiddelde dagelijkse facturering × 5% gat × 7 vertragingsdagen = €3.500 in werkkapitaal per week vastgehouden door ontbrekende POD's."}}
+  ]}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Naar inhoud</a>
+  [[PODFY_HEADER]]
+  <nav class="v2-breadcrumb" aria-label="Kruimelpad"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/nl/">PODFY</a></li><li><a href="/nl/guides/">Gidsen</a></li><li aria-current="page">POD en facturatie</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Gids &middot; POD en financiën</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">Geen POD.<br>Geen factuurgoedkeuring.<br><em>Zo eenvoudig is het.</em></h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">Hoe ontbrekend bewijs van aflevering de cashflow stagneert, de DSO verhoogt en wat financiële en operationele teams kunnen doen om de hoofdoorzaak te verhelpen — niet alleen individuele documenten na te jagen.</p>
+      </div>
+    </section>
+    <nav class="v2-toc" aria-label="Op deze pagina"><div class="container"><ul class="v2-toc-list">
+      <li><a class="v2-toc-pill" href="#pod-invoice-link">POD en facturatie</a></li>
+      <li><a class="v2-toc-pill" href="#dso-impact">DSO-impact</a></li>
+      <li><a class="v2-toc-pill" href="#calculate">Bereken uw gat</a></li>
+      <li><a class="v2-toc-pill" href="#fix">Fix de hoofdoorzaak</a></li>
+      <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+    </ul></div></nav>
+
+    <section class="v2-section" id="pod-invoice-link" aria-labelledby="link-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="link-heading">Hoe POD verbonden is met factuurgoedkeuring</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>In de meeste B2B-logistieke relaties is het POD-document de trigger voor factuurbetaling. Het crediteurenteam van de klant keurt een vrachtfactuur niet goed totdat zij ontvangst kunnen bevestigen. Dit is geen bureaucratische keuze — het is standaard inkoopbeleid bij de meeste middelgrote en grote ondernemingen.</p>
+            <p>Voor de vervoerder of leverancier creëert dit een directe afhankelijkheid: u kunt pas betaald worden wanneer u aflevering kunt bewijzen. Hoe sneller u bewijs kunt leveren, hoe sneller u betaald krijgt. Een POD-vertraging van 5 dagen is een cashflow-vertraging van 5 dagen — consistent, op elke betrokken factuur.</p>
+            <p><strong>De POD is geen administratief overheadwerk. Het is de betalingstrigger.</strong></p>
+          </div>
+          <div>
+            <ul class="v2-check-list" style="margin-top:.5rem;">
+              <li>De meeste enterprise AP-teams vereisen POD voor goedkeuring</li>
+              <li>48–72 uur POD-SLA's zijn gebruikelijk in logistieke contracten</li>
+              <li>Ontbrekende POD = factuur in de wacht, ongeacht leveringsstatus</li>
+              <li>Elke dag vertraging verhoogt de DSO</li>
+              <li>Betwiste facturen duren 4–8 weken om op te lossen</li>
+              <li>Financiële teams verliezen zicht: zijn facturen vastgehouden of kwijtgeraakt?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Trigger facturen dezelfde dag</p><p class="v2-inline-cta-text">Chauffeur uploadt bij de poort. POD is gereed voordat de factuur wordt verzonden.</p></div><a href="/nl/demo" class="v2-btn v2-btn-primary">Bekijk de demo &rarr;</a></div></div></div>
+
+    <section class="v2-section" id="dso-impact" aria-labelledby="dso-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="dso-heading">De DSO-impact van een POD-gat</h2>
+        <div class="v2-prose">
+          <p>Days Sales Outstanding (DSO) meet hoe lang het duurt van het uitsturen van een factuur tot het ontvangen van de betaling. Een POD-gat — waarbij een percentage van de leveringen geen bevestigd bewijs heeft — creëert een systematische DSO-inflatie die in de meeste boekhoudsystemen onzichtbaar is totdat u ernaar zoekt.</p>
+          <p>Voorbeeld: een vervoerder met €300.000/maand omzet, 5% POD-gat en 30-daagse betalingstermijnen heeft doorgaans €7.500–€15.000 aan facturen in de wacht specifiek vanwege ontbrekende POD's. Dit is werkkapitaal dat op uw rekening zou kunnen staan.</p>
+          <p>De verborgen kosten zijn niet alleen de vertraagde betaling — het is ook de tijd die uw financieel team besteedt aan het individueel najagen van gevallen, het risico dat factuurgeschillen escaleren tot afschrijvingen, en de klantrelatiespanning van klanten herhaaldelijk te vragen facturen goed te keuren zonder volledige documentatie.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="calculate" aria-labelledby="calc-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="calc-heading">Bereken de kosten van uw POD-gat</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step"><p class="v2-how-step-num">Input 01</p><h3>Gemiddelde dagelijkse facturering</h3><p>Neem uw maandelijkse vrachtomzet en deel door werkdagen. Voorbeeld: €300.000/maand ÷ 22 dagen = €13.600/dag gemiddelde facturering.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Input 02</p><h3>POD-gat percentage</h3><p>Welk percentage van uw leveringen heeft momenteel geen bevestigd bewijs? Zelfs 3–5% is significant. Routes met veel onderaannemers lopen typisch 10–20%.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Resultaat</p><h3>Vastgehouden werkkapitaal</h3><p>Dagelijkse facturering × POD-gat % × gemiddelde vertragingsdagen = wekelijks werkkapitaal vastgehouden door ontbrekende POD's. Een gat van 5% bij 7 dagen vertraging = 2,5% van de wekelijkse omzet vastgehouden.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="fix" aria-labelledby="fix-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="fix-heading">De hoofdoorzaak verhelpen, niet de symptomen</h2>
+        <div class="v2-contrast-strip">
+          <div class="v2-contrast-before"><p class="v2-contrast-label">Symptoombehandeling</p><ul class="v2-contrast-list"><li>Financieel team jaagt chauffeur achteraf na</li><li>Dispatchteam belt geadresseerde voor bevestiging</li><li>Handmatige e-mails naar AP om ontbrekende documenten uit te leggen</li><li>Factuur gedeeltelijk in de wacht in afwachting van volledige POD</li><li>Hetzelfde probleem herhaalt zich volgende week</li></ul></div>
+          <div class="v2-contrast-divider" aria-hidden="true"></div>
+          <div class="v2-contrast-after"><p class="v2-contrast-label">Hoofdoorzaak verhelpen</p><ul class="v2-contrast-list"><li>Link meegestuurd met dispatch — chauffeur uploadt bij poort</li><li>POD in portal voordat de factuur is opgesteld</li><li>Geen najagen — bewijs komt automatisch binnen</li><li>Financiën ziet volledige POD-lijst eind van de dag</li><li>Factuurgoedkeuringscyclus sluit aan bij leveringscyclus</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Veelgestelde vragen</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Waarom hebben logistieke bedrijven POD nodig voor het uitsturen van een factuur?</button><div class="v2-faq-answer"><p>De meeste B2B-klanten keuren een vrachtfactuur niet goed zonder leveringsbevestiging. De POD is de trigger die de factuur van 'in behandeling' naar 'betaalbaar' verplaatst. Zonder POD staat de factuur in betwisting, ongeacht of de levering is voltooid.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Hoe beïnvloedt een ontbrekende POD de Days Sales Outstanding?</button><div class="v2-faq-answer"><p>Elke factuur in de wacht verhoogt de DSO. Een vervoerder met een POD-gat van 5% en 30-daagse betalingstermijnen kan een effectieve DSO van 35–45 dagen verwachten op betrokken facturen. Voor een bedrijf dat €300.000/maand factureert, vertegenwoordigt dit tot €75.000 aan vertraagde vorderingen op enig moment.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Kunnen we een factuur uitsturen voordat de POD is ontvangen?</button><div class="v2-faq-answer"><p>U kunt de factuur uitsturen, maar het AP-team van de klant zal hem in de wacht zetten totdat de POD is verstrekt. De vertraging stroomafwaarts plaatsen versnelt de betaling niet.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Wat is de snelste manier om dezelfde dag POD te krijgen voor facturatie?</button><div class="v2-faq-answer"><p>Leg het vast bij aflevering. Met Podfy uploadt de chauffeur bij de poort en staat het GPS-gestempelde document binnen seconden in uw portal — de factuurtrigger is dezelfde dag beschikbaar, niet 3–5 dagen later.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Hoe bereken ik de kosten van mijn POD-gat?</button><div class="v2-faq-answer"><p>Gemiddelde dagelijkse facturering × POD-gat % × gemiddelde vertragingsdagen = wekelijks werkkapitaal vastgehouden. Voorbeeld: €13.600/dag × 5% × 7 dagen = €4.760 in werkkapitaal per week vastgehouden door ontbrekende POD's.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="guides-heading"><div class="container"><p class="v2-eyebrow">Meer lezen</p><h2 class="v2-section-title" id="guides-heading">Gerelateerde problemen</h2><div class="v2-guide-grid"><a class="v2-guide-card" href="/nl/guides/pod-disputes/"><span class="v2-guide-tag">Gids</span><h3 class="v2-guide-title">Leveringsgeschillen oplossen</h3><p class="v2-guide-desc">Wanneer factuurwachttijden formele geschillen worden.</p><span class="v2-guide-arrow">Lees gids &rarr;</span></a><a class="v2-guide-card" href="/nl/guides/missing-pod/"><span class="v2-guide-tag">Gids</span><h3 class="v2-guide-title">Wat te doen als een POD ontbreekt</h3><p class="v2-guide-desc">Herstelstappen voordat het de factuur blokkeert.</p><span class="v2-guide-arrow">Lees gids &rarr;</span></a><a class="v2-guide-card" href="/nl/guides/pod-compliance/"><span class="v2-guide-tag">Gids</span><h3 class="v2-guide-title">POD-compliance en bewaartermijnen</h3><p class="v2-guide-desc">Hoe lang u POD's moet bewaren en hoe u dat efficiënt doet.</p><span class="v2-guide-arrow">Lees gids &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-labelledby="sol-heading"><div class="container"><p class="v2-eyebrow">Dit betreft</p><h2 class="v2-section-title" id="sol-heading">Voor wie dit relevant is</h2><div class="v2-sol-grid"><a class="v2-sol-tile" href="/nl/solutions/carriers/"><p class="v2-sol-tile-industry">Transport</p><p class="v2-sol-tile-name">Vervoerders</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a><a class="v2-sol-tile" href="/nl/solutions/shippers/"><p class="v2-sol-tile-industry">Supply chain</p><p class="v2-sol-tile-name">Verladers</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a><a class="v2-sol-tile" href="/nl/solutions/3pl/"><p class="v2-sol-tile-industry">Logistiek</p><p class="v2-sol-tile-name">3PL's</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-label="Gidshub"><div class="container"><p style="font-size:.9rem;color:var(--v2-muted);">Onderdeel van de Podfy-gidsenreeks &rarr; <a href="/nl/guides/proof-of-delivery/" class="v2-link">Wat is bewijs van aflevering?</a></p></div></section>
+    <section class="v2-section" aria-label="Blijf op de hoogte"><div class="container" style="max-width:40rem;"><div class="v2-subscribe-strip"><h3>Volg hoe Podfy evolueert</h3><p>Ontvang release-notities per e-mail wanneer nieuwe functies worden uitgerold.</p><form class="v2-subscribe-row" onsubmit="handleSubscribe(event)"><input type="email" name="email" class="v2-subscribe-input" placeholder="uw@email.nl" required /><button type="submit" class="v2-btn v2-btn-primary">Abonneren &rarr;</button></form><p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p></div></div></section>
+    <section class="v2-cta-block" aria-label="Aan de slag"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">Zelfde dag POD</span><h2>Factureer op de dag<br>van <em>aflevering.</em></h2><p>Demo van 15 minuten. We lopen door de facturatieworkflow en het zoeken in het portal.</p><div class="v2-cta-actions"><a href="/nl/contact" class="v2-btn v2-btn-primary">Plan 15 minuten &rarr;</a><a href="/nl/demo" class="v2-btn v2-btn-ghost">Probeer eerst de demo</a></div></div></section>
+  </main>
+  [[PODFY_FOOTER]]
+  <script>
+    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);const el=document.getElementById('v2-progress');if(el)el.style.width=Math.min(p*100,100)+'%';});
+    document.querySelectorAll('.v2-faq-btn').forEach(btn=>{btn.addEventListener('click',()=>btn.closest('.v2-faq-acc-item').classList.toggle('open'));});
+    async function handleSubscribe(e){e.preventDefault();const email=e.target.querySelector('[name=email]').value;const msg=document.getElementById('subscribe-msg');try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})});const d=await r.json();msg.style.display='block';msg.textContent=d.ok?'Geabonneerd. Dankuwel!':(d.error||'Er is iets misgegaan.');msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)';if(d.ok)e.target.reset();}catch{msg.style.display='block';msg.textContent='Kon nu niet abonneren.';}}
+  </script>
+</body>
+</html>

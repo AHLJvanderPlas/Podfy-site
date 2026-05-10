@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Probeer PODFY — Live Demo</title>
+  <meta name="description" content="Open een echte Podfy upload-link op uw telefoon, fotografeer een document en zie de gestempelde PDF verschijnen in het leveringsportal. Geen account nodig." />
+  <link rel="canonical" href="https://podfy.net/nl/demo" />
+
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:title" content="Probeer PODFY — Live Demo" />
+  <meta property="og:description" content="Open een echte chauffeurlink op uw telefoon, fotografeer iets en ontvang in seconden een gestempelde PDF." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://podfy.net/nl/demo" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+  <link rel="alternate" hreflang="en" href="https://podfy.net/demo" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/demo" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/demo" />
+
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
+  <script src="/assets/theme.js" defer></script>
+</head>
+
+<body class="v2">
+  <a href="#main" class="sr-only">Naar inhoud</a>
+  [[PODFY_HEADER]]
+
+  <main id="main" class="v2-main">
+
+    <!-- ══ 1. HERO ══ -->
+    <section class="v2-aud-hero" aria-labelledby="demo-heading">
+      <div class="container">
+        <div class="v2-hero-grid">
+
+          <div>
+            <p class="v2-eyebrow">Live demo · Geen account · ~30 seconden</p>
+            <h1 class="v2-hero-title" id="demo-heading">
+              U bent de chauffeur.<br>
+              U bent ook<br>
+              <span class="v2-hero-stamp">het kantoor.</span>
+            </h1>
+            <p class="v2-hero-sub">
+              Open de onderstaande link op uw telefoon, fotografeer een willekeurig document en zie de gestempelde, GPS-geolocaliseerde PDF verschijnen in het leveringsportal — precies zoals een echte chauffeur en een echte dispatcher dat ervaren.
+            </p>
+
+            <!-- Step 01 — launcher -->
+            <div class="v2-demo-step-block">
+              <p class="v2-eyebrow">Stap 01 · Open het chauffeur-uploadformulier</p>
+              <div class="v2-demo-launcher">
+                <input id="demo-ref-input" type="text" maxlength="40"
+                       placeholder="Referentie (optioneel)" />
+                <a id="demo-link-hero" href="https://podfy.app/demo"
+                   target="_blank" rel="noreferrer"
+                   class="v2-btn v2-btn-primary" data-demo-link>Open upload &rarr;</a>
+              </div>
+              <p class="v2-demo-launcher-meta">
+                Typ een referentie om deze vooraf in te vullen op het formulier &middot; link: <code id="demo-url-preview">podfy.app/demo</code>
+              </p>
+
+              <aside class="v2-demo-tip">
+                <p class="v2-demo-tip-tag">Tip · Echt e-mailadres</p>
+                <p>Vul bij <em>Kopie e-mail</em> op het uploadformulier uw eigen adres in — dan ontvangt u dezelfde huisstijl-PDF die een echte chauffeur krijgt.</p>
+              </aside>
+
+              <!-- QR drawer -->
+              <button type="button" id="demo-qr-toggle"
+                      class="v2-btn v2-btn-ghost v2-demo-qr-toggle"
+                      aria-controls="demo-qr" aria-expanded="false">
+                Of scan QR-code met uw telefoon
+              </button>
+              <div class="v2-demo-qr" id="demo-qr" hidden>
+                <div class="v2-demo-qr-inner">
+                  <img id="demo-qr-img" src="/assets/demo-qr.svg"
+                       alt="QR-code die linkt naar podfy.app/demo" width="128" height="128" />
+                  <p class="v2-demo-qr-cap">
+                    Scan met uw telefooncamera. Opent <code>podfy.app/demo</code>. Niets te installeren.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div aria-hidden="true">
+            <div class="v2-receipt v2-hero-receipt">
+              <div class="v2-receipt-perforation"></div>
+              <div class="v2-receipt-inner">
+                <p class="v2-receipt-brand">PODFY Demo</p>
+                <p class="v2-receipt-ref">Uw document &rarr; gestempelde PDF</p>
+                <hr class="v2-receipt-hr" />
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Chauffeur</span>
+                  <span class="v2-receipt-value">U, op uw telefoon</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">GPS</span>
+                  <span class="v2-receipt-value">Uw locatie</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Tijd</span>
+                  <span class="v2-receipt-value">Onder 30 seconden</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Bestand</span>
+                  <span class="v2-receipt-value">Elk document</span>
+                </div>
+                <hr class="v2-receipt-hr" />
+                <div class="v2-receipt-status">
+                  <span class="v2-stamp-mark">Probeer het nu</span>
+                </div>
+              </div>
+              <div class="v2-receipt-perforation"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 2. TRUST BELT ══ -->
+    <div class="v2-trust-belt">
+      <div class="container">
+        <ul class="v2-trust-list">
+          <li class="v2-trust-item">11s mediane upload</li>
+          <li class="v2-trust-item">Geen app, geen account</li>
+          <li class="v2-trust-item">EU-WEUR opslag</li>
+          <li class="v2-trust-item">Demo-data automatisch verwijderd na 72 u</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ══ 3. TWO-ROLE EXPLAINER ══ -->
+    <section class="v2-section" aria-labelledby="roles-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Hoe de demo werkt</p>
+        <h2 class="v2-section-title" id="roles-heading">U speelt beide rollen.</h2>
+        <div class="v2-demo-roles">
+          <article class="v2-demo-role">
+            <p class="v2-demo-role-tag">Rol 01 · U, op uw telefoon</p>
+            <h3>De chauffeur</h3>
+            <p>Open de uploadlink, richt de camera op een willekeurig document — een kassabon is prima — en tik op verzenden. Dat is het volledige werk van de chauffeur.</p>
+            <p class="v2-demo-role-meta">Gebruikt: uw telefooncamera · GPS, indien toegestaan</p>
+          </article>
+          <article class="v2-demo-role">
+            <p class="v2-demo-role-tag">Rol 02 · U, op dit scherm</p>
+            <h3>De dispatcher</h3>
+            <p>Wissel naar het leveringsportal in een ander tabblad en zie de gestempelde PDF verschijnen met referentie, GPS en tijdstempel — het record dat een operationeel team morgen op zou zoeken.</p>
+            <p class="v2-demo-role-meta">Gebruikt: deze browser · dezelfde EU-opslag als productie</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 4. FOUR-STEP SCRIPT ══ -->
+    <section class="v2-section" aria-labelledby="steps-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="steps-heading">De volledige loop in vier stappen</h2>
+        <div class="v2-how-grid">
+
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">01 — Chauffeursrol</p>
+            <h3>Open het chauffeur-uploadformulier</h3>
+            <p>Typ hierboven een optioneel referentienummer en tik op <em>Open upload</em>. U ziet de uploadpagina die een chauffeur ziet — één knop, geen login. Fotografeer een willekeurig document: een vrachtbrief, deze pagina, uw hand.</p>
+            <p class="v2-demo-script-expect">U ziet: een één-knops camerascherm met de demo-huisstijl.</p>
+          </div>
+
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">02 — Verzenden</p>
+            <h3>Tik op verzenden</h3>
+            <p>Uw locatie wordt gevraagd op het moment dat u op verzenden tikt — als u toestemming geeft, worden GPS-coördinaten aan het stempel toegevoegd. Voer een referentienummer in als u wilt, of laat het leeg. De upload is in seconden klaar op een normale 4G-verbinding.</p>
+            <p class="v2-demo-script-expect">U ziet: een uploadvoortgangsbalk, daarna een "Verzonden"-bevestiging.</p>
+          </div>
+
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">03 — Kantoorrol</p>
+            <h3>Zie het aankomen in het portal</h3>
+            <p>Open het <a href="https://delivery.podfy.net" target="_blank" rel="noreferrer" class="v2-link">leveringsportal</a> in een apart tabblad. Uw upload verschijnt binnen seconden, met tijdstempel, GPS-label en een downloadbare gestempelde PDF.</p>
+            <p class="v2-demo-script-expect">U ziet: een nieuwe rij in het portal — referentie, GPS, tijdstempel, downloadbare PDF.</p>
+          </div>
+
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">04 — Chauffeursrol</p>
+            <h3>Chauffeur ontvangt zijn eigen kopie</h3>
+            <p>Als u het veld <em>Kopie e-mail</em> bij het uploaden heeft ingevuld, arriveert een huisstijl-PDF bevestiging op uw adres — hetzelfde record dat een echte chauffeur ontvangt en opnieuw kan inzien via <a href="https://delivery.podfy.net" target="_blank" rel="noreferrer" class="v2-link">delivery.podfy.net</a> via magic link.</p>
+            <p class="v2-demo-script-expect">U ziet: een huisstijl bevestigingsmail op het adres dat u heeft ingevoerd.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 5. REAL / PLACEHOLDER ══ -->
+    <section class="v2-section" aria-labelledby="real-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Eerlijk over de demo</p>
+        <h2 class="v2-section-title" id="real-heading">Wat echt is, wat een placeholder is.</h2>
+        <div class="v2-demo-disclaimer">
+          <div>
+            <p class="v2-demo-disclaimer-tag" data-tone="real">Echt</p>
+            <ul class="v2-check-list">
+              <li>EU-WEUR opslag en stempelflow</li>
+              <li>De PDF die het kantoor ontvangt</li>
+              <li>GPS, tijdstempel en de magic-link historiek</li>
+            </ul>
+          </div>
+          <div>
+            <p class="v2-demo-disclaimer-tag" data-tone="placeholder">Placeholder</p>
+            <ul class="v2-check-list" data-style="x">
+              <li>De huisstijl-slug (uw echte klantslug verschilt)</li>
+              <li>Elk geüpload beeld — automatisch verwijderd binnen 24 uur</li>
+              <li>E-mailmeldingen buiten het veld <em>Kopie e-mail</em></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 6. FAQ ══ -->
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Vragen</p>
+        <h2 class="v2-section-title" id="faq-heading">Veelgestelde vragen</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Moet ik iets installeren?</button>
+            <div class="v2-faq-answer"><p>Nee. Het uploadformulier werkt in de browser van uw telefoon — geen app, geen account, niets te downloaden. Het leveringsportal is ook gewoon een browserlink.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Wat gebeurt er met het document dat ik upload?</button>
+            <div class="v2-faq-answer"><p>Het wordt opgeslagen op EU-WEUR infrastructuur onder de demo-slug en automatisch verwijderd binnen 24 uur. Het wordt nooit gebruikt voor training of gedeeld buiten uw sessie.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Kan de foto door anderen worden bekeken?</button>
+            <div class="v2-faq-answer"><p>De demo-slug is openbaar, dus iedereen met de portallink kan recente demo-uploads zien. Upload niets vertrouwelijks — gebruik een leeg vel of een niet-gevoelig document.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Kan ik mijn echte CMR gebruiken?</button>
+            <div class="v2-faq-answer"><p>Technisch wel, maar we raden het af — het demoportal heeft geen toegangsbeveiliging. Gebruik een plaatsvervangend document; de stempel- en portalflow zijn identiek.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Wat is het verschil met een begeleide demo van 15 minuten?</button>
+            <div class="v2-faq-answer"><p>De zelfbedieningsdemo gebruikt een gedeelde slug zonder huisstijl. Een begeleide demo van 15 minuten draait dezelfde loop met uw echte slug, uw logo en een referentie uit uw eigen operatie — zodat u precies ziet wat uw chauffeurs en dispatchers zouden zien.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 7. BOTTOM CTA ══ -->
+    <section class="v2-cta-block" aria-label="Plan een begeleide demo">
+      <div class="container">
+        <span class="v2-stamp-mark" aria-hidden="true">30 seconden tot eerste POD</span>
+        <h2>Wilt u een demo met<br>uw eigen <span class="v2-hero-stamp">referentienummers?</span></h2>
+        <p>We draaien de volledige loop met uw slug, uw huisstijl en een referentie uit uw eigen operatie. Duurt 15 minuten.</p>
+        <div class="v2-cta-actions">
+          <a href="/nl/contact" class="v2-btn v2-btn-primary">Plan 15 minuten &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script>
+    (function () {
+      var BASE    = 'https://podfy.app/demo';
+      var input   = document.getElementById('demo-ref-input');
+      var preview = document.getElementById('demo-url-preview');
+      var links   = document.querySelectorAll('[data-demo-link]');
+      if (!input) return;
+
+      function update() {
+        var ref = input.value.replace(/[^A-Za-z0-9._-]/g, '').slice(0, 40);
+        var url = ref ? BASE + '/' + encodeURIComponent(ref) : BASE;
+        if (preview) preview.textContent = url.replace('https://', '');
+        links.forEach(function (a) { a.href = url; });
+      }
+      input.addEventListener('input', update);
+
+      // QR drawer toggle
+      var qrBtn = document.getElementById('demo-qr-toggle');
+      var qrBox = document.getElementById('demo-qr');
+      if (qrBtn && qrBox) {
+        qrBtn.addEventListener('click', function () {
+          var open = !qrBox.hasAttribute('hidden');
+          if (open) { qrBox.setAttribute('hidden', ''); qrBtn.setAttribute('aria-expanded', 'false'); }
+          else      { qrBox.removeAttribute('hidden');  qrBtn.setAttribute('aria-expanded', 'true'); }
+        });
+      }
+    })();
+
+    // FAQ accordion
+    document.querySelectorAll('.v2-faq-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.v2-faq-acc-item');
+        var open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  </script>
+</body>
+</html>

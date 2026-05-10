@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>POD-compliance en bewaartermijnen voor bewijs van aflevering | PODFY</title>
+  <meta name="description" content="Hoe lang u bewijs van aflevering documenten moet bewaren, wat EU-regelgeving vereist en hoe u een auditklaar leveringsrecordarchief opbouwt zonder complexe systemen." />
+  <link rel="canonical" href="https://podfy.net/nl/guides/pod-compliance/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/pod-compliance/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/guides/pod-compliance/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/pod-compliance/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+    {"@type":"ListItem","position":2,"name":"Gidsen","item":"https://podfy.net/nl/guides/"},
+    {"@type":"ListItem","position":3,"name":"POD-compliance","item":"https://podfy.net/nl/guides/pod-compliance/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Hoe lang moeten bewijs van aflevering documenten worden bewaard in Nederland en België?",
+      "acceptedAnswer":{"@type":"Answer","text":"Voor Nederlandse bedrijven: de Belastingdienst vereist dat financiële records, inclusief leveringsdocumentatie gebruikt voor facturatie, 7 jaar worden bewaard. In België geldt een vergelijkbare bewaartermijn van 7 jaar voor commerciële records. CMR-documenten voor internationaal wegtransport worden beheerst door de CMR-Conventie, die een claimperiode van 1 jaar vaststelt maar een venster van 3 jaar voor frauduleuze handelingen."}},
+    {"@type":"Question","name":"Slaat Podfy gegevens op in de EU?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Alle leveringsdocumenten opgeslagen via Podfy worden bewaard in Cloudflare's EU-WEUR (West-Europa) regio. Er verlaat geen data de EU. Podfy kan een Verwerkersovereenkomst (VOK) verstrekken voor AVG-nalevingsdoeleinden."}},
+    {"@type":"Question","name":"Wat telt als auditklaar leveringsrecord?",
+      "acceptedAnswer":{"@type":"Answer","text":"Een auditklaar leveringsrecord dient te bevatten: het document zelf (ondertekende CMR of afleveringsbon), een tijdstempel dat aangeeft wanneer het werd ingediend, GPS-coördinaten die de afleverlocatie bevestigen, en een referentie die het koppelt aan de factuur of inkooporder. Alle vier elementen worden automatisch vastgelegd in Podfy."}},
+    {"@type":"Question","name":"Kunnen Podfy-records worden geëxporteerd voor een auditpakket?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Leveringsrecords kunnen als PDF's worden geëxporteerd vanuit het Podfy-portal. Bulkexport per datumbereik of referentieprefix is beschikbaar. Dit is typisch wat auditors en Belastingdienst-inspecties vereisen."}},
+    {"@type":"Question","name":"Wordt GPS-gestempeld digitaal bewijs aanvaard bij Nederlandse en Belgische rechtbanken?",
+      "acceptedAnswer":{"@type":"Answer","text":"Over het algemeen ja, voor commerciële geschillen. GPS-gestempelde, tijdgestempelde digitale records gecreëerd door een derde systeem worden als betrouwbaar bewijs beschouwd in Nederlandse en Belgische commerciële procedures. Ze vormen een aanvulling op, en vervangen in de praktijk vaak, papieren CMR-originelen bij geschiloplossing."}}
+  ]}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Naar inhoud</a>
+  [[PODFY_HEADER]]
+  <nav class="v2-breadcrumb" aria-label="Kruimelpad"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/nl/">PODFY</a></li><li><a href="/nl/guides/">Gidsen</a></li><li aria-current="page">POD-compliance</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Gids &middot; Compliance &amp; Audit</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">Hoe lang moet u bewijs<br>van aflevering bewaren?<br><em>Beantwoord.</em></h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">Bewaarvereisten voor Nederlandse en Belgische logistieke operaties, wat een leveringsrecord auditklaar maakt, en hoe u een compliant archief opbouwt zonder complexiteit toe te voegen.</p>
+      </div>
+    </section>
+    <nav class="v2-toc" aria-label="Op deze pagina"><div class="container"><ul class="v2-toc-list">
+      <li><a class="v2-toc-pill" href="#retention">Bewaarvereisten</a></li>
+      <li><a class="v2-toc-pill" href="#gdpr">AVG en datalocatie</a></li>
+      <li><a class="v2-toc-pill" href="#audit-ready">Auditklare records</a></li>
+      <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+    </ul></div></nav>
+
+    <section class="v2-section" id="retention" aria-labelledby="ret-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="ret-heading">Bewaarvereisten voor logistieke bedrijven</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p><strong>Nederland (Belastingdienst).</strong> De Nederlandse belastingwetgeving (Wet op de omzetbelasting en Algemene wet inzake rijksbelastingen) vereist dat financiële en commerciële records — inclusief leveringsdocumentatie gebruikt als basis voor facturatie — 7 jaar worden bewaard. Records moeten toegankelijk en leesbaar zijn voor belastinginspectie.</p>
+            <p><strong>België.</strong> De Belgische vereisten voor commerciële administratie (Wetboek van vennootschappen en verenigingen) vereisen 7-jarige bewaring voor boekhoudkundige documenten. BTW-gerelateerde records, inclusief die welke de levering van diensten documenteren, moeten toegankelijk zijn voor inspectie door de Belgische belastingautoriteit.</p>
+            <p><strong>CMR-Conventie.</strong> Voor grensoverschrijdend wegtransport onder de CMR-Conventie moeten vorderingen binnen 1 jaar worden ingediend (3 jaar voor frauduleuze handelingen). Hoewel dit korter is dan de nationale bewaarvereisten, is beste praktijk om CMR-records te bewaren voor de volledige commerciële bewaartermijn van 7 jaar.</p>
+          </div>
+          <div>
+            <ul class="v2-check-list" style="margin-top:.5rem;">
+              <li>7-jarige bewaring vereist in NL en BE</li>
+              <li>Records moeten toegankelijk en leesbaar zijn</li>
+              <li>Digitale records worden aanvaard als ze voldoen aan integriteitsvereisten</li>
+              <li>CMR 1-jarig claimvenster; 3-jarig fraudevenster</li>
+              <li>EU-AVG is van toepassing op persoonsgegevens in leveringsrecords</li>
+              <li>Datalocatie: EU-gehost voor AVG-naleving</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">7-jaar EU-archief — inbegrepen</p><p class="v2-inline-cta-text">Elk Podfy-record wordt opgeslagen in EU-WEUR met volledige auditexportmogelijkheid.</p></div><a href="/nl/demo" class="v2-btn v2-btn-primary">Bekijk de demo &rarr;</a></div></div></div>
+
+    <section class="v2-section" id="gdpr" aria-labelledby="gdpr-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="gdpr-heading">AVG en datalocatie</h2>
+        <div class="v2-prose">
+          <p>Leveringsdocumenten bevatten vaak persoonsgegevens: namen van chauffeurs, kentekens, GPS-locaties gekoppeld aan individuen en contactgegevens van klanten. Onder de AVG moeten deze gegevens worden verwerkt en opgeslagen in overeenstemming met de Verordening — en voor organisaties onderworpen aan Nederlands of Belgisch recht, is opslag binnen de EU sterk aanbevolen.</p>
+          <p>Alle via Podfy opgeslagen gegevens worden verwerkt in Cloudflare's EU-WEUR (West-Europa) regio. Er verlaat geen data de EU-grenzen. Dit voldoet aan de Nederlandse en Belgische AVG-datalocatieverwachtingen zonder dat een aanvullend juridisch instrument (Standaard Contractuele Bepalingen) vereist is.</p>
+          <p>Voor inkoop- en nalevingsdoeleinden verstrekt Podfy een Verwerkersovereenkomst (VOK). Dit is vereist als u persoonsgegevens van EU-inwoners verwerkt namens een verwerkingsverantwoordelijke — bijvoorbeeld als u een 3PL bent die leveringsrecords verwerkt namens verladerklanten.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="audit-ready" aria-labelledby="audit-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="audit-heading">Wat een leveringsrecord auditklaar maakt</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step"><p class="v2-how-step-num">Element 01</p><h3>Het document</h3><p>Een leesbare kopie van de ondertekende CMR, afleveringsbon of foto-bewijs. Moet op verzoek opvraagbaar zijn. Podfy bewaart het originele geüploade bestand, niet een herverwerkte versie.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Element 02</p><h3>Tijdstempel en GPS</h3><p>De exacte tijd van aflevering en de GPS-coördinaten, vastgelegd op het moment van upload. Deze stellen vast dat het document werd aangemaakt op het afleveringspunt op een specifiek tijdstip — niet achteraf gefabriceerd.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Element 03</p><h3>Referentiekoppeling</h3><p>Het record moet koppelbaar zijn aan de factuur en inkooporder. Een consistent referentiesysteem (PO-nummer, zending-ID of CMR-nummer) in de upload betekent dat elk record kan worden opgediept via de identifier die uw financieel team gebruikt.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Veelgestelde vragen</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Hoe lang moeten POD-documenten worden bewaard in Nederland en België?</button><div class="v2-faq-answer"><p>7 jaar in beide jurisdicties voor commerciële en financiële records. CMR-documenten voor grensoverschrijdende vracht hebben een claimvenster van 1 jaar maar beste praktijk is te bewaren voor de volledige periode van 7 jaar. De 7-jaararchief optie van Podfy dekt beide vereisten.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Slaat Podfy gegevens op in de EU?</button><div class="v2-faq-answer"><p>Ja. Alle gegevens worden opgeslagen in Cloudflare's EU-WEUR (West-Europa) regio. Er verlaat geen data de EU. Een Verwerkersovereenkomst is beschikbaar voor organisaties met formele AVG-nalevingsvereisten.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Wat telt als auditklaar leveringsrecord?</button><div class="v2-faq-answer"><p>Een auditklaar record bevat: het document zelf (ondertekende CMR of afleveringsbon), een tijdstempel, GPS-coördinaten die locatie bevestigen, en een referentie die het koppelt aan de factuur of inkooporder. Alle vier worden automatisch vastgelegd in elke Podfy-indiening.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Kunnen Podfy-records worden geëxporteerd voor een auditpakket?</button><div class="v2-faq-answer"><p>Ja. Leveringsrecords kunnen als PDF's worden geëxporteerd vanuit het portal, individueel of in bulk per datumbereik of referentieprefix. Dit is typisch wat Belastingdienst- of Belgische belastingautoriteitsinspecties vereisen.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Wordt GPS-gestempeld digitaal bewijs aanvaard bij Nederlandse en Belgische rechtbanken?</button><div class="v2-faq-answer"><p>Over het algemeen ja voor commerciële geschillen. GPS-gestempelde, tijdgestempelde digitale records gecreëerd door een derde systeem worden als betrouwbaar bewijs beschouwd in Nederlandse en Belgische commerciële procedures. Ze vormen een aanvulling op, en vervangen in de praktijk vaak, papieren CMR-originelen bij geschiloplossing.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="guides-heading"><div class="container"><p class="v2-eyebrow">Meer lezen</p><h2 class="v2-section-title" id="guides-heading">Gerelateerde gidsen</h2><div class="v2-guide-grid"><a class="v2-guide-card" href="/nl/guides/pod-invoicing/"><span class="v2-guide-tag">Gids</span><h3 class="v2-guide-title">POD en facturatie</h3><p class="v2-guide-desc">Hoe POD verbonden is met factuurgoedkeuring en cashflow.</p><span class="v2-guide-arrow">Lees gids &rarr;</span></a><a class="v2-guide-card" href="/nl/guides/pod-disputes/"><span class="v2-guide-tag">Gids</span><h3 class="v2-guide-title">Leveringsgeschillen oplossen</h3><p class="v2-guide-desc">Wanneer een auditspoor bewijs wordt in een geschil.</p><span class="v2-guide-arrow">Lees gids &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-labelledby="sol-heading"><div class="container"><p class="v2-eyebrow">Dit betreft</p><h2 class="v2-section-title" id="sol-heading">Voor wie dit relevant is</h2><div class="v2-sol-grid"><a class="v2-sol-tile" href="/nl/solutions/3pl/"><p class="v2-sol-tile-industry">Logistiek</p><p class="v2-sol-tile-name">3PL's</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a><a class="v2-sol-tile" href="/nl/solutions/retail/"><p class="v2-sol-tile-industry">Retail</p><p class="v2-sol-tile-name">Retailteams</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a><a class="v2-sol-tile" href="/nl/solutions/construction/"><p class="v2-sol-tile-industry">Bouw</p><p class="v2-sol-tile-name">Locatieleveringen</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-label="Gidshub"><div class="container"><p style="font-size:.9rem;color:var(--v2-muted);">Onderdeel van de Podfy-gidsenreeks &rarr; <a href="/nl/guides/proof-of-delivery/" class="v2-link">Wat is bewijs van aflevering?</a></p></div></section>
+    <section class="v2-section" aria-label="Blijf op de hoogte"><div class="container" style="max-width:40rem;"><div class="v2-subscribe-strip"><h3>Volg hoe Podfy evolueert</h3><p>Ontvang release-notities per e-mail wanneer nieuwe functies worden uitgerold.</p><form class="v2-subscribe-row" onsubmit="handleSubscribe(event)"><input type="email" name="email" class="v2-subscribe-input" placeholder="uw@email.nl" required /><button type="submit" class="v2-btn v2-btn-primary">Abonneren &rarr;</button></form><p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p></div></div></section>
+    <section class="v2-cta-block" aria-label="Aan de slag"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">EU-gehost · 7jr archief</span><h2>Auditklaar vanaf dag één.<br><em>Geen archiefkasten.</em></h2><p>Demo van 15 minuten. We tonen u het portal, de exportfunctie en het VOK-proces.</p><div class="v2-cta-actions"><a href="/nl/contact" class="v2-btn v2-btn-primary">Plan 15 minuten &rarr;</a><a href="/nl/demo" class="v2-btn v2-btn-ghost">Probeer eerst de demo</a></div></div></section>
+  </main>
+  [[PODFY_FOOTER]]
+  <script>
+    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);const el=document.getElementById('v2-progress');if(el)el.style.width=Math.min(p*100,100)+'%';});
+    document.querySelectorAll('.v2-faq-btn').forEach(btn=>{btn.addEventListener('click',()=>btn.closest('.v2-faq-acc-item').classList.toggle('open'));});
+    const pills=document.querySelectorAll('.v2-toc-pill');const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){pills.forEach(p=>p.classList.remove('active'));const active=document.querySelector('.v2-toc-pill[href="#'+e.target.id+'"]');if(active)active.classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('section[id]').forEach(s=>observer.observe(s));
+    async function handleSubscribe(e){e.preventDefault();const email=e.target.querySelector('[name=email]').value;const msg=document.getElementById('subscribe-msg');try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})});const d=await r.json();msg.style.display='block';msg.textContent=d.ok?'Geabonneerd. Dankuwel!':(d.error||'Er is iets misgegaan.');msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)';if(d.ok)e.target.reset();}catch{msg.style.display='block';msg.textContent='Kon nu niet abonneren.';}}
+  </script>
+</body>
+</html>

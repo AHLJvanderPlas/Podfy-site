@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Contact — PODFY</title>
+  <meta name="description" content="Plan een demo van 15 minuten met PODFY. We laten u de chauffeur-upload, het portal en de gestempelde PDF zien met een referentie uit uw eigen operatie." />
+  <link rel="canonical" href="https://podfy.net/nl/contact" />
+
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Contact — PODFY" />
+  <meta property="og:description" content="Plan een demo van 15 minuten. We draaien de volledige loop met uw slug, uw huisstijl en een referentie uit uw eigen operatie." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://podfy.net/nl/contact" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+  <link rel="alternate" hreflang="en" href="https://podfy.net/contact" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/contact" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/contact" />
+
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <script src="/assets/theme.js" defer></script>
+
+  <!-- Turnstile — only loaded on this page -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+
+<body class="v2">
+  <a href="#main" class="sr-only">Naar inhoud</a>
+  [[PODFY_HEADER]]
+
+  <main id="main" class="v2-main">
+
+    <!-- HERO -->
+    <section class="v2-aud-hero" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="v2-hero-grid">
+
+          <div>
+            <p class="v2-eyebrow">Neem contact op · Geen presentaties</p>
+            <h1 class="v2-hero-title" id="contact-heading">
+              Plan een demo van<br>
+              <em>15 minuten.</em>
+            </h1>
+            <p class="v2-hero-sub">
+              Breng een referentienummer uit uw eigen operatie mee. We draaien de volledige loop — chauffeur-upload, GPS-stempel, portal-weergave, gestempelde PDF — met uw eigen data.
+            </p>
+            <ul class="v2-check-list" style="margin-top:1.5rem;">
+              <li>15 minuten via videogesprek</li>
+              <li>Geen presentatie, geen verkooppraatje</li>
+              <li>Live demo met een echte referentie</li>
+              <li>We reageren binnen één werkdag</li>
+            </ul>
+          </div>
+
+          <div aria-hidden="true">
+            <div class="v2-receipt v2-hero-receipt">
+              <div class="v2-receipt-perforation"></div>
+              <div class="v2-receipt-inner">
+                <p class="v2-receipt-brand">PODFY</p>
+                <p class="v2-receipt-ref">Demo-aanvraag</p>
+                <hr class="v2-receipt-hr" />
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Duur</span>
+                  <span class="v2-receipt-value">15 minuten</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Formaat</span>
+                  <span class="v2-receipt-value">Videogesprek</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Reactie</span>
+                  <span class="v2-receipt-value">&lt; 1 werkdag</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Kosten</span>
+                  <span class="v2-receipt-value">Gratis</span>
+                </div>
+                <hr class="v2-receipt-hr" />
+                <div class="v2-receipt-status">
+                  <span class="v2-stamp-mark">Geen verplichtingen</span>
+                </div>
+              </div>
+              <div class="v2-receipt-perforation"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="v2-section" aria-labelledby="form-heading">
+      <div class="container">
+        <div class="v2-two-col">
+
+          <div>
+            <h2 class="v2-section-title" id="form-heading">Stuur een bericht</h2>
+            <p class="v2-prose" style="margin-bottom:2rem;">
+              Vul het formulier in en we nemen binnen één werkdag contact met u op. Liever direct per e-mail? Bereik ons via <a href="mailto:support@podfy.net">support@podfy.net</a>.
+            </p>
+
+            <!-- Success state (hidden until submit) -->
+            <div id="contact-success" role="status" aria-live="polite" style="display:none;">
+              <div class="v2-receipt" style="max-width:420px;">
+                <div class="v2-receipt-perforation"></div>
+                <div class="v2-receipt-inner">
+                  <p class="v2-receipt-brand">Bericht verzonden</p>
+                  <p class="v2-receipt-ref">We nemen spoedig contact op</p>
+                  <hr class="v2-receipt-hr" />
+                  <div class="v2-receipt-row">
+                    <span class="v2-receipt-label">Antwoord naar</span>
+                    <span class="v2-receipt-value" id="contact-success-email">uw e-mail</span>
+                  </div>
+                  <div class="v2-receipt-row">
+                    <span class="v2-receipt-label">Volgende stap</span>
+                    <span class="v2-receipt-value">Controleer uw inbox</span>
+                  </div>
+                  <hr class="v2-receipt-hr" />
+                  <div class="v2-receipt-status">
+                    <span class="v2-stamp-mark">Ontvangen</span>
+                  </div>
+                </div>
+                <div class="v2-receipt-perforation"></div>
+              </div>
+            </div>
+
+            <!-- Error banner (hidden until needed) -->
+            <div id="contact-error" role="alert" aria-live="assertive" style="display:none;margin-bottom:1rem;padding:0.875rem 1rem;background:var(--v2-bad);color:#fff;border-radius:2px;font-size:0.875rem;"></div>
+
+            <!-- Contact form -->
+            <form
+              id="contact-form"
+              class="v2-form"
+              novalidate
+              aria-label="Contactformulier">
+
+              <!-- Honeypot — hidden from real users, filled by bots -->
+              <div style="display:none;" aria-hidden="true">
+                <label for="hp_contact">Laat dit veld leeg</label>
+                <input type="text" id="hp_contact" name="hp_contact" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-name" class="v2-field-label">Uw naam <span aria-hidden="true">*</span></label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  class="v2-input"
+                  required
+                  autocomplete="name"
+                  placeholder="Jan de Vries" />
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-email" class="v2-field-label">Zakelijk e-mailadres <span aria-hidden="true">*</span></label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  class="v2-input"
+                  required
+                  autocomplete="email"
+                  placeholder="jan@bedrijf.nl" />
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-company" class="v2-field-label">Bedrijf</label>
+                <input
+                  type="text"
+                  id="contact-company"
+                  name="company"
+                  class="v2-input"
+                  autocomplete="organization"
+                  placeholder="Van Dijck Transport B.V." />
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-sector" class="v2-field-label">Sector</label>
+                <select id="contact-sector" name="sector" class="v2-input">
+                  <option value="">Selecteer uw sector (optioneel)</option>
+                  <option value="carrier-3pl">Vervoerder / 3PL</option>
+                  <option value="inbound-retail">Inbound &amp; Retail ontvangst</option>
+                  <option value="construction-site">Bouw &amp; Locatieleveringen</option>
+                  <option value="logistics-other">Logistiek — overig</option>
+                  <option value="other">Anders</option>
+                </select>
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-message" class="v2-field-label">Bericht <span aria-hidden="true">*</span></label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  class="v2-textarea"
+                  required
+                  rows="5"
+                  placeholder="Vertel ons wat u wilt oplossen. Een referentienummer uit uw operatie is handig maar niet verplicht."></textarea>
+              </div>
+
+              <!-- Turnstile -->
+              <div class="v2-field" style="margin-bottom:0.5rem;">
+                <input type="hidden" id="contact-turnstile-token" name="cf_turnstile_token" value="" />
+                <div
+                  class="cf-turnstile"
+                  data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+                  data-callback="onTurnstileCompleted"
+                  data-expired-callback="onTurnstileExpired"
+                  data-error-callback="onTurnstileError"
+                  data-theme="auto">
+                </div>
+              </div>
+
+              <!-- Consent -->
+              <div class="v2-consent">
+                <label class="v2-consent-label">
+                  <input
+                    type="checkbox"
+                    id="contact-consent"
+                    name="consent"
+                    class="v2-consent-check"
+                    required />
+                  <span>
+                    Ik ga akkoord met het <a href="/nl/trust#privacy" target="_blank" rel="noopener">privacybeleid</a>. PODFY gebruikt deze informatie om op mijn aanvraag te reageren en mag mij berichten sturen over relevante producten. Ik kan mij altijd afmelden.
+                  </span>
+                </label>
+              </div>
+
+              <div style="margin-top:1.5rem;">
+                <button
+                  type="submit"
+                  id="contact-submit"
+                  class="v2-btn v2-btn-primary"
+                  aria-live="polite">
+                  Verstuur bericht &rarr;
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Right: what happens next -->
+          <div>
+            <h2 class="v2-section-title">Wat gebeurt er daarna</h2>
+            <div class="v2-how-grid" style="grid-template-columns:1fr;">
+              <div class="v2-how-step">
+                <p class="v2-how-step-num">01 — Bevestiging</p>
+                <h3>We reageren binnen één werkdag</h3>
+                <p>U ontvangt direct een automatische bevestiging, gevolgd door een persoonlijk antwoord van het PODFY-team binnen één werkdag om een tijdstip af te spreken.</p>
+              </div>
+              <div class="v2-how-step">
+                <p class="v2-how-step-num">02 — Demo</p>
+                <h3>15 minuten via videogesprek</h3>
+                <p>We draaien de volledige upload-loop live: chauffeurlink, GPS-stempel, portal-weergave, gestempelde PDF. Neem een referentienummer mee als u dat heeft — dat maakt het relevanter.</p>
+              </div>
+              <div class="v2-how-step">
+                <p class="v2-how-step-num">03 — Beslissing</p>
+                <h3>Geen druk achteraf</h3>
+                <p>Na het gesprek ontvangt u een samenvatting en een trial-link. We houden u niet lastig. Als Podfy de juiste keuze is, weet u dat zelf.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script>
+    /* Turnstile callbacks */
+    function onTurnstileCompleted(token) {
+      var el = document.getElementById("contact-turnstile-token");
+      if (el) el.value = token;
+    }
+    function onTurnstileExpired() {
+      var el = document.getElementById("contact-turnstile-token");
+      if (el) el.value = "";
+    }
+    function onTurnstileError() {
+      var el = document.getElementById("contact-turnstile-token");
+      if (el) el.value = "";
+    }
+
+    /* Contact form submission */
+    document.addEventListener("DOMContentLoaded", function () {
+      var form    = document.getElementById("contact-form");
+      var submit  = document.getElementById("contact-submit");
+      var success = document.getElementById("contact-success");
+      var errBanner = document.getElementById("contact-error");
+
+      if (!form) return;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        /* Clear previous error */
+        errBanner.style.display = "none";
+        errBanner.textContent = "";
+
+        /* HTML5 validation */
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        /* Turnstile token check */
+        var token = document.getElementById("contact-turnstile-token").value;
+        if (!token) {
+          showError("Voltooi de beveiligingscheck voordat u verzendt.");
+          return;
+        }
+
+        /* Collect fields */
+        var data = {
+          name:               (form.querySelector("#contact-name").value || "").trim(),
+          email:              (form.querySelector("#contact-email").value || "").trim(),
+          company:            (form.querySelector("#contact-company").value || "").trim(),
+          sector:             (form.querySelector("#contact-sector").value || "").trim(),
+          message:            (form.querySelector("#contact-message").value || "").trim(),
+          consent:            form.querySelector("#contact-consent").checked,
+          hp_contact:         (form.querySelector("#hp_contact").value || "").trim(),
+          cf_turnstile_token: token,
+        };
+
+        /* Disable submit while in-flight */
+        submit.disabled = true;
+        submit.textContent = "Verzenden\u2026";
+
+        fetch("/api/contact", {
+          method:  "POST",
+          headers: { "Content-Type": "application/json" },
+          body:    JSON.stringify(data),
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (res.ok) {
+              form.style.display = "none";
+              var emailEl = document.getElementById("contact-success-email");
+              if (emailEl) emailEl.textContent = data.email;
+              success.style.display = "block";
+            } else {
+              showError(res.error || "Er is iets misgegaan. Probeer het opnieuw.");
+              resetSubmit();
+              if (window.turnstile && typeof window.turnstile.reset === "function") {
+                window.turnstile.reset();
+              }
+            }
+          })
+          .catch(function () {
+            showError("Netwerkfout. Controleer uw verbinding en probeer het opnieuw.");
+            resetSubmit();
+          });
+      });
+
+      function showError(msg) {
+        errBanner.textContent = msg;
+        errBanner.style.display = "block";
+        errBanner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      function resetSubmit() {
+        submit.disabled = false;
+        submit.textContent = "Verstuur bericht \u2192";
+      }
+    });
+  </script>
+</body>
+</html>

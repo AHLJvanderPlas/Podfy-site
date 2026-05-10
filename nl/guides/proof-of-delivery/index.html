@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wat is bewijs van aflevering? De complete gids — PODFY</title>
+  <meta name="description" content="Bewijs van aflevering in praktische termen uitgelegd: wat het is, waarom het mislukt en hoe moderne logistieke teams POD's verzamelen zonder apps of papierwerk." />
+  <link rel="canonical" href="https://podfy.net/nl/guides/proof-of-delivery/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/proof-of-delivery/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/guides/proof-of-delivery/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/proof-of-delivery/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+      {"@type":"ListItem","position":2,"name":"Gidsen","item":"https://podfy.net/nl/guides/"},
+      {"@type":"ListItem","position":3,"name":"Wat is bewijs van aflevering?","item":"https://podfy.net/nl/guides/proof-of-delivery/"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Wat is bewijs van aflevering (POD)?",
+        "acceptedAnswer":{"@type":"Answer","text":"Bewijs van aflevering is het bewijs dat een zending is voltooid en ontvangen. Het kan een ondertekende afleverbon, een CMR-document, een foto van geleverde goederen, een GPS-gestempeld tijdstempel, of een combinatie zijn. Het juiste formaat hangt af van uw geschilrisico en klantvereisten."}},
+      {"@type":"Question","name":"Moeten chauffeurs een app installeren om bewijs van aflevering te leveren?",
+        "acceptedAnswer":{"@type":"Answer","text":"Nee. Met Podfy gebruiken chauffeurs een browserlink — geen app-installatie, geen account, geen training. Dit maakt POD-verzameling betrouwbaar voor onderaannemers, tijdelijk personeel en gemengde apparaatomgevingen."}},
+      {"@type":"Question","name":"Wat kan gelden als bewijs van aflevering?",
+        "acceptedAnswer":{"@type":"Answer","text":"Bewijs van aflevering kan een ondertekende afleverbon, een CMR, een foto van de geleverde goederen, een GPS-gestempeld tijdstempel, of een digitaal record van dit alles samen zijn. De kernvereiste is dat het bewijs identificeert wat geleverd is, waar en wanneer."}},
+      {"@type":"Question","name":"Kunnen inbound- of ontvangstteams leveringen ook registreren?",
+        "acceptedAnswer":{"@type":"Answer","text":"Ja. Inbound teams kunnen dezelfde linkgebaseerde workflow gebruiken om leveringsdocumenten te uploaden wanneer vervoerders bij de dock aankomen. Dit creëert een consistent record zelfs wanneer chauffeurs wisselen of leveranciers verschillende processen gebruiken."}},
+      {"@type":"Question","name":"Waar wordt bewijs van aflevering opgeslagen?",
+        "acceptedAnswer":{"@type":"Answer","text":"Podfy slaat leveringsdocumenten centraal op zodat kantoorteams ze kunnen zoeken en ophalen per referentie, datum of chauffeur. Alle gegevens worden gehost in Cloudflare's EU-WEUR-regio voor AVG-naleving."}},
+      {"@type":"Question","name":"Is Podfy geschikt voor audits en geschillen?",
+        "acceptedAnswer":{"@type":"Answer","text":"Ja. Centrale opslag met GPS-tijdstempels betekent dat u kunt reageren op 'niet geleverd'-, tekort- of schadeclaims in seconden in plaats van dagen. Het portal maakt het eenvoudig om het juiste document te vinden zonder e-mail of gedeelde schijven te doorzoeken."}},
+      {"@type":"Question","name":"Hoe snel zijn documenten beschikbaar na aflevering?",
+        "acceptedAnswer":{"@type":"Answer","text":"Zodra de upload voltooid is, staat het document in het portal. Dit elimineert de typische vertraging van 3–5 dagen wanneer papieren CMR's terugkomen met de chauffeur of per post."}},
+      {"@type":"Question","name":"Kan Podfy een TMS, WMS of ERP vervangen?",
+        "acceptedAnswer":{"@type":"Answer","text":"Nee. Podfy richt zich op de intake en terugvinding van leveringsdocumentatie. Het is ontworpen om bestaande systemen te complementeren, niet te vervangen — de implementatie licht houdend terwijl de operationele betrouwbaarheid verbetert."}}
+    ]
+  }
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Naar inhoud</a>
+  [[PODFY_HEADER]]
+
+  <nav class="v2-breadcrumb" aria-label="Kruimelpad">
+    <div class="container">
+      <ol class="v2-breadcrumb-list">
+        <li><a href="/nl/">PODFY</a></li>
+        <li><a href="/nl/guides/">Gidsen</a></li>
+        <li aria-current="page">Wat is bewijs van aflevering?</li>
+      </ol>
+    </div>
+  </nav>
+
+  <main id="main" class="v2-main">
+
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Gids &middot; Bewijs van aflevering hub</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:40rem;">
+          Wat is bewijs van aflevering?<br>
+          <em>De complete gids.</em>
+        </h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">
+          Alles wat logistieke, transport- en ontvangstteams moeten weten over POD: wat het is, waarom het in de praktijk misloopt en hoe moderne operaties het verzamelen zonder apps of papier najagen.
+        </p>
+      </div>
+    </section>
+
+    <nav class="v2-toc" aria-label="Op deze pagina">
+      <div class="container">
+        <ul class="v2-toc-list">
+          <li><a class="v2-toc-pill" href="#what-is-pod">Wat is POD?</a></li>
+          <li><a class="v2-toc-pill" href="#why-it-matters">Waarom het belangrijk is</a></li>
+          <li><a class="v2-toc-pill" href="#pod-types">POD-typen</a></li>
+          <li><a class="v2-toc-pill" href="#where-it-fails">Waar het misgaat</a></li>
+          <li><a class="v2-toc-pill" href="#modern-pod">Moderne POD</a></li>
+          <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="v2-section" id="what-is-pod" aria-labelledby="what-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="what-heading">Wat is bewijs van aflevering?</h2>
+        <div class="v2-prose">
+          <p>Bewijs van aflevering (POD) is elk document of record dat bevestigt dat een zending is afgeleverd aan de juiste ontvanger, op de juiste locatie, op een specifiek tijdstip. In fysieke vracht en logistiek is een POD het bewijs dat u gebruikt wanneer een klant zegt dat de levering nooit is aangekomen, een chauffeur een tijdstempel betwist, of een auditor om records vraagt.</p>
+          <p>De meest voorkomende vorm is een ondertekende afleverbon of CMR-document: de geadresseerde ondertekent dat zij de goederen hebben ontvangen, en een kopie gaat terug naar de verlader of vervoerder. In de praktijk is het terugkrijgen van die ondertekende kopie in een bruikbaar, doorzoekbaar formaat waar de meeste operaties falen.</p>
+          <p>Moderne bewijs van aflevering voegt GPS-coördinaten, een tijdstempel en optioneel een foto van de goederen op het afleveringspunt toe — allemaal vastgelegd op de telefoon van de chauffeur en overgebracht naar een centraal record voordat de vrachtwagen het terrein verlaat.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="why-it-matters" aria-labelledby="why-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="why-heading">Waarom bewijs van aflevering belangrijk is</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>Zonder POD gaan drie dingen fout:</p>
+            <p><strong>Factuurgeschillen.</strong> Financiële teams kunnen geen facturen uitsturen of goedkeuren voor leveringen zonder bevestigde ontvangst. Een ontbrekende CMR kan een factuur van €40.000 weken ophouden terwijl iedereen papier najaagt.</p>
+            <p><strong>Claimblootstelling.</strong> Als een klant goederen rapporteert als niet geleverd, beschadigd of te weinig geleverd, heeft u geen bewijs om mee te reageren. Hoe groter de kloof tussen levering en de claim, hoe moeilijker het is om te reconstrueren wat er werkelijk is gebeurd.</p>
+            <p><strong>Auditgaten.</strong> Regelgevende omgevingen in veel EU-landen vereisen dat leveringsrecords 5–7 jaar worden bewaard. Papiergebaseerde systemen maken dit bijna onmogelijk consistent bij te houden.</p>
+          </div>
+          <div>
+            <ul class="v2-check-list">
+              <li>Snellere factuurgoedkeuring — geen POD-gat</li>
+              <li>Claims opgelost in minuten, niet weken</li>
+              <li>GPS + tijdstempel elimineert datumdiscussies</li>
+              <li>7-jaar auditklaar archief op EU-infrastructuur</li>
+              <li>Doorzoekbaar per referentie, route of datum</li>
+              <li>Werkt voor onderaannemers zonder training</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="pod-types" aria-labelledby="types-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="types-heading">Typen bewijs van aflevering</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Papieren POD</p>
+            <h3>Ondertekende afleverbon / CMR</h3>
+            <p>De geadresseerde ondertekent een papieren document bij aflevering. De chauffeur houdt één kopie en stuurt er één terug naar kantoor — gewoonlijk dagen later. Wazige WhatsApp-foto's en kwijtgeraakte documenten zijn veelvoorkomende mislukkingen.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">Digitale POD</p>
+            <h3>Linkgebaseerde foto-upload</h3>
+            <p>Chauffeur opent een browserlink, fotografeert de ondertekende CMR of afleverbon en tikt op verzenden. GPS-coördinaten en tijdstempel worden op dat moment vastgelegd. Het gestempelde PDF staat binnen seconden in het portal.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">App-gebaseerde POD</p>
+            <h3>Chauffeursapp met handtekeningvastlegging</h3>
+            <p>Vereist dat de chauffeur een app installeert en onderhoudt. Werkt goed voor vaste, eigen chauffeurs maar faalt voor onderaannemers, tijdelijk personeel en multi-vervoerder operaties waarbij elke vervoerder een andere app gebruikt.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-label="Vergelijking voor en na">
+      <div class="container">
+        <h2 class="v2-section-title">Papier vs digitale POD: wat verandert</h2>
+        <div class="v2-contrast-strip">
+          <div class="v2-contrast-before">
+            <p class="v2-contrast-label">Papierproces</p>
+            <ul class="v2-contrast-list">
+              <li>Chauffeur houdt ondertekende CMR in de cabine</li>
+              <li>Kantoor belt na 3–5 dagen</li>
+              <li>WhatsApp-foto, verkeerde oriëntatie, onleesbaar</li>
+              <li>Iemand voert de referentie handmatig in</li>
+              <li>Factuur in de wacht</li>
+              <li>Klant betwist nog steeds de datum</li>
+            </ul>
+          </div>
+          <div class="v2-contrast-divider" aria-hidden="true"></div>
+          <div class="v2-contrast-after">
+            <p class="v2-contrast-label">Digitale POD (Podfy)</p>
+            <ul class="v2-contrast-list">
+              <li>Chauffeur uploadt bij de poort via link</li>
+              <li>Kantoor krijgt notificatie binnen seconden</li>
+              <li>Gestempeld PDF met GPS en tijdstempel</li>
+              <li>Referentie vastgelegd bij upload</li>
+              <li>Factuur dezelfde dag gereed</li>
+              <li>GPS-tijdstempel sluit de datumdiscussie</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="where-it-fails" aria-labelledby="fails-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="fails-heading">Waar bewijs van aflevering misloopt</h2>
+        <div class="v2-prose">
+          <p>De meeste POD-fouten zijn geen chauffeursfouten — het zijn procesfouten. De vier hoofdoorzaken:</p>
+          <p><strong>De terugkeerlus.</strong> Papieren documenten reizen mee met de chauffeur en bereiken kantoor pas wanneer de chauffeur terugkeert naar het depot. Routes met meerdaagse omloop kunnen een gat van 5 dagen betekenen tussen levering en POD-ontvangst.</p>
+          <p><strong>Geen-app-blokkades.</strong> Vereisen dat chauffeurs een app installeren en onderhouden creëert een harde fout voor onderaannemers, tijdelijke chauffeurs en iedereen met een ouder toestel. Voltooiingspercentages dalen onder 60% in gemengde-chauffeursoperaties die app-installaties vereisen.</p>
+          <p><strong>Het referentiegat.</strong> Als de POD niet de exacte referentie bevat die uw financieel team gebruikt, is het record nutteloos voor factuurgoedkeuring. Handmatige hercodering veroorzaakt fouten en kost tijd.</p>
+          <p><strong>Ongestructureerde opslag.</strong> E-mailinboxen en gedeelde schijven zijn geen doorzoekbare leveringsarchieven. Een specifieke POD vinden voor een geschil twee maanden later kost uren — als het al gevonden kan worden.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta">
+      <div class="container">
+        <div class="v2-inline-cta-inner">
+          <div>
+            <p class="v2-inline-cta-label">Zie het in de praktijk</p>
+            <p class="v2-inline-cta-text">Een chauffeur uploadt een CMR in 11 seconden. Bekijk de live demo.</p>
+          </div>
+          <a href="/nl/demo" class="v2-btn v2-btn-primary">Probeer de demo &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="v2-section" id="modern-pod" aria-labelledby="modern-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="modern-heading">Hoe moderne POD werkt</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">01 — Dispatch</p>
+            <h3>Eén link per zending</h3>
+            <p>Een unieke URL wordt gegenereerd per leveringsreferentie. Deze kan worden opgenomen in een dispatchbericht via WhatsApp, SMS of TMS. De chauffeur hoeft niets te registreren.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">02 — Bij de poort</p>
+            <h3>Foto of bestandsupload</h3>
+            <p>De chauffeur opent de link, fotografeert de ondertekende CMR of afleverbon en tikt op verzenden. GPS-coördinaten worden vastgelegd op het moment dat de camera afvuurt — niet wanneer de upload voltooid is. Werkt op elk mobiel netwerk; geen wifi vereist.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">03 — Centraal</p>
+            <h3>Gestempeld PDF in het portal</h3>
+            <p>Het document wordt verwerkt, GPS-gestempeld en binnen seconden beschikbaar in het Podfy-portal. Uw team ontvangt een e-mailnotificatie. Het record is direct doorzoekbaar per referentie, datum, chauffeur of route.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="who-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="who-heading">Welke teams dit aangaat</h2>
+        <p class="v2-muted-sm" style="margin-bottom:0;">Vind uw toepassingscase en zie hoe Podfy past bij uw operatie.</p>
+        <div class="v2-audience-grid">
+          <a class="v2-audience-tile" href="/nl/solutions/carriers/">
+            <p class="v2-audience-industry">Transport</p>
+            <h3 class="v2-audience-role">Vervoerders</h3>
+            <p class="v2-audience-quote">"Mijn onderaannemers willen geen app installeren."</p>
+          </a>
+          <a class="v2-audience-tile" href="/nl/solutions/3pl/">
+            <p class="v2-audience-industry">Logistiek</p>
+            <h3 class="v2-audience-role">3PL's</h3>
+            <p class="v2-audience-quote">"We beheren 12 vervoerderspartners en hebben één standaard nodig."</p>
+          </a>
+          <a class="v2-audience-tile" href="/nl/solutions/shippers/">
+            <p class="v2-audience-industry">Supply chain</p>
+            <h3 class="v2-audience-role">Verladers</h3>
+            <p class="v2-audience-quote">"We ontvangen van 40 leveranciers met verschillende processen."</p>
+          </a>
+          <a class="v2-audience-tile" href="/nl/solutions/retail/">
+            <p class="v2-audience-industry">Retail</p>
+            <h3 class="v2-audience-role">Retailteams</h3>
+            <p class="v2-audience-quote">"We hebben POD op winkelniveau nodig, niet alleen op het DC."</p>
+          </a>
+          <a class="v2-audience-tile" href="/nl/solutions/construction/">
+            <p class="v2-audience-industry">Bouw</p>
+            <h3 class="v2-audience-role">Locatieleveringen</h3>
+            <p class="v2-audience-quote">"De leveranciersfactuur zegt 12 vrachten. Wij telden er 11."</p>
+          </a>
+          <a class="v2-audience-tile" href="/nl/solutions/facilities/">
+            <p class="v2-audience-industry">Facilitair</p>
+            <h3 class="v2-audience-role">Facilitaire teams</h3>
+            <p class="v2-audience-quote">"Leveringen komen aan bij 30 gebouwen. Niets is gecentraliseerd."</p>
+          </a>
+          <a class="v2-audience-tile" href="/nl/solutions/inbound/">
+            <p class="v2-audience-industry">Operaties</p>
+            <h3 class="v2-audience-role">Inbound &amp; ontvangst</h3>
+            <p class="v2-audience-quote">"Ons dockpersoneel tekent voor alles maar niets is doorzoekbaar."</p>
+          </a>
+          <a class="v2-audience-tile" href="/nl/solutions/digitize/">
+            <p class="v2-audience-industry">Digitalisering</p>
+            <h3 class="v2-audience-role">Papier naar digitaal</h3>
+            <p class="v2-audience-quote">"We werken nog op papier en WhatsApp. We moeten veranderen."</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Veelgestelde vragen</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Wat is bewijs van aflevering (POD)?</button>
+            <div class="v2-faq-answer"><p>Bewijs van aflevering is het bewijs dat een zending is voltooid en ontvangen. Het kan een ondertekende afleverbon, een CMR-document, een foto van geleverde goederen, een GPS-gestempeld tijdstempel, of een combinatie zijn. Het juiste formaat hangt af van uw geschilrisico en klantvereisten.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Moeten chauffeurs een app installeren?</button>
+            <div class="v2-faq-answer"><p>Nee. Met Podfy gebruiken chauffeurs een browserlink — geen app-installatie, geen account, geen training. Dit maakt POD-verzameling betrouwbaar voor onderaannemers, tijdelijk personeel en gemengde apparaatomgevingen waar app-installatie onpraktisch is.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Wat kan gelden als bewijs van aflevering?</button>
+            <div class="v2-faq-answer"><p>Bewijs van aflevering kan een ondertekende afleverbon, een CMR, een foto van de geleverde goederen, een GPS-gestempeld tijdstempel, of een digitaal record zijn dat dit alles combineert. De kernvereiste is dat het bewijs identificeert wat geleverd is, waar en wanneer.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Kunnen inbound teams leveringen ook registreren?</button>
+            <div class="v2-faq-answer"><p>Ja. Inbound teams kunnen dezelfde linkgebaseerde workflow gebruiken om leveringsdocumenten te uploaden wanneer vervoerders bij de dock aankomen. Dit creëert een consistent record zelfs wanneer chauffeurs wisselen of leveranciers verschillende processen gebruiken.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Hoe snel zijn documenten beschikbaar na aflevering?</button>
+            <div class="v2-faq-answer"><p>Zodra de upload voltooid is, staat het document in het portal en ontvangt uw team een e-mailnotificatie. Dit elimineert de typische vertraging van 3–5 dagen wanneer papieren CMR's terugkomen met de chauffeur.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Is Podfy geschikt voor audits en geschillen?</button>
+            <div class="v2-faq-answer"><p>Ja. Centrale opslag met GPS-tijdstempels betekent dat u kunt reageren op 'niet geleverd'-, tekort- of schadeclaims in seconden in plaats van dagen. Alle records worden opgeslagen in Cloudflare's EU-WEUR-regio, AVG-conform en beschikbaar voor 7-jaar bewaring.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Kan Podfy een TMS, WMS of ERP vervangen?</button>
+            <div class="v2-faq-answer"><p>Nee. Podfy richt zich op de intake en terugvinding van leveringsdocumentatie. Het is ontworpen om bestaande systemen te complementeren door POD-verzameling eenvoudig en consistent te maken voor vervoerders, leveranciers, locaties en winkels.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="guides-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Meer lezen</p>
+        <h2 class="v2-section-title" id="guides-heading">Ga dieper</h2>
+        <div class="v2-guide-grid">
+          <a class="v2-guide-card" href="/nl/guides/missing-pod/">
+            <span class="v2-guide-tag">Gids</span>
+            <h3 class="v2-guide-title">Wat te doen als een POD ontbreekt</h3>
+            <p class="v2-guide-desc">Herstelstappen, hoofdoorzaken en hoe te voorkomen dat het opnieuw gebeurt.</p>
+            <span class="v2-guide-arrow">Lees gids &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/nl/guides/pod-disputes/">
+            <span class="v2-guide-tag">Gids</span>
+            <h3 class="v2-guide-title">Leveringsgeschillen oplossen met POD-bewijs</h3>
+            <p class="v2-guide-desc">Hoe u niet-geleverd-, tekort- en schadeclaims systematisch aanpakt.</p>
+            <span class="v2-guide-arrow">Lees gids &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/nl/guides/pod-without-app/">
+            <span class="v2-guide-tag">Gids</span>
+            <h3 class="v2-guide-title">Bewijs van aflevering zonder app</h3>
+            <p class="v2-guide-desc">Waarom app-gebaseerde POD faalt in gemengde chauffeursomgevingen en wat wel werkt.</p>
+            <span class="v2-guide-arrow">Lees gids &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-label="Blijf op de hoogte">
+      <div class="container" style="max-width:40rem;">
+        <div class="v2-subscribe-strip">
+          <h3>Volg hoe Podfy evolueert</h3>
+          <p>Ontvang release-notities per e-mail wanneer nieuwe functies worden uitgerold.</p>
+          <form class="v2-subscribe-row" id="subscribe-form" onsubmit="handleSubscribe(event)">
+            <input type="hidden" name="hp_sub" value="" id="hp_sub" style="display:none;" />
+            <input type="email" name="email" class="v2-subscribe-input" placeholder="uw@email.nl" required />
+            <button type="submit" class="v2-btn v2-btn-primary">Abonneren &rarr;</button>
+          </form>
+          <p id="subscribe-msg" style="display:none;font-size:.85rem;color:var(--v2-delivered);margin-top:.5rem;"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cta-block" aria-label="Aan de slag">
+      <div class="container">
+        <span class="v2-stamp-mark" aria-hidden="true">Geen app · EU-gehost</span>
+        <h2>Klaar om POD te verzamelen<br>bij <em>elke levering?</em></h2>
+        <p>Demo van 15 minuten. We tonen u de uploadflow, het portal en de PDF-uitvoer.</p>
+        <div class="v2-cta-actions">
+          <a href="/nl/contact" class="v2-btn v2-btn-primary">Plan 15 minuten &rarr;</a>
+          <a href="/nl/demo" class="v2-btn v2-btn-ghost">Probeer eerst de demo</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const el = document.getElementById('v2-progress');
+      if (el) el.style.width = Math.min(p * 100, 100) + '%';
+    });
+    const pills = document.querySelectorAll('.v2-toc-pill');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          pills.forEach(p => p.classList.remove('active'));
+          const active = document.querySelector('.v2-toc-pill[href="#' + e.target.id + '"]');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+    document.querySelectorAll('.v2-faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.v2-faq-acc-item');
+        item.classList.toggle('open');
+      });
+    });
+    async function handleSubscribe(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.querySelector('[name=email]').value;
+      const msg = document.getElementById('subscribe-msg');
+      try {
+        const r = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email, hp_sub: '' })
+        });
+        const d = await r.json();
+        msg.style.display = 'block';
+        msg.textContent = d.ok ? 'Geabonneerd. Dankuwel!' : (d.error || 'Er is iets misgegaan.');
+        msg.style.color = d.ok ? 'var(--v2-delivered)' : 'var(--v2-stamp)';
+        if (d.ok) form.reset();
+      } catch { msg.style.display = 'block'; msg.textContent = 'Kon nu niet abonneren.'; }
+    }
+  </script>
+</body>
+</html>

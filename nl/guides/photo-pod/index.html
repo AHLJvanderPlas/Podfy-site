@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Foto als bewijs van aflevering — GPS-gestempeld visueel bewijs | PODFY</title>
+  <meta name="description" content="Waarom foto als bewijs van aflevering de sterkste geschilverdediging is, hoe onbeheerde leveringen en schade bij overdracht te documenteren, en wat foto-bewijs rechtbanktoelaatbaar maakt." />
+  <link rel="canonical" href="https://podfy.net/nl/guides/photo-pod/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/photo-pod/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/guides/photo-pod/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/photo-pod/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+    {"@type":"ListItem","position":2,"name":"Gidsen","item":"https://podfy.net/nl/guides/"},
+    {"@type":"ListItem","position":3,"name":"Foto-POD","item":"https://podfy.net/nl/guides/photo-pod/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Vervangt foto als bewijs van aflevering een ondertekende CMR?",
+      "acceptedAnswer":{"@type":"Answer","text":"In de meeste commerciële geschillen: ja, een GPS-gestempelde foto is overtuigender dan een ondertekende CMR omdat het de fysieke staat van de goederen op het afleveringspunt toont. Voor internationaal wegtransport onder de CMR-Conventie kan het papieren CMR-document echter nog steeds wettelijk vereist zijn. Beste praktijk is beide vast te leggen: de foto voor snelheid en geschilverdediging, het papieren CMR origineel voor formele naleving."}},
+    {"@type":"Question","name":"Wat moet een foto als bewijs van aflevering vastleggen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Minimaal: de goederen op het afleveringspunt (toestand en hoeveelheid zichtbaar), eventuele schade zichtbaar bij overdracht, de afleverlocatie (adresbord, poort of herkenbaar oriëntatiepunt), en — voor onbeheerde leveringen — de veilige plaatsing van de goederen. De GPS-coördinaten en tijdstempel worden automatisch vastgelegd door Podfy op het moment van de foto."}},
+    {"@type":"Question","name":"Hoe werkt GPS-stempelen in Podfy?",
+      "acceptedAnswer":{"@type":"Answer","text":"Wanneer de chauffeur de Podfy-uploadlink opent en een foto neemt, vraagt de browser GPS-coördinaten op het moment dat de camera afvuurt. Deze coördinaten worden gekoppeld aan het uploadrecord in de Podfy-database — niet ingebed in de EXIF van de afbeelding (die verwijderd kan worden), maar server-side opgeslagen met een geverifieerd tijdstempel. Dit maakt de locatiedata fraudebestendig."}},
+    {"@type":"Question","name":"Wat is bewakingsketenfotografie in de logistiek?",
+      "acceptedAnswer":{"@type":"Answer","text":"Bewakingsketenfotografie betekent het vastleggen van de staat van goederen bij elke overdracht: laden, transfer en aflevering. Elke foto is tijdgestempeld en GPS-gelocaliseerd, waardoor een ononderbroken visuele audittrail ontstaat. Als schade later wordt geclaimd, tonen de bewakingsketenfoto's precies waar en wanneer het is opgetreden — of niet. Podfy ondersteunt uploads van meerdere foto's per leveringsreferentie."}},
+    {"@type":"Question","name":"Kan foto-POD worden gebruikt voor onbeheerde leveringen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja — dit is een van de sterkste toepassingen. Voor onbeheerde leveringen (bijv. naar een zijpoort, een pakketkluis of een bouwlocatie) is een GPS-gestempelde foto van de goederen op hun plek het enige verifieerbare bewijs dat levering heeft plaatsgevonden. Er kan geen ondertekend document bestaan voor een onbeheerde overdracht, dus foto-POD wordt het primaire bewijs."}},
+    {"@type":"Question","name":"Is foto-bewijs aanvaardbaar voor Nederlandse en Belgische rechtbanken bij commerciële geschillen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. GPS-gestempelde, server-tijdgestempelde foto's opgeslagen door een derde systeem worden aanvaard als betrouwbaar bewijs in Nederlandse en Belgische commerciële procedures. De sleutelfactoren zijn: het tijdstempel kan niet achteraf worden gewijzigd, de GPS-coördinaten worden onafhankelijk van het afbeeldingsbestand opgeslagen, en het derde systeem (Podfy) biedt auditexporteerbare records."}}
+  ]}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Naar inhoud</a>
+  [[PODFY_HEADER]]
+  <nav class="v2-breadcrumb" aria-label="Kruimelpad"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/nl/">PODFY</a></li><li><a href="/nl/guides/">Gidsen</a></li><li aria-current="page">Foto-POD</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Gids &middot; Foto-bewijs</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">Foto als bewijs van aflevering.<br>Uw sterkste<br><em>geschilverdediging.</em></h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">Waarom GPS-gestempelde foto's handtekeningen overtreffen in commerciële geschillen, hoe onbeheerde leveringen en schade bij overdracht te documenteren, en wat foto-bewijs toelaatbaar maakt voor Nederlandse en Belgische rechters.</p>
+      </div>
+    </section>
+    <nav class="v2-toc" aria-label="Op deze pagina"><div class="container"><ul class="v2-toc-list">
+      <li><a class="v2-toc-pill" href="#photo-vs-signature">Foto vs handtekening</a></li>
+      <li><a class="v2-toc-pill" href="#unattended">Onbeheerde leveringen</a></li>
+      <li><a class="v2-toc-pill" href="#damage">Schadevastlegging</a></li>
+      <li><a class="v2-toc-pill" href="#chain-of-custody">Bewakingsketen</a></li>
+      <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+    </ul></div></nav>
+
+    <section class="v2-section" id="photo-vs-signature" aria-labelledby="phsig-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="phsig-heading">Foto vs handtekening: wie wint bij een geschil?</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>Een handtekening op een CMR bevestigt dat <em>iemand</em> <em>iets</em> heeft ontvangen op <em>een bepaald moment</em>. Het toont niet in welke staat de goederen waren, of de hoeveelheid correct was, of waar precies de overdracht plaatsvond. Bij de meest voorkomende geschillen — beschadigde goederen, te weinig geleverd, verkeerde locatie — beantwoordt een handtekening geen van de vragen.</p>
+            <p>Een GPS-gestempelde foto beantwoordt alle drie. Het toont de fysieke staat van de goederen op het moment van aflevering, de locatie waar ze zijn geplaatst, en het tijdstempel van de overdracht. Dit is waarom GPS-gestempeld foto-bewijs consequent beter presteert dan alleen-handtekening documentatie in Nederlandse en Belgische commerciële procedures.</p>
+            <p>Handtekeningen hebben nog steeds waarde: ze tonen instemming tot ontvangst. Beste praktijk is beide vast te leggen — maar waar slechts één mogelijk is (onbeheerde levering, overdracht door onderaannemer, geen printer beschikbaar), is de foto het sterkere record.</p>
+          </div>
+          <div>
+            <table class="v2-comparison-table" style="margin-top:.5rem;">
+              <thead><tr><th>Bewijstype</th><th class="v2-col-paper">Alleen handtekening</th><th class="v2-col-digital">GPS-foto (Podfy)</th></tr></thead>
+              <tbody>
+                <tr><td>Bewijst dat levering heeft plaatsgevonden</td><td class="v2-col-paper">Ja</td><td class="v2-col-digital">Ja</td></tr>
+                <tr><td>Toont staat van goederen</td><td class="v2-col-paper">Nee</td><td class="v2-col-digital">Ja</td></tr>
+                <tr><td>Bevestigt afleverlocatie</td><td class="v2-col-paper">Nee</td><td class="v2-col-digital">Ja — GPS-coördinaten</td></tr>
+                <tr><td>Werkt voor onbeheerde levering</td><td class="v2-col-paper">Nee</td><td class="v2-col-digital">Ja</td></tr>
+                <tr><td>Werkt voor onderaannemers</td><td class="v2-col-paper">Inconsistent</td><td class="v2-col-digital">Ja — elke telefoon</td></tr>
+                <tr><td>Fraudebestendig tijdstempel</td><td class="v2-col-paper">Nee</td><td class="v2-col-digital">Ja — server-opgeslagen</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">GPS foto-POD — geen app vereist</p><p class="v2-inline-cta-text">Chauffeurs openen een link, nemen een foto. GPS en tijdstempel worden automatisch vastgelegd.</p></div><a href="/nl/demo" class="v2-btn v2-btn-primary">Bekijk de demo &rarr;</a></div></div></div>
+
+    <section class="v2-section" id="unattended" aria-labelledby="unatt-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="unatt-heading">Onbeheerde leveringen documenteren</h2>
+        <div class="v2-prose">
+          <p>Onbeheerde levering — goederen plaatsen bij een poort, een laaddeur, een pakketkluis of een bouwlocatie zonder aanwezige ontvanger — is een van de hoogste risicoscenario's in last-mile logistiek. Er is geen handtekening, geen bevestiging door de tegenpartij, en geen manier om de levering te verifiëren nadat de chauffeur is vertrokken. Het enige bewijs is wat de chauffeur vastlegt op het moment van plaatsing.</p>
+          <p>Een GPS-gestempelde foto lost dit volledig op. De foto toont de goederen op hun plek, het tijdstempel bevestigt wanneer, en de GPS-coördinaten bevestigen waar. Als een ontvanger later non-levering claimt, beantwoordt het foto-record het geschil onmiddellijk — zonder chauffeursherinnering of papierreconstructie.</p>
+          <p>Voor bouwlocatieleveringen is dit nog relevanter. Meerdere onderaannemers hebben mogelijk toegang tot een locatie; goederen kunnen worden verplaatst tussen de afzet en de ochtendploeg. Een tijdgestempelde foto op het moment van plaatsing stelt vast wat is geleverd en waar, voordat iets anders het aanraakt.</p>
+        </div>
+        <div class="v2-how-grid" style="margin-top:2rem;">
+          <div class="v2-how-step"><p class="v2-how-step-num">Vastlegging 01</p><h3>Goederen op hun plek</h3><p>Foto toont de levering duidelijk geplaatst op het overeengekomen afleveringspunt. Hoeveelheid zichtbaar. Geen schade zichtbaar op het moment van plaatsing. Locatie herkenbaar uit de afbeelding.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Vastlegging 02</p><h3>Locatiemarkering</h3><p>Een tweede foto met het adres, poortnummer, doclabel of herkenbaar oriëntatiepunt bevestigt dat het afzetpunt overeenkomt met de leveringsinstructie. Nuttig wanneer GPS alleen onvoldoende precies is.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Vastlegging 03</p><h3>Veilige plaatsing</h3><p>Voor hoogwaardige of weergevoelige goederen: een foto die de goederen beschermd toont (overdekt, beveiligd of vergrendeld in een aangewezen gebied) ondersteunt de zorgplicht van de chauffeur en beperkt aansprakelijkheid voor schade na levering.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="damage" aria-labelledby="damage-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="damage-heading">Schade en toestandsvastlegging bij overdracht</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>Schadeclaims zijn de duurste leveringsgeschillen. De vraag is altijd dezelfde: was de schade aanwezig op het moment van aflevering, of is het daarna opgetreden? Zonder foto-bewijs bij overdracht kan geen van beide partijen dit definitief beantwoorden — en het geschil valt standaard ten gunste van de partij met het meest geloofwaardige argument.</p>
+            <p>Fotodocumentatie bij overdracht verandert dit volledig. Als goederen beschadigd aankomen, fotografeert de chauffeur de schade vóór het lossen. Als goederen onbeschadigd aankomen, bevestigt de foto hun toestand bij aflevering. In elk geval wordt het record gecreëerd op het moment dat er toe doet.</p>
+            <p><strong>Voor chauffeurs:</strong> schade fotograferen beschermt tegen valse claims. Een GPS-gestempelde foto van beschadigde verpakking, genomen voordat de goederen het terrein van de ontvanger betreden, stelt vast dat de schade zichtbaar was bij overdracht en de chauffeur het correct heeft gemeld.</p>
+            <p><strong>Voor verladers en 3PL's:</strong> toestandsfoto's bij elke overdracht stellen hen in staat schade toe te schrijven aan het correcte deel van de reis — vervoerderstransport, eindlevering of behandeling na levering. Dit is essentieel voor verzekeringsclaims en vervoerdersaansprakelijkheidsgeschillen onder de CMR-Conventie.</p>
+          </div>
+          <div>
+            <ul class="v2-check-list" style="margin-top:.5rem;">
+              <li>Fotografeer schade vóór het lossen — stelt toestand pre-levering vast</li>
+              <li>Leg verpakkingstoestand vast, niet alleen de inhoud</li>
+              <li>Meerdere hoeken voor aanzienlijke schade</li>
+              <li>Annoteer met probleemcode in Podfy (schade / tekort / weigering)</li>
+              <li>GPS-tijdstempel kan niet worden teruggedateerd — fraudebestendig record</li>
+              <li>Foto + probleemcode triggert automatische notificatie aan verlader in Podfy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="chain-of-custody" aria-labelledby="coc-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="coc-heading">Bewakingsketenfotografie</h2>
+        <div class="v2-prose">
+          <p>In meerledige zendingen — magazijn naar cross-dock, cross-dock naar eindlevering — kan schade optreden op elk transferpunt. Zonder foto-bewijs bij elke overdracht is het onmogelijk om verantwoordelijkheid toe te schrijven. De vervoerder aan het einde van de keten draagt de claim, zelfs als de schade eerder is opgetreden.</p>
+          <p>Bewakingsketenfotografie betekent het vastleggen van de staat van goederen bij elke overdracht: uitgaand laden, inkomende ontvangst bij elk depot en eindaflevering. Elk foto-record is GPS-gestempeld en tijdgestempeld, waardoor een ononderbroken visuele audittrail ontstaat.</p>
+          <p>Podfy ondersteunt uploads van meerdere foto's per referentie. Een zending kan een foto bij het uitladen, een foto bij de transit-transfer en een foto bij de eindaflevering hebben — allemaal gekoppeld aan hetzelfde PO-nummer of CMR-referentie. Als een schadeclaim ontstaat, tonen de ketenfoto's precies waar de toestand is veranderd.</p>
+          <p><strong>Multi-bestandsupload en PDF-samenvoeging.</strong> Wanneer meerdere foto's voor één levering worden vastgelegd — schade vanuit verschillende hoeken, goederen op hun plek plus adresetiketten plus toestandsdetails — kunnen alle bestanden samen worden geüpload onder één referentie. Podfy voegt ze samen tot één gebrandmerkt PDF: één document per levering, ongeacht het aantal vastgelegde afbeeldingen. Het resulterende PDF heeft een consistente header (merk, referentie, tijdstempel) en voettekst (Podfy-ID, paginatelling), waardoor het er netjes uitziet voor een factuurgeschil of auditpakket.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Veelgestelde vragen</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Vervangt foto als bewijs van aflevering een ondertekende CMR?</button><div class="v2-faq-answer"><p>In de meeste commerciële geschillen: ja. Een GPS-gestempelde foto is overtuigender omdat het de fysieke staat van goederen en locatie bij aflevering toont — dingen die een handtekening niet vastlegt. Voor internationale CMR-naleving kan het papieren CMR nog steeds wettelijk vereist zijn. Beste praktijk: leg beide vast, gebruik de foto voor geschillen.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Wat moet een foto als bewijs van aflevering vastleggen?</button><div class="v2-faq-answer"><p>Minimaal: goederen op het afleveringspunt (toestand en hoeveelheid zichtbaar), eventuele schade aanwezig bij overdracht, en de afleverlocatie. Voor onbeheerde leveringen: veilige plaatsing van de goederen. GPS en tijdstempel worden automatisch vastgelegd door Podfy op het moment van upload.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Hoe werkt GPS-stempelen in Podfy?</button><div class="v2-faq-answer"><p>Wanneer de chauffeur de Podfy-link opent en uploadt, legt de browser GPS-coördinaten vast op dat moment. Deze worden server-side opgeslagen — niet in de EXIF van de afbeelding, die kan worden verwijderd — met een geverifieerd tijdstempel. De locatiedata is fraudebestendig en exporteerbaar voor auditdoeleinden.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Kan foto-POD worden gebruikt voor onbeheerde leveringen?</button><div class="v2-faq-answer"><p>Ja — dit is een van de sterkste toepassingen. Een GPS-gestempelde foto van goederen geplaatst op een onbeheerd afzetpunt is het enige verifieerbare bewijs van levering wanneer geen handtekening mogelijk is. Bouwlocaties, zijpoorten, pakketkluizen en leveringen buiten werktijden profiteren allemaal van foto-POD.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Wat is bewakingsketenfotografie?</button><div class="v2-faq-answer"><p>Het vastleggen van de staat van goederen bij elk overdrachtsmoment in een meerledige zending: laden, transfer en eindaflevering. Elke foto is GPS-tijdgestempeld en gekoppeld aan dezelfde referentie. Als schade wordt geclaimd, tonen de ketenfoto's waar en wanneer het is opgetreden — of bewijzen dat het niet tijdens uw deel is gebeurd.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Is foto-bewijs aanvaardbaar voor Nederlandse en Belgische rechtbanken?</button><div class="v2-faq-answer"><p>Ja, voor commerciële geschillen. GPS-gestempelde, server-tijdgestempelde foto's van een derde systeem worden aanvaard als betrouwbaar bewijs in Nederlandse en Belgische commerciële procedures. De sleutelfactoren: het tijdstempel is server-side opgeslagen (niet in de afbeelding), GPS-coördinaten zijn onafhankelijk geverifieerd, en Podfy biedt exporteerbare auditrecords.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="guides-heading"><div class="container"><p class="v2-eyebrow">Meer lezen</p><h2 class="v2-section-title" id="guides-heading">Gerelateerde gidsen</h2><div class="v2-guide-grid"><a class="v2-guide-card" href="/nl/guides/pod-disputes/"><span class="v2-guide-tag">Gids</span><h3 class="v2-guide-title">Leveringsgeschillen oplossen</h3><p class="v2-guide-desc">Wanneer foto-bewijs de doorslaggevende factor wordt in een geschil.</p><span class="v2-guide-arrow">Lees gids &rarr;</span></a><a class="v2-guide-card" href="/nl/guides/missing-pod/"><span class="v2-guide-tag">Gids</span><h3 class="v2-guide-title">Ontbrekend bewijs van aflevering</h3><p class="v2-guide-desc">Wat te doen wanneer het leveringsrecord nooit is vastgelegd.</p><span class="v2-guide-arrow">Lees gids &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-labelledby="sol-heading"><div class="container"><p class="v2-eyebrow">Dit betreft</p><h2 class="v2-section-title" id="sol-heading">Voor wie dit relevant is</h2><div class="v2-sol-grid"><a class="v2-sol-tile" href="/nl/solutions/carriers/"><p class="v2-sol-tile-industry">Transport</p><p class="v2-sol-tile-name">Vervoerders</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a><a class="v2-sol-tile" href="/nl/solutions/retail/"><p class="v2-sol-tile-industry">Retail</p><p class="v2-sol-tile-name">Retailteams</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a><a class="v2-sol-tile" href="/nl/solutions/construction/"><p class="v2-sol-tile-industry">Bouw</p><p class="v2-sol-tile-name">Locatieleveringen</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-label="Gidshub"><div class="container"><p style="font-size:.9rem;color:var(--v2-muted);">Onderdeel van de Podfy-gidsenreeks &rarr; <a href="/nl/guides/proof-of-delivery/" class="v2-link">Wat is bewijs van aflevering?</a></p></div></section>
+    <section class="v2-section" aria-label="Blijf op de hoogte"><div class="container" style="max-width:40rem;"><div class="v2-subscribe-strip"><h3>Volg hoe Podfy evolueert</h3><p>Ontvang release-notities per e-mail wanneer nieuwe functies worden uitgerold.</p><form class="v2-subscribe-row" onsubmit="handleSubscribe(event)"><input type="email" name="email" class="v2-subscribe-input" placeholder="uw@email.nl" required /><button type="submit" class="v2-btn v2-btn-primary">Abonneren &rarr;</button></form><p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p></div></div></section>
+    <section class="v2-cta-block" aria-label="Aan de slag"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">GPS-gestempeld · Geen app</span><h2>Foto-bewijs dat standhoudt.<br><em>Van elke telefoon.</em></h2><p>Chauffeurs openen een link, nemen een foto. GPS en tijdstempel vastgelegd. Geen app te installeren.</p><div class="v2-cta-actions"><a href="/nl/contact" class="v2-btn v2-btn-primary">Plan 15 minuten &rarr;</a><a href="/nl/demo" class="v2-btn v2-btn-ghost">Probeer eerst de demo</a></div></div></section>
+  </main>
+  [[PODFY_FOOTER]]
+  <script>
+    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);const el=document.getElementById('v2-progress');if(el)el.style.width=Math.min(p*100,100)+'%';});
+    document.querySelectorAll('.v2-faq-btn').forEach(btn=>{btn.addEventListener('click',()=>btn.closest('.v2-faq-acc-item').classList.toggle('open'));});
+    const pills=document.querySelectorAll('.v2-toc-pill');const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){pills.forEach(p=>p.classList.remove('active'));const active=document.querySelector('.v2-toc-pill[href="#'+e.target.id+'"]');if(active)active.classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('section[id]').forEach(s=>observer.observe(s));
+    async function handleSubscribe(e){e.preventDefault();const email=e.target.querySelector('[name=email]').value;const msg=document.getElementById('subscribe-msg');try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})});const d=await r.json();msg.style.display='block';msg.textContent=d.ok?'Geabonneerd. Dankuwel!':(d.error||'Er is iets misgegaan.');msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)';if(d.ok)e.target.reset();}catch{msg.style.display='block';msg.textContent='Kon nu niet abonneren.';}}
+  </script>
+</body>
+</html>
