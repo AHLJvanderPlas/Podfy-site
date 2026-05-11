@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Foto als Liefernachweis — GPS-gestempelter visueller Beweis | PODFY</title>
+  <meta name="description" content="Warum Foto als Liefernachweis die stärkste Streitverteidigung ist, wie unbemannte Lieferungen und Schäden bei der Übergabe zu dokumentieren sind und was Fotobeweis vor Gericht zulässig macht." />
+  <link rel="canonical" href="https://podfy.net/de/guides/photo-pod/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/photo-pod/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/guides/photo-pod/" />
+  <link rel="alternate" hreflang="de" href="https://podfy.net/de/guides/photo-pod/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/photo-pod/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+    {"@type":"ListItem","position":2,"name":"Leitfäden","item":"https://podfy.net/de/guides/"},
+    {"@type":"ListItem","position":3,"name":"Foto-Liefernachweis","item":"https://podfy.net/de/guides/photo-pod/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Ersetzt Foto als Liefernachweis einen unterschriebenen Frachtbrief?",
+      "acceptedAnswer":{"@type":"Answer","text":"In den meisten kommerziellen Streitigkeiten: ja. Ein GPS-gestempeltes Foto ist überzeugender als ein unterschriebener Frachtbrief, weil es den physischen Zustand der Waren am Lieferort zeigt. Für internationalen Straßentransport unter der CMR-Konvention kann das Papierdokument jedoch noch rechtlich erforderlich sein. Best Practice: beides erfassen — das Foto für Geschwindigkeit und Streitverteidigung, der Papierfrachtbrief für formale Compliance."}},
+    {"@type":"Question","name":"Was muss ein Foto als Liefernachweis erfassen?",
+      "acceptedAnswer":{"@type":"Answer","text":"Mindestens: die Waren am Lieferort (Zustand und Menge sichtbar), etwaige Schäden sichtbar bei Übergabe, den Lieferort (Adressschild, Tor oder erkennbares Orientierungsmerkmal) und — bei unbemannten Lieferungen — die sichere Platzierung der Waren. GPS-Koordinaten und Zeitstempel werden von Podfy automatisch zum Zeitpunkt des Fotos erfasst."}},
+    {"@type":"Question","name":"Wie funktioniert GPS-Stempelung in Podfy?",
+      "acceptedAnswer":{"@type":"Answer","text":"Wenn der Fahrer den Podfy-Upload-Link öffnet und ein Foto macht, fragt der Browser GPS-Koordinaten zum Zeitpunkt des Kameraauslösers ab. Diese Koordinaten werden mit dem Upload-Datensatz in der Podfy-Datenbank verknüpft — nicht in die EXIF der Bilddatei eingebettet (die entfernt werden kann), sondern server-seitig mit einem verifizierten Zeitstempel gespeichert. Das macht die Standortdaten manipulationssicher."}},
+    {"@type":"Question","name":"Was ist Übergabekettenfotografie in der Logistik?",
+      "acceptedAnswer":{"@type":"Answer","text":"Übergabekettenfotografie bedeutet das Erfassen des Warenzustands bei jeder Übergabe: Verladung, Transfer und Lieferung. Jedes Foto ist zeitgestempelt und GPS-lokalisiert, was einen lückenlosen visuellen Audit-Trail ergibt. Wenn ein Schaden später reklamiert wird, zeigen die Übergabekettenfotos genau, wo und wann er aufgetreten ist — oder beweisen, dass er es nicht hat. Podfy unterstützt Mehrfach-Foto-Uploads pro Lieferreferenz."}},
+    {"@type":"Question","name":"Kann Foto-Liefernachweis für unbemannte Lieferungen verwendet werden?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja — das ist eine der stärksten Anwendungen. Für unbemannte Lieferungen (z.B. an ein Seitentor, einen Paketfach oder eine Baustelle) ist ein GPS-gestempeltes Foto der Waren an ihrem Platz der einzige überprüfbare Beweis, dass die Lieferung stattgefunden hat. Es kann kein unterschriebenes Dokument für eine unbemannte Übergabe geben, daher wird Foto-POD zum primären Beweis."}},
+    {"@type":"Question","name":"Ist Fotobeweis für deutsche Gerichte bei kommerziellen Streitigkeiten zulässig?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. GPS-gestempelte, server-zeitgestempelte Fotos, die von einem Drittsystem gespeichert wurden, werden als verlässlicher Beweis in deutschen kommerziellen Verfahren anerkannt. Die Schlüsselfaktoren sind: Der Zeitstempel kann nachträglich nicht geändert werden, GPS-Koordinaten werden unabhängig von der Bilddatei gespeichert, und das Drittsystem (Podfy) bietet audit-exportierbare Datensätze."}}
+  ]}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Zum Inhalt springen</a>
+  [[PODFY_HEADER]]
+  <nav class="v2-breadcrumb" aria-label="Breadcrumb"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/de/">PODFY</a></li><li><a href="/de/guides/">Leitfäden</a></li><li aria-current="page">Foto-Liefernachweis</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Leitfaden &middot; Fotobeweis</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">Foto als Liefernachweis.<br>Ihre stärkste<br><em>Streitverteidigung.</em></h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">Warum GPS-gestempelte Fotos Unterschriften in kommerziellen Streitigkeiten übertreffen, wie unbemannte Lieferungen und Schäden bei der Übergabe zu dokumentieren sind und was Fotobeweis für deutsche Gerichte zulässig macht.</p>
+      </div>
+    </section>
+    <nav class="v2-toc" aria-label="Auf dieser Seite"><div class="container"><ul class="v2-toc-list">
+      <li><a class="v2-toc-pill" href="#photo-vs-signature">Foto vs. Unterschrift</a></li>
+      <li><a class="v2-toc-pill" href="#unattended">Unbemannte Lieferungen</a></li>
+      <li><a class="v2-toc-pill" href="#damage">Schadenserfassung</a></li>
+      <li><a class="v2-toc-pill" href="#chain-of-custody">Übergabekette</a></li>
+      <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+    </ul></div></nav>
+
+    <section class="v2-section" id="photo-vs-signature" aria-labelledby="phsig-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="phsig-heading">Foto vs. Unterschrift: Wer gewinnt bei einem Streit?</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>Eine Unterschrift auf einem Frachtbrief bestätigt, dass <em>jemand</em> <em>etwas</em> zu <em>einem bestimmten Zeitpunkt</em> empfangen hat. Es zeigt nicht, in welchem Zustand die Waren waren, ob die Menge korrekt war oder wo genau die Übergabe stattfand. Bei den häufigsten Streitigkeiten — beschädigte Waren, Fehlmengen, falscher Ort — beantwortet eine Unterschrift keine der Fragen.</p>
+            <p>Ein GPS-gestempeltes Foto beantwortet alle drei. Es zeigt den physischen Zustand der Waren zum Zeitpunkt der Lieferung, den Ort, an dem sie abgestellt wurden, und den Zeitstempel der Übergabe. Deshalb übertrifft GPS-gestempeltes Fotobeweis konsequent die Nur-Unterschrift-Dokumentation in deutschen kommerziellen Verfahren.</p>
+            <p>Unterschriften haben noch immer Wert: Sie zeigen Zustimmung zum Empfang. Best Practice ist beides zu erfassen — aber wo nur eines möglich ist (unbemannte Lieferung, Unterfrachtführer-Übergabe, kein Drucker verfügbar), ist das Foto das stärkere Dokument.</p>
+          </div>
+          <div>
+            <table class="v2-comparison-table" style="margin-top:.5rem;">
+              <thead><tr><th>Beweistyp</th><th class="v2-col-paper">Nur Unterschrift</th><th class="v2-col-digital">GPS-Foto (Podfy)</th></tr></thead>
+              <tbody>
+                <tr><td>Beweist, dass Lieferung stattfand</td><td class="v2-col-paper">Ja</td><td class="v2-col-digital">Ja</td></tr>
+                <tr><td>Zeigt Warenzustand</td><td class="v2-col-paper">Nein</td><td class="v2-col-digital">Ja</td></tr>
+                <tr><td>Bestätigt Lieferort</td><td class="v2-col-paper">Nein</td><td class="v2-col-digital">Ja — GPS-Koordinaten</td></tr>
+                <tr><td>Funktioniert bei unbemannter Lieferung</td><td class="v2-col-paper">Nein</td><td class="v2-col-digital">Ja</td></tr>
+                <tr><td>Funktioniert bei Unterfrachtführern</td><td class="v2-col-paper">Inkonsistent</td><td class="v2-col-digital">Ja — jedes Telefon</td></tr>
+                <tr><td>Manipulationssicherer Zeitstempel</td><td class="v2-col-paper">Nein</td><td class="v2-col-digital">Ja — server-gespeichert</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">GPS-Foto-Liefernachweis — keine App erforderlich</p><p class="v2-inline-cta-text">Fahrer öffnen einen Link, machen ein Foto. GPS und Zeitstempel werden automatisch erfasst.</p></div><a href="/de/demo" class="v2-btn v2-btn-primary">Demo ansehen &rarr;</a></div></div></div>
+
+    <section class="v2-section" id="unattended" aria-labelledby="unatt-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="unatt-heading">Unbemannte Lieferungen dokumentieren</h2>
+        <div class="v2-prose">
+          <p>Unbemannte Lieferung — Waren an einem Tor, einer Laderampe, einem Paketfach oder einer Baustelle ohne anwesenden Empfänger ablegen — ist eines der höchsten Risikoszenarien in der Last-Mile-Logistik. Es gibt keine Unterschrift, keine Gegenbestätigung und keine Möglichkeit, die Lieferung zu verifizieren, nachdem der Fahrer abgefahren ist. Der einzige Beweis ist, was der Fahrer zum Zeitpunkt der Ablage erfasst.</p>
+          <p>Ein GPS-gestempeltes Foto löst das vollständig. Das Foto zeigt die Waren an ihrem Platz, der Zeitstempel bestätigt wann, und die GPS-Koordinaten bestätigen wo. Wenn ein Empfänger später Nicht-Lieferung reklamiert, beantwortet der Fotodatensatz den Streit sofort — ohne Fahrererinnerung oder Papierrekonstruktion.</p>
+          <p>Für Baustellenlieferungen ist das noch relevanter. Mehrere Unterfrachtführer können Zugang zu einer Baustelle haben; Waren können zwischen der Ablage und dem Morgendienst bewegt werden. Ein zeitgestempeltes Foto zum Zeitpunkt der Ablage stellt fest, was geliefert wurde und wo, bevor jemand anders es berührt.</p>
+        </div>
+        <div class="v2-how-grid" style="margin-top:2rem;">
+          <div class="v2-how-step"><p class="v2-how-step-num">Erfassung 01</p><h3>Waren an ihrem Platz</h3><p>Foto zeigt die Lieferung klar am vereinbarten Ablagepunkt. Menge sichtbar. Kein Schaden zum Zeitpunkt der Ablage sichtbar. Ort aus dem Bild erkennbar.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Erfassung 02</p><h3>Ortsmarkierung</h3><p>Ein zweites Foto mit der Adresse, Tornummer, Dock-Etikett oder erkennbarem Orientierungspunkt bestätigt, dass der Ablagepunkt der Lieferanweisung entspricht. Hilfreich, wenn GPS allein nicht präzise genug ist.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Erfassung 03</p><h3>Sichere Platzierung</h3><p>Für hochwertige oder witterungsempfindliche Waren: ein Foto, das die Waren geschützt zeigt (überdacht, gesichert oder in einem designated Bereich eingeschlossen), unterstützt die Sorgfaltspflicht des Fahrers und begrenzt die Haftung für Schäden nach der Lieferung.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="damage" aria-labelledby="damage-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="damage-heading">Schaden und Zustandserfassung bei der Übergabe</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>Schadensreklamationen sind die kostspieligsten Lieferstreitigkeiten. Die Frage ist immer dieselbe: War der Schaden zum Zeitpunkt der Lieferung vorhanden oder ist er danach aufgetreten? Ohne Fotobeweis bei der Übergabe kann keine der Parteien das definitiv beantworten — und der Streit fällt standardmäßig zugunsten der Partei mit dem glaubwürdigsten Argument aus.</p>
+            <p>Fotodokumentation bei der Übergabe ändert das vollständig. Wenn Waren beschädigt ankommen, fotografiert der Fahrer den Schaden vor der Entladung. Wenn Waren unbeschädigt ankommen, bestätigt das Foto ihren Zustand bei Lieferung. In jedem Fall wird der Datensatz in dem Moment erstellt, der zählt.</p>
+            <p><strong>Für Fahrer:</strong> Schäden fotografieren schützt vor falschen Reklamationen. Ein GPS-gestempeltes Foto beschädigter Verpackung, aufgenommen bevor die Waren das Gelände des Empfängers betreten, stellt fest, dass der Schaden bei Übergabe sichtbar war und der Fahrer es korrekt gemeldet hat.</p>
+            <p><strong>Für Absender und 3PLs:</strong> Zustandsfotos bei jeder Übergabe ermöglichen es, Schäden dem richtigen Teil der Reise zuzuordnen — Spediteurtransport, Endlieferung oder Behandlung nach Lieferung. Das ist wesentlich für Versicherungsansprüche und Spediteurbürge-Streitigkeiten nach der CMR-Konvention.</p>
+          </div>
+          <div>
+            <ul class="v2-check-list" style="margin-top:.5rem;">
+              <li>Schaden vor der Entladung fotografieren — stellt Vor-Lieferungs-Zustand fest</li>
+              <li>Verpackungszustand erfassen, nicht nur den Inhalt</li>
+              <li>Mehrere Winkel bei erheblichem Schaden</li>
+              <li>Mit Problemcode in Podfy annotieren (Schaden / Fehlmenge / Ablehnung)</li>
+              <li>GPS-Zeitstempel kann nicht rückdatiert werden — manipulationssicherer Datensatz</li>
+              <li>Foto + Problemcode löst automatische Benachrichtigung an Absender in Podfy aus</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="chain-of-custody" aria-labelledby="coc-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="coc-heading">Übergabekettenfotografie</h2>
+        <div class="v2-prose">
+          <p>Bei mehrstufigen Sendungen — Lager zu Cross-Dock, Cross-Dock zu Endlieferung — kann Schaden an jedem Übergabepunkt auftreten. Ohne Fotobeweis bei jeder Übergabe ist es unmöglich, Verantwortung zuzuordnen. Der Spediteur am Ende der Kette trägt die Reklamation, auch wenn der Schaden früher entstanden ist.</p>
+          <p>Übergabekettenfotografie bedeutet das Erfassen des Warenzustands bei jeder Übergabe: ausgehende Verladung, eingehender Empfang bei jedem Depot und Endlieferung. Jeder Fotodatensatz ist GPS-gestempelt und zeitgestempelt, was einen lückenlosen visuellen Audit-Trail ergibt.</p>
+          <p>Podfy unterstützt Mehrfach-Foto-Uploads pro Referenz. Eine Sendung kann ein Foto beim Ausladen, ein Foto beim Transit-Transfer und ein Foto bei der Endlieferung haben — alles verknüpft mit derselben PO-Nummer oder Frachtbriefreferenz. Wenn eine Schadensreklamation entsteht, zeigen die Kettenfotos genau, wo sich der Zustand verändert hat.</p>
+          <p><strong>Mehrfachdatei-Upload und PDF-Zusammenführung.</strong> Wenn mehrere Fotos für eine Lieferung erfasst werden — Schaden aus verschiedenen Winkeln, Waren an ihrem Platz plus Adressetiketten plus Zustandsdetails — können alle Dateien zusammen unter einer Referenz hochgeladen werden. Podfy führt sie zu einem markierten PDF zusammen: ein Dokument pro Lieferung, unabhängig von der Anzahl der erfassten Bilder.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Häufig gestellte Fragen</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Ersetzt Foto als Liefernachweis einen unterschriebenen Frachtbrief?</button><div class="v2-faq-answer"><p>In den meisten kommerziellen Streitigkeiten: ja. Ein GPS-gestempeltes Foto ist überzeugender, weil es den physischen Zustand der Waren und den Ort bei Lieferung zeigt — Dinge, die eine Unterschrift nicht erfasst. Für internationale CMR-Compliance kann der Papierfrachtbrief noch rechtlich erforderlich sein. Best Practice: beides erfassen, Foto für Streitigkeiten verwenden.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Was muss ein Foto als Liefernachweis erfassen?</button><div class="v2-faq-answer"><p>Mindestens: Waren am Lieferort (Zustand und Menge sichtbar), etwaige Schäden bei Übergabe vorhanden und den Lieferort. Bei unbemannten Lieferungen: sichere Platzierung der Waren. GPS und Zeitstempel werden von Podfy automatisch zum Zeitpunkt des Uploads erfasst.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Wie funktioniert GPS-Stempelung in Podfy?</button><div class="v2-faq-answer"><p>Wenn der Fahrer den Podfy-Link öffnet und hochlädt, erfasst der Browser GPS-Koordinaten zu diesem Zeitpunkt. Diese werden server-seitig gespeichert — nicht in der EXIF der Bilddatei, die entfernt werden kann — mit einem verifizierten Zeitstempel. Die Standortdaten sind manipulationssicher und für Audit-Zwecke exportierbar.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Kann Foto-Liefernachweis für unbemannte Lieferungen verwendet werden?</button><div class="v2-faq-answer"><p>Ja — das ist eine der stärksten Anwendungen. Ein GPS-gestempeltes Foto von Waren, die an einem unbemannten Ablagepunkt platziert wurden, ist der einzige überprüfbare Lieferbeweis, wenn keine Unterschrift möglich ist. Baustellen, Seitentore, Paketfächer und Lieferungen außerhalb der Geschäftszeiten profitieren alle von Foto-Liefernachweis.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Was ist Übergabekettenfotografie?</button><div class="v2-faq-answer"><p>Das Erfassen des Warenzustands bei jedem Übergabepunkt in einer mehrstufigen Sendung: Verladung, Transfer und Endlieferung. Jedes Foto ist GPS-zeitgestempelt und mit derselben Referenz verknüpft. Wenn Schaden reklamiert wird, zeigen die Kettenfotos wo und wann er aufgetreten ist — oder beweisen, dass er es nicht während Ihres Teils getan hat.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Ist Fotobeweis für deutsche Gerichte zulässig?</button><div class="v2-faq-answer"><p>Ja, für kommerzielle Streitigkeiten. GPS-gestempelte, server-zeitgestempelte Fotos von einem Drittsystem werden als verlässlicher Beweis in deutschen kommerziellen Verfahren anerkannt. Die Schlüsselfaktoren: Zeitstempel ist server-seitig gespeichert (nicht im Bild), GPS-Koordinaten sind unabhängig verifiziert und Podfy bietet exportierbare Audit-Datensätze.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="guides-heading"><div class="container"><p class="v2-eyebrow">Mehr lesen</p><h2 class="v2-section-title" id="guides-heading">Verwandte Leitfäden</h2><div class="v2-guide-grid"><a class="v2-guide-card" href="/de/guides/pod-disputes/"><span class="v2-guide-tag">Leitfaden</span><h3 class="v2-guide-title">Lieferstreitigkeiten lösen</h3><p class="v2-guide-desc">Wenn Fotobeweis der entscheidende Faktor in einem Streit wird.</p><span class="v2-guide-arrow">Leitfaden lesen &rarr;</span></a><a class="v2-guide-card" href="/de/guides/missing-pod/"><span class="v2-guide-tag">Leitfaden</span><h3 class="v2-guide-title">Fehlender Liefernachweis</h3><p class="v2-guide-desc">Was zu tun ist, wenn der Lieferdatensatz nie erfasst wurde.</p><span class="v2-guide-arrow">Leitfaden lesen &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-labelledby="sol-heading"><div class="container"><p class="v2-eyebrow">Betrifft</p><h2 class="v2-section-title" id="sol-heading">Für wen das relevant ist</h2><div class="v2-sol-grid"><a class="v2-sol-tile" href="/de/solutions/carriers/"><p class="v2-sol-tile-industry">Transport</p><p class="v2-sol-tile-name">Spediteure</p><span class="v2-sol-tile-arrow">Lösung ansehen &rarr;</span></a><a class="v2-sol-tile" href="/de/solutions/retail/"><p class="v2-sol-tile-industry">Retail</p><p class="v2-sol-tile-name">Retail-Teams</p><span class="v2-sol-tile-arrow">Lösung ansehen &rarr;</span></a><a class="v2-sol-tile" href="/de/solutions/construction/"><p class="v2-sol-tile-industry">Bau</p><p class="v2-sol-tile-name">Baustellenlieferungen</p><span class="v2-sol-tile-arrow">Lösung ansehen &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-label="Leitfadenhub"><div class="container"><p style="font-size:.9rem;color:var(--v2-muted);">Teil der Podfy-Leitfadenreihe &rarr; <a href="/de/guides/proof-of-delivery/" class="v2-link">Was ist ein Liefernachweis?</a></p></div></section>
+    <section class="v2-section" aria-label="Auf dem Laufenden bleiben"><div class="container" style="max-width:40rem;"><div class="v2-subscribe-strip"><h3>Wie Podfy sich weiterentwickelt, verfolgen</h3><p>Release-Notizen per E-Mail erhalten, wenn neue Funktionen ausgerollt werden.</p><form class="v2-subscribe-row" onsubmit="handleSubscribe(event)"><input type="email" name="email" class="v2-subscribe-input" placeholder="ihre@email.de" required /><button type="submit" class="v2-btn v2-btn-primary">Abonnieren &rarr;</button></form><p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p></div></div></section>
+    <section class="v2-cta-block" aria-label="Loslegen"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">GPS-gestempelt · Keine App</span><h2>Fotobeweis, der standhält.<br><em>Von jedem Telefon.</em></h2><p>Fahrer öffnen einen Link, machen ein Foto. GPS und Zeitstempel erfasst. Keine App zu installieren.</p><div class="v2-cta-actions"><a href="/de/contact" class="v2-btn v2-btn-primary">15 Minuten buchen &rarr;</a><a href="/de/demo" class="v2-btn v2-btn-ghost">Erst die Demo ausprobieren</a></div></div></section>
+  </main>
+  [[PODFY_FOOTER]]
+  <script>
+    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);const el=document.getElementById('v2-progress');if(el)el.style.width=Math.min(p*100,100)+'%';});
+    document.querySelectorAll('.v2-faq-btn').forEach(btn=>{btn.addEventListener('click',()=>btn.closest('.v2-faq-acc-item').classList.toggle('open'));});
+    const pills=document.querySelectorAll('.v2-toc-pill');const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){pills.forEach(p=>p.classList.remove('active'));const active=document.querySelector('.v2-toc-pill[href="#'+e.target.id+'"]');if(active)active.classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('section[id]').forEach(s=>observer.observe(s));
+    async function handleSubscribe(e){e.preventDefault();const email=e.target.querySelector('[name=email]').value;const msg=document.getElementById('subscribe-msg');try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})});const d=await r.json();msg.style.display='block';msg.textContent=d.ok?'Abonniert. Vielen Dank!':(d.error||'Etwas ist schiefgelaufen.');msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)';if(d.ok)e.target.reset();}catch{msg.style.display='block';msg.textContent='Konnte momentan nicht abonnieren.';}}
+  </script>
+</body>
+</html>
