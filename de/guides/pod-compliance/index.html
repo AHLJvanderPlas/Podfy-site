@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>POD-Compliance und Aufbewahrungsfristen für Liefernachweise | PODFY</title>
+  <meta name="description" content="Wie lange Sie Liefernachweise aufbewahren müssen, was GoBD, HGB und AO verlangen und wie Sie ein auditbereites Lieferdokumentenarchiv ohne komplexe Systeme aufbauen." />
+  <link rel="canonical" href="https://podfy.net/de/guides/pod-compliance/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:title" content="POD-Compliance und Aufbewahrungsfristen für Liefernachweise | PODFY" />
+  <meta property="og:description" content="Wie lange Sie Liefernachweise aufbewahren müssen, was GoBD, HGB und AO verlangen und wie Sie ein auditbereites Lieferdokumentenarchiv ohne komplexe Systeme aufbauen." />
+  <meta property="og:url" content="https://podfy.net/de/guides/pod-compliance/" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="POD-Compliance und Aufbewahrungsfristen für Liefernachweise | PODFY" />
+  <meta name="twitter:description" content="Wie lange Sie Liefernachweise aufbewahren müssen, was GoBD, HGB und AO verlangen und wie Sie ein auditbereites Lieferdokumentenarchiv ohne komplexe Systeme aufbauen." />
+  <meta name="twitter:image" content="https://podfy.net/assets/og-image.png" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/pod-compliance/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/guides/pod-compliance/" />
+  <link rel="alternate" hreflang="de" href="https://podfy.net/de/guides/pod-compliance/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/pod-compliance/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+    {"@type":"ListItem","position":2,"name":"Leitfäden","item":"https://podfy.net/de/guides/"},
+    {"@type":"ListItem","position":3,"name":"POD-Compliance","item":"https://podfy.net/de/guides/pod-compliance/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Wie lange müssen Liefernachweise in Deutschland aufbewahrt werden?",
+      "acceptedAnswer":{"@type":"Answer","text":"In Deutschland schreibt die GoBD (Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern) in Verbindung mit § 147 AO und § 257 HGB eine Aufbewahrungsfrist von 10 Jahren für Handelsbriefe, Buchungsbelege und damit zusammenhängende Geschäftsdokumente vor. Frachtbriefe und Liefernachweise, die als Buchungsbelege dienen, fallen unter diese 10-Jahres-Frist."}},
+    {"@type":"Question","name":"Speichert Podfy Daten in der EU?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Alle über Podfy gespeicherten Lieferdokumente werden in Cloudflares EU-WEUR (Westeuropa) Region aufbewahrt. Es verlässt keine Daten die EU. Podfy kann einen Auftragsverarbeitungsvertrag (AVV) für DSGVO-Compliance-Zwecke bereitstellen."}},
+    {"@type":"Question","name":"Was gilt als auditbereiter Lieferdatensatz?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ein auditbereiter Lieferdatensatz sollte enthalten: das Dokument selbst (unterschriebener CMR oder Lieferschein), einen Zeitstempel der Einreichung, GPS-Koordinaten zur Bestätigung des Lieferorts und eine Referenz, die ihn mit der Rechnung oder Bestellung verknüpft. Alle vier Elemente werden automatisch in jedem Podfy-Upload erfasst."}},
+    {"@type":"Question","name":"Können Podfy-Datensätze für ein Audit-Paket exportiert werden?",
+      "acceptedAnswer":{"@type":"Answer","text":"Ja. Lieferdatensätze können als PDFs aus dem Podfy-Portal exportiert werden. Massenexport nach Datumsbereich oder Referenzpräfix ist verfügbar. Das ist typischerweise das, was Finanzamt-Prüfungen und Handelsrevisionen erfordern."}},
+    {"@type":"Question","name":"Werden GPS-gestempelte digitale Belege vor deutschen Gerichten akzeptiert?",
+      "acceptedAnswer":{"@type":"Answer","text":"Im Allgemeinen ja, für Handelsstreitigkeiten. GPS-gestempelte, zeitgestempelte digitale Datensätze, die von einem Drittanbieter-System erstellt wurden, gelten in deutschen Handelsverfahren als verlässliche Beweise. Sie ergänzen und ersetzen in der Praxis oft Papier-CMR-Originale bei der Streitlösung."}}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"POD-Compliance und Aufbewahrungsfristen für Liefernachweise","description":"Wie lange Sie Liefernachweise aufbewahren müssen, was GoBD, HGB und AO verlangen und wie Sie ein auditbereites Lieferdokumentenarchiv ohne komplexe Systeme aufbauen.","url":"https://podfy.net/de/guides/pod-compliance/","datePublished":"2026-05-01","dateModified":"2026-05-11","author":{"@type":"Organization","name":"PODFY"},"publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"}}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Zum Inhalt springen</a>
+  [[PODFY_HEADER]]
+  <nav class="v2-breadcrumb" aria-label="Breadcrumb"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/de/">PODFY</a></li><li><a href="/de/guides/">Leitfäden</a></li><li aria-current="page">POD-Compliance</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Leitfaden &middot; Compliance &amp; Audit</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">Wie lange müssen Sie<br>Liefernachweise aufbewahren?<br><em>Beantwortet.</em></h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">Aufbewahrungsfristen für deutsche Logistikbetriebe, was GoBD vorschreibt, was einen Lieferdatensatz auditbereit macht und wie Sie ein konformes Archiv ohne zusätzliche Komplexität aufbauen.</p>
+      </div>
+    </section>
+    <nav class="v2-toc" aria-label="Auf dieser Seite"><div class="container"><ul class="v2-toc-list">
+      <li><a class="v2-toc-pill" href="#retention">Aufbewahrungsfristen</a></li>
+      <li><a class="v2-toc-pill" href="#gdpr">DSGVO und Datenlokalisierung</a></li>
+      <li><a class="v2-toc-pill" href="#audit-ready">Auditbereite Datensätze</a></li>
+      <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+    </ul></div></nav>
+
+    <section class="v2-section" id="retention" aria-labelledby="ret-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="ret-heading">Aufbewahrungsfristen für Logistikbetriebe in Deutschland</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p><strong>Deutschland — GoBD, HGB und AO.</strong> Die GoBD (Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern, Aufzeichnungen, Unterlagen und Daten) schreibt für Buchungsbelege, Handels- und Geschäftsbriefe sowie steuerrelevante Unterlagen eine Aufbewahrungsfrist von <strong>10 Jahren</strong> vor. Diese Anforderung ist verankert in § 147 Abgabenordnung (AO) und § 257 Handelsgesetzbuch (HGB). Frachtbriefe und Liefernachweise, die als Buchungsbelege oder Handelsdokumente dienen, fallen typischerweise unter diese 10-Jahres-Frist.</p>
+            <p><strong>CMR-Konvention.</strong> Für grenzüberschreitenden Straßentransport unter der CMR-Konvention müssen Forderungen innerhalb von 1 Jahr eingebracht werden (3 Jahre bei arglistigem Verhalten). Obwohl dies kürzer als die nationale Aufbewahrungspflicht ist, ist Best Practice, CMR-Datensätze für die vollständige handelsrechtliche Aufbewahrungsfrist von 10 Jahren zu bewahren.</p>
+            <p><strong>Digitale GoBD-Konformität.</strong> Die GoBD erlaubt digitale Archivierung, sofern die Unveränderlichkeit, Vollständigkeit und Lesbarkeit der Dokumente während der gesamten Aufbewahrungsfrist sichergestellt ist. Podfy speichert das Original-Dateiformat (kein nachbearbeitetes Bild) mit unveränderlichen Metadaten — GPS-Koordinaten, Zeitstempel und Referenznummer — was die GoBD-Anforderungen an die Nachvollziehbarkeit erfüllt.</p>
+          </div>
+          <div>
+            <ul class="v2-check-list" style="margin-top:.5rem;">
+              <li>10-Jahres-Aufbewahrung in Deutschland (GoBD / § 147 AO / § 257 HGB)</li>
+              <li>Datensätze müssen zugänglich und lesbar bleiben</li>
+              <li>Digitale Datensätze werden akzeptiert, wenn Integritätsanforderungen erfüllt sind</li>
+              <li>CMR 1-Jahres-Anspruchsfenster; 3-Jahres-Betrugsfenster</li>
+              <li>EU-DSGVO gilt für personenbezogene Daten in Lieferdatensätzen</li>
+              <li>Datenlokalisierung: EU-gehostet für DSGVO-Konformität</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">10-Jahres-GoBD-Archiv — inklusive</p><p class="v2-inline-cta-text">Jeder Podfy Pro-Datensatz wird in EU-WEUR mit vollständiger Audit-Exportfähigkeit gespeichert.</p></div><a href="/de/demo" class="v2-btn v2-btn-primary">Demo ansehen &rarr;</a></div></div></div>
+
+    <section class="v2-section" id="gdpr" aria-labelledby="gdpr-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="gdpr-heading">DSGVO und Datenlokalisierung</h2>
+        <div class="v2-prose">
+          <p>Lieferdokumente enthalten oft personenbezogene Daten: Fahrernamen, Kennzeichen, GPS-Standorte, die mit Einzelpersonen verknüpft sind, und Kundenkontaktdaten. Nach der DSGVO müssen diese Daten gemäß der Verordnung verarbeitet und gespeichert werden — und für Organisationen unter deutschem Recht ist die Speicherung innerhalb der EU dringend empfohlen.</p>
+          <p>Alle über Podfy gespeicherten Daten werden in Cloudflares EU-WEUR (Westeuropa) Region verarbeitet. Keine Daten verlassen die EU-Grenzen. Dies erfüllt die deutschen DSGVO-Datenlokalisierungserwartungen ohne zusätzliches Rechtsinstrument (Standardvertragsklauseln).</p>
+          <p>Für Compliance-Zwecke stellt Podfy einen Auftragsverarbeitungsvertrag (AVV) bereit. Dieser ist erforderlich, wenn Sie personenbezogene Daten von EU-Bürgern im Auftrag eines Verantwortlichen verarbeiten — z. B. als 3PL, der Lieferdatensätze im Auftrag von Absenderkunden verarbeitet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="audit-ready" aria-labelledby="audit-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="audit-heading">Was einen Lieferdatensatz auditbereit macht</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step"><p class="v2-how-step-num">Element 01</p><h3>Das Dokument</h3><p>Eine lesbare Kopie des unterschriebenen CMR, Lieferscheins oder Foto-Beweises. Muss auf Anfrage abrufbar sein. Podfy speichert die ursprüngliche hochgeladene Datei, keine nachverarbeitete Version.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Element 02</p><h3>Zeitstempel und GPS</h3><p>Der genaue Zeitpunkt der Lieferung und die GPS-Koordinaten, erfasst zum Zeitpunkt des Uploads. Diese belegen, dass das Dokument am Lieferpunkt zu einem bestimmten Zeitpunkt erstellt wurde — nicht im Nachhinein gefälscht.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Element 03</p><h3>Referenzverknüpfung</h3><p>Der Datensatz muss mit Rechnung und Bestellung verknüpfbar sein. Ein konsistentes Referenzsystem (Bestellnummer, Sendungs-ID oder CMR-Nummer) beim Upload bedeutet, dass jeder Datensatz über den Identifier Ihres Finanzteams aufgerufen werden kann.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Häufig gestellte Fragen</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Wie lange müssen POD-Dokumente in Deutschland aufbewahrt werden?</button><div class="v2-faq-answer"><p>10 Jahre für Handelsdokumente und Buchungsbelege (§ 147 AO, § 257 HGB, GoBD). CMR-Dokumente für grenzüberschreitende Fracht haben ein Anspruchsfenster von 1 Jahr, aber Best Practice ist die Aufbewahrung für die vollständige Frist von 10 Jahren. Der Podfy Pro-Tarif enthält das 10-Jahres-GoBD-Archiv ohne Aufpreis.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Speichert Podfy Daten in der EU?</button><div class="v2-faq-answer"><p>Ja. Alle Daten werden in Cloudflares EU-WEUR (Westeuropa) Region gespeichert. Es verlässt keine Daten die EU. Ein Auftragsverarbeitungsvertrag (AVV) ist für Organisationen mit formalen DSGVO-Compliance-Anforderungen verfügbar.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Was gilt als auditbereiter Lieferdatensatz?</button><div class="v2-faq-answer"><p>Ein auditbereiter Datensatz enthält: das Dokument selbst (unterschriebener CMR oder Lieferschein), einen Zeitstempel, GPS-Koordinaten zur Bestätigung des Standorts und eine Referenz, die ihn mit der Rechnung oder Bestellung verknüpft. Alle vier werden automatisch in jeder Podfy-Einreichung erfasst.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Können Podfy-Datensätze für ein Audit-Paket exportiert werden?</button><div class="v2-faq-answer"><p>Ja. Lieferdatensätze können als PDFs aus dem Portal exportiert werden, einzeln oder in Massen nach Datumsbereich oder Referenzpräfix. Das ist typischerweise das, was Finanzamt-Prüfungen erfordern.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Werden GPS-gestempelte digitale Belege vor deutschen Gerichten akzeptiert?</button><div class="v2-faq-answer"><p>Im Allgemeinen ja für Handelsstreitigkeiten. GPS-gestempelte, zeitgestempelte digitale Datensätze, die von einem Drittanbieter-System erstellt wurden, gelten in deutschen Handelsverfahren als verlässliche Beweise. Sie ergänzen und ersetzen in der Praxis oft Papier-CMR-Originale bei der Streitlösung.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="guides-heading"><div class="container"><p class="v2-eyebrow">Weiterlesen</p><h2 class="v2-section-title" id="guides-heading">Verwandte Leitfäden</h2><div class="v2-guide-grid"><a class="v2-guide-card" href="/de/guides/pod-invoicing/"><span class="v2-guide-tag">Leitfaden</span><h3 class="v2-guide-title">POD und Rechnungsstellung</h3><p class="v2-guide-desc">Wie POD mit Rechnungsgenehmigung und Cashflow zusammenhängt.</p><span class="v2-guide-arrow">Leitfaden lesen &rarr;</span></a><a class="v2-guide-card" href="/de/guides/pod-disputes/"><span class="v2-guide-tag">Leitfaden</span><h3 class="v2-guide-title">Lieferstreitigkeiten lösen</h3><p class="v2-guide-desc">Wann ein Prüfpfad zum Beweis in einem Streit wird.</p><span class="v2-guide-arrow">Leitfaden lesen &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-labelledby="sol-heading"><div class="container"><p class="v2-eyebrow">Betrifft</p><h2 class="v2-section-title" id="sol-heading">Für wen das relevant ist</h2><div class="v2-sol-grid"><a class="v2-sol-tile" href="/de/solutions/3pl/"><p class="v2-sol-tile-industry">Logistik</p><p class="v2-sol-tile-name">3PL</p><span class="v2-sol-tile-arrow">Lösung ansehen &rarr;</span></a><a class="v2-sol-tile" href="/de/solutions/retail/"><p class="v2-sol-tile-industry">Retail</p><p class="v2-sol-tile-name">Retail-Teams</p><span class="v2-sol-tile-arrow">Lösung ansehen &rarr;</span></a><a class="v2-sol-tile" href="/de/solutions/construction/"><p class="v2-sol-tile-industry">Bau</p><p class="v2-sol-tile-name">Baustellenlieferungen</p><span class="v2-sol-tile-arrow">Lösung ansehen &rarr;</span></a></div></div></section>
+    <section class="v2-section" aria-label="Leitfaden-Hub"><div class="container"><p style="font-size:.9rem;color:var(--v2-muted);">Teil der Podfy-Leitfadenreihe &rarr; <a href="/de/guides/proof-of-delivery/" class="v2-link">Was ist ein Liefernachweis?</a></p></div></section>
+    <section class="v2-section" aria-label="Auf dem Laufenden bleiben"><div class="container" style="max-width:40rem;"><div class="v2-subscribe-strip"><h3>Verfolgen Sie, wie Podfy sich entwickelt</h3><p>Erhalten Sie Release-Notizen per E-Mail, wenn neue Funktionen eingeführt werden.</p><form class="v2-subscribe-row" onsubmit="handleSubscribe(event)"><input type="email" name="email" class="v2-subscribe-input" placeholder="ihre@email.de" required /><button type="submit" class="v2-btn v2-btn-primary">Abonnieren &rarr;</button></form><p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p></div></div></section>
+    <section class="v2-cta-block" aria-label="Loslegen"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">EU-gehostet · GoBD 10 Jahre</span><h2>Auditbereit ab Tag eins.<br><em>Keine Aktenschränke.</em></h2><p>15-Minuten-Demo. Wir zeigen Ihnen das Portal, die Exportfunktion und den AVV-Prozess.</p><div class="v2-cta-actions"><a href="/de/contact" class="v2-btn v2-btn-primary">15 Minuten buchen &rarr;</a><a href="/de/demo" class="v2-btn v2-btn-ghost">Erst die Demo ausprobieren</a></div></div></section>
+  </main>
+  [[PODFY_FOOTER]]
+  <script>
+    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);const el=document.getElementById('v2-progress');if(el)el.style.width=Math.min(p*100,100)+'%';});
+    document.querySelectorAll('.v2-faq-btn').forEach(btn=>{btn.addEventListener('click',()=>btn.closest('.v2-faq-acc-item').classList.toggle('open'));});
+    const pills=document.querySelectorAll('.v2-toc-pill');const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){pills.forEach(p=>p.classList.remove('active'));const active=document.querySelector('.v2-toc-pill[href="#'+e.target.id+'"]');if(active)active.classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('section[id]').forEach(s=>observer.observe(s));
+    async function handleSubscribe(e){e.preventDefault();const email=e.target.querySelector('[name=email]').value;const msg=document.getElementById('subscribe-msg');try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})});const d=await r.json();msg.style.display='block';msg.textContent=d.ok?'Abonniert. Vielen Dank!':(d.error||'Etwas ist schiefgelaufen.');msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)';if(d.ok)e.target.reset();}catch{msg.style.display='block';msg.textContent='Konnte momentan nicht abonnieren.';}}
+  </script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>PODFY ausprobieren — Live-Demo</title>
+  <meta name="description" content="Öffnen Sie einen echten Podfy-Upload-Link auf Ihrem Telefon, fotografieren Sie ein Dokument und sehen Sie die gestempelte PDF im Lieferportal erscheinen. Kein Konto erforderlich." />
+  <link rel="canonical" href="https://podfy.net/de/demo" />
+
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:title" content="PODFY ausprobieren — Live-Demo" />
+  <meta property="og:description" content="Öffnen Sie einen echten Fahrer-Link auf Ihrem Telefon, fotografieren Sie etwas und erhalten Sie in Sekunden eine gestempelte PDF." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://podfy.net/de/demo" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.png" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PODFY ausprobieren — Live-Demo" />
+  <meta name="twitter:description" content="Öffnen Sie einen echten Fahrer-Link auf Ihrem Telefon, fotografieren Sie etwas und erhalten Sie in Sekunden eine gestempelte PDF." />
+  <meta name="twitter:image" content="https://podfy.net/assets/og-image.png" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+  <link rel="alternate" hreflang="en" href="https://podfy.net/demo" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/demo" />
+  <link rel="alternate" hreflang="de" href="https://podfy.net/de/demo" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/demo" />
+
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
+  <script src="/assets/theme.js" defer></script>
+</head>
+
+<body class="v2">
+  <a href="#main" class="sr-only">Zum Inhalt springen</a>
+  [[PODFY_HEADER]]
+
+  <main id="main" class="v2-main">
+
+    <!-- 1. HERO -->
+    <section class="v2-aud-hero" aria-labelledby="demo-heading">
+      <div class="container">
+        <div class="v2-hero-grid">
+
+          <div>
+            <p class="v2-eyebrow">Live-Demo · Kein Konto · ~30 Sekunden</p>
+            <h1 class="v2-hero-title" id="demo-heading">
+              Sie sind der Fahrer.<br>
+              Sie sind auch<br>
+              <span class="v2-hero-stamp">das Büro.</span>
+            </h1>
+            <p class="v2-hero-sub">
+              Öffnen Sie den untenstehenden Link auf Ihrem Telefon, fotografieren Sie ein beliebiges Dokument und sehen Sie die gestempelte, GPS-geortete PDF im Lieferportal erscheinen — genau so, wie ein echter Fahrer und ein echter Disponent es erleben.
+            </p>
+
+            <!-- Step 01 — launcher -->
+            <div class="v2-demo-step-block">
+              <p class="v2-eyebrow">Schritt 01 · Fahrer-Upload-Formular öffnen</p>
+              <div class="v2-demo-launcher">
+                <input id="demo-ref-input" type="text" maxlength="40" placeholder="Referenz (optional)" />
+                <a id="demo-link-hero" href="https://podfy.app/demo" target="_blank" rel="noreferrer" class="v2-btn v2-btn-primary" data-demo-link>Upload öffnen &rarr;</a>
+              </div>
+              <p class="v2-demo-launcher-meta">
+                Referenz eingeben, um sie im Formular vorauszufüllen &middot; Link: <code id="demo-url-preview">podfy.app/demo</code>
+              </p>
+
+              <aside class="v2-demo-tip">
+                <p class="v2-demo-tip-tag">Tipp · Echte E-Mail-Adresse</p>
+                <p>Tragen Sie beim <em>Kopie E-Mail</em>-Feld im Upload-Formular Ihre eigene Adresse ein — dann erhalten Sie dieselbe gebrandete PDF, die ein echter Fahrer bekommt.</p>
+              </aside>
+
+              <!-- QR drawer -->
+              <button type="button" id="demo-qr-toggle" class="v2-btn v2-btn-ghost v2-demo-qr-toggle" aria-controls="demo-qr" aria-expanded="false">
+                Oder QR-Code mit Ihrem Telefon scannen
+              </button>
+              <div class="v2-demo-qr" id="demo-qr" hidden>
+                <div class="v2-demo-qr-inner">
+                  <img id="demo-qr-img" src="/assets/demo-qr.svg" alt="QR-Code mit Link zu podfy.app/demo" width="128" height="128" />
+                  <p class="v2-demo-qr-cap">
+                    Mit Telefonkamera scannen. Öffnet <code>podfy.app/demo</code>. Nichts zu installieren.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div aria-hidden="true">
+            <div class="v2-receipt v2-hero-receipt">
+              <div class="v2-receipt-perforation"></div>
+              <div class="v2-receipt-inner">
+                <p class="v2-receipt-brand">PODFY Demo</p>
+                <p class="v2-receipt-ref">Ihr Dokument &rarr; gestempelte PDF</p>
+                <hr class="v2-receipt-hr" />
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Fahrer</span>
+                  <span class="v2-receipt-value">Sie, auf Ihrem Telefon</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">GPS</span>
+                  <span class="v2-receipt-value">Ihr Standort</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Zeit</span>
+                  <span class="v2-receipt-value">Unter 30 Sekunden</span>
+                </div>
+                <div class="v2-receipt-row">
+                  <span class="v2-receipt-label">Datei</span>
+                  <span class="v2-receipt-value">Jedes Dokument</span>
+                </div>
+                <hr class="v2-receipt-hr" />
+                <div class="v2-receipt-status">
+                  <span class="v2-stamp-mark">Jetzt ausprobieren</span>
+                </div>
+              </div>
+              <div class="v2-receipt-perforation"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TRUST BELT -->
+    <div class="v2-trust-belt">
+      <div class="container">
+        <ul class="v2-trust-list">
+          <li class="v2-trust-item">11s medianer Upload</li>
+          <li class="v2-trust-item">Keine App, kein Konto</li>
+          <li class="v2-trust-item">EU-WEUR Speicher</li>
+          <li class="v2-trust-item">Demo-Daten automatisch nach 72 h gelöscht</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3. TWO-ROLE EXPLAINER -->
+    <section class="v2-section" aria-labelledby="roles-heading">
+      <div class="container">
+        <p class="v2-eyebrow">So funktioniert die Demo</p>
+        <h2 class="v2-section-title" id="roles-heading">Sie spielen beide Rollen.</h2>
+        <div class="v2-demo-roles">
+          <article class="v2-demo-role">
+            <p class="v2-demo-role-tag">Rolle 01 · Sie, auf Ihrem Telefon</p>
+            <h3>Der Fahrer</h3>
+            <p>Öffnen Sie den Upload-Link, richten Sie die Kamera auf ein beliebiges Dokument — ein Kassenbon ist prima — und tippen Sie auf Senden. Das ist die gesamte Arbeit des Fahrers.</p>
+            <p class="v2-demo-role-meta">Verwendet: Ihre Telefonkamera · GPS, falls erlaubt</p>
+          </article>
+          <article class="v2-demo-role">
+            <p class="v2-demo-role-tag">Rolle 02 · Sie, auf diesem Bildschirm</p>
+            <h3>Der Disponent</h3>
+            <p>Wechseln Sie in einem anderen Tab zum Lieferportal und sehen Sie die gestempelte PDF mit Referenz, GPS und Zeitstempel erscheinen — das Dokument, das ein Betriebsteam morgen suchen würde.</p>
+            <p class="v2-demo-role-meta">Verwendet: dieser Browser · derselbe EU-Speicher wie Produktion</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FOUR-STEP SCRIPT -->
+    <section class="v2-section" aria-labelledby="steps-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="steps-heading">Die komplette Schleife in vier Schritten</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">01 — Fahrerrolle</p>
+            <h3>Fahrer-Upload-Formular öffnen</h3>
+            <p>Geben Sie oben eine optionale Referenznummer ein und tippen Sie auf <em>Upload öffnen</em>. Sie sehen die Upload-Seite, die ein Fahrer sieht — ein Knopf, kein Login. Fotografieren Sie ein beliebiges Dokument: einen Frachtbrief, diese Seite, Ihre Hand.</p>
+            <p class="v2-demo-script-expect">Sie sehen: Ein-Knopf-Kamerabildschirm mit Demo-Branding.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">02 — Senden</p>
+            <h3>Auf Senden tippen</h3>
+            <p>Ihr Standort wird beim Tippen auf Senden abgefragt — falls Sie die Berechtigung erteilen, werden GPS-Koordinaten zum Stempel hinzugefügt. Der Upload ist in Sekunden auf einer normalen 4G-Verbindung abgeschlossen.</p>
+            <p class="v2-demo-script-expect">Sie sehen: Upload-Fortschrittsbalken, dann eine "Gesendet"-Bestätigung.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">03 — Bürorolle</p>
+            <h3>Im Portal ankommen sehen</h3>
+            <p>Öffnen Sie das <a href="https://delivery.podfy.net" target="_blank" rel="noreferrer" class="v2-link">Lieferportal</a> in einem separaten Tab. Ihr Upload erscheint in Sekunden mit Zeitstempel, GPS-Label und herunterladbarer gestempelter PDF.</p>
+            <p class="v2-demo-script-expect">Sie sehen: Eine neue Zeile im Portal — Referenz, GPS, Zeitstempel, herunterladbare PDF.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">04 — Fahrerrolle</p>
+            <h3>Fahrer erhält seine eigene Kopie</h3>
+            <p>Falls Sie das Feld <em>Kopie E-Mail</em> beim Hochladen ausgefüllt haben, kommt eine gebrandete PDF-Bestätigung an Ihre Adresse — dasselbe Dokument, das ein echter Fahrer erhält.</p>
+            <p class="v2-demo-script-expect">Sie sehen: Eine gebrandete Bestätigungs-E-Mail an die von Ihnen eingegebene Adresse.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. REAL / PLACEHOLDER -->
+    <section class="v2-section" aria-labelledby="real-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Ehrlich über die Demo</p>
+        <h2 class="v2-section-title" id="real-heading">Was echt ist, was ein Platzhalter ist.</h2>
+        <div class="v2-demo-disclaimer">
+          <div>
+            <p class="v2-demo-disclaimer-tag" data-tone="real">Echt</p>
+            <ul class="v2-check-list">
+              <li>EU-WEUR Speicher und Stempel-Flow</li>
+              <li>Die PDF, die das Büro erhält</li>
+              <li>GPS, Zeitstempel und Magic-Link-Verlauf</li>
+            </ul>
+          </div>
+          <div>
+            <p class="v2-demo-disclaimer-tag" data-tone="placeholder">Platzhalter</p>
+            <ul class="v2-check-list" data-style="x">
+              <li>Der Branding-Slug (Ihr echter Kunden-Slug unterscheidet sich)</li>
+              <li>Jedes hochgeladene Bild — automatisch innerhalb von 24 h gelöscht</li>
+              <li>E-Mail-Benachrichtigungen außerhalb des Felds <em>Kopie E-Mail</em></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FAQ -->
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Fragen</p>
+        <h2 class="v2-section-title" id="faq-heading">Häufig gestellte Fragen</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Muss ich etwas installieren?</button>
+            <div class="v2-faq-answer"><p>Nein. Das Upload-Formular funktioniert im Browser Ihres Telefons — keine App, kein Konto, nichts herunterzuladen. Das Lieferportal ist ebenfalls einfach ein Browser-Link.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Was passiert mit dem Dokument, das ich hochlade?</button>
+            <div class="v2-faq-answer"><p>Es wird auf EU-WEUR-Infrastruktur unter dem Demo-Slug gespeichert und automatisch innerhalb von 24 Stunden gelöscht. Es wird niemals für Training verwendet oder außerhalb Ihrer Sitzung geteilt.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Kann das Foto von anderen gesehen werden?</button>
+            <div class="v2-faq-answer"><p>Der Demo-Slug ist öffentlich, daher kann jeder mit dem Portal-Link aktuelle Demo-Uploads sehen. Laden Sie nichts Vertrauliches hoch — verwenden Sie ein leeres Blatt oder ein nicht-sensibles Dokument.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Kann ich meinen echten CMR verwenden?</button>
+            <div class="v2-faq-answer"><p>Technisch ja, aber wir raten davon ab — das Demo-Portal hat keinen Zugriffsschutz. Verwenden Sie ein Ersatzdokument; der Stempel- und Portal-Flow ist identisch.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn" aria-expanded="false">Was ist der Unterschied zur geführten 15-Minuten-Demo?</button>
+            <div class="v2-faq-answer"><p>Die Selbstbedienungs-Demo verwendet einen geteilten Slug ohne Branding. Eine geführte 15-Minuten-Demo führt dieselbe Schleife mit Ihrem echten Slug, Ihrem Logo und einer Referenz aus Ihrer eigenen Operation durch — damit Sie genau sehen, was Ihre Fahrer und Disponenten erleben würden.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. BOTTOM CTA -->
+    <section class="v2-cta-block" aria-label="Geführte Demo buchen">
+      <div class="container">
+        <span class="v2-stamp-mark" aria-hidden="true">30 Sekunden bis zum ersten POD</span>
+        <h2>Demo mit Ihren eigenen<br><span class="v2-hero-stamp">Referenznummern?</span></h2>
+        <p>Wir führen die komplette Schleife mit Ihrem Slug, Ihrem Branding und einer Referenz aus Ihrer eigenen Operation durch. Dauert 15 Minuten.</p>
+        <div class="v2-cta-actions">
+          <a href="/de/contact" class="v2-btn v2-btn-primary">15 Minuten buchen &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script>
+    (function () {
+      var BASE    = 'https://podfy.app/demo';
+      var input   = document.getElementById('demo-ref-input');
+      var preview = document.getElementById('demo-url-preview');
+      var links   = document.querySelectorAll('[data-demo-link]');
+      if (!input) return;
+
+      function update() {
+        var ref = input.value.replace(/[^A-Za-z0-9._-]/g, '').slice(0, 40);
+        var url = ref ? BASE + '/' + encodeURIComponent(ref) : BASE;
+        if (preview) preview.textContent = url.replace('https://', '');
+        links.forEach(function (a) { a.href = url; });
+      }
+      input.addEventListener('input', update);
+
+      var qrBtn = document.getElementById('demo-qr-toggle');
+      var qrBox = document.getElementById('demo-qr');
+      if (qrBtn && qrBox) {
+        qrBtn.addEventListener('click', function () {
+          var open = !qrBox.hasAttribute('hidden');
+          if (open) { qrBox.setAttribute('hidden', ''); qrBtn.setAttribute('aria-expanded', 'false'); }
+          else      { qrBox.removeAttribute('hidden');  qrBtn.setAttribute('aria-expanded', 'true'); }
+        });
+      }
+    })();
+
+    document.querySelectorAll('.v2-faq-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.v2-faq-acc-item');
+        var open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  </script>
+</body>
+</html>
