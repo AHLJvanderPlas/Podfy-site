@@ -8,6 +8,7 @@
       <ul>
         <li><a href="/demo">Demo</a></li>
         <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/cmr/">CMR generator</a></li>
         <li><a href="/changelog">Release notes</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
@@ -64,9 +65,10 @@
       <p class="site-footer-col-heading">Contact</p>
       <p><a href="mailto:support@podfy.net">support@podfy.net</a></p>
       <div class="site-footer-locale-row" aria-label="Language">
-        <a href="/" class="site-footer-locale-active">EN</a>
-        <span class="site-footer-locale-inactive" title="Dutch — coming soon">NL</span>
-        <span class="site-footer-locale-inactive" title="German — coming soon">DE</span>
+        <a href="/" class="site-footer-locale-active" data-lang="en">EN</a>
+        <a href="/nl/" class="site-footer-locale-inactive" data-lang="nl">NL</a>
+        <a href="/de/" class="site-footer-locale-inactive" data-lang="de">DE</a>
+        <a href="/fr/" class="site-footer-locale-inactive" data-lang="fr">FR</a>
       </div>
     </div>
 
@@ -86,7 +88,45 @@
   </div>
 
   <script>
-    var yEl = document.querySelector(".v2-footer-year");
-    if (yEl) yEl.textContent = new Date().getFullYear();
+    (function () {
+      /* Year */
+      var yEl = document.querySelector(".v2-footer-year");
+      if (yEl) yEl.textContent = new Date().getFullYear();
+
+      /* Locale detection */
+      var path = window.location.pathname;
+      var locale = /^\/nl(\/|$)/.test(path) ? "nl"
+                 : /^\/de(\/|$)/.test(path) ? "de"
+                 : /^\/fr(\/|$)/.test(path) ? "fr" : "";
+
+      /* Locale row: use hreflang <link> tags for equivalent-page links */
+      var hreflangs = {};
+      document.querySelectorAll("link[rel='alternate'][hreflang]").forEach(function (el) {
+        hreflangs[el.getAttribute("hreflang")] = el.getAttribute("href");
+      });
+      document.querySelectorAll(".site-footer-locale-row [data-lang]").forEach(function (el) {
+        var lang = el.getAttribute("data-lang");
+        var isActive = (lang === locale) || (lang === "en" && !locale);
+        el.classList.toggle("site-footer-locale-active", isActive);
+        el.classList.toggle("site-footer-locale-inactive", !isActive);
+        if (el.tagName === "A") {
+          var target = hreflangs[lang] || (lang === "en" ? "/" : "/" + lang + "/");
+          el.setAttribute("href", target);
+        }
+      });
+
+      /* Rewrite footer column links for NL/DE locales */
+      if (locale) {
+        var pfx = "/" + locale;
+        document.querySelectorAll(".site-footer-grid a[href]").forEach(function (a) {
+          var h = a.getAttribute("href");
+          if (!h || h.charAt(0) !== "/") return;
+          if (/^\/(nl|de|fr)(\/|$)/.test(h)) return;  /* already prefixed */
+          if (h === "/changelog" || h.startsWith("/changelog")) return;  /* EN-only page */
+          if (h.startsWith("/.")) return;  /* /.well-known etc */
+          a.setAttribute("href", pfx + h);
+        });
+      }
+    })();
   </script>
 </footer>

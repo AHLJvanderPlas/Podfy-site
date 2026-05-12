@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Qu'est-ce que la preuve de livraison ? Guide complet — PODFY</title>
+  <meta name="description" content="La preuve de livraison expliquée en termes pratiques : ce que c'est, pourquoi ça échoue, et comment les équipes logistiques modernes collectent les POD sans application ni paperasse." />
+  <link rel="canonical" href="https://podfy.net/fr/guides/proof-of-delivery/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:title" content="Qu'est-ce que la preuve de livraison ? Guide complet — PODFY" />
+  <meta property="og:description" content="La preuve de livraison expliquée en termes pratiques : ce que c'est, pourquoi ça échoue, et comment les équipes logistiques modernes collectent les POD sans application ni paperasse." />
+  <meta property="og:url" content="https://podfy.net/fr/guides/proof-of-delivery/" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Qu'est-ce que la preuve de livraison ? Guide complet — PODFY" />
+  <meta name="twitter:description" content="La preuve de livraison expliquée en termes pratiques : ce que c'est, pourquoi ça échoue, et comment les équipes logistiques modernes collectent les POD sans application ni paperasse." />
+  <meta name="twitter:image" content="https://podfy.net/assets/og-image.png" />
+  <link rel="alternate" hreflang="en"        href="https://podfy.net/guides/proof-of-delivery/" />
+  <link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/guides/proof-of-delivery/" />
+  <link rel="alternate" hreflang="de"        href="https://podfy.net/de/guides/proof-of-delivery/" />
+  <link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/guides/proof-of-delivery/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/proof-of-delivery/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+      {"@type":"ListItem","position":2,"name":"Guides","item":"https://podfy.net/fr/guides/"},
+      {"@type":"ListItem","position":3,"name":"Qu'est-ce que la preuve de livraison ?","item":"https://podfy.net/fr/guides/proof-of-delivery/"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Qu'est-ce que la preuve de livraison (POD) ?",
+        "acceptedAnswer":{"@type":"Answer","text":"La preuve de livraison est l'élément qui atteste qu'un envoi a été effectué et réceptionné. Il peut s'agir d'un bon de livraison signé, d'un document CMR, d'une photo des marchandises livrées, d'un horodatage GPS, ou d'une combinaison de ces éléments. Le format approprié dépend de votre risque de litige et des exigences de vos clients."}},
+      {"@type":"Question","name":"Les chauffeurs ont-ils besoin d'une application pour fournir une preuve de livraison ?",
+        "acceptedAnswer":{"@type":"Answer","text":"Non. Avec Podfy, les chauffeurs utilisent un lien navigateur — sans installation d'application, sans compte, sans formation. Cela rend la collecte de POD fiable pour les sous-traitants, le personnel intérimaire et les environnements multi-appareils."}},
+      {"@type":"Question","name":"Qu'est-ce qui peut constituer une preuve de livraison ?",
+        "acceptedAnswer":{"@type":"Answer","text":"La preuve de livraison peut être un bon de livraison signé, un CMR, une photo des marchandises livrées, un horodatage GPS, ou un enregistrement numérique combinant tous ces éléments. L'exigence clé est que la preuve identifie ce qui a été livré, où et quand."}},
+      {"@type":"Question","name":"Les équipes de réception peuvent-elles également enregistrer des livraisons ?",
+        "acceptedAnswer":{"@type":"Answer","text":"Oui. Les équipes de réception peuvent utiliser le même flux de travail basé sur des liens pour téléverser des documents de livraison lorsque les transporteurs arrivent au quai. Cela crée un enregistrement cohérent même lorsque les chauffeurs changent ou que les fournisseurs utilisent des processus différents."}},
+      {"@type":"Question","name":"Où sont stockées les preuves de livraison ?",
+        "acceptedAnswer":{"@type":"Answer","text":"Podfy stocke les documents de livraison de manière centralisée afin que les équipes de bureau puissent les rechercher et les récupérer par référence, date ou chauffeur. Toutes les données sont hébergées dans la région EU-WEUR de Cloudflare pour la conformité RGPD."}},
+      {"@type":"Question","name":"Podfy est-il adapté aux audits et aux litiges ?",
+        "acceptedAnswer":{"@type":"Answer","text":"Oui. Le stockage centralisé avec horodatages GPS signifie que vous pouvez répondre aux réclamations de non-livraison, de manquant ou de dommages en quelques secondes plutôt qu'en plusieurs jours. Le portail permet de retrouver facilement le bon document sans chercher dans les e-mails ou les lecteurs partagés."}},
+      {"@type":"Question","name":"Dans quel délai les documents sont-ils disponibles après la livraison ?",
+        "acceptedAnswer":{"@type":"Answer","text":"Dès que le téléversement est terminé, le document est dans le portail. Cela élimine le délai typique de 3 à 5 jours lorsque les CMR papier reviennent avec le chauffeur ou par courrier."}},
+      {"@type":"Question","name":"Podfy peut-il remplacer un TMS, WMS ou ERP ?",
+        "acceptedAnswer":{"@type":"Answer","text":"Non. Podfy se concentre sur la saisie et la récupération des documents de livraison. Il est conçu pour compléter les systèmes existants, et non les remplacer — en maintenant une mise en œuvre légère tout en améliorant la fiabilité opérationnelle."}}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Qu'est-ce que la preuve de livraison ? Guide complet","description":"La preuve de livraison expliquée en termes pratiques : ce que c'est, pourquoi ça échoue, et comment les équipes logistiques modernes collectent les POD sans application ni paperasse.","url":"https://podfy.net/fr/guides/proof-of-delivery/","datePublished":"2026-05-01","dateModified":"2026-05-11","author":{"@type":"Organization","name":"PODFY"},"publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"}}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Aller au contenu</a>
+  [[PODFY_HEADER]]
+
+  <nav class="v2-breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="v2-breadcrumb-list">
+        <li><a href="/fr/">PODFY</a></li>
+        <li><a href="/fr/guides/">Guides</a></li>
+        <li aria-current="page">Qu'est-ce que la preuve de livraison ?</li>
+      </ol>
+    </div>
+  </nav>
+
+  <main id="main" class="v2-main">
+
+    <!-- HERO -->
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Guide &middot; Hub Preuve de livraison</p>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:40rem;">
+          Qu'est-ce que la preuve de livraison&nbsp;?<br>
+          <em>Le guide complet.</em>
+        </h1>
+        <p class="v2-hero-sub" style="max-width:42rem;">
+          Tout ce que les équipes logistiques, transport et réception doivent savoir sur le POD : ce que c'est, pourquoi ça dysfonctionne en pratique, et comment les opérations modernes le collectent sans application ni course après le papier.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOC -->
+    <nav class="v2-toc" aria-label="Sur cette page">
+      <div class="container">
+        <ul class="v2-toc-list">
+          <li><a class="v2-toc-pill" href="#what-is-pod">Qu'est-ce que le POD ?</a></li>
+          <li><a class="v2-toc-pill" href="#why-it-matters">Pourquoi c'est important</a></li>
+          <li><a class="v2-toc-pill" href="#pod-types">Types de POD</a></li>
+          <li><a class="v2-toc-pill" href="#where-it-fails">Où ça échoue</a></li>
+          <li><a class="v2-toc-pill" href="#modern-pod">POD moderne</a></li>
+          <li><a class="v2-toc-pill" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- CONTENT: WHAT IS POD -->
+    <section class="v2-section" id="what-is-pod" aria-labelledby="what-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="what-heading">Qu'est-ce que la preuve de livraison ?</h2>
+        <div class="v2-prose">
+          <p>La preuve de livraison (POD) est tout document ou enregistrement qui confirme qu'un envoi a été remis au bon destinataire, au bon endroit, à un moment précis. Dans le fret physique et la logistique, un POD constitue la preuve que vous utilisez lorsqu'un client affirme que la livraison n'a pas eu lieu, qu'un chauffeur conteste un horodatage, ou qu'un auditeur demande des justificatifs.</p>
+          <p>La forme la plus courante est un bon de livraison signé ou un document CMR : le destinataire signe pour attester la réception des marchandises, et une copie est renvoyée à l'expéditeur ou au transporteur. En pratique, c'est la récupération de cette copie signée dans un format exploitable et consultable qui pose problème à la plupart des opérations.</p>
+          <p>La preuve de livraison moderne ajoute des coordonnées GPS, un horodatage, et optionnellement une photo des marchandises au point de livraison — le tout capturé sur le téléphone du chauffeur et transmis à un enregistrement central avant que le camion ne quitte la cour.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT: WHY IT MATTERS -->
+    <section class="v2-section" id="why-it-matters" aria-labelledby="why-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="why-heading">Pourquoi la preuve de livraison est importante</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">
+            <p>Sans POD, trois problèmes surviennent :</p>
+            <p><strong>Litiges de facturation.</strong> Les équipes financières ne peuvent ni émettre ni approuver des factures pour des livraisons sans accusé de réception confirmé. Un CMR manquant peut bloquer une facture de 40 000 € pendant des semaines le temps que tout le monde retrouve le document.</p>
+            <p><strong>Exposition aux réclamations.</strong> Si un client signale des marchandises comme non livrées, endommagées ou en manquant, vous n'avez aucune preuve pour répondre. Plus l'écart entre la livraison et la réclamation est long, plus il est difficile de reconstituer ce qui s'est réellement passé.</p>
+            <p><strong>Lacunes dans les audits.</strong> Les réglementations de nombreux pays de l'UE exigent que les documents de livraison soient conservés pendant 5 à 7 ans. Les systèmes papier rendent cela presque impossible à maintenir de manière cohérente.</p>
+          </div>
+          <div>
+            <ul class="v2-check-list">
+              <li>Approbation des factures plus rapide — sans délai POD</li>
+              <li>Litiges résolus en minutes, pas en semaines</li>
+              <li>GPS + horodatage élimine les contestations de date</li>
+              <li>Archive prête pour l'audit sur 7 ans sur infrastructure UE</li>
+              <li>Consultable par référence, route ou date</li>
+              <li>Fonctionne pour les sous-traitants sans formation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT: POD TYPES -->
+    <section class="v2-section" id="pod-types" aria-labelledby="types-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="types-heading">Types de preuve de livraison</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">POD papier</p>
+            <h3>Bon de livraison signé / CMR</h3>
+            <p>Le destinataire signe un document papier à la livraison. Le chauffeur conserve un exemplaire et en remet un au bureau — généralement plusieurs jours plus tard. Les photos floues sur WhatsApp et les documents perdus sont des modes d'échec fréquents.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">POD numérique</p>
+            <h3>Téléversement photo via lien</h3>
+            <p>Le chauffeur ouvre un lien navigateur, photographie le CMR signé ou le bon de livraison, et appuie sur envoyer. Les coordonnées GPS et l'horodatage sont capturés à cet instant. Le PDF horodaté est dans le portail en quelques secondes.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">POD via application</p>
+            <h3>Application chauffeur avec capture de signature</h3>
+            <p>Nécessite que le chauffeur installe et maintienne une application. Fonctionne bien pour les chauffeurs salariés sur des routes fixes, mais dysfonctionne pour les sous-traitants, le personnel intérimaire et les opérations multi-transporteurs où chaque transporteur utilise une application différente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEFORE/AFTER -->
+    <section class="v2-section" aria-label="Comparaison avant et après">
+      <div class="container">
+        <h2 class="v2-section-title">POD papier vs numérique : ce qui change</h2>
+        <div class="v2-contrast-strip">
+          <div class="v2-contrast-before">
+            <p class="v2-contrast-label">Processus papier</p>
+            <ul class="v2-contrast-list">
+              <li>Le chauffeur conserve le CMR signé dans la cabine</li>
+              <li>Le bureau rappelle pour le récupérer après 3 à 5 jours</li>
+              <li>Photo WhatsApp, mauvaise orientation, illisible</li>
+              <li>Quelqu'un ressaisit la référence manuellement</li>
+              <li>La facture est mise en attente</li>
+              <li>Le client conteste toujours la date</li>
+            </ul>
+          </div>
+          <div class="v2-contrast-divider" aria-hidden="true"></div>
+          <div class="v2-contrast-after">
+            <p class="v2-contrast-label">POD numérique (Podfy)</p>
+            <ul class="v2-contrast-list">
+              <li>Le chauffeur téléverse à la grille via le lien</li>
+              <li>Le bureau reçoit une notification en quelques secondes</li>
+              <li>PDF horodaté avec GPS et timestamp</li>
+              <li>Référence capturée lors du téléversement</li>
+              <li>Facture prête le jour même</li>
+              <li>L'horodatage GPS clôt le litige de date</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT: WHERE IT FAILS -->
+    <section class="v2-section" id="where-it-fails" aria-labelledby="fails-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="fails-heading">Où la preuve de livraison dysfonctionne</h2>
+        <div class="v2-prose">
+          <p>La plupart des défaillances POD ne sont pas des problèmes de chauffeur — ce sont des problèmes de processus. Les quatre causes profondes :</p>
+          <p><strong>La boucle de retour.</strong> Les documents papier voyagent avec le chauffeur et n'arrivent au bureau que lorsque le chauffeur rentre au dépôt. Les routes avec des allers-retours de plusieurs jours peuvent entraîner un délai de 5 jours entre la livraison et la réception du POD.</p>
+          <p><strong>Les blocages sans application.</strong> Exiger des chauffeurs qu'ils installent et maintiennent une application crée un mode d'échec dur avec les sous-traitants, les chauffeurs temporaires et toute personne utilisant un téléphone plus ancien. Les taux de complétion tombent en dessous de 60 % dans les opérations multi-chauffeurs qui nécessitent des installations d'applications.</p>
+          <p><strong>L'écart de référence.</strong> Si le POD ne contient pas la référence exacte utilisée par votre équipe financière, l'enregistrement est inutile pour l'approbation des factures. La ressaisie manuelle génère des erreurs et prend du temps.</p>
+          <p><strong>Stockage non structuré.</strong> Les boîtes mail et les lecteurs partagés ne sont pas des archives de livraison consultables. Retrouver un POD spécifique pour un litige deux mois plus tard prend des heures — si tant est qu'il soit retrouvable.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INLINE CTA -->
+    <div class="v2-inline-cta">
+      <div class="container">
+        <div class="v2-inline-cta-inner">
+          <div>
+            <p class="v2-inline-cta-label">Voyez-le en action</p>
+            <p class="v2-inline-cta-text">Un chauffeur téléverse un CMR en 11 secondes. Regardez la démo en direct.</p>
+          </div>
+          <a href="/fr/demo" class="v2-btn v2-btn-primary">Essayer la démo &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT: MODERN POD -->
+    <section class="v2-section" id="modern-pod" aria-labelledby="modern-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="modern-heading">Comment fonctionne le POD moderne</h2>
+        <div class="v2-how-grid">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">01 — Expédition</p>
+            <h3>Un lien par envoi</h3>
+            <p>Une URL unique est générée par référence de livraison. Elle peut être incluse dans un message d'expédition via WhatsApp, SMS ou TMS. Le chauffeur n'a rien à enregistrer.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">02 — À la grille</p>
+            <h3>Photo ou téléversement de fichier</h3>
+            <p>Le chauffeur ouvre le lien, photographie le CMR signé ou le bon de livraison, et appuie sur envoyer. Les coordonnées GPS sont capturées au moment où l'appareil photo se déclenche — pas à la fin du téléversement. Fonctionne sur tout réseau mobile ; pas besoin de Wi-Fi.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">03 — Centralement</p>
+            <h3>PDF horodaté dans le portail</h3>
+            <p>Le document est traité, horodaté GPS, et disponible dans le portail Podfy en quelques secondes. Votre équipe reçoit une notification par e-mail. L'enregistrement est consultable par référence, date, chauffeur ou route — immédiatement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO THIS AFFECTS -->
+    <section class="v2-section" aria-labelledby="who-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="who-heading">Quelles équipes sont concernées</h2>
+        <p class="v2-muted-sm" style="margin-bottom:0;">Trouvez votre cas d'usage et découvrez comment Podfy s'adapte à votre opération.</p>
+        <div class="v2-audience-grid">
+          <a class="v2-audience-tile" href="/fr/solutions/carriers/">
+            <p class="v2-audience-industry">Transport</p>
+            <h3 class="v2-audience-role">Transporteurs</h3>
+            <p class="v2-audience-quote">« Mes sous-traitants n'installeront pas une application. »</p>
+          </a>
+          <a class="v2-audience-tile" href="/fr/solutions/3pl/">
+            <p class="v2-audience-industry">Logistique</p>
+            <h3 class="v2-audience-role">Prestataires 3PL</h3>
+            <p class="v2-audience-quote">« Nous gérons 12 partenaires transporteurs et avons besoin d'une norme unique. »</p>
+          </a>
+          <a class="v2-audience-tile" href="/fr/solutions/shippers/">
+            <p class="v2-audience-industry">Chaîne d'approvisionnement</p>
+            <h3 class="v2-audience-role">Chargeurs</h3>
+            <p class="v2-audience-quote">« Nous recevons de 40 fournisseurs avec des processus différents. »</p>
+          </a>
+          <a class="v2-audience-tile" href="/fr/solutions/retail/">
+            <p class="v2-audience-industry">Commerce de détail</p>
+            <h3 class="v2-audience-role">Équipes retail</h3>
+            <p class="v2-audience-quote">« Nous avons besoin du POD au niveau du magasin, pas seulement du DC. »</p>
+          </a>
+          <a class="v2-audience-tile" href="/fr/solutions/construction/">
+            <p class="v2-audience-industry">Construction</p>
+            <h3 class="v2-audience-role">Livraisons sur chantier</h3>
+            <p class="v2-audience-quote">« La facture du fournisseur indique 12 livraisons. Nous en avons compté 11. »</p>
+          </a>
+          <a class="v2-audience-tile" href="/fr/solutions/facilities/">
+            <p class="v2-audience-industry">Facilities</p>
+            <h3 class="v2-audience-role">Équipes facilities</h3>
+            <p class="v2-audience-quote">« Les livraisons arrivent dans 30 bâtiments. Rien n'est centralisé. »</p>
+          </a>
+          <a class="v2-audience-tile" href="/fr/solutions/inbound/">
+            <p class="v2-audience-industry">Opérations</p>
+            <h3 class="v2-audience-role">Réception / Inbound</h3>
+            <p class="v2-audience-quote">« Notre personnel de quai signe pour tout mais rien n'est consultable. »</p>
+          </a>
+          <a class="v2-audience-tile" href="/fr/solutions/digitize/">
+            <p class="v2-audience-industry">Numérisation</p>
+            <h3 class="v2-audience-role">Papier vers numérique</h3>
+            <p class="v2-audience-quote">« Nous fonctionnons encore avec du papier et WhatsApp. Nous devons changer. »</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="v2-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Questions fréquemment posées</h2>
+        <div class="v2-faq-accordion">
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Qu'est-ce que la preuve de livraison (POD) ?</button>
+            <div class="v2-faq-answer"><p>La preuve de livraison est l'élément qui atteste qu'un envoi a été effectué et réceptionné. Il peut s'agir d'un bon de livraison signé, d'un document CMR, d'une photo des marchandises livrées, d'un horodatage GPS, ou d'une combinaison de ces éléments. Le format approprié dépend de votre risque de litige et des exigences de vos clients.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Les chauffeurs ont-ils besoin d'une application pour fournir une preuve de livraison ?</button>
+            <div class="v2-faq-answer"><p>Non. Avec Podfy, les chauffeurs utilisent un lien navigateur — sans installation d'application, sans compte, sans formation. Cela rend la collecte de POD fiable pour les sous-traitants, le personnel intérimaire et les environnements multi-appareils où l'installation d'une application est impraticable.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Qu'est-ce qui peut constituer une preuve de livraison ?</button>
+            <div class="v2-faq-answer"><p>La preuve de livraison peut être un bon de livraison signé, un CMR, une photo des marchandises livrées, un horodatage GPS, ou un enregistrement numérique combinant tous ces éléments. L'exigence clé est que la preuve identifie ce qui a été livré, où et quand.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Les équipes de réception peuvent-elles également enregistrer des livraisons ?</button>
+            <div class="v2-faq-answer"><p>Oui. Les équipes de réception peuvent utiliser le même flux de travail basé sur des liens pour téléverser des documents de livraison lorsque les transporteurs arrivent au quai. Cela crée un enregistrement cohérent même lorsque les chauffeurs changent ou que les fournisseurs utilisent des processus différents.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Dans quel délai les documents sont-ils disponibles après la livraison ?</button>
+            <div class="v2-faq-answer"><p>Dès que le téléversement est terminé, le document est dans le portail et votre équipe reçoit une notification par e-mail. Cela élimine le délai typique de 3 à 5 jours lorsque les CMR papier reviennent avec le chauffeur.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Podfy est-il adapté aux audits et aux litiges ?</button>
+            <div class="v2-faq-answer"><p>Oui. Le stockage centralisé avec horodatages GPS signifie que vous pouvez répondre aux réclamations de non-livraison, de manquant ou de dommages en quelques secondes plutôt qu'en plusieurs jours. Tous les enregistrements sont stockés dans la région EU-WEUR de Cloudflare, conformes au RGPD et disponibles pour une conservation de 7 ans.</p></div>
+          </div>
+          <div class="v2-faq-acc-item">
+            <button class="v2-faq-btn">Podfy peut-il remplacer un TMS, WMS ou ERP ?</button>
+            <div class="v2-faq-answer"><p>Non. Podfy se concentre sur la saisie et la récupération des documents de livraison. Il est conçu pour compléter les systèmes existants en rendant la collecte de POD simple et cohérente entre les transporteurs, les fournisseurs, les sites et les magasins.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED GUIDES -->
+    <section class="v2-section" aria-labelledby="guides-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Lectures complémentaires</p>
+        <h2 class="v2-section-title" id="guides-heading">Aller plus loin</h2>
+        <div class="v2-guide-grid">
+          <a class="v2-guide-card" href="/fr/guides/missing-pod/">
+            <span class="v2-guide-tag">Guide</span>
+            <h3 class="v2-guide-title">Que faire quand un POD est manquant</h3>
+            <p class="v2-guide-desc">Étapes de récupération, causes profondes et comment éviter que cela se reproduise.</p>
+            <span class="v2-guide-arrow">Lire le guide &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/fr/guides/pod-disputes/">
+            <span class="v2-guide-tag">Guide</span>
+            <h3 class="v2-guide-title">Résoudre les litiges de livraison avec des preuves POD</h3>
+            <p class="v2-guide-desc">Comment gérer systématiquement les réclamations de non-livraison, de manquant et de dommages.</p>
+            <span class="v2-guide-arrow">Lire le guide &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/fr/guides/pod-without-app/">
+            <span class="v2-guide-tag">Guide</span>
+            <h3 class="v2-guide-title">Preuve de livraison sans application</h3>
+            <p class="v2-guide-desc">Pourquoi le POD via application échoue dans les environnements multi-chauffeurs et ce qui fonctionne à la place.</p>
+            <span class="v2-guide-arrow">Lire le guide &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/fr/cmr/">
+            <span class="v2-guide-tag">Extension</span>
+            <h3 class="v2-guide-title">Générateur CMR</h3>
+            <p class="v2-guide-desc">Générez des lettres de voiture CMR et AVC dans le portail. Format IRU. &euro;0,23 par lettre de voiture.</p>
+            <span class="v2-guide-arrow">Voir l'extension &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBSCRIBE -->
+    <section class="v2-section" aria-label="Restez informé">
+      <div class="container" style="max-width:40rem;">
+        <div class="v2-subscribe-strip">
+          <h3>Suivez l'évolution de Podfy</h3>
+          <p>Recevez les notes de mise à jour par e-mail à chaque nouvelle fonctionnalité.</p>
+          <form class="v2-subscribe-row" id="subscribe-form" onsubmit="handleSubscribe(event)">
+            <input type="hidden" name="hp_sub" value="" id="hp_sub" style="display:none;" />
+            <input type="email" name="email" class="v2-subscribe-input" placeholder="votre@email.com" required />
+            <button type="submit" class="v2-btn v2-btn-primary">S'abonner &rarr;</button>
+          </form>
+          <p id="subscribe-msg" style="display:none;font-size:.85rem;color:var(--v2-delivered);margin-top:.5rem;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="v2-cta-block" aria-label="Commencer">
+      <div class="container">
+        <span class="v2-stamp-mark" aria-hidden="true">Sans application · Hébergé en UE</span>
+        <h2>Prêt à collecter le POD<br>à <em>chaque livraison ?</em></h2>
+        <p>Quinze minutes. Nous vous montrerons le flux de téléversement, le portail et le PDF généré.</p>
+        <div class="v2-cta-actions">
+          <a href="/fr/contact" class="v2-btn v2-btn-primary">Réserver 15 minutes &rarr;</a>
+          <a href="/fr/demo" class="v2-btn v2-btn-ghost">Essayer la démo</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script>
+    // Reading progress
+    window.addEventListener('scroll', () => {
+      const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const el = document.getElementById('v2-progress');
+      if (el) el.style.width = Math.min(p * 100, 100) + '%';
+    });
+    // TOC scroll spy
+    const pills = document.querySelectorAll('.v2-toc-pill');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          pills.forEach(p => p.classList.remove('active'));
+          const active = document.querySelector('.v2-toc-pill[href="#' + e.target.id + '"]');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+    // FAQ accordion
+    document.querySelectorAll('.v2-faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.v2-faq-acc-item');
+        item.classList.toggle('open');
+      });
+    });
+    // Subscribe
+    async function handleSubscribe(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.querySelector('[name=email]').value;
+      const msg = document.getElementById('subscribe-msg');
+      try {
+        const r = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email, hp_sub: '' })
+        });
+        const d = await r.json();
+        msg.style.display = 'block';
+        msg.textContent = d.ok ? 'Subscribed. Thank you!' : (d.error || 'Something went wrong.');
+        msg.style.color = d.ok ? 'var(--v2-delivered)' : 'var(--v2-stamp)';
+        if (d.ok) form.reset();
+      } catch { msg.style.display = 'block'; msg.textContent = 'Could not subscribe right now.'; }
+    }
+  </script>
+</body>
+</html>

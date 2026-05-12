@@ -21,7 +21,7 @@
       <!-- EU trust pill — always visible on ≥640 px -->
       <span class="site-trust-pill" aria-label="Hosted in EU, Cloudflare WEUR region">EU&thinsp;&middot;&thinsp;WEUR</span>
 
-      <!-- Locale switcher — EN active; NL/DE/FR declared for hreflang, not yet translated -->
+      <!-- Locale switcher -->
       <div class="site-locale" id="localeWrapper" aria-label="Language">
         <button
           class="site-locale-btn"
@@ -35,10 +35,10 @@
           id="localeMenu"
           role="listbox"
           aria-label="Select language">
-          <a href="/" class="site-locale-item site-locale-active" role="option" aria-selected="true">EN</a>
-          <a href="/contact" class="site-locale-item site-locale-disabled" role="option" aria-selected="false" title="Dutch coming soon — contact us to be notified">NL</a>
-          <span class="site-locale-item site-locale-disabled" role="option" aria-selected="false" aria-disabled="true" title="German — coming soon">DE</span>
-          <span class="site-locale-item site-locale-disabled" role="option" aria-selected="false" aria-disabled="true" title="French — coming soon">FR</span>
+          <a href="/" class="site-locale-item site-locale-active" role="option" aria-selected="true" data-lang="en">EN</a>
+          <a href="/nl/" class="site-locale-item" role="option" aria-selected="false" data-lang="nl">NL</a>
+          <a href="/de/" class="site-locale-item" role="option" aria-selected="false" data-lang="de">DE</a>
+          <a href="/fr/" class="site-locale-item" role="option" aria-selected="false" data-lang="fr">FR</a>
         </div>
       </div>
 
@@ -119,6 +119,51 @@
           if (localeBtn) localeBtn.setAttribute("aria-expanded", "false");
         });
       }
+
+      /* ── Locale-aware navigation ── */
+      (function () {
+        var path = window.location.pathname;
+        var locale = /^\/nl(\/|$)/.test(path) ? "nl"
+                   : /^\/de(\/|$)/.test(path) ? "de"
+                   : /^\/fr(\/|$)/.test(path) ? "fr" : "";
+
+        /* Update button label */
+        if (localeBtn && locale) {
+          localeBtn.innerHTML = locale.toUpperCase() + " &#9662;";
+        }
+
+        /* Use hreflang <link> tags so each locale item points to the
+           equivalent page — not just the locale home page */
+        var hreflangs = {};
+        document.querySelectorAll("link[rel='alternate'][hreflang]").forEach(function (el) {
+          hreflangs[el.getAttribute("hreflang")] = el.getAttribute("href");
+        });
+        document.querySelectorAll("#localeMenu [data-lang]").forEach(function (el) {
+          var lang = el.getAttribute("data-lang");
+          var isActive = (lang === locale) || (lang === "en" && !locale);
+          el.classList.toggle("site-locale-active", isActive);
+          if (el.tagName === "A") {
+            var target = hreflangs[lang] || (lang === "en" ? "/" : "/" + lang + "/");
+            el.setAttribute("href", target);
+            el.setAttribute("aria-selected", String(isActive));
+          }
+        });
+
+        /* Rewrite header + mobile nav links for NL/DE locales */
+        if (locale) {
+          var pfx = "/" + locale;
+          ["primaryNav", "mobileNav"].forEach(function (navId) {
+            var nav = document.getElementById(navId);
+            if (!nav) return;
+            nav.querySelectorAll("a[href]").forEach(function (a) {
+              var h = a.getAttribute("href");
+              if (h && h.charAt(0) === "/" && !/^\/(nl|de|fr)(\/|$)/.test(h)) {
+                a.setAttribute("href", pfx + h);
+              }
+            });
+          });
+        }
+      })();
 
     });
   </script>
