@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- PODFY sitemap — EN + NL + DE  Updated: 2026-05-11 -->
+  <!-- PODFY sitemap — EN + NL + DE  Updated: 2026-05-11  73 URLs -->
   <!-- EN · NL · DE entries grouped per page, each with full hreflang cross-references -->
 
   <!-- ═══ HOME ═══ -->
@@ -466,6 +466,26 @@
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/guides/pod-invoicing/" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/guides/pod-invoicing/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/pod-invoicing/" />
+  </url>
+
+  <!-- ═══ CMR GENERATOR ═══ -->
+  <url><loc>https://podfy.net/cmr/</loc><lastmod>2026-05-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/" />
+  </url>
+  <url><loc>https://podfy.net/nl/cmr/</loc><lastmod>2026-05-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/" />
+  </url>
+  <url><loc>https://podfy.net/de/cmr/</loc><lastmod>2026-05-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/" />
   </url>
 
 </urlset>
