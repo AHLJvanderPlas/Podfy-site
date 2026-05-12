@@ -43,7 +43,7 @@ Key rules:
 - **No gradient text, no glass-card components, no pill buttons, no stock photos**
 - Square corners (`border-radius: 3-6px max`), hairline borders, no shadows
 - Typography: Source Serif 4 (display) + Inter (body) + JetBrains Mono (captions/IDs)
-- **Fonts not yet self-hosted** — pending CSP update and font files under `/assets/fonts/`
+- **Fonts self-hosted** — 10 woff2 latin subsets in `/assets/fonts/`; no Google Fonts dependency (2026-05-12)
 
 ---
 
@@ -129,7 +129,7 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
 
 | Sprint | Status | Key remaining work |
 |--------|--------|--------------------|
-| Sprint 1 — Homepage | ✅ Done | Fonts, header/footer cutover, stat band, stamp-in-headline (see design-audit) |
+| Sprint 1 — Homepage | ✅ Done | Self-hosted fonts shipped (2026-05-12); header/footer cutover, stat band, stamp-in-headline (see design-audit) |
 | Sprint 2 — IA collapse | ✅ Done | All 9 solutions + 8 guides pages live |
 | Sprint 3 — Pricing/Trust/Changelog | ✅ Done | trust.html consolidated, changelog.html + RSS live |
 | Sprint 4 — NL launch | 🗓 Planned | nl/ content pages, hreflang activation |
