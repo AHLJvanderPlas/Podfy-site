@@ -1,44 +1,5 @@
 // functions/api/releases.js
-
-// sha256("Podfy2026!") — same hash used by instructions/index.html lock screen
-const ADMIN_HASH = "96a67fef8cc3b05cf7c2e3da71889a97c0ddf0c4a18e4a9a66e9e2882a26e37b";
-
-export async function onRequestPost({ env, request }) {
-  let body;
-  try { body = await request.json(); } catch {
-    return json({ error: "Invalid JSON" }, 400);
-  }
-
-  if (body.auth !== ADMIN_HASH) return json({ error: "Unauthorized" }, 401);
-
-  const { release_date, version, deployment_ref, new_features, fixes, area_tags, is_published } = body;
-  if (!release_date || !version) return json({ error: "release_date and version are required" }, 400);
-
-  try {
-    const result = await env.DB.prepare(
-      `INSERT INTO Site_Releases (release_date, version, deployment_ref, new_features, fixes, area_tags, is_published)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`
-    ).bind(
-      release_date,
-      version,
-      deployment_ref || "",
-      new_features   || "",
-      fixes          || "",
-      area_tags      || "",
-      is_published ? 1 : 0
-    ).run();
-    return json({ success: true, id: result.meta?.last_row_id ?? null });
-  } catch (err) {
-    return json({ error: String(err?.message ?? err) }, 500);
-  }
-}
-
-function json(data, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-  });
-}
+// Read-only: releases are managed via podfy-admin Changelog tab.
 
 export async function onRequestGet({ env, request }) {
   const db = env.DB;
