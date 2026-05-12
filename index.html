@@ -69,7 +69,7 @@
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
 
   <!-- Styles: base system + v2 visual layer -->
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
 
   <!-- Structured data: Organization + WebSite entity signals for SEO and AI -->
   <script type="application/ld+json">
@@ -190,17 +190,57 @@
     </section>
 
     <script>
-    /* Populate last-shipped date in stat band */
+    /* Populate last-shipped date in stat band + changelog teaser */
     (function () {
-      fetch('/api/releases?limit=1')
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (d) {
-          var el = document.getElementById('v2-last-shipped-num');
-          if (!el) return;
-          var rel = d && d.releases && d.releases[0];
-          if (rel && rel.release_date) el.textContent = rel.release_date;
-        })
-        .catch(function () {});
+      function clFirstLine(text) {
+        if (!text) return '';
+        var lines = String(text).split('\n');
+        for (var i = 0; i < lines.length; i++) {
+          var l = lines[i].trim().replace(/^[-\u00b7\u2022*]\s*/, '');
+          if (l) return l;
+        }
+        return '';
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        fetch('/api/releases?page=1&pageSize=3')
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (d) {
+            /* Stat band: last-shipped date */
+            var el = document.getElementById('v2-last-shipped-num');
+            if (el && d && d.items && d.items[0] && d.items[0].release_date) {
+              el.textContent = d.items[0].release_date;
+            }
+
+            /* Changelog teaser */
+            var list = document.getElementById('cl-teaser-list');
+            var section = document.getElementById('v2-changelog-teaser');
+            if (!list || !section) return;
+            var items = d && d.items;
+            if (!items || !items.length) { section.style.display = 'none'; return; }
+            var html = '';
+            for (var i = 0; i < items.length; i++) {
+              var rel = items[i];
+              var summary = clFirstLine(rel.new_features) || clFirstLine(rel.fixes) || '';
+              html += '<div class="v2-cl-teaser-row">'
+                + '<span class="v2-cl-teaser-date">' + escHtml(rel.release_date || '') + '</span>'
+                + '<span class="v2-cl-teaser-version">' + escHtml(rel.version || '') + '</span>'
+                + '<span class="v2-cl-teaser-summary">' + escHtml(summary) + '</span>'
+                + '</div>';
+            }
+            list.innerHTML = html;
+          })
+          .catch(function () {
+            var section = document.getElementById('v2-changelog-teaser');
+            if (section) section.style.display = 'none';
+          });
+      });
+
+      function escHtml(s) {
+        return String(s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
     })();
     </script>
 
@@ -434,6 +474,18 @@
     </section>
 
     <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Also on Advanced &amp; Pro</p><p class="v2-inline-cta-text">Generate CMR and AVC consignment notes directly in the portal. IRU layout, searchable archive. &euro;0.23 per waybill — billed with your PODs.</p></div><a href="/cmr/" class="v2-btn v2-btn-primary">CMR generator &rarr;</a></div></div></div>
+
+    <!-- ================================================================
+         CHANGELOG TEASER — 3 most recent releases, client-side fetch
+         ================================================================ -->
+    <section id="v2-changelog-teaser" class="v2-changelog-teaser" aria-labelledby="cl-teaser-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Platform updates</p>
+        <h2 class="v2-section-title" id="cl-teaser-heading">Recent releases</h2>
+        <div id="cl-teaser-list" class="v2-cl-teaser-list"></div>
+        <a href="/changelog" class="v2-link-arrow">View full changelog &rarr;</a>
+      </div>
+    </section>
 
   </main>
 
