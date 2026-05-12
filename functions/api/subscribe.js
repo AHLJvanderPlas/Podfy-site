@@ -23,6 +23,7 @@ export const onRequestPost = async (context) => {
     const {
       name = "",
       email = "",
+      consent,
       hp_sub = "",
       cf_turnstile_token = "",
     } = body;
@@ -32,8 +33,13 @@ export const onRequestPost = async (context) => {
       return json({ ok: true, skipped: true });
     }
 
-    if (!email || !email.includes("@")) {
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !EMAIL_RE.test(email)) {
       return json({ ok: false, error: "A valid email address is required." }, 400);
+    }
+
+    if (consent !== true && consent !== "on") {
+      return json({ ok: false, error: "You must accept the privacy policy." }, 400);
     }
 
     // ---------- Turnstile ----------
@@ -65,22 +71,35 @@ export const onRequestPost = async (context) => {
     try {
       const db = env.DB;
       if (db) {
+        const normalEmail = email.trim().toLowerCase();
+
+        // Dedup: silently succeed if same email subscribed in the last 24h
+        const { n } = await db
+          .prepare(`SELECT COUNT(*) AS n FROM Site_Form WHERE email = ? AND created_at >= datetime('now', '-24 hours')`)
+          .bind(normalEmail)
+          .first() ?? { n: 0 };
+        if (Number(n) > 0) {
+          return json({ ok: true, message: "Subscribed." });
+        }
+
         const now = new Date().toISOString();
         const ua = request.headers.get("user-agent") || "";
+        const consentVal = consent === true || consent === "on" ? 1 : 0;
         await db
           .prepare(
             `INSERT INTO Site_Form
               (name, email, company, sector, message, consent,
                hp_contact, turnstile_score, user_agent, ip,
                source_path, created, first_response, status, created_at)
-             VALUES (?1,?2,?3,?4,?5,1,?6,?7,?8,?9,?10,?11,NULL,'new',?11)`
+             VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,NULL,'new',?12)`
           )
           .bind(
             name.trim() || "Subscriber",
-            email.trim().toLowerCase(),
+            normalEmail,
             "",
             "changelog-subscription",
             "",
+            consentVal,
             "",
             typeof tsJson.score === "number" ? tsJson.score : null,
             ua,

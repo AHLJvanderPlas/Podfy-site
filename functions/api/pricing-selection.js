@@ -41,13 +41,16 @@ export async function onRequest(context) {
     return new Response("Missing email or selection", { status: 400 });
   }
 
-  // Optional: server-side Turnstile validation
-  // if (env.TURNSTILE_SECRET && turnstileToken) {
-  //   const ok = await verifyTurnstile(env.TURNSTILE_SECRET, turnstileToken, request);
-  //   if (!ok) {
-  //     return new Response("Turnstile validation failed", { status: 400 });
-  //   }
-  // }
+  // Server-side Turnstile validation — required when TURNSTILE_SECRET is set
+  if (env.TURNSTILE_SECRET) {
+    if (!turnstileToken) {
+      return new Response("Turnstile token required", { status: 400 });
+    }
+    const ok = await verifyTurnstile(env.TURNSTILE_SECRET, turnstileToken, request);
+    if (!ok) {
+      return new Response("Turnstile validation failed", { status: 400 });
+    }
+  }
 
   const { subject, html, text, to } = buildPricingSelectionEmail({
     email,
@@ -115,20 +118,15 @@ async function sendEmailWithResend(env, { to, bcc, subject, html, text }) {
   return res.json();
 }
 
-// --- Optional Turnstile verification ---------------------------------------
-// You can uncomment this and wire TURNSTILE_SECRET in your env if you want
-// server-side verification in addition to the client integration.
+// --- Turnstile verification ------------------------------------------------
 
-/*
 async function verifyTurnstile(secret, token, request) {
   const ip = request.headers.get("CF-Connecting-IP") || "";
 
   const formData = new FormData();
   formData.append("secret", secret);
   formData.append("response", token);
-  if (ip) {
-    formData.append("remoteip", ip);
-  }
+  if (ip) formData.append("remoteip", ip);
 
   const resp = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
     method: "POST",
@@ -136,8 +134,6 @@ async function verifyTurnstile(secret, token, request) {
   });
 
   if (!resp.ok) return false;
-
   const data = await resp.json();
   return !!data.success;
 }
-*/
