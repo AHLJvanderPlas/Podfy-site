@@ -27,6 +27,7 @@ export async function onRequestGet({ env, request }) {
         is_published
       FROM Site_Releases
       WHERE is_published = 1
+        AND release_date <= DATE('now')
       ORDER BY release_date DESC, id DESC
       LIMIT ? OFFSET ?
     `;
@@ -39,6 +40,7 @@ export async function onRequestGet({ env, request }) {
       SELECT COUNT(*) AS total
       FROM Site_Releases
       WHERE is_published = 1
+        AND release_date <= DATE('now')
     `;
     const countRow = await db.prepare(countSql).first();
     const total = countRow ? countRow.total : 0;

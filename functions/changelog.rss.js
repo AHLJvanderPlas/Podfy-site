@@ -11,6 +11,7 @@ export async function onRequestGet({ env }) {
         `SELECT id, release_date, version, new_features, fixes, area_tags
          FROM Site_Releases
          WHERE is_published = 1
+           AND release_date <= DATE('now')
          ORDER BY release_date DESC, id DESC
          LIMIT 20`
       )
