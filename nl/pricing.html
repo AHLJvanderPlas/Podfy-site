@@ -123,9 +123,9 @@
             <tbody>
               <tr>
                 <td class="v2-price-row-label">Tarief per POD</td>
-                <td><span class="v2-price-rate">&euro;0,29</span></td>
-                <td><span class="v2-price-rate">&euro;0,59</span></td>
-                <td><span class="v2-price-rate">&euro;0,99</span></td>
+                <td><span class="v2-price-rate" data-price-key="starter">€0,29</span></td>
+                <td><span class="v2-price-rate" data-price-key="advanced">€0,59</span></td>
+                <td><span class="v2-price-rate" data-price-key="pro">€0,99</span></td>
                 <td><span class="v2-price-rate-custom">Op maat</span></td>
               </tr>
               <tr>
@@ -225,7 +225,7 @@
               <tbody>
                 <tr>
                   <td class="v2-addon-name"><a href="/nl/cmr/" class="v2-link">CMR generator &amp; opslag</a></td>
-                  <td class="v2-addon-price">&euro;0,23 / CMR</td>
+                  <td class="v2-addon-price"><span data-price-key="cmr">€0,23</span> / CMR</td>
                   <td class="v2-addon-desc">Genereer CMR/AVC-vrachtbrieven in het portaal. Gestructureerd formulier, automatische PDF, doorzoekbaar archief. Geprijsd per gegenereerde CMR — niet per POD. Beschikbaar op Advanced en Pro. <a href="/nl/cmr/" class="v2-link">Meer informatie &rarr;</a></td>
                 </tr>
                 <tr>
@@ -393,5 +393,26 @@
   </main>
 
   [[PODFY_FOOTER]]
+
+  <script>
+  /* Dynamic pricing — fills [data-price-key] spans from /api/pricing */
+  (function () {
+    function fmtPrice(n) {
+      return '\u20ac' + Number(n).toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    fetch('/api/pricing')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data || !data.items) return;
+        var map = {};
+        data.items.forEach(function (row) { map[row.plan_name.toLowerCase()] = row.default_price; });
+        document.querySelectorAll('[data-price-key]').forEach(function (el) {
+          var key = (el.getAttribute('data-price-key') || '').toLowerCase();
+          if (key in map) el.textContent = fmtPrice(map[key]);
+        });
+      })
+      .catch(function () { /* fallback text remains */ });
+  })();
+  </script>
 </body>
 </html>
