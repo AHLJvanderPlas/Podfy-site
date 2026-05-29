@@ -43,6 +43,7 @@
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/pricing" />
 
   <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <link rel="stylesheet" href="/assets/advisor.css" />
   <script src="/assets/theme.js" defer></script>
 </head>
 
@@ -105,6 +106,13 @@
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- PLAN ADVISOR -->
+    <section class="v2-section v2-advisor-wrap" id="plan-advisor" aria-label="Plan advisor">
+      <div class="container">
+        <div id="advisor-root"></div>
       </div>
     </section>
 
@@ -400,6 +408,8 @@
   </main>
 
   [[PODFY_FOOTER]]
+
+  <script src="/assets/advisor.js" defer></script>
 
   <script>
   /* Dynamic pricing — fills [data-price-key] spans from /api/pricing */

@@ -1,0 +1,313 @@
+/* ==========================================================================
+   PLAN ADVISOR — /pricing and locale variants
+   Uses only existing site tokens (--v2-*). No new design primitives.
+   ========================================================================== */
+
+/* ---- Section wrapper ---- */
+.v2-advisor-wrap {
+  /* inherits .v2-section padding + border-top from styles.site.css */
+}
+
+/* ---- Teaser / entry button ---- */
+.v2-advisor-teaser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 1.4rem;
+  border: 1.5px solid var(--v2-line);
+  border-radius: var(--v2-radius-lg);
+  background: var(--v2-card);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--v2-font-sans);
+  font-size: 0.95rem;
+  color: var(--v2-ink);
+  transition: border-color 0.15s ease-out, background 0.15s ease-out;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.v2-advisor-teaser:hover,
+.v2-advisor-teaser:focus-visible {
+  border-color: var(--v2-stamp);
+  outline: none;
+}
+.v2-advisor-teaser-text { font-weight: 600; }
+.v2-advisor-teaser-arrow {
+  font-family: var(--v2-font-mono);
+  font-size: 0.82rem;
+  color: var(--v2-stamp);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media (max-width: 480px) {
+  .v2-advisor-teaser { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---- Expanded body ---- */
+.v2-advisor-body { margin-top: 1.75rem; }
+
+/* ---- Progress ---- */
+.v2-advisor-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.v2-advisor-progress-text {
+  font-family: var(--v2-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+}
+.v2-advisor-dots {
+  display: flex;
+  gap: 0.35rem;
+}
+.v2-advisor-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--v2-line-2);
+  transition: background 0.15s ease-out;
+}
+.v2-advisor-dot.adv-active { background: var(--v2-stamp); }
+.v2-advisor-dot.adv-done   { background: var(--v2-ink-2); }
+
+/* ---- Question heading ---- */
+.v2-advisor-question {
+  font-family: var(--v2-font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--v2-ink);
+  margin: 0 0 0.35rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.v2-advisor-hint {
+  font-size: 0.82rem;
+  color: var(--v2-muted);
+  font-family: var(--v2-font-sans);
+  margin: 0 0 1.35rem;
+}
+
+/* ---- Options grid ---- */
+.v2-advisor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-bottom: 1.75rem;
+}
+@media (min-width: 768px) {
+  .v2-advisor-grid.adv-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .v2-advisor-grid.adv-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .v2-advisor-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Option card ---- */
+.v2-advisor-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.9rem 1.05rem;
+  border: 1.5px solid var(--v2-line);
+  border-radius: var(--v2-radius-lg);
+  background: var(--v2-card);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  font-family: var(--v2-font-sans);
+  transition: border-color 0.15s ease-out, background 0.15s ease-out;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.v2-advisor-card:hover,
+.v2-advisor-card:focus-visible {
+  border-color: var(--v2-stamp);
+  outline: none;
+}
+.v2-advisor-card[aria-pressed="true"] {
+  border-color: var(--v2-stamp);
+  background: color-mix(in srgb, var(--v2-stamp) 8%, var(--v2-card));
+}
+@supports not (background: color-mix(in srgb, red 8%, white)) {
+  .v2-advisor-card[aria-pressed="true"] { background: var(--v2-paper-2); }
+}
+
+.v2-advisor-card-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--v2-ink);
+  line-height: 1.35;
+}
+.v2-advisor-card-sub {
+  font-size: 0.77rem;
+  color: var(--v2-muted);
+  line-height: 1.45;
+}
+
+/* ---- Step actions ---- */
+.v2-advisor-actions {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.v2-advisor-btn-back {
+  background: transparent;
+  border: 1px solid var(--v2-line-2);
+  color: var(--v2-muted);
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--v2-radius);
+  font-family: var(--v2-font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease-out, color 0.15s ease-out;
+}
+.v2-advisor-btn-back:hover { border-color: var(--v2-ink); color: var(--v2-ink); }
+
+.v2-advisor-btn-next {
+  background: var(--v2-ink);
+  color: var(--v2-paper);
+  border: none;
+  padding: 0.5rem 1.3rem;
+  border-radius: var(--v2-radius);
+  font-family: var(--v2-font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease-out;
+}
+.v2-advisor-btn-next:hover:not(:disabled) { opacity: 0.8; }
+.v2-advisor-btn-next:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+/* ---- Result screen ---- */
+.v2-advisor-result-eyebrow {
+  font-family: var(--v2-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+  margin: 0 0 0.35rem;
+}
+.v2-advisor-result-name {
+  font-family: var(--v2-font-serif);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 500;
+  color: var(--v2-stamp);
+  margin: 0 0 0.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.v2-advisor-result-desc {
+  font-size: 0.97rem;
+  color: var(--v2-ink-2);
+  line-height: 1.7;
+  margin: 0 0 1.25rem;
+  max-width: 38rem;
+}
+.v2-advisor-result-estimate {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  background: var(--v2-paper-2);
+  border: 1px solid var(--v2-line);
+  border-radius: var(--v2-radius);
+  margin-bottom: 0.75rem;
+}
+.v2-advisor-result-amount {
+  font-family: var(--v2-font-serif);
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--v2-ink);
+}
+.v2-advisor-result-est-label {
+  font-family: var(--v2-font-mono);
+  font-size: 0.72rem;
+  color: var(--v2-muted);
+  letter-spacing: 0.03em;
+}
+.v2-advisor-result-retention {
+  font-family: var(--v2-font-mono);
+  font-size: 0.78rem;
+  color: var(--v2-muted);
+  margin: 0 0 1.5rem;
+  letter-spacing: 0.03em;
+  display: block;
+}
+
+/* Feature checklist grid — 2 columns of 4 */
+.v2-advisor-feat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 2.5rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 560px) {
+  .v2-advisor-feat-grid { grid-template-columns: 1fr; }
+}
+.v2-advisor-feat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.v2-advisor-feat-item {
+  font-size: 0.88rem;
+  color: var(--v2-ink-2);
+  padding-left: 1.35rem;
+  position: relative;
+  line-height: 1.4;
+}
+.v2-advisor-feat-item::before {
+  position: absolute;
+  left: 0;
+  font-family: var(--v2-font-mono);
+  font-size: 0.8rem;
+  top: 0.08em;
+}
+.v2-advisor-feat-item.adv-inc::before  { content: "\2713"; color: var(--v2-delivered); }
+.v2-advisor-feat-item.adv-exc           { color: var(--v2-muted); }
+.v2-advisor-feat-item.adv-exc::before  { content: "\2014"; color: var(--v2-line-2); }
+
+/* Result actions */
+.v2-advisor-result-actions {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.v2-advisor-btn-restart {
+  background: transparent;
+  border: 1px solid var(--v2-line-2);
+  color: var(--v2-muted);
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--v2-radius);
+  font-family: var(--v2-font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease-out, color 0.15s ease-out;
+}
+.v2-advisor-btn-restart:hover { border-color: var(--v2-ink); color: var(--v2-ink); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .v2-advisor-card,
+  .v2-advisor-teaser,
+  .v2-advisor-dot,
+  .v2-advisor-btn-back,
+  .v2-advisor-btn-next,
+  .v2-advisor-btn-restart { transition: none; }
+}
