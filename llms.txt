@@ -2,6 +2,33 @@
 
 > Proof of delivery platform for carriers, 3PLs, shippers, and logistics teams. GPS-stamped photo POD without a driver app. EU-hosted (Cloudflare WEUR). Built for Dutch and Belgian logistics operations.
 
+## Pricing
+
+PODFY is priced per processed POD (proof of delivery). No monthly seat fees,
+no per-user charges, no setup costs. Plans differ by retention period and
+included features.
+
+### Plans (per POD processed, excl. VAT)
+
+| Plan       | Rate    | Retention  | Key features included                                      |
+|------------|---------|------------|------------------------------------------------------------|
+| Basic      | €0.10   | 14 days    | Upload, GPS stamp, timestamped PDF. Full feature à la carte.|
+| Starter    | €0.55   | 120 days   | + Email notifications, PDF merge, multi-file upload        |
+| Advanced   | €0.79   | 1 year     | + Delivery portal, multi-user roles, damage reporting      |
+| Pro        | €0.99   | 5 years    | + PDF branding, CMR generator included                     |
+| Enterprise | Custom  | 7 years    | + White-label, OCR/AI scan, contract retention, SLA        |
+
+### Add-ons (available on all plans unless noted)
+
+| Add-on                | Price         | Notes                                              |
+|-----------------------|---------------|----------------------------------------------------|
+| CMR generator         | €0.35 / CMR   | Included in Pro and Enterprise                     |
+| Extended retention    | +€0.08 / POD  | Extends storage beyond plan default                |
+| No-worries retention  | +€0.05 / POD  | Stacks on extended retention                       |
+| Advanced OCR          | +€0.15 / POD  | Included in Enterprise                             |
+
+All prices exclude VAT. Volume discounts available above 2,000 PODs/month.
+
 ## What PODFY does
 
 PODFY captures proof of delivery at the moment of handover. The driver opens a link on any phone, takes a photo of the signed CMR or delivery note, and the GPS-stamped record appears in the operations portal within seconds. No app to install. No driver account required.
