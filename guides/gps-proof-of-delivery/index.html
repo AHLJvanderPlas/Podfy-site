@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GPS Proof of Delivery — How GPS-Stamped POD Works | PODFY</title>
+  <meta name="description" content="How GPS-stamped proof of delivery works, why it outperforms signed delivery notes in disputes, and how carriers collect it without a driver app." />
+  <link rel="canonical" href="https://podfy.net/guides/gps-proof-of-delivery/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:title" content="GPS Proof of Delivery — How GPS-Stamped POD Works | PODFY" />
+  <meta property="og:description" content="How GPS-stamped proof of delivery works, why it outperforms signed delivery notes in disputes, and how carriers collect it without a driver app." />
+  <meta property="og:url" content="https://podfy.net/guides/gps-proof-of-delivery/" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GPS Proof of Delivery — How GPS-Stamped POD Works | PODFY" />
+  <meta name="twitter:description" content="How GPS-stamped proof of delivery works, why it outperforms signed delivery notes in disputes, and how carriers collect it without a driver app." />
+  <meta name="twitter:image" content="https://podfy.net/assets/og-image.png" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/gps-proof-of-delivery/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/gps-proof-of-delivery/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/"},
+    {"@type":"ListItem","position":2,"name":"Guides","item":"https://podfy.net/guides/"},
+    {"@type":"ListItem","position":3,"name":"GPS Proof of Delivery","item":"https://podfy.net/guides/gps-proof-of-delivery/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"GPS Proof of Delivery — How GPS-Stamped POD Works","description":"How GPS-stamped proof of delivery works, why it outperforms signed delivery notes in disputes, and how carriers collect it without a driver app.","url":"https://podfy.net/guides/gps-proof-of-delivery/","datePublished":"2026-05-30","dateModified":"2026-05-30","author":{"@type":"Organization","name":"PODFY"},"publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Does GPS proof of delivery require a smartphone?","acceptedAnswer":{"@type":"Answer","text":"Any smartphone from 2017 with a camera and a browser. No GPS chip is required — modern phones use network-assisted positioning (cell towers + WiFi + GPS) which is sufficient for delivery location verification."}},
+    {"@type":"Question","name":"How accurate is GPS proof of delivery?","acceptedAnswer":{"@type":"Answer","text":"Typically accurate to 3–10 metres in open areas. Sufficient to confirm delivery to a specific address or site gate. Accuracy may be lower in dense urban areas or large warehouses — in those cases the timestamp and photo together provide sufficient evidence."}},
+    {"@type":"Question","name":"Can GPS coordinates be faked?","acceptedAnswer":{"@type":"Answer","text":"With Podfy, coordinates are captured server-side when the upload is received and cross-referenced with the device's reported location at the moment the camera fires. The record is tamper-evident — altering it would require access to the server, not just the device."}},
+    {"@type":"Question","name":"Is GPS stamping available on all Podfy plans?","acceptedAnswer":{"@type":"Answer","text":"Yes. GPS stamping is included on all Podfy plans including Basic. It is not an add-on."}}
+  ]}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Skip to content</a>
+  [[PODFY_HEADER]]
+
+  <main id="main" class="v2-main">
+
+    <!-- HERO -->
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <nav class="v2-breadcrumb" aria-label="Breadcrumb">
+          <a href="/guides/">Guides</a> <span aria-hidden="true">/</span>
+          <span aria-current="page">GPS proof of delivery</span>
+        </nav>
+        <span class="v2-guide-tag" style="margin-bottom:.85rem;display:inline-block;">Evidence</span>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:40rem;">
+          GPS proof of delivery.<br>
+          <em>Location-stamped, tamper-evident.</em>
+        </h1>
+        <p class="v2-hero-sub" style="max-width:38rem;">
+          How GPS-stamped proof of delivery works, why it outperforms signed delivery notes
+          in disputes, and how carriers collect it without a driver app.
+        </p>
+      </div>
+    </section>
+
+    <!-- WHAT IT IS -->
+    <section class="v2-section" aria-labelledby="what-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="what-heading">What GPS proof of delivery is</h2>
+        <div class="v2-prose">
+          <p>
+            GPS proof of delivery is a delivery record in which GPS coordinates are captured
+            at the moment the camera fires — not when the file is uploaded. The latitude and
+            longitude are written to the record server-side and cannot be retroactively altered.
+          </p>
+          <p>
+            This matters because it establishes the exact delivery location independently of
+            the driver's assertion. A traditional signed delivery note confirms only that
+            someone signed. A GPS-stamped record confirms that the signing happened at a
+            specific physical location, at a specific time, with the original file stored as-is.
+          </p>
+          <p>
+            GPS stamping requires no specialist hardware. Any phone with a browser and
+            camera supports it. The driver opens a link, takes a photo, and the GPS coordinates
+            are captured automatically. No app, no account, no training.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY GPS OUTPERFORMS SIGNATURES -->
+    <section class="v2-section" aria-labelledby="why-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="why-heading">Why GPS stamps outperform signatures in disputes</h2>
+
+        <div class="v2-how-grid" style="margin-top:1.5rem;">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">01 — Location</p>
+            <h3>Signatures confirm who. GPS confirms where.</h3>
+            <p>A signature confirms someone signed. GPS confirms the signing happened at
+            the delivery address. In a "delivered to wrong location" claim, GPS is decisive;
+            a signature is not. If the GPS record shows coordinates outside the delivery site,
+            the claim is supported regardless of who signed.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">02 — Integrity</p>
+            <h3>GPS stamps are tamper-evident.</h3>
+            <p>Coordinates are written to the record server-side at upload time.
+            The driver cannot alter them after the fact. A signed paper CMR can be backdated
+            or forged; a GPS-stamped digital record cannot. The original file is stored as-is
+            alongside the coordinates — no post-processing changes the evidence.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">03 — Coverage</p>
+            <h3>GPS proof works for unattended deliveries.</h3>
+            <p>Unmanned gates, site drops, and out-of-hours construction deliveries
+            produce no available signatory. GPS photo is the only available evidence in
+            these scenarios. A timestamped photo at the delivery location is accepted
+            by most logistics insurers and courts as sufficient documentation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT'S COLLECTED -->
+    <section class="v2-section" aria-labelledby="how-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="how-heading">How GPS-stamped POD is collected without an app</h2>
+        <div class="v2-prose">
+          <p>
+            The process is entirely browser-based. The carrier sends a link via WhatsApp,
+            SMS, or prints it as a QR code on the waybill. At the delivery point the driver
+            opens the link in any browser, photographs the CMR or delivery point, and submits.
+          </p>
+          <p>
+            GPS coordinates are captured at the moment the camera fires — not at upload time.
+            This is the crucial distinction that makes the timestamp reliable: a driver who
+            takes the photo at the delivery point and submits later (when back in 4G range)
+            still produces a record that proves location at delivery, not location at submission.
+          </p>
+          <p>
+            The GPS-stamped record appears in the operations portal within seconds of upload.
+            Email notification fires to the carrier's office automatically.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT A RECORD CONTAINS -->
+    <section class="v2-section" aria-labelledby="record-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="record-heading">What a GPS-stamped record contains</h2>
+        <ul class="v2-check-list" style="margin-top:1rem;max-width:36rem;">
+          <li><strong>GPS coordinates:</strong> latitude and longitude at moment of camera fire</li>
+          <li><strong>Timestamp:</strong> server-side, cannot be retroactively altered</li>
+          <li><strong>The document:</strong> original uploaded file stored as-is</li>
+          <li><strong>Reference linkage:</strong> PO or CMR reference links the record to your invoice</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- WHO NEEDS IT -->
+    <section class="v2-section" aria-labelledby="who-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="who-heading">Who needs GPS proof of delivery specifically</h2>
+        <ul class="v2-check-list" style="max-width:38rem;">
+          <li>Carriers with subcontractor networks where drivers change frequently</li>
+          <li>Shippers requiring POD within hours to unlock invoice approval</li>
+          <li>3PLs building audit-ready delivery archives for multiple clients</li>
+          <li>Construction companies with unattended site drops and unmanned gates</li>
+          <li>Any operation where "I delivered it" disputes arise without a signatory</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Frequently asked questions</h2>
+        <div class="v2-faq-list" style="max-width:40rem;">
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Does GPS proof of delivery require a smartphone?</p>
+            <p class="v2-faq-a">Any smartphone from 2017 with a camera and a browser. No GPS chip is required — modern phones use network-assisted positioning (cell towers + WiFi + GPS) which is sufficient for delivery location verification.</p>
+          </div>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">How accurate is GPS proof of delivery?</p>
+            <p class="v2-faq-a">Typically accurate to 3–10 metres in open areas. Sufficient to confirm delivery to a specific address or site gate. Accuracy may be lower in dense urban areas or large warehouses — in those cases the timestamp and photo together provide sufficient evidence.</p>
+          </div>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Can GPS coordinates be faked?</p>
+            <p class="v2-faq-a">With Podfy, coordinates are captured server-side when the upload is received and cross-referenced with the device's reported location at the moment the camera fires. The record is tamper-evident — altering it would require access to the server, not just the device.</p>
+          </div>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Is GPS stamping available on all Podfy plans?</p>
+            <p class="v2-faq-a">Yes. GPS stamping is included on all Podfy plans including Basic. It is not an add-on.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED GUIDES -->
+    <section class="v2-section" aria-labelledby="related-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Read more</p>
+        <h2 class="v2-section-title" id="related-heading">Related guides</h2>
+        <div class="v2-guide-grid">
+          <a class="v2-guide-card" href="/guides/proof-of-delivery/">
+            <span class="v2-guide-tag">Foundation</span>
+            <h3 class="v2-guide-title">What is proof of delivery?</h3>
+            <p class="v2-guide-desc">Complete guide to POD formats, legal requirements, and how modern logistics teams collect records without apps.</p>
+            <span class="v2-guide-arrow">Read guide &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/guides/photo-pod/">
+            <span class="v2-guide-tag">Evidence</span>
+            <h3 class="v2-guide-title">Photo proof of delivery</h3>
+            <p class="v2-guide-desc">GPS-stamped photos — why they outperform signatures in disputes and how to capture them correctly.</p>
+            <span class="v2-guide-arrow">Read guide &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/guides/pod-disputes/">
+            <span class="v2-guide-tag">Problem</span>
+            <h3 class="v2-guide-title">Resolving delivery disputes</h3>
+            <p class="v2-guide-desc">The evidence hierarchy for non-delivery, shortage, and damage claims — and where GPS stamps sit in it.</p>
+            <span class="v2-guide-arrow">Read guide &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="v2-cta-block" aria-label="Try GPS-stamped POD">
+      <div class="container">
+        <span class="v2-stamp-mark" aria-hidden="true">GPS stamp on every upload</span>
+        <h2>See GPS-stamped POD<br>in <em>30 seconds.</em></h2>
+        <p>Open the demo on your own phone. Photograph any document. Watch the GPS-stamped record appear in the portal immediately.</p>
+        <div class="v2-cta-actions">
+          <a href="/demo" class="v2-btn v2-btn-primary">Try the live demo &rarr;</a>
+          <a href="/contact" class="v2-btn v2-btn-ghost">Or book 15 minutes</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script>
+  (function(){
+    var bar = document.getElementById('v2-progress');
+    if (!bar) return;
+    function upd() {
+      var s = document.documentElement, b = document.body;
+      var h = s.scrollHeight - s.clientHeight || b.scrollHeight - b.clientHeight;
+      var pct = h > 0 ? Math.round((s.scrollTop || b.scrollTop) / h * 100) : 0;
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', upd, {passive: true});
+    upd();
+  })();
+  </script>
+</body>
+</html>
