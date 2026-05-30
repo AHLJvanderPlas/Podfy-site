@@ -115,7 +115,7 @@
             <h1 class="v2-hero-title" id="hero-heading">
               Send a link.<br>
               Get the CMR back<br>
-              <span class="v2-hero-stamp">the same day.</span>
+              <span class="v2-hero-stamp" aria-label="the same day.">the same day.</span>
             </h1>
             <p class="v2-hero-sub">
               Dutch and Benelux carriers and 3PLs use Podfy to collect signed delivery proof from any driver — no app, no account, no training required.
@@ -166,26 +166,28 @@
     <!-- ================================================================
          STAT BAND — 4 numbered facts, large mono numerals
          ================================================================ -->
-    <section class="v2-trust-belt" aria-label="Key facts">
+    <section class="v2-stat-band-wrap" aria-label="Key facts">
       <div class="container">
-        <div class="v2-stat-band">
-          <div class="v2-stat-band-item">
-            <span class="v2-stat-band-num">11 s</span>
+        <ul class="v2-stat-band" role="list">
+          <li class="v2-stat-band-item">
+            <span class="v2-stat-band-num">11&thinsp;s</span>
             <span class="v2-stat-band-label">Median upload</span>
-          </div>
-          <div class="v2-stat-band-item">
+          </li>
+          <li class="v2-stat-band-item">
             <span class="v2-stat-band-num">0</span>
             <span class="v2-stat-band-label">Apps installed</span>
-          </div>
-          <div class="v2-stat-band-item">
-            <span class="v2-stat-band-num">7 years</span>
+          </li>
+          <li class="v2-stat-band-item">
+            <span class="v2-stat-band-num">7&thinsp;years</span>
             <span class="v2-stat-band-label">EU archive retention</span>
-          </div>
-          <div class="v2-stat-band-item v2-stat-band-live">
-            <span class="v2-stat-band-num" id="v2-last-shipped-num">&rarr;</span>
-            <span class="v2-stat-band-label"><a href="/changelog">Latest release</a></span>
-          </div>
-        </div>
+          </li>
+          <li class="v2-stat-band-item v2-stat-band-item--live">
+            <a class="v2-stat-band-link" href="/changelog">
+              <span class="v2-stat-band-num" id="v2-last-shipped-num">&rarr;</span>
+              <span class="v2-stat-band-label">Latest release</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -254,65 +256,45 @@
         <div class="v2-proof-grid">
 
           <!-- Artifact 1: The driver's view — upload link on phone -->
-          <div class="v2-proof-artifact" aria-label="Driver upload page — no app required">
+          <article class="v2-proof-artifact v2-proof-phone" aria-label="Driver upload page — no app required">
             <p class="v2-proof-artifact-label">01 &mdash; The driver&rsquo;s view</p>
             <div class="v2-proof-phone-body">
-              <p class="v2-proof-phone-brand">Trans van Dijck B.V.</p>
-              <p class="v2-proof-phone-ref">REF&nbsp;&nbsp;TDV-2025-04-22-0041</p>
-              <hr class="v2-receipt-hr" />
-              <p class="v2-proof-phone-ref" style="margin-top:.25rem;">Any phone. No account. No install.</p>
-              <div class="v2-proof-phone-cambtn" aria-hidden="true">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="2" y="7" width="20" height="15" rx="2"/><circle cx="12" cy="14.5" r="3.5"/><path d="M16 7l-1.5-3h-5L8 7"/></svg>
+              <div class="v2-proof-phone-status">
+                <span>09:24</span><span aria-hidden="true">&#9602;&#9604;&#9605;&#9606; 5G</span>
+              </div>
+              <p class="v2-proof-phone-url">podfy.app/trans-van-dijck</p>
+              <hr class="v2-proof-hr" />
+              <div class="v2-proof-phone-cta" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="7" width="20" height="15" rx="2"/><circle cx="12" cy="14.5" r="3.5"/><path d="M16 7l-1.5-3h-5L8 7"/></svg>
                 Take photo
               </div>
+              <p class="v2-proof-phone-note">Any phone &middot; No account &middot; No install</p>
             </div>
-          </div>
+          </article>
 
           <!-- Artifact 2: The stamped PDF record — document-page layout, not a receipt -->
-          <div class="v2-proof-artifact" aria-label="Stamped delivery record PDF">
+          <article class="v2-proof-artifact v2-proof-pdf" aria-label="Stamped delivery record PDF">
             <p class="v2-proof-artifact-label">02 &mdash; The record you receive</p>
             <div class="v2-proof-pdf-body">
-
-              <!-- Letterhead row -->
-              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
-                <span style="font-family:var(--v2-font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--v2-muted);">PODFY</span>
-                <span style="font-family:var(--v2-font-serif);font-size:0.78rem;font-weight:600;color:var(--v2-ink);">Delivery Record</span>
+              <div class="v2-proof-pdf-letterhead">
+                <span class="v2-proof-pdf-brand">PODFY</span>
+                <span class="v2-proof-pdf-doctype">Delivery Record</span>
               </div>
-
-              <!-- Scanned-document photo area -->
-              <div style="background:var(--v2-paper-2);border:1px solid var(--v2-line);height:3.25rem;display:flex;align-items:center;justify-content:center;margin-bottom:0.6rem;" aria-hidden="true">
-                <span style="font-family:var(--v2-font-mono);font-size:0.58rem;letter-spacing:0.06em;color:var(--v2-muted);">cmr_0041.pdf &mdash; 1 page</span>
-              </div>
-
-              <!-- 2-column metadata grid -->
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.35rem 1rem;font-family:var(--v2-font-mono);font-size:0.67rem;margin-bottom:0.6rem;">
-                <div>
-                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">GPS</span>
-                  <span style="color:var(--v2-ink-2);">52.37&deg;N &middot; 4.89&deg;E</span>
-                </div>
-                <div>
-                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">Timestamp</span>
-                  <span style="color:var(--v2-ink-2);">2025-04-22&thinsp;14:37</span>
-                </div>
-                <div>
-                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">REF</span>
-                  <span style="color:var(--v2-ink-2);">TDV-0041</span>
-                </div>
-                <div>
-                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">Checksum</span>
-                  <span style="color:var(--v2-ink-2);">sha256:a3f4&hellip;</span>
-                </div>
-              </div>
-
+              <div class="v2-proof-pdf-photo" aria-hidden="true">cmr_0041.pdf &middot; 1 page</div>
+              <dl class="v2-proof-pdf-meta">
+                <div><dt>GPS</dt><dd>52.37&deg;N &middot; 4.89&deg;E</dd></div>
+                <div><dt>Timestamp</dt><dd>2026-04-22&thinsp;14:37</dd></div>
+                <div><dt>REF</dt><dd>TDV-0041</dd></div>
+                <div><dt>Checksum</dt><dd>sha256:a3f4&hellip;</dd></div>
+              </dl>
               <div class="v2-proof-pdf-stamp-row">
                 <span class="v2-stamp-mark">Delivered</span>
               </div>
-
             </div>
-          </div>
+          </article>
 
           <!-- Artifact 3: The portal archive -->
-          <div class="v2-proof-artifact" aria-label="Delivery portal archive — searchable by reference">
+          <article class="v2-proof-artifact v2-proof-portal" aria-label="Delivery portal archive — searchable by reference">
             <p class="v2-proof-artifact-label">03 &mdash; The archive</p>
             <div class="v2-proof-portal-head" aria-hidden="true">
               <span>Reference</span>
@@ -322,21 +304,32 @@
             </div>
             <div class="v2-proof-portal-row">
               <span>TDV-0041</span>
-              <span>2025-04-22</span>
+              <span>2026-04-22</span>
               <span>J. Kowalski</span>
               <span class="v2-stamp-mark">Delivered</span>
             </div>
             <div class="v2-proof-portal-row">
               <span>BLG-1092</span>
-              <span>2025-04-20</span>
+              <span>2026-04-20</span>
               <span>M. Nowak</span>
               <span class="v2-stamp-mark">Delivered</span>
             </div>
-          </div>
+          </article>
 
         </div>
       </div>
     </section>
+
+    <!--
+      TODO(story): Named customer story pending sign-off.
+      Required before going live:
+        - Quote (≤200 chars, concrete operational outcome, with permission)
+        - Name + Role + Company + Country ISO2
+        - 3 concrete stats with captions (≤24 chars each)
+        - Written publish permission saved at: <internal-doc-path>
+      Brief: CLAUDE-site-visual-redesign.md, Fix 5.
+      Position: between proof strip and audience tile grid.
+    -->
 
     <!-- ================================================================
          HOW IT WORKS — 3 columns, no generic icons
@@ -367,27 +360,6 @@
         </div>
       </div>
     </section>
-
-    <!-- ================================================================
-         CUSTOMER STORY
-         TODO: First customer story must be a named NL or BE carrier.
-         Awaiting customer sign-off before this section goes live.
-         Leave commented until maintainer confirms the quote and name.
-
-    <section class="v2-section" aria-labelledby="customer-heading">
-      <div class="container">
-        <h2 class="v2-section-title" id="customer-heading">From the depot</h2>
-        <blockquote class="v2-quote-block">
-          <p class="v2-quote-text">"[Quote text — to be confirmed.]"</p>
-          <footer class="v2-quote-attr">
-            <span class="v2-quote-name">[Name]</span>
-            <span>[Role]</span>
-            <span>[Company], NL</span>
-          </footer>
-        </blockquote>
-      </div>
-    </section>
-         ================================================================ -->
 
     <!-- ================================================================
          WHAT EVERY UPLOAD CONTAINS — 2×2 grid
@@ -473,7 +445,7 @@
       </div>
     </section>
 
-    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Also on Advanced &amp; Pro</p><p class="v2-inline-cta-text">Generate CMR and AVC consignment notes directly in the portal. IRU layout, searchable archive. &euro;0.23 per waybill — billed with your PODs.</p></div><a href="/cmr/" class="v2-btn v2-btn-primary">CMR generator &rarr;</a></div></div></div>
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Available on all plans</p><p class="v2-inline-cta-text">Generate CMR and AVC consignment notes directly in the portal. IRU layout, searchable archive. &euro;0.35 per waybill — billed with your PODs.</p></div><a href="/cmr/" class="v2-btn v2-btn-primary">CMR generator &rarr;</a></div></div></div>
 
     <!-- ================================================================
          CHANGELOG TEASER — 3 most recent releases, client-side fetch

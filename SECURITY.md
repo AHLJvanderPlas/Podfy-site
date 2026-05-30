@@ -4,14 +4,22 @@ _Last updated: 2025-08-27_
 We take the security of our users and their Proof-of-Delivery (POD) data seriously. This policy explains how to report vulnerabilities to us and what you can expect in return.
 
 ## Scope
-This policy covers vulnerabilities discovered in:
-- **podfy.net** (marketing site served on Cloudflare Pages)
-- **podfy.app** (operational application)
+This policy covers vulnerabilities discovered in all Podfy products and infrastructure:
 
-If you believe a vulnerability affects a third-party provider we use (e.g., hosting, form processor, email), please report it to us first and, if appropriate, also to the vendor.
+| Product | Domain | Description |
+|---|---|---|
+| **Podfy App** | podfy.app | Proof-of-delivery upload application (PWA) |
+| **Podfy Delivery Portal** | delivery.podfy.net | Driver-facing delivery record portal |
+| **Podfy Customer Portal** | portal.podfy.net | Client-facing portal (delivery notes, invoices, design) |
+| **Podfy Admin** | admin.podfy.net | Internal Podfy administration panel |
+| **Podfy Site** | podfy.net | Marketing and company website |
+| **Podfy Logos Worker** | podfy.net/logos/\*, podfy.app/logos/\* | R2-backed logo serving worker |
+| **Podfy Cron Worker** | (scheduled, no public route) | Background invoicing and cleanup jobs |
+
+If you believe a vulnerability affects a third-party provider we use (e.g., Cloudflare, Resend, R2), please report it to us first and, if appropriate, also to the vendor.
 
 ## Reporting a vulnerability
-Email: **info@podfy.net**  
+Email: **security@podfy.net**  
 Please include:
 - A clear description of the issue and where it can be observed (URL, endpoint, parameters).
 - Step-by-step reproduction instructions and any proof-of-concept code or screenshots.
@@ -70,3 +78,4 @@ If you’d like recognition after remediation, tell us how to credit you (name, 
 
 ---
 **Contact:** security / vulnerability reports — **security@podfy.net**
+**Policy:** https://podfy.net/trust

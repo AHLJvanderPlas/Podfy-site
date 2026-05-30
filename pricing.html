@@ -25,7 +25,7 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Pricing — PODFY" />
-  <meta name="twitter:description" content="PODFY pricing is per processed POD. No monthly seat fees, no setup costs. Starter from €0.29 per POD. See the full rate card and add-ons." />
+  <meta name="twitter:description" content="Pay per processed POD. No seat fees. Starter from €0.55 per POD. See the full rate card and add-ons." />
   <meta name="twitter:image" content="https://podfy.net/assets/og-image.png" />
 
   <meta name="color-scheme" content="light dark" />
@@ -45,6 +45,47 @@
   <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
   <link rel="stylesheet" href="/assets/advisor.css" />
   <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PODFY",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "Proof of delivery platform for carriers and logistics teams. GPS-stamped, no app required for drivers.",
+    "url": "https://podfy.net",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Basic",
+        "price": "0.10",
+        "priceCurrency": "EUR",
+        "description": "Entry-level pay-per-POD. GPS-stamped, email notification, branded upload link. 14-day retention."
+      },
+      {
+        "@type": "Offer",
+        "name": "Starter",
+        "price": "0.55",
+        "priceCurrency": "EUR",
+        "description": "GPS, email notifications, multi-file PDF merge, branded upload link. 120-day retention."
+      },
+      {
+        "@type": "Offer",
+        "name": "Advanced",
+        "price": "0.79",
+        "priceCurrency": "EUR",
+        "description": "Full portal access, damage reporting, multi-user roles, PDF merge. 1-year retention."
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro",
+        "price": "0.99",
+        "priceCurrency": "EUR",
+        "description": "Everything in Advanced plus CMR waybill generator and PDF branding. 5-year retention."
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="v2">
@@ -68,8 +109,8 @@
               You pay for each proof of delivery that is processed — no base fee, no per-seat charge, no setup cost. Pilot with a handful of drivers. Scale without renegotiating.
             </p>
             <div class="v2-hero-actions">
-              <a href="/contact" class="v2-btn v2-btn-primary">Book 15 minutes &rarr;</a>
-              <a href="/demo" class="v2-btn v2-btn-ghost">Try the demo first</a>
+              <a href="/demo" class="v2-btn v2-btn-primary">Try the live demo &rarr;</a>
+              <a href="/contact" class="v2-btn v2-btn-ghost">Or book 15 minutes</a>
             </div>
           </div>
 
@@ -147,7 +188,7 @@
               </tr>
               <tr>
                 <td class="v2-price-row-label">Document retention</td>
-                <td>30 days</td>
+                <td>14 days</td>
                 <td>120 days</td>
                 <td>1 year</td>
                 <td>5 years</td>
@@ -355,6 +396,21 @@
       </div>
     </section>
 
+    <!-- SOCIAL PROOF -->
+    <section class="v2-section" aria-label="Customer testimonial">
+      <div class="container">
+        <figure class="v2-quote-block">
+          <blockquote class="v2-quote-text">
+            &ldquo;We used to chase paper CMRs for days. Now the stamped PDF is in our portal before the driver is back at the depot.&rdquo;
+          </blockquote>
+          <figcaption class="v2-quote-attr">
+            <span class="v2-quote-name">Transport operator</span>
+            <span>4 trucks &middot; North Brabant</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
     <!-- FAQ -->
     <section class="v2-section" aria-labelledby="pricing-faq-heading">
       <div class="container">
@@ -416,11 +472,11 @@
     <section class="v2-cta-block" aria-label="Get pricing">
       <div class="container">
         <span class="v2-stamp-mark" aria-hidden="true">No monthly fee &middot; Pay per POD</span>
-        <h2>Bring your monthly volume.<br>We will build a <em>rate card for you.</em></h2>
-        <p>Fifteen minutes. We will walk you through the upload flow, show you a portal demo, and give you indicative pricing based on your actual numbers.</p>
+        <h2>See it working in 30 seconds —<br>or <em>talk to us about your volume.</em></h2>
+        <p>The demo runs on your own phone. No account, no install. If you want to talk volume pricing, book 15 minutes and we will prepare a rate card for your operation.</p>
         <div class="v2-cta-actions">
-          <a href="/contact" class="v2-btn v2-btn-primary">Book 15 minutes &rarr;</a>
-          <a href="/demo" class="v2-btn v2-btn-ghost">Try the demo first</a>
+          <a href="/demo" class="v2-btn v2-btn-primary">Try the live demo &rarr;</a>
+          <a href="/contact" class="v2-btn v2-btn-ghost">Or book 15 minutes</a>
         </div>
       </div>
     </section>

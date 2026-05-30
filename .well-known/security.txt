@@ -1,3 +1,4 @@
 Contact: mailto:security@podfy.net
-Policy: https://podfy.net/security.html
+Policy: https://podfy.net/trust
 Preferred-Languages: en
+Expires: 2027-05-24T23:59:59Z

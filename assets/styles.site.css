@@ -120,7 +120,7 @@ button { font: inherit; cursor: pointer; }
    4) SITE HEADER
    ========================================================================== */
 
-.site-header-shell {
+.site-header {
   position: sticky;
   top: 0;
   z-index: 40;
@@ -173,21 +173,26 @@ html[data-theme="dark"] .site-brand img {
   gap: 0.75rem;
 }
 
-/* EU trust pill */
-.site-trust-pill {
+/* EU trust mark */
+.site-eu-mark {
   font-family: var(--v2-font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 3px 8px;
-  border: 1px solid var(--v2-stamp);
+  border: 1.5px solid var(--v2-stamp);
   border-radius: 2px;
   color: var(--v2-stamp);
   white-space: nowrap;
   display: none;
+  transform: rotate(-2deg);
+  transform-origin: left center;
 }
 @media (min-width: 640px) {
-  .site-trust-pill { display: inline-block; }
+  .site-eu-mark { display: inline-block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-eu-mark { transform: rotate(0deg); }
 }
 
 /* Locale switcher */
@@ -305,7 +310,7 @@ a.site-locale-item:hover { background: var(--v2-paper-2); }
    5) SITE FOOTER
    ========================================================================== */
 
-.site-footer-v2 {
+.site-footer {
   margin-top: 0;
   border-top: 1px solid var(--v2-line);
   background: var(--v2-paper-2);
@@ -396,7 +401,7 @@ a.site-locale-item:hover { background: var(--v2-paper-2); }
   font-size: 0.8rem;
 }
 .site-footer-locale-active { color: var(--v2-ink); font-weight: 600; }
-.site-footer-locale-inactive { color: var(--v2-muted); opacity: 0.45; cursor: not-allowed; }
+.site-footer-locale-inactive { color: var(--v2-muted); opacity: 0.45; }
 
 /* ==========================================================================
    6) PAGE LAYOUT
@@ -646,13 +651,15 @@ html[data-theme="dark"] .v2-receipt {
 }
 
 /* ==========================================================================
-   11) TRUST BELT
+   11) TRUST BELT / STAT BAND WRAPPER
    ========================================================================== */
 
-.v2-trust-belt {
+.v2-trust-belt,
+.v2-stat-band-wrap {
   border-top: 1px solid var(--v2-line);
   border-bottom: 1px solid var(--v2-line);
-  padding: 0.85rem 0;
+  background: var(--v2-paper);
+  padding: 0;
 }
 
 .v2-trust-list {
@@ -1141,6 +1148,8 @@ html[data-theme="dark"] .v2-receipt {
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
   padding: 1.5rem 0;
+  list-style: none;
+  margin: 0;
 }
 
 .v2-stat-band-item {
@@ -1170,9 +1179,19 @@ html[data-theme="dark"] .v2-receipt {
   color: var(--v2-muted);
 }
 
-.v2-stat-band-item.v2-stat-band-live .v2-stat-band-num { color: var(--v2-stamp); }
+.v2-stat-band-item.v2-stat-band-live .v2-stat-band-num,
+.v2-stat-band-item--live .v2-stat-band-num { color: var(--v2-stamp); }
 .v2-stat-band-item.v2-stat-band-live .v2-stat-band-label a { color: var(--v2-stamp); text-decoration: none; }
 .v2-stat-band-item.v2-stat-band-live .v2-stat-band-label a:hover { text-decoration: underline; }
+
+.v2-stat-band-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+.v2-stat-band-link:hover .v2-stat-band-label { color: var(--v2-ink); }
 
 @media (max-width: 700px) {
   .v2-stat-band { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 0; }
@@ -1192,53 +1211,146 @@ html[data-theme="dark"] .v2-receipt {
   border: 1px solid var(--v2-line);
   border-radius: var(--v2-radius-lg);
   background: var(--v2-card);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  min-height: 200px;
   font-family: var(--v2-font-mono);
 }
 
 .v2-proof-artifact-label {
   font-family: var(--v2-font-mono);
-  font-size: 0.63rem;
-  letter-spacing: 0.06em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--v2-muted);
-  padding: 0.6rem 1rem;
-  background: var(--v2-paper-2);
-  border-bottom: 1px solid var(--v2-line);
+  margin: 0;
+}
+
+.v2-proof-hr {
+  border: none;
+  border-top: 1px solid var(--v2-line);
+  margin: 0.25rem 0;
 }
 
 /* Phone mock */
 .v2-proof-phone-body {
-  padding: 1.25rem 1rem;
+  background: var(--v2-paper-2);
+  border: 1px solid var(--v2-line);
+  border-radius: 8px 8px var(--v2-radius) var(--v2-radius);
+  padding: 0.625rem 0.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  flex: 1;
 }
+.v2-proof-phone-status {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--v2-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--v2-muted);
+}
+.v2-proof-phone-url {
+  font-family: var(--v2-font-mono);
+  font-size: 0.78rem;
+  color: var(--v2-ink);
+  margin: 0.25rem 0 0;
+  word-break: break-all;
+}
+.v2-proof-phone-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: var(--v2-ink);
+  color: var(--v2-paper);
+  font-family: var(--v2-font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--v2-radius);
+  margin-top: auto;
+}
+.v2-proof-phone-note {
+  font-family: var(--v2-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+  margin: 0;
+  text-align: center;
+}
+/* legacy classes — kept for compat */
 .v2-proof-phone-brand {
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--v2-ink); margin: 0;
 }
-.v2-proof-phone-ref {
-  font-size: 0.63rem; color: var(--v2-muted);
-  letter-spacing: 0.04em;
-}
+.v2-proof-phone-ref { font-size: 0.63rem; color: var(--v2-muted); letter-spacing: 0.04em; }
 .v2-proof-phone-cambtn {
   display: flex; align-items: center; justify-content: center;
-  gap: 0.5rem;
-  background: var(--v2-ink); color: var(--v2-paper);
-  border-radius: var(--v2-radius);
-  padding: 0.55rem 1rem;
-  font-family: var(--v2-font-mono);
-  font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
-  margin-top: 0.25rem;
+  gap: 0.5rem; background: var(--v2-ink); color: var(--v2-paper);
+  border-radius: var(--v2-radius); padding: 0.55rem 1rem;
+  font-family: var(--v2-font-mono); font-size: 0.7rem;
+  letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.25rem;
 }
 
 /* PDF mock */
 .v2-proof-pdf-body {
-  padding: 1.25rem 1rem;
+  background: var(--v2-paper-2);
+  border: 1px solid var(--v2-line);
+  border-radius: var(--v2-radius);
+  padding: 0.625rem 0.75rem;
   display: flex; flex-direction: column; gap: 0.5rem;
+  flex: 1;
   transform: rotate(0.4deg); transform-origin: center;
 }
+.v2-proof-pdf-letterhead {
+  display: flex; align-items: baseline; justify-content: space-between;
+}
+.v2-proof-pdf-brand {
+  font-family: var(--v2-font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--v2-muted);
+}
+.v2-proof-pdf-doctype {
+  font-family: var(--v2-font-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--v2-ink);
+}
+.v2-proof-pdf-photo {
+  background: var(--v2-card);
+  border: 1px solid var(--v2-line);
+  height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--v2-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--v2-muted);
+}
+.v2-proof-pdf-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 1rem;
+  font-family: var(--v2-font-mono);
+  font-size: 0.68rem;
+  margin: 0;
+}
+.v2-proof-pdf-meta dt {
+  display: block;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--v2-muted);
+  margin-bottom: 0.1rem;
+}
+.v2-proof-pdf-meta dd { margin: 0; color: var(--v2-ink-2); }
 .v2-proof-pdf-heading {
   font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--v2-ink); margin: 0 0 0.35rem;
@@ -1293,6 +1405,7 @@ html[data-theme="dark"] .v2-receipt {
   }
   #v2-progress   { transition: none !important; }
   .v2-faq-answer { transition: none !important; }
+  .v2-hero-stamp { transform: rotate(0deg); }
 }
 
 /* ============================================================

@@ -141,12 +141,17 @@ Secret: stored as `TURNSTILE_SECRET` env var in CF Pages project settings.
 
 ---
 
-## Roadmap
+## Locales
 
-Features confirmed for development — not yet live, do not reference on the site until shipped.
+Full translated page trees live at `/nl/`, `/de/`, `/fr/` — each has homepage, 9 solutions, 8 guides, pricing, demo, contact, trust, CMR. Hreflang active on all four locales (EN/NL/DE/FR).
+
+## Planned
 
 | Feature | Notes |
 |---------|-------|
-| **Offline upload queuing** | Store-and-forward upload for poor-signal environments (construction sites, rural depots). When shipped: re-add to `pricing.html` included list, `digital-vs-paper` comparison table, `proof-of-delivery` guide step 02. |
-| **Social proof section** | Homepage placeholder is commented out in `index.html`. Activate when first named customer reference or delivery volume stat is confirmed. |
-| **NL language pages** | `nl/index.html` exists. Full NL site (`/nl/demo`, `/nl/pricing`, etc.) when translation is ready. Hreflang is already declared on homepage. |
+| **Consolidate stylesheets** | Hard cutover: remove `styles.css`, use `styles.v2.css` only |
+| **`prefers-reduced-motion` block** | One comprehensive rule block for all transitions/animations in `styles.v2.css` |
+| **Rate limiting on subscribe/pricing endpoints** | Requires CF Pro plan; `/api/contact` already limited via WAF |
+| **Named customer story** | Homepage quote placeholder (`TODO(story)`) — activate on first confirmed reference |
+| **Social proof section** | Delivery volume stat strip — activate when first named stat confirmed |
+| **Offline upload queuing** | When shipped: re-add to `pricing.html`, `digital-vs-paper`, `proof-of-delivery` guide |
