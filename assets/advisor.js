@@ -48,7 +48,7 @@
   /* Plan feature inclusion matrix — 8 features in order:
      0:GPS  1:Email  2:Brand  3:Portal  4:Roles  5:Damage  6:CMR  7:Retention */
   var PLAN_FEATURES = {
-    basic:    [true,  true,  false, false, false, false, false, false],
+    basic:    [true,  true,  true,  false, false, false, false, false],
     starter:  [true,  true,  true,  false, false, false, false, false],
     advanced: [true,  true,  true,  true,  true,  true,  false, false],
     pro:      [true,  true,  true,  true,  true,  true,  true,  true ]
@@ -119,7 +119,7 @@
       badge_pro:      'Pro only',
 
       result_eyebrow:      'Your recommendation',
-      result_desc_basic:   'A lean entry point for small operations. Pay per POD, GPS-stamped, email notification on every upload.',
+      result_desc_basic:   'A lean entry point for micro-operations. GPS-stamped PODs, email notification on every upload, branded upload link. From €0.10 per POD.',
       result_desc_starter: 'The right foundation for growing carriers. Branded upload link, GPS timestamps, email routing — all for a simple per-POD price.',
       result_desc_advanced:'Full portal access for teams. Search, filter, and audit deliveries. Multi-user roles, damage reporting, and branded PDFs.',
       result_desc_pro:     'Everything in Advanced plus long-term archiving and built-in compliance. Designed for operations where documentation must be defensible for years.',
