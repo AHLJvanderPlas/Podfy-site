@@ -302,6 +302,136 @@
 }
 .v2-advisor-btn-restart:hover { border-color: var(--v2-ink); color: var(--v2-ink); }
 
+/* ---- Plan badge on step-4 cards ---- */
+.v2-advisor-feat-badge {
+  display: inline-block;
+  font-family: var(--v2-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+  border: 1px solid var(--v2-line-2);
+  border-radius: 2px;
+  padding: 1px 5px;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+.v2-advisor-card[aria-pressed="true"] .v2-advisor-feat-badge {
+  border-color: var(--v2-stamp);
+  color: var(--v2-stamp);
+}
+
+/* ---- Comparison table ---- */
+.v2-advisor-compare {
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--v2-line);
+}
+.v2-advisor-compare-heading {
+  font-family: var(--v2-font-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--v2-ink);
+  margin: 0 0 0.3rem;
+}
+.v2-advisor-compare-subhead {
+  font-size: 0.8rem;
+  color: var(--v2-muted);
+  margin: 0 0 1.1rem;
+  font-family: var(--v2-font-sans);
+}
+.v2-advisor-compare-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.v2-advisor-compare-table {
+  width: 100%;
+  min-width: 420px;
+  border-collapse: collapse;
+  font-family: var(--v2-font-sans);
+  font-size: 0.82rem;
+}
+.v2-advisor-compare-table th,
+.v2-advisor-compare-table td {
+  padding: 0.5rem 0.75rem;
+  text-align: right;
+  border-bottom: 1px solid var(--v2-line);
+  color: var(--v2-ink-2);
+  vertical-align: middle;
+}
+.v2-advisor-compare-table th:first-child,
+.v2-advisor-compare-table td:first-child {
+  text-align: left;
+}
+.v2-advisor-compare-table thead th {
+  font-family: var(--v2-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--v2-muted);
+  border-bottom: 1.5px solid var(--v2-line);
+  white-space: nowrap;
+}
+.v2-advisor-compare-plan-name {
+  display: block;
+  font-weight: 600;
+  color: var(--v2-ink);
+}
+.v2-advisor-compare-rec-tag {
+  display: block;
+  font-family: var(--v2-font-mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--v2-stamp);
+  margin-top: 2px;
+}
+.v2-advisor-compare-row-label {
+  color: var(--v2-ink-2);
+  white-space: nowrap;
+}
+.v2-advisor-compare-feat-label {
+  padding-left: 1.25rem;
+  color: var(--v2-muted);
+  font-size: 0.78rem;
+}
+/* Recommended column highlight */
+.adv-col-rec {
+  background: color-mix(in srgb, var(--v2-stamp) 5%, transparent);
+}
+@supports not (background: color-mix(in srgb, red 5%, white)) {
+  .adv-col-rec { background: var(--v2-paper-2); }
+}
+/* Included cell */
+.adv-cell-incl {
+  color: var(--v2-delivered);
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+/* Add-on cell */
+.adv-cell-addon {
+  color: var(--v2-ink-2);
+}
+/* Total row */
+.v2-advisor-compare-table tfoot td {
+  border-top: 1.5px solid var(--v2-line);
+  border-bottom: none;
+  font-weight: 700;
+  color: var(--v2-ink);
+  font-size: 0.9rem;
+}
+.adv-total-rec {
+  color: var(--v2-stamp);
+}
+.v2-advisor-compare-note {
+  font-size: 0.75rem;
+  color: var(--v2-muted);
+  margin: 0.75rem 0 0;
+  font-family: var(--v2-font-mono);
+  letter-spacing: 0.02em;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .v2-advisor-card,

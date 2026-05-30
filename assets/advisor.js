@@ -11,14 +11,12 @@
 
   var TOTAL_STEPS = 5;
 
-  /* Plan base rates per POD */
   var PLAN_RATES = { basic: 0.10, starter: 0.39, advanced: 0.69, pro: 0.99 };
-
-  /* Volume midpoints (PODs used for estimate) */
   var VOLUME_MAP = { vol_50: 30, vol_200: 125, vol_600: 400, vol_600plus: 700 };
+  var PLANS_ORDERED = ['basic', 'starter', 'advanced', 'pro'];
 
-  /* Add-on rates for Basic only (all included in paid plans) */
-  var BASIC_ADDON = {
+  /* Add-on rates (per POD) — applied when a plan does not include the feature */
+  var FEAT_ADDON_RATE = {
     feat_gps:       0.15,
     feat_portal:    0.10,
     feat_damage:    0.15,
@@ -27,14 +25,37 @@
     feat_retention: 0.13
   };
 
+  /* Index into PLAN_FEATURES for each selectable feature */
+  var FEAT_PLAN_IDX = {
+    feat_gps:       0,
+    feat_brand:     2,
+    feat_portal:    3,
+    feat_damage:    5,
+    feat_cmr:       6,
+    feat_retention: 7
+  };
+
+  /* Which plan first includes this feature — drives the badge label */
+  var FEAT_BADGE_KEY = {
+    feat_gps:       'badge_all',
+    feat_brand:     'badge_starter',
+    feat_portal:    'badge_advanced',
+    feat_damage:    'badge_advanced',
+    feat_cmr:       'badge_pro',
+    feat_retention: 'badge_pro'
+  };
+
   /* Plan feature inclusion matrix — 8 features in order:
-     0: GPS  1: Email  2: Brand link  3: Portal  4: Roles  5: Damage  6: CMR  7: Retention */
+     0:GPS  1:Email  2:Brand  3:Portal  4:Roles  5:Damage  6:CMR  7:Retention */
   var PLAN_FEATURES = {
     basic:    [true,  true,  false, false, false, false, false, false],
     starter:  [true,  true,  true,  false, false, false, false, false],
     advanced: [true,  true,  true,  true,  true,  true,  false, false],
     pro:      [true,  true,  true,  true,  true,  true,  true,  true ]
   };
+
+  var FEAT_KEYS = ['feat_gps','feat_email','feat_brand','feat_portal',
+                   'feat_roles','feat_damage','feat_cmr','feat_retention'];
 
   /* =========================================================================
      TRANSLATIONS
@@ -77,7 +98,7 @@
       opt_org_team_sub:   'Multiple roles need access to delivery records',
 
       q4:      'What matters most to you?',
-      q4_hint: 'Select all that apply.',
+      q4_hint: 'Select all that apply. Each badge shows the plan that includes it.',
       opt_feat_gps:       'GPS-stamped, legally defensible PODs',
       opt_feat_portal:    'Search and archive past deliveries',
       opt_feat_damage:    'Damage / exception reporting',
@@ -91,6 +112,11 @@
       opt_pay_flexible_sub:    'Full control — pay only for what you upload',
       opt_pay_predictable:     'One simple price',
       opt_pay_predictable_sub: 'Everything included, easy to budget',
+
+      badge_all:      'All plans',
+      badge_starter:  'Starter +',
+      badge_advanced: 'Advanced +',
+      badge_pro:      'Pro only',
 
       result_eyebrow:      'Your recommendation',
       result_desc_basic:   'A lean entry point for small operations. Pay per POD, GPS-stamped, email notification on every upload.',
@@ -112,6 +138,15 @@
       feat_damage:    'Damage / exception reporting',
       feat_cmr:       'CMR waybill generator',
       feat_retention: 'Long-term retention (5–7 years)',
+
+      compare_heading:  'Cost across all plans — based on your choices',
+      compare_subhead:  '{n} PODs/month · selected features as add-ons where not included',
+      compare_base:     'Base ({n} PODs)',
+      compare_incl:     'Incl.',
+      compare_addon_lbl:'Add-on',
+      compare_total:    'Est. total / month',
+      compare_recommend:'Recommended',
+      compare_note:     'Add-on rates are per POD. Estimates exclude VAT.',
 
       cta_trial:   'Start free trial',
       cta_restart: 'Restart',
@@ -158,7 +193,7 @@
       opt_org_team_sub:   'Meerdere rollen hebben toegang nodig tot afleveringsregistraties',
 
       q4:      'Wat is het belangrijkst voor u?',
-      q4_hint: 'Selecteer alles wat van toepassing is.',
+      q4_hint: 'Selecteer alles wat van toepassing is. Elk label toont het abonnement dat dit insluit.',
       opt_feat_gps:       'GPS-gestempelde, juridisch verdedigbare PODs',
       opt_feat_portal:    'Zoeken en archiveren van eerdere leveringen',
       opt_feat_damage:    'Schade- / uitzonderingsrapportage',
@@ -172,6 +207,11 @@
       opt_pay_flexible_sub:    'Volledige controle — betaal alleen voor wat u uploadt',
       opt_pay_predictable:     'Één eenvoudige prijs',
       opt_pay_predictable_sub: 'Alles inbegrepen, eenvoudig te budgetteren',
+
+      badge_all:      'Alle abonnementen',
+      badge_starter:  'Starter +',
+      badge_advanced: 'Advanced +',
+      badge_pro:      'Alleen Pro',
 
       result_eyebrow:      'Uw aanbeveling',
       result_desc_basic:   'Een compacte instap voor kleine operaties. Betaal per POD, GPS-gestempeld, e-mailmelding bij elke upload.',
@@ -193,6 +233,15 @@
       feat_damage:    'Schade- / uitzonderingsrapportage',
       feat_cmr:       'CMR-vrachtbrief generator',
       feat_retention: 'Langdurige bewaring (5–7 jaar)',
+
+      compare_heading:  'Kosten per abonnement — op basis van uw keuzes',
+      compare_subhead:  '{n} PODs/maand · geselecteerde functies als uitbreiding waar niet inbegrepen',
+      compare_base:     'Basis ({n} PODs)',
+      compare_incl:     'Inbegrepen',
+      compare_addon_lbl:'Uitbreiding',
+      compare_total:    'Geschatte totaal / maand',
+      compare_recommend:'Aanbevolen',
+      compare_note:     'Uitbreidingstarieven zijn per POD. Schattingen zijn exclusief btw.',
 
       cta_trial:   'Gratis proefperiode starten',
       cta_restart: 'Opnieuw beginnen',
@@ -239,7 +288,7 @@
       opt_org_team_sub:   'Mehrere Rollen benötigen Zugriff auf Lieferdaten',
 
       q4:      'Was ist Ihnen am wichtigsten?',
-      q4_hint: 'Wählen Sie alles Zutreffende aus.',
+      q4_hint: 'Wählen Sie alles Zutreffende aus. Jedes Label zeigt den Tarif, der dies einschließt.',
       opt_feat_gps:       'GPS-gestempelte, rechtssichere Liefernachweise',
       opt_feat_portal:    'Frühere Lieferungen suchen und archivieren',
       opt_feat_damage:    'Schaden- / Ausnahmemeldung',
@@ -253,6 +302,11 @@
       opt_pay_flexible_sub:    'Volle Kontrolle — zahlen Sie nur für das, was Sie hochladen',
       opt_pay_predictable:     'Ein einfacher Preis',
       opt_pay_predictable_sub: 'Alles inklusive, einfach zu budgetieren',
+
+      badge_all:      'Alle Tarife',
+      badge_starter:  'Starter +',
+      badge_advanced: 'Advanced +',
+      badge_pro:      'Nur Pro',
 
       result_eyebrow:      'Ihre Empfehlung',
       result_desc_basic:   'Ein schlanker Einstieg für kleine Betriebe. Bezahlen Sie pro Liefernachweis, GPS-gestempelt, E-Mail-Benachrichtigung bei jedem Upload.',
@@ -275,6 +329,15 @@
       feat_cmr:       'CMR-Frachtbrief-Generator',
       feat_retention: 'Langzeitarchivierung (GoBD 10 Jahre)',
 
+      compare_heading:  'Kosten je Tarif — basierend auf Ihren Angaben',
+      compare_subhead:  '{n} PODs/Monat · gewählte Funktionen als Erweiterung, wo nicht enthalten',
+      compare_base:     'Basis ({n} PODs)',
+      compare_incl:     'Inkl.',
+      compare_addon_lbl:'Erweiterung',
+      compare_total:    'Geschätzte Gesamtkosten / Monat',
+      compare_recommend:'Empfohlen',
+      compare_note:     'Erweiterungspreise sind pro POD. Schätzungen verstehen sich zzgl. MwSt.',
+
       cta_trial:   'Kostenlos testen',
       cta_restart: 'Neu starten',
 
@@ -294,20 +357,20 @@
 
       q1:      'Combien de livraisons traitez-vous par mois ?',
       q1_hint: 'Choisissez la fourchette la plus proche de votre volume actuel.',
-      opt_vol_50:       'Jusqu’à 50',
-      opt_vol_200:      '50 – 200',
-      opt_vol_600:      '200 – 600',
+      opt_vol_50:       "Jusqu'à 50",
+      opt_vol_200:      '50 – 200',
+      opt_vol_600:      '200 – 600',
       opt_vol_600plus:  '600 ou plus',
 
-      q2:      'Pourquoi avez-vous besoin d’une preuve de livraison ?',
-      q2_hint: 'Sélectionnez tout ce qui s’applique.',
+      q2:      "Pourquoi avez-vous besoin d'une preuve de livraison ?",
+      q2_hint: "Sélectionnez tout ce qui s'applique.",
       opt_reason_invoice:     'Facturation plus rapide',
       opt_reason_invoice_sub: 'Être payé plus vite grâce à une livraison documentée',
       opt_reason_dispute:     'Protection contre les litiges',
       opt_reason_dispute_sub: 'Défendez vos droits avec des preuves horodatées GPS',
       opt_reason_audit:       'Conformité fiscale et audit',
-      opt_reason_audit_sub:   'Respecter les obligations légales de conservation (code de commerce)',
-      opt_reason_shipper:     'Votre donneur d’ordre l’exige',
+      opt_reason_audit_sub:   "Respecter les obligations légales de conservation (code de commerce)",
+      opt_reason_shipper:     "Votre donneur d'ordre l'exige",
       opt_reason_shipper_sub: 'Vos clients insistent sur les preuves de livraison numériques',
 
       q3:      'Qui gère les livraisons dans votre entreprise ?',
@@ -315,18 +378,18 @@
       opt_org_solo:       'Rien que moi',
       opt_org_solo_sub:   'Je conduis et gère tout moi-même',
       opt_org_office:     'Moi et mon équipe admin',
-      opt_org_office_sub: 'Une ou deux personnes gèrent l’administration et les rapports',
+      opt_org_office_sub: "Une ou deux personnes gèrent l'administration et les rapports",
       opt_org_team:       'Une équipe de planificateurs et chauffeurs',
-      opt_org_team_sub:   'Plusieurs rôles ont besoin d’accès aux données de livraison',
+      opt_org_team_sub:   "Plusieurs rôles ont besoin d'accès aux données de livraison",
 
       q4:      'Qu’est-ce qui compte le plus pour vous ?',
-      q4_hint: 'Sélectionnez tout ce qui s’applique.',
+      q4_hint: "Sélectionnez tout ce qui s'applique. Chaque badge indique la formule qui l'inclut.",
       opt_feat_gps:       'PODs horodatées GPS, juridiquement opposables',
       opt_feat_portal:    'Recherche et archivage des livraisons passées',
-      opt_feat_damage:    'Rapport d’avarie / d’exception',
-      opt_feat_brand:     'PDF personalisés avec logo de l’entreprise',
+      opt_feat_damage:    "Rapport d'avarie / d'exception",
+      opt_feat_brand:     "PDF personnalisés avec logo de l'entreprise",
       opt_feat_cmr:       'Générer des lettres de voiture CMR',
-      opt_feat_retention: 'Conservation longue durée (5–7 ans)',
+      opt_feat_retention: 'Conservation longue durée (5–7 ans)',
 
       q5:      'Comment préférez-vous payer ?',
       q5_hint: 'Choisissez le modèle de facturation qui vous convient.',
@@ -335,28 +398,42 @@
       opt_pay_predictable:     'Un prix tout inclus',
       opt_pay_predictable_sub: 'Tout inclus, facile à budgétiser',
 
+      badge_all:      'Toutes formules',
+      badge_starter:  'Starter +',
+      badge_advanced: 'Advanced +',
+      badge_pro:      'Pro uniquement',
+
       result_eyebrow:      'Votre recommandation',
-      result_desc_basic:   'Un point d’entrée sobre pour les petites opérations. Payez par POD, horodaté GPS, notification e-mail à chaque téléversement.',
-      result_desc_starter: 'La bonne base pour les transporteurs en croissance. Lien d’envoi personnalisé, horodatage GPS, routage e-mail — le tout à un tarif simple par POD.',
-      result_desc_advanced:'Accès complet au portail pour les équipes. Recherchez, filtrez et auditez les livraisons. Rôles multi-utilisateurs, rapports d’avarie et PDF personnalisés.',
-      result_desc_pro:     'Tout l’Advanced plus l’archivage longue durée et la conformité intégrée. Conçu pour les opérations où la documentation doit rester opposable pendant des années.',
-      result_est_label:    'mois · basé sur {n} PODs',
+      result_desc_basic:   "Un point d'entrée sobre pour les petites opérations. Payez par POD, horodaté GPS, notification e-mail à chaque téléversement.",
+      result_desc_starter: "La bonne base pour les transporteurs en croissance. Lien d'envoi personnalisé, horodatage GPS, routage e-mail — le tout à un tarif simple par POD.",
+      result_desc_advanced:"Accès complet au portail pour les équipes. Recherchez, filtrez et auditez les livraisons. Rôles multi-utilisateurs, rapports d'avarie et PDF personnalisés.",
+      result_desc_pro:     "Tout l'Advanced plus l'archivage longue durée et la conformité intégrée. Conçu pour les opérations où la documentation doit rester opposable pendant des années.",
+      result_est_label:    'mois · basé sur {n} PODs',
       result_retention_lbl:'Conservation des documents :',
-      result_retention_basic:   '30 jours',
-      result_retention_starter: '120 jours',
-      result_retention_advanced:'1 an',
-      result_retention_pro:     '5 ans',
+      result_retention_basic:   '30 jours',
+      result_retention_starter: '120 jours',
+      result_retention_advanced:'1 an',
+      result_retention_pro:     '5 ans',
 
       feat_gps:       'PODs horodatées GPS et datées',
-      feat_email:     'Notification e-mail à l’upload',
-      feat_brand:     'Lien d’envoi personnalisé',
+      feat_email:     "Notification e-mail à l'upload",
+      feat_brand:     "Lien d'envoi personnalisé",
       feat_portal:    'Accès au portail de livraison',
       feat_roles:     'Rôles multi-utilisateurs',
-      feat_damage:    'Rapport d’avarie / d’exception',
+      feat_damage:    "Rapport d'avarie / d'exception",
       feat_cmr:       'Générateur de lettres de voiture CMR',
-      feat_retention: 'Conservation longue durée (5–7 ans)',
+      feat_retention: 'Conservation longue durée (5–7 ans)',
 
-      cta_trial:   'Démarrer l’essai gratuit',
+      compare_heading:  'Coût par formule — basé sur vos choix',
+      compare_subhead:  '{n} PODs/mois · options sélectionnées en extension là où non incluses',
+      compare_base:     'Base ({n} PODs)',
+      compare_incl:     'Inclus',
+      compare_addon_lbl:'Extension',
+      compare_total:    'Total estimé / mois',
+      compare_recommend:'Recommandé',
+      compare_note:     'Tarifs des extensions par POD. Estimations hors TVA.',
+
+      cta_trial:   "Démarrer l'essai gratuit",
       cta_restart: 'Recommencer',
 
       plan_basic:    'Basic',
@@ -372,7 +449,7 @@
 
   var STEPS = [
     {
-      qKey: 'q1', hintKey: 'q1_hint', multi: false, cols: 4,
+      qKey: 'q1', hintKey: 'q1_hint', multi: false, cols: 4, showBadge: false,
       options: [
         { key: 'vol_50',      label: 'opt_vol_50' },
         { key: 'vol_200',     label: 'opt_vol_200' },
@@ -381,7 +458,7 @@
       ]
     },
     {
-      qKey: 'q2', hintKey: 'q2_hint', multi: true, cols: 2,
+      qKey: 'q2', hintKey: 'q2_hint', multi: true, cols: 2, showBadge: false,
       options: [
         { key: 'reason_invoice', label: 'opt_reason_invoice', sub: 'opt_reason_invoice_sub' },
         { key: 'reason_dispute', label: 'opt_reason_dispute', sub: 'opt_reason_dispute_sub' },
@@ -390,7 +467,7 @@
       ]
     },
     {
-      qKey: 'q3', hintKey: 'q3_hint', multi: false, cols: 3,
+      qKey: 'q3', hintKey: 'q3_hint', multi: false, cols: 3, showBadge: false,
       options: [
         { key: 'org_solo',   label: 'opt_org_solo',   sub: 'opt_org_solo_sub' },
         { key: 'org_office', label: 'opt_org_office', sub: 'opt_org_office_sub' },
@@ -398,7 +475,7 @@
       ]
     },
     {
-      qKey: 'q4', hintKey: 'q4_hint', multi: true, cols: 3,
+      qKey: 'q4', hintKey: 'q4_hint', multi: true, cols: 3, showBadge: true,
       options: [
         { key: 'feat_gps',       label: 'opt_feat_gps' },
         { key: 'feat_portal',    label: 'opt_feat_portal' },
@@ -409,7 +486,7 @@
       ]
     },
     {
-      qKey: 'q5', hintKey: 'q5_hint', multi: false, cols: 2,
+      qKey: 'q5', hintKey: 'q5_hint', multi: false, cols: 2, showBadge: false,
       options: [
         { key: 'pay_flexible',    label: 'opt_pay_flexible',    sub: 'opt_pay_flexible_sub' },
         { key: 'pay_predictable', label: 'opt_pay_predictable', sub: 'opt_pay_predictable_sub' }
@@ -417,12 +494,8 @@
     }
   ];
 
-  /* Feature checklist keys in order (matching PLAN_FEATURES index) */
-  var FEAT_KEYS = ['feat_gps','feat_email','feat_brand','feat_portal',
-                   'feat_roles','feat_damage','feat_cmr','feat_retention'];
-
   /* =========================================================================
-     LOCALE DETECTION
+     LOCALE
      ========================================================================= */
 
   var _path = window.location.pathname;
@@ -440,14 +513,14 @@
      ========================================================================= */
 
   var state = {
-    open:   false,
-    step:   1,
+    open:    false,
+    step:    1,
     answers: { 1: null, 2: [], 3: null, 4: [], 5: null },
-    result: null
+    result:  null
   };
 
   /* =========================================================================
-     RECOMMENDATION LOGIC
+     LOGIC
      ========================================================================= */
 
   function recommend() {
@@ -456,40 +529,60 @@
     var features = state.answers[4];
     var vol      = state.answers[1];
     var pay      = state.answers[5];
-
     function has(arr, v) { return arr.indexOf(v) >= 0; }
-
     if (has(reasons, 'reason_audit') ||
         has(features, 'feat_retention') ||
         (has(features, 'feat_cmr') && has(features, 'feat_brand')) ||
-        (vol === 'vol_600plus' && pay === 'pay_predictable')) {
-      return 'pro';
-    }
-    if (has(features, 'feat_brand') ||
-        has(features, 'feat_cmr') ||
+        (vol === 'vol_600plus' && pay === 'pay_predictable')) { return 'pro'; }
+    if (has(features, 'feat_brand') || has(features, 'feat_cmr') ||
         org === 'org_team' ||
-        (vol === 'vol_600' && pay === 'pay_predictable')) {
-      return 'advanced';
-    }
-    if (has(features, 'feat_portal') ||
-        has(features, 'feat_damage') ||
+        (vol === 'vol_600' && pay === 'pay_predictable')) { return 'advanced'; }
+    if (has(features, 'feat_portal') || has(features, 'feat_damage') ||
         has(features, 'feat_gps') ||
-        vol === 'vol_200' || vol === 'vol_600' ||
-        pay === 'pay_predictable') {
-      return 'starter';
-    }
+        vol === 'vol_200' || vol === 'vol_600' || pay === 'pay_predictable') { return 'starter'; }
     return 'basic';
   }
 
-  function computeEstimate(plan, vol, features) {
+  /* Cost for a single plan given selected vol + features */
+  function estimateForPlan(plan, vol, features) {
     var pods = VOLUME_MAP[vol] || 30;
     var rate = PLAN_RATES[plan] || 0;
-    if (plan === 'basic') {
-      for (var i = 0; i < features.length; i++) {
-        rate += BASIC_ADDON[features[i]] || 0;
+    var addon = 0;
+    for (var i = 0; i < features.length; i++) {
+      var fk  = features[i];
+      var idx = FEAT_PLAN_IDX[fk];
+      if (idx !== undefined && !PLAN_FEATURES[plan][idx]) {
+        addon += (FEAT_ADDON_RATE[fk] || 0);
       }
     }
-    return Math.round(rate * pods);
+    return Math.round((rate + addon) * pods);
+  }
+
+  /* Cost breakdown per plan — returns {basic:{base,addon,total}, ...} */
+  function allEstimates(vol, features) {
+    var pods = VOLUME_MAP[vol] || 30;
+    var out  = {};
+    for (var p = 0; p < PLANS_ORDERED.length; p++) {
+      var plan    = PLANS_ORDERED[p];
+      var base    = Math.round(PLAN_RATES[plan] * pods);
+      var addonTotal = 0;
+      var addonRows  = [];
+      for (var f = 0; f < features.length; f++) {
+        var fk  = features[f];
+        var idx = FEAT_PLAN_IDX[fk];
+        if (idx !== undefined) {
+          if (!PLAN_FEATURES[plan][idx]) {
+            var cost = Math.round(FEAT_ADDON_RATE[fk] * pods);
+            addonTotal += cost;
+            addonRows.push({ fk: fk, cost: cost });
+          } else {
+            addonRows.push({ fk: fk, cost: null }); /* included */
+          }
+        }
+      }
+      out[plan] = { base: base, addonRows: addonRows, total: base + addonTotal };
+    }
+    return out;
   }
 
   /* =========================================================================
@@ -499,7 +592,7 @@
   function el(tag, cls, txt) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
-    if (txt) e.textContent = txt;
+    if (txt !== undefined && txt !== null) e.textContent = txt;
     return e;
   }
 
@@ -516,21 +609,13 @@
 
   function getRoot() { return document.getElementById('advisor-root'); }
 
-  function focusFirst(container, sel) {
-    var found = container.querySelector(sel || '.v2-advisor-card');
-    if (found) { found.focus(); }
-  }
-
   function render() {
     var root = getRoot();
     if (!root) return;
 
-    /* Keep reference to previously focused element to restore after re-render */
     var activeKey = null;
-    var activeFocused = document.activeElement;
-    if (activeFocused && activeFocused.dataset && activeFocused.dataset.advKey) {
-      activeKey = activeFocused.dataset.advKey;
-    }
+    var af = document.activeElement;
+    if (af && af.dataset && af.dataset.advKey) activeKey = af.dataset.advKey;
 
     root.innerHTML = '';
 
@@ -539,21 +624,19 @@
       return;
     }
     if (state.result) {
-      var resultEl = renderResult();
-      root.appendChild(resultEl);
-      /* Move focus to result heading */
-      var heading = root.querySelector('.v2-advisor-result-name');
-      if (heading) { setTimeout(function () { heading.focus(); }, 50); }
+      root.appendChild(renderResult());
+      setTimeout(function () {
+        var h = root.querySelector('.v2-advisor-result-name');
+        if (h) h.focus();
+      }, 50);
       return;
     }
 
-    var stepEl = renderStep(state.step);
-    root.appendChild(stepEl);
+    root.appendChild(renderStep(state.step));
 
-    /* Restore focus to re-rendered card if we just toggled selection */
     if (activeKey) {
-      var match = root.querySelector('[data-adv-key="' + activeKey + '"]');
-      if (match) { match.focus(); return; }
+      var m = root.querySelector('[data-adv-key="' + activeKey + '"]');
+      if (m) { m.focus(); return; }
     }
   }
 
@@ -563,38 +646,33 @@
     b.type = 'button';
     b.setAttribute('aria-expanded', 'false');
     b.setAttribute('aria-controls', 'advisor-body');
-
-    var txt = el('span', 'v2-advisor-teaser-text', tr('teaser_label'));
-    var arr = el('span', 'v2-advisor-teaser-arrow', tr('teaser_cta') + ' →');
-    b.appendChild(txt);
-    b.appendChild(arr);
-
+    b.appendChild(el('span', 'v2-advisor-teaser-text', tr('teaser_label')));
+    b.appendChild(el('span', 'v2-advisor-teaser-arrow', tr('teaser_cta') + ' →'));
     b.addEventListener('click', function () {
       state.open = true;
       render();
-      /* Focus first option */
-      setTimeout(function () { focusFirst(getRoot()); }, 50);
+      setTimeout(function () {
+        var f = getRoot().querySelector('.v2-advisor-card');
+        if (f) f.focus();
+      }, 50);
     });
     return b;
   }
 
-  /* ---- Progress indicator ---- */
+  /* ---- Progress ---- */
   function renderProgress(current) {
-    var wrap = el('div', 'v2-advisor-progress');
     var label = tr('step_of').replace('{n}', current);
+    var wrap  = el('div', 'v2-advisor-progress');
     wrap.setAttribute('aria-label', label);
-
     var txt = el('span', 'v2-advisor-progress-text', label);
     txt.setAttribute('aria-hidden', 'true');
     wrap.appendChild(txt);
-
     var dots = el('div', 'v2-advisor-dots');
     dots.setAttribute('aria-hidden', 'true');
     for (var i = 1; i <= TOTAL_STEPS; i++) {
-      var cls = 'v2-advisor-dot'
+      dots.appendChild(el('span', 'v2-advisor-dot'
         + (i === current ? ' adv-active' : '')
-        + (i < current  ? ' adv-done'   : '');
-      dots.appendChild(el('span', cls));
+        + (i < current  ? ' adv-done'   : '')));
     }
     wrap.appendChild(dots);
     return wrap;
@@ -602,25 +680,18 @@
 
   /* ---- Step ---- */
   function renderStep(n) {
-    var def = STEPS[n - 1];
+    var def  = STEPS[n - 1];
     var wrap = el('div', 'v2-advisor-body');
-    wrap.id = 'advisor-body';
+    wrap.id  = 'advisor-body';
 
-    /* Progress */
     wrap.appendChild(renderProgress(n));
 
-    /* Question */
     var qId = 'adv-q-' + n;
-    var q = el('h2', 'v2-advisor-question', tr(def.qKey));
-    q.id = qId;
+    var q   = el('h2', 'v2-advisor-question', tr(def.qKey));
+    q.id    = qId;
     wrap.appendChild(q);
+    if (def.hintKey) wrap.appendChild(el('p', 'v2-advisor-hint', tr(def.hintKey)));
 
-    /* Hint */
-    if (def.hintKey) {
-      wrap.appendChild(el('p', 'v2-advisor-hint', tr(def.hintKey)));
-    }
-
-    /* Options grid */
     var grid = el('div', 'v2-advisor-grid adv-cols-' + def.cols);
     grid.setAttribute('role', 'group');
     grid.setAttribute('aria-labelledby', qId);
@@ -636,19 +707,23 @@
       var card = el('button', 'v2-advisor-card');
       card.type = 'button';
       card.setAttribute('aria-pressed', pressed ? 'true' : 'false');
-      card.dataset.value = opt.key;
+      card.dataset.value  = opt.key;
       card.dataset.advKey = 'step' + n + '-' + opt.key;
 
-      card.appendChild(el('span', 'v2-advisor-card-label', tr(opt.label)));
-      if (opt.sub) {
-        card.appendChild(el('span', 'v2-advisor-card-sub', tr(opt.sub)));
+      /* Plan badge for step 4 */
+      if (def.showBadge && FEAT_BADGE_KEY[opt.key]) {
+        var badge = el('span', 'v2-advisor-feat-badge', tr(FEAT_BADGE_KEY[opt.key]));
+        card.appendChild(badge);
       }
+
+      card.appendChild(el('span', 'v2-advisor-card-label', tr(opt.label)));
+      if (opt.sub) card.appendChild(el('span', 'v2-advisor-card-sub', tr(opt.sub)));
 
       card.addEventListener('click', function () {
         if (isMulti) {
           var arr = state.answers[n];
           var idx = arr.indexOf(opt.key);
-          if (idx >= 0) { arr.splice(idx, 1); } else { arr.push(opt.key); }
+          if (idx >= 0) arr.splice(idx, 1); else arr.push(opt.key);
         } else {
           state.answers[n] = opt.key;
         }
@@ -659,29 +734,28 @@
     });
 
     wrap.appendChild(grid);
-
-    /* Actions */
-    wrap.appendChild(renderActions(n, def.multi));
-
+    wrap.appendChild(renderActions(n));
     return wrap;
   }
 
-  /* ---- Actions bar ---- */
-  function renderActions(n, isMulti) {
-    var div = el('div', 'v2-advisor-actions');
+  /* ---- Actions ---- */
+  function renderActions(n) {
+    var div  = el('div', 'v2-advisor-actions');
+    var isLast = n === TOTAL_STEPS;
 
     if (n > 1) {
       div.appendChild(btn('v2-advisor-btn-back', tr('back'), function () {
         state.step--;
         render();
-        setTimeout(function () { focusFirst(getRoot()); }, 50);
+        setTimeout(function () {
+          var f = getRoot().querySelector('.v2-advisor-card');
+          if (f) f.focus();
+        }, 50);
       }));
     }
 
-    var isLast = n === TOTAL_STEPS;
     var hasSel = hasSelection(n);
-
-    var next = btn('v2-advisor-btn-next',
+    var nx = btn('v2-advisor-btn-next',
       isLast ? tr('see_result') : tr('next'),
       function () {
         if (!hasSelection(n)) return;
@@ -691,12 +765,14 @@
         } else {
           state.step++;
           render();
-          setTimeout(function () { focusFirst(getRoot()); }, 50);
+          setTimeout(function () {
+            var f = getRoot().querySelector('.v2-advisor-card');
+            if (f) f.focus();
+          }, 50);
         }
-      }
-    );
-    next.disabled = !hasSel;
-    div.appendChild(next);
+      });
+    nx.disabled = !hasSel;
+    div.appendChild(nx);
     return div;
   }
 
@@ -710,69 +786,150 @@
     var plan     = state.result;
     var vol      = state.answers[1];
     var features = state.answers[4];
-    var estimate = computeEstimate(plan, vol, features);
     var pods     = VOLUME_MAP[vol] || 30;
-
-    var localePrefix = locale === 'en' ? '' : '/' + locale;
-    var contactUrl   = localePrefix + '/contact';
+    var estimate = estimateForPlan(plan, vol, features);
+    var locPfx   = locale === 'en' ? '' : '/' + locale;
 
     var wrap = el('div', 'v2-advisor-result');
 
-    /* Eyebrow */
     wrap.appendChild(el('p', 'v2-advisor-result-eyebrow', tr('result_eyebrow')));
-
-    /* Plan name — receives focus */
     var nameEl = el('h2', 'v2-advisor-result-name', tr('plan_' + plan));
     nameEl.tabIndex = -1;
     wrap.appendChild(nameEl);
-
-    /* Description */
     wrap.appendChild(el('p', 'v2-advisor-result-desc', tr('result_desc_' + plan)));
 
     /* Estimate chip */
     var chip = el('div', 'v2-advisor-result-estimate');
-    chip.appendChild(el('span', 'v2-advisor-result-amount',
-      '≈ €' + estimate));
+    chip.appendChild(el('span', 'v2-advisor-result-amount', '≈ €' + estimate));
     chip.appendChild(el('span', 'v2-advisor-result-est-label',
       tr('result_est_label').replace('{n}', pods)));
     wrap.appendChild(chip);
 
-    /* Retention */
     wrap.appendChild(el('span', 'v2-advisor-result-retention',
       tr('result_retention_lbl') + ' ' + tr('result_retention_' + plan)));
 
-    /* Feature checklist — split into 2 columns of 4 */
-    var grid = el('div', 'v2-advisor-feat-grid');
+    /* Feature checklist (included / excluded) */
+    var featGrid = el('div', 'v2-advisor-feat-grid');
     var included = PLAN_FEATURES[plan];
-
     [0, 4].forEach(function (start) {
       var ul = el('ul', 'v2-advisor-feat-list');
       for (var i = start; i < start + 4; i++) {
-        var cls = 'v2-advisor-feat-item ' + (included[i] ? 'adv-inc' : 'adv-exc');
-        ul.appendChild(el('li', cls, tr(FEAT_KEYS[i])));
+        ul.appendChild(el('li',
+          'v2-advisor-feat-item ' + (included[i] ? 'adv-inc' : 'adv-exc'),
+          tr(FEAT_KEYS[i])));
       }
-      grid.appendChild(ul);
+      featGrid.appendChild(ul);
     });
-    wrap.appendChild(grid);
+    wrap.appendChild(featGrid);
 
-    /* CTA row */
+    /* Plan comparison table */
+    if (features.length > 0) {
+      wrap.appendChild(renderCompare(plan, vol, features, pods));
+    }
+
+    /* CTA */
     var actions = el('div', 'v2-advisor-result-actions');
-
-    var trial = el('a', 'v2-btn v2-btn-primary',
-      tr('cta_trial') + ' →');
-    trial.href = contactUrl;
+    var trial   = el('a', 'v2-btn v2-btn-primary', tr('cta_trial') + ' →');
+    trial.href  = locPfx + '/contact';
     actions.appendChild(trial);
-
     actions.appendChild(btn('v2-advisor-btn-restart', tr('cta_restart'), function () {
       state.step    = 1;
       state.answers = { 1: null, 2: [], 3: null, 4: [], 5: null };
       state.result  = null;
       render();
-      setTimeout(function () { focusFirst(getRoot()); }, 50);
+      setTimeout(function () {
+        var f = getRoot().querySelector('.v2-advisor-card');
+        if (f) f.focus();
+      }, 50);
     }));
-
     wrap.appendChild(actions);
     return wrap;
+  }
+
+  /* ---- Plan comparison table ---- */
+  function renderCompare(recommended, vol, features, pods) {
+    var estimates = allEstimates(vol, features);
+
+    var section = el('div', 'v2-advisor-compare');
+
+    var heading = el('h3', 'v2-advisor-compare-heading', tr('compare_heading'));
+    section.appendChild(heading);
+    section.appendChild(el('p', 'v2-advisor-compare-subhead',
+      tr('compare_subhead').replace('{n}', pods)));
+
+    var scrollWrap = el('div', 'v2-advisor-compare-scroll');
+    var tbl = el('table', 'v2-advisor-compare-table');
+    tbl.setAttribute('aria-label', tr('compare_heading'));
+
+    /* Header row */
+    var thead = document.createElement('thead');
+    var hRow  = document.createElement('tr');
+    hRow.appendChild(el('th', '')); /* empty label col */
+    PLANS_ORDERED.forEach(function (p) {
+      var th = el('th', p === recommended ? 'adv-col-rec' : '');
+      var name = el('span', 'v2-advisor-compare-plan-name', tr('plan_' + p));
+      th.appendChild(name);
+      if (p === recommended) {
+        th.appendChild(el('span', 'v2-advisor-compare-rec-tag', tr('compare_recommend')));
+      }
+      hRow.appendChild(th);
+    });
+    thead.appendChild(hRow);
+    tbl.appendChild(thead);
+
+    /* Body */
+    var tbody = document.createElement('tbody');
+
+    /* Base cost row */
+    var baseRow = document.createElement('tr');
+    baseRow.appendChild(el('td', 'v2-advisor-compare-row-label',
+      tr('compare_base').replace('{n}', pods)));
+    PLANS_ORDERED.forEach(function (p) {
+      var td = el('td', p === recommended ? 'adv-col-rec' : '');
+      td.textContent = '€' + estimates[p].base;
+      tbody.appendChild; /* noop placeholder */
+      baseRow.appendChild(td);
+    });
+    tbody.appendChild(baseRow);
+
+    /* One row per selected feature */
+    features.forEach(function (fk) {
+      if (FEAT_PLAN_IDX[fk] === undefined) return;
+      var row = document.createElement('tr');
+      row.appendChild(el('td', 'v2-advisor-compare-row-label v2-advisor-compare-feat-label',
+        tr(fk)));
+      PLANS_ORDERED.forEach(function (p) {
+        var idx      = FEAT_PLAN_IDX[fk];
+        var isIncl   = PLAN_FEATURES[p][idx];
+        var td       = el('td', (p === recommended ? 'adv-col-rec ' : '') +
+                          (isIncl ? 'adv-cell-incl' : 'adv-cell-addon'));
+        td.textContent = isIncl
+          ? tr('compare_incl')
+          : '+€' + Math.round(FEAT_ADDON_RATE[fk] * pods);
+        row.appendChild(td);
+      });
+      tbody.appendChild(row);
+    });
+
+    tbl.appendChild(tbody);
+
+    /* Footer — total row */
+    var tfoot  = document.createElement('tfoot');
+    var totRow = document.createElement('tr');
+    totRow.appendChild(el('td', 'v2-advisor-compare-row-label', tr('compare_total')));
+    PLANS_ORDERED.forEach(function (p) {
+      var td = el('td',
+        'v2-advisor-compare-total ' + (p === recommended ? 'adv-col-rec adv-total-rec' : ''));
+      td.textContent = '€' + estimates[p].total;
+      totRow.appendChild(td);
+    });
+    tfoot.appendChild(totRow);
+    tbl.appendChild(tfoot);
+
+    scrollWrap.appendChild(tbl);
+    section.appendChild(scrollWrap);
+    section.appendChild(el('p', 'v2-advisor-compare-note', tr('compare_note')));
+    return section;
   }
 
   /* =========================================================================
