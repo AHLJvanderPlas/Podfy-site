@@ -52,27 +52,31 @@ Key rules:
 | File | Purpose |
 |------|---------|
 | `assets/styles.css` | Legacy CSS (still loaded — pending cutover) |
-| `assets/styles.v2.css` | v2 component library — use this on all pages |
+| `assets/styles.site.css` | v2 design system — use this on all pages |
 | `assets/theme.js` | System/light/dark theme toggle |
-| `partials/header.html` | Injected via middleware into all HTML pages |
-| `partials/footer.html` | Injected via middleware |
-| `functions/api/releases.js` | Paginated changelog from Site_Releases |
+| `assets/advisor.js` | Plan Advisor — 5-step questionnaire, all 4 locales embedded, no framework |
+| `assets/advisor.css` | Plan Advisor styles — uses only `--v2-*` tokens |
+| `partials/header.html` | Injected via middleware; locale switcher (EN/NL/DE/FR) + locale-rewrite JS |
+| `partials/footer.html` | Injected via middleware; locale-rewrite JS for footer links |
+| `functions/_middleware.js` | Header/footer partial injection |
+| `functions/api/releases.js` | Paginated changelog from `Site_Releases`; filters `release_date <= DATE('now')` |
+| `functions/changelog.rss.js` | RSS 2.0 feed (last 20 releases); same date filter |
+| `functions/api/pricing.js` | Returns `Site_Pricing` rows as JSON; cached 1h; feeds `data-price-key` spans |
 | `functions/api/contact.js` | Contact form → D1 + Resend |
 | `functions/api/subscribe.js` | Newsletter subscription |
-| `functions/_middleware.js` | Header/footer partial injection |
-| `changelog.rss` | RSS 2.0 feed (last 20 releases) |
 
 ---
 
 ## Database (`podfy-public`)
 
-**Separate from podfy-main.** Three tables only:
+**Separate from podfy-main.** Four tables:
 
 | Table | Purpose |
 |-------|---------|
-| `Site_Releases` | Powers `/api/releases` → changelog page + RSS |
+| `Site_Releases` | Powers `/api/releases` → changelog page + RSS. Only rows where `release_date <= DATE('now')` are returned — future-dated rows can be pre-authored. |
 | `Site_Form` | Contact form submissions |
 | `Site_Buyer` | Pricing segment keywords (powers `/api/pricing-factor`) |
+| `Site_Pricing` | Plan prices + add-on prices synced from `billing_plan_catalog` by podfy-cron every 6h (and on every admin plan price update). Served by `/api/pricing`. Keys match `plan_name.toLowerCase()`. |
 
 ---
 
@@ -91,12 +95,13 @@ This is pure HTML/CSS/JS — **no React, no Tailwind, no bundler, no npm install
 
 ---
 
-## Open Security Issues
+## Security Status
 
 | Issue | Priority | Status |
 |-------|---------|--------|
-| `POST /api/releases` admin token hardcoded in source | P0 | Open — `onRequestPost` removed from releases.js; endpoint no longer exists |
-| No rate limiting on contact/subscribe | P1-P2 | Open — use CF WAF rules |
+| ~~`POST /api/releases` admin token hardcoded in source~~ | P0 | **Fixed** — `onRequestPost` removed from `releases.js`; endpoint no longer exists (2026-05-12) |
+| `/api/contact` rate limiting | P1 | **Fixed** — CF WAF rule: 1 req/10s per IP (2026-05-12) |
+| `/api/subscribe`, `/api/pricing-selection`, `/api/pricing-factor` rate limiting | P2 | **Deferred** — requires CF paid plan (free plan: 10s window only) |
 
 ## Security Hardening Applied (2026-05-12)
 
@@ -129,8 +134,28 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
 
 | Sprint | Status | Key remaining work |
 |--------|--------|--------------------|
-| Sprint 1 — Homepage | ✅ Done | Self-hosted fonts shipped (2026-05-12); header/footer cutover, stat band, stamp-in-headline (see design-audit) |
+| Sprint 1 — Homepage | ✅ Done | Self-hosted fonts, stat band, stamp-in-headline, proof strip, header/footer tokens all shipped (2026-05-12) |
 | Sprint 2 — IA collapse | ✅ Done | All 9 solutions + 8 guides pages live |
 | Sprint 3 — Pricing/Trust/Changelog | ✅ Done | trust.html consolidated, changelog.html + RSS live |
-| Sprint 4 — NL launch | 🗓 Planned | nl/ content pages, hreflang activation |
-| Design audit items | 🗓 Planned | Ship fonts, consolidate stylesheets, stat band, proof strip redesign, changelog teaser |
+| Sprint 4 — NL/DE/FR/FR launch | ✅ Done | nl/, de/, fr/ all have full translated page trees (9 solutions, 8 guides, pricing, demo, contact, trust, CMR); hreflang active on all four locales; FR launched 2026-05-12 |
+| Sprint 5 — Pricing intelligence | ✅ Done | Dynamic pricing sync, Plan Advisor, pricing page audit, Basic plan column (2026-05-30) |
+| Design audit items | 🗓 Remaining | Consolidate stylesheets (`styles.css` → `styles.site.css` only); `prefers-reduced-motion` full block for all transitions; social proof section (named customer story) |
+
+---
+
+## Changes (2026-05-29/30)
+
+- **Future-dated release notes** — `functions/api/releases.js` + `functions/changelog.rss.js` now add `AND release_date <= DATE('now')` to all queries; pre-authored notes remain hidden until their date
+- **Dynamic pricing** — `Site_Pricing` table created in podfy-public; `podfy-cron` syncs from `billing_plan_catalog` every 6h via `syncPricing()`; `PATCH /api/admin/billing/plans/:id` triggers instant upsert; new `/api/pricing.js` serves JSON; all 4 pricing pages have `data-price-key` spans + JS fill script
+- **Plan Advisor** — `assets/advisor.js` (vanilla IIFE, EN/NL/DE/FR embedded) + `assets/advisor.css`; 5-step questionnaire above rate card on all 4 locale pricing pages; step 4 plan-inclusion badges; result screen with full plan comparison table
+- **Pricing page audit** — all 4 locales corrected: Starter €0.55, Advanced €0.79, CMR €0.35/CMR, retention +€0.08/POD; feature matrix rebuilt from `plan_features` DB (added Damage/exception, PDF branding, CMR row; fixed OCR to Enterprise-only; removed TMS/WMS and white-label-docs add-on); worked examples recalculated
+- **Basic plan** — added as leftmost column to rate card on all 4 locale pages; €0.10/POD, 30-day retention; worked example 1 updated (50 PODs = €5); advisor.js `PLAN_FEATURES.basic` corrected (brand link = true)
+- **FR locale** — all 25 fr/ pages live; header/footer FR locale enabled; hreflang 4-locale + x-default on all pages; sitemap updated to 97 URLs
+
+## Changes (2026-05-12)
+
+- **Stat band** — `v2-trust-belt` → `v2-stat-band-wrap`; `div/div` → `ul/li` semantic; live item wrapped in `<a class="v2-stat-band-link">`; `&thinsp;` on number strings; CSS: border + bg rule, `--live` modifier, link flex styles
+- **Stamp-in-headline** — `aria-label="the same day."` on stamp span; `prefers-reduced-motion: .v2-hero-stamp { transform: rotate(0deg) }`
+- **Proof strip** — Card 01: phone status bar (09:24 / signal), URL bar, `v2-proof-hr` divider, camera CTA button, "Any phone" note; `<article>`. Card 02: all inline `style=""` attributes removed → CSS classes (`.v2-proof-pdf-*`); timestamp fixed to 2026. Card 03: dates 2025 → 2026; `<article>`. All 3: `.v2-proof-artifact` flex column with `padding: 1rem; min-height: 200px`
+- **Header/footer tokens** — `partials/header.html`: `site-header-shell` → `site-header`, `site-trust-pill` → `site-eu-mark`. `partials/footer.html`: `site-footer-v2` → `site-footer`. CSS: all three renames propagated; EU mark `transform: rotate(-2deg)`; `cursor: not-allowed` removed from inactive locale links
+- **Customer story placeholder** — old comment block removed; `TODO(story)` comment placed after proof strip section
