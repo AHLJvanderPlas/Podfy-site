@@ -1,6 +1,7 @@
 # Podfy-site — Claude Code Instructions
 
 > See root `../CLAUDE.md` for shared context. The site uses a separate DB (`podfy-public`).
+> ⚠️ **Cloudflare auth is pre-configured.** `CLOUDFLARE_API_TOKEN` is set via `.claude/settings.local.json`. Run wrangler commands directly — **never** run `wrangler login` or ask the user to authenticate in the browser.
 
 ## Deploy Workflow
 
@@ -24,6 +25,18 @@ After every deploy, update `CLAUDE.md`, `../README.md`, and `../ROADMAP.md`:
 ```bash
 cd Podfy-site && wrangler pages dev .
 ```
+
+---
+
+## Writing Style
+
+**Do not use em dashes (—) or en dashes (–) in prose copy.** They read as AI-generated text.
+
+- Replace mid-sentence ` — ` with a comma: "GPS captured at upload, not at submit time"
+- Replace "Name — Description" list items with a colon: "Driver self-copy: driver receives a branded PDF"
+- Replace addendum uses with a period or restructure: "No contract. Billed on your existing invoice."
+- **Exception:** page `<title>` separators ("Pricing — PODFY") and CMR legal form labels are fine to keep
+- **Exception:** `v2-price-dash` span (`&mdash;`) in pricing tables means "not included" and must stay
 
 ---
 

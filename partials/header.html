@@ -110,7 +110,7 @@
       } catch (e) {}
     })();
 
-    /* Mobile nav + locale switcher — progressive enhancement */
+    /* Mobile nav + locale switcher, progressive enhancement */
     document.addEventListener("DOMContentLoaded", function () {
 
       /* Mobile menu toggle */
@@ -151,7 +151,7 @@
         }
 
         /* Use hreflang <link> tags so each locale item points to the
-           equivalent page — not just the locale home page */
+           equivalent page, not just the locale home page */
         var hreflangs = {};
         document.querySelectorAll("link[rel='alternate'][hreflang]").forEach(function (el) {
           hreflangs[el.getAttribute("hreflang")] = el.getAttribute("href");

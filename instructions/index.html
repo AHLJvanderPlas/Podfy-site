@@ -143,7 +143,7 @@
   <table>
     <thead><tr><th>Repo / App</th><th>Domain</th><th>Database</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td><strong>Podfy-site</strong> (this site)</td><td>podfy.net</td><td>podfy-public</td><td>Marketing site — no user auth</td></tr>
+      <tr><td><strong>Podfy-site</strong> (this site)</td><td>podfy.net</td><td>podfy-public</td><td>Marketing site, no user auth</td></tr>
       <tr><td>Podfy-app</td><td>podfy.app</td><td>podfy-main</td><td>Driver upload interface</td></tr>
       <tr><td>podfy-admin</td><td>admin.podfy.net</td><td>podfy-main</td><td>Admin dashboard (JWT auth)</td></tr>
       <tr><td>podfy-portal</td><td>portal.podfy.net</td><td>podfy-main</td><td>Customer portal (magic link)</td></tr>
@@ -156,7 +156,7 @@
   </div>
 
   <!-- ── 2. DATABASES ── -->
-  <h2 id="databases">2. Database status — what is connected</h2>
+  <h2 id="databases">2. Database status, what is connected</h2>
   <p>The site uses one D1 database: <strong>podfy-public</strong> (ID: <code>8b8e12db-2a7d-47eb-8d12-8a548e71da64</code>). It has three tables:</p>
 
   <table>
@@ -176,14 +176,14 @@
       </tr>
       <tr>
         <td><code>Site_Buyer</code></td>
-        <td><span class="badge badge-niche">Active — niche</span></td>
-        <td><code>/api/pricing-factor</code> — called from pricing page with <code>?code=</code> URL param</td>
+        <td><span class="badge badge-niche">Active, niche</span></td>
+        <td><code>/api/pricing-factor</code>, called from pricing page with <code>?code=</code> URL param</td>
         <td>Add buyer segment keywords &amp; custom pricing multipliers</td>
       </tr>
     </tbody>
   </table>
 
-  <h3>Other databases — not connected to this site</h3>
+  <h3>Other databases, not connected to this site</h3>
   <table>
     <thead><tr><th>Database</th><th>Status for site</th><th>Belongs to</th></tr></thead>
     <tbody>
@@ -202,7 +202,7 @@
     <tbody>
       <tr><td><code>id</code></td><td>INTEGER PK</td><td>Auto-incremented</td></tr>
       <tr><td><code>release_date</code></td><td>TEXT (YYYY-MM-DD)</td><td>Shown as the release date</td></tr>
-      <tr><td><code>version</code></td><td>TEXT</td><td>e.g. <code>v2.14.1</code> — used as the changelog entry title</td></tr>
+      <tr><td><code>version</code></td><td>TEXT</td><td>e.g. <code>v2.14.1</code>, used as the changelog entry title</td></tr>
       <tr><td><code>deployment_ref</code></td><td>TEXT</td><td>Internal CF deployment ref (optional)</td></tr>
       <tr><td><code>new_features</code></td><td>TEXT</td><td>One bullet per line (newline-separated)</td></tr>
       <tr><td><code>fixes</code></td><td>TEXT</td><td>One bullet per line (newline-separated)</td></tr>
@@ -226,7 +226,7 @@ Solutions section launched with 8 audience pages',
     <li>Go to <a href="https://dash.cloudflare.com" target="_blank">dash.cloudflare.com</a> → D1 → <strong>podfy-public</strong></li>
     <li>Click <strong>Console</strong> tab</li>
     <li>Run an INSERT statement like the one above</li>
-    <li>The changelog page fetches live — no redeploy needed</li>
+    <li>The changelog page fetches live: no redeploy needed</li>
   </ol>
 
   <h3>Drafting (not yet visible)</h3>
@@ -270,7 +270,7 @@ ORDER BY created_at DESC;</code></pre>
 
   <!-- ── 5. PRICING ── -->
   <h2 id="pricing">5. Custom pricing segments (Site_Buyer)</h2>
-  <p>The pricing page supports a secret URL parameter: <code>/pricing?code=KEYWORD</code>. When a valid keyword is found in <code>Site_Buyer</code>, the pricing calculator uses a custom multiplier (the <code>wtp_percent</code> value). This is used for sales conversations — e.g. share a custom pricing URL with a high-value prospect.</p>
+  <p>The pricing page supports a secret URL parameter: <code>/pricing?code=KEYWORD</code>. When a valid keyword is found in <code>Site_Buyer</code>, the pricing calculator uses a custom multiplier (the <code>wtp_percent</code> value). This is used for sales conversations, e.g. share a custom pricing URL with a high-value prospect.</p>
 
   <h3>Table columns</h3>
   <table>
@@ -278,7 +278,7 @@ ORDER BY created_at DESC;</code></pre>
     <tbody>
       <tr><td><code>id</code></td><td>Auto-incremented PK</td></tr>
       <tr><td><code>segment</code></td><td>Human-readable segment name (shown in pricing UI), e.g. <code>Elite Shipper</code></td></tr>
-      <tr><td><code>keyword</code></td><td>Secret URL parameter value — keep this private per prospect</td></tr>
+      <tr><td><code>keyword</code></td><td>Secret URL parameter value, keep this private per prospect</td></tr>
       <tr><td><code>wtp_percent</code></td><td>Pricing multiplier. <code>1.0</code> = standard price, <code>1.5</code> = 50% premium, <code>0.8</code> = 20% discount</td></tr>
     </tbody>
   </table>
@@ -289,12 +289,12 @@ VALUES ('DHL Special', 'dhl2026secret', 1.25);</code></pre>
   <p>Then share the URL: <code>https://podfy.net/pricing?code=dhl2026secret</code></p>
 
   <div class="callout">
-    <p><strong>Note:</strong> The keyword is treated as case-sensitive. Keep prospect-specific codes private — anyone with the URL can see the custom pricing.</p>
+    <p><strong>Note:</strong> The keyword is treated as case-sensitive. Keep prospect-specific codes private, anyone with the URL can see the custom pricing.</p>
   </div>
 
   <!-- ── 6. DEPLOYMENT ── -->
   <h2 id="deploy">6. Deployment workflow</h2>
-  <p>All changes go through the <code>qa</code> branch first. Only Podfy-site's <code>main</code> branch is protected — direct pushes are rejected.</p>
+  <p>All changes go through the <code>qa</code> branch first. Only Podfy-site's <code>main</code> branch is protected, direct pushes are rejected.</p>
   <pre><code># 1. Make changes on qa branch
 git checkout qa
 
@@ -302,7 +302,7 @@ git checkout qa
 git add [files]
 git commit -m "Your description"
 
-# 3. Push — Cloudflare auto-deploys to qa (no QA Pages project for site yet)
+# 3. Push, Cloudflare auto-deploys to qa (no QA Pages project for site yet)
 git push origin qa
 
 # 4. Open PR: qa → main on GitHub
@@ -311,7 +311,7 @@ git push origin qa
 # 5. Merge PR → Cloudflare auto-deploys to production (podfy.net)</code></pre>
 
   <div class="callout">
-    <p><strong>D1 changes</strong> (changelog entries, form status updates) take effect immediately without redeployment — the site fetches live data from the database on every request.</p>
+    <p><strong>D1 changes</strong> (changelog entries, form status updates) take effect immediately without redeployment, the site fetches live data from the database on every request.</p>
   </div>
 
   <!-- ── 7. PAGES ── -->
@@ -361,14 +361,14 @@ git push origin qa
   <table>
     <thead><tr><th>Variable</th><th>Type</th><th>Used by</th></tr></thead>
     <tbody>
-      <tr><td><code>RESEND_API_KEY</code></td><td>Secret</td><td>api/contact.js, api/subscribe.js — sending emails</td></tr>
-      <tr><td><code>TURNSTILE_SECRET</code></td><td>Secret</td><td>api/contact.js, api/subscribe.js — bot protection</td></tr>
+      <tr><td><code>RESEND_API_KEY</code></td><td>Secret</td><td>api/contact.js, api/subscribe.js, sending emails</td></tr>
+      <tr><td><code>TURNSTILE_SECRET</code></td><td>Secret</td><td>api/contact.js, api/subscribe.js, bot protection</td></tr>
       <tr><td><code>PORTAL_SESSION_SECRET</code></td><td>Secret</td><td>Reserved for future portal session feature</td></tr>
     </tbody>
   </table>
 
   <div class="callout">
-    <p><strong>Turnstile sitekey</strong> (public, in HTML): <code>0x4AAAAAACFOR78WSLkw_gB7</code> — used in contact form and subscribe form HTML.</p>
+    <p><strong>Turnstile sitekey</strong> (public, in HTML): <code>0x4AAAAAACFOR78WSLkw_gB7</code>, used in contact form and subscribe form HTML.</p>
   </div>
 
   <!-- ── 9. CHANGELOG FORM ── -->
@@ -388,7 +388,7 @@ git push origin qa
         </div>
       </div>
       <div class="field-group">
-        <label class="field-label" for="f-ref">Deployment ref <span style="text-transform:none;letter-spacing:0;font-size:.68rem;">(optional — git SHA or CF deployment ID)</span></label>
+        <label class="field-label" for="f-ref">Deployment ref <span style="text-transform:none;letter-spacing:0;font-size:.68rem;">(optional, git SHA or CF deployment ID)</span></label>
         <input class="field-input" type="text" id="f-ref" placeholder="abc1234" />
       </div>
       <div class="grid-2">
@@ -524,7 +524,7 @@ git push origin qa
       });
       var data = await r.json();
       if (data.success) {
-        res.textContent = "✓ Added — entry id " + data.id + ". Visible on /changelog immediately.";
+        res.textContent = "✓ Added, entry id " + data.id + ". Visible on /changelog immediately.";
         res.className = "f-result ok";
         e.target.reset();
         document.getElementById("f-date").value = new Date().toISOString().slice(0, 10);
