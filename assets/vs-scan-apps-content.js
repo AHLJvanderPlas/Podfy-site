@@ -100,27 +100,27 @@
             podfy:    { text: 'No',   note: 'Returns automatically',           type: 'positive' },
           },
           {
-            label:    'GPS + timestamp on the proof',
-            scan:     { text: 'No',   note: '',                                                type: 'negative' },
-            whatsapp: { text: 'No',   note: 'Photo metadata only if manually enabled',        type: 'negative' },
-            podfy:    { text: 'Yes',  note: 'Captured at upload, tamper-evident server-side', type: 'positive' },
+            label:    'GPS + independent timestamp on the proof',
+            scan:     { text: 'Device metadata only', note: 'EXIF location/time if not stripped by the sender; no independent server-side capture', type: 'negative' },
+            whatsapp: { text: 'Device metadata only', note: 'File EXIF only; WhatsApp may strip metadata', type: 'negative' },
+            podfy:    { text: 'Yes',  note: 'Coordinates and timestamp captured server-side at upload, independent of the device', type: 'positive' },
           },
           {
-            label:    'One place for the hiring party',
-            scan:     { text: 'No',   note: 'Scattered across email',          type: 'negative' },
-            whatsapp: { text: 'No',   note: 'Buried in chats',                 type: 'negative' },
-            podfy:    { text: 'Yes',  note: 'Collected per shipment reference', type: 'positive' },
+            // Row explicitly scoped to documents collected FROM OTHERS, not personal scanning.
+            // Scan apps have cloud for the user's own scans — that is not what this row measures.
+            label:    'One archive for documents received from third parties',
+            scan:     { text: 'No',   note: 'Scan apps store your own personal scans — for documents collected from someone else, they land wherever the sender chooses to mail them', type: 'negative' },
+            whatsapp: { text: 'No',   note: 'Document lands in a chat thread, not the requester\'s system', type: 'negative' },
+            podfy:    { text: 'Yes',  note: 'Every collected document lands in the requester\'s portal, indexed by shipment reference', type: 'positive' },
           },
           {
-            label:    'EU-hosted / data jurisdiction',
-            // NOTE: the text below is intentionally jurisdictional and conditional, not accusatory.
-            // It states which laws apply to companies in each jurisdiction — public legal fact.
-            // It does NOT claim any specific company hands documents to governments.
+            // IMPORTANT: Podfy runs on Cloudflare (a US company). EU data residency does NOT equal
+            // CLOUD Act immunity. Do not claim sovereignty or immunity — state jurisdiction only.
+            label:    'Data residency / company jurisdiction',
             scan: {
               text: 'Varies by provider',
-              note: 'CamScanner: INTSIG (Shanghai, CN) — cloud data under Chinese Cybersecurity Law & DSL. Adobe Scan: Adobe (US) — EU transfers via SCCs/DPF, but US CLOUD Act can compel disclosure. Genius Scan: The Grizzly Labs (France, EU) — on-device by default; verify cloud-sync region.',
-              // TODO: verify current Genius Scan cloud infrastructure region before publishing.
-              // TODO: confirm CamScanner's GDPR-compliance claim and whether EU documents are stored in EU infra.
+              note: 'CamScanner: INTSIG (Shanghai, CN); cloud data under Chinese Cybersecurity Law & DSL. Adobe Scan: Adobe (US); EU transfers via SCCs/DPF, but US CLOUD Act can compel disclosure. Genius Scan: The Grizzly Labs (France, EU); on-device by default, optional cloud sync (region: TODO verify).',
+              // TODO: verify Genius Scan cloud-sync region before publishing.
               type: 'neutral',
             },
             whatsapp: {
@@ -129,10 +129,96 @@
               type: 'neutral',
             },
             podfy: {
-              text: 'EU-hosted',
-              note: 'Cloudflare WEUR (Amsterdam) · data stays in the EU · DPA available',
-              type: 'positive',
+              text: 'EU company (NL)',
+              note: 'Data stored in Cloudflare WEUR (Amsterdam, EU). Note: Cloudflare is a US company; EU data residency does not equal CLOUD Act immunity. DPA available on request. TODO: confirm R2 bucket jurisdiction = EU before publishing.',
+              // TODO: confirm R2 EU bucket jurisdiction before publishing.
+              type: 'neutral',
             },
+          },
+        ],
+      },
+      pipeline: {
+        heading:   'From the gate to the invoice: where each tool fits',
+        intro:     'Getting a signed CMR from the driver to your back-office is an eight-step journey. Scan apps only touch one step of it. Onboard computers and driver-app POD tools cover more — but only for your own drivers, or drivers willing to install something. The gap nobody fills is the middle of the chain for the third party you don\'t control: the subcontractor on his own phone, working for five principals. That\'s where Podfy lives.',
+        caption:   'Stage-by-stage: where each tool fits the carrier-to-back-office pipeline',
+        noteBelow: 'Partial = covers this step only for own fleet / opted-in drivers, or with manual effort. "Own onboard / TMS" and "Driver-app POD" columns assume the driver has adopted the system.',
+        minWidth:  '680px',
+        columns: [
+          { key: 'label',     label: 'Stage'                                    },
+          { key: 'scan',      label: 'Scan apps',        sub: 'CamScanner / Adobe / Genius', cls: 'v2-col-paper'   },
+          { key: 'whatsapp',  label: 'WhatsApp + email', sub: 'The current default',         cls: ''               },
+          { key: 'onboard',   label: 'Onboard / TMS',    sub: 'Own fleet only',              cls: ''               },
+          { key: 'driverapp', label: 'Driver-app POD',   sub: 'If driver uses the app',      cls: ''               },
+          { key: 'podfy',     label: 'Podfy',             sub: 'Link-based collection',       cls: 'v2-col-digital' },
+        ],
+        rows: [
+          {
+            label:     '1 · Delivery & signing at the gate',
+            scan:      { text: '—', note: 'Physical event; no tool covers the signature act itself' },
+            whatsapp:  { text: '—', note: 'Physical event' },
+            onboard:   { text: '—', note: 'Physical event' },
+            driverapp: { text: '—', note: 'Physical event' },
+            podfy:     { text: '—', note: 'Physical event; the signed paper exists before Podfy is involved' },
+          },
+          {
+            label:     '2 · Capture (paper to digital)',
+            scan:      { text: 'Yes',     note: 'Core function of scan apps' },
+            whatsapp:  { text: 'Yes',     note: 'Driver photographs and sends' },
+            onboard:   { text: 'Yes',     note: 'Integrated for own fleet' },
+            driverapp: { text: 'Yes',     note: 'Core function of driver-app POD' },
+            podfy:     { text: 'Yes',     note: 'Driver opens link, photographs at the gate; no app install required' },
+          },
+          {
+            label:     '3 · Hand-back to the party who needs it',
+            scan:      { text: 'No',      note: 'Manual; sender chooses where to email or save; requester is passive' },
+            whatsapp:  { text: 'Partial', note: 'Lands in a chat; requester must retrieve it manually' },
+            onboard:   { text: 'Yes',     note: 'Returns to fleet TMS — own fleet only' },
+            driverapp: { text: 'Yes',     note: 'Returns to POD SaaS — if the driver uses the app' },
+            podfy:     { text: 'Yes',     note: 'Requester sends the link; document returns to their portal regardless of who the driver works for' },
+          },
+          {
+            label:     '4 · Association to the right trip / order',
+            scan:      { text: 'No',      note: 'No trip context; file lands in email unlinked' },
+            whatsapp:  { text: 'No',      note: 'No trip context; buried in chat thread' },
+            onboard:   { text: 'Yes',     note: 'Tied to trip record in TMS' },
+            driverapp: { text: 'Yes',     note: 'Linked to job record in POD SaaS' },
+            // HONESTY: Podfy is PARTIAL here — it associates by how the link was sent,
+            // but does NOT reconcile against an order list or TMS.
+            podfy:     { text: 'Partial', note: 'Associated by how the link is sent; not reconciled against an order list or TMS' },
+          },
+          {
+            label:     '5 · Verification (who / when / where)',
+            scan:      { text: 'Device metadata only', note: 'EXIF location and time if not stripped; no independent server capture' },
+            whatsapp:  { text: 'Device metadata only', note: 'File metadata only; WhatsApp can strip EXIF' },
+            onboard:   { text: 'Partial', note: 'Depends on system integration depth' },
+            driverapp: { text: 'Yes',     note: 'GPS and timestamp logged by the app server-side' },
+            podfy:     { text: 'Yes',     note: 'GPS coordinates and timestamp captured server-side at upload' },
+          },
+          {
+            label:     '6 · Central archive & retention',
+            scan:      { text: 'No',      note: "Sender's personal cloud — not in the requester's system" },
+            whatsapp:  { text: 'No',      note: 'Buried in chat history; not a searchable archive for the requester' },
+            onboard:   { text: 'Yes',     note: 'Own fleet; held in fleet system' },
+            driverapp: { text: 'Yes',     note: 'Centrally held in POD SaaS' },
+            podfy:     { text: 'Yes',     note: 'One archive per requester, searchable by reference and date' },
+          },
+          {
+            label:     '7 · Retrieval for dispute or audit',
+            scan:      { text: 'No',      note: "Not in the requester's system" },
+            whatsapp:  { text: 'No',      note: 'Chat search is not a reliable audit trail' },
+            onboard:   { text: 'Yes',     note: 'Own fleet' },
+            driverapp: { text: 'Yes',     note: 'Searchable in POD SaaS' },
+            podfy:     { text: 'Yes',     note: 'Searchable by reference, driver, date, or shipment' },
+          },
+          {
+            label:     '8 · Invoice hand-off',
+            scan:      { text: 'No',      note: 'No connection to invoicing workflow' },
+            whatsapp:  { text: 'No',      note: 'No connection to invoicing workflow' },
+            onboard:   { text: 'Yes',     note: 'Integrated with TMS billing' },
+            driverapp: { text: 'Partial', note: 'PDF available; TMS integration depth varies by provider' },
+            // HONESTY: Podfy is PARTIAL here — it hands off an invoice-ready document
+            // but is NOT a TMS or invoicing system.
+            podfy:     { text: 'Partial', note: 'Delivers a GPS-stamped, invoice-ready PDF; Podfy is not a TMS or invoicing system' },
           },
         ],
       },
@@ -261,29 +347,34 @@
             podfy:    { text: 'Nee', note: 'Keert automatisch terug', type: 'positive' },
           },
           {
-            label:    'GPS + tijdstempel op het bewijs',
-            scan:     { text: 'Nee', note: '', type: 'negative' },
-            whatsapp: { text: 'Nee', note: 'Alleen fotometadata als handmatig ingeschakeld', type: 'negative' },
-            podfy:    { text: 'Ja',  note: 'Vastgelegd bij upload, serverside onvervalsbaar', type: 'positive' },
+            label:    'GPS + onafhankelijk tijdstempel op het bewijs',
+            scan:     { text: 'Alleen apparaatmetadata', note: 'EXIF-locatie/-tijd als niet verwijderd door de verzender; geen onafhankelijke serverregistratie', type: 'negative' },
+            whatsapp: { text: 'Alleen apparaatmetadata', note: 'Alleen bestandsmetadata; WhatsApp kan EXIF verwijderen', type: 'negative' },
+            podfy:    { text: 'Ja',  note: 'Coördinaten en tijdstempel serverside vastgelegd bij upload, onafhankelijk van het apparaat', type: 'positive' },
           },
           {
-            label:    'Één locatie voor de inhurende partij',
-            scan:     { text: 'Nee', note: 'Verspreid over e-mail', type: 'negative' },
-            whatsapp: { text: 'Nee', note: 'Begraven in chats', type: 'negative' },
-            podfy:    { text: 'Ja',  note: 'Verzameld per zending-referentie', type: 'positive' },
+            label:    'Één archief voor ontvangen documenten van derden',
+            scan:     { text: 'Nee', note: 'Scan-apps bewaren uw eigen scans — voor documenten van anderen belandt het document waar de verzender het naartoe stuurt', type: 'negative' },
+            whatsapp: { text: 'Nee', note: 'Document belandt in een chatthread, niet in het systeem van de opdrachtgever', type: 'negative' },
+            podfy:    { text: 'Ja',  note: 'Elk opgehaald document belandt in het portaal van de opdrachtgever, geïndexeerd op zendingsreferentie', type: 'positive' },
           },
           {
-            label:    'EU-hosting / AVG-jurisdictie',
+            label:    'Dataresidentie / bedrijfsjurisditie',
             scan: {
               text: 'Verschilt per aanbieder',
-              note: 'CamScanner: INTSIG (Shanghai, CN) — clouddata valt onder Chinese cybersecuritywet. Adobe Scan: Adobe (VS) — EU-overdrachten via SCC/DPF, maar de VS CLOUD Act kan openbaarmaking afdwingen. Genius Scan: The Grizzly Labs (Frankrijk, EU) — standaard lokaal; verifieer cloudregio.',
+              note: 'CamScanner: INTSIG (Shanghai, CN); clouddata onder Chinese cybersecuritywet & DSL. Adobe Scan: Adobe (VS); EU-overdrachten via SCC/DPF, maar VS CLOUD Act kan openbaarmaking afdwingen. Genius Scan: The Grizzly Labs (Frankrijk, EU); standaard lokaal, optionele cloudsync (regio: TODO verifiëren).',
               type: 'neutral',
             },
-            whatsapp: { text: 'Meta (VS)', note: 'Onderworpen aan de VS CLOUD Act', type: 'neutral' },
-            podfy:    { text: 'EU-hosting', note: 'Cloudflare WEUR (Amsterdam) · gegevens blijven in de EU · VOK beschikbaar', type: 'positive' },
+            whatsapp: { text: 'Meta (VS)', note: 'Onderworpen aan de VS CLOUD Act (18 U.S.C. §2713)', type: 'neutral' },
+            podfy: {
+              text: 'EU-bedrijf (NL)',
+              note: 'Data opgeslagen in Cloudflare WEUR (Amsterdam, EU). Let op: Cloudflare is een Amerikaans bedrijf; EU-dataresidentie betekent geen CLOUD Act-immuniteit. VOK beschikbaar op aanvraag. TODO: bevestig R2-bucket-jurisdictie = EU.',
+              type: 'neutral',
+            },
           },
         ],
       },
+      pipeline: null, // TODO: translate pipeline section to Dutch (fall back to EN until done)
       whenScan: {
         heading:   'Wanneer scan-apps de juiste keuze zijn',
         body:      'Als het document al in uw handen is en u een snelle digitale kopie nodig heeft, is een gratis scan-app het juiste gereedschap. CamScanner, Adobe Scan en Genius Scan zijn echt goed in wat ze doen. We adviseren niet ze te vervangen voor persoonlijke scanworkflows.',
@@ -405,29 +496,34 @@
             podfy:    { text: 'Nein', note: 'Kehrt automatisch zurück', type: 'positive' },
           },
           {
-            label:    'GPS + Zeitstempel am Nachweis',
-            scan:     { text: 'Nein', note: '', type: 'negative' },
-            whatsapp: { text: 'Nein', note: 'Nur Foto-Metadaten wenn manuell aktiviert', type: 'negative' },
-            podfy:    { text: 'Ja',   note: 'Beim Upload erfasst, serverseitig fälschungssicher', type: 'positive' },
+            label:    'GPS + unabhängiger Zeitstempel am Nachweis',
+            scan:     { text: 'Nur Gerätemetadaten', note: 'EXIF-Standort/-Zeit falls nicht entfernt; keine unabhängige serverseitige Erfassung', type: 'negative' },
+            whatsapp: { text: 'Nur Gerätemetadaten', note: 'Nur Datei-Metadaten; WhatsApp kann EXIF entfernen', type: 'negative' },
+            podfy:    { text: 'Ja',   note: 'Koordinaten und Zeitstempel serverseitig beim Upload erfasst, unabhängig vom Gerät', type: 'positive' },
           },
           {
-            label:    'Ein Ort für den Auftraggeber',
-            scan:     { text: 'Nein', note: 'Über E-Mail-Posteingänge verteilt', type: 'negative' },
-            whatsapp: { text: 'Nein', note: 'In Chats vergraben', type: 'negative' },
-            podfy:    { text: 'Ja',   note: 'Pro Sendungsreferenz gesammelt', type: 'positive' },
+            label:    'Ein Archiv für von Dritten empfangene Dokumente',
+            scan:     { text: 'Nein', note: 'Scan-Apps speichern eigene Scans — für Dokumente von anderen landet es dort, wohin der Sender es sendet', type: 'negative' },
+            whatsapp: { text: 'Nein', note: 'Dokument landet in einem Chat-Thread, nicht im System des Auftraggebers', type: 'negative' },
+            podfy:    { text: 'Ja',   note: 'Jedes gesammelte Dokument landet im Portal des Auftraggebers, indiziert nach Sendungsreferenz', type: 'positive' },
           },
           {
-            label:    'EU-Hosting / Datenjurisdiktion',
+            label:    'Datenresidenz / Unternehmensjurisdiktion',
             scan: {
               text: 'Je nach Anbieter unterschiedlich',
-              note: 'CamScanner: INTSIG (Shanghai, CN) — Cloud-Daten unterliegen chinesischem Cybersicherheitsgesetz. Adobe Scan: Adobe (USA) — EU-Übertragungen via SCC/DPF, aber US-CLOUD-Act kann Offenlegung erzwingen. Genius Scan: The Grizzly Labs (Frankreich, EU) — standardmäßig lokal; Cloud-Region prüfen.',
+              note: 'CamScanner: INTSIG (Shanghai, CN); Cloud-Daten unterliegen chinesischem Cybersicherheitsgesetz & DSG. Adobe Scan: Adobe (USA); EU-Übertragungen via SCC/DPF, aber US-CLOUD-Act kann Offenlegung erzwingen. Genius Scan: The Grizzly Labs (Frankreich, EU); standardmäßig lokal, optionale Cloud-Sync (Region: TODO prüfen).',
               type: 'neutral',
             },
             whatsapp: { text: 'Meta (USA)', note: 'Unterliegt dem US-CLOUD-Act (18 U.S.C. §2713)', type: 'neutral' },
-            podfy:    { text: 'EU-gehostet', note: 'Cloudflare WEUR (Amsterdam) · Daten bleiben in der EU · AVV verfügbar', type: 'positive' },
+            podfy: {
+              text: 'EU-Unternehmen (NL)',
+              note: 'Daten in Cloudflare WEUR (Amsterdam, EU) gespeichert. Hinweis: Cloudflare ist ein US-Unternehmen; EU-Datenspeicherung bedeutet keine Immunität gegenüber dem CLOUD-Act. AVV auf Anfrage verfügbar. TODO: R2-Bucket-Jurisdiktion = EU bestätigen.',
+              type: 'neutral',
+            },
           },
         ],
       },
+      pipeline: null, // TODO: translate pipeline section to German (fall back to EN until done)
       whenScan: {
         heading:   'Wann Scan-Apps die richtige Wahl sind',
         body:      'Wenn das Dokument bereits in Ihren Händen liegt und Sie schnell eine digitale Kopie benötigen, ist eine kostenlose Scan-App das richtige Werkzeug. CamScanner, Adobe Scan und Genius Scan sind wirklich gut in dem, was sie tun. Wir empfehlen nicht, sie für persönliche Scan-Workflows zu ersetzen.',
@@ -549,29 +645,34 @@
             podfy:    { text: 'Non', note: 'Retourne automatiquement', type: 'positive' },
           },
           {
-            label:    'GPS + horodatage sur la preuve',
-            scan:     { text: 'Non', note: '', type: 'negative' },
-            whatsapp: { text: 'Non', note: 'Métadonnées photo uniquement si activé manuellement', type: 'negative' },
-            podfy:    { text: 'Oui', note: 'Capturé lors du téléversement, infalsifiable côté serveur', type: 'positive' },
+            label:    'GPS + horodatage indépendant sur la preuve',
+            scan:     { text: 'Métadonnées de l\'appareil uniquement', note: 'EXIF de localisation/heure si non supprimé par l\'expéditeur ; aucune capture indépendante côté serveur', type: 'negative' },
+            whatsapp: { text: 'Métadonnées de l\'appareil uniquement', note: 'Métadonnées fichier uniquement ; WhatsApp peut supprimer l\'EXIF', type: 'negative' },
+            podfy:    { text: 'Oui', note: 'Coordonnées et horodatage capturés côté serveur lors du téléversement, indépendamment de l\'appareil', type: 'positive' },
           },
           {
-            label:    'Un seul endroit pour le donneur d\'ordre',
-            scan:     { text: 'Non', note: 'Dispersé dans les e-mails', type: 'negative' },
-            whatsapp: { text: 'Non', note: 'Enfoui dans les chats', type: 'negative' },
-            podfy:    { text: 'Oui', note: 'Collecté par référence d\'expédition', type: 'positive' },
+            label:    'Une archive pour les documents reçus de tiers',
+            scan:     { text: 'Non', note: 'Les apps de scan stockent vos propres scans — pour les documents collectés d\'autres personnes, ils atterrissent là où l\'expéditeur choisit de les envoyer', type: 'negative' },
+            whatsapp: { text: 'Non', note: 'Le document atterrit dans un fil de discussion, pas dans le système du donneur d\'ordre', type: 'negative' },
+            podfy:    { text: 'Oui', note: 'Chaque document collecté atterrit dans le portail du donneur d\'ordre, indexé par référence d\'expédition', type: 'positive' },
           },
           {
-            label:    'Hébergement UE / juridiction des données',
+            label:    'Résidence des données / juridiction de l\'entreprise',
             scan: {
               text: 'Varie selon le fournisseur',
-              note: 'CamScanner : INTSIG (Shanghai, CN) — données cloud sous loi cybersécurité chinoise. Adobe Scan : Adobe (USA) — transferts UE via CCT/DPF, mais CLOUD Act américain peut imposer la divulgation. Genius Scan : The Grizzly Labs (France, UE) — sur l\'appareil par défaut ; vérifier la région cloud.',
+              note: 'CamScanner : INTSIG (Shanghai, CN) ; données cloud sous loi chinoise de cybersécurité & DSL. Adobe Scan : Adobe (USA) ; transferts UE via CCT/DPF, mais CLOUD Act américain peut imposer la divulgation. Genius Scan : The Grizzly Labs (France, UE) ; sur l\'appareil par défaut, sync cloud optionnelle (région : TODO vérifier).',
               type: 'neutral',
             },
             whatsapp: { text: 'Meta (USA)', note: 'Soumis au CLOUD Act américain (18 U.S.C. §2713)', type: 'neutral' },
-            podfy:    { text: 'Hébergé en UE', note: 'Cloudflare WEUR (Amsterdam) · données restent dans l\'UE · DPA disponible', type: 'positive' },
+            podfy: {
+              text: 'Société UE (NL)',
+              note: 'Données stockées dans Cloudflare WEUR (Amsterdam, UE). Note : Cloudflare est une société américaine ; la résidence des données en UE n\'équivaut pas à une immunité contre le CLOUD Act. DPA disponible sur demande. TODO : confirmer la juridiction du bucket R2 = UE.',
+              type: 'neutral',
+            },
           },
         ],
       },
+      pipeline: null, // TODO: translate pipeline section to French (fall back to EN until done)
       whenScan: {
         heading:   'Quand les applications de scan sont le bon choix',
         body:      'Si le document est déjà dans vos mains et que vous avez besoin d\'une copie numérique rapide, une application de scan gratuite est le bon outil. CamScanner, Adobe Scan et Genius Scan sont vraiment bons dans ce qu\'ils font. Nous ne suggérons pas de les remplacer pour les flux de travail de scan personnels.',
@@ -633,12 +734,17 @@
      RENDERING
      ───────────────────────────────────────────────────────────────────────── */
 
-  function renderTable(data, rootEl) {
-    var cols = data.table.columns;
-    var rows = data.table.rows;
+  /* Generic table renderer — used for both the comparison table and the pipeline matrix.
+     Pass the table/pipeline DATA OBJECT directly (not the full locale object). */
+  function renderTable(tableData, rootEl) {
+    var cols     = tableData.columns;
+    var rows     = tableData.rows;
+    var dataKeys = cols.slice(1).map(function (c) { return c.key; }); /* skip label col */
+    var minW     = tableData.minWidth || '480px';
 
     var html = '<div class="v2-price-table-wrap">';
-    html += '<table class="v2-comparison-table v2-vs-table" aria-label="' + esc(data.table.caption) + '">';
+    html += '<table class="v2-comparison-table v2-vs-table" aria-label="' + esc(tableData.caption) + '"';
+    html += ' style="min-width:' + minW + '">';
 
     /* thead */
     html += '<thead><tr>';
@@ -656,8 +762,8 @@
       html += '<tr>';
       html += '<td class="v2-price-row-label">' + esc(row.label) + '</td>';
 
-      ['scan', 'whatsapp', 'podfy'].forEach(function (key, idx) {
-        var cell   = row[key];
+      dataKeys.forEach(function (key, idx) {
+        var cell   = row[key] || {};
         var colCls = cols[idx + 1].cls;
         var tdCls  = colCls ? ' class="' + colCls + '"' : '';
         html += '<td' + tdCls + '>';
@@ -666,7 +772,7 @@
         if (key === 'podfy' && cell.priceKey) {
           html += '<span class="v2-vs-cell-text">from <span data-price-key="' + cell.priceKey + '">€0.55</span></span>';
         } else {
-          html += '<span class="v2-vs-cell-text">' + esc(cell.text) + '</span>';
+          html += '<span class="v2-vs-cell-text">' + esc(cell.text || '') + '</span>';
         }
 
         if (cell.note) {
@@ -678,9 +784,8 @@
     });
     html += '</tbody></table></div>';
 
-    /* below-table notes */
-    html += '<p class="v2-vs-table-note">' + esc(data.table.noteBelow) + '</p>';
-    html += '<p class="v2-vs-table-note">' + esc(data.table.noteGdpr) + '</p>';
+    if (tableData.noteBelow) html += '<p class="v2-vs-table-note">' + esc(tableData.noteBelow) + '</p>';
+    if (tableData.noteGdpr)  html += '<p class="v2-vs-table-note">' + esc(tableData.noteGdpr) + '</p>';
 
     rootEl.innerHTML = html;
   }
@@ -756,11 +861,17 @@
     window.vsScanAppsContent = d;
 
     /* Render dynamic sections */
-    var tableRoot   = document.getElementById('vs-table-root');
-    var faqRoot     = document.getElementById('vs-faq-root');
-    var relatedRoot = document.getElementById('vs-related-root');
+    var tableRoot    = document.getElementById('vs-table-root');
+    var pipelineRoot = document.getElementById('vs-pipeline-root');
+    var faqRoot      = document.getElementById('vs-faq-root');
+    var relatedRoot  = document.getElementById('vs-related-root');
 
-    if (tableRoot)   renderTable(d, tableRoot);
+    if (tableRoot)    renderTable(d.table, tableRoot);
+    if (pipelineRoot) {
+      /* Fall back to EN pipeline if locale translation not yet done */
+      var pipelineData = d.pipeline || CONTENT.en.pipeline;
+      if (pipelineData) renderTable(pipelineData, pipelineRoot);
+    }
     if (relatedRoot) renderRelated(d, relatedRoot);
     if (faqRoot)     renderFaq(d, faqRoot);
 
