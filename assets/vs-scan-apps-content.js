@@ -130,8 +130,7 @@
             },
             podfy: {
               text: 'EU company (NL)',
-              note: 'Data stored in Cloudflare WEUR (Amsterdam, EU). Note: Cloudflare is a US company; EU data residency does not equal CLOUD Act immunity. DPA available on request. TODO: confirm R2 bucket jurisdiction = EU before publishing.',
-              // TODO: confirm R2 EU bucket jurisdiction before publishing.
+              note: 'Data stored in Cloudflare WEUR (Amsterdam, EU). Note: Cloudflare is a US company; EU data residency does not equal CLOUD Act immunity. DPA available on request.',
               type: 'neutral',
             },
           },
@@ -368,7 +367,7 @@
             whatsapp: { text: 'Meta (VS)', note: 'Onderworpen aan de VS CLOUD Act (18 U.S.C. §2713)', type: 'neutral' },
             podfy: {
               text: 'EU-bedrijf (NL)',
-              note: 'Data opgeslagen in Cloudflare WEUR (Amsterdam, EU). Let op: Cloudflare is een Amerikaans bedrijf; EU-dataresidentie betekent geen CLOUD Act-immuniteit. VOK beschikbaar op aanvraag. TODO: bevestig R2-bucket-jurisdictie = EU.',
+              note: 'Data opgeslagen in Cloudflare WEUR (Amsterdam, EU). Let op: Cloudflare is een Amerikaans bedrijf; EU-dataresidentie betekent geen CLOUD Act-immuniteit. VOK beschikbaar op aanvraag.',
               type: 'neutral',
             },
           },
@@ -517,7 +516,7 @@
             whatsapp: { text: 'Meta (USA)', note: 'Unterliegt dem US-CLOUD-Act (18 U.S.C. §2713)', type: 'neutral' },
             podfy: {
               text: 'EU-Unternehmen (NL)',
-              note: 'Daten in Cloudflare WEUR (Amsterdam, EU) gespeichert. Hinweis: Cloudflare ist ein US-Unternehmen; EU-Datenspeicherung bedeutet keine Immunität gegenüber dem CLOUD-Act. AVV auf Anfrage verfügbar. TODO: R2-Bucket-Jurisdiktion = EU bestätigen.',
+              note: 'Daten in Cloudflare WEUR (Amsterdam, EU) gespeichert. Hinweis: Cloudflare ist ein US-Unternehmen; EU-Datenspeicherung bedeutet keine Immunität gegenüber dem CLOUD-Act. AVV auf Anfrage verfügbar.',
               type: 'neutral',
             },
           },
@@ -666,7 +665,7 @@
             whatsapp: { text: 'Meta (USA)', note: 'Soumis au CLOUD Act américain (18 U.S.C. §2713)', type: 'neutral' },
             podfy: {
               text: 'Société UE (NL)',
-              note: 'Données stockées dans Cloudflare WEUR (Amsterdam, UE). Note : Cloudflare est une société américaine ; la résidence des données en UE n\'équivaut pas à une immunité contre le CLOUD Act. DPA disponible sur demande. TODO : confirmer la juridiction du bucket R2 = UE.',
+              note: 'Données stockées dans Cloudflare WEUR (Amsterdam, UE). Note : Cloudflare est une société américaine ; la résidence des données en UE n\'équivaut pas à une immunité contre le CLOUD Act. DPA disponible sur demande.',
               type: 'neutral',
             },
           },
