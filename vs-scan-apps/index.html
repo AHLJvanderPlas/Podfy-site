@@ -28,8 +28,10 @@
   <meta name="twitter:description" content="Scan apps solve a personal problem. Podfy solves a collection problem. Here is the difference." />
   <meta name="twitter:image"       content="https://podfy.net/assets/og-image.png" />
 
-  <!-- hreflang — EN only for now; NL/DE/FR translations are TODO -->
   <link rel="alternate" hreflang="en"        href="https://podfy.net/vs-scan-apps/" />
+  <link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/vs-scan-apps/" />
+  <link rel="alternate" hreflang="de"        href="https://podfy.net/de/vs-scan-apps/" />
+  <link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/vs-scan-apps/" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/vs-scan-apps/" />
 
   <!-- Colour scheme -->
@@ -98,6 +100,15 @@
 
     /* Make table min-width match 3-column layout (≤ price-table wrapper) */
     .v2-vs-table { min-width: 480px; }
+
+    /* Below-table disclaimer notes */
+    .v2-vs-table-note {
+      font-size: 0.78rem;
+      color: var(--v2-muted);
+      margin: 0.4rem 0 0;
+      font-family: var(--v2-font-mono);
+      letter-spacing: 0.01em;
+    }
 
     /* First column sticky on small screens so label stays visible while scrolling */
     @media (max-width: 640px) {
@@ -255,6 +266,17 @@
           <noscript>
             <p class="v2-prose">Enable JavaScript to see the FAQ.</p>
           </noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED PAGES -->
+    <section class="v2-section" id="related" aria-labelledby="related-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Compare &amp; explore</p>
+        <h2 class="v2-section-title" id="related-heading">Related guides and solutions</h2>
+        <div id="vs-related-root" aria-live="polite">
+          <noscript><p class="v2-prose">Enable JavaScript to see related pages.</p></noscript>
         </div>
       </div>
     </section>

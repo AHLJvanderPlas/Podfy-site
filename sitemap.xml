@@ -733,6 +733,33 @@
 
   <url><loc>https://podfy.net/vs-scan-apps/</loc><lastmod>2026-06-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/vs-scan-apps/" />
+  </url>
+
+  <url><loc>https://podfy.net/nl/vs-scan-apps/</loc><lastmod>2026-06-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/vs-scan-apps/" />
+  </url>
+
+  <url><loc>https://podfy.net/de/vs-scan-apps/</loc><lastmod>2026-06-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/vs-scan-apps/" />
+  </url>
+
+  <url><loc>https://podfy.net/fr/vs-scan-apps/</loc><lastmod>2026-06-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/vs-scan-apps/" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/vs-scan-apps/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/vs-scan-apps/" />
   </url>
 
