@@ -88,5 +88,8 @@
 /security.html                      /trust#security     301
 /imprint                            /trust#imprint      301
 /imprint.html                       /trust#imprint      301
+/subprocessors                      /trust#subprocessors 301
+/subprocessors.html                 /trust#subprocessors 301
+/dpa                                /trust#privacy       301
 /responsible-disclosure             /trust#disclosure   301
 /responsible-disclosure.html        /trust#disclosure   301
