@@ -1,0 +1,4 @@
+
+# Local Claude Code settings (contains API tokens — never commit)
+.claude/settings.local.json
+.DS_Store
