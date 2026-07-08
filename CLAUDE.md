@@ -95,10 +95,13 @@ Key rules:
 
 ## SEO Rules
 
-- Update `sitemap.xml` when adding/removing pages (25 URLs currently)
+- Update `sitemap.xml` when adding/removing pages (107 URLs currently); no duplicate `<loc>` entries
 - Update `hreflang` on every page when adding locale variants
-- Keep `llms.txt` current with new features
+- Keep `llms.txt` current with new features; regenerate `llms-full.txt` when guide/about content changes (it embeds full page text for LLM ingestion)
 - FAQ schema on all guide pages; BreadcrumbList on solutions + guides
+- Titles ≤ 60 rendered chars, meta descriptions ≤ 155 chars
+- Social image is `assets/og-image.jpg` (28KB). Do not reference `og-image.png` on new pages (kept only so old shared links resolve)
+- **⚠️ Pricing changes must update the static fallback text inside every `data-price-key` span on all 4 locale pricing pages.** The JS fill from `/api/pricing` only runs in browsers; Google, Bing, and LLM crawlers index the static text. Also update the price tables in `llms.txt` and the Offers in the pricing pages' SoftwareApplication JSON-LD (nl/de/fr).
 
 ---
 
@@ -155,6 +158,17 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
 | Design audit items | 🗓 Remaining | Consolidate stylesheets (`styles.css` → `styles.site.css` only); `prefers-reduced-motion` full block for all transitions; social proof section (named customer story) |
 
 ---
+
+## Changes (2026-07-08) — SEO / LLM optimisation pass
+
+- **Meta lengths** — 85 files: 60 over-length descriptions trimmed to ≤155 chars, 25 titles to ≤60 rendered chars
+- **JSON-LD coverage** — 18 previously schema-less pages now have schema: Organization+WebSite (nl+de homepages), ContactPage (contact ×4), WebPage (demo/trust ×4, changelog), SoftwareApplication with 5 Offers (nl/de/fr pricing). Only 404.html has none (intentional)
+- **og-image** — 548KB PNG → 28KB progressive JPEG (`assets/og-image.jpg`); 96 files re-pointed; PNG kept for old shared links
+- **llms-full.txt** — new 70KB file: full text of about, vs-scan-apps, and all 10 EN guides; advertised in robots.txt + llms.txt
+- **llms.txt key facts hardened** — 11 atomic facts (all plan rates, retention, GPS-at-capture, EU-WEUR jurisdiction wording, KVK/VAT, demo link)
+- **sameAs cleanup** — dead Capterra/G2 links removed from Organization schema (re-add when listings exist); LinkedIn kept
+- **NL content** — 3 new pages: `nl/about.html`, `nl/guides/gps-proof-of-delivery/`, `nl/guides/subcontractor-pod/` (NL now has 10 guides, parity with EN); hreflang updated on EN counterparts; 2 cards added to `nl/guides/index.html`
+- **sitemap.xml** — 3 new NL URLs added, 3 pre-existing duplicate entries removed (net 107 URLs, validated)
 
 ## Changes (2026-05-29/30)
 

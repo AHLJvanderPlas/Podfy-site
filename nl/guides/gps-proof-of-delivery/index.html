@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GPS-bewijs van aflevering — Hoe het werkt | PODFY</title>
+  <meta name="description" content="Hoe GPS-gestempeld bewijs van aflevering werkt, waarom het getekende afleverbonnen overtreft bij geschillen en hoe vervoerders het verzamelen zonder app." />
+  <link rel="canonical" href="https://podfy.net/nl/guides/gps-proof-of-delivery/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:title" content="GPS-bewijs van aflevering — Hoe het werkt | PODFY" />
+  <meta property="og:description" content="Hoe GPS-gestempeld bewijs van aflevering werkt, waarom het getekende afleverbonnen overtreft bij geschillen en hoe vervoerders het verzamelen zonder app." />
+  <meta property="og:url" content="https://podfy.net/nl/guides/gps-proof-of-delivery/" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GPS-bewijs van aflevering — Hoe het werkt | PODFY" />
+  <meta name="twitter:description" content="Hoe GPS-gestempeld bewijs van aflevering werkt, waarom het getekende afleverbonnen overtreft bij geschillen en hoe vervoerders het verzamelen zonder app." />
+  <meta name="twitter:image" content="https://podfy.net/assets/og-image.jpg" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/guides/gps-proof-of-delivery/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/guides/gps-proof-of-delivery/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/gps-proof-of-delivery/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/nl/"},
+    {"@type":"ListItem","position":2,"name":"Gidsen","item":"https://podfy.net/nl/guides/"},
+    {"@type":"ListItem","position":3,"name":"GPS-bewijs van aflevering","item":"https://podfy.net/nl/guides/gps-proof-of-delivery/"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"GPS-bewijs van aflevering — Hoe GPS-gestempelde POD werkt","description":"Hoe GPS-gestempeld bewijs van aflevering werkt, waarom het getekende afleverbonnen overtreft bij geschillen en hoe vervoerders het verzamelen zonder app.","url":"https://podfy.net/nl/guides/gps-proof-of-delivery/","inLanguage":"nl","datePublished":"2026-07-08","dateModified":"2026-07-08","author":{"@type":"Organization","name":"PODFY"},"publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Vereist GPS-bewijs van aflevering een smartphone?","acceptedAnswer":{"@type":"Answer","text":"Elke smartphone vanaf 2017 met een camera en een browser volstaat. Een aparte GPS-chip is niet vereist: moderne telefoons gebruiken netwerkondersteunde positionering (zendmasten + wifi + GPS), wat voldoende is om de afleverlocatie te verifiëren."}},
+    {"@type":"Question","name":"Hoe nauwkeurig is GPS-bewijs van aflevering?","acceptedAnswer":{"@type":"Answer","text":"Doorgaans nauwkeurig tot 3 à 10 meter in open gebied. Voldoende om aflevering op een specifiek adres of bij een specifieke poort te bevestigen. In dichtbebouwd stedelijk gebied of grote magazijnen kan de nauwkeurigheid lager zijn; in die gevallen vormen tijdstempel en foto samen voldoende bewijs."}},
+    {"@type":"Question","name":"Kunnen GPS-coördinaten worden vervalst?","acceptedAnswer":{"@type":"Answer","text":"Bij Podfy worden coördinaten server-side vastgelegd bij ontvangst van de upload en vergeleken met de door het toestel gemelde locatie op het moment dat de camera afgaat. Het record is manipulatiebestendig: wijziging zou toegang tot de server vereisen, niet alleen tot het toestel."}},
+    {"@type":"Question","name":"Is GPS-stempeling beschikbaar op alle Podfy-plannen?","acceptedAnswer":{"@type":"Answer","text":"Ja. GPS-stempeling is inbegrepen op alle Podfy-plannen, inclusief Basic. Het is geen uitbreiding."}}
+  ]}
+  </script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Naar inhoud</a>
+  [[PODFY_HEADER]]
+
+  <main id="main" class="v2-main">
+
+    <!-- HERO -->
+    <section class="v2-aud-hero" aria-labelledby="guide-heading">
+      <div class="container">
+        <nav class="v2-breadcrumb" aria-label="Kruimelpad">
+          <a href="/nl/guides/">Gidsen</a> <span aria-hidden="true">/</span>
+          <span aria-current="page">GPS-bewijs van aflevering</span>
+        </nav>
+        <span class="v2-guide-tag" style="margin-bottom:.85rem;display:inline-block;">Bewijs</span>
+        <h1 class="v2-hero-title" id="guide-heading" style="max-width:40rem;">
+          GPS-bewijs van aflevering.<br>
+          <em>Locatiegestempeld, manipulatiebestendig.</em>
+        </h1>
+        <p class="v2-hero-sub" style="max-width:38rem;">
+          Hoe GPS-gestempeld bewijs van aflevering werkt, waarom het getekende afleverbonnen
+          overtreft bij geschillen en hoe vervoerders het verzamelen zonder chauffeursapp.
+        </p>
+      </div>
+    </section>
+
+    <!-- WAT HET IS -->
+    <section class="v2-section" aria-labelledby="what-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="what-heading">Wat GPS-bewijs van aflevering is</h2>
+        <div class="v2-prose">
+          <p>
+            GPS-bewijs van aflevering is een leveringsrecord waarin GPS-coördinaten worden
+            vastgelegd op het moment dat de camera afgaat, niet wanneer het bestand wordt
+            geüpload. De lengte- en breedtegraad worden server-side in het record geschreven
+            en kunnen achteraf niet worden gewijzigd.
+          </p>
+          <p>
+            Dit is belangrijk omdat het de exacte afleverlocatie vaststelt, onafhankelijk van
+            de verklaring van de chauffeur. Een traditionele getekende afleverbon bevestigt
+            alleen dat iemand heeft getekend. Een GPS-gestempeld record bevestigt dat het
+            tekenen plaatsvond op een specifieke fysieke locatie, op een specifiek tijdstip,
+            met het originele bestand ongewijzigd opgeslagen.
+          </p>
+          <p>
+            GPS-stempeling vereist geen speciale hardware. Elke telefoon met een browser en
+            een camera ondersteunt het. De chauffeur opent een link, maakt een foto en de
+            GPS-coördinaten worden automatisch vastgelegd. Geen app, geen account, geen training.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAAROM GPS HANDTEKENINGEN OVERTREFT -->
+    <section class="v2-section" aria-labelledby="why-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="why-heading">Waarom GPS-stempels handtekeningen overtreffen bij geschillen</h2>
+
+        <div class="v2-how-grid" style="margin-top:1.5rem;">
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">01 — Locatie</p>
+            <h3>Handtekeningen bevestigen wie. GPS bevestigt waar.</h3>
+            <p>Een handtekening bevestigt dat iemand heeft getekend. GPS bevestigt dat het
+            tekenen op het afleveradres plaatsvond. Bij een claim "geleverd op de verkeerde
+            locatie" is GPS doorslaggevend; een handtekening niet. Toont het GPS-record
+            coördinaten buiten de afleverlocatie, dan wordt de claim onderbouwd, ongeacht
+            wie heeft getekend.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">02 — Integriteit</p>
+            <h3>GPS-stempels zijn manipulatiebestendig.</h3>
+            <p>Coördinaten worden server-side in het record geschreven op het moment van
+            uploaden. De chauffeur kan ze achteraf niet wijzigen. Een getekende papieren CMR
+            kan worden geantedateerd of vervalst; een GPS-gestempeld digitaal record niet.
+            Het originele bestand wordt ongewijzigd naast de coördinaten opgeslagen; geen
+            nabewerking verandert het bewijs.</p>
+          </div>
+          <div class="v2-how-step">
+            <p class="v2-how-step-num">03 — Dekking</p>
+            <h3>GPS-bewijs werkt voor onbeheerde leveringen.</h3>
+            <p>Onbemande poorten, leveringen op bouwlocaties en leveringen buiten kantooruren
+            leveren geen ondertekenaar op. Een GPS-foto is in die scenario's het enige
+            beschikbare bewijs. Een foto met tijdstempel op de afleverlocatie wordt door de
+            meeste logistieke verzekeraars en rechtbanken als voldoende documentatie
+            geaccepteerd.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOE HET WORDT VERZAMELD -->
+    <section class="v2-section" aria-labelledby="how-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="how-heading">Hoe GPS-gestempelde POD wordt verzameld zonder app</h2>
+        <div class="v2-prose">
+          <p>
+            Het proces verloopt volledig via de browser. De vervoerder stuurt een link via
+            WhatsApp of sms, of print hem als QR-code op de vrachtbrief. Op het afleverpunt
+            opent de chauffeur de link in elke browser, fotografeert de CMR of het afleverpunt
+            en verstuurt.
+          </p>
+          <p>
+            GPS-coördinaten worden vastgelegd op het moment dat de camera afgaat, niet op het
+            moment van uploaden. Dat is het cruciale onderscheid dat de tijdstempel betrouwbaar
+            maakt: een chauffeur die de foto op het afleverpunt maakt en later verstuurt
+            (wanneer hij weer 4G-bereik heeft) produceert nog steeds een record dat de locatie
+            bij aflevering bewijst, niet de locatie bij verzending.
+          </p>
+          <p>
+            Het GPS-gestempelde record verschijnt binnen seconden na de upload in het
+            operationele portaal. De e-mailmelding naar het kantoor van de vervoerder wordt
+            automatisch verstuurd.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAT EEN RECORD BEVAT -->
+    <section class="v2-section" aria-labelledby="record-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="record-heading">Wat een GPS-gestempeld record bevat</h2>
+        <ul class="v2-check-list" style="margin-top:1rem;max-width:36rem;">
+          <li><strong>GPS-coördinaten:</strong> lengte- en breedtegraad op het moment dat de camera afgaat</li>
+          <li><strong>Tijdstempel:</strong> server-side, kan achteraf niet worden gewijzigd</li>
+          <li><strong>Het document:</strong> origineel geüpload bestand, ongewijzigd opgeslagen</li>
+          <li><strong>Referentiekoppeling:</strong> PO- of CMR-referentie koppelt het record aan uw factuur</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- WIE HET NODIG HEEFT -->
+    <section class="v2-section" aria-labelledby="who-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="who-heading">Wie GPS-bewijs van aflevering specifiek nodig heeft</h2>
+        <ul class="v2-check-list" style="max-width:38rem;">
+          <li>Vervoerders met onderaannemernetwerken waar chauffeurs vaak wisselen</li>
+          <li>Verladers die POD binnen enkele uren eisen om factuurgoedkeuring vrij te geven</li>
+          <li>Logistiek dienstverleners die auditklare leveringsarchieven opbouwen voor meerdere klanten</li>
+          <li>Bouwbedrijven met onbeheerde leveringen en onbemande poorten</li>
+          <li>Elke operatie waar "ik heb het geleverd"-geschillen ontstaan zonder ondertekenaar</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="faq-heading">Veelgestelde vragen</h2>
+        <div class="v2-faq-list" style="max-width:40rem;">
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Vereist GPS-bewijs van aflevering een smartphone?</p>
+            <p class="v2-faq-a">Elke smartphone vanaf 2017 met een camera en een browser volstaat. Een aparte GPS-chip is niet vereist: moderne telefoons gebruiken netwerkondersteunde positionering (zendmasten + wifi + GPS), wat voldoende is om de afleverlocatie te verifiëren.</p>
+          </div>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Hoe nauwkeurig is GPS-bewijs van aflevering?</p>
+            <p class="v2-faq-a">Doorgaans nauwkeurig tot 3 à 10 meter in open gebied. Voldoende om aflevering op een specifiek adres of bij een specifieke poort te bevestigen. In dichtbebouwd stedelijk gebied of grote magazijnen kan de nauwkeurigheid lager zijn; in die gevallen vormen tijdstempel en foto samen voldoende bewijs.</p>
+          </div>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Kunnen GPS-coördinaten worden vervalst?</p>
+            <p class="v2-faq-a">Bij Podfy worden coördinaten server-side vastgelegd bij ontvangst van de upload en vergeleken met de door het toestel gemelde locatie op het moment dat de camera afgaat. Het record is manipulatiebestendig: wijziging zou toegang tot de server vereisen, niet alleen tot het toestel.</p>
+          </div>
+          <div class="v2-faq-item">
+            <p class="v2-faq-q">Is GPS-stempeling beschikbaar op alle Podfy-plannen?</p>
+            <p class="v2-faq-a">Ja. GPS-stempeling is inbegrepen op alle Podfy-plannen, inclusief Basic. Het is geen uitbreiding.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GERELATEERDE GIDSEN -->
+    <section class="v2-section" aria-labelledby="related-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Lees verder</p>
+        <h2 class="v2-section-title" id="related-heading">Gerelateerde gidsen</h2>
+        <div class="v2-guide-grid">
+          <a class="v2-guide-card" href="/nl/guides/proof-of-delivery/">
+            <span class="v2-guide-tag">Basis</span>
+            <h3 class="v2-guide-title">Wat is bewijs van aflevering?</h3>
+            <p class="v2-guide-desc">Complete gids over POD-formaten, wettelijke eisen en hoe moderne logistieke teams records verzamelen zonder apps.</p>
+            <span class="v2-guide-arrow">Lees de gids &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/nl/guides/photo-pod/">
+            <span class="v2-guide-tag">Bewijs</span>
+            <h3 class="v2-guide-title">Foto als bewijs van aflevering</h3>
+            <p class="v2-guide-desc">GPS-gestempelde foto's: waarom ze handtekeningen overtreffen bij geschillen en hoe u ze correct vastlegt.</p>
+            <span class="v2-guide-arrow">Lees de gids &rarr;</span>
+          </a>
+          <a class="v2-guide-card" href="/nl/guides/pod-disputes/">
+            <span class="v2-guide-tag">Probleem</span>
+            <h3 class="v2-guide-title">Leveringsgeschillen oplossen</h3>
+            <p class="v2-guide-desc">De bewijshiërarchie voor niet-geleverd-, tekort- en schadeclaims, en waar GPS-stempels daarin staan.</p>
+            <span class="v2-guide-arrow">Lees de gids &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="v2-cta-block" aria-label="Probeer GPS-gestempelde POD">
+      <div class="container">
+        <span class="v2-stamp-mark" aria-hidden="true">GPS-stempel op elke upload</span>
+        <h2>Zie GPS-gestempelde POD<br>in <em>30 seconden.</em></h2>
+        <p>Open de demo op uw eigen telefoon. Fotografeer een willekeurig document. Zie het GPS-gestempelde record direct in het portaal verschijnen.</p>
+        <div class="v2-cta-actions">
+          <a href="/nl/demo" class="v2-btn v2-btn-primary">Probeer de live demo &rarr;</a>
+          <a href="/nl/contact" class="v2-btn v2-btn-ghost">Of plan 15 minuten</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script>
+  (function(){
+    var bar = document.getElementById('v2-progress');
+    if (!bar) return;
+    function upd() {
+      var s = document.documentElement, b = document.body;
+      var h = s.scrollHeight - s.clientHeight || b.scrollHeight - b.clientHeight;
+      var pct = h > 0 ? Math.round((s.scrollTop || b.scrollTop) / h * 100) : 0;
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', upd, {passive: true});
+    upd();
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1726 @@
+# PODFY — full content for LLM ingestion
+
+> This file contains the full text of PODFY's guides and key pages.
+> Index and key facts: https://podfy.net/llms.txt
+
+
+---
+
+# About PODFY
+Source: https://podfy.net/about
+
+About PODFY
+
+##
+Built for the driver on any phone.
+The office on any screen.
+
+PODFY is a proof of delivery platform for European carriers, 3PLs, and shippers.
+GPS-stamped POD without a driver app. No account. No training. EU-hosted.
+
+### What we do
+
+PODFY captures proof of delivery at the moment of handover. The driver opens a link
+on any phone, photographs the signed CMR or delivery note, and the GPS-stamped record
+appears in the operations portal within seconds. No app. No account. No training.
+
+The record contains GPS coordinates captured at the moment the camera fires, not at
+upload time. It cannot be retroactively altered. It is stored in Cloudflare EU-WEUR,
+meaning no data leaves the European Union.
+
+### Why we built it
+
+Subcontractors don't install apps. Employed drivers won't use three different systems.
+Paper CMRs arrive days late, or not at all. Shippers increasingly require GPS-stamped
+digital POD within hours of delivery, while carriers are stuck managing a mix of
+employed staff, rotating subcontractors, and one-off spot carriers.
+
+We built PODFY so that any carrier, on any phone, can provide GPS-stamped delivery
+proof in under 30 seconds, without requiring installation, registration, or training
+on either side of the handover.
+
+### Where we are
+
+Company
+
+KVK: 83714200
+
+VAT: NL862966851B01
+
+Van Weede van Dijkveldstraat 25
+
+2582KP 's-Gravenhage, Netherlands
+
+Contact
+
+support@podfy.net
+
+privacy@podfy.net
+
+Privacy policy
+
+Terms of service
+
+No monthly fee · Pay per POD
+
+### See it working in 30 seconds —or talk to us about your volume.
+
+Open the demo on your own phone. No account, no install. If you want to discuss volume pricing, book 15 minutes and we will prepare a rate card for your operation.
+
+Try the live demo →
+See the rate card
+
+---
+
+# Podfy vs. free scan apps
+Source: https://podfy.net/vs-scan-apps/
+
+Podfy vs. scan apps
+
+##
+Free apps are great at scanningyour own paperwork.
+The problem starts when the documentis in someone else's hands.
+
+When a charter, subcontractor, or driver holds the signed CMR,
+you're chasing scans across email and WhatsApp before you can invoice.
+That's the gap Podfy closes.
+
+- Scan vs. collect
+
+- Comparison table
+
+- Pipeline stages
+
+- When scan apps win
+
+- FAQ
+
+### Scan vs. collect: two different problems
+
+Scan apps solve a personal productivity problem: you have a document,
+you want a digital copy. They work beautifully for that.
+CamScanner, Adobe Scan, and the built-in camera apps are genuinely
+good tools when the paper is in your hand.
+
+Delivery proof is a different problem. The document — a signed CMR,
+a countersigned delivery note — is in the driver's hand, not yours.
+You cannot scan it. You have to ask someone else to send it back,
+and that process has to work reliably for every driver on every run,
+including subcontractors who work for five different principals
+and will not install your app.
+
+Podfy is a collection tool, not a scan tool. You send a link; the driver
+photographs the signed document at the gate; it lands in your portal
+with a GPS timestamp, archived and searchable. You never touch the paper.
+
+- Scan apps: you have the paper, you want a copy
+
+- Podfy: someone else has the paper, you need it back
+
+- No app to install for the driver or charter
+
+- Works for subcontractors on any phone, any carrier
+
+- GPS timestamp added automatically at upload
+
+- One archive per requester, not scattered inboxes
+
+### Side-by-side comparison
+
+All rows below are about collecting a signed document from a third party — a driver,
+charter, or subcontractor. This is not a comparison of scan quality.
+
+Enable JavaScript to see the comparison table, or
+contact us for a walkthrough.
+
+Competitor information is based on publicly available data.
+Pricing and feature details may change — verify with each provider before making a decision.
+
+### From the gate to the invoice: where each tool fits
+
+Getting a signed CMR from the driver to your back-office is an eight-step journey.
+Scan apps only touch one step of it. Onboard computers and driver-app POD tools cover
+more — but only for your own drivers, or drivers willing to install something. The gap
+nobody fills is the middle of the chain for the third party you don't control: the
+subcontractor on his own phone, working for five principals. That's where Podfy lives.
+
+Enable JavaScript to see the pipeline matrix.
+
+### When scan apps are the right choice
+
+If the document is already in your hands and you need a quick digital copy,
+a free scan app is the right tool. They are fast, accurate, and genuinely
+good at what they do. We do not suggest replacing them for personal scanning workflows.
+
+Scan apps are the right tool when:
+
+- You received a paper document and need a digital copy for your own records
+
+- You are scanning your own invoices, contracts, or purchase orders
+
+- No third party needs to initiate or return anything to you
+
+### Frequently asked questions
+
+Enable JavaScript to see the FAQ.
+
+Compare & explore
+
+### Related guides and solutions
+
+Enable JavaScript to see related pages.
+
+No app · Any phone
+
+### See how collection worksin your next dispatch.
+
+Open a real upload link on your phone. No account, no card.
+The full flow in 30 seconds.
+
+Try the live demo →
+Or book 15 minutes
+
+---
+
+# Digital vs Paper Proof of Delivery — Full Comparison
+Source: https://podfy.net/guides/digital-vs-paper/
+
+Guide · Digital vs Paper POD
+
+## Digital vs paper.An honest comparison.
+
+What each approach actually costs in time, money, and dispute risk. Where paper still works. Where it doesn't. And what to look for when evaluating digital options.
+
+- Where paper breaks down
+
+- Full comparison
+
+- Transition guide
+
+- FAQ
+
+### Where paper proof of delivery breaks down
+
+Paper POD worked when freight networks were simpler: a small fleet of employed drivers, fixed routes, and a single depot where documents returned daily. Most logistics operations today don't look like this.
+
+Sub-contractors, multi-carrier networks, international routes, and warehouse-to-store distribution create a document return problem that paper cannot solve. The signed CMR exists at the gate, but getting it back to the office in a searchable, attributable form is where the process falls apart.
+
+The cost of paper POD is not obvious from the invoice side. It shows up in finance team hours spent chasing documents, delayed invoices, DSO inflation, and the occasional write-off of an invoice that couldn't be substantiated. Across a 100-vehicle fleet, this can easily amount to €5,000–€15,000 per month in direct and indirect costs.
+
+Ready to go digital?
+Podfy works alongside your paper process during transition, no rip-and-replace.
+See the demo →
+
+### Paper vs digital: full comparison
+
+Factor Paper POD Digital POD (Podfy)
+
+Document availability 3–7 days after delivery (return loop) Within seconds of upload
+GPS confirmation None, location is unverified GPS captured at moment of camera fire
+Searchability Manual, filing cabinets, scanned PDFs in email Instant, by reference, date, driver, or route
+Works for sub-contractors Driver-dependent, often fails Yes, no app, no account, any phone
+Document damage/loss risk High, paper degrades, gets lost in cabs None, central digital archive
+Signal requirement None, paper doesn't need signal Mobile data at upload point (4G or better)
+Audit retention Physical storage, expensive at scale 7-year digital archive in EU-WEUR region
+Transition cost None, already in use Low, link sent with existing dispatch, parallel running 2–4 weeks
+Legal validity Established for CMR originals GPS-stamped digital record is strong evidence; paper CMR may still be required for cross-border legal compliance
+
+### Transition from paper to digital POD
+
+Phase 01
+
+#### Parallel running
+Send the Podfy link alongside your existing paper process. Drivers who use it get immediate digital capture. Drivers who don't still submit paper as before. No cutover, no forced change.
+
+Phase 02
+
+#### Measure completion
+After 2 weeks, check your portal completion rate. In most operations, 70–90% of drivers will be uploading digitally without any active intervention — they find it easier than paper return.
+
+Phase 03
+
+#### Phase out paper
+Once digital completion rate is stable above 95%, you can formally phase out the paper return process. Keep the CMR originals if legally required; the digital capture handles everything else.
+
+### Frequently asked questions
+
+Is digital proof of delivery better than paper? For most operations: yes. Digital POD eliminates the return-loop delay, makes records searchable, and captures GPS and timestamp automatically. Paper is still viable for very small, single-depot operations, but it scales badly in multi-carrier or subcontractor environments.
+
+What are the main disadvantages of paper proof of delivery? The four main disadvantages: return delay (documents travel back with the driver), no GPS confirmation, not searchable, and physical damage or loss risk. All four become progressively worse as fleet size and network complexity increase.
+
+Does digital POD work for drivers who aren't tech-savvy? Yes, if you choose link-based rather than app-based. Link-based POD requires one action: open a URL and take a photo. No installation, no account creation, no training needed beyond showing the driver where to tap. Works on any phone from 2017.
+
+What happens during the transition from paper to digital? Typically 2–4 weeks of parallel running. You send the Podfy link alongside the paper process, then phase out paper as digital completion rates improve. Most operations reach near-100% digital completion within the first month.
+
+Is it possible to run paper and digital POD simultaneously? Yes. Some operations keep paper CMR originals for legal compliance on cross-border routes while using digital capture for speed and searchability. The digital record handles disputes; the paper original is the legal backup.
+
+Related reading
+
+### Related guides
+Guide
+#### POD without an app
+Why link-based beats app-based for mixed-driver networks.
+Read guide → Guide
+#### What is proof of delivery?
+The complete guide to POD for logistics teams.
+Read guide → Add-on
+#### CMR generator
+Generate CMR and AVC international waybills in the portal. IRU layout. €0.35 per waybill.
+See add-on →
+This affects
+
+### Who this is relevant for
+Transport
+Carriers
+See solution → Digitization
+Paper to digital
+See solution → Operations
+Inbound teams
+See solution →
+Part of the Podfy guide series → What is Proof of Delivery?
+
+#### See how Podfy is evolving
+Get release notes by email when new features ship.
+Subscribe →
+
+Paper → Digital
+### Start digital PODwithout ripping out paper.
+Parallel running. No cutover. 15-minute demo with your own reference numbers.
+Book 15 minutes → Try the demo first
+
+---
+
+# GPS Proof of Delivery — How GPS-Stamped POD Works
+Source: https://podfy.net/guides/gps-proof-of-delivery/
+
+Guides /
+GPS proof of delivery
+
+Evidence
+
+##
+GPS proof of delivery.
+Location-stamped, tamper-evident.
+
+How GPS-stamped proof of delivery works, why it outperforms signed delivery notes
+in disputes, and how carriers collect it without a driver app.
+
+### What GPS proof of delivery is
+
+GPS proof of delivery is a delivery record in which GPS coordinates are captured
+at the moment the camera fires, not when the file is uploaded. The latitude and
+longitude are written to the record server-side and cannot be retroactively altered.
+
+This matters because it establishes the exact delivery location independently of
+the driver's assertion. A traditional signed delivery note confirms only that
+someone signed. A GPS-stamped record confirms that the signing happened at a
+specific physical location, at a specific time, with the original file stored as-is.
+
+GPS stamping requires no specialist hardware. Any phone with a browser and
+camera supports it. The driver opens a link, takes a photo, and the GPS coordinates
+are captured automatically. No app, no account, no training.
+
+### Why GPS stamps outperform signatures in disputes
+
+01 — Location
+
+#### Signatures confirm who. GPS confirms where.
+
+A signature confirms someone signed. GPS confirms the signing happened at
+the delivery address. In a "delivered to wrong location" claim, GPS is decisive;
+a signature is not. If the GPS record shows coordinates outside the delivery site,
+the claim is supported regardless of who signed.
+
+02 — Integrity
+
+#### GPS stamps are tamper-evident.
+
+Coordinates are written to the record server-side at upload time.
+The driver cannot alter them after the fact. A signed paper CMR can be backdated
+or forged; a GPS-stamped digital record cannot. The original file is stored as-is
+alongside the coordinates, no post-processing changes the evidence.
+
+03 — Coverage
+
+#### GPS proof works for unattended deliveries.
+
+Unmanned gates, site drops, and out-of-hours construction deliveries
+produce no available signatory. GPS photo is the only available evidence in
+these scenarios. A timestamped photo at the delivery location is accepted
+by most logistics insurers and courts as sufficient documentation.
+
+### How GPS-stamped POD is collected without an app
+
+The process is entirely browser-based. The carrier sends a link via WhatsApp,
+SMS, or prints it as a QR code on the waybill. At the delivery point the driver
+opens the link in any browser, photographs the CMR or delivery point, and submits.
+
+GPS coordinates are captured at the moment the camera fires, not at upload time.
+This is the crucial distinction that makes the timestamp reliable: a driver who
+takes the photo at the delivery point and submits later (when back in 4G range)
+still produces a record that proves location at delivery, not location at submission.
+
+The GPS-stamped record appears in the operations portal within seconds of upload.
+Email notification fires to the carrier's office automatically.
+
+### What a GPS-stamped record contains
+
+- GPS coordinates: latitude and longitude at moment of camera fire
+
+- Timestamp: server-side, cannot be retroactively altered
+
+- The document: original uploaded file stored as-is
+
+- Reference linkage: PO or CMR reference links the record to your invoice
+
+### Who needs GPS proof of delivery specifically
+
+- Carriers with subcontractor networks where drivers change frequently
+
+- Shippers requiring POD within hours to unlock invoice approval
+
+- 3PLs building audit-ready delivery archives for multiple clients
+
+- Construction companies with unattended site drops and unmanned gates
+
+- Any operation where "I delivered it" disputes arise without a signatory
+
+### Frequently asked questions
+
+Does GPS proof of delivery require a smartphone?
+
+Any smartphone from 2017 with a camera and a browser. No GPS chip is required, modern phones use network-assisted positioning (cell towers + WiFi + GPS) which is sufficient for delivery location verification.
+
+How accurate is GPS proof of delivery?
+
+Typically accurate to 3–10 metres in open areas. Sufficient to confirm delivery to a specific address or site gate. Accuracy may be lower in dense urban areas or large warehouses, in those cases the timestamp and photo together provide sufficient evidence.
+
+Can GPS coordinates be faked?
+
+With Podfy, coordinates are captured server-side when the upload is received and cross-referenced with the device's reported location at the moment the camera fires. The record is tamper-evident, altering it would require access to the server, not just the device.
+
+Is GPS stamping available on all Podfy plans?
+
+Yes. GPS stamping is included on all Podfy plans including Basic. It is not an add-on.
+
+Read more
+
+### Related guides
+
+Foundation
+
+#### What is proof of delivery?
+
+Complete guide to POD formats, legal requirements, and how modern logistics teams collect records without apps.
+
+Read guide →
+
+Evidence
+
+#### Photo proof of delivery
+
+GPS-stamped photos, why they outperform signatures in disputes and how to capture them correctly.
+
+Read guide →
+
+Problem
+
+#### Resolving delivery disputes
+
+The evidence hierarchy for non-delivery, shortage, and damage claims, and where GPS stamps sit in it.
+
+Read guide →
+
+GPS stamp on every upload
+
+### See GPS-stamped PODin 30 seconds.
+
+Open the demo on your own phone. Photograph any document. Watch the GPS-stamped record appear in the portal immediately.
+
+Try the live demo →
+Or book 15 minutes
+
+---
+
+# Missing Proof of Delivery — What to Do
+Source: https://podfy.net/guides/missing-pod/
+
+Guide · Missing Proof of Delivery
+
+##
+The POD is missing.
+Here's what to do.
+
+Recovery steps, root cause analysis, and how to prevent missing PODs from blocking invoices and escalating into disputes. Practical guidance for carriers, shippers, and inbound teams.
+
+- Why PODs go missing
+
+- Immediate steps
+
+- Invoice impact
+
+- Prevention
+
+- FAQ
+
+### Why proof of delivery documents go missing
+
+Most POD losses trace to the same root cause: the document was created at the delivery point but had to physically travel back to the office. That journey is where things break down.
+
+The paper return loop. A driver signs the CMR at the gate, keeps a copy in the cab, and returns to depot eventually, sometimes days later, sometimes on a different vehicle, sometimes not at all if the driver changes route mid-week. The 48–120 hour gap is where the document disappears.
+
+Sub-contracted delivery segments. If a 3PL hands a shipment to a sub-carrier for the final leg, the POD process is now outside your direct control. Sub-drivers may use different systems, lose paper, or simply not return documents through your channel.
+
+Informal workarounds. WhatsApp photos of signed CMRs are common but unreliable, untagged, impossible to search, and easily missed in a busy chat thread. Email attachments go to inboxes that aren't monitored or searchable by reference.
+
+- Paper return loop: 48–120 hour delay
+
+- Sub-carrier handoffs break the document chain
+
+- WhatsApp photos: unstructured and unsearchable
+
+- Driver turnover: departing driver takes the documents
+
+- Multi-stop routes: wrong copies returned for wrong deliveries
+
+- No reference on the document: can't match to the invoice
+
+Prevent every future missing POD
+
+Podfy captures GPS and document at the gate, before the truck moves.
+
+See the demo →
+
+### Immediate recovery steps
+
+Step 01
+
+#### Contact the driver directly
+
+If you know which driver handled the delivery, ask immediately. Many missing PODs are still in the cab, unsent, unfiled. Request a photo via WhatsApp as a stopgap while you arrange a formal copy.
+
+Step 02
+
+#### Ask the consignee
+
+The receiving party may have their copy of the signed CMR or delivery note. A written email confirmation from the consignee stating date, time, and reference can substitute as secondary evidence in most commercial disputes.
+
+Step 03
+
+#### Check digital records
+
+If you use a TMS, carrier portal, or any upload system, check for any digital record under the shipment reference. Even an incomplete or low-quality record is better than nothing when a customer disputes payment.
+
+### How missing PODs affect invoicing
+
+The direct financial impact of a missing POD is an invoice put on hold. In most B2B logistics relationships, the customer's accounts payable team will not approve a freight invoice without delivery confirmation. For a carrier running €300,000/month in freight, a 5% POD gap means €15,000 in invoices are delayed at any given time.
+
+The secondary impact is dispute escalation. A missing POD that cannot be recovered within 2 weeks typically becomes a formal dispute. Resolution involves your commercial team, the customer's procurement team, and sometimes external mediation, all for a document that cost €0 to capture digitally at the gate.
+
+For finance teams, the metric to watch is Days Sales Outstanding (DSO). Every day a POD is missing adds to DSO for that invoice. Operations with poor POD capture rates consistently show higher DSO than the industry average.
+
+### Preventing missing PODs
+
+Paper process
+
+- Driver takes paper copy from gate
+
+- CMR lives in cab for days
+
+- Document return depends on driver diligence
+
+- Sub-carrier handoffs break the chain
+
+- Invoice held until document arrives
+
+Digital (Podfy)
+
+- Driver uploads at the gate via link
+
+- GPS-stamped record in portal within seconds
+
+- No return loop: document is already central
+
+- Works for sub-carriers: no app required
+
+- Invoice ready the same day
+
+### Frequently asked questions
+
+Why do proof of delivery documents go missing?
+The most common cause is the paper return loop: signed documents travel with the driver back to depot, get separated in the cab, or are never scanned. Sub-contracted drivers, multi-leg routes, and high-turnover fleets are the highest-risk segments.
+
+Can a missing POD be recovered after the fact?
+Sometimes. The fastest recovery is to contact the consignee for a delivery confirmation or to ask the driver for a photo from their phone. If you use Podfy, the GPS-stamped upload record serves as primary evidence even if the paper original is lost.
+
+How long does a missing POD typically delay invoicing?
+Typically 5–14 days for smaller operations, and longer for enterprise customers with formal AP processes. In contested cases where the POD cannot be recovered, resolution can take 4–8 weeks.
+
+Does a GPS timestamp count as proof if the paper POD is lost?
+In most commercial dispute contexts, yes. A GPS-stamped photo upload with a timestamp and reference number is stronger evidence than a paper signature that cannot be located. It confirms location, time, and document content in one record.
+
+What is the best way to prevent missing PODs?
+Capture proof at the moment of delivery, before the driver leaves the gate. A link-based system like Podfy captures GPS coordinates and the upload file at the delivery point, eliminating the return-loop failure mode entirely. Works for subcontractors with no training or app install required.
+
+Related reading
+
+### Related challenges
+
+Guide
+
+#### Resolving delivery disputes with POD evidence
+
+When a missing POD turns into a formal dispute, how to handle it.
+
+Read guide →
+
+Guide
+
+#### POD and invoicing: the cash flow link
+
+How missing PODs affect DSO and what finance teams can do about it.
+
+Read guide →
+
+This affects
+
+### Who this is relevant for
+
+Transport
+Carriers
+See solution →
+Supply chain
+Shippers
+See solution →
+Logistics
+3PLs
+See solution →
+
+Part of the Podfy guide series → What is Proof of Delivery?
+
+#### See how Podfy is evolving
+Get release notes by email when new features ship.
+Subscribe →
+
+No app · EU hosted
+### Stop chasing PODs.Capture them at the gate.
+Fifteen minutes. We'll show you the upload flow for your network type.
+Book 15 minutes → Try the demo first
+
+---
+
+# Photo Proof of Delivery — Visual Evidence
+Source: https://podfy.net/guides/photo-pod/
+
+Guide · Photo Evidence
+
+## Photo proof of delivery.Your strongestdispute defence.
+
+Why GPS-stamped photos outperform signatures in commercial disputes, how to document unattended deliveries and damage at handover, and what makes photo evidence court-admissible.
+
+- Photo vs signature
+
+- Unattended deliveries
+
+- Damage documentation
+
+- Chain of custody
+
+- FAQ
+
+### Photo vs signature: which wins in a dispute?
+
+A signature on a CMR confirms that someone received something at some point . It does not show what condition the goods were in, whether the quantity was correct, or where exactly the handover took place. In the most common disputes, damaged goods, short delivery, wrong location, a signature answers none of the questions.
+
+A GPS-stamped photo answers all three. It shows the physical state of the goods at the moment of delivery, the location where they were placed, and the timestamp of the handover. This is why GPS-stamped photo evidence consistently outperforms signature-only documentation in Dutch and Belgian commercial proceedings.
+
+Signatures still have value: they demonstrate consent to receive. Best practice is to capture both, but where only one is possible (unattended delivery, subcontractor handover, no printer available), the photo is the stronger record.
+
+Evidence type Signature only GPS photo (Podfy)
+
+Proves delivery occurred Yes Yes
+Shows condition of goods No Yes
+Confirms delivery location No Yes, GPS coords
+Works for unattended delivery No Yes
+Works for subcontractors Inconsistent Yes, any phone
+Tamper-evident timestamp No Yes, server-stored
+
+GPS photo POD, no app required
+Drivers open a link, take a photo. GPS and timestamp are captured automatically.
+See the demo →
+
+### Documenting unattended deliveries
+
+Unattended delivery, dropping goods at a gate, a loading bay, a parcel locker, or a construction site without a recipient present, is one of the highest-risk scenarios in last-mile logistics. There is no signature, no counter-party acknowledgement, and no way to verify delivery after the driver has left. The only evidence is what the driver captures at the moment of placement.
+
+A GPS-stamped photo solves this completely. The photo shows the goods in place, the timestamp confirms when, and the GPS coordinates confirm where. If a receiver later claims non-delivery, the photo record answers the dispute immediately, without driver recall or paper trail reconstruction.
+
+For construction site deliveries, this matters even more. Multiple subcontractors may access a site; goods can move between the drop and the morning shift. A timestamped photo at the moment of placement establishes what was delivered and where, before anything else touches it.
+
+Capture 01
+
+#### Goods in place
+Photo shows the delivery clearly positioned at the agreed drop point. Quantity visible. No damage visible at time of placement. Location recognisable from the image.
+
+Capture 02
+
+#### Location marker
+A second photo showing the address, gate number, bay label, or recognisable landmark confirms that the drop point matches the delivery instruction. Useful when GPS alone is insufficiently precise.
+
+Capture 03
+
+#### Secure placement
+For high-value or weather-sensitive goods: a photo showing the goods protected (under cover, secured, or locked in a designated area) supports the driver's duty-of-care and limits liability for post-delivery damage.
+
+### Damage and condition documentation at handover
+
+Damage claims are the most expensive delivery disputes. The question is always the same: was the damage present at the time of delivery, or did it occur afterwards? Without photo evidence at handover, neither party can answer this definitively, and the dispute defaults to the party with the more credible argument.
+
+Photo documentation at handover shifts this entirely. If goods arrive damaged, the driver photographs the damage before unloading. If goods arrive undamaged, the photo confirms their condition at delivery. Either way, the record is created at the moment that matters.
+
+For drivers: photographing damage protects against false claims. A GPS-stamped photo of damaged packaging, taken before the goods enter the receiver's premises, establishes that the damage was visible at handover and the driver reported it correctly.
+
+For shippers and 3PLs: condition photos at every handover point allow damage to be attributed to the correct leg of the journey, carrier transit, final delivery, or post-delivery handling. This is critical for insurance claims and carrier liability disputes under the CMR Convention.
+
+- Photograph damage before unloading: establishes pre-delivery state
+
+- Capture packaging condition, not just contents
+
+- Multiple angles for significant damage
+
+- Annotate with delivery issue code in Podfy (damage / shortage / refusal)
+
+- GPS timestamp cannot be backdated: tamper-evident record
+
+- Photo + issue code triggers automatic notification to shipper in Podfy
+
+### Chain-of-custody photography
+
+In multi-leg shipments, warehouse to cross-dock, cross-dock to final delivery, damage can occur at any transfer point. Without photo evidence at each handover, it is impossible to attribute responsibility. The carrier at the end of the chain bears the claim, even if the damage occurred earlier.
+
+Chain-of-custody photography means capturing the state of goods at every handover: outbound loading, inbound receiving at each depot, and final delivery. Each photo record is GPS-stamped and timestamped, creating an unbroken visual audit trail.
+
+Podfy supports multiple photo uploads per reference. A shipment can have an outbound loading photo, a transit transfer photo, and a final delivery photo, all linked by the same PO number or CMR reference. If a damage claim arises, the chain of photos shows exactly where condition changed.
+
+Multi-file upload and PDF merge. When multiple photos are captured for a single delivery, damage from different angles, goods in place plus address label plus condition close-up, all files can be uploaded together under one reference. Podfy merges them into a single branded PDF: one document per delivery, regardless of how many images were captured. The resulting PDF has a consistent header (brand, reference, timestamp) and footer (Podfy ID, page count), making it clean to attach to an invoice dispute or audit package.
+
+### Frequently asked questions
+
+Does photo proof of delivery replace a signed CMR? In most commercial disputes: yes. A GPS-stamped photo is more persuasive because it shows the physical state of goods and location at delivery, things a signature doesn't capture. For international CMR compliance, the paper CMR may still be legally required. Best practice: capture both, use the photo for disputes.
+
+What should a photo proof of delivery capture? At minimum: goods at the delivery point (condition and quantity visible), any damage present at handover, and the delivery location. For unattended deliveries: secure placement of the goods. GPS and timestamp are captured automatically by Podfy at the moment of upload.
+
+How does GPS-stamping work in Podfy? When the driver opens the Podfy link and uploads, the browser captures GPS coordinates at that moment. These are stored server-side, not in the image EXIF, which can be stripped, with a verified timestamp. The location data is tamper-evident and exportable for audit purposes.
+
+Can photo POD be used for unattended deliveries? Yes, this is one of the strongest use cases. A GPS-stamped photo of goods placed at an unattended drop point is the only verifiable evidence of delivery when no signature is possible. Construction sites, side gates, parcel lockers, and out-of-hours drops all benefit from photo POD.
+
+What is chain-of-custody photography? Capturing the state of goods at every handover point in a multi-leg shipment: loading, transfer, and final delivery. Each photo is GPS-timestamped and linked to the same reference. If damage is claimed, the chain of photos shows where and when it occurred, or proves it didn't happen during your leg.
+
+Is photo evidence accepted in Dutch and Belgian courts? Yes, for commercial disputes. GPS-stamped, server-timestamped photos from a third-party system are accepted as reliable evidence in Dutch and Belgian commercial proceedings. The key factors: the timestamp is stored server-side (not in the image), GPS coordinates are independently verified, and Podfy provides exportable audit records.
+
+Related reading
+
+### Related guides
+Guide
+#### Resolving delivery disputes
+When photo evidence becomes the deciding factor in a dispute.
+Read guide → Guide
+#### Missing proof of delivery
+What to do when the delivery record was never captured.
+Read guide →
+This affects
+
+### Who this is relevant for
+Transport
+Carriers
+See solution → Retail
+Retail teams
+See solution → Construction
+Site deliveries
+See solution →
+Part of the Podfy guide series → What is Proof of Delivery?
+
+#### See how Podfy is evolving
+Get release notes by email when new features ship.
+Subscribe →
+
+GPS stamped · No app
+### Photo evidence that holds up.From any phone.
+Drivers open a link, take a photo. GPS and timestamp captured. No app to install.
+Book 15 minutes → Try the demo first
+
+---
+
+# Proof of Delivery Compliance and Audit Retention
+Source: https://podfy.net/guides/pod-compliance/
+
+Guide · Compliance & Audit
+
+## How long must you keepproof of delivery?Answered.
+
+Retention requirements for Dutch and Belgian logistics operations, what makes a delivery record audit-ready, and how to build a compliant archive without adding complexity.
+
+- Retention requirements
+
+- GDPR and data residency
+
+- Audit-ready records
+
+- FAQ
+
+### Retention requirements for logistics businesses
+
+Netherlands (Belastingdienst). Dutch tax law (Wet op de omzetbelasting and Algemene wet inzake rijksbelastingen) requires financial and commercial records, including delivery documentation used as the basis for invoicing, to be retained for 7 years. Records must be accessible and legible for tax inspection.
+
+Belgium. Belgian commercial record-keeping (Code des sociétés et des associations) requires 7-year retention for accounting documents. VAT-related records, including those documenting supply of services, must be accessible for Belgian tax authority review.
+
+CMR Convention. For cross-border road freight under the CMR Convention, claims must be brought within 1 year (3 years for fraudulent acts). While this is shorter than domestic retention requirements, best practice is to retain CMR records for the full 7-year commercial retention period.
+
+- 7-year retention required in NL and BE
+
+- Records must be accessible and legible
+
+- Digital records are accepted if they meet integrity requirements
+
+- CMR 1-year claim window; 3-year fraud window
+
+- EU GDPR applies to any personal data in delivery records
+
+- Data residency: EU-hosted for GDPR compliance
+
+7-year EU archive, included
+Every Podfy record is stored in EU-WEUR with full audit export capability.
+See the demo →
+
+### GDPR and data residency
+
+Delivery documents often contain personal data: driver names, vehicle license plates, GPS locations tied to individuals, and customer contact information. Under GDPR, this data must be processed and stored in accordance with the Regulation, and for organizations subject to Dutch or Belgian law, storage within the EU is strongly preferred.
+
+All data stored via Podfy is processed in Cloudflare's EU-WEUR (Western Europe) region. No data crosses EU borders. This satisfies Dutch and Belgian GDPR data residency expectations without requiring a supplementary legal instrument (SCC).
+
+For procurement and compliance purposes, Podfy provides a Data Processing Agreement (DPA). This is required if you process personal data of EU residents on behalf of a controller, for example, if you are a 3PL processing delivery records on behalf of shipper clients.
+
+### What makes a delivery record audit-ready
+
+Element 01
+
+#### The document
+A legible copy of the signed CMR, delivery note, or photo evidence. Must be retrievable on request. Podfy stores the original uploaded file, not a re-processed version.
+
+Element 02
+
+#### Timestamp and GPS
+The exact time of delivery and the GPS coordinates, captured at the moment of upload. These establish that the document was created at the delivery point at a specific time — not fabricated after the fact.
+
+Element 03
+
+#### Reference linkage
+The record must be linkable to the invoice and purchase order. A consistent reference system (PO number, shipment ID, or CMR number) in the upload means every record can be retrieved by the identifier your finance team uses.
+
+### Frequently asked questions
+
+How long must POD documents be retained in the Netherlands and Belgium? 7 years in both jurisdictions for commercial and financial records. CMR documents for cross-border freight have a 1-year claims window but best practice is to retain for the full 7-year period. Podfy's 7-year archive option covers both requirements.
+
+Does Podfy store data in the EU? Yes. All data is stored in Cloudflare's EU-WEUR (Western Europe) region. No data leaves the EU. A Data Processing Agreement is available for organizations with formal GDPR compliance requirements.
+
+What counts as an audit-ready delivery record? An audit-ready record includes: the document itself (signed CMR or delivery note), a timestamp, GPS coordinates confirming location, and a reference linking it to the invoice or PO. All four are captured automatically in every Podfy submission.
+
+Can Podfy records be exported for an audit package? Yes. Delivery records can be exported as PDFs from the portal, individually or in bulk by date range or reference prefix. This is typically what Belastingdienst or Belgian FSMA inspections require.
+
+Is GPS-stamped digital evidence accepted in Dutch and Belgian courts? Generally yes for commercial disputes. GPS-stamped, timestamped digital records created by a third-party system are considered reliable evidence in Dutch and Belgian commercial proceedings. They supplement, and often replace, paper CMR originals in dispute resolution.
+
+Related reading
+
+### Related guides
+Guide
+#### POD and invoicing
+How POD connects to invoice approval and cash flow.
+Read guide → Guide
+#### Resolving delivery disputes
+When an audit trail becomes evidence in a dispute.
+Read guide →
+This affects
+
+### Who this is relevant for
+Logistics
+3PLs
+See solution → Retail
+Retail teams
+See solution → Construction
+Site deliveries
+See solution →
+Part of the Podfy guide series → What is Proof of Delivery?
+
+#### See how Podfy is evolving
+Get release notes by email when new features ship.
+Subscribe →
+
+EU hosted · 7yr archive
+### Audit-ready on day one.No filing cabinets.
+Fifteen minutes. We will show you the portal, export function, and DPA process.
+Book 15 minutes → Try the demo first
+
+---
+
+# Resolving Delivery Disputes with Proof of Delivery
+Source: https://podfy.net/guides/pod-disputes/
+
+Guide · POD Disputes
+
+## Delivery dispute.Closed in three clicks.
+
+How to handle not-delivered, shortage, and damage claims using POD evidence, and how to build a process that stops most disputes from escalating at all.
+
+- Dispute types
+
+- What counts as evidence
+
+- Resolution process
+
+- Prevention
+
+- FAQ
+
+### The three types of delivery dispute
+
+Type 01
+
+#### Not delivered
+The consignee claims the goods never arrived. This is the dispute where GPS coordinates are most valuable — they confirm the truck was physically at the delivery address at a specific time.
+
+Type 02
+
+#### Shortage
+Fewer units were delivered than invoiced. A photo of the delivery, the signed CMR, and the exact reference on the document are needed. Without photo evidence, shortage claims are almost impossible to defend or disprove.
+
+Type 03
+
+#### Damage
+Goods arrived in unacceptable condition. A photo taken at the gate — before the driver leaves — documenting the condition at the point of delivery is the key evidence. Without a timestamped photo, responsibility for damage is almost impossible to establish.
+
+Dispute-proof every delivery
+GPS + timestamp + photo. Captured before the truck moves.
+See the demo →
+
+### What counts as proof in a delivery dispute
+
+The strength of your dispute evidence depends on what was captured and when. From weakest to strongest:
+
+Delivery note on file (no photo). A paper delivery note that was scanned days later is weak evidence, it proves the document exists but not where or when the delivery occurred.
+
+Photo of signed CMR. A photo of the signed delivery document, even via WhatsApp, is stronger, it shows signature and document content.
+
+GPS-stamped digital upload. The strongest evidence: a photo or PDF upload where GPS coordinates are captured at the moment of camera fire, with a timestamp that cannot be altered after the fact. This confirms location, time, and document content in one tamper-resistant record.
+
+For shortage disputes, a photo of the goods at delivery, showing quantity and condition, is what turns a "my word vs your word" situation into a settled matter.
+
+### How to respond to a delivery dispute
+
+01
+
+#### Retrieve the POD immediately
+Search the Podfy portal by shipment reference or date. If the driver submitted via link, the GPS-stamped record is there within seconds of submission — even if the dispute comes weeks later.
+
+02
+
+#### Share the record directly
+Export the PDF or share the portal link with the disputing party. The GPS coordinates, timestamp, and scanned document are in one place. No assembly required.
+
+03
+
+#### Escalate if needed
+If the consignee noted exceptions on the CMR at signing, assess whether the damage or shortage was pre-existing or occurred in transit. Your photos from the gate — before delivery — and from loading — before transit — are the two key comparison points.
+
+### Building a dispute-resistant delivery process
+
+Dispute-prone
+
+- Paper CMR returned days later
+
+- No photo of goods at delivery
+
+- Reference missing or wrong on document
+
+- WhatsApp photo: unstructured, hard to find
+
+- Customer disputes with no counter-evidence
+
+Dispute-resistant
+
+- Digital upload at the gate, before truck moves
+
+- Photo of document + goods in same submission
+
+- Reference pre-populated from dispatch link
+
+- GPS-stamped, timestamped, searchable portal
+
+- Dispute closed in one email with one link
+
+### Frequently asked questions
+
+What types of delivery disputes are most common? The three most common types are 'not delivered', shortage, and damage. All three can be defended with clear POD evidence showing GPS location, timestamp, and document content.
+
+What evidence is needed to resolve a delivery dispute? At minimum: a signed delivery note or CMR with a timestamp and GPS coordinates. A photo of the signed document plus a photo of the goods at delivery is the strongest combination for shortage or damage claims.
+
+How quickly can a dispute be resolved with digital POD? With digital POD in the portal, most disputes resolve in hours. You share the GPS-stamped record, timestamp, and photo directly without any manual retrieval.
+
+Can a customer dispute a delivery if they signed the CMR? Yes, but it is much harder for them to succeed. A signed CMR establishes a prima facie case that delivery occurred. Exceptions noted on the CMR at signing become the basis for shortage or damage claims.
+
+What if the driver submitted proof but the customer still disputes? Share the Podfy portal record, GPS coordinates, timestamp, and uploaded document. This is captured at the moment of delivery, not upload, so it cannot be manipulated after the fact. This combination typically closes the dispute without escalation.
+
+Related reading
+
+### Related challenges
+Guide
+#### What to do when a POD goes missing
+Recovery steps before the dispute becomes formal.
+Read guide → Guide
+#### Photo proof of delivery
+Why photos at delivery are the strongest dispute evidence.
+Read guide → Guide
+#### POD and invoicing
+How disputes block invoice approval and what to do about it.
+Read guide →
+
+This affects
+
+### Who this is relevant for
+Transport
+Carriers
+See solution → Supply chain
+Shippers
+See solution → Retail
+Retail teams
+See solution →
+
+Part of the Podfy guide series → What is Proof of Delivery?
+
+#### See how Podfy is evolving
+Get release notes by email when new features ship.
+Subscribe →
+
+GPS · Photo · EU hosted
+### Resolve disputes in minutes,not weeks.
+Fifteen minutes. We will show you a dispute scenario and how the portal responds.
+Book 15 minutes → Try the demo first
+
+---
+
+# Proof of Delivery and Invoicing — Cash Flow
+Source: https://podfy.net/guides/pod-invoicing/
+
+Guide · POD and Finance
+
+## No POD.No invoice approval.It's that simple.
+
+How missing proof of delivery stalls cash flow, inflates DSO, and what finance and operations teams can do to fix the root cause, not just chase individual documents.
+
+- POD and invoicing
+
+- DSO impact
+
+- Calculate your gap
+
+- Fix the root cause
+
+- FAQ
+
+### How POD connects to invoice approval
+
+In most B2B logistics relationships, the POD document is the trigger for invoice payment. The customer's accounts payable team will not approve a freight invoice until they can confirm receipt. This is not a bureaucratic choice, it is standard procurement policy in most medium and large enterprises.
+
+For the carrier or supplier side, this creates a direct dependency: you cannot get paid until you can prove delivery. The faster you can provide proof, the faster you get paid. A 5-day POD delay is a 5-day cash flow delay, consistently, on every affected invoice.
+
+The POD is not administrative overhead. It is the payment trigger.
+
+- Most enterprise AP teams require POD before approval
+
+- 48–72 hour POD SLAs are common in logistics contracts
+
+- Missing POD = invoice on hold, regardless of delivery status
+
+- Each day of delay adds to DSO
+
+- Disputed invoices take 4–8 weeks to resolve
+
+- Finance teams lose visibility: are invoices held or lost?
+
+Trigger invoices the same day
+Driver uploads at the gate. POD is ready before the invoice is sent.
+See the demo →
+
+### The DSO impact of a POD gap
+
+Days Sales Outstanding (DSO) measures how long it takes from issuing an invoice to receiving payment. A POD gap, where a percentage of deliveries don't have confirmed proof, creates a systematic DSO inflation that is invisible in most accounting systems until you look for it.
+
+Example: a carrier with €300,000/month in revenue, 5% POD gap, and 30-day payment terms is typically sitting on €7,500–€15,000 in invoices that are held specifically because of missing PODs. This is working capital that could be in your account.
+
+The hidden cost is not just the delayed payment, it is the time your finance team spends chasing each case individually, the risk of invoice disputes escalating into write-offs, and the customer relationship strain of repeatedly asking clients to approve invoices without complete documentation.
+
+### Calculate your POD gap cost
+
+Input 01
+
+#### Average daily billing
+Take your monthly freight revenue and divide by working days. Example: €300,000/month ÷ 22 days = €13,600/day average billing.
+
+Input 02
+
+#### POD gap percentage
+What percentage of your deliveries currently have no confirmed proof? Even 3–5% is significant. Sub-contractor-heavy routes typically run 10–20%.
+
+Result
+
+#### Working capital on hold
+Daily billing × POD gap % × average delay days = weekly working capital held up by missing PODs. A 5% gap at 7 days delay = 2.5% of weekly revenue tied up.
+
+### Fixing the root cause, not the symptoms
+
+Symptom treatment
+
+- Finance team chases driver after the fact
+
+- Dispatch team calls consignee for confirmation
+
+- Manual emails to AP to explain missing documents
+
+- Invoice put on partial hold pending full POD
+
+- Same problem repeats next week
+
+Root cause fix
+
+- Link sent with dispatch: driver uploads at gate
+
+- POD in portal before the invoice is prepared
+
+- No chasing: proof arrives automatically
+
+- Finance sees complete POD list by end of day
+
+- Invoice approval cycle matches delivery cycle
+
+### Frequently asked questions
+
+Why do logistics companies need POD before issuing an invoice? Most B2B customers will not approve a freight invoice without delivery confirmation. The POD is the trigger that moves the invoice from 'in progress' to 'payable'. Without it, the invoice sits in dispute regardless of whether the delivery was completed.
+
+How does a missing POD affect Days Sales Outstanding? Every invoice on hold adds to DSO. A carrier with a 5% POD gap and 30-day payment terms can expect an effective DSO of 35–45 days on affected invoices. For a business billing €300,000/month, this represents up to €75,000 in delayed receivables at any time.
+
+Can we issue an invoice before the POD is received? You can issue the invoice, but the customer's AP team will put it on hold until POD is provided. Issuing without POD just moves the delay downstream, it does not speed up payment.
+
+What is the fastest way to get same-day POD for invoicing? Capture it at delivery. With Podfy, the driver uploads at the gate and the GPS-stamped document is in your portal within seconds, the invoice trigger is available the same day, not 3–5 days later.
+
+How do I calculate the cost of my POD gap? Average daily billing × POD gap % × average delay days = weekly working capital held. Example: €13,600/day × 5% × 7 days = €4,760 in working capital tied up per week from missing PODs alone.
+
+Related reading
+
+### Related challenges
+Guide
+#### Resolving delivery disputes
+When invoice holds turn into formal disputes.
+Read guide → Guide
+#### What to do when a POD is missing
+Recovery steps before it blocks the invoice.
+Read guide → Guide
+#### POD compliance and audit retention
+How long you need to keep PODs and how to do it efficiently.
+Read guide →
+This affects
+
+### Who this is relevant for
+Transport
+Carriers
+See solution → Supply chain
+Shippers
+See solution → Logistics
+3PLs
+See solution →
+Part of the Podfy guide series → What is Proof of Delivery?
+
+#### See how Podfy is evolving
+Get release notes by email when new features ship.
+Subscribe →
+
+Same-day POD
+### Invoice on the dayof delivery.
+Fifteen minutes. We will walk through the invoicing workflow and portal search.
+Book 15 minutes → Try the demo first
+
+---
+
+# Proof of Delivery Without an App — Complete Guide
+Source: https://podfy.net/guides/pod-without-app/
+
+Guide · No-App POD
+
+##
+Proof of delivery
+without an app — or a login.
+
+Why app-based POD collection fails in mixed-driver environments, and how modern operations collect reliable proof from every driver, employed, subcontracted, or temp, with nothing to install.
+
+- The app problem
+
+- Link-based POD
+
+- For subcontractors
+
+- FAQ
+
+### Why apps fail for mixed-driver operations
+
+App-based proof of delivery works when you have a fixed fleet of employed drivers on company phones running current software. For everyone else, it breaks down.
+
+Subcontractors work for multiple hauliers and won't install a different app for each one. Temporary drivers won't spend their first shift navigating an onboarding flow. Older Android phones, which make up a significant share of fleet phones in Benelux, can't run current app versions. The result: completion rates of 50–60% in mixed-driver environments, with the missing 40–50% being exactly the high-risk deliveries that end up disputed.
+
+The problem isn't the driver. It is the friction. Remove the install requirement, and completion rates return to near 100%.
+
+- Subcontractors won't install carrier-specific apps
+
+- Temp staff have no time for onboarding
+
+- Old Android devices can't run current versions
+
+- Multi-carrier drivers can't juggle 5 different apps
+
+- Signal failures cause upload failures on many apps
+
+- IT approval delays rollout by weeks
+
+See it in action
+
+One link, one photo, one tap. Watch the upload in 11 seconds.
+
+Try the demo →
+
+### How link-based POD collection works
+
+01 — Dispatch
+
+#### Send a URL with the job
+
+When you assign a route or shipment, include the Podfy link in your dispatch message, WhatsApp, SMS, or TMS note. One URL per shipment reference. The driver needs nothing else.
+
+02 — At the gate
+
+#### Open in any browser, tap once
+
+The driver opens the link, takes a photo of the signed CMR, and taps send. GPS captures at the moment the camera fires. Works on any phone from 2017 onwards, iOS, Android, old or new.
+
+03 — Instantly
+
+#### Stamped PDF in your portal
+
+Your ops team receives an email notification. The document is GPS-stamped, timestamped, and searchable by reference. No re-entry, no chasing, no format conversion.
+
+#### Comparison: App vs link-based POD
+
+Factor App-based POD Link-based (Podfy)
+
+Driver onboarding Install app, create account, training session Zero, open link and photograph
+Works for subcontractors No, they won't install your app Yes, any browser, no account
+Device requirement Compatible phone, current OS Any phone with a camera from 2017+
+No-signal behaviour Upload fails, timestamp lost Queues, uploads when signal returns; original timestamp preserved
+IT approval required Often yes (MDM, app store policy) No, it's a web page
+
+### Specific to subcontractor networks
+
+If you run a carrier operation where 30–70% of your routes are covered by subcontracted drivers, the POD gap is likely concentrated there. Subcontractors work for multiple principals, they will not install and maintain separate apps for each one. The economics don't work for them, and the enforcement doesn't work for you.
+
+With Podfy, the link is job-specific. The subcontractor receives the link per shipment, opens it at delivery, and their phone becomes your GPS camera. There is no registration, no ongoing relationship required between the driver's device and your systems. After the upload, the link is consumed.
+
+Your dispatch team can send the link inside any existing message: a TMS job number, a WhatsApp route instruction, an SMS to the driver's personal phone. The process change is zero for dispatch and near-zero for the driver.
+
+Driver self-copy. If the driver enters their own email address at upload, Podfy sends them a branded PDF confirmation automatically, their own record of the delivery. This matters for subcontractors who need to demonstrate completion to their own clients or for invoice disputes with the hiring carrier. It also creates a soft registration path: drivers who receive their own PDFs tend to upload more consistently on future runs.
+
+### Frequently asked questions
+
+Do drivers need to install an app or create an account?
+No. Drivers use a browser link and can upload documents without installs, logins, or training. This makes Podfy reliable for subcontractors, temporary drivers, and mixed-device environments.
+
+Can the driver upload page be shown in multiple languages?
+Yes. The upload experience can be displayed in 43 languages so drivers can work in the language they understand. This improves completion rates particularly for international subcontractor routes.
+
+What happens if the driver has no signal at the delivery point?
+GPS coordinates and the photo are captured at the moment the camera fires, not when the upload completes. If there is no signal, the file queues and submits as soon as the phone reaches coverage. The original capture timestamp is preserved.
+
+Can we brand the upload flow?
+Yes. The upload flow can be branded with your logo and color scheme so drivers and partners see your look and feel. This supports trust and consistency across your network.
+
+What types of documents can drivers upload?
+Drivers can upload PODs, delivery notes, CMRs, and photos. Multi-file uploads allow a delivery note plus a damage photo in the same submission, all grouped under the same reference.
+
+How does this work with subcontractors who work for multiple hauliers?
+The link is job-specific, not driver-specific. You send a new link for each shipment. There is nothing for the subcontractor to install, register, or maintain. After upload, the link is consumed and the driver has no ongoing access to your system.
+
+This affects
+
+### Who needs no-app POD
+
+Transport
+
+Carriers
+
+See solution →
+
+Logistics
+
+3PLs
+
+See solution →
+
+Digitization
+
+Paper to digital
+
+See solution →
+
+Part of the Podfy guide series → What is Proof of Delivery?
+
+#### See how Podfy is evolving
+
+Get release notes by email when new features ship.
+
+Subscribe →
+
+Comparing options?
+
+### Podfy vs. free scan apps
+
+Scan apps help when the paper is in your hands. Podfy helps when it is in the driver's.
+See the full side-by-side comparison including cost, GPS stamping, and data residency.
+
+See the comparison →
+
+No app · Any phone
+
+### Close the POD gapin your next dispatch.
+
+Fifteen minutes. We will show you how it works for subcontractor networks.
+
+Book 15 minutes →
+Try the demo first
+
+---
+
+# What is Proof of Delivery? Complete Guide — PODFY
+Source: https://podfy.net/guides/proof-of-delivery/
+
+Guide · Proof of Delivery Hub
+
+##
+What is proof of delivery?
+The complete guide.
+
+Everything logistics, transport, and receiving teams need to understand about POD: what it is, why it breaks down in practice, and how modern operations collect it without apps or paper chasing.
+
+- What is POD?
+
+- Why it matters
+
+- POD types
+
+- Where it fails
+
+- Modern POD
+
+- FAQ
+
+### What is proof of delivery?
+
+Proof of delivery (POD) is any document or record that confirms a shipment was delivered to the correct recipient, at the correct location, at a specific time. In physical freight and logistics, a POD is the evidence you use when a customer says the delivery never arrived, a driver disputes a timestamp, or an auditor asks for records.
+
+The most common form is a signed delivery note or CMR document: the consignee signs that they received the goods, and a copy goes back to the shipper or carrier. In practice, getting that signed copy back in a useful, searchable format is where most operations fail.
+
+Modern proof of delivery adds GPS coordinates, a timestamp, and optionally a photo of the goods at the delivery point, all captured on the driver's phone and transferred to a central record before the truck leaves the yard.
+
+### Why proof of delivery matters
+
+Without POD, three things go wrong:
+
+Invoice disputes. Finance teams cannot issue or approve invoices for deliveries that have no confirmed receipt. A missing CMR can hold up a €40,000 invoice for weeks while everyone chases paper.
+
+Claims exposure. If a customer reports goods as undelivered, damaged, or short-shipped, you have no evidence to respond with. The longer the gap between delivery and the claim, the harder it is to reconstruct what actually happened.
+
+Audit gaps. Regulatory environments in many EU countries require delivery records to be retained for 5–7 years. Paper-based systems make this almost impossible to maintain consistently.
+
+- Faster invoice approval: no POD gap
+
+- Claims resolved in minutes, not weeks
+
+- GPS + timestamp removes date disputes
+
+- 7-year audit-ready archive on EU infrastructure
+
+- Searchable by reference, route, or date
+
+- Works for subcontractors with no training
+
+### Types of proof of delivery
+
+Paper POD
+
+#### Signed delivery note / CMR
+
+The consignee signs a paper document at delivery. The driver keeps one copy and returns one to the office, usually days later. Blurry WhatsApp photos and lost documents are common failure modes.
+
+Digital POD
+
+#### Link-based photo upload
+
+Driver opens a browser link, photographs the signed CMR or delivery note, and taps send. GPS coordinates and timestamp are captured at that moment. The stamped PDF is in the portal within seconds.
+
+App-based POD
+
+#### Driver app with signature capture
+
+Requires the driver to install and maintain an app. Works well for employed, fixed-route drivers but breaks down for subcontractors, temp staff, and multi-carrier operations where each carrier uses a different app.
+
+### Paper vs digital POD: what changes
+
+Paper process
+
+- Driver keeps signed CMR in the cab
+
+- Office calls to chase after 3–5 days
+
+- WhatsApp photo, wrong orientation, illegible
+
+- Someone re-keys the reference manually
+
+- Invoice goes on hold
+
+- Customer still disputes the date
+
+Digital POD (Podfy)
+
+- Driver uploads at the gate via link
+
+- Office gets notification within seconds
+
+- Stamped PDF with GPS and timestamp
+
+- Reference captured on upload
+
+- Invoice ready same day
+
+- GPS timestamp closes the date dispute
+
+### Where proof of delivery breaks down
+
+Most POD failures are not driver problems, they are process problems. The four root causes:
+
+The return loop. Paper documents travel with the driver and only reach the office when the driver returns to the depot. Routes with multi-day turnarounds can mean a 5-day gap between delivery and POD receipt.
+
+No-app blockers. Requiring drivers to install and maintain an app creates a hard failure mode with subcontractors, temporary drivers, and anyone using an older phone. Completion rates drop below 60% in mixed-driver operations that require app installs.
+
+The reference gap. If the POD doesn't include the exact reference your finance team uses, the record is useless for invoice approval. Manual re-entry creates errors and takes time.
+
+Unstructured storage. Email inboxes and shared drives are not searchable delivery archives. Finding a specific POD for a dispute two months later takes hours, if it can be found at all.
+
+See it in action
+
+A driver uploads a CMR in 11 seconds. Watch the live demo.
+
+Try the demo →
+
+### How modern POD works
+
+01 — Dispatch
+
+#### One link per shipment
+
+A unique URL is generated per delivery reference. It can be included in a dispatch message via WhatsApp, SMS, or TMS. The driver doesn't need to register anything.
+
+02 — At the gate
+
+#### Photo or file upload
+
+The driver opens the link, photographs the signed CMR or delivery note, and taps send. GPS coordinates are captured at the moment the camera fires, not when the upload completes. Works on any mobile network; no Wi-Fi required.
+
+03 — Centrally
+
+#### Stamped PDF in the portal
+
+The document is processed, GPS-stamped, and available in the Podfy portal within seconds. Your team receives an email notification. The record is searchable by reference, date, driver, or route, immediately.
+
+### Which teams this affects
+
+Find your use case and see how Podfy fits your operation.
+
+Transport
+
+#### Carriers
+
+"My subcontractors won't install an app."
+
+Logistics
+
+#### 3PLs
+
+"We manage 12 carrier partners and need one standard."
+
+Supply chain
+
+#### Shippers
+
+"We receive from 40 suppliers on different processes."
+
+Retail
+
+#### Retail teams
+
+"We need POD at the store level, not just DC."
+
+Construction
+
+#### Site deliveries
+
+"The supplier's invoice says 12 loads. We counted 11."
+
+Facilities
+
+#### Facilities teams
+
+"Deliveries come to 30 buildings. Nothing is centralized."
+
+Operations
+
+#### Inbound & receiving
+
+"Our dock staff sign for everything but nothing is searchable."
+
+Digitization
+
+#### Paper to digital
+
+"We still run on paper and WhatsApp. We need to change."
+
+### Frequently asked questions
+
+What is proof of delivery (POD)?
+Proof of delivery is the evidence that a shipment was completed and received. It can be a signed delivery note, a CMR document, a photo of delivered goods, a GPS-stamped timestamp, or a combination. The right format depends on your dispute risk and customer requirements.
+
+Do drivers need an app to provide proof of delivery?
+No. With Podfy, drivers use a browser link, no app install, no account, no training. This makes POD collection reliable for subcontractors, temp staff, and mixed-device environments where app installation is impractical.
+
+What can count as proof of delivery?
+Proof of delivery can be a signed delivery note, a CMR, a photo of the delivered goods, a GPS-stamped timestamp, or a digital record combining all of these. The key requirement is that the proof identifies what was delivered, where, and when.
+
+Can inbound or receiving teams register deliveries too?
+Yes. Inbound teams can use the same link-based workflow to upload delivery documents when carriers arrive at the dock. This creates a consistent record even when drivers change or suppliers use different processes.
+
+How quickly are documents available after delivery?
+As soon as the upload completes, the document is in the portal and your team receives an email notification. This eliminates the typical 3–5 day gap when paper CMRs travel back with the driver.
+
+Is Podfy suitable for audits and disputes?
+Yes. Central storage with GPS timestamps means you can respond to 'not delivered', shortage, or damage claims in seconds rather than days. All records are stored in Cloudflare's EU-WEUR region, GDPR-aligned and available for 7-year retention.
+
+Can Podfy replace a TMS, WMS, or ERP?
+No. Podfy focuses on delivery documentation intake and retrieval. It is designed to complement existing systems by making POD collection simple and consistent across carriers, suppliers, sites, and stores.
+
+Related reading
+
+### Dive deeper
+
+Guide
+
+#### What to do when a POD goes missing
+
+Recovery steps, root causes, and how to prevent it happening again.
+
+Read guide →
+
+Guide
+
+#### Resolving delivery disputes with POD evidence
+
+How to handle not-delivered, shortage, and damage claims systematically.
+
+Read guide →
+
+Guide
+
+#### Proof of delivery without an app
+
+Why app-based POD fails in mixed-driver environments and what works instead.
+
+Read guide →
+
+Add-on
+
+#### CMR generator
+
+Generate CMR and AVC international waybills in the portal. IRU layout. €0.35 per waybill.
+
+See add-on →
+
+#### See how Podfy is evolving
+
+Get release notes by email when new features ship.
+
+Subscribe →
+
+No app · EU hosted
+
+### Ready to collect PODon every delivery?
+
+Fifteen minutes. We will show you the upload flow, the portal, and the PDF output.
+
+Book 15 minutes →
+Try the demo first
+
+---
+
+# Proof of Delivery for Subcontractors — No App
+Source: https://podfy.net/guides/subcontractor-pod/
+
+Guides /
+Subcontractor POD
+
+Networks
+
+##
+Subcontractor POD.
+No app. No account. No excuses.
+
+How to collect GPS-stamped proof of delivery from subcontractors and spot carriers
+without requiring them to install an app or create an account.
+
+### The subcontractor documentation problem
+
+Employed drivers can be trained on a system. Subcontractors use their own phones,
+won't install apps for a single job, and submit paper CMRs days late, or not at all.
+Shippers increasingly require GPS-stamped digital POD within hours of delivery.
+
+When subcontractors can't deliver this, the carrier faces disputes they can't defend,
+invoice approval delays they can't explain, and strained shipper relationships they
+didn't cause. The carrier did the delivery. The documentation gap is entirely a
+tooling problem, not an operational one.
+
+### Why app-based POD fails with subcontractors
+
+- Installation friction: subcontractors don't install apps for one-off jobs
+
+- Account creation: no carrier wants to manage accounts for rotating drivers
+
+- Device compatibility: subcontractors often have older or non-standard phones
+
+- Privacy concern: subcontractors resist apps that track location continuously
+
+### How link-based POD solves the subcontractor problem
+
+The link is sent via WhatsApp, SMS, or printed on the waybill as a QR code.
+The driver opens it in any browser. No installation, no account, no persistent
+location tracking. GPS is captured only at the moment of upload, not continuously.
+
+The carrier gets a GPS-stamped, timestamped record in their portal within seconds
+of the driver uploading. Email notification fires automatically. The subcontractor
+receives their own copy of the stamped PDF if they enter their email, optional,
+but useful for subcontractors who need documentation for their own records.
+
+Because the link is job-specific, not driver-specific, there is nothing to
+manage when subcontractors rotate. A new link for each job. Done.
+
+### Collecting POD from a subcontractor with Podfy
+
+Step 01
+
+#### Generate the link
+
+Create a Podfy link for the shipment via portal, API, or batch CSV import. Takes under 10 seconds.
+
+Step 02
+
+#### Send before dispatch
+
+Share via WhatsApp, SMS, or print as a QR code on the waybill. The subcontractor doesn't need to do anything in advance.
+
+Step 03
+
+#### Driver uploads at delivery
+
+Subcontractor opens the link in any browser, photographs the CMR or delivery point. GPS stamp and timestamp are added automatically.
+
+Step 04
+
+#### Record appears immediately
+
+The GPS-stamped record is in your portal within seconds of upload. No delay, no manual processing.
+
+Step 05
+
+#### Email notification fires
+
+Your office receives the notification automatically. The record is searchable by reference, date, and carrier from the moment it arrives.
+
+Step 06
+
+#### Invoice with confidence
+
+GPS-stamped evidence is in your archive. Disputes have an answer. Invoice approval has a trigger.
+
+### Frequently asked questions
+
+What if the subcontractor refuses to use the link?
+
+The link requires no registration and no app. If a subcontractor can take a photo on their phone, they can use Podfy. The friction is genuinely zero, it's a URL, not an onboarding process.
+
+Does the subcontractor need to create an account?
+
+No. The driver opens the link, takes a photo, and closes the browser. No account, no password, no profile. They receive a copy of the stamped PDF if they enter their email, this is optional.
+
+Can I use Podfy for one-off spot carriers I've never worked with before?
+
+Yes. Send the link with the dispatch instruction. The carrier doesn't need to sign up for anything. This is specifically why Podfy was designed with a link-based approach rather than an app.
+
+Does the subcontractor see my other deliveries or client data?
+
+No. Each link is scoped to a single shipment reference. The driver can only access the specific upload page for that delivery, nothing else in your portal is visible to them.
+
+Read more
+
+### Related guides
+
+Evidence
+
+#### POD without an app
+
+Link-based POD for mixed-driver networks, no installation, works for subcontractors and employed drivers equally.
+
+Read guide →
+
+Evidence
+
+#### GPS proof of delivery
+
+How GPS-stamped POD works and why it outperforms signatures in delivery disputes.
+
+Read guide →
+
+Foundation
+
+#### What is proof of delivery?
+
+Complete guide to POD formats, legal requirements, and how modern logistics teams collect records without apps.
+
+Read guide →
+
+Comparing options?
+
+### Podfy vs. free scan apps
+
+See the full comparison: cost, who initiates the document return, GPS stamping,
+and why scan apps do not solve the subcontractor collection problem.
+
+See the comparison →
+
+No app · Any driver
+
+### Close the subcontractor POD gapat your next dispatch.
+
+Send a link with the waybill. The subcontractor uploads at the gate. You have a GPS-stamped record before they leave the site.
+
+Try the live demo →
+Or book 15 minutes

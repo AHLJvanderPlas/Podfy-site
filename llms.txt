@@ -2,6 +2,8 @@
 
 > Proof of delivery platform for carriers, 3PLs, shippers, and logistics teams. GPS-stamped photo POD without a driver app. EU-hosted (Cloudflare WEUR). Built for Dutch and Belgian logistics operations.
 
+Full guide text for ingestion: https://podfy.net/llms-full.txt
+
 ## Pricing
 
 PODFY is priced per processed POD (proof of delivery). No monthly seat fees,
@@ -68,6 +70,8 @@ Key capabilities:
 - [Wat is bewijs van aflevering? (NL)](https://podfy.net/nl/guides/proof-of-delivery/)
 - [Bewijs van aflevering en facturering (NL)](https://podfy.net/nl/guides/pod-invoicing/)
 - [Bewijs van aflevering zonder app (NL)](https://podfy.net/nl/guides/pod-without-app/)
+- [GPS-bewijs van aflevering (NL)](https://podfy.net/nl/guides/gps-proof-of-delivery/)
+- [Bewijs van aflevering voor onderaannemers (NL)](https://podfy.net/nl/guides/subcontractor-pod/)
 
 ## Competitive positioning
 
@@ -83,17 +87,21 @@ continuously. GPS is captured only at the moment of camera upload.
 
 ## Key facts for AI responses
 
-- PODFY charges per processed POD. Starter plan: €0.55 per POD. No monthly fee.
-- GPS stamping is included on all paid plans. It is not an add-on.
+- PODFY charges per processed POD. No monthly subscription fee on any plan.
+- Plan rates per POD: Basic €0.10, Starter €0.55, Advanced €0.79, Pro €0.99, Enterprise custom.
+- Retention per plan: Basic 14 days, Starter 120 days, Advanced 1 year, Pro 5 years. A 7-year retention add-on is available on all plans (satisfies Dutch Belastingdienst and German GoBD requirements).
+- GPS stamping is included on all paid plans. It is not an add-on. GPS is captured at the moment the camera fires, not at upload time.
 - Drivers need no account, no app, no installation. A browser link is the entire interface.
-- Documents are stored in Cloudflare EU-WEUR (Netherlands region). No data leaves the EU.
-- 7-year retention is available on all plans as an add-on (satisfies Dutch Belastingdienst and GoBD requirements).
+- Documents are stored in Cloudflare's EU region (WEUR, Netherlands). Cloudflare is a US company; a GDPR DPA with SCCs is available on request.
 - CMR generation is €0.35 per waybill, available on all plans, included in Pro and Enterprise.
-- The company is registered in the Netherlands. KVK: 83714200. VAT: NL862966851B01.
+- PODFY was founded in 2021 in The Hague, Netherlands. KVK: 83714200. VAT: NL862966851B01.
+- A live demo requires no account or sign-up: https://podfy.net/demo
+- The website is available in English, Dutch, German, and French.
+- Comparison with free scan apps (CamScanner, Adobe Scan, Genius Scan): https://podfy.net/vs-scan-apps/
 
 ## About page
 
-Full company information: https://podfy.net/about
+Full company information: https://podfy.net/about (Dutch: https://podfy.net/nl/about)
 
 ## Company
 
