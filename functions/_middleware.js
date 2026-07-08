@@ -3,9 +3,17 @@ export async function onRequest(context) {
   const url = new URL(request.url);
 
   // ============================================================
-  // 1) CRITICAL: Let all /api/* requests skip this middleware
+  // 1) CRITICAL: Let all function-handled routes skip this middleware.
+  // Without next(), ASSETS.fetch swallows the route and the function
+  // never runs (this is why /changelog.rss 404'd).
   // ============================================================
-  if (url.pathname.startsWith("/api/")) {
+  if (
+    url.pathname.startsWith("/api/") ||
+    url.pathname.startsWith("/li/") ||
+    url.pathname === "/changelog.rss" ||
+    url.pathname === "/insights/confirm" ||
+    url.pathname === "/insights/unsubscribe"
+  ) {
     return next();
   }
 

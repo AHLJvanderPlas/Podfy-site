@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Insights — PODFY</title>
+  <meta name="description" content="Market updates, whitepapers, and practical guides on proof of delivery, CMR, and logistics digitalisation. Subscribe to the PODFY newsletter." />
+  <link rel="canonical" href="https://podfy.net/insights" />
+
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:title" content="Insights — PODFY" />
+  <meta property="og:description" content="Market updates, whitepapers, and practical guides on proof of delivery and logistics." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://podfy.net/insights" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+  <link rel="alternate" hreflang="en" href="https://podfy.net/insights" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/insights" />
+
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
+  <script src="/assets/theme.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "PODFY insights",
+    "description": "Market updates, whitepapers, and guides on proof of delivery and logistics digitalisation.",
+    "url": "https://podfy.net/insights"
+  }
+  </script>
+</head>
+<body>
+  [[PODFY_HEADER]]
+
+  <main class="container" style="max-width:920px;margin:0 auto;padding:2rem 1.25rem 4rem">
+    <header style="margin:2rem 0 3rem">
+      <h1 class="v2-hero-title" style="max-width:36rem">Insights &amp; <em>market updates.</em></h1>
+      <p style="max-width:34rem;margin-top:1rem">Practical writing on proof of delivery, CMR workflows, and digitalisation in transport. No hype. Updated when we have something worth saying.</p>
+    </header>
+
+    <!-- Market updates -->
+    <section aria-labelledby="mu-heading" style="margin-bottom:3.5rem">
+      <h2 id="mu-heading">Market updates</h2>
+      <div id="insights-posts"><p style="color:var(--v2-muted)">Loading…</p></div>
+    </section>
+
+    <!-- Repository -->
+    <section aria-labelledby="repo-heading" style="margin-bottom:3.5rem">
+      <h2 id="repo-heading">Repository</h2>
+      <p style="color:var(--v2-muted);font-size:.9rem">Whitepapers and documents. Free to download.</p>
+      <div id="insights-repo"><p style="color:var(--v2-muted)">Loading…</p></div>
+    </section>
+
+    <!-- Newsletter -->
+    <section aria-labelledby="nl-heading" style="border:1px solid var(--v2-border,#ddd);border-radius:6px;padding:1.5rem;max-width:34rem">
+      <h2 id="nl-heading" style="margin-top:0">Newsletter</h2>
+      <p style="font-size:.95rem">One email when a new insight is published. No schedule, no spam, unsubscribe in one click.</p>
+      <form id="nl-form">
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem">
+          <input type="email" id="nl-email" placeholder="you@company.com" required
+                 style="flex:1;min-width:220px;padding:.6rem .75rem;border:1px solid var(--v2-border,#ccc);border-radius:4px" />
+          <select id="nl-lang" style="padding:.6rem .5rem;border:1px solid var(--v2-border,#ccc);border-radius:4px">
+            <option value="en">English</option>
+            <option value="nl">Nederlands</option>
+          </select>
+        </div>
+        <input type="text" id="nl-hp" name="hp_sub" value="" autocomplete="off" tabindex="-1"
+               style="position:absolute;left:-9999px" aria-hidden="true" />
+        <label style="display:flex;gap:.5rem;align-items:flex-start;font-size:.85rem;margin-bottom:.75rem">
+          <input type="checkbox" id="nl-consent" required style="margin-top:.2rem" />
+          <span>I agree to receive the PODFY newsletter and accept the privacy policy. Double opt-in: you confirm by email first.</span>
+        </label>
+        <input type="hidden" id="nl-turnstile-token" value="" />
+        <div class="cf-turnstile"
+             data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+             data-callback="onNlTurnstile"
+             data-size="flexible"></div>
+        <button type="submit" class="v2-btn v2-btn-primary" style="margin-top:.75rem">Subscribe</button>
+        <p id="nl-msg" style="font-size:.9rem;min-height:1.2rem;margin-top:.5rem"></p>
+      </form>
+    </section>
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script>
+    function onNlTurnstile(token) {
+      document.getElementById("nl-turnstile-token").value = token;
+    }
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    }
+    function fmtDate(unix) {
+      if (!unix) return "";
+      return new Date(unix * 1000).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    }
+    function fmtSize(b) {
+      if (!b) return "";
+      return b > 1048576 ? (b/1048576).toFixed(1) + " MB" : Math.round(b/1024) + " KB";
+    }
+
+    fetch("/api/insights/posts").then(r => r.json()).then(function (data) {
+      var el = document.getElementById("insights-posts");
+      var items = (data && data.items) || [];
+      if (!items.length) { el.innerHTML = '<p style="color:var(--v2-muted)">First update coming soon.</p>'; return; }
+      el.innerHTML = items.map(function (p) {
+        return '<article style="border-bottom:1px solid var(--v2-border,#e5e5e5);padding:1.1rem 0">' +
+          '<h3 style="margin:0 0 .3rem"><a href="/insights/article?slug=' + encodeURIComponent(p.slug) + '">' + esc(p.title) + '</a></h3>' +
+          (p.excerpt ? '<p style="margin:.2rem 0;color:var(--v2-muted)">' + esc(p.excerpt) + '</p>' : '') +
+          '<span style="font-size:.8rem;color:var(--v2-muted)">' + fmtDate(p.published_at) + '</span>' +
+          '</article>';
+      }).join("");
+    }).catch(function () {
+      document.getElementById("insights-posts").innerHTML = '<p style="color:var(--v2-muted)">Could not load updates.</p>';
+    });
+
+    fetch("/api/insights/repo").then(r => r.json()).then(function (data) {
+      var el = document.getElementById("insights-repo");
+      var items = (data && data.items) || [];
+      if (!items.length) { el.innerHTML = '<p style="color:var(--v2-muted)">No documents published yet.</p>'; return; }
+      el.innerHTML = items.map(function (d) {
+        return '<article style="border-bottom:1px solid var(--v2-border,#e5e5e5);padding:1rem 0;display:flex;justify-content:space-between;gap:1rem;align-items:baseline">' +
+          '<div><h3 style="margin:0 0 .2rem;font-size:1rem">' + esc(d.title) + '</h3>' +
+          (d.description ? '<p style="margin:0;font-size:.9rem;color:var(--v2-muted)">' + esc(d.description) + '</p>' : '') + '</div>' +
+          '<a class="v2-btn v2-btn-ghost" style="white-space:nowrap" href="/api/insights/file/' + encodeURIComponent(d.item_id) + '">Download ' + fmtSize(d.file_size) + '</a>' +
+          '</article>';
+      }).join("");
+    }).catch(function () {
+      document.getElementById("insights-repo").innerHTML = '<p style="color:var(--v2-muted)">Could not load documents.</p>';
+    });
+
+    document.getElementById("nl-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var msg = document.getElementById("nl-msg");
+      msg.textContent = "Sending…";
+      fetch("/api/insights/subscribe", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          email: document.getElementById("nl-email").value,
+          lang: document.getElementById("nl-lang").value,
+          consent: document.getElementById("nl-consent").checked,
+          hp_sub: document.getElementById("nl-hp").value,
+          cf_turnstile_token: document.getElementById("nl-turnstile-token").value,
+        }),
+      }).then(r => r.json()).then(function (data) {
+        if (data.ok && data.message === "already_subscribed") {
+          msg.textContent = "You are already subscribed.";
+        } else if (data.ok) {
+          msg.textContent = "Check your inbox to confirm your subscription. ✅";
+          document.getElementById("nl-form").reset();
+        } else {
+          msg.textContent = data.error || "Something went wrong. Please retry.";
+        }
+      }).catch(function () { msg.textContent = "Something went wrong. Please retry."; });
+    });
+  </script>
+</body>
+</html>

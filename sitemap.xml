@@ -157,6 +157,7 @@
 
   <!-- ═══ CHANGELOG (EN only) ═══ -->
   <url><loc>https://podfy.net/changelog</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://podfy.net/insights</loc><lastmod>2026-07-08</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
 
   <!-- ═══ SOLUTIONS HUB ═══ -->
   <url><loc>https://podfy.net/solutions/</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>

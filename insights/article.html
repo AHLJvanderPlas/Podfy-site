@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Insights — PODFY</title>
+  <meta name="description" content="PODFY market update." />
+  <meta name="robots" content="index,follow" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
+  <script src="/assets/theme.js" defer></script>
+</head>
+<body>
+  [[PODFY_HEADER]]
+
+  <main class="container" style="max-width:720px;margin:0 auto;padding:2rem 1.25rem 4rem">
+    <p style="margin:1.5rem 0"><a href="/insights" style="font-size:.9rem">← All insights</a></p>
+    <article id="post">
+      <p style="color:var(--v2-muted)">Loading…</p>
+    </article>
+  </main>
+
+  [[PODFY_FOOTER]]
+
+  <script>
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    }
+    // Minimal markdown: headings, bold, italics, lists, paragraphs, links (podfy.net only)
+    function md(src) {
+      var html = esc(src);
+      html = html.replace(/^### (.+)$/gm, "<h3>$1</h3>");
+      html = html.replace(/^## (.+)$/gm, "<h2>$1</h2>");
+      html = html.replace(/^# (.+)$/gm, "<h2>$1</h2>");
+      html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+      html = html.replace(/\[([^\]]+)\]\((https:\/\/(?:www\.)?podfy\.(?:net|app)[^\s)]*)\)/g, '<a href="$2">$1</a>');
+      html = html.replace(/^- (.+)$/gm, "<li>$1</li>");
+      html = html.replace(/(<li>[\s\S]*?<\/li>)(?!\s*<li>)/g, "<ul>$1</ul>");
+      return html.split(/\n{2,}/).map(function (block) {
+        block = block.trim();
+        if (!block) return "";
+        if (/^<(h2|h3|ul)/.test(block)) return block;
+        return "<p>" + block.replace(/\n/g, "<br>") + "</p>";
+      }).join("\n");
+    }
+
+    var slug = new URLSearchParams(location.search).get("slug") || "";
+    fetch("/api/insights/posts/" + encodeURIComponent(slug))
+      .then(function (r) { if (!r.ok) throw new Error("nf"); return r.json(); })
+      .then(function (data) {
+        var p = data.item;
+        document.title = p.title + " — PODFY";
+        var date = p.published_at
+          ? new Date(p.published_at * 1000).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
+          : "";
+        document.getElementById("post").innerHTML =
+          '<h1 class="v2-hero-title" style="font-size:2rem">' + esc(p.title) + "</h1>" +
+          '<p style="font-size:.85rem;color:var(--v2-muted);margin:.5rem 0 2rem">' + date + "</p>" +
+          md(p.content || "");
+      })
+      .catch(function () {
+        document.getElementById("post").innerHTML =
+          '<h1>Not found</h1><p>This article does not exist or is not published. <a href="/insights">Back to insights</a>.</p>';
+      });
+  </script>
+</body>
+</html>
