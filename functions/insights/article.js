@@ -108,6 +108,13 @@ export async function onRequestGet(context) {
         ${coverUrl ? `<img src="${coverUrl}" alt="" style="max-width:100%;border-radius:4px;margin:0 0 1.5rem" />` : ""}
         ${md(content)}
         ${faqHtml}
+        <div style="margin-top:2.5rem;display:flex;gap:.6rem">
+          <a class="v2-btn v2-btn-ghost" target="_blank" rel="noopener"
+             href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonical)}"
+             onclick="fetch('/api/insights/share',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({entity_type:'blog_post',entity_id:'${esc(p.id)}',channel:'linkedin_share'})})">Share on LinkedIn</a>
+          <button class="v2-btn v2-btn-ghost" style="cursor:pointer"
+             onclick="navigator.clipboard.writeText('${canonical}');this.textContent='Copied ✓';fetch('/api/insights/share',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({entity_type:'blog_post',entity_id:'${esc(p.id)}',channel:'copy_text'})})">Copy link</button>
+        </div>
       </article>
     </main>`;
 

@@ -91,6 +91,26 @@ export async function onRequest(context) {
       return handleSubscribe(request, env);
     }
 
+    if (method === "POST" && route[0] === "share") {
+      // Privacy-preserving share tracking: hashed IP/UA only, never raw
+      const body = await request.json().catch(() => ({}));
+      const entityType = body.entity_type === "repository_item" ? "repository_item" : "blog_post";
+      const channel = body.channel === "copy_text" ? "copy_text" : "linkedin_share";
+      const entityId = String(body.entity_id || "").slice(0, 64);
+      if (!entityId) return json({ ok: false }, 400);
+      const hash = async (v) => {
+        const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(v));
+        return [...new Uint8Array(d)].map(b => b.toString(16).padStart(2, "0")).join("").slice(0, 32);
+      };
+      await env.DB.prepare(
+        `INSERT INTO share_events (event_id, entity_type, entity_id, channel, ip_hash, user_agent_hash)
+         VALUES (?, ?, ?, ?, ?, ?)`
+      ).bind(crypto.randomUUID(), entityType, entityId, channel,
+        await hash(request.headers.get("cf-connecting-ip") || ""),
+        await hash(request.headers.get("user-agent") || "")).run();
+      return json({ ok: true });
+    }
+
     return json({ ok: false, error: "not_found" }, 404);
   } catch (e) {
     return json({ ok: false, error: String(e) }, 500);
