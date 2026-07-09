@@ -31,11 +31,30 @@ export async function onRequest(context) {
 
     if (method === "GET" && route[0] === "posts" && route[1]) {
       const row = await env.DB.prepare(
-        `SELECT id, title, slug, excerpt, content, cover_image_key, language, published_at
+        `SELECT id, title, slug, excerpt, content, cover_image_key, language, published_at,
+                title_nl, excerpt_nl, content_nl
          FROM blog_posts WHERE status = 'published' AND slug = ?`
       ).bind(route[1]).first();
       if (!row) return json({ ok: false, error: "not_found" }, 404);
       return json({ ok: true, item: row });
+    }
+
+    if (method === "GET" && route[0] === "cover" && route[1]) {
+      const row = await env.DB.prepare(
+        `SELECT cover_image_key FROM blog_posts WHERE id = ? AND status = 'published'`
+      ).bind(route[1]).first();
+      // Serve ONLY the marketing/covers/ prefix — never POD files
+      if (!row?.cover_image_key || !row.cover_image_key.startsWith("marketing/covers/")) {
+        return new Response("Not found", { status: 404 });
+      }
+      const obj = await env.PODFY_BUCKET.get(row.cover_image_key);
+      if (!obj) return new Response("Not found", { status: 404 });
+      return new Response(obj.body, {
+        headers: {
+          "content-type": obj.httpMetadata?.contentType || "image/jpeg",
+          "cache-control": "public, max-age=86400",
+        },
+      });
     }
 
     if (method === "GET" && route[0] === "repo") {
