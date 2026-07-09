@@ -32,7 +32,8 @@ export async function onRequest(context) {
     if (method === "GET" && route[0] === "posts" && route[1]) {
       const row = await env.DB.prepare(
         `SELECT id, title, slug, excerpt, content, cover_image_key, language, published_at,
-                title_nl, excerpt_nl, content_nl
+                title_nl, excerpt_nl, content_nl, title_de, excerpt_de, content_de,
+                title_fr, excerpt_fr, content_fr, faq_json
          FROM blog_posts WHERE status = 'published' AND slug = ?`
       ).bind(route[1]).first();
       if (!row) return json({ ok: false, error: "not_found" }, 404);
@@ -106,7 +107,7 @@ async function handleSubscribe(request, env) {
   if (hp_sub && hp_sub.trim()) return json({ ok: true, skipped: true }); // honeypot
   if (!EMAIL_RE.test(email)) return json({ ok: false, error: "A valid email address is required." }, 400);
   if (consent !== true && consent !== "on") return json({ ok: false, error: "You must accept the privacy policy." }, 400);
-  const language = lang === "nl" ? "nl" : "en";
+  const language = ["nl", "de", "fr"].includes(lang) ? lang : "en";
 
   // Turnstile
   const secretKey = env.TURNSTILE_SECRET_KEY || env.TURNSTILE_SECRET || "";
@@ -149,13 +150,19 @@ async function handleSubscribe(request, env) {
     ).bind(addr, language, token).run();
   }
 
-  // Double opt-in confirmation email
+  // Double opt-in confirmation email (per language)
   const confirmUrl = `https://podfy.net/insights/confirm?token=${token}`;
-  const subject = language === "nl" ? "Bevestig je Podfy nieuwsbrief-inschrijving" : "Confirm your Podfy newsletter subscription";
-  const btn = language === "nl" ? "Bevestig inschrijving" : "Confirm subscription";
-  const bodyTxt = language === "nl"
-    ? "Klik op de knop om je inschrijving voor Podfy market updates te bevestigen. Geen actie nodig als jij dit niet was."
-    : "Click the button to confirm your subscription to Podfy market updates. If this wasn't you, no action is needed.";
+  const STRINGS = {
+    en: { subject: "Confirm your Podfy newsletter subscription", btn: "Confirm subscription",
+      body: "Click the button to confirm your subscription to Podfy market updates. If this wasn't you, no action is needed." },
+    nl: { subject: "Bevestig je Podfy nieuwsbrief-inschrijving", btn: "Bevestig inschrijving",
+      body: "Klik op de knop om je inschrijving voor Podfy market updates te bevestigen. Geen actie nodig als jij dit niet was." },
+    de: { subject: "Bestätigen Sie Ihr Podfy Newsletter-Abonnement", btn: "Abonnement bestätigen",
+      body: "Klicken Sie auf die Schaltfläche, um Ihr Abonnement der Podfy Market Updates zu bestätigen. Falls Sie das nicht waren, ist keine Aktion nötig." },
+    fr: { subject: "Confirmez votre abonnement à la newsletter Podfy", btn: "Confirmer l'abonnement",
+      body: "Cliquez sur le bouton pour confirmer votre abonnement aux market updates de Podfy. Si ce n'était pas vous, aucune action n'est requise." },
+  };
+  const { subject, btn, body: bodyTxt } = STRINGS[language] || STRINGS.en;
   const sent = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },

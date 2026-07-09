@@ -12,7 +12,9 @@ export async function onRequest(context) {
     url.pathname.startsWith("/li/") ||
     url.pathname === "/changelog.rss" ||
     url.pathname === "/insights/confirm" ||
-    url.pathname === "/insights/unsubscribe"
+    url.pathname === "/insights/unsubscribe" ||
+    url.pathname === "/insights/article" ||
+    url.pathname === "/sitemap-insights.xml"
   ) {
     return next();
   }

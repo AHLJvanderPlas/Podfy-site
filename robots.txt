@@ -3,6 +3,7 @@ Allow: /
 Disallow: /instructions/
 
 Sitemap: https://podfy.net/sitemap.xml
+Sitemap: https://podfy.net/sitemap-insights.xml
 
 # AI/LLM crawlers are welcome. Context files:
 # https://podfy.net/llms.txt        (index + key facts)

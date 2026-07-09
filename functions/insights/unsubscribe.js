@@ -26,15 +26,20 @@ export async function onRequestGet(context) {
   const token = new URL(request.url).searchParams.get("token") || "";
   const row = await findSub(env, token);
   if (!row) return page("Invalid link", "<h2>This link is not valid</h2>", 404);
-  const nl = row.newsletter_lang === "nl";
+  const S = {
+    en: { already: "You are already unsubscribed", q: "Unsubscribe from Podfy market updates?", btn: "Yes, unsubscribe me" },
+    nl: { already: "Je bent al uitgeschreven", q: "Uitschrijven van Podfy market updates?", btn: "Ja, schrijf me uit" },
+    de: { already: "Sie sind bereits abgemeldet", q: "Von den Podfy Market Updates abmelden?", btn: "Ja, abmelden" },
+    fr: { already: "Vous êtes déjà désabonné", q: "Se désabonner des market updates de Podfy ?", btn: "Oui, me désabonner" },
+  }[["nl", "de", "fr"].includes(row.newsletter_lang) ? row.newsletter_lang : "en"];
   if (row.newsletter === 0) {
-    return page("Unsubscribed", nl ? "<h2>Je bent al uitgeschreven</h2>" : "<h2>You are already unsubscribed</h2>");
+    return page("Unsubscribed", `<h2>${S.already}</h2>`);
   }
   return page("Unsubscribe", `
-    <h2>${nl ? "Uitschrijven van Podfy market updates?" : "Unsubscribe from Podfy market updates?"}</h2>
+    <h2>${S.q}</h2>
     <form method="POST">
       <button type="submit" style="background:#0E1116;color:#fff;border:0;padding:12px 24px;border-radius:4px;font-size:15px;cursor:pointer">
-        ${nl ? "Ja, schrijf me uit" : "Yes, unsubscribe me"}
+        ${S.btn}
       </button>
     </form>`);
 }
@@ -47,8 +52,11 @@ export async function onRequestPost(context) {
   await env.MAIN_DB.prepare(
     `UPDATE brand_users SET newsletter = 0, updated_at = datetime('now') WHERE id = ?`
   ).bind(row.id).run();
-  const nl = row.newsletter_lang === "nl";
-  return page("Unsubscribed", nl
-    ? "<h2>✅ Uitgeschreven</h2><p>Je ontvangt geen market updates meer.</p>"
-    : "<h2>✅ Unsubscribed</h2><p>You will no longer receive market updates.</p>");
+  const done = {
+    en: "<h2>✅ Unsubscribed</h2><p>You will no longer receive market updates.</p>",
+    nl: "<h2>✅ Uitgeschreven</h2><p>Je ontvangt geen market updates meer.</p>",
+    de: "<h2>✅ Abgemeldet</h2><p>Sie erhalten keine Market Updates mehr.</p>",
+    fr: "<h2>✅ Désabonné</h2><p>Vous ne recevrez plus de market updates.</p>",
+  }[["nl", "de", "fr"].includes(row.newsletter_lang) ? row.newsletter_lang : "en"];
+  return page("Unsubscribed", done);
 }

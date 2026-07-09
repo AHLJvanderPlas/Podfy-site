@@ -23,16 +23,21 @@ export async function onRequestGet(context) {
   ).bind(token).first();
   if (!row) return page("Invalid link", "<h2>This link is not valid or was already used</h2>", 404);
 
-  const nl = row.newsletter_lang === "nl";
+  const S = {
+    en: { already: "<h2>✅ Already confirmed</h2><p>You are receiving Podfy market updates.</p>",
+      done: "<h2>✅ Subscription confirmed</h2><p>You will now receive Podfy market updates. You can unsubscribe at the bottom of every email.</p>" },
+    nl: { already: "<h2>✅ Je was al bevestigd</h2><p>Je ontvangt de Podfy market updates.</p>",
+      done: "<h2>✅ Inschrijving bevestigd</h2><p>Je ontvangt vanaf nu de Podfy market updates. Uitschrijven kan onderaan elke mail.</p>" },
+    de: { already: "<h2>✅ Bereits bestätigt</h2><p>Sie erhalten die Podfy Market Updates.</p>",
+      done: "<h2>✅ Abonnement bestätigt</h2><p>Sie erhalten ab jetzt die Podfy Market Updates. Abmelden ist unten in jeder E-Mail möglich.</p>" },
+    fr: { already: "<h2>✅ Déjà confirmé</h2><p>Vous recevez les market updates de Podfy.</p>",
+      done: "<h2>✅ Abonnement confirmé</h2><p>Vous recevrez désormais les market updates de Podfy. Vous pouvez vous désabonner en bas de chaque e-mail.</p>" },
+  }[["nl", "de", "fr"].includes(row.newsletter_lang) ? row.newsletter_lang : "en"];
   if (row.newsletter_confirmed_at) {
-    return page("Already confirmed", nl
-      ? "<h2>✅ Je was al bevestigd</h2><p>Je ontvangt de Podfy market updates.</p>"
-      : "<h2>✅ Already confirmed</h2><p>You are receiving Podfy market updates.</p>");
+    return page("Already confirmed", S.already);
   }
   await env.MAIN_DB.prepare(
     `UPDATE brand_users SET newsletter_confirmed_at = datetime('now'), updated_at = datetime('now') WHERE id = ?`
   ).bind(row.id).run();
-  return page("Confirmed", nl
-    ? "<h2>✅ Inschrijving bevestigd</h2><p>Je ontvangt vanaf nu de Podfy market updates. Uitschrijven kan onderaan elke mail.</p>"
-    : "<h2>✅ Subscription confirmed</h2><p>You will now receive Podfy market updates. You can unsubscribe at the bottom of every email.</p>");
+  return page("Confirmed", S.done);
 }
