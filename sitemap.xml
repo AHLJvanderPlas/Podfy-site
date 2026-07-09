@@ -730,14 +730,35 @@
   </url>
 
 
-  <url><loc>https://podfy.net/about</loc><lastmod>2026-07-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
+  <url><loc>https://podfy.net/about</loc><lastmod>2026-07-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/about" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/about" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/about" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/about" />
   </url>
-  <url><loc>https://podfy.net/nl/about</loc><lastmod>2026-07-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
+
+  <url><loc>https://podfy.net/nl/about</loc><lastmod>2026-07-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/about" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/about" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/about" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/about" />
+  </url>
+
+  <url><loc>https://podfy.net/de/about</loc><lastmod>2026-07-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/about" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/about" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/about" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/about" />
+  </url>
+
+  <url><loc>https://podfy.net/fr/about</loc><lastmod>2026-07-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/about" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/about" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/about" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/about" />
   </url>
 
@@ -773,9 +794,11 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/vs-scan-apps/" />
   </url>
 
-  <url><loc>https://podfy.net/guides/gps-proof-of-delivery/</loc><lastmod>2026-07-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://podfy.net/guides/gps-proof-of-delivery/</loc><lastmod>2026-07-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/guides/gps-proof-of-delivery/" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/guides/gps-proof-of-delivery/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/guides/gps-proof-of-delivery/" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/guides/gps-proof-of-delivery/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/gps-proof-of-delivery/" />
   </url>
 
@@ -785,9 +808,11 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/gps-proof-of-delivery/" />
   </url>
 
-  <url><loc>https://podfy.net/guides/subcontractor-pod/</loc><lastmod>2026-07-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://podfy.net/guides/subcontractor-pod/</loc><lastmod>2026-07-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/guides/subcontractor-pod/" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/guides/subcontractor-pod/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/guides/subcontractor-pod/" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/guides/subcontractor-pod/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/guides/subcontractor-pod/" />
   </url>
 
