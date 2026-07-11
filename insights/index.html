@@ -77,6 +77,10 @@
             <option value="de">Deutsch</option>
             <option value="fr">Français</option>
           </select>
+          <select id="nl-freq" style="padding:.6rem .5rem;border:1px solid var(--v2-border,#ccc);border-radius:4px">
+            <option value="weekly">Weekly digest</option>
+            <option value="daily">Every article</option>
+          </select>
         </div>
         <input type="text" id="nl-hp" name="hp_sub" value="" autocomplete="off" tabindex="-1"
                style="position:absolute;left:-9999px" aria-hidden="true" />
@@ -154,6 +158,7 @@
         body: JSON.stringify({
           email: document.getElementById("nl-email").value,
           lang: document.getElementById("nl-lang").value,
+          frequency: document.getElementById("nl-freq").value,
           consent: document.getElementById("nl-consent").checked,
           hp_sub: document.getElementById("nl-hp").value,
           cf_turnstile_token: document.getElementById("nl-turnstile-token").value,

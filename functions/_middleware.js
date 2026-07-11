@@ -13,6 +13,7 @@ export async function onRequest(context) {
     url.pathname === "/changelog.rss" ||
     url.pathname === "/insights/confirm" ||
     url.pathname === "/insights/unsubscribe" ||
+    url.pathname === "/insights/preferences" ||
     url.pathname === "/insights/article" ||
     url.pathname === "/sitemap-insights.xml"
   ) {

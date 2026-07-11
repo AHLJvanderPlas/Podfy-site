@@ -123,11 +123,12 @@ async function handleSubscribe(request, env) {
   const body = await request.json().catch(() => null);
   if (!body) return json({ ok: false, error: "Invalid JSON." }, 400);
 
-  const { email = "", lang = "en", consent, hp_sub = "", cf_turnstile_token = "" } = body;
+  const { email = "", lang = "en", frequency = "weekly", consent, hp_sub = "", cf_turnstile_token = "" } = body;
   if (hp_sub && hp_sub.trim()) return json({ ok: true, skipped: true }); // honeypot
   if (!EMAIL_RE.test(email)) return json({ ok: false, error: "A valid email address is required." }, 400);
   if (consent !== true && consent !== "on") return json({ ok: false, error: "You must accept the privacy policy." }, 400);
   const language = ["nl", "de", "fr"].includes(lang) ? lang : "en";
+  const freq = frequency === "daily" ? "daily" : "weekly";
 
   // Turnstile
   const secretKey = env.TURNSTILE_SECRET_KEY || env.TURNSTILE_SECRET || "";
@@ -157,17 +158,17 @@ async function handleSubscribe(request, env) {
   const token = crypto.randomUUID().replace(/-/g, "") + crypto.randomUUID().replace(/-/g, "");
   if (existing) {
     await env.MAIN_DB.prepare(
-      `UPDATE brand_users SET newsletter = 1, newsletter_lang = ?, newsletter_token = ?,
+      `UPDATE brand_users SET newsletter = 1, newsletter_lang = ?, newsletter_frequency = ?, newsletter_token = ?,
          newsletter_confirmed_at = NULL, updated_at = datetime('now') WHERE id = ?`
-    ).bind(language, token, existing.id).run();
+    ).bind(language, freq, token, existing.id).run();
   } else {
     // No operational access: 'newsletter' brand is starter (portal_access=0);
     // status 'paused' additionally blocks portal login outright.
     await env.MAIN_DB.prepare(
-      `INSERT INTO brand_users (slug, email, role, status, newsletter, newsletter_lang, newsletter_token,
+      `INSERT INTO brand_users (slug, email, role, status, newsletter, newsletter_lang, newsletter_frequency, newsletter_token,
                                 is_to, is_cc, is_bcc, invoice_to, invoice_cc, invoice_bcc)
-       VALUES ('newsletter', ?, 'user', 'paused', 1, ?, ?, 0, 0, 0, 0, 0, 0)`
-    ).bind(addr, language, token).run();
+       VALUES ('newsletter', ?, 'user', 'paused', 1, ?, ?, ?, 0, 0, 0, 0, 0, 0)`
+    ).bind(addr, language, freq, token).run();
   }
 
   // Double opt-in confirmation email (per language)
