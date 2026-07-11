@@ -184,7 +184,11 @@ function md(src) {
   html = html.replace(/^# (.+)$/gm, "<h2>$1</h2>");
   html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
-  html = html.replace(/\[([^\]]+)\]\((https:\/\/(?:www\.)?podfy\.(?:net|app)[^\s)]*)\)/g, '<a href="$2">$1</a>');
+  // Internal links plain; external (news sources) open in a new tab, nofollow.
+  html = html.replace(/\[([^\]]+)\]\((https:\/\/[^\s)"]+)\)/g, (m, txt, url) =>
+    /^https:\/\/(?:www\.)?podfy\.(?:net|app)([/?#]|$)/.test(url)
+      ? `<a href="${url}">${txt}</a>`
+      : `<a href="${url}" target="_blank" rel="noopener noreferrer nofollow">${txt}</a>`);
   html = html.replace(/^- (.+)$/gm, "<li>$1</li>");
   html = html.replace(/(<li>[\s\S]*?<\/li>)(?!\s*<li>)/g, "<ul>$1</ul>");
   return html.split(/\n{2,}/).map(block => {

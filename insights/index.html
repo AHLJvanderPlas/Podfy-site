@@ -31,6 +31,27 @@
   <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
   <script src="/assets/theme.js" defer></script>
 
+  <style>
+    .ins-hero{background:#0E1116;border-bottom:1px solid var(--v2-line);padding:64px 0 52px}
+    .ins-eyebrow{color:#E05A30;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;font-family:var(--v2-font-sans)}
+    .ins-hero .v2-hero-title{color:#F5F2EA}
+    .ins-hero p{color:rgba(245,242,234,.65);font-size:1.05rem;max-width:540px;margin:0}
+    .ins-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}
+    .ins-card{background:var(--v2-card);border:1px solid var(--v2-line);border-radius:var(--v2-radius-lg);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,border-color .18s ease}
+    .ins-card:hover{transform:translateY(-3px);border-color:var(--v2-line-2)}
+    .ins-card-img{display:block;aspect-ratio:16/9;background:var(--v2-paper-2);overflow:hidden}
+    .ins-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}
+    .ins-card:hover .ins-card-img img{transform:scale(1.04)}
+    .ins-card-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+    .ins-card-meta{font-size:.78rem;color:var(--v2-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+    .ins-card-body h3{margin:0 0 8px;font-size:1.08rem;line-height:1.4}
+    .ins-card-body h3 a{color:inherit;text-decoration:none}
+    .ins-card-body p{margin:0 0 14px;font-size:.9rem;color:var(--v2-muted);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .ins-read{margin-top:auto;font-size:.88rem;font-weight:600;color:var(--v2-stamp);text-decoration:none}
+    .ins-read:hover{text-decoration:underline}
+    @media (prefers-reduced-motion: reduce){.ins-card,.ins-card-img img{transition:none}}
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -44,27 +65,30 @@
 <body>
   [[PODFY_HEADER]]
 
-  <main class="container" style="max-width:920px;margin:0 auto;padding:2rem 1.25rem 4rem">
-    <header style="margin:2rem 0 3rem">
-      <h1 class="v2-hero-title" style="max-width:36rem">Insights &amp; <em>market updates.</em></h1>
-      <p style="max-width:34rem;margin-top:1rem">Practical writing on proof of delivery, CMR workflows, and digitalisation in transport. No hype. Updated when we have something worth saying.</p>
-    </header>
+  <section class="ins-hero">
+    <div class="container">
+      <div class="ins-eyebrow">Insights</div>
+      <h1 class="v2-hero-title" style="max-width:38rem;margin-bottom:.75rem">Insights &amp; <em>market updates.</em></h1>
+      <p>Practical writing on proof of delivery, CMR workflows, and digitalisation in transport. No hype. Updated when we have something worth saying.</p>
+    </div>
+  </section>
 
+  <main class="container" style="padding:3rem 1rem 4rem">
     <!-- Market updates -->
-    <section aria-labelledby="mu-heading" style="margin-bottom:3.5rem">
-      <h2 id="mu-heading">Market updates</h2>
+    <section aria-labelledby="mu-heading" style="margin-bottom:4rem">
+      <h2 id="mu-heading" style="margin-bottom:1.5rem">Market updates</h2>
       <div id="insights-posts"><p style="color:var(--v2-muted)">Loading…</p></div>
     </section>
 
     <!-- Repository -->
-    <section aria-labelledby="repo-heading" style="margin-bottom:3.5rem">
+    <section aria-labelledby="repo-heading" style="margin-bottom:4rem;max-width:52rem">
       <h2 id="repo-heading">Repository</h2>
       <p style="color:var(--v2-muted);font-size:.9rem">Whitepapers and documents. Free to download.</p>
       <div id="insights-repo"><p style="color:var(--v2-muted)">Loading…</p></div>
     </section>
 
     <!-- Newsletter -->
-    <section aria-labelledby="nl-heading" style="border:1px solid var(--v2-border,#ddd);border-radius:6px;padding:1.5rem;max-width:34rem">
+    <section aria-labelledby="nl-heading" style="background:var(--v2-card);border:1px solid var(--v2-line);border-radius:6px;padding:1.75rem;max-width:36rem">
       <h2 id="nl-heading" style="margin-top:0">Newsletter</h2>
       <p style="font-size:.95rem">One email when a new insight is published. No schedule, no spam, unsubscribe in one click.</p>
       <form id="nl-form">
@@ -122,13 +146,21 @@
       var el = document.getElementById("insights-posts");
       var items = (data && data.items) || [];
       if (!items.length) { el.innerHTML = '<p style="color:var(--v2-muted)">First update coming soon.</p>'; return; }
-      el.innerHTML = items.map(function (p) {
-        return '<article style="border-bottom:1px solid var(--v2-border,#e5e5e5);padding:1.1rem 0">' +
-          '<h3 style="margin:0 0 .3rem"><a href="/insights/article?slug=' + encodeURIComponent(p.slug) + '">' + esc(p.title) + '</a></h3>' +
-          (p.excerpt ? '<p style="margin:.2rem 0;color:var(--v2-muted)">' + esc(p.excerpt) + '</p>' : '') +
-          '<span style="font-size:.8rem;color:var(--v2-muted)">' + fmtDate(p.published_at) + '</span>' +
-          '</article>';
-      }).join("");
+      el.innerHTML = '<div class="ins-grid">' + items.map(function (p) {
+        var url = '/insights/article?slug=' + encodeURIComponent(p.slug);
+        return '<article class="ins-card">' +
+          '<a href="' + url + '" class="ins-card-img" aria-hidden="true" tabindex="-1">' +
+            (p.cover_image_key
+              ? '<img src="/api/insights/cover/' + encodeURIComponent(p.id) + '" alt="" loading="lazy">'
+              : '') +
+          '</a>' +
+          '<div class="ins-card-body">' +
+            '<div class="ins-card-meta">' + fmtDate(p.published_at) + '</div>' +
+            '<h3><a href="' + url + '">' + esc(p.title) + '</a></h3>' +
+            (p.excerpt ? '<p>' + esc(p.excerpt) + '</p>' : '') +
+            '<a href="' + url + '" class="ins-read">Read article →</a>' +
+          '</div></article>';
+      }).join("") + '</div>';
     }).catch(function () {
       document.getElementById("insights-posts").innerHTML = '<p style="color:var(--v2-muted)">Could not load updates.</p>';
     });
