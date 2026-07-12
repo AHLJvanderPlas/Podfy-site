@@ -5,19 +5,20 @@
 const LANGS = ["en", "nl", "de", "fr"];
 const UI = {
   en: { back: "Repository", open: "Open the official text ↗", download: "Download", copy: "Copy link",
-        copied: "Copied ✓", summary: "Summary", source: "Official source", notfound: "This document does not exist or is not published." },
+        copied: "Copied ✓", summary: "Summary", source: "Official sources", notfound: "This document does not exist or is not published." },
   nl: { back: "Repository", open: "Open de officiële tekst ↗", download: "Downloaden", copy: "Kopieer link",
-        copied: "Gekopieerd ✓", summary: "Samenvatting", source: "Officiële bron", notfound: "Dit document bestaat niet of is niet gepubliceerd." },
+        copied: "Gekopieerd ✓", summary: "Samenvatting", source: "Officiële bronnen", notfound: "Dit document bestaat niet of is niet gepubliceerd." },
   de: { back: "Repository", open: "Offiziellen Text öffnen ↗", download: "Herunterladen", copy: "Link kopieren",
-        copied: "Kopiert ✓", summary: "Zusammenfassung", source: "Offizielle Quelle", notfound: "Dieses Dokument existiert nicht oder ist nicht veröffentlicht." },
+        copied: "Kopiert ✓", summary: "Zusammenfassung", source: "Offizielle Quellen", notfound: "Dieses Dokument existiert nicht oder ist nicht veröffentlicht." },
   fr: { back: "Repository", open: "Ouvrir le texte officiel ↗", download: "Télécharger", copy: "Copier le lien",
-        copied: "Copié ✓", summary: "Résumé", source: "Source officielle", notfound: "Ce document n'existe pas ou n'est pas publié." },
+        copied: "Copié ✓", summary: "Résumé", source: "Sources officielles", notfound: "Ce document n'existe pas ou n'est pas publié." },
 };
 const CAT_LABELS = {
   convention: { en: "Convention", nl: "Verdrag", de: "Übereinkommen", fr: "Convention" },
   protocol:   { en: "Protocol", nl: "Protocol", de: "Protokoll", fr: "Protocole" },
   regulation: { en: "EU regulation", nl: "EU-verordening", de: "EU-Verordnung", fr: "Règlement UE" },
   handbook:   { en: "Handbook", nl: "Handboek", de: "Handbuch", fr: "Manuel" },
+  reference:  { en: "Reference", nl: "Naslag", de: "Referenz", fr: "Référence" },
   whitepaper: { en: "Whitepaper", nl: "Whitepaper", de: "Whitepaper", fr: "Livre blanc" },
   guide:      { en: "Guide", nl: "Gids", de: "Leitfaden", fr: "Guide" },
 };
@@ -72,6 +73,18 @@ export async function onRequestGet(context) {
     publisher: { "@type": "Organization", name: "PODFY", url: "https://podfy.net" },
   };
 
+  let links = [];
+  try { links = JSON.parse(item.links_json || "[]"); } catch { /* none */ }
+  const sourcesHtml = links.length ? `
+        <section style="margin-top:2.25rem;border-top:1px solid var(--v2-border,#ddd);padding-top:1.1rem">
+          <h2 style="font-size:.95rem;margin:0 0 .6rem">${T.source}</h2>
+          <ul style="margin:0;padding:0;list-style:none">
+            ${links.map(l => `<li style="margin:0 0 .45rem;font-size:.9rem">
+              <a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>
+              <span style="font-size:.75rem;color:var(--v2-muted)"> · ${esc(new URL(l.url).hostname)}</span></li>`).join("")}
+          </ul>
+        </section>` : "";
+
   const body = `
     <main class="container" style="max-width:760px;margin:0 auto;padding:2rem 1.25rem 4rem">
       <p style="margin:1.5rem 0"><a href="/insights/repository/" style="font-size:.9rem">← ${T.back}</a></p>
@@ -89,7 +102,7 @@ export async function onRequestGet(context) {
           <button class="v2-btn v2-btn-ghost" style="cursor:pointer"
              onclick="navigator.clipboard.writeText('${canonical}');this.textContent='${T.copied}'">${T.copy}</button>
         </div>
-        ${item.external_url ? `<p style="font-size:.8rem;color:var(--v2-muted);margin-top:1rem">${T.source}: ${esc(new URL(item.external_url).hostname)}</p>` : ""}
+        ${sourcesHtml}
       </article>
     </main>`;
 

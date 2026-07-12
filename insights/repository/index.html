@@ -83,7 +83,7 @@
     function esc(s) {
       return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
     }
-    var CAT_LABELS = { convention: "Convention", protocol: "Protocol", regulation: "EU regulation", handbook: "Handbook", whitepaper: "Whitepaper", guide: "Guide" };
+    var CAT_LABELS = { convention: "Convention", protocol: "Protocol", regulation: "EU regulation", handbook: "Handbook", whitepaper: "Whitepaper", guide: "Guide", reference: "Reference" };
     fetch("/api/insights/repo").then(r => r.json()).then(function (data) {
       var el = document.getElementById("repo-cards");
       var items = (data && data.items) || [];
