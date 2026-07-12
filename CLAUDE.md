@@ -186,3 +186,21 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
 - **Proof strip** — Card 01: phone status bar (09:24 / signal), URL bar, `v2-proof-hr` divider, camera CTA button, "Any phone" note; `<article>`. Card 02: all inline `style=""` attributes removed → CSS classes (`.v2-proof-pdf-*`); timestamp fixed to 2026. Card 03: dates 2025 → 2026; `<article>`. All 3: `.v2-proof-artifact` flex column with `padding: 1rem; min-height: 200px`
 - **Header/footer tokens** — `partials/header.html`: `site-header-shell` → `site-header`, `site-trust-pill` → `site-eu-mark`. `partials/footer.html`: `site-footer-v2` → `site-footer`. CSS: all three renames propagated; EU mark `transform: rotate(-2deg)`; `cursor: not-allowed` removed from inactive locale links
 - **Customer story placeholder** — old comment block removed; `TODO(story)` comment placed after proof strip section
+
+## Changes (2026-07-12) — Insights section restructure
+
+- **/insights split into three tab pages** (shared `.ins-tabs` nav): Market updates (`/insights/`),
+  Repository (`/insights/repository/`, card grid with covers + category chips), LinkedIn
+  (`/insights/linkedin/`, published posts as cards via the `/li/` redirect).
+- **SSR repository item detail** `functions/insights/repository/item.js` —
+  `/insights/repository/item?slug=&lang=en|nl|de|fr`: 4-language summary + localized
+  classification chip, cover, copy-deeplink button, official-text/download buttons,
+  DigitalDocument JSON-LD, hreflang ×4. Middleware passthrough entry added.
+- **podfy-public migrations 006+007**: `repository_items.external_url` (link-only items,
+  file_key='') + `slug`, `category`, `cover_image_key`, `summary_en/nl/de/fr`; 6 official
+  legal texts seeded (CMR, e-CMR, CIM, CMNI, TIR, eFTI) with hand-written 4-language
+  summaries and AI covers under `marketing/covers/repo-<slug>.jpg`.
+- **API routes** in `functions/api/insights/[[route]].js`: `repoitem/<slug>`,
+  `repocover/<item_id>` (marketing/covers/ guard), `liposts` (blogs with linkedin_post_url).
+- `sitemap-insights.xml` now includes the two section pages + repository item URLs (×4 langs).
+- Insights hero signup compacted (single-row inputs, Turnstile `data-appearance="interaction-only"`).
