@@ -5,10 +5,10 @@
 
 const LANGS = ["en", "nl", "de", "fr"];
 const UI = {
-  en: { back: "All insights", faq: "Frequently asked questions", notfound: "This article does not exist or is not published." },
-  nl: { back: "Alle insights", faq: "Veelgestelde vragen", notfound: "Dit artikel bestaat niet of is niet gepubliceerd." },
-  de: { back: "Alle Insights", faq: "Häufig gestellte Fragen", notfound: "Dieser Artikel existiert nicht oder ist nicht veröffentlicht." },
-  fr: { back: "Tous les articles", faq: "Questions fréquentes", notfound: "Cet article n'existe pas ou n'est pas publié." },
+  en: { back: "All insights", faq: "Frequently asked questions", notfound: "This article does not exist or is not published.", prev: "Previous", next: "Next" },
+  nl: { back: "Alle insights", faq: "Veelgestelde vragen", notfound: "Dit artikel bestaat niet of is niet gepubliceerd.", prev: "Vorige", next: "Volgende" },
+  de: { back: "Alle Insights", faq: "Häufig gestellte Fragen", notfound: "Dieser Artikel existiert nicht oder ist nicht veröffentlicht.", prev: "Zurück", next: "Weiter" },
+  fr: { back: "Tous les articles", faq: "Questions fréquentes", notfound: "Cet article n'existe pas ou n'est pas publié.", prev: "Précédent", next: "Suivant" },
 };
 
 export async function onRequestGet(context) {
@@ -99,6 +99,30 @@ export async function onRequestGet(context) {
       ${faq.map(f => `<h3 style="font-size:1.05rem">${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}
     </section>` : "";
 
+  // Previous (older) / next (newer) published articles for quick navigation
+  const [prevPost, nextPost] = await Promise.all([
+    env.DB.prepare(
+      `SELECT slug, title, title_nl, title_de, title_fr FROM blog_posts
+       WHERE status = 'published' AND published_at < ? ORDER BY published_at DESC LIMIT 1`
+    ).bind(p.published_at).first(),
+    env.DB.prepare(
+      `SELECT slug, title, title_nl, title_de, title_fr FROM blog_posts
+       WHERE status = 'published' AND published_at > ? ORDER BY published_at ASC LIMIT 1`
+    ).bind(p.published_at).first(),
+  ]);
+  const navUrl = (row) => `/insights/article?slug=${encodeURIComponent(row.slug)}${effLang === "en" ? "" : `&lang=${effLang}`}`;
+  const navTitle = (row) => (effLang === "en" ? row.title : row[`title_${effLang}`]) || row.title;
+  const navCard = (row, label, align, arrow) => row ? `
+    <a href="${navUrl(row)}" style="display:block;border:1px solid var(--v2-line,#ddd);border-radius:6px;padding:.9rem 1.1rem;text-decoration:none;color:inherit;text-align:${align}">
+      <span style="display:block;font-size:.75rem;color:var(--v2-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem">${arrow === "l" ? "← " : ""}${label}${arrow === "r" ? " →" : ""}</span>
+      <span style="font-size:.92rem;font-weight:600;line-height:1.4">${esc(navTitle(row))}</span>
+    </a>` : "<span></span>";
+  const prevNextHtml = (prevPost || nextPost) ? `
+    <nav aria-label="More insights" style="margin-top:2.5rem;border-top:1px solid var(--v2-border,#ddd);padding-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+      ${navCard(prevPost, UI[effLang].prev, "left", "l")}
+      ${navCard(nextPost, UI[effLang].next, "right", "r")}
+    </nav>` : "";
+
   const body = `
     <main class="container" style="max-width:720px;margin:0 auto;padding:2rem 1.25rem 4rem">
       <p style="margin:1.5rem 0"><a href="/insights" style="font-size:.9rem">← ${UI[effLang].back}</a></p>
@@ -115,6 +139,7 @@ export async function onRequestGet(context) {
           <button class="v2-btn v2-btn-ghost" style="cursor:pointer"
              onclick="navigator.clipboard.writeText('${canonical}');this.textContent='Copied ✓';fetch('/api/insights/share',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({entity_type:'blog_post',entity_id:'${esc(p.id)}',channel:'copy_text'})})">Copy link</button>
         </div>
+        ${prevNextHtml}
       </article>
     </main>`;
 
