@@ -15,6 +15,7 @@ export async function onRequest(context) {
     url.pathname === "/insights/unsubscribe" ||
     url.pathname === "/insights/preferences" ||
     url.pathname === "/insights/article" ||
+    url.pathname === "/insights/repository/item" ||
     url.pathname === "/sitemap-insights.xml"
   ) {
     return next();

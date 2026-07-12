@@ -61,7 +61,8 @@ export async function onRequest(context) {
     if (method === "GET" && route[0] === "repo") {
       // PUBLIC items only — subscriber/group items are never listed on the site
       const { results = [] } = await env.DB.prepare(
-        `SELECT item_id, title, description, mime_type, file_size, external_url, created_at
+        `SELECT item_id, title, description, mime_type, file_size, external_url,
+                slug, category, cover_image_key, created_at
          FROM repository_items WHERE published = 1 AND access_level = 'public'
          ORDER BY created_at DESC LIMIT 50`
       ).all();
@@ -85,6 +86,44 @@ export async function onRequest(context) {
           "cache-control": "public, max-age=3600",
         },
       });
+    }
+
+    if (method === "GET" && route[0] === "repoitem" && route[1]) {
+      const row = await env.DB.prepare(
+        `SELECT item_id, title, description, mime_type, file_size, external_url, slug, category,
+                cover_image_key, summary_en, summary_nl, summary_de, summary_fr, created_at, updated_at
+         FROM repository_items WHERE published = 1 AND access_level = 'public' AND slug = ?`
+      ).bind(route[1]).first();
+      if (!row) return json({ ok: false, error: "not_found" }, 404);
+      return json({ ok: true, item: row });
+    }
+
+    if (method === "GET" && route[0] === "repocover" && route[1]) {
+      const row = await env.DB.prepare(
+        `SELECT cover_image_key FROM repository_items
+         WHERE item_id = ? AND published = 1 AND access_level = 'public'`
+      ).bind(route[1]).first();
+      if (!row?.cover_image_key || !row.cover_image_key.startsWith("marketing/covers/")) {
+        return new Response("Not found", { status: 404 });
+      }
+      const obj = await env.PODFY_BUCKET.get(row.cover_image_key);
+      if (!obj) return new Response("Not found", { status: 404 });
+      return new Response(obj.body, {
+        headers: {
+          "content-type": obj.httpMetadata?.contentType || "image/jpeg",
+          "cache-control": "public, max-age=86400",
+        },
+      });
+    }
+
+    if (method === "GET" && route[0] === "liposts") {
+      // Blogs whose LinkedIn post is live — powers /insights/linkedin/
+      const { results = [] } = await env.DB.prepare(
+        `SELECT id, title, excerpt, slug, cover_image_key, published_at
+         FROM blog_posts WHERE status = 'published' AND linkedin_post_url IS NOT NULL
+         ORDER BY published_at DESC LIMIT 50`
+      ).all();
+      return json({ ok: true, items: results });
     }
 
     if (method === "POST" && route[0] === "subscribe") {

@@ -25,6 +25,24 @@ export async function onRequestGet(context) {
     }
   }
 
+  // Section index pages + repository item pages (all 4 language variants)
+  urls.push(`<url><loc>https://podfy.net/insights/repository/</loc></url>`);
+  urls.push(`<url><loc>https://podfy.net/insights/linkedin/</loc></url>`);
+  const { results: repo = [] } = await env.DB.prepare(
+    `SELECT slug, updated_at, created_at FROM repository_items
+     WHERE published = 1 AND access_level = 'public' AND slug IS NOT NULL LIMIT 200`
+  ).all();
+  for (const r of repo) {
+    const base = `https://podfy.net/insights/repository/item?slug=${encodeURIComponent(r.slug)}`;
+    const lastmod = new Date((r.updated_at || r.created_at) * 1000).toISOString().slice(0, 10);
+    const alternates = LANGS.map(l =>
+      `<xhtml:link rel="alternate" hreflang="${l}" href="${l === "en" ? base : `${base}&amp;lang=${l}`}"/>`
+    ).join("");
+    for (const l of LANGS) {
+      urls.push(`<url><loc>${l === "en" ? base : `${base}&amp;lang=${l}`}</loc><lastmod>${lastmod}</lastmod>${alternates}</url>`);
+    }
+  }
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls.join("\n")}

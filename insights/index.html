@@ -67,6 +67,11 @@
     .ins-filter input[type=date]{min-width:140px}
     .ins-filter-count{font-size:.85rem;color:var(--v2-muted)}
     .ins-filter-clear{font-size:.85rem;color:var(--v2-stamp);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
+    .ins-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 2rem}
+    .ins-tabs a{padding:.45rem 1.05rem;border:1px solid var(--v2-line);border-radius:var(--v2-radius);font-size:.88rem;font-weight:500;color:var(--v2-muted);text-decoration:none}
+    .ins-tabs a:hover{border-color:var(--v2-ink);color:var(--v2-ink)}
+    .ins-tabs a.active{background:var(--v2-ink);color:var(--v2-paper);border-color:var(--v2-ink)}
+    .ins-chip{display:inline-block;font-family:var(--v2-font-mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--v2-line-2);border-radius:var(--v2-radius);padding:2px 8px;color:var(--v2-muted)}
     @media (prefers-reduced-motion: reduce){.ins-card,.ins-card-img img{transition:none}}
   </style>
 
@@ -129,7 +134,12 @@
     </div>
   </section>
 
-  <main class="container" style="padding:3rem 1rem 4rem">
+  <main class="container" style="padding:2.25rem 1rem 4rem">
+    <nav class="ins-tabs" aria-label="Insights sections">
+      <a href="/insights/" class="active">Market updates</a>
+      <a href="/insights/repository/">Repository</a>
+      <a href="/insights/linkedin/">LinkedIn</a>
+    </nav>
     <!-- Market updates -->
     <section aria-labelledby="mu-heading" style="margin-bottom:4rem">
       <h2 id="mu-heading" style="margin-bottom:1.25rem">Market updates</h2>
@@ -158,12 +168,6 @@
       <div id="insights-posts"><p style="color:var(--v2-muted)">Loading…</p></div>
     </section>
 
-    <!-- Repository -->
-    <section aria-labelledby="repo-heading" style="margin-bottom:4rem;max-width:52rem">
-      <h2 id="repo-heading">Repository</h2>
-      <p style="color:var(--v2-muted);font-size:.9rem">Whitepapers and documents. Free to download.</p>
-      <div id="insights-repo"><p style="color:var(--v2-muted)">Loading…</p></div>
-    </section>
 
   </main>
 
@@ -275,25 +279,7 @@
       document.getElementById("insights-posts").innerHTML = '<p style="color:var(--v2-muted)">Could not load updates.</p>';
     });
 
-    fetch("/api/insights/repo").then(r => r.json()).then(function (data) {
-      var el = document.getElementById("insights-repo");
-      var items = (data && data.items) || [];
-      if (!items.length) { el.innerHTML = '<p style="color:var(--v2-muted)">No documents published yet.</p>'; return; }
-      el.innerHTML = items.map(function (d) {
-        var action = d.external_url
-          ? '<a class="v2-btn v2-btn-ghost" style="white-space:nowrap" href="' + esc(d.external_url) + '" target="_blank" rel="noopener noreferrer">Official text ↗</a>'
-          : '<a class="v2-btn v2-btn-ghost" style="white-space:nowrap" href="/api/insights/file/' + encodeURIComponent(d.item_id) + '">Download ' + fmtSize(d.file_size) + '</a>';
-        return '<article style="border-bottom:1px solid var(--v2-border,#e5e5e5);padding:1rem 0;display:flex;justify-content:space-between;gap:1rem;align-items:baseline">' +
-          '<div><h3 style="margin:0 0 .2rem;font-size:1rem">' + esc(d.title) + '</h3>' +
-          (d.description ? '<p style="margin:0;font-size:.9rem;color:var(--v2-muted)">' + esc(d.description) + '</p>' : '') + '</div>' +
-          action +
-          '</article>';
-      }).join("");
-    }).catch(function () {
-      document.getElementById("insights-repo").innerHTML = '<p style="color:var(--v2-muted)">Could not load documents.</p>';
-    });
-
-    document.getElementById("nl-form").addEventListener("submit", function (e) {
+      document.getElementById("nl-form").addEventListener("submit", function (e) {
       e.preventDefault();
       var msg = document.getElementById("nl-msg");
       msg.textContent = "Sending…";
