@@ -61,7 +61,7 @@ export async function onRequest(context) {
     if (method === "GET" && route[0] === "repo") {
       // PUBLIC items only — subscriber/group items are never listed on the site
       const { results = [] } = await env.DB.prepare(
-        `SELECT item_id, title, description, mime_type, file_size, created_at
+        `SELECT item_id, title, description, mime_type, file_size, external_url, created_at
          FROM repository_items WHERE published = 1 AND access_level = 'public'
          ORDER BY created_at DESC LIMIT 50`
       ).all();

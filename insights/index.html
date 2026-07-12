@@ -51,13 +51,16 @@
     .ins-read:hover{text-decoration:underline}
     .ins-hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:3rem;align-items:center}
     @media (max-width:860px){.ins-hero-grid{grid-template-columns:1fr;gap:2rem}}
-    .ins-sub-card{background:rgba(255,255,255,.045);border:1px solid rgba(245,242,234,.16);border-radius:6px;padding:1.35rem 1.4rem}
-    .ins-sub-card h2{margin:0 0 .35rem;font-size:1.05rem;color:#F5F2EA}
-    .ins-sub-card .ins-sub-note{margin:0 0 .85rem;font-size:.85rem;color:rgba(245,242,234,.6)}
-    .ins-sub-card input[type=email],.ins-sub-card select{background:rgba(255,255,255,.07);border:1px solid rgba(245,242,234,.22);border-radius:4px;color:#F5F2EA;padding:.55rem .7rem;font-size:.9rem;font-family:var(--v2-font-sans)}
+    .ins-sub-card{background:rgba(255,255,255,.045);border:1px solid rgba(245,242,234,.16);border-radius:6px;padding:1rem 1.1rem}
+    .ins-sub-card h2{margin:0 0 .2rem;font-size:.95rem;color:#F5F2EA;display:inline}
+    .ins-sub-card .ins-sub-note{display:inline;margin:0 0 0 .4rem;font-size:.78rem;color:rgba(245,242,234,.55)}
+    .ins-sub-card form{margin-top:.6rem}
+    .ins-sub-card input[type=email],.ins-sub-card select{background:rgba(255,255,255,.07);border:1px solid rgba(245,242,234,.22);border-radius:4px;color:#F5F2EA;padding:.45rem .6rem;font-size:.85rem;font-family:var(--v2-font-sans)}
     .ins-sub-card input[type=email]::placeholder{color:rgba(245,242,234,.4)}
     .ins-sub-card select option{color:#0E1116;background:#F5F2EA}
-    .ins-sub-consent{display:flex;gap:.5rem;align-items:flex-start;font-size:.75rem;line-height:1.45;color:rgba(245,242,234,.6);margin:.7rem 0 .6rem}
+    .ins-sub-consent{display:flex;gap:.45rem;align-items:flex-start;font-size:.68rem;line-height:1.4;color:rgba(245,242,234,.55);margin:.55rem 0 .4rem}
+    .ins-sub-card .cf-turnstile{margin:0}
+    .ins-sub-card .cf-turnstile:empty{display:none}
     .ins-filter{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:0 0 1.75rem}
     .ins-filter input,.ins-filter select{background:var(--v2-card);border:1px solid var(--v2-line);border-radius:4px;color:var(--v2-ink);padding:.55rem .7rem;font-size:.88rem;font-family:var(--v2-font-sans)}
     .ins-filter input[type=search]{flex:1 1 220px;max-width:340px}
@@ -88,36 +91,39 @@
         <p>Practical writing on proof of delivery, CMR workflows, and digitalisation in transport. No hype. Updated when we have something worth saying.</p>
       </div>
       <div class="ins-sub-card" aria-labelledby="nl-heading">
-        <h2 id="nl-heading">Newsletter</h2>
-        <p class="ins-sub-note">Weekly summary or every update, in your language. Unsubscribe in one click.</p>
+        <div>
+          <h2 id="nl-heading">Newsletter</h2>
+          <p class="ins-sub-note">Weekly summary or every update, in your language.</p>
+        </div>
         <form id="nl-form">
-          <input type="email" id="nl-email" placeholder="you@company.com" required
-                 style="width:100%;margin-bottom:.55rem" />
-          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-            <select id="nl-freq" style="flex:1;min-width:140px">
+          <div style="display:flex;gap:.45rem;flex-wrap:wrap">
+            <input type="email" id="nl-email" placeholder="you@company.com" required
+                   style="flex:2;min-width:170px" />
+            <select id="nl-freq" style="flex:1;min-width:125px">
               <option value="weekly">Weekly summary</option>
               <option value="daily">3× per week</option>
             </select>
-            <select id="nl-lang" style="flex:1;min-width:110px">
-              <option value="en">English</option>
-              <option value="nl">Nederlands</option>
-              <option value="de">Deutsch</option>
-              <option value="fr">Français</option>
+            <select id="nl-lang" style="flex:0 0 auto">
+              <option value="en">EN</option>
+              <option value="nl">NL</option>
+              <option value="de">DE</option>
+              <option value="fr">FR</option>
             </select>
           </div>
           <input type="text" id="nl-hp" name="hp_sub" value="" autocomplete="off" tabindex="-1"
                  style="position:absolute;left:-9999px" aria-hidden="true" />
           <label class="ins-sub-consent">
-            <input type="checkbox" id="nl-consent" required style="margin-top:.15rem" />
+            <input type="checkbox" id="nl-consent" required style="margin-top:.1rem" />
             <span>I agree to receive the Podfy newsletter and accept the <a href="/trust" style="color:inherit">privacy policy</a>. Double opt-in: you confirm by email first.</span>
           </label>
           <input type="hidden" id="nl-turnstile-token" value="" />
           <div class="cf-turnstile"
                data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
                data-callback="onNlTurnstile"
-               data-size="flexible"></div>
-          <button type="submit" class="v2-btn v2-btn-primary" style="margin-top:.7rem;width:100%">Subscribe</button>
-          <p id="nl-msg" style="font-size:.85rem;min-height:1.1rem;margin:.5rem 0 0;color:rgba(245,242,234,.75)"></p>
+               data-size="flexible"
+               data-appearance="interaction-only"></div>
+          <button type="submit" class="v2-btn v2-btn-primary" style="margin-top:.5rem">Subscribe</button>
+          <span id="nl-msg" style="font-size:.8rem;margin-left:.6rem;color:rgba(245,242,234,.75)"></span>
         </form>
       </div>
     </div>
@@ -274,10 +280,13 @@
       var items = (data && data.items) || [];
       if (!items.length) { el.innerHTML = '<p style="color:var(--v2-muted)">No documents published yet.</p>'; return; }
       el.innerHTML = items.map(function (d) {
+        var action = d.external_url
+          ? '<a class="v2-btn v2-btn-ghost" style="white-space:nowrap" href="' + esc(d.external_url) + '" target="_blank" rel="noopener noreferrer">Official text ↗</a>'
+          : '<a class="v2-btn v2-btn-ghost" style="white-space:nowrap" href="/api/insights/file/' + encodeURIComponent(d.item_id) + '">Download ' + fmtSize(d.file_size) + '</a>';
         return '<article style="border-bottom:1px solid var(--v2-border,#e5e5e5);padding:1rem 0;display:flex;justify-content:space-between;gap:1rem;align-items:baseline">' +
           '<div><h3 style="margin:0 0 .2rem;font-size:1rem">' + esc(d.title) + '</h3>' +
           (d.description ? '<p style="margin:0;font-size:.9rem;color:var(--v2-muted)">' + esc(d.description) + '</p>' : '') + '</div>' +
-          '<a class="v2-btn v2-btn-ghost" style="white-space:nowrap" href="/api/insights/file/' + encodeURIComponent(d.item_id) + '">Download ' + fmtSize(d.file_size) + '</a>' +
+          action +
           '</article>';
       }).join("");
     }).catch(function () {
