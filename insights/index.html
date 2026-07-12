@@ -49,6 +49,21 @@
     .ins-card-body p{margin:0 0 14px;font-size:.9rem;color:var(--v2-muted);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
     .ins-read{margin-top:auto;font-size:.88rem;font-weight:600;color:var(--v2-stamp);text-decoration:none}
     .ins-read:hover{text-decoration:underline}
+    .ins-hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:3rem;align-items:center}
+    @media (max-width:860px){.ins-hero-grid{grid-template-columns:1fr;gap:2rem}}
+    .ins-sub-card{background:rgba(255,255,255,.045);border:1px solid rgba(245,242,234,.16);border-radius:6px;padding:1.35rem 1.4rem}
+    .ins-sub-card h2{margin:0 0 .35rem;font-size:1.05rem;color:#F5F2EA}
+    .ins-sub-card .ins-sub-note{margin:0 0 .85rem;font-size:.85rem;color:rgba(245,242,234,.6)}
+    .ins-sub-card input[type=email],.ins-sub-card select{background:rgba(255,255,255,.07);border:1px solid rgba(245,242,234,.22);border-radius:4px;color:#F5F2EA;padding:.55rem .7rem;font-size:.9rem;font-family:var(--v2-font-sans)}
+    .ins-sub-card input[type=email]::placeholder{color:rgba(245,242,234,.4)}
+    .ins-sub-card select option{color:#0E1116;background:#F5F2EA}
+    .ins-sub-consent{display:flex;gap:.5rem;align-items:flex-start;font-size:.75rem;line-height:1.45;color:rgba(245,242,234,.6);margin:.7rem 0 .6rem}
+    .ins-filter{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:0 0 1.75rem}
+    .ins-filter input,.ins-filter select{background:var(--v2-card);border:1px solid var(--v2-line);border-radius:4px;color:var(--v2-ink);padding:.55rem .7rem;font-size:.88rem;font-family:var(--v2-font-sans)}
+    .ins-filter input[type=search]{flex:1 1 220px;max-width:340px}
+    .ins-filter input[type=date]{min-width:140px}
+    .ins-filter-count{font-size:.85rem;color:var(--v2-muted)}
+    .ins-filter-clear{font-size:.85rem;color:var(--v2-stamp);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
     @media (prefers-reduced-motion: reduce){.ins-card,.ins-card-img img{transition:none}}
   </style>
 
@@ -66,17 +81,74 @@
   [[PODFY_HEADER]]
 
   <section class="ins-hero">
-    <div class="container">
-      <div class="ins-eyebrow">Insights</div>
-      <h1 class="v2-hero-title" style="max-width:38rem;margin-bottom:.75rem">Insights &amp; <em>market updates.</em></h1>
-      <p>Practical writing on proof of delivery, CMR workflows, and digitalisation in transport. No hype. Updated when we have something worth saying.</p>
+    <div class="container ins-hero-grid">
+      <div>
+        <div class="ins-eyebrow">Insights</div>
+        <h1 class="v2-hero-title" style="max-width:38rem;margin-bottom:.75rem">Insights &amp; <em>market updates.</em></h1>
+        <p>Practical writing on proof of delivery, CMR workflows, and digitalisation in transport. No hype. Updated when we have something worth saying.</p>
+      </div>
+      <div class="ins-sub-card" aria-labelledby="nl-heading">
+        <h2 id="nl-heading">Newsletter</h2>
+        <p class="ins-sub-note">Weekly summary or every update, in your language. Unsubscribe in one click.</p>
+        <form id="nl-form">
+          <input type="email" id="nl-email" placeholder="you@company.com" required
+                 style="width:100%;margin-bottom:.55rem" />
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <select id="nl-freq" style="flex:1;min-width:140px">
+              <option value="weekly">Weekly summary</option>
+              <option value="daily">3× per week</option>
+            </select>
+            <select id="nl-lang" style="flex:1;min-width:110px">
+              <option value="en">English</option>
+              <option value="nl">Nederlands</option>
+              <option value="de">Deutsch</option>
+              <option value="fr">Français</option>
+            </select>
+          </div>
+          <input type="text" id="nl-hp" name="hp_sub" value="" autocomplete="off" tabindex="-1"
+                 style="position:absolute;left:-9999px" aria-hidden="true" />
+          <label class="ins-sub-consent">
+            <input type="checkbox" id="nl-consent" required style="margin-top:.15rem" />
+            <span>I agree to receive the Podfy newsletter and accept the <a href="/trust" style="color:inherit">privacy policy</a>. Double opt-in: you confirm by email first.</span>
+          </label>
+          <input type="hidden" id="nl-turnstile-token" value="" />
+          <div class="cf-turnstile"
+               data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+               data-callback="onNlTurnstile"
+               data-size="flexible"></div>
+          <button type="submit" class="v2-btn v2-btn-primary" style="margin-top:.7rem;width:100%">Subscribe</button>
+          <p id="nl-msg" style="font-size:.85rem;min-height:1.1rem;margin:.5rem 0 0;color:rgba(245,242,234,.75)"></p>
+        </form>
+      </div>
     </div>
   </section>
 
   <main class="container" style="padding:3rem 1rem 4rem">
     <!-- Market updates -->
     <section aria-labelledby="mu-heading" style="margin-bottom:4rem">
-      <h2 id="mu-heading" style="margin-bottom:1.5rem">Market updates</h2>
+      <h2 id="mu-heading" style="margin-bottom:1.25rem">Market updates</h2>
+      <div class="ins-filter" role="search">
+        <input type="search" id="flt-q" placeholder="Search articles…" aria-label="Search articles" />
+        <select id="flt-subject" aria-label="Filter by subject">
+          <option value="">All subjects</option>
+          <option value="cmr">CMR &amp; documents</option>
+          <option value="regulation">Regulations &amp; compliance</option>
+          <option value="capacity">Capacity &amp; market</option>
+          <option value="costs">Fuel, tolls &amp; costs</option>
+          <option value="disruption">Safety &amp; disruptions</option>
+          <option value="digital">Digitalisation</option>
+        </select>
+        <select id="flt-mode" aria-label="Filter by period">
+          <option value="">All time</option>
+          <option value="before">Before</option>
+          <option value="after">After</option>
+          <option value="between">Between</option>
+        </select>
+        <input type="date" id="flt-d1" aria-label="Date" style="display:none" />
+        <input type="date" id="flt-d2" aria-label="End date" style="display:none" />
+        <span class="ins-filter-count" id="flt-count"></span>
+        <button type="button" class="ins-filter-clear" id="flt-clear" style="display:none">Clear filters</button>
+      </div>
       <div id="insights-posts"><p style="color:var(--v2-muted)">Loading…</p></div>
     </section>
 
@@ -87,40 +159,6 @@
       <div id="insights-repo"><p style="color:var(--v2-muted)">Loading…</p></div>
     </section>
 
-    <!-- Newsletter -->
-    <section aria-labelledby="nl-heading" style="background:var(--v2-card);border:1px solid var(--v2-line);border-radius:6px;padding:1.75rem;max-width:36rem">
-      <h2 id="nl-heading" style="margin-top:0">Newsletter</h2>
-      <p style="font-size:.95rem">One email when a new insight is published. No schedule, no spam, unsubscribe in one click.</p>
-      <form id="nl-form">
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem">
-          <input type="email" id="nl-email" placeholder="you@company.com" required
-                 style="flex:1;min-width:220px;padding:.6rem .75rem;border:1px solid var(--v2-border,#ccc);border-radius:4px" />
-          <select id="nl-lang" style="padding:.6rem .5rem;border:1px solid var(--v2-border,#ccc);border-radius:4px">
-            <option value="en">English</option>
-            <option value="nl">Nederlands</option>
-            <option value="de">Deutsch</option>
-            <option value="fr">Français</option>
-          </select>
-          <select id="nl-freq" style="padding:.6rem .5rem;border:1px solid var(--v2-border,#ccc);border-radius:4px">
-            <option value="weekly">Weekly digest</option>
-            <option value="daily">Every article</option>
-          </select>
-        </div>
-        <input type="text" id="nl-hp" name="hp_sub" value="" autocomplete="off" tabindex="-1"
-               style="position:absolute;left:-9999px" aria-hidden="true" />
-        <label style="display:flex;gap:.5rem;align-items:flex-start;font-size:.85rem;margin-bottom:.75rem">
-          <input type="checkbox" id="nl-consent" required style="margin-top:.2rem" />
-          <span>I agree to receive the PODFY newsletter and accept the privacy policy. Double opt-in: you confirm by email first.</span>
-        </label>
-        <input type="hidden" id="nl-turnstile-token" value="" />
-        <div class="cf-turnstile"
-             data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
-             data-callback="onNlTurnstile"
-             data-size="flexible"></div>
-        <button type="submit" class="v2-btn v2-btn-primary" style="margin-top:.75rem">Subscribe</button>
-        <p id="nl-msg" style="font-size:.9rem;min-height:1.2rem;margin-top:.5rem"></p>
-      </form>
-    </section>
   </main>
 
   [[PODFY_FOOTER]]
@@ -142,10 +180,50 @@
       return b > 1048576 ? (b/1048576).toFixed(1) + " MB" : Math.round(b/1024) + " KB";
     }
 
-    fetch("/api/insights/posts").then(r => r.json()).then(function (data) {
+    // Newsletter language defaults to the page language
+    (function () {
+      var pageLang = (document.documentElement.lang || "en").slice(0, 2);
+      var sel = document.getElementById("nl-lang");
+      if (sel && sel.querySelector('option[value="' + pageLang + '"]')) sel.value = pageLang;
+    })();
+
+    // ── Market updates: load once, filter client-side ──────────────────────
+    var ALL_POSTS = [];
+    // Subjects are derived from title+excerpt keywords (no tag column yet)
+    var SUBJECTS = {
+      cmr:        /\b(e-?cmr|cmr|consignment|waybill|vrachtbrief|proof of delivery|pod\b)/i,
+      regulation: /\b(regulation|rules?|law|compliance|efti|tachograph|mobility package|ban|verordening|mandat)/i,
+      capacity:   /\b(capacity|driver shortage|shortage|market|rates?|volumes?|freight|crunch)/i,
+      costs:      /\b(fuel|diesel|toll|maut|tax|costs?|price)/i,
+      disruption: /\b(safety|strike|protest|congestion|closure|disruption|roadworks|delay)/i,
+      digital:    /\b(digital|digitis|digitiz|ai\b|automation|data|platform|app\b)/i,
+    };
+    function renderPosts() {
       var el = document.getElementById("insights-posts");
-      var items = (data && data.items) || [];
-      if (!items.length) { el.innerHTML = '<p style="color:var(--v2-muted)">First update coming soon.</p>'; return; }
+      var q = document.getElementById("flt-q").value.trim().toLowerCase();
+      var subject = document.getElementById("flt-subject").value;
+      var mode = document.getElementById("flt-mode").value;
+      var d1 = document.getElementById("flt-d1").value ? Date.parse(document.getElementById("flt-d1").value) / 1000 : null;
+      var d2 = document.getElementById("flt-d2").value ? Date.parse(document.getElementById("flt-d2").value) / 1000 + 86399 : null;
+      var items = ALL_POSTS.filter(function (p) {
+        var hay = (p.title + " " + (p.excerpt || "")).toLowerCase();
+        if (q && hay.indexOf(q) === -1) return false;
+        if (subject && !SUBJECTS[subject].test(hay)) return false;
+        var t = p.published_at || 0;
+        if (mode === "before" && d1 && t >= d1) return false;
+        if (mode === "after" && d1 && t <= d1) return false;
+        if (mode === "between") {
+          if (d1 && t < d1) return false;
+          if (d2 && t > d2) return false;
+        }
+        return true;
+      });
+      var active = !!(q || subject || (mode && (d1 || d2)));
+      document.getElementById("flt-count").textContent = active
+        ? items.length + (items.length === 1 ? " result" : " results") : "";
+      document.getElementById("flt-clear").style.display = active ? "" : "none";
+      if (!ALL_POSTS.length) { el.innerHTML = '<p style="color:var(--v2-muted)">First update coming soon.</p>'; return; }
+      if (!items.length) { el.innerHTML = '<p style="color:var(--v2-muted)">No articles match these filters.</p>'; return; }
       el.innerHTML = '<div class="ins-grid">' + items.map(function (p) {
         var url = '/insights/article?slug=' + encodeURIComponent(p.slug);
         return '<article class="ins-card">' +
@@ -161,6 +239,32 @@
             '<a href="' + url + '" class="ins-read">Read article →</a>' +
           '</div></article>';
       }).join("") + '</div>';
+    }
+    (function wireFilters() {
+      var q = document.getElementById("flt-q"), timer;
+      q.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(renderPosts, 250); });
+      document.getElementById("flt-subject").addEventListener("change", renderPosts);
+      document.getElementById("flt-mode").addEventListener("change", function () {
+        var mode = this.value;
+        document.getElementById("flt-d1").style.display = mode ? "" : "none";
+        document.getElementById("flt-d2").style.display = mode === "between" ? "" : "none";
+        renderPosts();
+      });
+      document.getElementById("flt-d1").addEventListener("change", renderPosts);
+      document.getElementById("flt-d2").addEventListener("change", renderPosts);
+      document.getElementById("flt-clear").addEventListener("click", function () {
+        q.value = "";
+        document.getElementById("flt-subject").value = "";
+        document.getElementById("flt-mode").value = "";
+        document.getElementById("flt-d1").value = ""; document.getElementById("flt-d1").style.display = "none";
+        document.getElementById("flt-d2").value = ""; document.getElementById("flt-d2").style.display = "none";
+        renderPosts();
+      });
+    })();
+
+    fetch("/api/insights/posts").then(r => r.json()).then(function (data) {
+      ALL_POSTS = (data && data.items) || [];
+      renderPosts();
     }).catch(function () {
       document.getElementById("insights-posts").innerHTML = '<p style="color:var(--v2-muted)">Could not load updates.</p>';
     });
