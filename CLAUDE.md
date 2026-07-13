@@ -235,3 +235,21 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
   titles shortened to <60 chars (`efti-implementing-2024-1942`,
   `efti-implementing-2025-2243`, `reg-2020-1054-mobility-package`,
   `reg-2020-1055-establishment-cabotage`).
+
+## Changes (2026-07-14) — Series navigation + category ground truth
+
+- **`functions/insights/article.js`**: when a post has `series_id` set, prev/next nav
+  (`prevPost`/`nextPost`) is computed by `series_position` within that series instead of by
+  publish date; a "Part N of M in this series" badge renders above the title. Posts without
+  a `series_id` are unaffected — the original date-based nav path is untouched (verified
+  live: 200 on both EN and NL for an existing non-series article, original nav label
+  present). Labels localized ×4 (`prevSeries`/`nextSeries`/`partOf`).
+- **Category ground truth**: `functions/api/insights/[[route]].js` posts-list SELECT now
+  includes `category`; `insights/index.html`'s subject filter (`cmr`/`regulation`/
+  `capacity`/`costs`/`disruption`/`digital`) checks `p.category` first and only falls back
+  to the regex keyword-guess (`SUBJECTS`) for older posts authored before the column
+  existed. The admin blog editor's new category dropdown (podfy-admin) writes this column
+  using the exact same 6-value vocabulary.
+- Migration 013 (podfy-public): `blog_posts.category`/`series_id`/`series_position`;
+  `repository_items.series_id`/`series_position` (schema symmetry only — no repository item
+  editor UI yet, out of scope).

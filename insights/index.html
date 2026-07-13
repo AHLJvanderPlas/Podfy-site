@@ -218,7 +218,12 @@
       var items = ALL_POSTS.filter(function (p) {
         var hay = (p.title + " " + (p.excerpt || "")).toLowerCase();
         if (q && hay.indexOf(q) === -1) return false;
-        if (subject && !SUBJECTS[subject].test(hay)) return false;
+        if (subject) {
+          // Ground truth wins when the admin set it explicitly; keyword-guess
+          // only covers older posts authored before the category field existed.
+          if (p.category) { if (p.category !== subject) return false; }
+          else if (!SUBJECTS[subject].test(hay)) return false;
+        }
         var t = p.published_at || 0;
         if (mode === "before" && d1 && t >= d1) return false;
         if (mode === "after" && d1 && t <= d1) return false;

@@ -22,7 +22,7 @@ export async function onRequest(context) {
   try {
     if (method === "GET" && route[0] === "posts" && !route[1]) {
       const { results = [] } = await env.DB.prepare(
-        `SELECT id, title, slug, excerpt, cover_image_key, language, published_at
+        `SELECT id, title, slug, excerpt, cover_image_key, language, published_at, category
          FROM blog_posts WHERE status = 'published'
          ORDER BY published_at DESC LIMIT 50`
       ).all();

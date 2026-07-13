@@ -5,11 +5,15 @@
 
 const LANGS = ["en", "nl", "de", "fr"];
 const UI = {
-  en: { back: "All insights", faq: "Frequently asked questions", notfound: "This article does not exist or is not published.", prev: "Previous", next: "Next", source: "Source document" },
-  nl: { back: "Alle insights", faq: "Veelgestelde vragen", notfound: "Dit artikel bestaat niet of is niet gepubliceerd.", prev: "Vorige", next: "Volgende", source: "Brondocument" },
-  de: { back: "Alle Insights", faq: "Häufig gestellte Fragen", notfound: "Dieser Artikel existiert nicht oder ist nicht veröffentlicht.", prev: "Zurück", next: "Weiter", source: "Quelldokument" },
-  fr: { back: "Tous les articles", faq: "Questions fréquentes", notfound: "Cet article n'existe pas ou n'est pas publié.", prev: "Précédent", next: "Suivant", source: "Document source" },
+  en: { back: "All insights", faq: "Frequently asked questions", notfound: "This article does not exist or is not published.", prev: "Previous", next: "Next", source: "Source document", prevSeries: "Previous in series", nextSeries: "Next in series", partOf: (n, t) => `Part ${n} of ${t} in this series` },
+  nl: { back: "Alle insights", faq: "Veelgestelde vragen", notfound: "Dit artikel bestaat niet of is niet gepubliceerd.", prev: "Vorige", next: "Volgende", source: "Brondocument", prevSeries: "Vorige in serie", nextSeries: "Volgende in serie", partOf: (n, t) => `Deel ${n} van ${t} in deze serie` },
+  de: { back: "Alle Insights", faq: "Häufig gestellte Fragen", notfound: "Dieser Artikel existiert nicht oder ist nicht veröffentlicht.", prev: "Zurück", next: "Weiter", source: "Quelldokument", prevSeries: "Vorheriger Teil der Serie", nextSeries: "Nächster Teil der Serie", partOf: (n, t) => `Teil ${n} von ${t} dieser Serie` },
+  fr: { back: "Tous les articles", faq: "Questions fréquentes", notfound: "Cet article n'existe pas ou n'est pas publié.", prev: "Précédent", next: "Suivant", source: "Document source", prevSeries: "Précédent dans la série", nextSeries: "Suivant dans la série", partOf: (n, t) => `Partie ${n} sur ${t} de cette série` },
 };
+
+function seriesLabel(seriesId) {
+  return String(seriesId || "").replace(/[-_]+/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+}
 
 // SEO safety net: a `<title>` tag over ~60 chars gets truncated by Google
 // regardless of how the source title was authored. Applies automatically to
@@ -110,17 +114,41 @@ export async function onRequestGet(context) {
       ${faq.map(f => `<h3 style="font-size:1.05rem">${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}
     </section>` : "";
 
-  // Previous (older) / next (newer) published articles for quick navigation
-  const [prevPost, nextPost] = await Promise.all([
-    env.DB.prepare(
-      `SELECT slug, title, title_nl, title_de, title_fr FROM blog_posts
-       WHERE status = 'published' AND published_at < ? ORDER BY published_at DESC LIMIT 1`
-    ).bind(p.published_at).first(),
-    env.DB.prepare(
-      `SELECT slug, title, title_nl, title_de, title_fr FROM blog_posts
-       WHERE status = 'published' AND published_at > ? ORDER BY published_at ASC LIMIT 1`
-    ).bind(p.published_at).first(),
-  ]);
+  // Previous/next navigation: within the same series when this post belongs to
+  // one (ordered by series_position), otherwise by publish date as before.
+  let prevPost, nextPost, seriesBadgeHtml = "";
+  if (p.series_id) {
+    const pos = p.series_position || 0;
+    const [seriesPrev, seriesNext, seriesCount] = await Promise.all([
+      env.DB.prepare(
+        `SELECT slug, title, title_nl, title_de, title_fr FROM blog_posts
+         WHERE status = 'published' AND series_id = ? AND series_position < ? ORDER BY series_position DESC LIMIT 1`
+      ).bind(p.series_id, pos).first(),
+      env.DB.prepare(
+        `SELECT slug, title, title_nl, title_de, title_fr FROM blog_posts
+         WHERE status = 'published' AND series_id = ? AND series_position > ? ORDER BY series_position ASC LIMIT 1`
+      ).bind(p.series_id, pos).first(),
+      env.DB.prepare(
+        `SELECT COUNT(*) c FROM blog_posts WHERE status = 'published' AND series_id = ?`
+      ).bind(p.series_id).first(),
+    ]);
+    prevPost = seriesPrev; nextPost = seriesNext;
+    if (pos && seriesCount?.c) {
+      seriesBadgeHtml = `<p style="margin:0 0 .5rem;font-size:.78rem;color:var(--v2-stamp);text-transform:uppercase;letter-spacing:.05em;font-weight:600">${esc(seriesLabel(p.series_id))} · ${esc(UI[effLang].partOf(pos, seriesCount.c))}</p>`;
+    }
+  } else {
+    [prevPost, nextPost] = await Promise.all([
+      env.DB.prepare(
+        `SELECT slug, title, title_nl, title_de, title_fr FROM blog_posts
+         WHERE status = 'published' AND published_at < ? ORDER BY published_at DESC LIMIT 1`
+      ).bind(p.published_at).first(),
+      env.DB.prepare(
+        `SELECT slug, title, title_nl, title_de, title_fr FROM blog_posts
+         WHERE status = 'published' AND published_at > ? ORDER BY published_at ASC LIMIT 1`
+      ).bind(p.published_at).first(),
+    ]);
+  }
+  const inSeries = !!p.series_id;
   const navUrl = (row) => `/insights/article?slug=${encodeURIComponent(row.slug)}${effLang === "en" ? "" : `&lang=${effLang}`}`;
   const navTitle = (row) => (effLang === "en" ? row.title : row[`title_${effLang}`]) || row.title;
   const navCard = (row, label, align, arrow) => row ? `
@@ -129,9 +157,9 @@ export async function onRequestGet(context) {
       <span style="font-size:.92rem;font-weight:600;line-height:1.4">${esc(navTitle(row))}</span>
     </a>` : "<span></span>";
   const prevNextHtml = (prevPost || nextPost) ? `
-    <nav aria-label="More insights" style="margin-top:2.5rem;border-top:1px solid var(--v2-border,#ddd);padding-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-      ${navCard(prevPost, UI[effLang].prev, "left", "l")}
-      ${navCard(nextPost, UI[effLang].next, "right", "r")}
+    <nav aria-label="${inSeries ? "More in this series" : "More insights"}" style="margin-top:2.5rem;border-top:1px solid var(--v2-border,#ddd);padding-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+      ${navCard(prevPost, inSeries ? UI[effLang].prevSeries : UI[effLang].prev, "left", "l")}
+      ${navCard(nextPost, inSeries ? UI[effLang].nextSeries : UI[effLang].next, "right", "r")}
     </nav>` : "";
 
   // Cross-link: when this article was generated FROM a repository item (the
@@ -153,6 +181,7 @@ export async function onRequestGet(context) {
     <main class="container" style="max-width:720px;margin:0 auto;padding:2rem 1.25rem 4rem">
       <p style="margin:1.5rem 0"><a href="/insights" style="font-size:.9rem">← ${UI[effLang].back}</a></p>
       <article>
+        ${seriesBadgeHtml}
         <h1 class="v2-hero-title" style="font-size:2rem">${esc(title)}</h1>
         <p style="font-size:.85rem;color:var(--v2-muted);margin:.5rem 0 1.5rem">${dateHuman}${switcher ? " · " + switcher : ""}</p>
         ${coverUrl ? `<img src="${coverUrl}" alt="" style="max-width:100%;border-radius:4px;margin:0 0 1.5rem" />` : ""}
