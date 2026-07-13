@@ -5,11 +5,22 @@
 
 const LANGS = ["en", "nl", "de", "fr"];
 const UI = {
-  en: { back: "All insights", faq: "Frequently asked questions", notfound: "This article does not exist or is not published.", prev: "Previous", next: "Next" },
-  nl: { back: "Alle insights", faq: "Veelgestelde vragen", notfound: "Dit artikel bestaat niet of is niet gepubliceerd.", prev: "Vorige", next: "Volgende" },
-  de: { back: "Alle Insights", faq: "Häufig gestellte Fragen", notfound: "Dieser Artikel existiert nicht oder ist nicht veröffentlicht.", prev: "Zurück", next: "Weiter" },
-  fr: { back: "Tous les articles", faq: "Questions fréquentes", notfound: "Cet article n'existe pas ou n'est pas publié.", prev: "Précédent", next: "Suivant" },
+  en: { back: "All insights", faq: "Frequently asked questions", notfound: "This article does not exist or is not published.", prev: "Previous", next: "Next", source: "Source document" },
+  nl: { back: "Alle insights", faq: "Veelgestelde vragen", notfound: "Dit artikel bestaat niet of is niet gepubliceerd.", prev: "Vorige", next: "Volgende", source: "Brondocument" },
+  de: { back: "Alle Insights", faq: "Häufig gestellte Fragen", notfound: "Dieser Artikel existiert nicht oder ist nicht veröffentlicht.", prev: "Zurück", next: "Weiter", source: "Quelldokument" },
+  fr: { back: "Tous les articles", faq: "Questions fréquentes", notfound: "Cet article n'existe pas ou n'est pas publié.", prev: "Précédent", next: "Suivant", source: "Document source" },
 };
+
+// SEO safety net: a `<title>` tag over ~60 chars gets truncated by Google
+// regardless of how the source title was authored. Applies automatically to
+// every current and future article.
+function seoTitle(title, suffix = " — PODFY", max = 60) {
+  const full = title + suffix;
+  if (full.length <= max) return full;
+  const budget = max - suffix.length - 1;
+  if (budget > 15) return title.slice(0, budget).replace(/\s+\S*$/, "") + "…" + suffix;
+  return title.slice(0, max - 1) + "…";
+}
 
 export async function onRequestGet(context) {
   const { request, env } = context;
@@ -123,6 +134,21 @@ export async function onRequestGet(context) {
       ${navCard(nextPost, UI[effLang].next, "right", "r")}
     </nav>` : "";
 
+  // Cross-link: when this article was generated FROM a repository item (the
+  // "Generate insight" button on a repository item sets source_item_id), link
+  // back to the official source. Automatic for every future repo-generated article.
+  let sourceHtml = "";
+  if (p.source_item_id) {
+    const src = await env.DB.prepare(
+      `SELECT title, slug FROM repository_items WHERE item_id = ? AND published = 1 AND access_level = 'public'`
+    ).bind(p.source_item_id).first();
+    if (src?.slug) {
+      const srcUrl = `/insights/repository/item?slug=${encodeURIComponent(src.slug)}${effLang === "en" ? "" : `&lang=${effLang}`}`;
+      sourceHtml = `
+        <p style="margin:2rem 0 0;font-size:.85rem;color:var(--v2-muted)">${UI[effLang].source}: <a href="${srcUrl}">${esc(src.title)} →</a></p>`;
+    }
+  }
+
   const body = `
     <main class="container" style="max-width:720px;margin:0 auto;padding:2rem 1.25rem 4rem">
       <p style="margin:1.5rem 0"><a href="/insights" style="font-size:.9rem">← ${UI[effLang].back}</a></p>
@@ -139,12 +165,13 @@ export async function onRequestGet(context) {
           <button class="v2-btn v2-btn-ghost" style="cursor:pointer"
              onclick="navigator.clipboard.writeText('${canonical}');this.textContent='Copied ✓';fetch('/api/insights/share',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({entity_type:'blog_post',entity_id:'${esc(p.id)}',channel:'copy_text'})})">Copy link</button>
         </div>
+        ${sourceHtml}
         ${prevNextHtml}
       </article>
     </main>`;
 
   return htmlResponse(env, url, body, {
-    title: `${title} — PODFY`,
+    title: seoTitle(title),
     description: excerpt,
     canonical,
     alternates,

@@ -55,6 +55,18 @@ Key capabilities:
 - **Facilities and property management**: Searchable digital archive replacing paper delivery notes
 - **Inbound receiving teams**: Dock-side documentation before goods enter the warehouse
 
+## Insights and repository
+
+PODFY publishes European road transport market updates and maintains a
+repository of official transport-law instruments (CMR, e-CMR, CIM, CMNI, TIR,
+eFTI Regulation and its implementing acts, Mobility Package, AETR, ADR,
+Rotterdam Rules) with practical summaries and classification in English,
+Dutch, German and French.
+
+- Market updates: https://podfy.net/insights/
+- Repository (official conventions and regulations): https://podfy.net/insights/repository/
+- Auto-updated full index of all repository items and recent articles for LLM ingestion: https://podfy.net/llms-insights.txt
+
 ## Key guides
 
 - [What is proof of delivery?](https://podfy.net/guides/proof-of-delivery/)

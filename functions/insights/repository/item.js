@@ -22,6 +22,20 @@ const CAT_LABELS = {
   whitepaper: { en: "Whitepaper", nl: "Whitepaper", de: "Whitepaper", fr: "Livre blanc" },
   guide:      { en: "Guide", nl: "Gids", de: "Leitfaden", fr: "Guide" },
 };
+const FAQ_HEADING = { en: "Frequently asked questions", nl: "Veelgestelde vragen", de: "Häufig gestellte Fragen", fr: "Questions fréquentes" };
+const RELATED_HEADING = { en: "Related insight", nl: "Gerelateerd inzicht", de: "Verwandter Beitrag", fr: "Article associé" };
+
+// SEO safety net: a `<title>` tag over ~60 chars gets truncated by Google
+// regardless of how the source title was authored. Applies automatically to
+// every current and future repository item, so a long title never needs a
+// manual fix to avoid a chopped-off SERP snippet.
+function seoTitle(title, suffix = " — PODFY Repository", max = 60) {
+  const full = title + suffix;
+  if (full.length <= max) return full;
+  const budget = max - suffix.length - 1;
+  if (budget > 15) return title.slice(0, budget).replace(/\s+\S*$/, "") + "…" + suffix;
+  return title.slice(0, max - 1) + "…";
+}
 
 export async function onRequestGet(context) {
   const { request, env } = context;
@@ -60,7 +74,7 @@ export async function onRequestGet(context) {
     ? `<strong>${l.toUpperCase()}</strong>`
     : `<a href="${l === "en" ? base : `${base}&lang=${l}`}">${l.toUpperCase()}</a>`).join(" · ");
 
-  const ld = {
+  const ld = [{
     "@context": "https://schema.org",
     "@type": "DigitalDocument",
     name: item.title,
@@ -71,7 +85,48 @@ export async function onRequestGet(context) {
     ...(item.external_url ? { sameAs: item.external_url } : {}),
     encodingFormat: item.mime_type || "application/pdf",
     publisher: { "@type": "Organization", name: "PODFY", url: "https://podfy.net" },
-  };
+  }];
+
+  // FAQPage: the structured Q&A pattern that makes a page LLM-citable, not
+  // just human-readable. Falls back to English when a language has no FAQ yet
+  // (e.g. mid-backfill) rather than showing nothing.
+  let faq = [];
+  try {
+    const allFaq = JSON.parse(item.faq_json || "null");
+    faq = (allFaq && Array.isArray(allFaq[lang]) ? allFaq[lang] : allFaq?.en) || [];
+  } catch { /* no faq yet */ }
+  if (faq.length) {
+    ld.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faq.map(f => ({
+        "@type": "Question", name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    });
+  }
+  const faqHtml = faq.length ? `
+        <section aria-label="FAQ" style="margin-top:2.25rem;border-top:1px solid var(--v2-border,#ddd);padding-top:1.1rem">
+          <h2 style="font-size:1.1rem">${FAQ_HEADING[lang]}</h2>
+          ${faq.map(f => `<h3 style="font-size:.95rem;margin:1rem 0 .3rem">${esc(f.q)}</h3><p style="line-height:1.6">${esc(f.a)}</p>`).join("")}
+        </section>` : "";
+
+  // Cross-link: when this item was the source of a generated insight article
+  // (repo "Generate insight" button sets blog_posts.source_item_id), surface
+  // it here. Runs automatically for every future insight, no manual linking.
+  const relatedBlog = await env.DB.prepare(
+    `SELECT title, slug, title_nl, title_de, title_fr FROM blog_posts
+     WHERE source_item_id = ? AND status = 'published' ORDER BY published_at DESC LIMIT 1`
+  ).bind(item.item_id).first();
+  const relatedHtml = relatedBlog ? (() => {
+    const rTitle = (lang === "en" ? relatedBlog.title : relatedBlog[`title_${lang}`]) || relatedBlog.title;
+    const rUrl = `/insights/article?slug=${encodeURIComponent(relatedBlog.slug)}${lang === "en" ? "" : `&lang=${lang}`}`;
+    return `
+        <section style="margin-top:1.75rem">
+          <span style="display:block;font-size:.72rem;color:var(--v2-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem">${RELATED_HEADING[lang]}</span>
+          <a href="${rUrl}" style="font-size:.95rem;font-weight:600">${esc(rTitle)} →</a>
+        </section>`;
+  })() : "";
 
   let links = [];
   try { links = JSON.parse(item.links_json || "[]"); } catch { /* none */ }
@@ -102,14 +157,16 @@ export async function onRequestGet(context) {
           <button class="v2-btn v2-btn-ghost" style="cursor:pointer"
              onclick="navigator.clipboard.writeText('${canonical}');this.textContent='${T.copied}'">${T.copy}</button>
         </div>
+        ${faqHtml}
+        ${relatedHtml}
         ${sourcesHtml}
       </article>
     </main>`;
 
   return htmlResponse(env, url, body, {
-    title: `${item.title} — PODFY Repository`,
+    title: seoTitle(item.title),
     description: summary.slice(0, 155),
-    canonical, alternates, jsonLd: [ld], lang,
+    canonical, alternates, jsonLd: ld, lang,
     og: { title: item.title, description: summary.slice(0, 200), url: canonical,
           image: coverUrl ? `https://podfy.net${coverUrl}` : "https://podfy.net/assets/og-image.jpg" },
   });
