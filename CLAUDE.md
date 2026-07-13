@@ -204,3 +204,34 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
   `repocover/<item_id>` (marketing/covers/ guard), `liposts` (blogs with linkedin_post_url).
 - `sitemap-insights.xml` now includes the two section pages + repository item URLs (×4 langs).
 - Insights hero signup compacted (single-row inputs, Turnstile `data-appearance="interaction-only"`).
+
+## Changes (2026-07-13) — SEO/LLM authority gaps closed
+
+- **Repository FAQPage schema**: `functions/insights/repository/item.js` reads
+  `repository_items.faq_json` (migration 009) and renders both the JSON-LD
+  `FAQPage` block and a visible accordion, falling back to the English FAQ if
+  the current language's entry isn't populated yet.
+- **Title auto-truncation safety net**: `seoTitle()` in both `article.js` and
+  `functions/insights/repository/item.js` caps the rendered `<title>` tag at
+  60 chars, truncating at a word boundary with an ellipsis. Applies to every
+  current and future title automatically — a long title can never again ship
+  an un-truncated, Google-chopped SERP snippet without a code change.
+- **Cross-linking (bidirectional, fully automatic)**: a repository item shows
+  "Related insight" when a published `blog_posts` row has
+  `source_item_id = item.item_id` (set by the admin "Generate insight"
+  button); an article shows "Source document" the same way in reverse. Zero
+  manual linking required for any future repo-generated article.
+- **llms.txt**: added an "Insights and repository" section pointing to
+  `/insights/`, `/insights/repository/`, and the new dynamic index below.
+- **`functions/llms-insights.txt.js`** (new): auto-generated plain-text index
+  of every published repository item (grouped by category, with summary +
+  canonical + official-source URL) and recent market-update articles. Mirrors
+  the `sitemap-insights.xml` pattern — always current, no manual maintenance,
+  no risk of the Insights section going invisible to LLMs as content grows.
+  **Middleware passthrough required** (`_middleware.js`) — same
+  ASSETS.fetch-swallows-functions gotcha as `/sitemap-insights.xml` and
+  `/insights/article`.
+- Migration 009 (podfy-public): `repository_items.faq_json`; 4 over-length
+  titles shortened to <60 chars (`efti-implementing-2024-1942`,
+  `efti-implementing-2025-2243`, `reg-2020-1054-mobility-package`,
+  `reg-2020-1055-establishment-cabotage`).
