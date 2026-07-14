@@ -253,3 +253,19 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
 - Migration 013 (podfy-public): `blog_posts.category`/`series_id`/`series_position`;
   `repository_items.series_id`/`series_position` (schema symmetry only — no repository item
   editor UI yet, out of scope).
+
+## Changes (2026-07-14, later) — Series badge uses real authored metadata
+
+- `functions/insights/article.js`: the series badge now queries the new `series` table
+  (migration 014, podfy-public — same DB as `env.DB` here) for `title_{lang}`/
+  `excerpt_{lang}` matching the visitor's language, instead of always title-casing the
+  slug. Falls back to the slug guess for any series that only has an id set with no
+  metadata row yet (nothing breaks for series created before this table existed). The
+  excerpt renders as a small subtitle under the "Part N of M" line when present — the
+  first real use of the excerpt field since it was added.
+- Migration 014 (podfy-public): `series` table — `id` (matches `blog_posts.series_id`/
+  `repository_items.series_id` exactly, never re-slugified), `title_nl`/`excerpt_nl`
+  (operator-authored, required) + `title_en`/`title_de`/`title_fr`/`excerpt_en`/
+  `excerpt_de`/`excerpt_fr` (AI-translated from NL, written from podfy-admin). Seeded
+  with one row (`regelgeving-update`) ahead of any operator UI use, feeding the new
+  Thursday repository→blog pipeline in podfy-admin.
