@@ -134,7 +134,15 @@ export async function onRequestGet(context) {
     ]);
     prevPost = seriesPrev; nextPost = seriesNext;
     if (pos && seriesCount?.c) {
-      seriesBadgeHtml = `<p style="margin:0 0 .5rem;font-size:.78rem;color:var(--v2-stamp);text-transform:uppercase;letter-spacing:.05em;font-weight:600">${esc(seriesLabel(p.series_id))} · ${esc(UI[effLang].partOf(pos, seriesCount.c))}</p>`;
+      // Real authored title/excerpt (NL written by the operator, EN/DE/FR
+      // AI-translated — see podfy-admin series.ts) when available; a series
+      // that only has an id set (no metadata entered yet) falls back to a
+      // title-cased slug so the badge is never blank.
+      const meta = await env.DB.prepare(`SELECT * FROM series WHERE id = ?`).bind(p.series_id).first();
+      const label = (meta && meta[`title_${effLang}`]) || (meta && meta.title_nl) || seriesLabel(p.series_id);
+      const excerpt = meta && (meta[`excerpt_${effLang}`] || meta.excerpt_nl);
+      seriesBadgeHtml = `<p style="margin:0 0 .3rem;font-size:.78rem;color:var(--v2-stamp);text-transform:uppercase;letter-spacing:.05em;font-weight:600">${esc(label)} · ${esc(UI[effLang].partOf(pos, seriesCount.c))}</p>`
+        + (excerpt ? `<p style="margin:0 0 .8rem;font-size:.85rem;color:var(--v2-muted)">${esc(excerpt)}</p>` : "");
     }
   } else {
     [prevPost, nextPost] = await Promise.all([
