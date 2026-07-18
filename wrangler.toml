@@ -5,18 +5,19 @@ pages_build_output_dir = "."
 # Site-only DB: Site_Releases, Site_Buyer, Site_Form + insights (blog_posts, repository_items)
 [[d1_databases]]
 binding = "DB"
-database_name = "podfy-public"
-database_id = "8b8e12db-2a7d-47eb-8d12-8a548e71da64"
+database_name = "podfy-public-eu"
+database_id = "95eff956-7f07-421c-9c0a-e837724b22d2"
 
 # Main DB: newsletter subscriptions only (brand_users under 'newsletter' brand)
 [[d1_databases]]
 binding = "MAIN_DB"
-database_name = "podfy-main"
-database_id = "ffe8c6c4-c621-4a9d-bac1-b1900353cb95"
+database_name = "podfy-main-eu"
+database_id = "a848b69c-58bd-45bd-b3f5-d6dcaf178d70"
 
 [[r2_buckets]]
 binding = "PODFY_BUCKET"
-bucket_name = "podfy-uploads"
+bucket_name = "podfy-uploads-eu"
+jurisdiction = "eu"
 
 [vars]
 # RESEND_API_KEY = set as secret in CF Pages dashboard

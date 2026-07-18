@@ -1,6 +1,6 @@
 # Podfy-site — Claude Code Instructions
 
-> See root `../CLAUDE.md` for shared context. The site uses a separate DB (`podfy-public`).
+> See root `../CLAUDE.md` for shared context. The site uses a separate DB (`podfy-public-eu`, EU jurisdiction) plus `MAIN_DB` → `podfy-main-eu` for newsletter opt-ins.
 > ⚠️ **Cloudflare auth is pre-configured.** `CLOUDFLARE_API_TOKEN` is set via `.claude/settings.local.json`. Run wrangler commands directly — **never** run `wrangler login` or ask the user to authenticate in the browser.
 
 ## Deploy Workflow
@@ -80,9 +80,9 @@ Key rules:
 
 ---
 
-## Database (`podfy-public`)
+## Database (`podfy-public-eu`)
 
-**Separate from podfy-main.** Four tables:
+**Separate from podfy-main-eu.** Four tables:
 
 | Table | Purpose |
 |-------|---------|

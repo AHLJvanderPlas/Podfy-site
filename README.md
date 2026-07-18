@@ -83,7 +83,7 @@ Key v2 components (section 19 of styles.v2.css): `.v2-breadcrumb` · `.v2-toc` �
 
 ## Database (Cloudflare D1)
 
-**`podfy-public`** (`8b8e12db-2a7d-47eb-8d12-8a548e71da64`) — bound as `DB`
+**`podfy-public-eu`** (`95eff956-7f07-421c-9c0a-e837724b22d2`, EU jurisdiction) — bound as `DB`
 
 | Table | Status | Purpose |
 |-------|--------|---------|
@@ -91,7 +91,7 @@ Key v2 components (section 19 of styles.v2.css): `.v2-breadcrumb` · `.v2-toc` �
 | `Site_Form` | Active | Stores contact form submissions |
 | `Site_Buyer` | Active | Powers `/api/pricing-factor` for pricing segments |
 
-The production DB (`podfy-main`) and staging DB (`podfy-themes-staging`) are **not connected** to this site — they belong to the product apps.
+The production DB (`podfy-main-eu`) is bound read/write as `MAIN_DB` only for newsletter opt-ins (`brand_users` rows under the `newsletter` pseudo-brand); everything else on the site uses `podfy-public-eu`.
 
 ---
 
