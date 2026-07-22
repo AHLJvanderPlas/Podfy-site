@@ -100,11 +100,11 @@
       var yEl = document.querySelector(".v2-footer-year");
       if (yEl) yEl.textContent = new Date().getFullYear();
 
-      /* Locale detection */
-      var path = window.location.pathname;
-      var locale = /^\/nl(\/|$)/.test(path) ? "nl"
-                 : /^\/de(\/|$)/.test(path) ? "de"
-                 : /^\/fr(\/|$)/.test(path) ? "fr" : "";
+      /* Locale detection — from <html lang>, not the URL path (see
+         header.html for why: path-only detection is blind on the dynamic
+         /insights/* pages, which carry language via ?lang= not a prefix). */
+      var htmlLang = (document.documentElement.lang || "").slice(0, 2).toLowerCase();
+      var locale = ["nl", "de", "fr"].indexOf(htmlLang) !== -1 ? htmlLang : "";
 
       /* Locale row: use hreflang <link> tags for equivalent-page links */
       var hreflangs = {};

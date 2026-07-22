@@ -142,10 +142,18 @@
 
       /* ── Locale-aware navigation ── */
       (function () {
-        var path = window.location.pathname;
-        var locale = /^\/nl(\/|$)/.test(path) ? "nl"
-                   : /^\/de(\/|$)/.test(path) ? "de"
-                   : /^\/fr(\/|$)/.test(path) ? "fr" : "";
+        // Every page on the site (static locale homepages AND the dynamic
+        // /insights/article|repository/item SSR pages, which carry their
+        // language in ?lang= rather than a path prefix) sets <html lang>
+        // correctly — read that instead of guessing from the URL path.
+        // A path-only check left the whole switcher (active-state, header/
+        // mobile-nav link rewriting, footer translation) blind on every
+        // insights page: it always "detected" no locale, so it silently
+        // pointed the FR/DE/NL menu items and quietly rewrote all other
+        // nav + footer links back to their English targets even while
+        // viewing a French or German article.
+        var htmlLang = (document.documentElement.lang || "").slice(0, 2).toLowerCase();
+        var locale = ["nl", "de", "fr"].indexOf(htmlLang) !== -1 ? htmlLang : "";
 
         /* Update button label */
         if (localeBtn && locale) {
