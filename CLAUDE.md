@@ -159,6 +159,24 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
 
 ---
 
+## Changes (2026-07-22) — locale switcher fixed on insights pages
+
+`partials/header.html` + `partials/footer.html`'s locale-rewrite scripts detected the
+current language by testing `window.location.pathname` against `/nl|de|fr(\/|$)` — correct
+for static locale pages, blind on `/insights/article` and `/insights/repository/item`
+(SSR, language via `?lang=` query param, no path prefix). Result on every insights page:
+the switcher always "saw" no locale, so it mislabeled the active language AND silently
+rewrote every other header/mobile-nav link and the entire footer (translated labels +
+`/nl`/`/de`/`/fr` prefixes) back to English — while the article body itself (server-
+rendered, unaffected by this script) stayed correctly in French/German/Dutch. Fixed by
+reading `document.documentElement.lang` instead — every page on the site, static and SSR
+alike, already sets this correctly, so detection is now URL-scheme-agnostic and needs no
+per-route special-casing for future page types either. Verified: all published blog posts
+and repository items have complete 4-language content (no silent `has(lang)`-fallback
+gap currently live); Cloudflare confirmed NOT caching these SSR responses
+(`cf-cache-status: DYNAMIC`) despite the `cache-control: public, max-age=300` header, so
+edge/cache staleness was ruled out too.
+
 ## Changes (2026-07-08) — SEO / LLM optimisation pass
 
 - **Meta lengths** — 85 files: 60 over-length descriptions trimmed to ≤155 chars, 25 titles to ≤60 rendered chars
