@@ -25,9 +25,20 @@ export async function onRequestGet(context) {
     }
   }
 
-  // Section index pages + repository item pages (all 4 language variants)
-  urls.push(`<url><loc>https://podfy.net/insights/repository/</loc></url>`);
-  urls.push(`<url><loc>https://podfy.net/insights/linkedin/</loc></url>`);
+  // Section list pages (2026-07-22: SSR, all 4 language variants — was a
+  // single untranslated English entry each, matching when the pages
+  // themselves were English-only static shells).
+  for (const path of ["insights/", "insights/repository/", "insights/linkedin/"]) {
+    const base = `https://podfy.net/${path}`;
+    const alternates = LANGS.map(l =>
+      `<xhtml:link rel="alternate" hreflang="${l}" href="${l === "en" ? base : `${base}?lang=${l}`}"/>`
+    ).join("");
+    for (const l of LANGS) {
+      urls.push(`<url><loc>${l === "en" ? base : `${base}?lang=${l}`}</loc>${alternates}</url>`);
+    }
+  }
+
+  // Repository item pages (all 4 language variants)
   const { results: repo = [] } = await env.DB.prepare(
     `SELECT slug, updated_at, created_at FROM repository_items
      WHERE published = 1 AND access_level = 'public' AND slug IS NOT NULL LIMIT 200`

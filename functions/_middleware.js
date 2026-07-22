@@ -16,6 +16,17 @@ export async function onRequest(context) {
     url.pathname === "/insights/preferences" ||
     url.pathname === "/insights/article" ||
     url.pathname === "/insights/repository/item" ||
+    // Section list pages are SSR Functions too (2026-07-22) — each does its
+    // own header/footer ASSETS.fetch + injection (see insights-ssr.js),
+    // mirroring article.js. Both slash forms excluded: unclear in advance
+    // which one Cloudflare Pages routes to functions/insights/index.js /
+    // functions/insights/repository/index.js / functions/insights/linkedin/index.js.
+    url.pathname === "/insights" ||
+    url.pathname === "/insights/" ||
+    url.pathname === "/insights/repository" ||
+    url.pathname === "/insights/repository/" ||
+    url.pathname === "/insights/linkedin" ||
+    url.pathname === "/insights/linkedin/" ||
     url.pathname === "/sitemap-insights.xml" ||
     url.pathname === "/llms-insights.txt"
   ) {

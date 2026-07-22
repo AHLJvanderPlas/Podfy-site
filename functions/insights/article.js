@@ -3,7 +3,8 @@
 // FAQPage JSON-LD, per-language meta description, canonical + hreflang.
 // Header/footer partials injected from ASSETS (mirrors _middleware.js).
 
-const LANGS = ["en", "nl", "de", "fr"];
+import { LANGS, esc, md, seoTitle, langQS, htmlResponse } from "../_shared/insights-ssr.js";
+
 const UI = {
   en: { back: "All insights", faq: "Frequently asked questions", notfound: "This article does not exist or is not published.", prev: "Previous", next: "Next", source: "Source document", prevSeries: "Previous in series", nextSeries: "Next in series", partOf: (n, t) => `Part ${n} of ${t} in this series` },
   nl: { back: "Alle insights", faq: "Veelgestelde vragen", notfound: "Dit artikel bestaat niet of is niet gepubliceerd.", prev: "Vorige", next: "Volgende", source: "Brondocument", prevSeries: "Vorige in serie", nextSeries: "Volgende in serie", partOf: (n, t) => `Deel ${n} van ${t} in deze serie` },
@@ -13,17 +14,6 @@ const UI = {
 
 function seriesLabel(seriesId) {
   return String(seriesId || "").replace(/[-_]+/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-}
-
-// SEO safety net: a `<title>` tag over ~60 chars gets truncated by Google
-// regardless of how the source title was authored. Applies automatically to
-// every current and future article.
-function seoTitle(title, suffix = " — PODFY", max = 60) {
-  const full = title + suffix;
-  if (full.length <= max) return full;
-  const budget = max - suffix.length - 1;
-  if (budget > 15) return title.slice(0, budget).replace(/\s+\S*$/, "") + "…" + suffix;
-  return title.slice(0, max - 1) + "…";
 }
 
 export async function onRequestGet(context) {
@@ -40,8 +30,8 @@ export async function onRequestGet(context) {
   if (!p) {
     return htmlResponse(env, url, `
       <main class="container" style="max-width:720px;margin:0 auto;padding:3rem 1.25rem">
-        <h1>Not found</h1><p>${UI[lang].notfound} <a href="/insights">→ /insights</a></p>
-      </main>`, { title: "Not found — PODFY", status: 404, noindex: true });
+        <h1>Not found</h1><p>${UI[lang].notfound} <a href="/insights/${lang === "en" ? "" : `?lang=${lang}`}">→ /insights</a></p>
+      </main>`, { title: "Not found — PODFY", status: 404, noindex: true, lang });
   }
 
   const has = (l) => l === "en" ? true : !!(p[`content_${l}`] && p[`title_${l}`]);
@@ -157,7 +147,7 @@ export async function onRequestGet(context) {
     ]);
   }
   const inSeries = !!p.series_id;
-  const navUrl = (row) => `/insights/article?slug=${encodeURIComponent(row.slug)}${effLang === "en" ? "" : `&lang=${effLang}`}`;
+  const navUrl = (row) => `/insights/article?slug=${encodeURIComponent(row.slug)}${langQS(effLang)}`;
   const navTitle = (row) => (effLang === "en" ? row.title : row[`title_${effLang}`]) || row.title;
   const navCard = (row, label, align, arrow) => row ? `
     <a href="${navUrl(row)}" style="display:block;border:1px solid var(--v2-line,#ddd);border-radius:6px;padding:.9rem 1.1rem;text-decoration:none;color:inherit;text-align:${align}">
@@ -179,7 +169,7 @@ export async function onRequestGet(context) {
       `SELECT title, slug FROM repository_items WHERE item_id = ? AND published = 1 AND access_level = 'public'`
     ).bind(p.source_item_id).first();
     if (src?.slug) {
-      const srcUrl = `/insights/repository/item?slug=${encodeURIComponent(src.slug)}${effLang === "en" ? "" : `&lang=${effLang}`}`;
+      const srcUrl = `/insights/repository/item?slug=${encodeURIComponent(src.slug)}${langQS(effLang)}`;
       sourceHtml = `
         <p style="margin:2rem 0 0;font-size:.85rem;color:var(--v2-muted)">${UI[effLang].source}: <a href="${srcUrl}">${esc(src.title)} →</a></p>`;
     }
@@ -187,7 +177,7 @@ export async function onRequestGet(context) {
 
   const body = `
     <main class="container" style="max-width:720px;margin:0 auto;padding:2rem 1.25rem 4rem">
-      <p style="margin:1.5rem 0"><a href="/insights" style="font-size:.9rem">← ${UI[effLang].back}</a></p>
+      <p style="margin:1.5rem 0"><a href="/insights/${effLang === "en" ? "" : `?lang=${effLang}`}" style="font-size:.9rem">← ${UI[effLang].back}</a></p>
       <article>
         ${seriesBadgeHtml}
         <h1 class="v2-hero-title" style="font-size:2rem">${esc(title)}</h1>
@@ -208,7 +198,7 @@ export async function onRequestGet(context) {
     </main>`;
 
   return htmlResponse(env, url, body, {
-    title: seoTitle(title),
+    title: seoTitle(title, " — PODFY"),
     description: excerpt,
     canonical,
     alternates,
@@ -216,78 +206,4 @@ export async function onRequestGet(context) {
     jsonLd: ld,
     lang: effLang,
   });
-}
-
-// ── Page shell (injects header/footer partials like _middleware.js) ──────────
-
-async function htmlResponse(env, url, body, opts) {
-  const [headerRes, footerRes] = await Promise.all([
-    env.ASSETS.fetch(new URL("/partials/header.html", url)),
-    env.ASSETS.fetch(new URL("/partials/footer.html", url)),
-  ]);
-  const [headerHtml, footerHtml] = await Promise.all([
-    headerRes.text().catch(() => ""), footerRes.text().catch(() => ""),
-  ]);
-  const html = `<!doctype html>
-<html lang="${opts.lang || "en"}">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>${esc(opts.title)}</title>
-  ${opts.description ? `<meta name="description" content="${esc(opts.description)}" />` : ""}
-  ${opts.noindex ? `<meta name="robots" content="noindex" />` : `<meta name="robots" content="index,follow,max-image-preview:large" />`}
-  ${opts.canonical ? `<link rel="canonical" href="${opts.canonical}" />` : ""}
-  ${opts.alternates || ""}
-  ${opts.og ? `<meta property="og:type" content="article" />
-  <meta property="og:title" content="${esc(opts.og.title)}" />
-  <meta property="og:description" content="${esc(opts.og.description)}" />
-  <meta property="og:url" content="${opts.og.url}" />
-  <meta property="og:image" content="${opts.og.image}" />
-  <meta name="twitter:card" content="summary_large_image" />` : ""}
-  <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
-  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
-  <script src="/assets/theme.js" defer></script>
-  ${(opts.jsonLd || []).map(o => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join("\n  ")}
-</head>
-<body>
-  ${headerHtml}
-  ${body}
-  ${footerHtml}
-</body>
-</html>`;
-  return new Response(html, {
-    status: opts.status || 200,
-    headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=300" },
-  });
-}
-
-// ── Minimal markdown (matches the generator's output surface) ─────────────────
-
-function md(src) {
-  let html = esc(src || "");
-  html = html.replace(/^### (.+)$/gm, "<h3>$1</h3>");
-  html = html.replace(/^## (.+)$/gm, "<h2>$1</h2>");
-  html = html.replace(/^# (.+)$/gm, "<h2>$1</h2>");
-  html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-  html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
-  // Internal links plain; external (news sources) open in a new tab, nofollow.
-  html = html.replace(/\[([^\]]+)\]\((https:\/\/[^\s)"]+)\)/g, (m, txt, url) =>
-    /^https:\/\/(?:www\.)?podfy\.(?:net|app)([/?#]|$)/.test(url)
-      ? `<a href="${url}">${txt}</a>`
-      : `<a href="${url}" target="_blank" rel="noopener noreferrer nofollow">${txt}</a>`);
-  html = html.replace(/^- (.+)$/gm, "<li>$1</li>");
-  html = html.replace(/(<li>[\s\S]*?<\/li>)(?!\s*<li>)/g, "<ul>$1</ul>");
-  return html.split(/\n{2,}/).map(block => {
-    block = block.trim();
-    if (!block) return "";
-    if (/^<(h2|h3|ul)/.test(block)) return block;
-    return "<p>" + block.replace(/\n/g, "<br>") + "</p>";
-  }).join("\n");
-}
-
-function esc(s) {
-  return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }

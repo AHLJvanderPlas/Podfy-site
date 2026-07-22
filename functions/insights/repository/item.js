@@ -2,7 +2,8 @@
 // detail: 4-language summary + classification, deeplink, preview and download.
 // Mirrors functions/insights/article.js (SSR for crawlers, header/footer from ASSETS).
 
-const LANGS = ["en", "nl", "de", "fr"];
+import { LANGS, CAT_LABELS, esc, seoTitle, langQS, htmlResponse } from "../../_shared/insights-ssr.js";
+
 const UI = {
   en: { back: "Repository", open: "Open the official text ↗", download: "Download", copy: "Copy link",
         copied: "Copied ✓", summary: "Summary", source: "Official sources", notfound: "This document does not exist or is not published." },
@@ -13,29 +14,8 @@ const UI = {
   fr: { back: "Repository", open: "Ouvrir le texte officiel ↗", download: "Télécharger", copy: "Copier le lien",
         copied: "Copié ✓", summary: "Résumé", source: "Sources officielles", notfound: "Ce document n'existe pas ou n'est pas publié." },
 };
-const CAT_LABELS = {
-  convention: { en: "Convention", nl: "Verdrag", de: "Übereinkommen", fr: "Convention" },
-  protocol:   { en: "Protocol", nl: "Protocol", de: "Protokoll", fr: "Protocole" },
-  regulation: { en: "EU regulation", nl: "EU-verordening", de: "EU-Verordnung", fr: "Règlement UE" },
-  handbook:   { en: "Handbook", nl: "Handboek", de: "Handbuch", fr: "Manuel" },
-  reference:  { en: "Reference", nl: "Naslag", de: "Referenz", fr: "Référence" },
-  whitepaper: { en: "Whitepaper", nl: "Whitepaper", de: "Whitepaper", fr: "Livre blanc" },
-  guide:      { en: "Guide", nl: "Gids", de: "Leitfaden", fr: "Guide" },
-};
 const FAQ_HEADING = { en: "Frequently asked questions", nl: "Veelgestelde vragen", de: "Häufig gestellte Fragen", fr: "Questions fréquentes" };
 const RELATED_HEADING = { en: "Related insight", nl: "Gerelateerd inzicht", de: "Verwandter Beitrag", fr: "Article associé" };
-
-// SEO safety net: a `<title>` tag over ~60 chars gets truncated by Google
-// regardless of how the source title was authored. Applies automatically to
-// every current and future repository item, so a long title never needs a
-// manual fix to avoid a chopped-off SERP snippet.
-function seoTitle(title, suffix = " — PODFY Repository", max = 60) {
-  const full = title + suffix;
-  if (full.length <= max) return full;
-  const budget = max - suffix.length - 1;
-  if (budget > 15) return title.slice(0, budget).replace(/\s+\S*$/, "") + "…" + suffix;
-  return title.slice(0, max - 1) + "…";
-}
 
 export async function onRequestGet(context) {
   const { request, env } = context;
@@ -51,7 +31,7 @@ export async function onRequestGet(context) {
   if (!item) {
     return htmlResponse(env, url, `
       <main class="container" style="max-width:720px;margin:0 auto;padding:3rem 1.25rem">
-        <h1>Not found</h1><p>${T.notfound} <a href="/insights/repository/">→ /insights/repository</a></p>
+        <h1>Not found</h1><p>${T.notfound} <a href="/insights/repository/${lang === "en" ? "" : `?lang=${lang}`}">→ /insights/repository</a></p>
       </main>`, { title: "Not found — PODFY", status: 404, noindex: true, lang });
   }
 
@@ -120,7 +100,7 @@ export async function onRequestGet(context) {
   ).bind(item.item_id).first();
   const relatedHtml = relatedBlog ? (() => {
     const rTitle = (lang === "en" ? relatedBlog.title : relatedBlog[`title_${lang}`]) || relatedBlog.title;
-    const rUrl = `/insights/article?slug=${encodeURIComponent(relatedBlog.slug)}${lang === "en" ? "" : `&lang=${lang}`}`;
+    const rUrl = `/insights/article?slug=${encodeURIComponent(relatedBlog.slug)}${langQS(lang)}`;
     return `
         <section style="margin-top:1.75rem">
           <span style="display:block;font-size:.72rem;color:var(--v2-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem">${RELATED_HEADING[lang]}</span>
@@ -142,7 +122,7 @@ export async function onRequestGet(context) {
 
   const body = `
     <main class="container" style="max-width:760px;margin:0 auto;padding:2rem 1.25rem 4rem">
-      <p style="margin:1.5rem 0"><a href="/insights/repository/" style="font-size:.9rem">← ${T.back}</a></p>
+      <p style="margin:1.5rem 0"><a href="/insights/repository/${lang === "en" ? "" : `?lang=${lang}`}" style="font-size:.9rem">← ${T.back}</a></p>
       <article>
         ${catLabel ? `<span style="display:inline-block;font-family:var(--v2-font-mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--v2-line-2,#ccc);border-radius:4px;padding:2px 9px;color:var(--v2-muted);margin-bottom:.8rem">${esc(catLabel)}</span>` : ""}
         <h1 class="v2-hero-title" style="font-size:1.9rem">${esc(item.title)}</h1>
@@ -164,58 +144,10 @@ export async function onRequestGet(context) {
     </main>`;
 
   return htmlResponse(env, url, body, {
-    title: seoTitle(item.title),
+    title: seoTitle(item.title, " — PODFY Repository"),
     description: summary.slice(0, 155),
     canonical, alternates, jsonLd: ld, lang,
     og: { title: item.title, description: summary.slice(0, 200), url: canonical,
           image: coverUrl ? `https://podfy.net${coverUrl}` : "https://podfy.net/assets/og-image.jpg" },
   });
-}
-
-async function htmlResponse(env, url, body, opts) {
-  const [headerRes, footerRes] = await Promise.all([
-    env.ASSETS.fetch(new URL("/partials/header.html", url)),
-    env.ASSETS.fetch(new URL("/partials/footer.html", url)),
-  ]);
-  const [headerHtml, footerHtml] = await Promise.all([
-    headerRes.text().catch(() => ""), footerRes.text().catch(() => ""),
-  ]);
-  const html = `<!doctype html>
-<html lang="${opts.lang || "en"}">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>${esc(opts.title)}</title>
-  ${opts.description ? `<meta name="description" content="${esc(opts.description)}" />` : ""}
-  ${opts.noindex ? `<meta name="robots" content="noindex" />` : `<meta name="robots" content="index,follow,max-image-preview:large" />`}
-  ${opts.canonical ? `<link rel="canonical" href="${opts.canonical}" />` : ""}
-  ${opts.alternates || ""}
-  ${opts.og ? `<meta property="og:type" content="article" />
-  <meta property="og:title" content="${esc(opts.og.title)}" />
-  <meta property="og:description" content="${esc(opts.og.description)}" />
-  <meta property="og:url" content="${opts.og.url}" />
-  <meta property="og:image" content="${opts.og.image}" />
-  <meta name="twitter:card" content="summary_large_image" />` : ""}
-  <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
-  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
-  <script src="/assets/theme.js" defer></script>
-  ${(opts.jsonLd || []).map(o => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join("\n  ")}
-</head>
-<body>
-  ${headerHtml}
-  ${body}
-  ${footerHtml}
-</body>
-</html>`;
-  return new Response(html, {
-    status: opts.status || 200,
-    headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=300" },
-  });
-}
-
-function esc(s) {
-  return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }

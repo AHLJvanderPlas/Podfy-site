@@ -71,7 +71,10 @@ Key rules:
 | `assets/advisor.css` | Plan Advisor styles — uses only `--v2-*` tokens |
 | `partials/header.html` | Injected via middleware; locale switcher (EN/NL/DE/FR) + locale-rewrite JS |
 | `partials/footer.html` | Injected via middleware; locale-rewrite JS for footer links |
-| `functions/_middleware.js` | Header/footer partial injection |
+| `functions/_middleware.js` | Header/footer partial injection for static pages; explicit exclusions hand off to dedicated SSR Functions (insights article/repository-item/the 3 section list pages) |
+| `functions/_shared/insights-ssr.js` | Shared SSR helpers for every `/insights/*` page (shell, `esc`/`md`, `seoTitle`, `CAT_LABELS`, `langQS`, `tabsHtml`) — not a route itself |
+| `functions/insights/index.js` / `repository/index.js` / `linkedin/index.js` | SSR section list pages (2026-07-22), `?lang=en\|nl\|de\|fr`, full hreflang |
+| `functions/insights/article.js` / `repository/item.js` | SSR detail pages, same language handling |
 | `functions/api/releases.js` | Paginated changelog from `Site_Releases`; filters `release_date <= DATE('now')` |
 | `functions/changelog.rss.js` | RSS 2.0 feed (last 20 releases); same date filter |
 | `functions/api/pricing.js` | Returns `Site_Pricing` rows as JSON; cached 1h; feeds `data-price-key` spans |
@@ -158,6 +161,53 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
 | Design audit items | 🗓 Remaining | Consolidate stylesheets (`styles.css` → `styles.site.css` only); `prefers-reduced-motion` full block for all transitions; social proof section (named customer story) |
 
 ---
+
+## Changes (2026-07-22, later) — insights section pages converted to SSR, full 4-language crawlability
+
+`/insights/`, `/insights/repository/`, `/insights/linkedin/` were the last untranslated,
+client-side-rendered pages in the insights section (static HTML shell + `fetch()` for cards) —
+the language switcher fix above made the *chrome* language-consistent, but these three pages
+still had no French/German/Dutch content to link to at all. Converted to SSR Pages Functions,
+mirroring `article.js`/`repository/item.js` exactly (same reasons: crawlers/LLMs get real
+content + real links on first byte, not a client-rendered shell).
+
+- **New `functions/_shared/insights-ssr.js`**: extracted `htmlResponse`/`esc`/`md`/`seoTitle`/
+  `CAT_LABELS` (previously duplicated between article.js and repository/item.js — tripling that
+  duplication for 3 more pages was the trigger to extract it now, not before) plus two new
+  helpers: `langQS(lang)` (the `&lang=xx`-or-empty rule every insights URL follows) and
+  `tabsHtml(lang, active)` (the 3-tab nav, identical markup on all list pages, now always
+  lang-consistent — clicking "Repository" from a French page stays on French).
+- **`functions/insights/index.js`** (Market updates): queries `blog_posts` directly (was the
+  client `/api/insights/posts` call), per-card `title_${lang}`/`excerpt_${lang}` with graceful
+  fallback to English (list-page pattern — always show *something* — not article.js's
+  whole-page `has()` gate). The search/subject/date filter UX is UNCHANGED and still fully
+  client-side (a real interactive feature, not an SEO concern) — it now hydrates from posts
+  JSON embedded inline in the page instead of an extra fetch() round trip, so filtering works
+  identically but the initial render needs no network call and no JS at all.
+- **`functions/insights/repository/index.js`**: same conversion, reuses shared `CAT_LABELS` for
+  the category chip, per-item `summary_${lang}` fallback (matches item.js's own field-level
+  fallback, not article.js's page-level one).
+- **`functions/insights/linkedin/index.js`**: same conversion. The LinkedIn posts themselves
+  stay Dutch by design (the hero copy says so, translated into all 4 languages) — only the page
+  chrome and the underlying blog title/excerpt shown per card are localized; links still go
+  straight to `/li/{id}?src=site`.
+- **Routing** (verified live, not just assumed): `functions/insights/index.js` resolves BOTH
+  `/insights` and `/insights/` — Cloudflare Pages Functions directory-`index.js` convention
+  covers both forms, and `/insights?lang=de` (no slash) 308s to the slash form with the query
+  string intact. `_middleware.js` gained exact-path exclusions (both slash forms, to be safe)
+  so these routes reach the new Functions instead of the old static-asset+placeholder-injection
+  path. Old `insights/index.html`, `insights/repository/index.html`, `insights/linkedin/
+  index.html` deleted — confirmed dead (Functions have routing priority) before removal, not
+  before.
+- **`sitemap-insights.xml.js`**: the 3 list pages went from one untranslated `<url>` entry each
+  (or, for `/insights/` itself, an entry only in the *static* `sitemap.xml` — removed from
+  there, now superseded) to full 4-language blocks with reciprocal hreflang, matching the
+  pattern already used for articles and repository items.
+- Gotcha hit mid-build: esbuild (wrangler's bundler) fails on a literal backtick character
+  inside a `//` comment that itself sits inside an outer template literal — it closes the
+  outer string early. `node --check` did NOT catch this (parsed differently); only the actual
+  `wrangler pages deploy` build step surfaced it. Worth remembering for any future SSR page
+  with comments inside a big `body = \`...\`` template.
 
 ## Changes (2026-07-22) — locale switcher fixed on insights pages
 
