@@ -1,6 +1,11 @@
 User-agent: *
 Allow: /
 Disallow: /instructions/
+Disallow: /api/
+Disallow: /terms.html
+Disallow: /privacy.html
+Disallow: /imprint.html
+Disallow: /cookie.html
 
 Sitemap: https://podfy.net/sitemap.xml
 Sitemap: https://podfy.net/sitemap-insights.xml
