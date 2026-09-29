@@ -1,4 +1,11 @@
+.dev.vars
+.dev.vars.*
+.env
+.env.*
 
 # Local Claude Code settings (contains API tokens — never commit)
 .claude/settings.local.json
 .DS_Store
+
+# staged deploy output (deploy.sh)
+dist/
