@@ -429,7 +429,7 @@ git push origin qa
 
   <!-- ── 10. COMPANIES VIEWER ── -->
   <h2 id="companies">10. Companies &amp; themes viewer</h2>
-  <p>Loads live from <code>https://podfy.app/api/brands</code> (D1-backed). Shows all customer slugs with their brand settings. Color values are rendered with their actual colour as the cell background. Logo, email_recipients and notes_internal columns are hidden.</p>
+  <p>The public <code>podfy.app/api/brands</code> endpoint was removed on 2026-09-29: it published the full customer list with plans to anyone. Brand settings are in <a href="https://admin.podfy.net">admin.podfy.net → Brands</a> (sign-in required).</p>
 
   <div class="tool-box">
     <div class="co-toolbar">
@@ -588,9 +588,8 @@ git push origin qa
   async function loadCompanies() {
     document.getElementById("co-status").textContent = "Loading…";
     try {
-      var r = await fetch("https://podfy.app/api/brands",{headers:{"Accept":"application/json"}});
-      if(!r.ok) throw new Error(r.status+" "+r.statusText);
-      var json = await r.json();
+      throw new Error("moved to admin.podfy.net → Brands");
+      var json = [];
       _companies = Array.isArray(json)
         ? json.map(function(row){return flatObj(row);})
         : Object.entries(json).map(function([slug,cfg]){return flatObj(Object.assign({slug},cfg));});

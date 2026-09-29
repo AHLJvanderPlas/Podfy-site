@@ -1,6 +1,6 @@
 name = "podfy-site"
 compatibility_date = "2025-10-18"
-pages_build_output_dir = "."
+pages_build_output_dir = "dist"
 
 # Site-only DB: Site_Releases, Site_Buyer, Site_Form + insights (blog_posts, repository_items)
 [[d1_databases]]

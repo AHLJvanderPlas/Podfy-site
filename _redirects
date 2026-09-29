@@ -1,3 +1,16 @@
+# Never serve repo/config files (they were published by root deploys until 2026-09-29;
+# these rules also override copies still held in Cloudflare's asset cache).
+/.claude/*        /  301
+/.git/*           /  301
+/wrangler.toml    /  301
+/CLAUDE.md        /  301
+/README.md        /  301
+/README.MD        /  301
+/.gitignore       /  301
+/instructions/product-functions.md       /instructions/  301
+/instructions/style-template.md          /instructions/  301
+/instructions/legacy-pages-mesh-plan.md  /instructions/  301
+
 # PODFY site redirects
 # Cloudflare Pages — _redirects file
 # All rules: 301 Permanent
