@@ -85,7 +85,7 @@ Real secret values (Cloudflare API token, RESEND_API_KEY, TURNSTILE_SECRET, PORT
 
 ```bash
 cd Podfy-site
-wrangler pages deploy . --project-name podfy-site --branch main
+./deploy.sh   # stages dist/ (never deploy . — it published .claude/settings.local.json until 2026-09-29)
 git push origin main
 ```
 
