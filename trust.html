@@ -117,7 +117,7 @@
             <!-- Box 2: R2 EU -->
             <rect x="119" y="21" width="96" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".5"/>
             <text x="167" y="36" text-anchor="middle" font-size="9" fill="currentColor" font-family="monospace" font-weight="600">R2 storage</text>
-            <text x="167" y="49" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace" opacity=".55">Cloudflare WEUR</text>
+            <text x="167" y="49" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace" opacity=".55">Cloudflare EU</text>
 
             <!-- Arrow 2 -->
             <line x1="215" y1="39" x2="236" y2="39" stroke="currentColor" stroke-width="1.2" opacity=".4"/>
@@ -126,7 +126,7 @@
             <!-- Box 3: D1 EU -->
             <rect x="237" y="21" width="96" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".5"/>
             <text x="285" y="36" text-anchor="middle" font-size="9" fill="currentColor" font-family="monospace" font-weight="600">D1 database</text>
-            <text x="285" y="49" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace" opacity=".55">Cloudflare WEUR</text>
+            <text x="285" y="49" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace" opacity=".55">Cloudflare EU</text>
 
             <!-- Arrow 3 -->
             <line x1="333" y1="39" x2="354" y2="39" stroke="currentColor" stroke-width="1.2" opacity=".4"/>
@@ -152,7 +152,7 @@
             <div>
               <p style="font-size:.78rem;font-weight:600;font-family:var(--v2-font-mono);margin-bottom:.35rem;">Hosting &amp; storage</p>
               <p style="font-size:.82rem;color:var(--v2-muted);margin:0;">
-                <strong>Cloudflare</strong>, Pages, Workers, D1 (SQLite), R2 (object storage). All data at rest and in transit in the <strong>WEUR</strong> (Western Europe) region. EU jurisdiction, EU data centre.
+                <strong>Cloudflare</strong>, Pages, Workers, D1 (SQLite), R2 (object storage). All stored data (D1 + R2) is under Cloudflare's <strong>EU jurisdiction</strong>: stored only in EU data centres.
               </p>
             </div>
             <div>
@@ -455,7 +455,7 @@
               </table>
 
               <h3>6. Sub-processors &amp; international transfers</h3>
-              <p>For the full, current list of sub-processors with DPA links, see the <a href="#subprocessors">Subprocessors</a> section below. Where personal data is transferred to processors outside the EU/EEA, we rely on Standard Contractual Clauses (SCCs) under GDPR Art. 46(2)(c). All production data is stored at rest in the EU-WEUR (Western Europe) region.</p>
+              <p>For the full, current list of sub-processors with DPA links, see the <a href="#subprocessors">Subprocessors</a> section below. Where personal data is transferred to processors outside the EU/EEA, we rely on Standard Contractual Clauses (SCCs) under GDPR Art. 46(2)(c). All production data is stored at rest in Cloudflare's EU jurisdiction (EU data centres only).</p>
 
               <h3>7. Security</h3>
               <p>All PODFY properties enforce HTTPS with modern TLS. Data at rest is encrypted. Access to operational systems is restricted by role and audited. Customer data is logically separated between tenants. For full technical detail see <a href="#security">Security</a>.</p>
@@ -612,7 +612,7 @@
                     </td>
                     <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">USA</td>
                     <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Compute (Workers/Pages), database (D1), object storage (R2), CDN, DNS, DDoS protection, bot management (Turnstile). All customer data at rest and in transit.</td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">EU-WEUR (Amsterdam)</td>
+                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">EU jurisdiction (EU data centres only)</td>
                     <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">SCCs + EU-U.S. Data Privacy Framework</td>
                   </tr>
                   <tr style="border-bottom:1px solid var(--v2-line);">

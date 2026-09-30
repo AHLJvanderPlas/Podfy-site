@@ -38,7 +38,7 @@
     {"@type":"Question","name":"How long must proof of delivery documents be retained in the Netherlands and Belgium?",
       "acceptedAnswer":{"@type":"Answer","text":"For Dutch businesses: the Belastingdienst requires financial records, including delivery documentation used for invoicing, to be retained for 7 years. In Belgium, a similar 7-year retention applies for commercial records. CMR documents for international road transport are governed by the CMR Convention, which establishes a 1-year claim period but a 3-year window for fraudulent acts."}},
     {"@type":"Question","name":"Does Podfy store data in the EU?",
-      "acceptedAnswer":{"@type":"Answer","text":"Yes. All delivery documents stored via Podfy are held in Cloudflare's EU-WEUR (Western Europe) region. No data leaves the EU. Podfy can provide a Data Processing Agreement (DPA) for GDPR compliance purposes."}},
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. All delivery documents stored via Podfy are held in Cloudflare's EU jurisdiction (EU data centres only). Stored data never leaves the EU; email delivery and optional AI document reading use subprocessors listed in the DPA. Podfy can provide a Data Processing Agreement (DPA) for GDPR compliance purposes."}},
     {"@type":"Question","name":"What counts as an audit-ready delivery record?",
       "acceptedAnswer":{"@type":"Answer","text":"An audit-ready delivery record should include: the document itself (signed CMR or delivery note), a timestamp showing when it was submitted, GPS coordinates confirming the delivery location, and a reference linking it to the invoice or PO. All four elements are captured automatically in Podfy."}},
     {"@type":"Question","name":"Can Podfy records be exported for an audit package?",
@@ -95,14 +95,14 @@
       </div>
     </section>
 
-    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">7-year EU archive, included</p><p class="v2-inline-cta-text">Every Podfy record is stored in EU-WEUR with full audit export capability.</p></div><a href="/demo" class="v2-btn v2-btn-primary">See the demo &rarr;</a></div></div></div>
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">7-year EU archive, included</p><p class="v2-inline-cta-text">Every Podfy record is stored under EU jurisdiction with full audit export capability.</p></div><a href="/demo" class="v2-btn v2-btn-primary">See the demo &rarr;</a></div></div></div>
 
     <section class="v2-section" id="gdpr" aria-labelledby="gdpr-heading">
       <div class="container">
         <h2 class="v2-section-title" id="gdpr-heading">GDPR and data residency</h2>
         <div class="v2-prose">
           <p>Delivery documents often contain personal data: driver names, vehicle license plates, GPS locations tied to individuals, and customer contact information. Under GDPR, this data must be processed and stored in accordance with the Regulation, and for organizations subject to Dutch or Belgian law, storage within the EU is strongly preferred.</p>
-          <p>All data stored via Podfy is processed in Cloudflare's EU-WEUR (Western Europe) region. No data crosses EU borders. This satisfies Dutch and Belgian GDPR data residency expectations without requiring a supplementary legal instrument (SCC).</p>
+          <p>All data stored via Podfy is stored under Cloudflare's EU jurisdiction (EU data centres only). Stored data never leaves the EU; email delivery and optional AI document reading use subprocessors listed in the DPA. This satisfies Dutch and Belgian GDPR data residency expectations without requiring a supplementary legal instrument (SCC).</p>
           <p>For procurement and compliance purposes, Podfy provides a Data Processing Agreement (DPA). This is required if you process personal data of EU residents on behalf of a controller, for example, if you are a 3PL processing delivery records on behalf of shipper clients.</p>
         </div>
       </div>
@@ -124,7 +124,7 @@
         <h2 class="v2-section-title" id="faq-heading">Frequently asked questions</h2>
         <div class="v2-faq-accordion">
           <div class="v2-faq-acc-item"><button class="v2-faq-btn">How long must POD documents be retained in the Netherlands and Belgium?</button><div class="v2-faq-answer"><p>7 years in both jurisdictions for commercial and financial records. CMR documents for cross-border freight have a 1-year claims window but best practice is to retain for the full 7-year period. Podfy's 7-year archive option covers both requirements.</p></div></div>
-          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Does Podfy store data in the EU?</button><div class="v2-faq-answer"><p>Yes. All data is stored in Cloudflare's EU-WEUR (Western Europe) region. No data leaves the EU. A Data Processing Agreement is available for organizations with formal GDPR compliance requirements.</p></div></div>
+          <div class="v2-faq-acc-item"><button class="v2-faq-btn">Does Podfy store data in the EU?</button><div class="v2-faq-answer"><p>Yes. All data is stored in Cloudflare's EU jurisdiction (EU data centres only). Stored data never leaves the EU; email delivery and optional AI document reading use subprocessors listed in the DPA. A Data Processing Agreement is available for organizations with formal GDPR compliance requirements.</p></div></div>
           <div class="v2-faq-acc-item"><button class="v2-faq-btn">What counts as an audit-ready delivery record?</button><div class="v2-faq-answer"><p>An audit-ready record includes: the document itself (signed CMR or delivery note), a timestamp, GPS coordinates confirming location, and a reference linking it to the invoice or PO. All four are captured automatically in every Podfy submission.</p></div></div>
           <div class="v2-faq-acc-item"><button class="v2-faq-btn">Can Podfy records be exported for an audit package?</button><div class="v2-faq-answer"><p>Yes. Delivery records can be exported as PDFs from the portal, individually or in bulk by date range or reference prefix. This is typically what Belastingdienst or Belgian FSMA inspections require.</p></div></div>
           <div class="v2-faq-acc-item"><button class="v2-faq-btn">Is GPS-stamped digital evidence accepted in Dutch and Belgian courts?</button><div class="v2-faq-answer"><p>Generally yes for commercial disputes. GPS-stamped, timestamped digital records created by a third-party system are considered reliable evidence in Dutch and Belgian commercial proceedings. They supplement, and often replace, paper CMR originals in dispute resolution.</p></div></div>

@@ -311,7 +311,7 @@ edge/cache staleness was ruled out too.
 - **JSON-LD coverage** — 18 previously schema-less pages now have schema: Organization+WebSite (nl+de homepages), ContactPage (contact ×4), WebPage (demo/trust ×4, changelog), SoftwareApplication with 5 Offers (nl/de/fr pricing). Only 404.html has none (intentional)
 - **og-image** — 548KB PNG → 28KB progressive JPEG (`assets/og-image.jpg`); 96 files re-pointed; PNG kept for old shared links
 - **llms-full.txt** — new 70KB file: full text of about, vs-scan-apps, and all 10 EN guides; advertised in robots.txt + llms.txt
-- **llms.txt key facts hardened** — 11 atomic facts (all plan rates, retention, GPS-at-capture, EU-WEUR jurisdiction wording, KVK/VAT, demo link)
+- **llms.txt key facts hardened** — 11 atomic facts (all plan rates, retention, GPS-at-capture, EU jurisdiction wording, KVK/VAT, demo link)
 - **sameAs cleanup** — dead Capterra/G2 links removed from Organization schema (re-add when listings exist); LinkedIn kept
 - **NL content** — 3 new pages: `nl/about.html`, `nl/guides/gps-proof-of-delivery/`, `nl/guides/subcontractor-pod/` (NL now has 10 guides, parity with EN); hreflang updated on EN counterparts; 2 cards added to `nl/guides/index.html`
 - **sitemap.xml** — 3 new NL URLs added, 3 pre-existing duplicate entries removed (net 107 URLs, validated)

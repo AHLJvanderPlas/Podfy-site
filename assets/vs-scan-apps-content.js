@@ -130,7 +130,7 @@
             },
             podfy: {
               text: 'EU company (NL)',
-              note: 'Data stored in Cloudflare WEUR (Amsterdam, EU). Note: Cloudflare is a US company; EU data residency does not equal CLOUD Act immunity. DPA available on request.',
+              note: 'Data stored in Cloudflare\'s EU jurisdiction (EU data centres only). Note: Cloudflare is a US company; EU data residency does not equal CLOUD Act immunity. DPA available on request.',
               type: 'neutral',
             },
           },
@@ -246,7 +246,7 @@
         },
         {
           q: 'Does Podfy store documents in the EU?',
-          a: 'Yes. All data is stored in Cloudflare\'s EU-WEUR region (Amsterdam, Netherlands). A Data Processing Agreement is available on request for GDPR-compliant processing.',
+          a: 'Yes. All data is stored in Cloudflare\'s EU jurisdiction (EU data centres only). A Data Processing Agreement is available on request for GDPR-compliant processing.',
         },
         {
           q: 'What does GPS stamping actually prove?',
@@ -367,7 +367,7 @@
             whatsapp: { text: 'Meta (VS)', note: 'Onderworpen aan de VS CLOUD Act (18 U.S.C. §2713)', type: 'neutral' },
             podfy: {
               text: 'EU-bedrijf (NL)',
-              note: 'Data opgeslagen in Cloudflare WEUR (Amsterdam, EU). Let op: Cloudflare is een Amerikaans bedrijf; EU-dataresidentie betekent geen CLOUD Act-immuniteit. VOK beschikbaar op aanvraag.',
+              note: 'Data opgeslagen onder Cloudflares EU-jurisdictie (uitsluitend EU-datacenters). Let op: Cloudflare is een Amerikaans bedrijf; EU-dataresidentie betekent geen CLOUD Act-immuniteit. VOK beschikbaar op aanvraag.',
               type: 'neutral',
             },
           },
@@ -399,7 +399,7 @@
         },
         {
           q: 'Bewaart Podfy documenten in de EU?',
-          a: 'Ja. Alle gegevens worden opgeslagen in de EU-WEUR-regio van Cloudflare (Amsterdam, Nederland). Een verwerkersovereenkomst (VOK) is op verzoek beschikbaar voor AVG-conforme verwerking.',
+          a: 'Ja. Alle gegevens worden opgeslagen in de EU-jurisdictie van Cloudflare (uitsluitend EU-datacenters). Een verwerkersovereenkomst (VOK) is op verzoek beschikbaar voor AVG-conforme verwerking.',
         },
       ],
       related: {
@@ -516,7 +516,7 @@
             whatsapp: { text: 'Meta (USA)', note: 'Unterliegt dem US-CLOUD-Act (18 U.S.C. §2713)', type: 'neutral' },
             podfy: {
               text: 'EU-Unternehmen (NL)',
-              note: 'Daten in Cloudflare WEUR (Amsterdam, EU) gespeichert. Hinweis: Cloudflare ist ein US-Unternehmen; EU-Datenspeicherung bedeutet keine Immunität gegenüber dem CLOUD-Act. AVV auf Anfrage verfügbar.',
+              note: 'Daten unter Cloudflares EU-Jurisdiktion (ausschließlich EU-Rechenzentren) gespeichert. Hinweis: Cloudflare ist ein US-Unternehmen; EU-Datenspeicherung bedeutet keine Immunität gegenüber dem CLOUD-Act. AVV auf Anfrage verfügbar.',
               type: 'neutral',
             },
           },
@@ -548,7 +548,7 @@
         },
         {
           q: 'Speichert Podfy Dokumente in der EU?',
-          a: 'Ja. Alle Daten werden in der EU-WEUR-Region von Cloudflare (Amsterdam, Niederlande) gespeichert. Ein Auftragsverarbeitungsvertrag (AVV) ist auf Anfrage für DSGVO-konforme Verarbeitung verfügbar.',
+          a: 'Ja. Alle Daten werden in der EU-Jurisdiktion von Cloudflare (ausschließlich EU-Rechenzentren) gespeichert. Ein Auftragsverarbeitungsvertrag (AVV) ist auf Anfrage für DSGVO-konforme Verarbeitung verfügbar.',
         },
       ],
       related: {
@@ -665,7 +665,7 @@
             whatsapp: { text: 'Meta (USA)', note: 'Soumis au CLOUD Act américain (18 U.S.C. §2713)', type: 'neutral' },
             podfy: {
               text: 'Société UE (NL)',
-              note: 'Données stockées dans Cloudflare WEUR (Amsterdam, UE). Note : Cloudflare est une société américaine ; la résidence des données en UE n\'équivaut pas à une immunité contre le CLOUD Act. DPA disponible sur demande.',
+              note: 'Données stockées sous la juridiction UE de Cloudflare (centres de données UE uniquement). Note : Cloudflare est une société américaine ; la résidence des données en UE n\'équivaut pas à une immunité contre le CLOUD Act. DPA disponible sur demande.',
               type: 'neutral',
             },
           },
@@ -697,7 +697,7 @@
         },
         {
           q: 'Podfy stocke-t-il les documents dans l\'UE ?',
-          a: 'Oui. Toutes les données sont stockées dans la région EU-WEUR de Cloudflare (Amsterdam, Pays-Bas). Un accord de traitement des données (DPA) est disponible sur demande pour un traitement conforme au RGPD.',
+          a: 'Oui. Toutes les données sont stockées dans la juridiction UE de Cloudflare (centres de données UE uniquement). Un accord de traitement des données (DPA) est disponible sur demande pour un traitement conforme au RGPD.',
         },
       ],
       related: {

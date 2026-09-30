@@ -25,7 +25,7 @@ on any phone, photographs the signed CMR or delivery note, and the GPS-stamped r
 appears in the operations portal within seconds. No app. No account. No training.
 
 The record contains GPS coordinates captured at the moment the camera fires, not at
-upload time. It cannot be retroactively altered. It is stored in Cloudflare EU-WEUR,
+upload time. It cannot be retroactively altered. It is stored in Cloudflare's EU jurisdiction,
 meaning no data leaves the European Union.
 
 ### Why we built it
@@ -221,7 +221,7 @@ Searchability Manual, filing cabinets, scanned PDFs in email Instant, by referen
 Works for sub-contractors Driver-dependent, often fails Yes, no app, no account, any phone
 Document damage/loss risk High, paper degrades, gets lost in cabs None, central digital archive
 Signal requirement None, paper doesn't need signal Mobile data at upload point (4G or better)
-Audit retention Physical storage, expensive at scale 7-year digital archive in EU-WEUR region
+Audit retention Physical storage, expensive at scale 7-year digital archive under EU jurisdiction
 Transition cost None, already in use Low, link sent with existing dispatch, parallel running 2–4 weeks
 Legal validity Established for CMR originals GPS-stamped digital record is strong evidence; paper CMR may still be required for cross-border legal compliance
 
@@ -789,14 +789,14 @@ CMR Convention. For cross-border road freight under the CMR Convention, claims m
 - Data residency: EU-hosted for GDPR compliance
 
 7-year EU archive, included
-Every Podfy record is stored in EU-WEUR with full audit export capability.
+Every Podfy record is stored under EU jurisdiction with full audit export capability.
 See the demo →
 
 ### GDPR and data residency
 
 Delivery documents often contain personal data: driver names, vehicle license plates, GPS locations tied to individuals, and customer contact information. Under GDPR, this data must be processed and stored in accordance with the Regulation, and for organizations subject to Dutch or Belgian law, storage within the EU is strongly preferred.
 
-All data stored via Podfy is processed in Cloudflare's EU-WEUR (Western Europe) region. No data crosses EU borders. This satisfies Dutch and Belgian GDPR data residency expectations without requiring a supplementary legal instrument (SCC).
+All data stored via Podfy is stored under Cloudflare's EU jurisdiction (EU data centres only). Stored data never leaves the EU; email delivery and optional AI document reading use subprocessors listed in the DPA. This satisfies Dutch and Belgian GDPR data residency expectations without requiring a supplementary legal instrument (SCC).
 
 For procurement and compliance purposes, Podfy provides a Data Processing Agreement (DPA). This is required if you process personal data of EU residents on behalf of a controller, for example, if you are a 3PL processing delivery records on behalf of shipper clients.
 
@@ -821,7 +821,7 @@ The record must be linkable to the invoice and purchase order. A consistent refe
 
 How long must POD documents be retained in the Netherlands and Belgium? 7 years in both jurisdictions for commercial and financial records. CMR documents for cross-border freight have a 1-year claims window but best practice is to retain for the full 7-year period. Podfy's 7-year archive option covers both requirements.
 
-Does Podfy store data in the EU? Yes. All data is stored in Cloudflare's EU-WEUR (Western Europe) region. No data leaves the EU. A Data Processing Agreement is available for organizations with formal GDPR compliance requirements.
+Does Podfy store data in the EU? Yes. All data is stored in Cloudflare's EU jurisdiction (EU data centres only). Stored data never leaves the EU; email delivery and optional AI document reading use subprocessors listed in the DPA. A Data Processing Agreement is available for organizations with formal GDPR compliance requirements.
 
 What counts as an audit-ready delivery record? An audit-ready record includes: the document itself (signed CMR or delivery note), a timestamp, GPS coordinates confirming location, and a reference linking it to the invoice or PO. All four are captured automatically in every Podfy submission.
 
@@ -1515,7 +1515,7 @@ How quickly are documents available after delivery?
 As soon as the upload completes, the document is in the portal and your team receives an email notification. This eliminates the typical 3–5 day gap when paper CMRs travel back with the driver.
 
 Is Podfy suitable for audits and disputes?
-Yes. Central storage with GPS timestamps means you can respond to 'not delivered', shortage, or damage claims in seconds rather than days. All records are stored in Cloudflare's EU-WEUR region, GDPR-aligned and available for 7-year retention.
+Yes. Central storage with GPS timestamps means you can respond to 'not delivered', shortage, or damage claims in seconds rather than days. All records are stored in Cloudflare's EU jurisdiction, GDPR-aligned and available for 7-year retention.
 
 Can Podfy replace a TMS, WMS, or ERP?
 No. Podfy focuses on delivery documentation intake and retrieval. It is designed to complement existing systems by making POD collection simple and consistent across carriers, suppliers, sites, and stores.

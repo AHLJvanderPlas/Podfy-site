@@ -219,7 +219,7 @@ Sticky, `z-index: 40`, `border-bottom: 1px solid var(--v2-line)`.
     </nav>
 
     <div class="site-header-actions">
-      <span class="site-trust-pill" aria-label="Hosted in EU, Cloudflare WEUR region">EU&thinsp;&middot;&thinsp;WEUR</span>
+      <span class="site-trust-pill" aria-label="Hosted in the EU (Cloudflare EU jurisdiction)">EU&thinsp;&middot;&thinsp;only</span>
 
       <div class="site-locale" id="localeWrapper" aria-label="Language">
         <button class="site-locale-btn" id="localeBtn" type="button"
@@ -367,7 +367,7 @@ Sticky, `z-index: 40`, `border-bottom: 1px solid var(--v2-line)`.
     </p>
     <p class="site-footer-copy">
       &copy; <span class="v2-footer-year"></span> PODFY. All rights reserved.
-      <span class="site-footer-eu-badge">EU &middot; WEUR</span>
+      <span class="site-footer-eu-badge">EU &middot; only</span>
     </p>
   </div>
 
@@ -505,7 +505,7 @@ Row of short mono facts between hero and first section.
     <ul class="v2-trust-list">
       <li class="v2-trust-item">11s median upload</li>
       <li class="v2-trust-item">0 apps installed</li>
-      <li class="v2-trust-item">EU-WEUR hosting</li>
+      <li class="v2-trust-item">EU-jurisdiction hosting</li>
       <li class="v2-trust-item">
         Last shipped: <a href="/changelog" class="v2-trust-link">v3.1 · 2025-04-14</a>
       </li>
@@ -536,7 +536,7 @@ Dots between items via CSS `::before { content: "·" }`.
   </div>
   <div class="v2-stat-band-item">
     <span class="v2-stat-band-num">EU</span>
-    <span class="v2-stat-band-label">WEUR · GDPR</span>
+    <span class="v2-stat-band-label">EU · GDPR</span>
   </div>
 </div>
 ```
