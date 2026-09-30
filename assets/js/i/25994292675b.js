@@ -24,25 +24,20 @@
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-
-        /* Clear previous error */
         errBanner.style.display = "none";
         errBanner.textContent = "";
 
-        /* HTML5 validation */
         if (!form.checkValidity()) {
           form.reportValidity();
           return;
         }
 
-        /* Turnstile token check */
         var token = document.getElementById("contact-turnstile-token").value;
         if (!token) {
-          showError("Please complete the security check before submitting.");
+          showError("Bitte Sicherheitsprüfung abschließen, bevor Sie absenden.");
           return;
         }
 
-        /* Collect fields */
         var data = {
           name:               (form.querySelector("#contact-name").value || "").trim(),
           email:              (form.querySelector("#contact-email").value || "").trim(),
@@ -54,9 +49,8 @@
           cf_turnstile_token: token,
         };
 
-        /* Disable submit while in-flight */
         submit.disabled = true;
-        submit.textContent = "Sending\u2026";
+        submit.textContent = "Senden\u2026";
 
         fetch("/api/contact", {
           method:  "POST",
@@ -71,7 +65,7 @@
               if (emailEl) emailEl.textContent = data.email;
               success.style.display = "block";
             } else {
-              showError(res.error || "Something went wrong. Please try again.");
+              showError(res.error || "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.");
               resetSubmit();
               if (window.turnstile && typeof window.turnstile.reset === "function") {
                 window.turnstile.reset();
@@ -79,7 +73,7 @@
             }
           })
           .catch(function () {
-            showError("Network error. Please check your connection and try again.");
+            showError("Netzwerkfehler. Bitte Verbindung prüfen und erneut versuchen.");
             resetSubmit();
           });
       });
@@ -87,12 +81,13 @@
       function showError(msg) {
         errBanner.textContent = msg;
         errBanner.style.display = "block";
-        errBanner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        // respect "reduce motion" (the CSS covers transitions; smooth scrolling is script-driven)
+        errBanner.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
       }
 
       function resetSubmit() {
         submit.disabled = false;
-        submit.textContent = "Send message \u2192";
+        submit.textContent = "Nachricht senden \u2192";
       }
     });
   

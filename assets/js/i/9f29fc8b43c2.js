@@ -38,7 +38,7 @@
         /* Turnstile token check */
         var token = document.getElementById("contact-turnstile-token").value;
         if (!token) {
-          showError("Voltooi de beveiligingscheck voordat u verzendt.");
+          showError("Veuillez compléter la vérification de sécurité avant d'envoyer.");
           return;
         }
 
@@ -56,7 +56,7 @@
 
         /* Disable submit while in-flight */
         submit.disabled = true;
-        submit.textContent = "Verzenden\u2026";
+        submit.textContent = "Envoi\u2026";
 
         fetch("/api/contact", {
           method:  "POST",
@@ -71,7 +71,7 @@
               if (emailEl) emailEl.textContent = data.email;
               success.style.display = "block";
             } else {
-              showError(res.error || "Er is iets misgegaan. Probeer het opnieuw.");
+              showError(res.error || "Une erreur est survenue. Veuillez réessayer.");
               resetSubmit();
               if (window.turnstile && typeof window.turnstile.reset === "function") {
                 window.turnstile.reset();
@@ -79,7 +79,7 @@
             }
           })
           .catch(function () {
-            showError("Netwerkfout. Controleer uw verbinding en probeer het opnieuw.");
+            showError("Erreur réseau. Veuillez vérifier votre connexion et réessayer.");
             resetSubmit();
           });
       });
@@ -87,12 +87,13 @@
       function showError(msg) {
         errBanner.textContent = msg;
         errBanner.style.display = "block";
-        errBanner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        // respect "reduce motion" (the CSS covers transitions; smooth scrolling is script-driven)
+        errBanner.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
       }
 
       function resetSubmit() {
         submit.disabled = false;
-        submit.textContent = "Verstuur bericht \u2192";
+        submit.textContent = "Envoyer le message \u2192";
       }
     });
   
