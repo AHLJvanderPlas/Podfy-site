@@ -111,6 +111,8 @@ export async function htmlResponse(env, url, body, opts) {
   <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
   <script src="/assets/theme.js" defer></script>
   ${(opts.jsonLd || []).map(o => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join("\n  ")}
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 <body>
   ${headerHtml}

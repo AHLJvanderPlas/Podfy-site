@@ -1,0 +1,55 @@
+
+    /* Page-scoped additions — do not touch global styles */
+
+    /* Column sub-label in table header */
+    .v2-vs-col-sub {
+      display: block;
+      font-weight: 400;
+      font-size: 0.62rem;
+      color: var(--v2-muted);
+      margin-top: 0.2rem;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    /* Cell note (secondary text beneath the main value) */
+    .v2-vs-cell-note {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--v2-muted);
+      margin-top: 0.15rem;
+      font-weight: 400;
+    }
+
+    /* Ensure Podfy column text stays legible at small sizes */
+    .v2-vs-table td.v2-col-digital .v2-vs-cell-note {
+      color: var(--v2-muted);
+    }
+
+    /* Make table min-width match 3-column layout (≤ price-table wrapper) */
+    .v2-vs-table { min-width: 480px; }
+
+    /* Below-table disclaimer notes */
+    .v2-vs-table-note {
+      font-size: 0.78rem;
+      color: var(--v2-muted);
+      margin: 0.4rem 0 0;
+      font-family: var(--v2-font-mono);
+      letter-spacing: 0.01em;
+    }
+
+    /* First column sticky on small screens so label stays visible while scrolling */
+    @media (max-width: 640px) {
+      .v2-vs-table td:first-child,
+      .v2-vs-table th:first-child {
+        position: sticky;
+        left: 0;
+        background: var(--v2-paper);
+        z-index: 2;
+        box-shadow: 2px 0 4px rgba(0,0,0,0.04);
+      }
+      .v2-vs-table thead th:first-child {
+        background: var(--v2-card);
+      }
+    }
+  

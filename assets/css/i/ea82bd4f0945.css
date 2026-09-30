@@ -1,0 +1,201 @@
+
+    /* CMR document preview */
+    .cmr-preview-wrap {
+      overflow-x: auto;
+      margin: 2rem 0;
+    }
+    .cmr-doc {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 7.5px;
+      line-height: 1.3;
+      color: #111;
+      background: #fff;
+      border: 1.5px solid #aaa;
+      border-left: 4px solid #D24A1F;
+      width: 640px;
+      min-width: 640px;
+      padding: 0;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+    }
+    .cmr-legal-strip {
+      background: #f5f5f5;
+      border-bottom: 1px solid #ccc;
+      padding: 3px 8px;
+      font-size: 6.5px;
+      color: #555;
+      text-align: center;
+    }
+    .cmr-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px 4px;
+      border-bottom: 1.5px solid #222;
+    }
+    .cmr-header-brand {
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #111;
+    }
+    .cmr-header-title {
+      text-align: center;
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .cmr-header-title small {
+      display: block;
+      font-size: 6.5px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .cmr-stamp {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #D24A1F;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 6px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+    .cmr-grid {
+      display: grid;
+      border-top: 1px solid #aaa;
+    }
+    .cmr-row {
+      display: grid;
+      border-bottom: 1px solid #ccc;
+    }
+    .cmr-row-2 { grid-template-columns: 1fr 1fr; }
+    .cmr-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .cmr-row-25 { grid-template-columns: 2fr 1fr; }
+    .cmr-box {
+      padding: 4px 5px 5px;
+      border-right: 1px solid #ccc;
+      min-height: 36px;
+      position: relative;
+    }
+    .cmr-box:last-child { border-right: none; }
+    .cmr-box-num {
+      display: inline-block;
+      background: #D24A1F;
+      color: #fff;
+      font-size: 6px;
+      font-weight: 700;
+      padding: 1px 3px;
+      margin-bottom: 2px;
+      border-radius: 1px;
+    }
+    .cmr-box-label {
+      font-size: 6.5px;
+      color: #555;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .cmr-box-value {
+      font-size: 7.5px;
+      font-weight: 600;
+      display: block;
+      min-height: 10px;
+    }
+    .cmr-box-sub {
+      font-size: 6px;
+      color: #777;
+      margin-top: 2px;
+    }
+    .cmr-goods-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7px;
+    }
+    .cmr-goods-table th {
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 2px 3px;
+      font-size: 6.5px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .cmr-goods-table td {
+      border: 1px solid #ddd;
+      padding: 2px 3px;
+      font-size: 7px;
+    }
+    .cmr-goods-section {
+      padding: 4px 5px;
+      border-bottom: 1px solid #ccc;
+    }
+    .cmr-goods-section .cmr-box-num { margin-bottom: 3px; }
+    .cmr-charges-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 6.5px;
+    }
+    .cmr-charges-table th, .cmr-charges-table td {
+      border: 1px solid #ccc;
+      padding: 2px 4px;
+      text-align: right;
+    }
+    .cmr-charges-table th:first-child, .cmr-charges-table td:first-child {
+      text-align: left;
+    }
+    .cmr-sig-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1.5px solid #222;
+      min-height: 44px;
+    }
+    .cmr-sig-box {
+      padding: 4px 5px;
+      border-right: 1px solid #aaa;
+      font-size: 6.5px;
+    }
+    .cmr-sig-box:last-child { border-right: none; }
+    .cmr-sig-label {
+      font-size: 6px;
+      color: #555;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 3px;
+    }
+    .cmr-sig-line {
+      border-bottom: 1px solid #bbb;
+      height: 14px;
+      margin-bottom: 3px;
+    }
+    .cmr-footer {
+      background: #f5f5f5;
+      border-top: 1px solid #ccc;
+      padding: 3px 8px;
+      font-size: 6.5px;
+      color: #555;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cmr-copy-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .cmr-section-full {
+      padding: 4px 5px;
+      border-bottom: 1px solid #ccc;
+    }
+    .cmr-row-inline {
+      display: flex;
+      gap: 12px;
+    }
+  

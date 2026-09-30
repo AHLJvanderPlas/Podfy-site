@@ -44,6 +44,8 @@
     {"@type":"Question","name":"Does the subcontractor see my other deliveries or client data?","acceptedAnswer":{"@type":"Answer","text":"No. Each link is scoped to a single shipment reference. The driver can only access the specific upload page for that delivery — nothing else in your portal is visible to them."}}
   ]}
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 <body class="v2">
   <div id="v2-progress"></div>
@@ -59,12 +61,12 @@
           <a href="/guides/">Guides</a> <span aria-hidden="true">/</span>
           <span aria-current="page">Subcontractor POD</span>
         </nav>
-        <span class="v2-guide-tag" style="margin-bottom:.85rem;display:inline-block;">Networks</span>
-        <h1 class="v2-hero-title" id="guide-heading" style="max-width:40rem;">
+        <span class="v2-guide-tag" data-u="uab052ee">Networks</span>
+        <h1 class="v2-hero-title" id="guide-heading" data-u="u4e90451">
           Subcontractor POD.<br>
           <em>No app. No account. No excuses.</em>
         </h1>
-        <p class="v2-hero-sub" style="max-width:38rem;">
+        <p class="v2-hero-sub" data-u="ua95973b">
           How to collect GPS-stamped proof of delivery from subcontractors and spot carriers
           without requiring them to install an app or create an account.
         </p>
@@ -95,7 +97,7 @@
     <section class="v2-section" aria-labelledby="apps-heading">
       <div class="container">
         <h2 class="v2-section-title" id="apps-heading">Why app-based POD fails with subcontractors</h2>
-        <ul class="v2-check-list" style="max-width:38rem;">
+        <ul class="v2-check-list" data-u="ua95973b">
           <li><strong>Installation friction:</strong> subcontractors don't install apps for one-off jobs</li>
           <li><strong>Account creation:</strong> no carrier wants to manage accounts for rotating drivers</li>
           <li><strong>Device compatibility:</strong> subcontractors often have older or non-standard phones</li>
@@ -132,7 +134,7 @@
     <section class="v2-section" aria-labelledby="steps-heading">
       <div class="container">
         <h2 class="v2-section-title" id="steps-heading">Collecting POD from a subcontractor with Podfy</h2>
-        <div class="v2-how-grid" style="margin-top:1.5rem;">
+        <div class="v2-how-grid" data-u="ufc511f0">
           <div class="v2-how-step">
             <p class="v2-how-step-num">Step 01</p>
             <h3>Generate the link</h3>
@@ -149,7 +151,7 @@
             <p>Subcontractor opens the link in any browser, photographs the CMR or delivery point. GPS stamp and timestamp are added automatically.</p>
           </div>
         </div>
-        <div class="v2-how-grid" style="margin-top:1rem;">
+        <div class="v2-how-grid" data-u="u2239d6d">
           <div class="v2-how-step">
             <p class="v2-how-step-num">Step 04</p>
             <h3>Record appears immediately</h3>
@@ -173,7 +175,7 @@
     <section class="v2-section" aria-labelledby="faq-heading">
       <div class="container">
         <h2 class="v2-section-title" id="faq-heading">Frequently asked questions</h2>
-        <div class="v2-faq-list" style="max-width:40rem;">
+        <div class="v2-faq-list" data-u="u4e90451">
           <div class="v2-faq-item">
             <p class="v2-faq-q">What if the subcontractor refuses to use the link?</p>
             <p class="v2-faq-a">The link requires no registration and no app. If a subcontractor can take a photo on their phone, they can use Podfy. The friction is genuinely zero, it's a URL, not an onboarding process.</p>
@@ -226,7 +228,7 @@
       <div class="container">
         <p class="v2-eyebrow">Comparing options?</p>
         <h2 class="v2-section-title" id="vs-heading-sub">Podfy vs. free scan apps</h2>
-        <p class="v2-prose" style="max-width:40rem;margin-bottom:1.25rem;">
+        <p class="v2-prose" data-u="u03e7b93">
           See the full comparison: cost, who initiates the document return, GPS stamping,
           and why scan apps do not solve the subcontractor collection problem.
         </p>
@@ -251,19 +253,6 @@
 
   [[PODFY_FOOTER]]
 
-  <script>
-  (function(){
-    var bar = document.getElementById('v2-progress');
-    if (!bar) return;
-    function upd() {
-      var s = document.documentElement, b = document.body;
-      var h = s.scrollHeight - s.clientHeight || b.scrollHeight - b.clientHeight;
-      var pct = h > 0 ? Math.round((s.scrollTop || b.scrollTop) / h * 100) : 0;
-      bar.style.width = pct + '%';
-    }
-    window.addEventListener('scroll', upd, {passive: true});
-    upd();
-  })();
-  </script>
+  <script src="/assets/js/i/d3872d16333e.js"></script>
 </body>
 </html>

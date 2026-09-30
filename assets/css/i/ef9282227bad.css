@@ -1,0 +1,78 @@
+
+    .e404-shell {
+      display: grid;
+      grid-template-columns: minmax(0,1.3fr) minmax(0,1fr);
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .e404-shell { grid-template-columns: 1fr; }
+    }
+
+    .e404-mono {
+      margin-top: .85rem;
+      padding: .65rem .9rem;
+      border-radius: .5rem;
+      border: 1px dashed var(--v2-border);
+      font-size: .78rem;
+      color: var(--v2-muted);
+      font-family: var(--v2-font-mono);
+      line-height: 1.7;
+    }
+
+    .e404-footnote {
+      margin-top: .85rem;
+      font-size: .78rem;
+      color: var(--v2-muted);
+    }
+
+    .e404-tiles {
+      display: grid;
+      gap: .85rem;
+    }
+
+    .e404-tile {
+      border: 1px solid var(--v2-border);
+      border-radius: .75rem;
+      background: var(--v2-surface);
+      padding: .9rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .15s, transform .15s;
+    }
+    .e404-tile:hover {
+      border-color: var(--v2-stamp);
+      transform: translateY(-3px);
+    }
+
+    .e404-tile-icon {
+      flex: 0 0 auto;
+      width: 1.5rem;
+      height: 1.5rem;
+      color: var(--v2-stamp);
+      margin-top: .05rem;
+    }
+
+    .e404-tile-label {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      color: var(--v2-muted);
+      margin: 0 0 .1rem;
+      font-weight: 600;
+    }
+    .e404-tile-title {
+      font-size: .9rem;
+      font-weight: 600;
+      margin: 0 0 .2rem;
+      color: var(--v2-ink);
+    }
+    .e404-tile-body {
+      font-size: .8rem;
+      color: var(--v2-muted);
+      margin: 0;
+    }
+  

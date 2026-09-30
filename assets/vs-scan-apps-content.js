@@ -743,7 +743,7 @@
 
     var html = '<div class="v2-price-table-wrap">';
     html += '<table class="v2-comparison-table v2-vs-table" aria-label="' + esc(tableData.caption) + '"';
-    html += ' style="min-width:' + minW + '">';
+    html += ' data-u="' + sty('min-width:' + minW) + '">';
 
     /* thead */
     html += '<thead><tr>';

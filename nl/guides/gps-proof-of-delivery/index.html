@@ -42,6 +42,8 @@
     {"@type":"Question","name":"Is GPS-stempeling beschikbaar op alle Podfy-plannen?","acceptedAnswer":{"@type":"Answer","text":"Ja. GPS-stempeling is inbegrepen op alle Podfy-plannen, inclusief Basic. Het is geen uitbreiding."}}
   ]}
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 <body class="v2">
   <div id="v2-progress"></div>
@@ -57,12 +59,12 @@
           <a href="/nl/guides/">Gidsen</a> <span aria-hidden="true">/</span>
           <span aria-current="page">GPS-bewijs van aflevering</span>
         </nav>
-        <span class="v2-guide-tag" style="margin-bottom:.85rem;display:inline-block;">Bewijs</span>
-        <h1 class="v2-hero-title" id="guide-heading" style="max-width:40rem;">
+        <span class="v2-guide-tag" data-u="uab052ee">Bewijs</span>
+        <h1 class="v2-hero-title" id="guide-heading" data-u="u4e90451">
           GPS-bewijs van aflevering.<br>
           <em>Locatiegestempeld, manipulatiebestendig.</em>
         </h1>
-        <p class="v2-hero-sub" style="max-width:38rem;">
+        <p class="v2-hero-sub" data-u="ua95973b">
           Hoe GPS-gestempeld bewijs van aflevering werkt, waarom het getekende afleverbonnen
           overtreft bij geschillen en hoe vervoerders het verzamelen zonder chauffeursapp.
         </p>
@@ -101,7 +103,7 @@
       <div class="container">
         <h2 class="v2-section-title" id="why-heading">Waarom GPS-stempels handtekeningen overtreffen bij geschillen</h2>
 
-        <div class="v2-how-grid" style="margin-top:1.5rem;">
+        <div class="v2-how-grid" data-u="ufc511f0">
           <div class="v2-how-step">
             <p class="v2-how-step-num">01 — Locatie</p>
             <h3>Handtekeningen bevestigen wie. GPS bevestigt waar.</h3>
@@ -164,7 +166,7 @@
     <section class="v2-section" aria-labelledby="record-heading">
       <div class="container">
         <h2 class="v2-section-title" id="record-heading">Wat een GPS-gestempeld record bevat</h2>
-        <ul class="v2-check-list" style="margin-top:1rem;max-width:36rem;">
+        <ul class="v2-check-list" data-u="uc03bdb7">
           <li><strong>GPS-coördinaten:</strong> lengte- en breedtegraad op het moment dat de camera afgaat</li>
           <li><strong>Tijdstempel:</strong> server-side, kan achteraf niet worden gewijzigd</li>
           <li><strong>Het document:</strong> origineel geüpload bestand, ongewijzigd opgeslagen</li>
@@ -177,7 +179,7 @@
     <section class="v2-section" aria-labelledby="who-heading">
       <div class="container">
         <h2 class="v2-section-title" id="who-heading">Wie GPS-bewijs van aflevering specifiek nodig heeft</h2>
-        <ul class="v2-check-list" style="max-width:38rem;">
+        <ul class="v2-check-list" data-u="ua95973b">
           <li>Vervoerders met onderaannemernetwerken waar chauffeurs vaak wisselen</li>
           <li>Verladers die POD binnen enkele uren eisen om factuurgoedkeuring vrij te geven</li>
           <li>Logistiek dienstverleners die auditklare leveringsarchieven opbouwen voor meerdere klanten</li>
@@ -191,7 +193,7 @@
     <section class="v2-section" aria-labelledby="faq-heading">
       <div class="container">
         <h2 class="v2-section-title" id="faq-heading">Veelgestelde vragen</h2>
-        <div class="v2-faq-list" style="max-width:40rem;">
+        <div class="v2-faq-list" data-u="u4e90451">
           <div class="v2-faq-item">
             <p class="v2-faq-q">Vereist GPS-bewijs van aflevering een smartphone?</p>
             <p class="v2-faq-a">Elke smartphone vanaf 2017 met een camera en een browser volstaat. Een aparte GPS-chip is niet vereist: moderne telefoons gebruiken netwerkondersteunde positionering (zendmasten + wifi + GPS), wat voldoende is om de afleverlocatie te verifiëren.</p>
@@ -257,19 +259,6 @@
 
   [[PODFY_FOOTER]]
 
-  <script>
-  (function(){
-    var bar = document.getElementById('v2-progress');
-    if (!bar) return;
-    function upd() {
-      var s = document.documentElement, b = document.body;
-      var h = s.scrollHeight - s.clientHeight || b.scrollHeight - b.clientHeight;
-      var pct = h > 0 ? Math.round((s.scrollTop || b.scrollTop) / h * 100) : 0;
-      bar.style.width = pct + '%';
-    }
-    window.addEventListener('scroll', upd, {passive: true});
-    upd();
-  })();
-  </script>
+  <script src="/assets/js/i/d3872d16333e.js"></script>
 </body>
 </html>

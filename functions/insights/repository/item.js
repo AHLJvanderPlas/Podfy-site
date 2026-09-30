@@ -30,7 +30,7 @@ export async function onRequestGet(context) {
   ).bind(slug).first();
   if (!item) {
     return htmlResponse(env, url, `
-      <main class="container" style="max-width:720px;margin:0 auto;padding:3rem 1.25rem">
+      <main class="container" data-u="u1ffd077">
         <h1>Not found</h1><p>${T.notfound} <a href="/insights/repository/${lang === "en" ? "" : `?lang=${lang}`}">→ /insights/repository</a></p>
       </main>`, { title: "Not found — PODFY", status: 404, noindex: true, lang });
   }
@@ -86,9 +86,9 @@ export async function onRequestGet(context) {
     });
   }
   const faqHtml = faq.length ? `
-        <section aria-label="FAQ" style="margin-top:2.25rem;border-top:1px solid var(--v2-border,#ddd);padding-top:1.1rem">
-          <h2 style="font-size:1.1rem">${FAQ_HEADING[lang]}</h2>
-          ${faq.map(f => `<h3 style="font-size:.95rem;margin:1rem 0 .3rem">${esc(f.q)}</h3><p style="line-height:1.6">${esc(f.a)}</p>`).join("")}
+        <section aria-label="FAQ" data-u="u4500e60">
+          <h2 data-u="uf15bdb6">${FAQ_HEADING[lang]}</h2>
+          ${faq.map(f => `<h3 data-u="u24b1ef5">${esc(f.q)}</h3><p data-u="u93cc9ee">${esc(f.a)}</p>`).join("")}
         </section>` : "";
 
   // Cross-link: when this item was the source of a generated insight article
@@ -102,40 +102,40 @@ export async function onRequestGet(context) {
     const rTitle = (lang === "en" ? relatedBlog.title : relatedBlog[`title_${lang}`]) || relatedBlog.title;
     const rUrl = `/insights/article?slug=${encodeURIComponent(relatedBlog.slug)}${langQS(lang)}`;
     return `
-        <section style="margin-top:1.75rem">
-          <span style="display:block;font-size:.72rem;color:var(--v2-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem">${RELATED_HEADING[lang]}</span>
-          <a href="${rUrl}" style="font-size:.95rem;font-weight:600">${esc(rTitle)} →</a>
+        <section data-u="uea2d862">
+          <span data-u="ub60ac87">${RELATED_HEADING[lang]}</span>
+          <a href="${rUrl}" data-u="u6841d7f">${esc(rTitle)} →</a>
         </section>`;
   })() : "";
 
   let links = [];
   try { links = JSON.parse(item.links_json || "[]"); } catch { /* none */ }
   const sourcesHtml = links.length ? `
-        <section style="margin-top:2.25rem;border-top:1px solid var(--v2-border,#ddd);padding-top:1.1rem">
-          <h2 style="font-size:.95rem;margin:0 0 .6rem">${T.source}</h2>
-          <ul style="margin:0;padding:0;list-style:none">
-            ${links.map(l => `<li style="margin:0 0 .45rem;font-size:.9rem">
+        <section data-u="u4500e60">
+          <h2 data-u="u0a29ca1">${T.source}</h2>
+          <ul data-u="u0478ebb">
+            ${links.map(l => `<li data-u="u08f09b5">
               <a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>
-              <span style="font-size:.75rem;color:var(--v2-muted)"> · ${esc(new URL(l.url).hostname)}</span></li>`).join("")}
+              <span data-u="u4cc0014"> · ${esc(new URL(l.url).hostname)}</span></li>`).join("")}
           </ul>
         </section>` : "";
 
   const body = `
-    <main class="container" style="max-width:760px;margin:0 auto;padding:2rem 1.25rem 4rem">
-      <p style="margin:1.5rem 0"><a href="/insights/repository/${lang === "en" ? "" : `?lang=${lang}`}" style="font-size:.9rem">← ${T.back}</a></p>
+    <main class="container" data-u="u06a9470">
+      <p data-u="ub89cfb0"><a href="/insights/repository/${lang === "en" ? "" : `?lang=${lang}`}" data-u="ud6e47aa">← ${T.back}</a></p>
       <article>
-        ${catLabel ? `<span style="display:inline-block;font-family:var(--v2-font-mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--v2-line-2,#ccc);border-radius:4px;padding:2px 9px;color:var(--v2-muted);margin-bottom:.8rem">${esc(catLabel)}</span>` : ""}
-        <h1 class="v2-hero-title" style="font-size:1.9rem">${esc(item.title)}</h1>
-        <p style="font-size:.85rem;color:var(--v2-muted);margin:.5rem 0 1.5rem">${dateHuman} · ${switcher}</p>
-        ${coverUrl ? `<img src="${coverUrl}" alt="" style="max-width:100%;border-radius:4px;margin:0 0 1.5rem" />` : ""}
-        <h2 style="font-size:1.1rem">${T.summary}</h2>
-        <p style="line-height:1.7">${esc(summary)}</p>
-        <div style="margin:2rem 0 0;display:flex;gap:.6rem;flex-wrap:wrap">
+        ${catLabel ? `<span data-u="uc792b58">${esc(catLabel)}</span>` : ""}
+        <h1 class="v2-hero-title" data-u="ua23b426">${esc(item.title)}</h1>
+        <p data-u="u9929d3c">${dateHuman} · ${switcher}</p>
+        ${coverUrl ? `<img src="${coverUrl}" alt="" data-u="uaba939e" />` : ""}
+        <h2 data-u="uf15bdb6">${T.summary}</h2>
+        <p data-u="uf04e97f">${esc(summary)}</p>
+        <div data-u="u74b03fa">
           ${item.external_url
             ? `<a class="v2-btn v2-btn-primary" href="${esc(item.external_url)}" target="_blank" rel="noopener noreferrer">${T.open}</a>`
             : `<a class="v2-btn v2-btn-primary" href="${docUrl}">${T.download}${item.file_size ? ` (${(item.file_size / 1048576).toFixed(1)} MB)` : ""}</a>`}
-          <button class="v2-btn v2-btn-ghost" style="cursor:pointer"
-             onclick="navigator.clipboard.writeText('${canonical}');this.textContent='${T.copied}'">${T.copy}</button>
+          <button class="v2-btn v2-btn-ghost" data-u="u3b6a3a6"
+             data-copy-link="${esc(canonical)}" data-copied-text="${esc(T.copied)}">${T.copy}</button><script src="/assets/js/i/dbad8c72751b.js"></script>
         </div>
         ${faqHtml}
         ${relatedHtml}

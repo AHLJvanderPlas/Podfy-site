@@ -111,6 +111,8 @@
     }
   }
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 
 <body class="v2">
@@ -211,60 +213,7 @@
       </div>
     </section>
 
-    <script>
-    /* Populate last-shipped date in stat band + changelog teaser */
-    (function () {
-      function clFirstLine(text) {
-        if (!text) return '';
-        var lines = String(text).split('\n');
-        for (var i = 0; i < lines.length; i++) {
-          var l = lines[i].trim().replace(/^[-\u00b7\u2022*]\s*/, '');
-          if (l) return l;
-        }
-        return '';
-      }
-
-      document.addEventListener('DOMContentLoaded', function () {
-        fetch('/api/releases?page=1&pageSize=3')
-          .then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (d) {
-            /* Stat band: last-shipped date */
-            var el = document.getElementById('v2-last-shipped-num');
-            if (el && d && d.items && d.items[0] && d.items[0].release_date) {
-              el.textContent = d.items[0].release_date;
-            }
-
-            /* Changelog teaser */
-            var list = document.getElementById('cl-teaser-list');
-            var section = document.getElementById('v2-changelog-teaser');
-            if (!list || !section) return;
-            var items = d && d.items;
-            if (!items || !items.length) { section.style.display = 'none'; return; }
-            var html = '';
-            for (var i = 0; i < items.length; i++) {
-              var rel = items[i];
-              var summary = clFirstLine(rel.new_features) || clFirstLine(rel.fixes) || '';
-              html += '<div class="v2-cl-teaser-row">'
-                + '<span class="v2-cl-teaser-date">' + escHtml(rel.release_date || '') + '</span>'
-                + '<span class="v2-cl-teaser-version">' + escHtml(rel.version || '') + '</span>'
-                + '<span class="v2-cl-teaser-summary">' + escHtml(summary) + '</span>'
-                + '</div>';
-            }
-            list.innerHTML = html;
-          })
-          .catch(function () {
-            var section = document.getElementById('v2-changelog-teaser');
-            if (section) section.style.display = 'none';
-          });
-      });
-
-      function escHtml(s) {
-        return String(s)
-          .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-      }
-    })();
-    </script>
+    <script src="/assets/js/i/df7e2363a9fb.js"></script>
 
     <!-- ================================================================
          PROOF STRIP, 3 distinct artifacts telling the full story:
@@ -389,7 +338,7 @@
     <!-- ================================================================
          WHAT EVERY UPLOAD CONTAINS, 2×2 grid
          ================================================================ -->
-    <section class="v2-section" aria-labelledby="record-heading" style="background:var(--v2-card);border-top:1px solid var(--v2-line);border-bottom:1px solid var(--v2-line);">
+    <section class="v2-section" aria-labelledby="record-heading" data-u="ue67010d">
       <div class="container">
         <p class="v2-eyebrow">What you get</p>
         <h2 class="v2-section-title" id="record-heading">What every Podfy record contains</h2>
@@ -417,17 +366,17 @@
     <!-- ================================================================
          MID-PAGE CTA
          ================================================================ -->
-    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">See it in 30 seconds</p><p class="v2-inline-cta-text">Open the driver link on your phone, photograph any document, watch the stamped record appear.</p></div><div style="display:flex;flex-direction:column;gap:.6rem;align-items:flex-start;"><a href="/demo" class="v2-btn v2-btn-primary">Try the demo &rarr;</a><a href="/pricing" style="font-family:var(--v2-font-mono);font-size:.72rem;color:var(--v2-paper);opacity:.7;text-decoration:none;letter-spacing:.04em;">Or see the rate card &rarr;</a></div></div></div></div>
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">See it in 30 seconds</p><p class="v2-inline-cta-text">Open the driver link on your phone, photograph any document, watch the stamped record appear.</p></div><div data-u="u00d6500"><a href="/demo" class="v2-btn v2-btn-primary">Try the demo &rarr;</a><a href="/pricing" data-u="u9d40210">Or see the rate card &rarr;</a></div></div></div></div>
 
     <!-- ================================================================
          SOCIAL PROOF, activate when first customer reference is confirmed
          ================================================================ -->
     <!--
     <section class="v2-section" aria-labelledby="proof-social-heading">
-      <div class="container" style="text-align:center;">
+      <div class="container" data-u="u91a8701">
         <p class="v2-eyebrow">Trusted by</p>
-        <h2 class="v2-section-title" id="proof-social-heading" style="font-size:1.2rem;">Used by logistics teams across the Netherlands and Belgium</h2>
-        <p style="font-size:.9rem;color:var(--v2-muted);margin-bottom:1.5rem;">Customer logos, activate when sign-off obtained</p>
+        <h2 class="v2-section-title" id="proof-social-heading" data-u="u101860a">Used by logistics teams across the Netherlands and Belgium</h2>
+        <p data-u="u8ef6af8">Customer logos, activate when sign-off obtained</p>
       </div>
     </section>
     -->
@@ -466,7 +415,7 @@
             <span class="v2-aud-tile-arrow">See solution &rarr;</span>
           </a>
         </div>
-        <p style="margin-top:1rem;font-size:.85rem;color:var(--v2-muted);"><a href="/solutions/" class="v2-link">All solutions &rarr;</a></p>
+        <p data-u="ua0347ef"><a href="/solutions/" class="v2-link">All solutions &rarr;</a></p>
       </div>
     </section>
 

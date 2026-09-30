@@ -50,6 +50,8 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Article","headline":"Fehlender Liefernachweis — Was zu tun ist","description":"Ein Liefernachweis fehlt. Das sind die Wiederherstellungsschritte, Ursachenanalyse und wie Sie fehlende Liefernachweise verhindern, die Rechnungen blockieren und zu Streitigkeiten eskalieren.","url":"https://podfy.net/de/guides/missing-pod/","datePublished":"2026-05-01","dateModified":"2026-05-11","author":{"@type":"Organization","name":"PODFY"},"publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"}}
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 <body class="v2">
   <div id="v2-progress"></div>
@@ -70,11 +72,11 @@
     <section class="v2-aud-hero" aria-labelledby="guide-heading">
       <div class="container">
         <p class="v2-eyebrow">Leitfaden &middot; Fehlender Liefernachweis</p>
-        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">
+        <h1 class="v2-hero-title" id="guide-heading" data-u="ua95973b">
           Der Liefernachweis fehlt.<br>
           <em>Das ist, was Sie tun.</em>
         </h1>
-        <p class="v2-hero-sub" style="max-width:42rem;">
+        <p class="v2-hero-sub" data-u="ucc4635f">
           Wiederherstellungsschritte, Ursachenanalyse und wie Sie fehlende Liefernachweise verhindern, die Rechnungen blockieren und zu Streitigkeiten eskalieren. Praktischer Leitfaden für Spediteure, Absender und Inbound-Teams.
         </p>
       </div>
@@ -103,7 +105,7 @@
             <p><strong>Informelle Lösungen.</strong> WhatsApp-Fotos von unterschriebenen Frachtbriefen sind üblich, aber unzuverlässig, unmarkiert, nicht nach Referenz durchsuchbar und leicht in einem vollen Chat-Thread übersehen. E-Mail-Anhänge gehen in Posteingänge, die nicht überwacht oder nach Referenz durchsuchbar sind.</p>
           </div>
           <div>
-            <ul class="v2-check-list" style="margin-top:.5rem;">
+            <ul class="v2-check-list" data-u="ub310ca1">
               <li>Papier-Rücklaufschleife: 48–120 Stunden Verzögerung</li>
               <li>Unterfrachtführer-Übergaben brechen die Dokumentationskette</li>
               <li>WhatsApp-Fotos: unstrukturiert und nicht durchsuchbar</li>
@@ -252,19 +254,15 @@
       </div>
     </section>
 
-    <section class="v2-section" aria-label="Leitfadenhub"><div class="container"><p style="font-size:.9rem;color:var(--v2-muted);">Teil der Podfy-Leitfadenreihe &rarr; <a href="/de/guides/proof-of-delivery/" class="v2-link">Was ist ein Liefernachweis?</a></p></div></section>
+    <section class="v2-section" aria-label="Leitfadenhub"><div class="container"><p data-u="u9c76add">Teil der Podfy-Leitfadenreihe &rarr; <a href="/de/guides/proof-of-delivery/" class="v2-link">Was ist ein Liefernachweis?</a></p></div></section>
 
-    <section class="v2-section" aria-label="Auf dem Laufenden bleiben"><div class="container" style="max-width:40rem;"><div class="v2-subscribe-strip"><h3>Wie Podfy sich weiterentwickelt, verfolgen</h3><p>Release-Notizen per E-Mail erhalten, wenn neue Funktionen ausgerollt werden.</p><form class="v2-subscribe-row" onsubmit="handleSubscribe(event)"><input type="email" name="email" class="v2-subscribe-input" placeholder="ihre@email.de" required /><button type="submit" class="v2-btn v2-btn-primary">Abonnieren &rarr;</button></form><p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p></div></div></section>
+    <section class="v2-section" aria-label="Auf dem Laufenden bleiben"><div class="container" data-u="u4e90451"><div class="v2-subscribe-strip"><h3>Wie Podfy sich weiterentwickelt, verfolgen</h3><p>Release-Notizen per E-Mail erhalten, wenn neue Funktionen ausgerollt werden.</p><form class="v2-subscribe-row" data-subscribe><input type="email" name="email" class="v2-subscribe-input" placeholder="ihre@email.de" required /><button type="submit" class="v2-btn v2-btn-primary">Abonnieren &rarr;</button></form><p id="subscribe-msg" data-u="uf82ce53"></p></div></div></section>
 
     <section class="v2-cta-block" aria-label="Loslegen"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">Keine App · EU-gehostet</span><h2>Hören Sie auf, Liefernachweise nachzujagen.<br>Erfassen Sie sie <em>am Tor.</em></h2><p>15-Minuten-Demo. Wir zeigen Ihnen den Upload-Flow für Ihren Netzwerktyp.</p><div class="v2-cta-actions"><a href="/de/contact" class="v2-btn v2-btn-primary">15 Minuten buchen &rarr;</a><a href="/de/demo" class="v2-btn v2-btn-ghost">Erst die Demo ausprobieren</a></div></div></section>
 
   </main>
   [[PODFY_FOOTER]]
-  <script>
-    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);const el=document.getElementById('v2-progress');if(el)el.style.width=Math.min(p*100,100)+'%';});
-    document.querySelectorAll('.v2-faq-btn').forEach(btn=>{btn.addEventListener('click',()=>btn.closest('.v2-faq-acc-item').classList.toggle('open'));});
-    const pills=document.querySelectorAll('.v2-toc-pill');const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){pills.forEach(p=>p.classList.remove('active'));const active=document.querySelector('.v2-toc-pill[href="#'+e.target.id+'"]');if(active)active.classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('section[id]').forEach(s=>observer.observe(s));
-    async function handleSubscribe(e){e.preventDefault();const email=e.target.querySelector('[name=email]').value;const msg=document.getElementById('subscribe-msg');try{const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})});const d=await r.json();msg.style.display='block';msg.textContent=d.ok?'Abonniert. Vielen Dank!':(d.error||'Etwas ist schiefgelaufen.');msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)';if(d.ok)e.target.reset();}catch{msg.style.display='block';msg.textContent='Konnte momentan nicht abonnieren.';}}
-  </script>
+  <script src="/assets/js/i/c893447c695c.js"></script>
+<script src="/assets/js/i/d5a38a926a72.js"></script>
 </body>
 </html>

@@ -4,10 +4,12 @@
 const page = (title, body, status = 200) =>
   new Response(
     `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-     <title>${title} | PODFY</title></head>
-     <body style="font-family:Inter,sans-serif;max-width:480px;margin:80px auto;padding:0 20px;color:#0E1116">
+     <title>${title} | PODFY</title><link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
+</head>
+     <body data-u="u3b9edc4">
        ${body}
-       <p style="margin-top:32px"><a href="/insights" style="color:#D24A1F">← Podfy Insights</a></p>
+       <p data-u="uc2f8546"><a href="/insights" data-u="ubed270b">← Podfy Insights</a></p>
      </body></html>`,
     { status, headers: { "content-type": "text/html; charset=utf-8" } }
   );

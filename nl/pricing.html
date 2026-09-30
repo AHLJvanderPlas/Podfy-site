@@ -108,6 +108,8 @@
     ]
   }
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 
 <body class="v2">
@@ -183,7 +185,7 @@
     <section class="v2-section" aria-labelledby="rate-card-heading" id="rate-card">
       <div class="container">
         <h2 class="v2-section-title" id="rate-card-heading">Tariefkaart</h2>
-        <p class="v2-prose" style="margin-bottom:0;">
+        <p class="v2-prose" data-u="uef0b7a1">
           Alle prijzen zijn indicatief en exclusief btw. Volumekortingen zijn beschikbaar, vermeld uw maandelijkse POD-volume bij contact.
         </p>
 
@@ -324,7 +326,7 @@
         <div class="v2-two-col">
           <div>
             <h2 class="v2-section-title" id="addons-heading">Uitbreidingen</h2>
-            <p class="v2-prose" style="margin-bottom:1rem;">
+            <p class="v2-prose" data-u="u363cdaa">
               Uitbreidingen breiden uw abonnement uit. CMR wordt per vrachtbrief geprijsd; bewaaruitbreidingen zijn per POD. Hogere abonnementen bevatten bepaalde uitbreidingen, zie de tariefkaart hierboven.
             </p>
 
@@ -377,7 +379,7 @@
     <section class="v2-section" aria-labelledby="examples-heading" id="examples">
       <div class="container">
         <h2 class="v2-section-title" id="examples-heading">Rekenvoorbeelden</h2>
-        <p class="v2-prose" style="margin-bottom:0;">
+        <p class="v2-prose" data-u="uef0b7a1">
           Dit zijn indicatieve kosten. Werkelijke prijzen zijn afhankelijk van volume en configuratie. Neem contact op voor een offerte op basis van uw operatie.
         </p>
 
@@ -411,7 +413,7 @@
           </div>
         </div>
 
-        <p class="v2-prose" style="margin-top:1rem;font-size:0.83rem;">
+        <p class="v2-prose" data-u="u52d0440">
           Alle voorbeelden zijn exclusief btw. Volumekortingen verlagen het tarief per POD bij hogere volumes. Het Enterprise-abonnement omvat volumeprijzen per contract onderhandeld.
         </p>
       </div>
@@ -477,7 +479,7 @@
       <div class="container">
         <p class="v2-eyebrow">Vind uw match</p>
         <h2 class="v2-section-title" id="fit-heading">Prijzen voor elke operatie</h2>
-        <p class="v2-prose" style="margin-bottom:1.5rem;">Het per-POD-model werkt anders afhankelijk van uw rol. Bekijk hoe het van toepassing is op uw operatie.</p>
+        <p class="v2-prose" data-u="u561f378">Het per-POD-model werkt anders afhankelijk van uw rol. Bekijk hoe het van toepassing is op uw operatie.</p>
         <div class="v2-sol-grid">
           <a class="v2-sol-tile" href="/nl/solutions/carriers/"><p class="v2-sol-tile-industry">Transport</p><p class="v2-sol-tile-name">Vervoerders</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a>
           <a class="v2-sol-tile" href="/nl/solutions/3pl/"><p class="v2-sol-tile-industry">Logistiek</p><p class="v2-sol-tile-name">3PL's</p><span class="v2-sol-tile-arrow">Bekijk oplossing &rarr;</span></a>
@@ -508,25 +510,6 @@
 
   <script src="/assets/advisor.js" defer></script>
 
-  <script>
-  /* Dynamic pricing — fills [data-price-key] spans from /api/pricing */
-  (function () {
-    function fmtPrice(n) {
-      return '\u20ac' + Number(n).toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-    fetch('/api/pricing')
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) {
-        if (!data || !data.items) return;
-        var map = {};
-        data.items.forEach(function (row) { map[row.plan_name.toLowerCase()] = row.default_price; });
-        document.querySelectorAll('[data-price-key]').forEach(function (el) {
-          var key = (el.getAttribute('data-price-key') || '').toLowerCase();
-          if (key in map) el.textContent = fmtPrice(map[key]);
-        });
-      })
-      .catch(function () { /* fallback text remains */ });
-  })();
-  </script>
+  <script src="/assets/js/i/6576df83fce6.js"></script>
 </body>
 </html>

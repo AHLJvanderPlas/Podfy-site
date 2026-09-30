@@ -114,6 +114,8 @@
     ]
   }
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 
 <body class="v2">
@@ -189,7 +191,7 @@
     <section class="v2-section" aria-labelledby="rate-card-heading" id="rate-card">
       <div class="container">
         <h2 class="v2-section-title" id="rate-card-heading">Grille tarifaire</h2>
-        <p class="v2-prose" style="margin-bottom:0;">
+        <p class="v2-prose" data-u="uef0b7a1">
           Tous les prix sont indicatifs et s'entendent hors TVA. Des remises sur volume sont disponibles, apportez votre volume mensuel de POD lorsque vous nous contactez.
         </p>
 
@@ -330,7 +332,7 @@
         <div class="v2-two-col">
           <div>
             <h2 class="v2-section-title" id="addons-heading">Extensions</h2>
-            <p class="v2-prose" style="margin-bottom:1rem;">
+            <p class="v2-prose" data-u="u363cdaa">
               Les extensions complètent votre formule. Le CMR est tarifé par lettre de voiture ; les extensions de conservation sont par POD. Les formules supérieures incluent certaines extensions, voir la grille ci-dessus.
             </p>
 
@@ -383,7 +385,7 @@
     <section class="v2-section" aria-labelledby="examples-heading" id="examples">
       <div class="container">
         <h2 class="v2-section-title" id="examples-heading">Exemples de calcul</h2>
-        <p class="v2-prose" style="margin-bottom:0;">
+        <p class="v2-prose" data-u="uef0b7a1">
           Ces coûts sont indicatifs. La tarification réelle dépend du volume et de la configuration. Contactez-nous pour un devis basé sur votre activité.
         </p>
 
@@ -417,7 +419,7 @@
           </div>
         </div>
 
-        <p class="v2-prose" style="margin-top:1rem;font-size:0.83rem;">
+        <p class="v2-prose" data-u="u52d0440">
           Tous les exemples s'entendent hors TVA. Des remises sur volume réduisent le tarif par POD pour les volumes élevés. La formule Enterprise inclut une tarification volumétrique négociée par contrat.
         </p>
       </div>
@@ -468,7 +470,7 @@
       <div class="container">
         <p class="v2-eyebrow">Trouver votre formule</p>
         <h2 class="v2-section-title" id="fit-heading">Une tarification adaptée à chaque opération</h2>
-        <p class="v2-prose" style="margin-bottom:1.5rem;">Le modèle au POD fonctionne différemment selon votre rôle. Découvrez comment il s'applique à votre activité.</p>
+        <p class="v2-prose" data-u="u561f378">Le modèle au POD fonctionne différemment selon votre rôle. Découvrez comment il s'applique à votre activité.</p>
         <div class="v2-sol-grid">
           <a class="v2-sol-tile" href="/fr/solutions/carriers/"><p class="v2-sol-tile-industry">Transport</p><p class="v2-sol-tile-name">Transporteurs</p><span class="v2-sol-tile-arrow">Voir la solution &rarr;</span></a>
           <a class="v2-sol-tile" href="/fr/solutions/3pl/"><p class="v2-sol-tile-industry">Logistique</p><p class="v2-sol-tile-name">Prestataires logistiques tiers</p><span class="v2-sol-tile-arrow">Voir la solution &rarr;</span></a>
@@ -499,25 +501,6 @@
 
   <script src="/assets/advisor.js" defer></script>
 
-  <script>
-  /* Dynamic pricing — fills [data-price-key] spans from /api/pricing */
-  (function () {
-    function fmtPrice(n) {
-      return '\u20ac' + Number(n).toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-    fetch('/api/pricing')
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) {
-        if (!data || !data.items) return;
-        var map = {};
-        data.items.forEach(function (row) { map[row.plan_name.toLowerCase()] = row.default_price; });
-        document.querySelectorAll('[data-price-key]').forEach(function (el) {
-          var key = (el.getAttribute('data-price-key') || '').toLowerCase();
-          if (key in map) el.textContent = fmtPrice(map[key]);
-        });
-      })
-      .catch(function () { /* fallback text remains */ });
-  })();
-  </script>
+  <script src="/assets/js/i/6576df83fce6.js"></script>
 </body>
 </html>

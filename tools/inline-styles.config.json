@@ -1,0 +1,9 @@
+{
+  "html": [],
+  "htmlDirs": ["."],
+  "skipDirs": ["node_modules", ".git", "dist", ".wrangler", "tests", "tools", "functions"],
+  "jsDirs": ["assets/js/i", "functions/insights", "functions/insights/repository", "functions/insights/linkedin", "functions/_shared"],
+  "jsFiles": ["assets/vs-scan-apps-content.js"],
+  "outCss": "assets/inline-styles.css",
+  "outJs": "assets/inline-styles.js"
+}

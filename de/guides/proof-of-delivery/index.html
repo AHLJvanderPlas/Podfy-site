@@ -64,6 +64,8 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Article","headline":"Was ist ein Liefernachweis? Der vollständige Leitfaden","description":"Liefernachweis in der Praxis erklärt: was er ist, warum er scheitert und wie moderne Logistikteams PODs erfassen, ohne Apps oder Papierkram hinterherzulaufen.","url":"https://podfy.net/de/guides/proof-of-delivery/","datePublished":"2026-05-01","dateModified":"2026-05-11","author":{"@type":"Organization","name":"PODFY"},"publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"}}
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 <body class="v2">
   <div id="v2-progress"></div>
@@ -85,11 +87,11 @@
     <section class="v2-aud-hero" aria-labelledby="guide-heading">
       <div class="container">
         <p class="v2-eyebrow">Leitfaden &middot; Liefernachweis Hub</p>
-        <h1 class="v2-hero-title" id="guide-heading" style="max-width:40rem;">
+        <h1 class="v2-hero-title" id="guide-heading" data-u="u4e90451">
           Was ist ein Liefernachweis?<br>
           <em>Der vollständige Leitfaden.</em>
         </h1>
-        <p class="v2-hero-sub" style="max-width:42rem;">
+        <p class="v2-hero-sub" data-u="ucc4635f">
           Alles, was Logistik-, Transport- und Empfangsteams über POD wissen müssen: was er ist, warum er in der Praxis scheitert und wie moderne Betriebe ihn ohne Apps oder Papierjagd erfassen.
         </p>
       </div>
@@ -248,7 +250,7 @@
     <section class="v2-section" aria-labelledby="who-heading">
       <div class="container">
         <h2 class="v2-section-title" id="who-heading">Welche Teams das betrifft</h2>
-        <p class="v2-muted-sm" style="margin-bottom:0;">Finden Sie Ihren Anwendungsfall und sehen Sie, wie Podfy zu Ihrem Betrieb passt.</p>
+        <p class="v2-muted-sm" data-u="uef0b7a1">Finden Sie Ihren Anwendungsfall und sehen Sie, wie Podfy zu Ihrem Betrieb passt.</p>
         <div class="v2-audience-grid">
           <a class="v2-audience-tile" href="/de/solutions/carriers/">
             <p class="v2-audience-industry">Transport</p>
@@ -364,16 +366,16 @@
     </section>
 
     <section class="v2-section" aria-label="Auf dem Laufenden bleiben">
-      <div class="container" style="max-width:40rem;">
+      <div class="container" data-u="u4e90451">
         <div class="v2-subscribe-strip">
           <h3>Verfolgen Sie, wie Podfy sich entwickelt</h3>
           <p>Erhalten Sie Release-Notizen per E-Mail, wenn neue Funktionen eingeführt werden.</p>
-          <form class="v2-subscribe-row" id="subscribe-form" onsubmit="handleSubscribe(event)">
-            <input type="hidden" name="hp_sub" value="" id="hp_sub" style="display:none;" />
+          <form class="v2-subscribe-row" id="subscribe-form" data-subscribe>
+            <input type="hidden" name="hp_sub" value="" id="hp_sub" data-u="u6b99de8" />
             <input type="email" name="email" class="v2-subscribe-input" placeholder="ihre@email.de" required />
             <button type="submit" class="v2-btn v2-btn-primary">Abonnieren &rarr;</button>
           </form>
-          <p id="subscribe-msg" style="display:none;font-size:.85rem;color:var(--v2-delivered);margin-top:.5rem;"></p>
+          <p id="subscribe-msg" data-u="uf2c55c6"></p>
         </div>
       </div>
     </section>
@@ -394,47 +396,7 @@
 
   [[PODFY_FOOTER]]
 
-  <script>
-    window.addEventListener('scroll', () => {
-      const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-      const el = document.getElementById('v2-progress');
-      if (el) el.style.width = Math.min(p * 100, 100) + '%';
-    });
-    const pills = document.querySelectorAll('.v2-toc-pill');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          pills.forEach(p => p.classList.remove('active'));
-          const active = document.querySelector('.v2-toc-pill[href="#' + e.target.id + '"]');
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-20% 0px -70% 0px' });
-    document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
-    document.querySelectorAll('.v2-faq-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.v2-faq-acc-item');
-        item.classList.toggle('open');
-      });
-    });
-    async function handleSubscribe(e) {
-      e.preventDefault();
-      const form = e.target;
-      const email = form.querySelector('[name=email]').value;
-      const msg = document.getElementById('subscribe-msg');
-      try {
-        const r = await fetch('/api/subscribe', {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({ email, hp_sub: '' })
-        });
-        const d = await r.json();
-        msg.style.display = 'block';
-        msg.textContent = d.ok ? 'Abonniert. Vielen Dank!' : (d.error || 'Etwas ist schiefgelaufen.');
-        msg.style.color = d.ok ? 'var(--v2-delivered)' : 'var(--v2-stamp)';
-        if (d.ok) form.reset();
-      } catch { msg.style.display = 'block'; msg.textContent = 'Konnte momentan nicht abonnieren.'; }
-    }
-  </script>
+  <script src="/assets/js/i/c87f67b0359b.js"></script>
+<script src="/assets/js/i/d5a38a926a72.js"></script>
 </body>
 </html>

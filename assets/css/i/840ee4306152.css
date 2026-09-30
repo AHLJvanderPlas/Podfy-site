@@ -1,0 +1,12 @@
+
+    .v2-vs-col-sub { display:block;font-weight:400;font-size:.62rem;color:var(--v2-muted);margin-top:.2rem;letter-spacing:0;text-transform:none; }
+    .v2-vs-cell-note { display:block;font-size:.78rem;color:var(--v2-muted);margin-top:.15rem;font-weight:400; }
+    .v2-vs-table { min-width:480px; }
+    .v2-vs-table-note { font-size:.78rem;color:var(--v2-muted);margin:.4rem 0 0;font-family:var(--v2-font-mono);letter-spacing:.01em; }
+    @media (max-width:640px) {
+      .v2-vs-table td:first-child, .v2-vs-table th:first-child {
+        position:sticky;left:0;background:var(--v2-paper);z-index:2;box-shadow:2px 0 4px rgba(0,0,0,.04);
+      }
+      .v2-vs-table thead th:first-child { background:var(--v2-card); }
+    }
+  

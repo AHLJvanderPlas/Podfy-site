@@ -29,7 +29,7 @@ export async function onRequestGet(context) {
 
   if (!p) {
     return htmlResponse(env, url, `
-      <main class="container" style="max-width:720px;margin:0 auto;padding:3rem 1.25rem">
+      <main class="container" data-u="u1ffd077">
         <h1>Not found</h1><p>${UI[lang].notfound} <a href="/insights/${lang === "en" ? "" : `?lang=${lang}`}">→ /insights</a></p>
       </main>`, { title: "Not found — PODFY", status: 404, noindex: true, lang });
   }
@@ -99,9 +99,9 @@ export async function onRequestGet(context) {
     : "";
 
   const faqHtml = faq.length ? `
-    <section aria-label="FAQ" style="margin-top:3rem;border-top:1px solid var(--v2-border,#ddd);padding-top:1.5rem">
+    <section aria-label="FAQ" data-u="u496f845">
       <h2>${UI[effLang].faq}</h2>
-      ${faq.map(f => `<h3 style="font-size:1.05rem">${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}
+      ${faq.map(f => `<h3 data-u="u96b6702">${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join("")}
     </section>` : "";
 
   // Previous/next navigation: within the same series when this post belongs to
@@ -131,8 +131,8 @@ export async function onRequestGet(context) {
       const meta = await env.DB.prepare(`SELECT * FROM series WHERE id = ?`).bind(p.series_id).first();
       const label = (meta && meta[`title_${effLang}`]) || (meta && meta.title_nl) || seriesLabel(p.series_id);
       const excerpt = meta && (meta[`excerpt_${effLang}`] || meta.excerpt_nl);
-      seriesBadgeHtml = `<p style="margin:0 0 .3rem;font-size:.78rem;color:var(--v2-stamp);text-transform:uppercase;letter-spacing:.05em;font-weight:600">${esc(label)} · ${esc(UI[effLang].partOf(pos, seriesCount.c))}</p>`
-        + (excerpt ? `<p style="margin:0 0 .8rem;font-size:.85rem;color:var(--v2-muted)">${esc(excerpt)}</p>` : "");
+      seriesBadgeHtml = `<p data-u="u02fa356">${esc(label)} · ${esc(UI[effLang].partOf(pos, seriesCount.c))}</p>`
+        + (excerpt ? `<p data-u="ud9cc0ad">${esc(excerpt)}</p>` : "");
     }
   } else {
     [prevPost, nextPost] = await Promise.all([
@@ -150,12 +150,12 @@ export async function onRequestGet(context) {
   const navUrl = (row) => `/insights/article?slug=${encodeURIComponent(row.slug)}${langQS(effLang)}`;
   const navTitle = (row) => (effLang === "en" ? row.title : row[`title_${effLang}`]) || row.title;
   const navCard = (row, label, align, arrow) => row ? `
-    <a href="${navUrl(row)}" style="display:block;border:1px solid var(--v2-line,#ddd);border-radius:6px;padding:.9rem 1.1rem;text-decoration:none;color:inherit;text-align:${align}">
-      <span style="display:block;font-size:.75rem;color:var(--v2-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem">${arrow === "l" ? "← " : ""}${label}${arrow === "r" ? " →" : ""}</span>
-      <span style="font-size:.92rem;font-weight:600;line-height:1.4">${esc(navTitle(row))}</span>
+    <a href="${navUrl(row)}" data-u="${sty(`display:block;border:1px solid var(--v2-line,#ddd);border-radius:6px;padding:.9rem 1.1rem;text-decoration:none;color:inherit;text-align:${align}`)}">
+      <span data-u="u8a97d91">${arrow === "l" ? "← " : ""}${label}${arrow === "r" ? " →" : ""}</span>
+      <span data-u="u9f517c6">${esc(navTitle(row))}</span>
     </a>` : "<span></span>";
   const prevNextHtml = (prevPost || nextPost) ? `
-    <nav aria-label="${inSeries ? "More in this series" : "More insights"}" style="margin-top:2.5rem;border-top:1px solid var(--v2-border,#ddd);padding-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+    <nav aria-label="${inSeries ? "More in this series" : "More insights"}" data-u="u49b0c04">
       ${navCard(prevPost, inSeries ? UI[effLang].prevSeries : UI[effLang].prev, "left", "l")}
       ${navCard(nextPost, inSeries ? UI[effLang].nextSeries : UI[effLang].next, "right", "r")}
     </nav>` : "";
@@ -171,27 +171,28 @@ export async function onRequestGet(context) {
     if (src?.slug) {
       const srcUrl = `/insights/repository/item?slug=${encodeURIComponent(src.slug)}${langQS(effLang)}`;
       sourceHtml = `
-        <p style="margin:2rem 0 0;font-size:.85rem;color:var(--v2-muted)">${UI[effLang].source}: <a href="${srcUrl}">${esc(src.title)} →</a></p>`;
+        <p data-u="u16f0460">${UI[effLang].source}: <a href="${srcUrl}">${esc(src.title)} →</a></p>`;
     }
   }
 
   const body = `
-    <main class="container" style="max-width:720px;margin:0 auto;padding:2rem 1.25rem 4rem">
-      <p style="margin:1.5rem 0"><a href="/insights/${effLang === "en" ? "" : `?lang=${effLang}`}" style="font-size:.9rem">← ${UI[effLang].back}</a></p>
+    <main class="container" data-u="u6328854">
+      <p data-u="ub89cfb0"><a href="/insights/${effLang === "en" ? "" : `?lang=${effLang}`}" data-u="ud6e47aa">← ${UI[effLang].back}</a></p>
       <article>
         ${seriesBadgeHtml}
-        <h1 class="v2-hero-title" style="font-size:2rem">${esc(title)}</h1>
-        <p style="font-size:.85rem;color:var(--v2-muted);margin:.5rem 0 1.5rem">${dateHuman}${switcher ? " · " + switcher : ""}</p>
-        ${coverUrl ? `<img src="${coverUrl}" alt="" style="max-width:100%;border-radius:4px;margin:0 0 1.5rem" />` : ""}
+        <h1 class="v2-hero-title" data-u="uba1aab4">${esc(title)}</h1>
+        <p data-u="u9929d3c">${dateHuman}${switcher ? " · " + switcher : ""}</p>
+        ${coverUrl ? `<img src="${coverUrl}" alt="" data-u="uaba939e" />` : ""}
         ${md(content)}
         ${faqHtml}
-        <div style="margin-top:2.5rem;display:flex;gap:.6rem">
+        <div data-u="u196de9e">
           <a class="v2-btn v2-btn-ghost" target="_blank" rel="noopener"
              href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonical)}"
-             onclick="fetch('/api/insights/share',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({entity_type:'blog_post',entity_id:'${esc(p.id)}',channel:'linkedin_share'})})">Share on LinkedIn</a>
-          <button class="v2-btn v2-btn-ghost" style="cursor:pointer"
-             onclick="navigator.clipboard.writeText('${canonical}');this.textContent='Copied ✓';fetch('/api/insights/share',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({entity_type:'blog_post',entity_id:'${esc(p.id)}',channel:'copy_text'})})">Copy link</button>
+             data-share-track="linkedin_share" data-entity-type="blog_post" data-entity-id="${esc(p.id)}">Share on LinkedIn</a>
+          <button class="v2-btn v2-btn-ghost" data-u="u3b6a3a6"
+             data-copy-link="${esc(canonical)}" data-copied-text="Copied ✓" data-share-track="copy_text" data-entity-type="blog_post" data-entity-id="${esc(p.id)}">Copy link</button>
         </div>
+        <script src="/assets/js/i/dbad8c72751b.js"></script>
         ${sourceHtml}
         ${prevNextHtml}
       </article>

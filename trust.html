@@ -76,6 +76,8 @@
     ]
   }
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 
 <body class="v2">
@@ -83,27 +85,27 @@
   [[PODFY_HEADER]]
 
   <main id="main" class="v2-main">
-    <section class="v2-section" style="padding-top:3rem;" aria-labelledby="trust-heading">
+    <section class="v2-section" data-u="u72f4401" aria-labelledby="trust-heading">
       <div class="container">
 
         <!-- Page header -->
         <p class="v2-eyebrow">Legal &amp; Security</p>
-        <h1 class="v2-section-title" id="trust-heading" style="margin-bottom:0.25rem;">Trust, Legal &amp; Security</h1>
-        <p style="font-size:0.875rem;color:var(--v2-muted);margin-bottom:2rem;">
+        <h1 class="v2-section-title" id="trust-heading" data-u="ud738954">Trust, Legal &amp; Security</h1>
+        <p data-u="u85b0a71">
           All PODFY legal and security documents in one place. Last updated: <strong>2026-06-24</strong>.
           For questions: <a href="mailto:support@podfy.net">support@podfy.net</a>
         </p>
 
         <!-- ── EU infrastructure panel ─────────────────────────────── -->
-        <div style="border:1px solid var(--v2-border);border-radius:.5rem;padding:1.5rem;margin-bottom:2rem;background:var(--v2-surface);">
+        <div data-u="u887bee8">
 
-          <p class="v2-eyebrow" style="margin-bottom:.75rem;">Infrastructure &amp; hosting</p>
+          <p class="v2-eyebrow" data-u="u248fd44">Infrastructure &amp; hosting</p>
 
           <!-- Data lifecycle SVG -->
-          <p style="font-size:.8rem;color:var(--v2-muted);margin-bottom:.75rem;font-family:var(--v2-font-mono);">Data lifecycle, every byte stays in EU jurisdiction</p>
+          <p data-u="u65978db">Data lifecycle, every byte stays in EU jurisdiction</p>
           <svg viewBox="0 0 580 78" xmlns="http://www.w3.org/2000/svg"
             role="img" aria-label="Data lifecycle: driver upload goes to R2 EU storage, then D1 EU database, then email via Resend EU, then 7-year archive"
-            style="width:100%;max-width:580px;height:auto;display:block;margin-bottom:1.25rem;">
+            data-u="ue7475f6">
 
             <!-- Box 1: Driver upload -->
             <rect x="1" y="21" width="96" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".5"/>
@@ -148,39 +150,39 @@
           </svg>
 
           <!-- Sub-processors -->
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.25rem;">
+          <div data-u="uf74049c">
             <div>
-              <p style="font-size:.78rem;font-weight:600;font-family:var(--v2-font-mono);margin-bottom:.35rem;">Hosting &amp; storage</p>
-              <p style="font-size:.82rem;color:var(--v2-muted);margin:0;">
+              <p data-u="u8423bed">Hosting &amp; storage</p>
+              <p data-u="uc455d17">
                 <strong>Cloudflare</strong>, Pages, Workers, D1 (SQLite), R2 (object storage). All stored data (D1 + R2) is under Cloudflare's <strong>EU jurisdiction</strong>: stored only in EU data centres.
               </p>
             </div>
             <div>
-              <p style="font-size:.78rem;font-weight:600;font-family:var(--v2-font-mono);margin-bottom:.35rem;">Email delivery</p>
-              <p style="font-size:.82rem;color:var(--v2-muted);margin:0;">
+              <p data-u="u8423bed">Email delivery</p>
+              <p data-u="uc455d17">
                 <strong>Resend</strong>, transactional email provider. Used for delivery notifications, portal magic links, and contact form replies. Sender domain: <code>podfy.net</code>. No marketing profiling.
               </p>
             </div>
           </div>
 
           <!-- DPA + magic-link row -->
-          <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;">
+          <div data-u="u458cfbf">
 
             <!-- DPA button -->
-            <div style="flex:1;min-width:200px;">
-              <p style="font-size:.78rem;font-weight:600;font-family:var(--v2-font-mono);margin-bottom:.4rem;">Data Processing Addendum (DPA)</p>
-              <p style="font-size:.82rem;color:var(--v2-muted);margin-bottom:.65rem;">
+            <div data-u="u7b1dd1f">
+              <p data-u="u163b471">Data Processing Addendum (DPA)</p>
+              <p data-u="u5899a57">
                 EU/EEA customers requiring a written DPA with Standard Contractual Clauses (SCCs) under GDPR Art. 28 can request one at <a href="mailto:support@podfy.net">support@podfy.net</a> with subject: "DPA request".
               </p>
-              <a href="mailto:support@podfy.net?subject=DPA%20request" class="v2-btn v2-btn-ghost" style="font-size:.8rem;padding:.4rem .9rem;">
+              <a href="mailto:support@podfy.net?subject=DPA%20request" class="v2-btn v2-btn-ghost" data-u="ue73978e">
                 Request DPA &rarr;
               </a>
             </div>
 
             <!-- Magic-link auth -->
-            <div style="flex:1;min-width:200px;">
-              <p style="font-size:.78rem;font-weight:600;font-family:var(--v2-font-mono);margin-bottom:.4rem;">No passwords, how that works</p>
-              <p style="font-size:.82rem;color:var(--v2-muted);margin:0;">
+            <div data-u="u7b1dd1f">
+              <p data-u="u163b471">No passwords, how that works</p>
+              <p data-u="uc455d17">
                 PODFY portals use <strong>magic links</strong>: you enter your email, receive a short-lived login URL (15 minutes), and click it. There is no password stored anywhere, no password database means no password breach. The login token is single-use and stored only as a hash in D1. After login, a session cookie handles the session on your device.
               </p>
             </div>
@@ -197,20 +199,20 @@
             <ul class="v2-trust-toc-list">
               <li><a href="#imprint">Imprint</a></li>
               <li><a href="#terms">Terms of Service</a></li>
-              <li><a href="#terms-overview" style="padding-left:1.25rem;font-size:0.78rem;">Overview &amp; parties</a></li>
-              <li><a href="#terms-services" style="padding-left:1.25rem;font-size:0.78rem;">Services &amp; scope</a></li>
-              <li><a href="#terms-use" style="padding-left:1.25rem;font-size:0.78rem;">Acceptable use</a></li>
-              <li><a href="#terms-ip" style="padding-left:1.25rem;font-size:0.78rem;">Intellectual property</a></li>
-              <li><a href="#terms-privacy-data" style="padding-left:1.25rem;font-size:0.78rem;">Privacy &amp; data</a></li>
-              <li><a href="#terms-app" style="padding-left:1.25rem;font-size:0.78rem;">podfy.app terms</a></li>
-              <li><a href="#terms-liability" style="padding-left:1.25rem;font-size:0.78rem;">Warranties &amp; liability</a></li>
-              <li><a href="#terms-law" style="padding-left:1.25rem;font-size:0.78rem;">Law &amp; contact</a></li>
+              <li><a href="#terms-overview" data-u="ufb6b8fd">Overview &amp; parties</a></li>
+              <li><a href="#terms-services" data-u="ufb6b8fd">Services &amp; scope</a></li>
+              <li><a href="#terms-use" data-u="ufb6b8fd">Acceptable use</a></li>
+              <li><a href="#terms-ip" data-u="ufb6b8fd">Intellectual property</a></li>
+              <li><a href="#terms-privacy-data" data-u="ufb6b8fd">Privacy &amp; data</a></li>
+              <li><a href="#terms-app" data-u="ufb6b8fd">podfy.app terms</a></li>
+              <li><a href="#terms-liability" data-u="ufb6b8fd">Warranties &amp; liability</a></li>
+              <li><a href="#terms-law" data-u="ufb6b8fd">Law &amp; contact</a></li>
               <li><a href="#privacy">Privacy Policy</a></li>
-              <li><a href="#privacy-who" style="padding-left:1.25rem;font-size:0.78rem;">Who we are</a></li>
-              <li><a href="#privacy-data" style="padding-left:1.25rem;font-size:0.78rem;">Data we process</a></li>
-              <li><a href="#privacy-purposes" style="padding-left:1.25rem;font-size:0.78rem;">Purposes &amp; bases</a></li>
-              <li><a href="#privacy-retention" style="padding-left:1.25rem;font-size:0.78rem;">Retention</a></li>
-              <li><a href="#privacy-rights" style="padding-left:1.25rem;font-size:0.78rem;">Your rights</a></li>
+              <li><a href="#privacy-who" data-u="ufb6b8fd">Who we are</a></li>
+              <li><a href="#privacy-data" data-u="ufb6b8fd">Data we process</a></li>
+              <li><a href="#privacy-purposes" data-u="ufb6b8fd">Purposes &amp; bases</a></li>
+              <li><a href="#privacy-retention" data-u="ufb6b8fd">Retention</a></li>
+              <li><a href="#privacy-rights" data-u="ufb6b8fd">Your rights</a></li>
               <li><a href="#cookies">Cookie Policy</a></li>
               <li><a href="#security">Security</a></li>
               <li><a href="#disclosure">Responsible Disclosure</a></li>
@@ -339,117 +341,117 @@
               <p><strong>Data processor</strong> on behalf of the customer for: operational POD data in podfy.app (driver identifiers, delivery references, uploaded documents, GPS coordinates, recipient signatures). For this data your organisation is the controller. A written Data Processing Agreement (DPA) is available on request — contact <a href="mailto:support@podfy.net">support@podfy.net</a> with subject "DPA request".</p>
 
               <h3 id="privacy-data">3. Personal data we process</h3>
-              <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin:0.75rem 0;">
+              <table data-u="u6102160">
                 <thead>
-                  <tr style="border-bottom:2px solid var(--v2-line);">
-                    <th style="text-align:left;padding:0.5rem 0.75rem 0.5rem 0;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Category</th>
-                    <th style="text-align:left;padding:0.5rem 0.75rem;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Data</th>
+                  <tr data-u="u6e567ef">
+                    <th data-u="u5a5c83b">Category</th>
+                    <th data-u="ue18434e">Data</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Website visitors</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Contact form submissions (name, email, company, message); Cloudflare edge security logs (IP address, timestamp, URL, user-agent — 30 days max); theme preference in localStorage (no personal data).</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Website visitors</td>
+                    <td data-u="ud96c9e5">Contact form submissions (name, email, company, message); Cloudflare edge security logs (IP address, timestamp, URL, user-agent — 30 days max); theme preference in localStorage (no personal data).</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Customer accounts</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Name, email, organisation, role, authentication credential hashes (passkeys / magic-link token hashes — never plain passwords), login timestamps, session identifiers, billing and invoice data.</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Customer accounts</td>
+                    <td data-u="ud96c9e5">Name, email, organisation, role, authentication credential hashes (passkeys / magic-link token hashes — never plain passwords), login timestamps, session identifiers, billing and invoice data.</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">POD records (Customer Data)</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Uploaded document files (photos, PDFs, CMRs); GPS coordinates at time of upload; driver email hash (HMAC — email never stored in plain text); shipment reference numbers; timestamps; delivery status codes. Processed as a data processor.</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">POD records (Customer Data)</td>
+                    <td data-u="ud96c9e5">Uploaded document files (photos, PDFs, CMRs); GPS coordinates at time of upload; driver email hash (HMAC — email never stored in plain text); shipment reference numbers; timestamps; delivery status codes. Processed as a data processor.</td>
                   </tr>
                   <tr>
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Support &amp; newsletter</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Support emails and replies; newsletter email address and subscription consent record.</td>
+                    <td data-u="u11e0fe2">Support &amp; newsletter</td>
+                    <td data-u="ud96c9e5">Support emails and replies; newsletter email address and subscription consent record.</td>
                   </tr>
                 </tbody>
               </table>
 
               <h3 id="privacy-purposes">4. Purposes, legal bases &amp; legitimate interests</h3>
-              <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin:0.75rem 0;">
+              <table data-u="u6102160">
                 <thead>
-                  <tr style="border-bottom:2px solid var(--v2-line);">
-                    <th style="text-align:left;padding:0.5rem 0.75rem 0.5rem 0;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Purpose</th>
-                    <th style="text-align:left;padding:0.5rem 0.75rem;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Legal basis (GDPR Art. 6)</th>
+                  <tr data-u="u6e567ef">
+                    <th data-u="u5a5c83b">Purpose</th>
+                    <th data-u="ue18434e">Legal basis (GDPR Art. 6)</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Providing and operating the product</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);"><strong>Art. 6(1)(b)</strong> — performance of contract</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Providing and operating the product</td>
+                    <td data-u="ud96c9e5"><strong>Art. 6(1)(b)</strong> — performance of contract</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Authentication &amp; security</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);"><strong>Art. 6(1)(f)</strong> — legitimate interests (protecting platform integrity and customer data)</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Authentication &amp; security</td>
+                    <td data-u="ud96c9e5"><strong>Art. 6(1)(f)</strong> — legitimate interests (protecting platform integrity and customer data)</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Responding to contact and demo requests</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);"><strong>Art. 6(1)(b)</strong> — pre-contractual steps at data subject's request</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Responding to contact and demo requests</td>
+                    <td data-u="ud96c9e5"><strong>Art. 6(1)(b)</strong> — pre-contractual steps at data subject's request</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Invoicing &amp; tax compliance</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);"><strong>Art. 6(1)(c)</strong> — legal obligation (Dutch Belastingdienst 7-year retention)</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Invoicing &amp; tax compliance</td>
+                    <td data-u="ud96c9e5"><strong>Art. 6(1)(c)</strong> — legal obligation (Dutch Belastingdienst 7-year retention)</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Newsletter</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);"><strong>Art. 6(1)(a)</strong> — consent. Withdrawal at any time via unsubscribe link.</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Newsletter</td>
+                    <td data-u="ud96c9e5"><strong>Art. 6(1)(a)</strong> — consent. Withdrawal at any time via unsubscribe link.</td>
                   </tr>
                   <tr>
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Service monitoring &amp; improvement</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);"><strong>Art. 6(1)(f)</strong> — legitimate interests (aggregated, de-identified data only; no advertising profiling).</td>
+                    <td data-u="u11e0fe2">Service monitoring &amp; improvement</td>
+                    <td data-u="ud96c9e5"><strong>Art. 6(1)(f)</strong> — legitimate interests (aggregated, de-identified data only; no advertising profiling).</td>
                   </tr>
                 </tbody>
               </table>
 
               <h3 id="privacy-retention">5. Retention periods</h3>
-              <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin:0.75rem 0;">
+              <table data-u="u6102160">
                 <thead>
-                  <tr style="border-bottom:2px solid var(--v2-line);">
-                    <th style="text-align:left;padding:0.5rem 0.75rem 0.5rem 0;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Data</th>
-                    <th style="text-align:left;padding:0.5rem 0.75rem;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Retention</th>
+                  <tr data-u="u6e567ef">
+                    <th data-u="u5a5c83b">Data</th>
+                    <th data-u="ue18434e">Retention</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">POD records — Basic plan</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">14 days from upload</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">POD records — Basic plan</td>
+                    <td data-u="ud96c9e5">14 days from upload</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">POD records — Starter plan</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">120 days from upload</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">POD records — Starter plan</td>
+                    <td data-u="ud96c9e5">120 days from upload</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">POD records — Advanced plan</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">1 year from upload</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">POD records — Advanced plan</td>
+                    <td data-u="ud96c9e5">1 year from upload</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">POD records — Pro plan</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">5 years from upload</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">POD records — Pro plan</td>
+                    <td data-u="ud96c9e5">5 years from upload</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">POD records — Extended retention add-on</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Up to 7 years (configurable per subscription)</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">POD records — Extended retention add-on</td>
+                    <td data-u="ud96c9e5">Up to 7 years (configurable per subscription)</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Invoice and billing records</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">7 years (legal obligation, Dutch Belastingdienst)</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Invoice and billing records</td>
+                    <td data-u="ud96c9e5">7 years (legal obligation, Dutch Belastingdienst)</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Customer account data</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Duration of subscription + 90 days post-termination, then deleted on request</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Customer account data</td>
+                    <td data-u="ud96c9e5">Duration of subscription + 90 days post-termination, then deleted on request</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Contact form submissions</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">12 months after last correspondence</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Contact form submissions</td>
+                    <td data-u="ud96c9e5">12 months after last correspondence</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Security / edge logs</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Up to 30 days; extended only for active incident investigation</td>
+                  <tr data-u="u87f64df">
+                    <td data-u="u11e0fe2">Security / edge logs</td>
+                    <td data-u="ud96c9e5">Up to 30 days; extended only for active incident investigation</td>
                   </tr>
                   <tr>
-                    <td style="padding:0.5rem 0.75rem 0.5rem 0;vertical-align:top;font-weight:500;">Newsletter subscriptions</td>
-                    <td style="padding:0.5rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Until unsubscribed; consent records kept 3 years for compliance evidence</td>
+                    <td data-u="u11e0fe2">Newsletter subscriptions</td>
+                    <td data-u="ud96c9e5">Until unsubscribed; consent records kept 3 years for compliance evidence</td>
                   </tr>
                 </tbody>
               </table>
@@ -594,51 +596,51 @@
               <h2>Sub-processors</h2>
               <p>PODFY uses the following sub-processors to provide the service. All sub-processors operate under data processing agreements and are required to implement appropriate technical and organisational measures. This list is kept current; material additions will be notified to customers with a DPA at least 14 days in advance.</p>
 
-              <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin:1rem 0;">
+              <table data-u="u2c85cce">
                 <thead>
-                  <tr style="border-bottom:2px solid var(--v2-line);">
-                    <th style="text-align:left;padding:0.6rem 0.75rem 0.6rem 0;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Provider</th>
-                    <th style="text-align:left;padding:0.6rem 0.75rem;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Country</th>
-                    <th style="text-align:left;padding:0.6rem 0.75rem;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Purpose</th>
-                    <th style="text-align:left;padding:0.6rem 0.75rem;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Data location</th>
-                    <th style="text-align:left;padding:0.6rem 0.75rem;font-family:var(--v2-font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--v2-muted);">Transfer basis</th>
+                  <tr data-u="u6e567ef">
+                    <th data-u="u47b3536">Provider</th>
+                    <th data-u="u6ac85d7">Country</th>
+                    <th data-u="u6ac85d7">Purpose</th>
+                    <th data-u="u6ac85d7">Data location</th>
+                    <th data-u="u6ac85d7">Transfer basis</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.65rem 0.75rem 0.65rem 0;vertical-align:top;">
+                  <tr data-u="u87f64df">
+                    <td data-u="ude31b1f">
                       <strong>Cloudflare, Inc.</strong><br>
-                      <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" style="font-size:0.78rem;color:var(--v2-muted);">DPA &rarr;</a>
+                      <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" data-u="u0cea769">DPA &rarr;</a>
                     </td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">USA</td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Compute (Workers/Pages), database (D1), object storage (R2), CDN, DNS, DDoS protection, bot management (Turnstile). All customer data at rest and in transit.</td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">EU jurisdiction (EU data centres only)</td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">SCCs + EU-U.S. Data Privacy Framework</td>
+                    <td data-u="ueb75152">USA</td>
+                    <td data-u="ueb75152">Compute (Workers/Pages), database (D1), object storage (R2), CDN, DNS, DDoS protection, bot management (Turnstile). All customer data at rest and in transit.</td>
+                    <td data-u="ueb75152">EU jurisdiction (EU data centres only)</td>
+                    <td data-u="ueb75152">SCCs + EU-U.S. Data Privacy Framework</td>
                   </tr>
-                  <tr style="border-bottom:1px solid var(--v2-line);">
-                    <td style="padding:0.65rem 0.75rem 0.65rem 0;vertical-align:top;">
+                  <tr data-u="u87f64df">
+                    <td data-u="ude31b1f">
                       <strong>Resend, Inc.</strong><br>
-                      <a href="https://resend.com/legal/dpa" style="font-size:0.78rem;color:var(--v2-muted);">DPA &rarr;</a>
+                      <a href="https://resend.com/legal/dpa" data-u="u0cea769">DPA &rarr;</a>
                     </td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">USA</td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Transactional email delivery: POD notifications, portal magic-link login emails, invoice delivery emails, contact form replies. No marketing profiling.</td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">US (transit); sender domain EU</td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">SCCs</td>
+                    <td data-u="ueb75152">USA</td>
+                    <td data-u="ueb75152">Transactional email delivery: POD notifications, portal magic-link login emails, invoice delivery emails, contact form replies. No marketing profiling.</td>
+                    <td data-u="ueb75152">US (transit); sender domain EU</td>
+                    <td data-u="ueb75152">SCCs</td>
                   </tr>
                   <tr>
-                    <td style="padding:0.65rem 0.75rem 0.65rem 0;vertical-align:top;">
+                    <td data-u="ude31b1f">
                       <strong>Mollie B.V.</strong><br>
-                      <a href="https://www.mollie.com/en/gdpr" style="font-size:0.78rem;color:var(--v2-muted);">GDPR info &rarr;</a>
+                      <a href="https://www.mollie.com/en/gdpr" data-u="u0cea769">GDPR info &rarr;</a>
                     </td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Netherlands (EU)</td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">Payment processing for subscription billing. Licensed PSP under De Nederlandsche Bank (DNB) supervision. Processes billing contact name and payment method details only.</td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">EU</td>
-                    <td style="padding:0.65rem 0.75rem;vertical-align:top;color:var(--v2-muted);">EU — no transfer</td>
+                    <td data-u="ueb75152">Netherlands (EU)</td>
+                    <td data-u="ueb75152">Payment processing for subscription billing. Licensed PSP under De Nederlandsche Bank (DNB) supervision. Processes billing contact name and payment method details only.</td>
+                    <td data-u="ueb75152">EU</td>
+                    <td data-u="ueb75152">EU — no transfer</td>
                   </tr>
                 </tbody>
               </table>
 
-              <p style="font-size:0.83rem;color:var(--v2-muted);margin-top:0.5rem;">PODFY does not use analytics platforms, advertising networks, or social media tracking pixels on any of its properties. Cloudflare Turnstile (bot protection) runs as a first-party script with no cross-site tracking; it does not set persistent cookies. No customer data is sold or shared with third parties for commercial purposes.</p>
+              <p data-u="ueffe929">PODFY does not use analytics platforms, advertising networks, or social media tracking pixels on any of its properties. Cloudflare Turnstile (bot protection) runs as a first-party script with no cross-site tracking; it does not set persistent cookies. No customer data is sold or shared with third parties for commercial purposes.</p>
 
               <p class="v2-trust-updated">Last updated: 2026-06-24</p>
             </section>
@@ -651,36 +653,6 @@
 
   [[PODFY_FOOTER]]
 
-  <script>
-  /* Highlight active TOC link on scroll */
-  (function () {
-    var links = document.querySelectorAll(".v2-trust-toc-list a");
-    if (!links.length || !window.IntersectionObserver) return;
-
-    var sections = [];
-    links.forEach(function (a) {
-      var id = a.getAttribute("href").replace("#", "");
-      var el = document.getElementById(id);
-      if (el) sections.push({ id: id, el: el, a: a });
-    });
-
-    var active = null;
-    function setActive(id) {
-      if (active === id) return;
-      active = id;
-      links.forEach(function (a) { a.classList.remove("active"); });
-      var found = sections.find(function (s) { return s.id === id; });
-      if (found) found.a.classList.add("active");
-    }
-
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) setActive(e.target.id);
-      });
-    }, { rootMargin: "-20% 0px -70% 0px" });
-
-    sections.forEach(function (s) { obs.observe(s.el); });
-  })();
-  </script>
+  <script src="/assets/js/i/3aded7d1434a.js"></script>
 </body>
 </html>

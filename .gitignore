@@ -9,3 +9,4 @@
 
 # staged deploy output (deploy.sh)
 dist/
+node_modules/

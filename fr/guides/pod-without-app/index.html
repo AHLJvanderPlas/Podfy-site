@@ -52,6 +52,8 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Article","headline":"Preuve de livraison sans application — Guide complet","description":"Pourquoi la preuve de livraison via application échoue avec les sous-traitants, et comment la collecte de POD par lien fonctionne sur tout téléphone sans installation, connexion ni formation.","url":"https://podfy.net/fr/guides/pod-without-app/","datePublished":"2026-05-01","dateModified":"2026-05-11","author":{"@type":"Organization","name":"PODFY"},"publisher":{"@type":"Organization","name":"PODFY","url":"https://podfy.net"}}
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 <body class="v2">
   <div id="v2-progress"></div>
@@ -73,11 +75,11 @@
     <section class="v2-aud-hero" aria-labelledby="guide-heading">
       <div class="container">
         <p class="v2-eyebrow">Guide &middot; POD sans application</p>
-        <h1 class="v2-hero-title" id="guide-heading" style="max-width:38rem;">
+        <h1 class="v2-hero-title" id="guide-heading" data-u="ua95973b">
           Preuve de livraison<br>
           sans application <em>— ni connexion.</em>
         </h1>
-        <p class="v2-hero-sub" style="max-width:42rem;">
+        <p class="v2-hero-sub" data-u="ucc4635f">
           Pourquoi la collecte de POD via application échoue dans les environnements multi-chauffeurs, et comment les opérations modernes collectent une preuve fiable de chaque chauffeur, salarié, sous-traité ou intérimaire, sans rien à installer.
         </p>
       </div>
@@ -104,7 +106,7 @@
             <p><strong>Le problème n'est pas le chauffeur. C'est la friction.</strong> Supprimez l'obligation d'installation et les taux de complétion reviennent à près de 100 %.</p>
           </div>
           <div>
-            <ul class="v2-check-list" style="margin-top:.5rem;">
+            <ul class="v2-check-list" data-u="ub310ca1">
               <li>Les sous-traitants n'installeront pas les applications spécifiques aux transporteurs</li>
               <li>Le personnel intérimaire n'a pas le temps pour l'intégration</li>
               <li>Les anciens appareils Android ne peuvent pas exécuter les versions actuelles</li>
@@ -149,8 +151,8 @@
             <p>Votre équipe opérationnelle reçoit une notification par e-mail. Le document est horodaté GPS, timestampé et consultable par référence. Pas de ressaisie, pas de relance, pas de conversion de format.</p>
           </div>
         </div>
-        <div style="margin-top:2rem;">
-          <h3 style="font-family:var(--v2-font-serif);font-weight:500;margin-bottom:1rem;">Comparaison : POD via application vs par lien</h3>
+        <div data-u="u0e83ee9">
+          <h3 data-u="uce2e19e">Comparaison : POD via application vs par lien</h3>
           <table class="v2-comparison-table">
             <thead>
               <tr><th>Critère</th><th class="v2-col-paper">POD via application</th><th class="v2-col-digital">Par lien (Podfy)</th></tr>
@@ -240,22 +242,22 @@
     <!-- BACK TO HUB -->
     <section class="v2-section" aria-label="Guide hub">
       <div class="container">
-        <p style="font-size:.9rem;color:var(--v2-muted);">
+        <p data-u="u9c76add">
           Fait partie de la série de guides Podfy &rarr; <a href="/fr/guides/proof-of-delivery/" class="v2-link">Qu'est-ce que la preuve de livraison ?</a>
         </p>
       </div>
     </section>
 
     <section class="v2-section" aria-label="Restez informé">
-      <div class="container" style="max-width:40rem;">
+      <div class="container" data-u="u4e90451">
         <div class="v2-subscribe-strip">
           <h3>Suivez l'évolution de Podfy</h3>
           <p>Recevez les notes de mise à jour par e-mail à chaque nouvelle fonctionnalité.</p>
-          <form class="v2-subscribe-row" onsubmit="handleSubscribe(event)">
+          <form class="v2-subscribe-row" data-subscribe>
             <input type="email" name="email" class="v2-subscribe-input" placeholder="votre@email.com" required />
             <button type="submit" class="v2-btn v2-btn-primary">S'abonner &rarr;</button>
           </form>
-          <p id="subscribe-msg" style="display:none;font-size:.85rem;margin-top:.5rem;"></p>
+          <p id="subscribe-msg" data-u="uf82ce53"></p>
         </div>
       </div>
     </section>
@@ -274,10 +276,7 @@
 
   </main>
   [[PODFY_FOOTER]]
-  <script>
-    window.addEventListener('scroll', () => { const p = window.scrollY/(document.body.scrollHeight-window.innerHeight); const el=document.getElementById('v2-progress'); if(el) el.style.width=Math.min(p*100,100)+'%'; });
-    document.querySelectorAll('.v2-faq-btn').forEach(btn => { btn.addEventListener('click', () => btn.closest('.v2-faq-acc-item').classList.toggle('open')); });
-    async function handleSubscribe(e) { e.preventDefault(); const email=e.target.querySelector('[name=email]').value; const msg=document.getElementById('subscribe-msg'); try { const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hp_sub:''})}); const d=await r.json(); msg.style.display='block'; msg.textContent=d.ok?'Subscribed. Thank you!':(d.error||'Something went wrong.'); msg.style.color=d.ok?'var(--v2-delivered)':'var(--v2-stamp)'; if(d.ok) e.target.reset(); } catch { msg.style.display='block'; msg.textContent='Could not subscribe right now.'; } }
-  </script>
+  <script src="/assets/js/i/b4d0907a450f.js"></script>
+<script src="/assets/js/i/d5a38a926a72.js"></script>
 </body>
 </html>

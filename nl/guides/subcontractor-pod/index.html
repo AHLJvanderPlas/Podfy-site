@@ -42,6 +42,8 @@
     {"@type":"Question","name":"Ziet de onderaannemer mijn andere leveringen of klantgegevens?","acceptedAnswer":{"@type":"Answer","text":"Nee. Elke link is beperkt tot één zendingsreferentie. De chauffeur heeft alleen toegang tot de uploadpagina voor die specifieke levering; niets anders in uw portaal is voor hem zichtbaar."}}
   ]}
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 <body class="v2">
   <div id="v2-progress"></div>
@@ -57,12 +59,12 @@
           <a href="/nl/guides/">Gidsen</a> <span aria-hidden="true">/</span>
           <span aria-current="page">POD voor onderaannemers</span>
         </nav>
-        <span class="v2-guide-tag" style="margin-bottom:.85rem;display:inline-block;">Netwerken</span>
-        <h1 class="v2-hero-title" id="guide-heading" style="max-width:40rem;">
+        <span class="v2-guide-tag" data-u="uab052ee">Netwerken</span>
+        <h1 class="v2-hero-title" id="guide-heading" data-u="u4e90451">
           POD van onderaannemers.<br>
           <em>Geen app. Geen account. Geen excuses.</em>
         </h1>
-        <p class="v2-hero-sub" style="max-width:38rem;">
+        <p class="v2-hero-sub" data-u="ua95973b">
           Hoe u GPS-gestempeld bewijs van aflevering verzamelt van onderaannemers en charters,
           zonder dat zij een app installeren of een account aanmaken.
         </p>
@@ -95,7 +97,7 @@
     <section class="v2-section" aria-labelledby="apps-heading">
       <div class="container">
         <h2 class="v2-section-title" id="apps-heading">Waarom app-gebaseerde POD faalt bij onderaannemers</h2>
-        <ul class="v2-check-list" style="max-width:38rem;">
+        <ul class="v2-check-list" data-u="ua95973b">
           <li><strong>Installatiedrempel:</strong> onderaannemers installeren geen app voor eenmalige ritten</li>
           <li><strong>Accountbeheer:</strong> geen vervoerder wil accounts beheren voor wisselende chauffeurs</li>
           <li><strong>Toestelcompatibiliteit:</strong> onderaannemers hebben vaak oudere of afwijkende telefoons</li>
@@ -134,7 +136,7 @@
     <section class="v2-section" aria-labelledby="steps-heading">
       <div class="container">
         <h2 class="v2-section-title" id="steps-heading">POD verzamelen van een onderaannemer met Podfy</h2>
-        <div class="v2-how-grid" style="margin-top:1.5rem;">
+        <div class="v2-how-grid" data-u="ufc511f0">
           <div class="v2-how-step">
             <p class="v2-how-step-num">Stap 01</p>
             <h3>Genereer de link</h3>
@@ -151,7 +153,7 @@
             <p>De onderaannemer opent de link in elke browser en fotografeert de CMR of het afleverpunt. GPS-stempel en tijdstempel worden automatisch toegevoegd.</p>
           </div>
         </div>
-        <div class="v2-how-grid" style="margin-top:1rem;">
+        <div class="v2-how-grid" data-u="u2239d6d">
           <div class="v2-how-step">
             <p class="v2-how-step-num">Stap 04</p>
             <h3>Record verschijnt direct</h3>
@@ -175,7 +177,7 @@
     <section class="v2-section" aria-labelledby="faq-heading">
       <div class="container">
         <h2 class="v2-section-title" id="faq-heading">Veelgestelde vragen</h2>
-        <div class="v2-faq-list" style="max-width:40rem;">
+        <div class="v2-faq-list" data-u="u4e90451">
           <div class="v2-faq-item">
             <p class="v2-faq-q">Wat als de onderaannemer de link weigert te gebruiken?</p>
             <p class="v2-faq-a">De link vereist geen registratie en geen app. Als een onderaannemer een foto kan maken met zijn telefoon, kan hij Podfy gebruiken. De drempel is werkelijk nul: het is een URL, geen onboardingproces.</p>
@@ -228,7 +230,7 @@
       <div class="container">
         <p class="v2-eyebrow">Opties aan het vergelijken?</p>
         <h2 class="v2-section-title" id="vs-heading-sub">Podfy vs. gratis scan-apps</h2>
-        <p class="v2-prose" style="max-width:40rem;margin-bottom:1.25rem;">
+        <p class="v2-prose" data-u="u03e7b93">
           Bekijk de volledige vergelijking: kosten, wie het document terugstuurt, GPS-stempeling
           en waarom scan-apps het verzamelprobleem bij onderaannemers niet oplossen.
         </p>
@@ -253,19 +255,6 @@
 
   [[PODFY_FOOTER]]
 
-  <script>
-  (function(){
-    var bar = document.getElementById('v2-progress');
-    if (!bar) return;
-    function upd() {
-      var s = document.documentElement, b = document.body;
-      var h = s.scrollHeight - s.clientHeight || b.scrollHeight - b.clientHeight;
-      var pct = h > 0 ? Math.round((s.scrollTop || b.scrollTop) / h * 100) : 0;
-      bar.style.width = pct + '%';
-    }
-    window.addEventListener('scroll', upd, {passive: true});
-    upd();
-  })();
-  </script>
+  <script src="/assets/js/i/d3872d16333e.js"></script>
 </body>
 </html>

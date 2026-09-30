@@ -5,98 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Site Owner Instructions — PODFY</title>
   <meta name="robots" content="noindex,nofollow" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --ink: #0E1116; --muted: #5A6473; --paper: #F5F2EA; --card: #FBF9F3;
-      --stamp: #D24A1F; --delivered: #1F6B47; --border: #E4E2DC;
-      --mono: "JetBrains Mono", "Menlo", "Consolas", monospace;
-      --sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-      --serif: Georgia, serif;
-    }
-    body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; }
-    a { color: var(--stamp); }
-
-    /* ── Lock screen ── */
-    #lock { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
-    .lock-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem 2rem; max-width: 400px; width: 100%; text-align: center; }
-    .lock-title { font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 1rem; }
-    .lock-input { width: 100%; padding: .6rem .9rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem; background: var(--paper); color: var(--ink); margin-bottom: .75rem; font-family: var(--mono); }
-    .lock-input:focus { outline: 2px solid var(--stamp); border-color: var(--stamp); }
-    .lock-btn { width: 100%; padding: .65rem; background: var(--ink); color: var(--paper); border: none; border-radius: 4px; font-size: .875rem; font-weight: 600; cursor: pointer; font-family: var(--sans); }
-    .lock-btn:hover { opacity: .8; }
-    .lock-error { font-size: .8rem; color: var(--stamp); margin-top: .5rem; display: none; }
-
-    /* ── Content ── */
-    #content { display: none; max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
-    .page-header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 3rem; }
-    .page-eyebrow { font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .16em; color: var(--muted); margin-bottom: .5rem; }
-    .page-title { font-size: 1.75rem; font-weight: 700; }
-    .page-meta { font-size: .85rem; color: var(--muted); margin-top: .4rem; }
-
-    h2 { font-size: 1.15rem; font-weight: 700; margin: 2.5rem 0 .75rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); }
-    h3 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 .4rem; }
-    p { font-size: .9375rem; color: #3a3a3a; margin-bottom: .85rem; line-height: 1.7; }
-    ul, ol { padding-left: 1.4rem; margin-bottom: .85rem; }
-    li { font-size: .9375rem; color: #3a3a3a; line-height: 1.7; margin-bottom: .2rem; }
-    code { font-family: var(--mono); font-size: .8rem; background: var(--border); padding: 1px 5px; border-radius: 3px; }
-    pre { font-family: var(--mono); font-size: .78rem; background: var(--ink); color: var(--paper); padding: 1rem 1.25rem; border-radius: 4px; overflow-x: auto; margin-bottom: 1rem; line-height: 1.5; }
-    pre code { background: none; padding: 0; font-size: inherit; }
-
-    .badge { display: inline-block; padding: 2px 8px; border-radius: 2px; font-family: var(--mono); font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
-    .badge-active { background: #d4edda; color: var(--delivered); border: 1px solid #b8dfc6; }
-    .badge-niche { background: #fff3cd; color: #856404; border: 1px solid #ffd879; }
-    .badge-legacy { background: #fde8e3; color: var(--stamp); border: 1px solid #f7c4b8; }
-    .badge-notconn { background: var(--border); color: var(--muted); border: 1px solid #d0ccc0; }
-
-    table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; font-size: .875rem; }
-    th, td { padding: .55rem .85rem; text-align: left; border-bottom: 1px solid var(--border); }
-    th { font-family: var(--mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
-
-    .callout { border-left: 3px solid var(--stamp); background: #fef8f6; padding: .85rem 1rem; border-radius: 0 4px 4px 0; margin-bottom: 1rem; }
-    .callout-ok { border-left-color: var(--delivered); background: #f4faf7; }
-    .callout p { margin-bottom: 0; }
-
-    .toc { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 2.5rem; }
-    .toc h2 { font-size: .75rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: .1em; border-bottom: none; padding-bottom: 0; margin: 0 0 .6rem; }
-    .toc ul { padding-left: 1.2rem; margin: 0; }
-    .toc li { margin-bottom: .2rem; font-size: .85rem; }
-    .toc a { color: var(--muted); text-decoration: none; }
-    .toc a:hover { color: var(--stamp); }
-
-    .lock-logout { position: fixed; top: 1rem; right: 1.5rem; font-family: var(--mono); font-size: .7rem; color: var(--muted); background: none; border: 1px solid var(--border); padding: .3rem .7rem; border-radius: 3px; cursor: pointer; }
-    .lock-logout:hover { color: var(--stamp); border-color: var(--stamp); }
-
-    /* ── Tools (sections 9 & 10) ── */
-    .tool-box { border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem 1.4rem; margin-bottom: 1.5rem; background: var(--card); }
-    .field-group { margin-bottom: 1rem; }
-    .field-label { display: block; font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: .35rem; }
-    .field-input, .field-ta { width: 100%; padding: .45rem .75rem; border: 1px solid var(--border); border-radius: 4px; font-size: .875rem; background: var(--paper); color: var(--ink); font-family: var(--sans); }
-    .field-input:focus, .field-ta:focus { outline: 2px solid var(--stamp); border-color: var(--stamp); }
-    .field-ta { font-family: var(--mono); resize: vertical; min-height: 80px; font-size: .8rem; line-height: 1.5; }
-    .tags-row { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .5rem; }
-    .tag-pill { display: inline-flex; align-items: center; gap: .3rem; cursor: pointer; font-size: .78rem; padding: .18rem .55rem; border: 1px solid var(--border); border-radius: 3px; user-select: none; }
-    .tag-pill input { cursor: pointer; margin: 0; }
-    .tool-btn { padding: .5rem 1.1rem; background: var(--ink); color: var(--paper); border: none; border-radius: 4px; font-size: .875rem; font-weight: 600; cursor: pointer; font-family: var(--sans); }
-    .tool-btn:hover { opacity: .8; }
-    .tool-btn:disabled { opacity: .45; cursor: default; }
-    .f-result { font-size: .84rem; margin-top: .65rem; }
-    .f-result.ok { color: var(--delivered); }
-    .f-result.err { color: var(--stamp); }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
-
-    /* Companies table */
-    .co-toolbar { display: flex; gap: .65rem; align-items: center; margin-bottom: .75rem; }
-    .co-toolbar input { flex: 1; padding: .4rem .75rem; border: 1px solid var(--border); border-radius: 4px; font-size: .85rem; background: var(--paper); color: var(--ink); }
-    .co-toolbar button { padding: .4rem .9rem; border: 1px solid var(--border); border-radius: 4px; font-size: .8rem; background: var(--paper); cursor: pointer; }
-    .co-toolbar button:hover { background: var(--border); }
-    .co-status { font-size: .82rem; color: var(--muted); margin-bottom: .5rem; }
-    .co-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 4px; }
-    .co-wrap table { font-size: .8rem; }
-    .color-cell { font-weight: 600; }
-    .color-cell code { background: rgba(255,255,255,.22); padding: 1px 5px; border-radius: 3px; font-size: .75rem; }
-  </style>
+  <link rel="stylesheet" href="/assets/css/i/80a3f01c5248.css">
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 <body>
 
@@ -105,14 +16,14 @@
   <div class="lock-card">
     <p class="lock-title">PODFY Site Owner Instructions</p>
     <input id="lock-pw" type="password" class="lock-input" placeholder="Password" autocomplete="current-password" />
-    <button class="lock-btn" onclick="unlock()">Enter</button>
+    <button class="lock-btn" data-action="unlock">Enter</button>
     <p class="lock-error" id="lock-err">Incorrect password.</p>
   </div>
 </div>
 
 <!-- ── CONTENT ── -->
 <div id="content">
-  <button class="lock-logout" onclick="lockOut()">Lock</button>
+  <button class="lock-logout" data-action="lockOut">Lock</button>
 
   <div class="page-header">
     <p class="page-eyebrow">Internal / Site Owner</p>
@@ -388,7 +299,7 @@ git push origin qa
         </div>
       </div>
       <div class="field-group">
-        <label class="field-label" for="f-ref">Deployment ref <span style="text-transform:none;letter-spacing:0;font-size:.68rem;">(optional, git SHA or CF deployment ID)</span></label>
+        <label class="field-label" for="f-ref">Deployment ref <span data-u="uafe0513">(optional, git SHA or CF deployment ID)</span></label>
         <input class="field-input" type="text" id="f-ref" placeholder="abc1234" />
       </div>
       <div class="grid-2">
@@ -416,11 +327,11 @@ git push origin qa
           <label class="tag-pill"><input type="checkbox" value="security"> security</label>
           <label class="tag-pill"><input type="checkbox" value="seo"> seo</label>
         </div>
-        <input class="field-input" type="text" id="f-tags-custom" placeholder="Additional custom tags (comma-separated, optional)" style="margin-top:.4rem;" />
+        <input class="field-input" type="text" id="f-tags-custom" placeholder="Additional custom tags (comma-separated, optional)" data-u="uf08cdb8" />
       </div>
-      <div class="field-group" style="display:flex;align-items:center;gap:.5rem;">
+      <div class="field-group" data-u="u615b9ad">
         <input type="checkbox" id="f-published" checked />
-        <label for="f-published" style="cursor:pointer;font-size:.875rem;">Publish immediately</label>
+        <label for="f-published" data-u="u153b941">Publish immediately</label>
       </div>
       <button class="tool-btn" type="submit" id="release-btn">Add to changelog</button>
       <p class="f-result" id="release-result"></p>
@@ -434,7 +345,7 @@ git push origin qa
   <div class="tool-box">
     <div class="co-toolbar">
       <input type="text" id="co-search" placeholder="Filter by slug, brand name or any field…" />
-      <button onclick="loadCompanies()">Refresh</button>
+      <button data-action="loadCompanies">Refresh</button>
     </div>
     <p class="co-status" id="co-status">Loading…</p>
     <div class="co-wrap">
@@ -447,163 +358,8 @@ git push origin qa
 
 </div>
 
-<script>
-  const HASH = "96a67fef8cc3b05cf7c2e3da71889a97c0ddf0c4a18e4a9a66e9e2882a26e37b"; // sha256 of "Podfy2026!"
+<script src="/assets/js/i/e0578116a64e.js"></script>
 
-  async function sha256(str) {
-    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
-  }
-
-  async function unlock() {
-    const pw = document.getElementById("lock-pw").value;
-    const h = await sha256(pw);
-    if (h === HASH) {
-      sessionStorage.setItem("pod_inst", "1");
-      show();
-    } else {
-      document.getElementById("lock-err").style.display = "block";
-    }
-  }
-
-  function show() {
-    document.getElementById("lock").style.display = "none";
-    document.getElementById("content").style.display = "block";
-  }
-
-  function lockOut() {
-    sessionStorage.removeItem("pod_inst");
-    document.getElementById("content").style.display = "none";
-    document.getElementById("lock").style.display = "flex";
-    document.getElementById("lock-pw").value = "";
-  }
-
-  // Allow Enter key
-  document.getElementById("lock-pw")?.addEventListener("keydown", e => {
-    if (e.key === "Enter") unlock();
-  });
-
-  // Auto-unlock if session is valid
-  if (sessionStorage.getItem("pod_inst") === "1") show();
-
-  // ── Changelog form ──────────────────────────────────────────────
-  // Pre-fill today's date
-  (function () {
-    var d = document.getElementById("f-date");
-    if (d) d.value = new Date().toISOString().slice(0, 10);
-  })();
-
-  document.getElementById("release-form")?.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    var btn = document.getElementById("release-btn");
-    var res = document.getElementById("release-result");
-    btn.disabled = true;
-    res.textContent = "Submitting…";
-    res.className = "f-result";
-
-    // Collect checked tags + custom tags
-    var checked = [...document.querySelectorAll(".tags-row input:checked")].map(el => el.value);
-    var custom = (document.getElementById("f-tags-custom").value || "")
-                  .split(",").map(t => t.trim()).filter(Boolean);
-    var tags = [...new Set([...checked, ...custom])].join(",");
-
-    try {
-      var r = await fetch("/api/releases", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          auth:           HASH,
-          release_date:   document.getElementById("f-date").value,
-          version:        document.getElementById("f-version").value.trim(),
-          deployment_ref: document.getElementById("f-ref").value.trim(),
-          new_features:   document.getElementById("f-features").value.trim(),
-          fixes:          document.getElementById("f-fixes").value.trim(),
-          area_tags:      tags,
-          is_published:   document.getElementById("f-published").checked,
-        }),
-      });
-      var data = await r.json();
-      if (data.success) {
-        res.textContent = "✓ Added, entry id " + data.id + ". Visible on /changelog immediately.";
-        res.className = "f-result ok";
-        e.target.reset();
-        document.getElementById("f-date").value = new Date().toISOString().slice(0, 10);
-      } else {
-        res.textContent = "Error: " + (data.error || "Unknown error");
-        res.className = "f-result err";
-      }
-    } catch (err) {
-      res.textContent = "Network error: " + err.message;
-      res.className = "f-result err";
-    }
-    btn.disabled = false;
-  });
-
-  // ── Companies viewer ────────────────────────────────────────────
-  var _companies = [];
-  var HEX_RE  = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i;
-  var RGB_RE  = /^rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)$/i;
-  var RGBA_RE = /^rgba\(\s*\d+\s*,\s*\d+\s*,\s*[\d.]+\s*,\s*[\d.]+\s*\)$/i;
-  var HSL_RE  = /^hsl\(\s*\d+\s*,\s*\d+%\s*,\s*\d+%\s*\)$/i;
-  function isColor(v) { return typeof v === "string" && (HEX_RE.test(v)||RGB_RE.test(v)||RGBA_RE.test(v)||HSL_RE.test(v)); }
-  function hexToRgb(h) { h = h.replace("#",""); if(h.length===3)h=[...h].map(c=>c+c).join(""); var n=parseInt(h,16); return{r:(n>>16)&255,g:(n>>8)&255,b:n&255}; }
-  function lumFromRgb(c) { var s=[c.r,c.g,c.b].map(x=>{x/=255;return x<=.03928?x/12.92:Math.pow((x+.055)/1.055,2.4);}); return .2126*s[0]+.7152*s[1]+.0722*s[2]; }
-  function bestText(bg) { var rgb=hexToRgb(HEX_RE.test(bg)?bg:"#888"); return lumFromRgb(rgb)>.4?"#111":"#fff"; }
-
-  function flatObj(obj, pre, out) {
-    out = out||{}; pre = pre||"";
-    Object.entries(obj||{}).forEach(function([k,v]){
-      var key = pre?pre+"."+k:k;
-      if(v&&typeof v==="object"&&!Array.isArray(v)) flatObj(v,key,out); else out[key]=v;
-    });
-    return out;
-  }
-  var CO_HIDDEN = new Set(["logo","favicon","mailTo","__logoAbs","__faviconAbs","email_recipients","notes_internal"]);
-  function renderCompanies() {
-    var q = (document.getElementById("co-search")?.value||"").toLowerCase();
-    var rows = _companies.filter(r=>JSON.stringify(r).toLowerCase().includes(q));
-    var cols = [];
-    var seen = new Set();
-    rows.forEach(r=>Object.keys(r).forEach(k=>{if(!CO_HIDDEN.has(k)&&k.toLowerCase()!=="mailto"&&!seen.has(k)){seen.add(k);cols.push(k);}}));
-    cols.sort(function(a,b){
-      var s=function(k){return k==="slug"?-999:k.match(/name|brand/i)?-900:k.match(/color/i)?-800:0;};
-      return s(a)-s(b)||a.localeCompare(b);
-    });
-    var tbl = document.getElementById("co-tbl");
-    tbl.querySelector("thead").innerHTML = "<tr>"+cols.map(c=>"<th>"+c+"</th>").join("")+"</tr>";
-    tbl.querySelector("tbody").innerHTML = rows.map(function(r){
-      return "<tr>"+cols.map(function(c){
-        var v = r[c];
-        if(isColor(v)){
-          var txt=bestText(v);
-          return '<td class="color-cell" style="background:'+v+';color:'+txt+'"><code>'+v+'</code></td>';
-        }
-        if(v&&typeof v==="object"){try{v=JSON.stringify(v);}catch(e){v=String(v);}}
-        if(v==null)v="";
-        return "<td>"+String(v)+"</td>";
-      }).join("")+"</tr>";
-    }).join("");
-    document.getElementById("co-status").textContent = rows.length+" compan"+(rows.length===1?"y":"ies")+" shown";
-  }
-  async function loadCompanies() {
-    document.getElementById("co-status").textContent = "Loading…";
-    try {
-      throw new Error("moved to admin.podfy.net → Brands");
-      var json = [];
-      _companies = Array.isArray(json)
-        ? json.map(function(row){return flatObj(row);})
-        : Object.entries(json).map(function([slug,cfg]){return flatObj(Object.assign({slug},cfg));});
-      renderCompanies();
-    } catch(err) {
-      document.getElementById("co-status").textContent = "Could not load: "+(err.message||err);
-    }
-  }
-  document.getElementById("co-search")?.addEventListener("input", function(){renderCompanies();});
-  // Load companies after unlock
-  var _origShow = show;
-  show = function(){ _origShow(); loadCompanies(); };
-  if (sessionStorage.getItem("pod_inst") === "1") loadCompanies();
-</script>
-
+<script src="/assets/js/i/77dfc799b541.js"></script>
 </body>
 </html>

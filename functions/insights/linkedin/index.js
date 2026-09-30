@@ -75,44 +75,22 @@ export async function onRequestGet(context) {
 
   const cardsHtml = items.length
     ? `<div class="ins-grid">${items.map(p => cardHtml(p, lang, T)).join("")}</div>`
-    : `<p style="color:var(--v2-muted)">${T.empty}</p>`;
+    : `<p data-u="u1993946">${T.empty}</p>`;
 
   const style = `
-  <style>
-    .ins-hero{background:#0E1116;border-bottom:1px solid var(--v2-line);padding:52px 0 40px}
-    .ins-eyebrow{color:#E05A30;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;font-family:var(--v2-font-sans)}
-    .ins-hero .v2-hero-title{color:#F5F2EA}
-    .ins-hero p{color:rgba(245,242,234,.65);font-size:1.05rem;max-width:540px;margin:0}
-    .ins-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:0 0 2rem}
-    .ins-tabs a{padding:.45rem 1.05rem;border:1px solid var(--v2-line);border-radius:var(--v2-radius);font-size:.88rem;font-weight:500;color:var(--v2-muted);text-decoration:none}
-    .ins-tabs a:hover{border-color:var(--v2-ink);color:var(--v2-ink)}
-    .ins-tabs a.active{background:var(--v2-ink);color:var(--v2-paper);border-color:var(--v2-ink)}
-    .ins-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}
-    .ins-card{background:var(--v2-card);border:1px solid var(--v2-line);border-radius:var(--v2-radius-lg);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,border-color .18s ease}
-    .ins-card:hover{transform:translateY(-3px);border-color:var(--v2-line-2)}
-    .ins-card-img{display:block;aspect-ratio:16/9;background:var(--v2-paper-2);overflow:hidden}
-    .ins-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}
-    .ins-card:hover .ins-card-img img{transform:scale(1.04)}
-    .ins-card-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
-    .ins-card-meta{font-size:.78rem;color:var(--v2-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
-    .ins-card-body h3{margin:0 0 8px;font-size:1.08rem;line-height:1.4}
-    .ins-card-body h3 a{color:inherit;text-decoration:none}
-    .ins-card-body p{margin:0 0 14px;font-size:.9rem;color:var(--v2-muted);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-    .ins-read{margin-top:auto;font-size:.88rem;font-weight:600;color:var(--v2-stamp);text-decoration:none}
-    .ins-read:hover{text-decoration:underline}
-    @media (prefers-reduced-motion: reduce){.ins-card,.ins-card-img img{transition:none}}
-  </style>`;
+  <link rel="stylesheet" href="/assets/css/i/348b391d4ad4.css">
+`;
 
   const body = `
   <section class="ins-hero">
     <div class="container">
       <div class="ins-eyebrow">${esc(T.eyebrow)}</div>
-      <h1 class="v2-hero-title" style="max-width:38rem;margin-bottom:.75rem">${T.heroTitle}</h1>
+      <h1 class="v2-hero-title" data-u="u04ee30f">${T.heroTitle}</h1>
       <p>${esc(T.heroSub)}</p>
     </div>
   </section>
 
-  <main class="container" style="padding:2.25rem 1rem 4rem">
+  <main class="container" data-u="u102e6a6">
     ${tabsHtml(lang, "linkedin")}
     <div id="li-cards">${cardsHtml}</div>
   </main>`;

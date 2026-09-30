@@ -82,6 +82,8 @@
     ]
   }
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 
 <body class="v2">
@@ -94,11 +96,11 @@
     <section class="v2-aud-hero" aria-labelledby="about-heading">
       <div class="container">
         <p class="v2-eyebrow">About PODFY</p>
-        <h1 class="v2-hero-title" id="about-heading" style="max-width:36rem;">
+        <h1 class="v2-hero-title" id="about-heading" data-u="u6389919">
           Built for the driver on any phone.<br>
           <em>The office on any screen.</em>
         </h1>
-        <p class="v2-hero-sub" style="max-width:38rem;">
+        <p class="v2-hero-sub" data-u="ua95973b">
           PODFY is a proof of delivery platform for European carriers, 3PLs, and shippers.
           GPS-stamped POD without a driver app. No account. No training. EU-hosted.
         </p>
@@ -145,42 +147,29 @@
     </section>
 
     <!-- FOUNDER -->
-    <section class="v2-section" aria-labelledby="founder-heading" style="padding-top:0">
+    <section class="v2-section" aria-labelledby="founder-heading" data-u="u4260ebe">
       <div class="container">
         <h2 class="v2-section-title" id="founder-heading">Who's behind it</h2>
-        <div id="founder-badge" style="display:flex;gap:1rem;align-items:center;border:1px solid var(--v2-line);border-radius:var(--v2-radius-lg);padding:1.1rem 1.3rem;max-width:26rem;background:var(--v2-card)">
-          <div id="founder-photo" style="width:64px;height:64px;border-radius:50%;background:var(--v2-paper-2);flex-shrink:0;overflow:hidden"></div>
+        <div id="founder-badge" data-u="uf77fd3c">
+          <div id="founder-photo" data-u="u60fa579"></div>
           <div>
-            <div id="founder-name" style="font-weight:600;font-size:1.02rem">&nbsp;</div>
-            <div id="founder-headline" class="v2-muted-sm" style="margin:.15rem 0 .5rem"></div>
-            <a id="founder-link" href="#" target="_blank" rel="noopener" class="v2-link" style="font-size:.88rem;display:none">View on LinkedIn →</a>
+            <div id="founder-name" data-u="u7499cc1">&nbsp;</div>
+            <div id="founder-headline" class="v2-muted-sm" data-u="ube142c3"></div>
+            <a id="founder-link" href="#" target="_blank" rel="noopener" class="v2-link" data-u="u6844657">View on LinkedIn →</a>
           </div>
         </div>
       </div>
     </section>
-    <script>
-      fetch("/api/profile-badge").then(function (r) { return r.json(); }).then(function (d) {
-        if (!d || !d.ok) return;
-        if (d.name) document.getElementById("founder-name").textContent = d.name;
-        if (d.headline) document.getElementById("founder-headline").textContent = d.headline;
-        if (d.photo_url) document.getElementById("founder-photo").innerHTML =
-          '<img src="' + d.photo_url + '" alt="" style="width:100%;height:100%;object-fit:cover" loading="lazy">';
-        if (d.linkedin_url) {
-          var link = document.getElementById("founder-link");
-          link.href = d.linkedin_url;
-          link.style.display = "inline-block";
-        }
-      }).catch(function () {});
-    </script>
+    <script src="/assets/js/i/8238e829b678.js"></script>
 
     <!-- WHERE WE ARE -->
     <section class="v2-section" aria-labelledby="where-heading">
       <div class="container">
         <h2 class="v2-section-title" id="where-heading">Where we are</h2>
-        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem;max-width:36rem;">
+        <div data-u="ub5c011d">
           <div>
-            <p class="v2-eyebrow" style="margin-bottom:.5rem;">Company</p>
-            <p class="v2-muted-sm" style="line-height:1.8;">
+            <p class="v2-eyebrow" data-u="ue9520dd">Company</p>
+            <p class="v2-muted-sm" data-u="uc38bfee">
               KVK: 83714200<br>
               VAT: NL862966851B01<br>
               Van Weede van Dijkveldstraat 25<br>
@@ -188,8 +177,8 @@
             </p>
           </div>
           <div>
-            <p class="v2-eyebrow" style="margin-bottom:.5rem;">Contact</p>
-            <p class="v2-muted-sm" style="line-height:1.8;">
+            <p class="v2-eyebrow" data-u="ue9520dd">Contact</p>
+            <p class="v2-muted-sm" data-u="uc38bfee">
               <a href="mailto:support@podfy.net" class="v2-link">support@podfy.net</a><br>
               <a href="mailto:privacy@podfy.net" class="v2-link">privacy@podfy.net</a><br>
               <a href="/trust#privacy" class="v2-link">Privacy policy</a><br>

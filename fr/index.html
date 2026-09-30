@@ -91,6 +91,8 @@
   </script>
 
   <script src="/assets/theme.js" defer></script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 
 <body class="v2">
@@ -189,20 +191,7 @@
       </div>
     </section>
 
-    <script>
-    /* Populate last-shipped date in stat band */
-    (function () {
-      fetch('/api/releases?limit=1')
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (d) {
-          var el = document.getElementById('v2-last-shipped-num');
-          if (!el) return;
-          var rel = d && d.releases && d.releases[0];
-          if (rel && rel.release_date) el.textContent = rel.release_date;
-        })
-        .catch(function () {});
-    })();
-    </script>
+    <script src="/assets/js/i/5cfe59094c44.js"></script>
 
     <!-- ================================================================
          PROOF STRIP, 3 distinct artifacts telling the full story:
@@ -220,7 +209,7 @@
               <p class="v2-proof-phone-brand">Trans van Dijck B.V.</p>
               <p class="v2-proof-phone-ref">REF&nbsp;&nbsp;TDV-2025-04-22-0041</p>
               <hr class="v2-receipt-hr" />
-              <p class="v2-proof-phone-ref" style="margin-top:.25rem;">Tout téléphone. Sans compte. Sans installation.</p>
+              <p class="v2-proof-phone-ref" data-u="u4b4bfd4">Tout téléphone. Sans compte. Sans installation.</p>
               <div class="v2-proof-phone-cambtn" aria-hidden="true">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="2" y="7" width="20" height="15" rx="2"/><circle cx="12" cy="14.5" r="3.5"/><path d="M16 7l-1.5-3h-5L8 7"/></svg>
                 Prendre une photo
@@ -234,33 +223,33 @@
             <div class="v2-proof-pdf-body">
 
               <!-- Letterhead row -->
-              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.5rem;">
-                <span style="font-family:var(--v2-font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--v2-muted);">PODFY</span>
-                <span style="font-family:var(--v2-font-serif);font-size:0.78rem;font-weight:600;color:var(--v2-ink);">Preuve de livraison</span>
+              <div data-u="u4aecbb9">
+                <span data-u="ucd5a51c">PODFY</span>
+                <span data-u="ucdfa6ba">Preuve de livraison</span>
               </div>
 
               <!-- Scanned-document photo area -->
-              <div style="background:var(--v2-paper-2);border:1px solid var(--v2-line);height:3.25rem;display:flex;align-items:center;justify-content:center;margin-bottom:0.6rem;" aria-hidden="true">
-                <span style="font-family:var(--v2-font-mono);font-size:0.58rem;letter-spacing:0.06em;color:var(--v2-muted);">cmr_0041.pdf &mdash; 1 page</span>
+              <div data-u="u535dc6e" aria-hidden="true">
+                <span data-u="u7060fe7">cmr_0041.pdf &mdash; 1 page</span>
               </div>
 
               <!-- 2-column metadata grid -->
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.35rem 1rem;font-family:var(--v2-font-mono);font-size:0.67rem;margin-bottom:0.6rem;">
+              <div data-u="u5d998aa">
                 <div>
-                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">GPS</span>
-                  <span style="color:var(--v2-ink-2);">52.37&deg;N &middot; 4.89&deg;E</span>
+                  <span data-u="ua70229e">GPS</span>
+                  <span data-u="ue51f8e0">52.37&deg;N &middot; 4.89&deg;E</span>
                 </div>
                 <div>
-                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">Horodatage</span>
-                  <span style="color:var(--v2-ink-2);">2025-04-22&thinsp;14:37</span>
+                  <span data-u="ua70229e">Horodatage</span>
+                  <span data-u="ue51f8e0">2025-04-22&thinsp;14:37</span>
                 </div>
                 <div>
-                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">REF</span>
-                  <span style="color:var(--v2-ink-2);">TDV-0041</span>
+                  <span data-u="ua70229e">REF</span>
+                  <span data-u="ue51f8e0">TDV-0041</span>
                 </div>
                 <div>
-                  <span style="display:block;color:var(--v2-muted);text-transform:uppercase;letter-spacing:0.06em;font-size:0.58rem;margin-bottom:0.1rem;">Empreinte</span>
-                  <span style="color:var(--v2-ink-2);">sha256:a3f4&hellip;</span>
+                  <span data-u="ua70229e">Empreinte</span>
+                  <span data-u="ue51f8e0">sha256:a3f4&hellip;</span>
                 </div>
               </div>
 
@@ -352,7 +341,7 @@
     <!-- ================================================================
          WHAT EVERY UPLOAD CONTAINS, 2×2 grid
          ================================================================ -->
-    <section class="v2-section" aria-labelledby="record-heading" style="background:var(--v2-card);border-top:1px solid var(--v2-line);border-bottom:1px solid var(--v2-line);">
+    <section class="v2-section" aria-labelledby="record-heading" data-u="ue67010d">
       <div class="container">
         <p class="v2-eyebrow">Ce que vous obtenez</p>
         <h2 class="v2-section-title" id="record-heading">Contenu de chaque preuve de livraison Podfy</h2>
@@ -380,17 +369,17 @@
     <!-- ================================================================
          MID-PAGE CTA
          ================================================================ -->
-    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Voyez-le en 30 secondes</p><p class="v2-inline-cta-text">Ouvrez le lien chauffeur sur votre téléphone, photographiez n'importe quel document, regardez le document horodaté apparaître.</p></div><div style="display:flex;flex-direction:column;gap:.6rem;align-items:flex-start;"><a href="/fr/demo" class="v2-btn v2-btn-primary">Essayer la démo &rarr;</a><a href="/fr/pricing" style="font-family:var(--v2-font-mono);font-size:.72rem;color:var(--v2-paper);opacity:.7;text-decoration:none;letter-spacing:.04em;">Voir la grille tarifaire &rarr;</a></div></div></div></div>
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Voyez-le en 30 secondes</p><p class="v2-inline-cta-text">Ouvrez le lien chauffeur sur votre téléphone, photographiez n'importe quel document, regardez le document horodaté apparaître.</p></div><div data-u="u00d6500"><a href="/fr/demo" class="v2-btn v2-btn-primary">Essayer la démo &rarr;</a><a href="/fr/pricing" data-u="u9d40210">Voir la grille tarifaire &rarr;</a></div></div></div></div>
 
     <!-- ================================================================
          SOCIAL PROOF, activate when first customer reference is confirmed
          ================================================================ -->
     <!--
     <section class="v2-section" aria-labelledby="proof-social-heading">
-      <div class="container" style="text-align:center;">
+      <div class="container" data-u="u91a8701">
         <p class="v2-eyebrow">Ils nous font confiance</p>
-        <h2 class="v2-section-title" id="proof-social-heading" style="font-size:1.2rem;">Utilisé par des équipes logistiques en Belgique et en France</h2>
-        <p style="font-size:.9rem;color:var(--v2-muted);margin-bottom:1.5rem;">Logos clients, à activer après validation</p>
+        <h2 class="v2-section-title" id="proof-social-heading" data-u="u101860a">Utilisé par des équipes logistiques en Belgique et en France</h2>
+        <p data-u="u8ef6af8">Logos clients, à activer après validation</p>
       </div>
     </section>
     -->
@@ -429,7 +418,7 @@
             <span class="v2-aud-tile-arrow">Voir la solution &rarr;</span>
           </a>
         </div>
-        <p style="margin-top:1rem;font-size:.85rem;color:var(--v2-muted);"><a href="/fr/solutions/" class="v2-link">Toutes les solutions &rarr;</a></p>
+        <p data-u="ua0347ef"><a href="/fr/solutions/" class="v2-link">Toutes les solutions &rarr;</a></p>
       </div>
     </section>
 

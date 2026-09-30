@@ -87,6 +87,8 @@
     ]
   }
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 
 <body class="v2">
@@ -109,7 +111,7 @@
             <p class="v2-hero-sub">
               Bring a reference number from your actual operations. We will run the full loop, driver upload, GPS stamp, portal view, stamped PDF, using your data.
             </p>
-            <ul class="v2-check-list" style="margin-top:1.5rem;">
+            <ul class="v2-check-list" data-u="ufc511f0">
               <li>15 minutes on a video call</li>
               <li>No slide deck, no sales pitch</li>
               <li>Live demo with a real reference</li>
@@ -173,13 +175,13 @@
 
           <div>
             <h2 class="v2-section-title" id="form-heading">Send a message</h2>
-            <p class="v2-prose" style="margin-bottom:2rem;">
+            <p class="v2-prose" data-u="uc0c75bd">
               Fill in the form and we will get back to you within one business day. If you prefer email, reach us at <a href="mailto:support@podfy.net">support@podfy.net</a>.
             </p>
 
             <!-- Success state (hidden until submit) -->
-            <div id="contact-success" role="status" aria-live="polite" style="display:none;">
-              <div class="v2-receipt" style="max-width:420px;">
+            <div id="contact-success" role="status" aria-live="polite" data-u="u6b99de8">
+              <div class="v2-receipt" data-u="u0fd8744">
                 <div class="v2-receipt-perforation"></div>
                 <div class="v2-receipt-inner">
                   <p class="v2-receipt-brand">Message sent</p>
@@ -203,7 +205,7 @@
             </div>
 
             <!-- Error banner (hidden until needed) -->
-            <div id="contact-error" role="alert" aria-live="assertive" style="display:none;margin-bottom:1rem;padding:0.875rem 1rem;background:var(--v2-bad);color:#fff;border-radius:2px;font-size:0.875rem;"></div>
+            <div id="contact-error" role="alert" aria-live="assertive" data-u="u9c0c36e"></div>
 
             <!-- Contact form -->
             <form
@@ -213,7 +215,7 @@
               aria-label="Contact form">
 
               <!-- Honeypot — hidden from real users, filled by bots -->
-              <div style="display:none;" aria-hidden="true">
+              <div data-u="u6b99de8" aria-hidden="true">
                 <label for="hp_contact">Leave this field empty</label>
                 <input type="text" id="hp_contact" name="hp_contact" tabindex="-1" autocomplete="off" />
               </div>
@@ -277,7 +279,7 @@
               </div>
 
               <!-- Turnstile -->
-              <div class="v2-field" style="margin-bottom:0.5rem;">
+              <div class="v2-field" data-u="uaee885a">
                 <input type="hidden" id="contact-turnstile-token" name="cf_turnstile_token" value="" />
                 <div
                   class="cf-turnstile"
@@ -304,7 +306,7 @@
                 </label>
               </div>
 
-              <div style="margin-top:1.5rem;">
+              <div data-u="ufc511f0">
                 <button
                   type="submit"
                   id="contact-submit"
@@ -320,7 +322,7 @@
           <!-- Right: what happens next -->
           <div>
             <h2 class="v2-section-title">What happens next</h2>
-            <div class="v2-how-grid" style="grid-template-columns:1fr;">
+            <div class="v2-how-grid" data-u="u6384e36">
               <div class="v2-how-step">
                 <p class="v2-how-step-num">01 — Reply</p>
                 <h3>We confirm within one business day</h3>
@@ -347,103 +349,6 @@
 
   [[PODFY_FOOTER]]
 
-  <script>
-    /* Turnstile callbacks */
-    function onTurnstileCompleted(token) {
-      var el = document.getElementById("contact-turnstile-token");
-      if (el) el.value = token;
-    }
-    function onTurnstileExpired() {
-      var el = document.getElementById("contact-turnstile-token");
-      if (el) el.value = "";
-    }
-    function onTurnstileError() {
-      var el = document.getElementById("contact-turnstile-token");
-      if (el) el.value = "";
-    }
-
-    /* Contact form submission */
-    document.addEventListener("DOMContentLoaded", function () {
-      var form    = document.getElementById("contact-form");
-      var submit  = document.getElementById("contact-submit");
-      var success = document.getElementById("contact-success");
-      var errBanner = document.getElementById("contact-error");
-
-      if (!form) return;
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        /* Clear previous error */
-        errBanner.style.display = "none";
-        errBanner.textContent = "";
-
-        /* HTML5 validation */
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-
-        /* Turnstile token check */
-        var token = document.getElementById("contact-turnstile-token").value;
-        if (!token) {
-          showError("Please complete the security check before submitting.");
-          return;
-        }
-
-        /* Collect fields */
-        var data = {
-          name:               (form.querySelector("#contact-name").value || "").trim(),
-          email:              (form.querySelector("#contact-email").value || "").trim(),
-          company:            (form.querySelector("#contact-company").value || "").trim(),
-          sector:             (form.querySelector("#contact-sector").value || "").trim(),
-          message:            (form.querySelector("#contact-message").value || "").trim(),
-          consent:            form.querySelector("#contact-consent").checked,
-          hp_contact:         (form.querySelector("#hp_contact").value || "").trim(),
-          cf_turnstile_token: token,
-        };
-
-        /* Disable submit while in-flight */
-        submit.disabled = true;
-        submit.textContent = "Sending\u2026";
-
-        fetch("/api/contact", {
-          method:  "POST",
-          headers: { "Content-Type": "application/json" },
-          body:    JSON.stringify(data),
-        })
-          .then(function (r) { return r.json(); })
-          .then(function (res) {
-            if (res.ok) {
-              form.style.display = "none";
-              var emailEl = document.getElementById("contact-success-email");
-              if (emailEl) emailEl.textContent = data.email;
-              success.style.display = "block";
-            } else {
-              showError(res.error || "Something went wrong. Please try again.");
-              resetSubmit();
-              if (window.turnstile && typeof window.turnstile.reset === "function") {
-                window.turnstile.reset();
-              }
-            }
-          })
-          .catch(function () {
-            showError("Network error. Please check your connection and try again.");
-            resetSubmit();
-          });
-      });
-
-      function showError(msg) {
-        errBanner.textContent = msg;
-        errBanner.style.display = "block";
-        errBanner.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }
-
-      function resetSubmit() {
-        submit.disabled = false;
-        submit.textContent = "Send message \u2192";
-      }
-    });
-  </script>
+  <script src="/assets/js/i/bfbc29a58d09.js"></script>
 </body>
 </html>

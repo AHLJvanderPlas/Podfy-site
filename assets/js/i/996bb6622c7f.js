@@ -1,0 +1,46 @@
+
+    // Reading progress
+    window.addEventListener('scroll', () => {
+      const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const el = document.getElementById('v2-progress');
+      if (el) el.style.width = Math.min(p * 100, 100) + '%';
+    });
+    // TOC scroll spy
+    const pills = document.querySelectorAll('.v2-toc-pill');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          pills.forEach(p => p.classList.remove('active'));
+          const active = document.querySelector('.v2-toc-pill[href="#' + e.target.id + '"]');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+    // FAQ accordion
+    document.querySelectorAll('.v2-faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.v2-faq-acc-item');
+        item.classList.toggle('open');
+      });
+    });
+    // Subscribe
+    async function handleSubscribe(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.querySelector('[name=email]').value;
+      const msg = document.getElementById('subscribe-msg');
+      try {
+        const r = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email, hp_sub: '' })
+        });
+        const d = await r.json();
+        msg.style.display = 'block';
+        msg.textContent = d.ok ? 'Subscribed. Thank you!' : (d.error || 'Something went wrong.');
+        msg.style.color = d.ok ? 'var(--v2-delivered)' : 'var(--v2-stamp)';
+        if (d.ok) form.reset();
+      } catch { msg.style.display = 'block'; msg.textContent = 'Could not subscribe right now.'; }
+    }
+  

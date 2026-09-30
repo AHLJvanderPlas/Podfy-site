@@ -73,6 +73,8 @@
     ]
   }
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 
 <body class="v2">
@@ -81,15 +83,15 @@
 
   <main id="main" class="v2-main">
 
-    <section class="v2-section" style="padding-top:3rem;" aria-labelledby="changelog-heading">
+    <section class="v2-section" data-u="u72f4401" aria-labelledby="changelog-heading">
       <div class="container">
 
         <!-- Header row -->
-        <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+        <div data-u="uc4a019f">
           <div>
             <p class="v2-eyebrow">What shipped</p>
-            <h1 class="v2-section-title" id="changelog-heading" style="margin-bottom:0.25rem;">Changelog</h1>
-            <p id="changelog-meta" style="font-family:var(--v2-font-mono);font-size:0.75rem;color:var(--v2-muted);margin:0;">Loading&hellip;</p>
+            <h1 class="v2-section-title" id="changelog-heading" data-u="ud738954">Changelog</h1>
+            <p id="changelog-meta" data-u="u87beac6">Loading&hellip;</p>
           </div>
           <a href="/changelog.rss" class="v2-changelog-rss" aria-label="RSS feed for PODFY changelog">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -109,20 +111,20 @@
           autocomplete="off" />
 
         <!-- Loading / empty / error states -->
-        <p id="changelog-loading" style="font-size:0.875rem;color:var(--v2-muted);">Fetching releases&hellip;</p>
-        <p id="changelog-empty" style="display:none;font-size:0.875rem;color:var(--v2-muted);">No releases match your search.</p>
-        <p id="changelog-error" role="alert" style="display:none;font-size:0.875rem;color:var(--v2-bad);">Unable to load changelog. Please refresh.</p>
+        <p id="changelog-loading" data-u="u1862960">Fetching releases&hellip;</p>
+        <p id="changelog-empty" data-u="u10c7edd">No releases match your search.</p>
+        <p id="changelog-error" role="alert" data-u="u391bdec">Unable to load changelog. Please refresh.</p>
 
         <!-- Entries rendered here -->
         <div id="changelog-entries"></div>
 
         <!-- Pagination -->
-        <div class="v2-changelog-pagination" id="changelog-pagination" style="display:none;">
-          <button id="changelog-prev" type="button" class="v2-btn v2-btn-ghost" style="font-size:0.83rem;padding:0.4rem 0.9rem;">
+        <div class="v2-changelog-pagination" id="changelog-pagination" data-u="u6b99de8">
+          <button id="changelog-prev" type="button" class="v2-btn v2-btn-ghost" data-u="u8f360c3">
             &larr; Previous
           </button>
-          <span id="changelog-page-info" style="font-family:var(--v2-font-mono);font-size:0.75rem;color:var(--v2-muted);"></span>
-          <button id="changelog-next" type="button" class="v2-btn v2-btn-ghost" style="font-size:0.83rem;padding:0.4rem 0.9rem;">
+          <span id="changelog-page-info" data-u="u359e364"></span>
+          <button id="changelog-next" type="button" class="v2-btn v2-btn-ghost" data-u="u8f360c3">
             Next &rarr;
           </button>
         </div>
@@ -133,15 +135,15 @@
     <!-- ── New to Podfy? callout ────────────────────────────────────────── -->
     <section class="v2-section" aria-label="New to Podfy">
       <div class="container">
-        <div class="v2-inline-cta" style="border-radius:var(--v2-radius);overflow:hidden;">
-          <div class="v2-inline-cta-inner" style="padding:1.5rem 2rem;">
+        <div class="v2-inline-cta" data-u="u2a5301c">
+          <div class="v2-inline-cta-inner" data-u="u069b6cb">
             <div>
               <p class="v2-inline-cta-label">New to Podfy?</p>
               <p class="v2-inline-cta-text">See what the product does and how it fits your operation before reading the release history.</p>
             </div>
-            <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+            <div data-u="u64a5ac9">
               <a href="/demo" class="v2-btn v2-btn-primary">Try the demo &rarr;</a>
-              <a href="/solutions/" class="v2-btn v2-btn-ghost" style="color:var(--v2-paper);border-color:rgba(255,255,255,.3);">See solutions</a>
+              <a href="/solutions/" class="v2-btn v2-btn-ghost" data-u="u01ac629">See solutions</a>
             </div>
           </div>
         </div>
@@ -149,15 +151,15 @@
     </section>
 
     <!-- ── Changelog subscription ──────────────────────────────────────── -->
-    <section class="v2-section" aria-labelledby="sub-heading" style="border-top:1px solid var(--v2-border);padding-top:2.5rem;padding-bottom:3rem;">
-      <div class="container" style="max-width:36rem;">
+    <section class="v2-section" aria-labelledby="sub-heading" data-u="u74495c4">
+      <div class="container" data-u="u6389919">
         <p class="v2-eyebrow">Stay in the loop</p>
-        <h2 class="v2-section-title" id="sub-heading" style="font-size:1.4rem;margin-bottom:.5rem;">Get notified of new releases</h2>
-        <p style="font-size:.9rem;color:var(--v2-muted);margin-bottom:1.5rem;">One email per release. No marketing, no newsletters. Unsubscribe any time.</p>
+        <h2 class="v2-section-title" id="sub-heading" data-u="u279ac6b">Get notified of new releases</h2>
+        <p data-u="u8ef6af8">One email per release. No marketing, no newsletters. Unsubscribe any time.</p>
 
         <!-- Success state (hidden until confirmed) -->
-        <div id="sub-success" style="display:none;">
-          <div class="v2-receipt" style="max-width:22rem;">
+        <div id="sub-success" data-u="u6b99de8">
+          <div class="v2-receipt" data-u="u656270c">
             <div class="v2-receipt-perforation"></div>
             <div class="v2-receipt-inner">
               <p class="v2-receipt-brand">PODFY Changelog</p>
@@ -174,21 +176,21 @@
         </div>
 
         <!-- Error banner -->
-        <p id="sub-error" role="alert" style="display:none;font-size:.875rem;color:var(--v2-bad);margin-bottom:1rem;"></p>
+        <p id="sub-error" role="alert" data-u="ue53daab"></p>
 
         <!-- Form -->
         <form id="sub-form" class="v2-form" novalidate>
           <!-- Honeypot -->
           <input type="text" name="hp_sub" id="hp_sub" autocomplete="off" tabindex="-1" aria-hidden="true"
-            style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" />
+            data-u="u7a90858" />
           <input type="hidden" id="sub-turnstile-token" name="cf_turnstile_token" value="" />
 
-          <div class="v2-form-row" style="display:flex;gap:.75rem;flex-wrap:wrap;">
-            <div class="v2-form-group" style="flex:1;min-width:10rem;">
-              <label class="v2-form-label" for="sub-name">Name <span style="color:var(--v2-muted);font-weight:400;">(optional)</span></label>
+          <div class="v2-form-row" data-u="u64a5ac9">
+            <div class="v2-form-group" data-u="u3e8f867">
+              <label class="v2-form-label" for="sub-name">Name <span data-u="u3fbb64c">(optional)</span></label>
               <input type="text" id="sub-name" name="name" class="v2-form-input" autocomplete="name" placeholder="Jan de Vries" />
             </div>
-            <div class="v2-form-group" style="flex:2;min-width:14rem;">
+            <div class="v2-form-group" data-u="ub21d6eb">
               <label class="v2-form-label" for="sub-email">Email address</label>
               <input type="email" id="sub-email" name="email" class="v2-form-input" autocomplete="email" placeholder="jan@carrier.nl" required />
             </div>
@@ -199,7 +201,7 @@
             data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
             data-callback="onSubTurnstileCompleted"
             data-theme="auto"
-            style="margin:.75rem 0;"></div>
+            data-u="uaa3d7e6"></div>
 
           <button type="submit" id="sub-btn" class="v2-btn v2-btn-primary" disabled>
             Yes please &rarr;
@@ -215,237 +217,8 @@
 
   [[PODFY_FOOTER]]
 
-  <script>
-  /* Subscription form */
-  (function () {
-    function onSubTurnstileCompleted(token) {
-      var el = document.getElementById("sub-turnstile-token");
-      if (el) el.value = token;
-      var btn = document.getElementById("sub-btn");
-      if (btn) btn.disabled = false;
-    }
-    window.onSubTurnstileCompleted = onSubTurnstileCompleted;
+  <script src="/assets/js/i/afeb72a7c16e.js"></script>
 
-    var form    = document.getElementById("sub-form");
-    var btn     = document.getElementById("sub-btn");
-    var errorEl = document.getElementById("sub-error");
-    var success = document.getElementById("sub-success");
-
-    if (!form) return;
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var email = (document.getElementById("sub-email") || {}).value || "";
-      var name  = (document.getElementById("sub-name")  || {}).value || "";
-      var token = (document.getElementById("sub-turnstile-token") || {}).value || "";
-      var hp    = (document.getElementById("hp_sub") || {}).value || "";
-
-      if (!email) {
-        showError("Please enter your email address.");
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = "Sending\u2026";
-      if (errorEl) errorEl.style.display = "none";
-
-      fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name, email: email, hp_sub: hp, cf_turnstile_token: token }),
-      })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          if (data.ok) {
-            form.style.display = "none";
-            if (success) success.style.display = "block";
-          } else {
-            showError(data.error || "Something went wrong. Please try again.");
-            btn.disabled = false;
-            btn.textContent = "Yes please \u2192";
-          }
-        })
-        .catch(function () {
-          showError("Unable to subscribe right now. Please try again.");
-          btn.disabled = false;
-          btn.textContent = "Yes please \u2192";
-        });
-    });
-
-    function showError(msg) {
-      if (errorEl) {
-        errorEl.textContent = msg;
-        errorEl.style.display = "block";
-      }
-    }
-  })();
-  </script>
-
-  <script>
-  (function () {
-    var API = "/api/releases";
-    var PAGE_SIZE = 20;
-
-    var allEntries = [];
-    var totalEntries = 0;
-    var currentPage = 1;
-    var totalPages = 1;
-    var currentFilter = "";
-
-    var loadingEl  = document.getElementById("changelog-loading");
-    var emptyEl    = document.getElementById("changelog-empty");
-    var errorEl    = document.getElementById("changelog-error");
-    var metaEl     = document.getElementById("changelog-meta");
-    var entriesEl  = document.getElementById("changelog-entries");
-    var searchEl   = document.getElementById("changelog-search");
-    var paginEl    = document.getElementById("changelog-pagination");
-    var prevBtn    = document.getElementById("changelog-prev");
-    var nextBtn    = document.getElementById("changelog-next");
-    var pageInfoEl = document.getElementById("changelog-page-info");
-
-    function esc(str) {
-      return String(str || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    function toListItems(text) {
-      if (!text) return "";
-      return text
-        .split(/\r?\n/)
-        .map(function (l) { return l.trim(); })
-        .filter(Boolean)
-        .map(function (l) { return "<li>" + esc(l) + "</li>"; })
-        .join("");
-    }
-
-    function tagsFrom(str) {
-      if (!str) return [];
-      return str.split(",").map(function (t) { return t.trim(); }).filter(Boolean);
-    }
-
-    function renderEntries(list) {
-      if (!list.length) {
-        entriesEl.innerHTML = "";
-        return;
-      }
-
-      entriesEl.innerHTML = list.map(function (r) {
-        var tags = tagsFrom(r.area_tags);
-        var tagsHtml = tags.map(function (t) {
-          return '<span class="v2-changelog-tag">' + esc(t) + "</span>";
-        }).join(" ");
-
-        var newItems = toListItems(r.new_features);
-        var fixItems = toListItems(r.fixes);
-
-        var newCol = newItems
-          ? '<div class="v2-changelog-col"><p class="v2-changelog-col-label">New</p><ul>' + newItems + "</ul></div>"
-          : "";
-        var fixCol = fixItems
-          ? '<div class="v2-changelog-col"><p class="v2-changelog-col-label">Fixes</p><ul>' + fixItems + "</ul></div>"
-          : "";
-
-        var bodyHtml = (newCol || fixCol)
-          ? '<div class="v2-changelog-body">' + newCol + fixCol + "</div>"
-          : "";
-
-        var buildRef = r.deployment_ref
-          ? ' &middot; Build: <span style="opacity:.7">' + esc(r.deployment_ref) + "</span>"
-          : "";
-
-        return [
-          '<article class="v2-changelog-entry" id="v-' + esc(r.version || "").replace(/[^0-9a-z]/gi, "-") + '">',
-            '<div class="v2-changelog-meta">',
-              '<span class="v2-changelog-date">' + esc(r.release_date || "") + '</span>',
-              r.version ? '<span class="v2-changelog-version">' + esc(r.version) + '</span>' : "",
-              tagsHtml,
-              '<span style="font-family:var(--v2-font-mono);font-size:0.72rem;color:var(--v2-muted);">' + buildRef + "</span>",
-            '</div>',
-            bodyHtml,
-          '</article>'
-        ].join("");
-      }).join("");
-    }
-
-    function updatePagination() {
-      if (!paginEl) return;
-      if (totalEntries <= PAGE_SIZE && currentPage === 1) {
-        paginEl.style.display = "none";
-        return;
-      }
-      paginEl.style.display = "flex";
-      if (pageInfoEl) pageInfoEl.textContent = "Page " + currentPage + " of " + (totalPages || 1);
-      if (prevBtn) prevBtn.disabled = currentPage <= 1;
-      if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
-    }
-
-    function applyFilter(filter) {
-      filter = (typeof filter === "string" ? filter : currentFilter).toLowerCase().trim();
-      currentFilter = filter;
-
-      var filtered = allEntries.filter(function (r) {
-        if (!filter) return true;
-        var blob = [r.version, r.release_date, r.deployment_ref, r.fixes, r.new_features, r.area_tags]
-          .join(" ").toLowerCase();
-        return blob.indexOf(filter) !== -1;
-      });
-
-      loadingEl.style.display = "none";
-
-      if (!filtered.length) {
-        emptyEl.style.display = "block";
-        entriesEl.innerHTML = "";
-        if (metaEl) metaEl.textContent = "No results on page " + currentPage + " of " + (totalPages || 1) + ".";
-        updatePagination();
-        return;
-      }
-
-      emptyEl.style.display = "none";
-      if (metaEl) metaEl.textContent = filtered.length + " of " + totalEntries + " releases (page " + currentPage + " of " + (totalPages || 1) + ")";
-
-      renderEntries(filtered);
-      updatePagination();
-    }
-
-    function loadPage(page) {
-      currentPage = page || 1;
-      loadingEl.style.display = "block";
-      emptyEl.style.display = "none";
-      errorEl.style.display = "none";
-      entriesEl.innerHTML = "";
-
-      fetch(API + "?page=" + currentPage + "&pageSize=" + PAGE_SIZE)
-        .then(function (res) {
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          return res.json();
-        })
-        .then(function (data) {
-          allEntries = data.items || [];
-          totalEntries = data.total || allEntries.length;
-          totalPages = data.totalPages || 1;
-          currentPage = data.page || currentPage;
-          applyFilter(currentFilter);
-        })
-        .catch(function () {
-          loadingEl.style.display = "none";
-          errorEl.style.display = "block";
-          if (metaEl) metaEl.textContent = "Unable to load.";
-        });
-    }
-
-    if (searchEl) {
-      searchEl.addEventListener("input", function () {
-        applyFilter(searchEl.value || "");
-      });
-    }
-    if (prevBtn) prevBtn.addEventListener("click", function () { if (currentPage > 1) loadPage(currentPage - 1); });
-    if (nextBtn) nextBtn.addEventListener("click", function () { if (currentPage < totalPages) loadPage(currentPage + 1); });
-
-    loadPage(1);
-  })();
-  </script>
+  <script src="/assets/js/i/053284406025.js"></script>
 </body>
 </html>

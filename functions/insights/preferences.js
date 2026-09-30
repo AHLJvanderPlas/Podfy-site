@@ -7,9 +7,11 @@ const FREQS = ["daily", "weekly"];
 const page = (title, body, status = 200) =>
   new Response(
     `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-     <title>${title} | PODFY</title></head>
-     <body style="font-family:Inter,sans-serif;max-width:480px;margin:80px auto;padding:0 20px;color:#0E1116">
-       ${body}<p style="margin-top:32px"><a href="/insights" style="color:#D24A1F">&larr; Podfy Insights</a></p>
+     <title>${title} | PODFY</title><link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
+</head>
+     <body data-u="u3b9edc4">
+       ${body}<p data-u="uc2f8546"><a href="/insights" data-u="ubed270b">&larr; Podfy Insights</a></p>
      </body></html>`,
     { status, headers: { "content-type": "text/html; charset=utf-8" } });
 
@@ -25,19 +27,19 @@ function form(row, token, msg = "") {
   const langOpts = { en: "English", nl: "Nederlands", de: "Deutsch", fr: "Fran\u00e7ais" };
   return `
     <h2>Newsletter preferences</h2>
-    ${msg ? `<p style="color:#1F6B47">${msg}</p>` : ""}
+    ${msg ? `<p data-u="u125cd04">${msg}</p>` : ""}
     <form method="POST">
-      <label style="display:block;margin:14px 0 4px;font-weight:600">Language</label>
-      <select name="lang" style="padding:8px;width:100%">${LANGS.map(l =>
+      <label data-u="u34deb0b">Language</label>
+      <select name="lang" data-u="u8042cf1">${LANGS.map(l =>
         `<option value="${l}"${row.newsletter_lang === l ? " selected" : ""}>${langOpts[l]}</option>`).join("")}</select>
-      <label style="display:block;margin:14px 0 4px;font-weight:600">Frequency</label>
-      <select name="freq" style="padding:8px;width:100%">
+      <label data-u="u34deb0b">Frequency</label>
+      <select name="freq" data-u="u8042cf1">
         <option value="weekly"${row.newsletter_frequency !== "daily" ? " selected" : ""}>Weekly digest (Monday)</option>
         <option value="daily"${row.newsletter_frequency === "daily" ? " selected" : ""}>Every new article (max 1/day)</option>
       </select>
-      <button type="submit" style="margin-top:18px;background:#0E1116;color:#fff;border:0;padding:10px 22px;border-radius:4px;cursor:pointer">Save</button>
+      <button type="submit" data-u="u077af55">Save</button>
     </form>
-    <p style="margin-top:22px;font-size:13px"><a href="/insights/unsubscribe?token=${encodeURIComponent(token)}" style="color:#888">Unsubscribe from all updates</a></p>`;
+    <p data-u="u81fe22b"><a href="/insights/unsubscribe?token=${encodeURIComponent(token)}" data-u="u8b490eb">Unsubscribe from all updates</a></p>`;
 }
 
 export async function onRequestGet(context) {

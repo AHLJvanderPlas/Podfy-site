@@ -108,6 +108,8 @@
     ]
   }
   </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 
 <body class="v2">
@@ -183,7 +185,7 @@
     <section class="v2-section" aria-labelledby="rate-card-heading" id="rate-card">
       <div class="container">
         <h2 class="v2-section-title" id="rate-card-heading">Tarifkarte</h2>
-        <p class="v2-prose" style="margin-bottom:0;">
+        <p class="v2-prose" data-u="uef0b7a1">
           Alle Preise sind indikativ und verstehen sich zuzüglich MwSt. Mengenrabatte sind verfügbar, geben Sie beim Kontakt Ihr monatliches POD-Volumen an.
         </p>
 
@@ -316,7 +318,7 @@
           </table>
         </div>
 
-        <p class="v2-prose" style="margin-top:1rem;font-size:0.83rem;background:var(--v2-surface);border:1px solid var(--v2-border);border-radius:4px;padding:0.875rem 1rem;">
+        <p class="v2-prose" data-u="u6f03086">
           <strong>Warum 10 Jahre beim Pro-Tarif?</strong> Die GoBD (Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern) schreibt für Handelsdokumente, darunter Frachtbriefe und Liefernachweise, eine Aufbewahrungsfrist von 10 Jahren vor (§ 147 AO, § 257 HGB). Der Pro-Tarif erfüllt diese Anforderung ohne Aufpreis, sodass Sie die GoBD-Konformität ohne zusätzliche Erweiterungen nachweisen können.
         </p>
       </div>
@@ -328,7 +330,7 @@
         <div class="v2-two-col">
           <div>
             <h2 class="v2-section-title" id="addons-heading">Erweiterungen</h2>
-            <p class="v2-prose" style="margin-bottom:1rem;">
+            <p class="v2-prose" data-u="u363cdaa">
               Erweiterungen ergänzen Ihren Tarif. CMR wird pro Frachtbrief berechnet; Aufbewahrungs-Erweiterungen sind pro POD. Höhere Tarife schließen bestimmte Erweiterungen ein, siehe Tarifkarte oben.
             </p>
 
@@ -381,7 +383,7 @@
     <section class="v2-section" aria-labelledby="examples-heading" id="examples">
       <div class="container">
         <h2 class="v2-section-title" id="examples-heading">Rechenbeispiele</h2>
-        <p class="v2-prose" style="margin-bottom:0;">
+        <p class="v2-prose" data-u="uef0b7a1">
           Dies sind indikative Kosten. Tatsächliche Preise hängen von Volumen und Konfiguration ab. Nehmen Sie Kontakt auf für ein auf Ihre Operation zugeschnittenes Angebot.
         </p>
 
@@ -415,7 +417,7 @@
           </div>
         </div>
 
-        <p class="v2-prose" style="margin-top:1rem;font-size:0.83rem;">
+        <p class="v2-prose" data-u="u52d0440">
           Alle Beispiele verstehen sich zuzüglich MwSt. Mengenrabatte senken den Preis pro POD bei höheren Volumen. Der Enterprise-Tarif beinhaltet vertraglich ausgehandelte Volumenpreise.
         </p>
       </div>
@@ -466,7 +468,7 @@
       <div class="container">
         <p class="v2-eyebrow">Passende Lösung finden</p>
         <h2 class="v2-section-title" id="fit-heading">Preise für jeden Betrieb</h2>
-        <p class="v2-prose" style="margin-bottom:1.5rem;">Das POD-Modell funktioniert je nach Ihrer Rolle unterschiedlich. Sehen Sie, wie es auf Ihren Betrieb zutrifft.</p>
+        <p class="v2-prose" data-u="u561f378">Das POD-Modell funktioniert je nach Ihrer Rolle unterschiedlich. Sehen Sie, wie es auf Ihren Betrieb zutrifft.</p>
         <div class="v2-sol-grid">
           <a class="v2-sol-tile" href="/de/solutions/carriers/"><p class="v2-sol-tile-industry">Transport</p><p class="v2-sol-tile-name">Spediteure</p><span class="v2-sol-tile-arrow">Lösung ansehen &rarr;</span></a>
           <a class="v2-sol-tile" href="/de/solutions/3pl/"><p class="v2-sol-tile-industry">Logistik</p><p class="v2-sol-tile-name">3PL</p><span class="v2-sol-tile-arrow">Lösung ansehen &rarr;</span></a>
@@ -497,25 +499,6 @@
 
   <script src="/assets/advisor.js" defer></script>
 
-  <script>
-  /* Dynamic pricing — fills [data-price-key] spans from /api/pricing */
-  (function () {
-    function fmtPrice(n) {
-      return '\u20ac' + Number(n).toLocaleString('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-    fetch('/api/pricing')
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) {
-        if (!data || !data.items) return;
-        var map = {};
-        data.items.forEach(function (row) { map[row.plan_name.toLowerCase()] = row.default_price; });
-        document.querySelectorAll('[data-price-key]').forEach(function (el) {
-          var key = (el.getAttribute('data-price-key') || '').toLowerCase();
-          if (key in map) el.textContent = fmtPrice(map[key]);
-        });
-      })
-      .catch(function () { /* fallback text remains */ });
-  })();
-  </script>
+  <script src="/assets/js/i/6576df83fce6.js"></script>
 </body>
 </html>
