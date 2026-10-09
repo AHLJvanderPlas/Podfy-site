@@ -361,8 +361,8 @@ Sticky, `z-index: 40`, `border-bottom: 1px solid var(--v2-line)`.
 
   <div class="site-footer-bottom-bar">
     <p class="site-footer-company">
-      PODFY &nbsp;&middot;&nbsp; KVK 83714200 &nbsp;&middot;&nbsp; VAT NL862966851B01
-      &nbsp;&middot;&nbsp; Van Weede van Dijkveldstraat 25, 2582KP 's-Gravenhage, NL
+      PODFY (Lake-Project) &nbsp;&middot;&nbsp; KVK 29816688 &nbsp;&middot;&nbsp; VAT NL001170142B85
+      &nbsp;&middot;&nbsp; Rodenrijselaan 10A, 3037 XE Rotterdam, NL
       &nbsp;&middot;&nbsp; GDPR: <a href="mailto:support@podfy.net">support@podfy.net</a>
     </p>
     <p class="site-footer-copy">

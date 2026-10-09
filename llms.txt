@@ -106,7 +106,7 @@ continuously. GPS is captured only at the moment of camera upload.
 - Drivers need no account, no app, no installation. A browser link is the entire interface.
 - Documents are stored in Cloudflare's EU jurisdiction (EU data centres only). Cloudflare is a US company; a GDPR DPA with SCCs is available on request.
 - CMR generation is €0.35 per waybill, available on all plans, included in Pro and Enterprise.
-- PODFY was founded in 2021 in The Hague, Netherlands. KVK: 83714200. VAT: NL862966851B01.
+- PODFY was founded in 2021 in The Hague, Netherlands. PODFY is a trade name of Lake-Project, Rodenrijselaan 10A, 3037 XE Rotterdam. KVK: 29816688. VAT: NL001170142B85.
 - A live demo requires no account or sign-up: https://podfy.net/demo
 - The website is available in English, Dutch, German, and French.
 - Comparison with free scan apps (CamScanner, Adobe Scan, Genius Scan): https://podfy.net/vs-scan-apps/
@@ -118,8 +118,9 @@ Full company information: https://podfy.net/about (Dutch: https://podfy.net/nl/a
 ## Company
 
 - Website: https://podfy.net
-- KVK: 83714200
-- VAT: NL862966851B01
-- Address: Van Weede van Dijkveldstraat 25, 2582KP 's-Gravenhage, Netherlands
+- Legal entity: Lake-Project (trading as PODFY)
+- KVK: 29816688
+- VAT: NL001170142B85
+- Address: Rodenrijselaan 10A, 3037 XE Rotterdam, Netherlands
 - Support: support@podfy.net
 - GDPR / Privacy: privacy@podfy.net
