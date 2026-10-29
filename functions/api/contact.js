@@ -34,11 +34,18 @@ export const onRequestPost = async (context) => {
       email = "",
       company = "",
       sector = "",
-      message = "",
+      message: rawMessage = "",
+      asset_count = "",
       consent,
       hp_contact = "",
       cf_turnstile_token = "",
     } = body;
+
+    // PODFY Report leads: optional machine/site count travels with the message (no schema change)
+    const assets = Number.parseInt(String(asset_count || "").trim(), 10);
+    const message = Number.isFinite(assets) && assets > 0 && assets <= 1000000
+      ? `${String(rawMessage)}\n\nApprox. number of machines/sites: ${assets}`
+      : String(rawMessage);
 
     // Honeypot check (bot trap)
     if (hp_contact && hp_contact.trim().length > 0) {

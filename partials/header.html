@@ -10,7 +10,32 @@
     <!-- Desktop nav: Demo · Solutions · Guides · Insights · Pricing · Contact -->
     <nav id="primaryNav" class="site-nav" aria-label="Primary navigation">
       <a href="/demo">Demo</a>
-      <a href="/solutions/">Solutions</a>
+      <div class="site-nav-group">
+        <button type="button" class="site-nav-trigger" id="solutionsBtn" aria-expanded="false" aria-controls="solutionsMenu">Solutions</button>
+        <div class="site-subnav" id="solutionsMenu" hidden>
+          <div class="site-subnav-col">
+            <p class="site-subnav-head">PODFY Delivery</p>
+            <a class="site-subnav-main" href="/solutions/">Proof of delivery</a>
+            <a href="/solutions/carriers/">Carriers</a>
+            <a href="/solutions/3pl/">3PL and fulfilment</a>
+            <a href="/solutions/shippers/">Shippers</a>
+            <a href="/solutions/retail/">Retail</a>
+            <a href="/solutions/construction/">Construction</a>
+            <a href="/solutions/facilities/">Facilities</a>
+            <a href="/solutions/inbound/">Inbound receiving</a>
+            <a href="/solutions/digitize/">Paper to digital</a>
+            <a href="/cmr/">CMR generator</a>
+          </div>
+          <div class="site-subnav-col">
+            <p class="site-subnav-head">PODFY Report <span class="v2-badge-preview">Preview</span></p>
+            <a class="site-subnav-main" href="/solutions/qr-issue-reporting/">QR issue reporting</a>
+            <a href="/solutions/qr-issue-reporting/ev-chargers/">EV chargers</a>
+            <a href="/solutions/qr-issue-reporting/vending-machines/">Vending machines</a>
+            <a href="/solutions/qr-issue-reporting/coffee-machines/">Coffee machines</a>
+            <a href="/solutions/qr-issue-reporting/remote-equipment/">Remote equipment</a>
+          </div>
+        </div>
+      </div>
       <a href="/guides/">Guides</a>
       <a href="/insights/">Insights</a>
       <a href="/pricing">Pricing</a>
@@ -75,6 +100,13 @@
   <nav id="mobileNav" class="site-mobile-nav" aria-label="Mobile navigation">
     <a href="/demo">Demo</a>
     <a href="/solutions/">Solutions</a>
+    <div class="site-mobile-sub">
+      <span class="site-mobile-sub-head">PODFY Delivery</span>
+      <a href="/solutions/">Proof of delivery</a>
+      <a href="/cmr/">CMR generator</a>
+      <span class="site-mobile-sub-head">PODFY Report · Preview</span>
+      <a href="/solutions/qr-issue-reporting/">QR issue reporting</a>
+    </div>
     <a href="/guides/">Guides</a>
     <a href="/insights/">Insights</a>
     <a href="/pricing">Pricing</a>
@@ -83,4 +115,5 @@
   </nav>
 
   <script src="/assets/js/i/d022f0e50504.js"></script>
+  <script src="/assets/js/i/6d42b945d751.js"></script>
 </header>

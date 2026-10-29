@@ -24,7 +24,7 @@
   <link rel="alternate" hreflang="de"        href="https://podfy.net/de/solutions/carriers/" />
   <link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/solutions/carriers/" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/solutions/carriers/" />
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r1" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r3" />
   <script src="/assets/theme.js" defer></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -38,13 +38,13 @@
     {"@type":"Question","name":"Qu'est-ce que la preuve de livraison pour les transporteurs ?","acceptedAnswer":{"@type":"Answer","text":"La preuve de livraison (POD) pour les transporteurs est le document confirmant qu'un envoi a été livré à la bonne adresse, au bon moment et en bon état. C'est la pièce principale utilisée pour résoudre les litiges, faire approuver les factures de transport et satisfaire aux exigences documentaires des donneurs d'ordre."}},
     {"@type":"Question","name":"Podfy fonctionne-t-il pour les chauffeurs sous-traitants ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Podfy fonctionne par lien — les chauffeurs ouvrent une URL sur n'importe quel smartphone, prennent une photo, et l'enregistrement horodaté GPS apparaît instantanément dans le portail. Aucune installation d'application ni de compte n'est nécessaire, ce qui fonctionne aussi bien pour les chauffeurs salariés que pour les sous-traitants utilisant leur propre téléphone."}},
     {"@type":"Question","name":"En combien de temps la photo de livraison apparaît-elle dans le portail Podfy ?","acceptedAnswer":{"@type":"Answer","text":"La photo horodatée GPS apparaît dans le portail quelques secondes après le téléversement par le chauffeur. Les équipes d'exploitation peuvent consulter l'enregistrement en temps réel, avant que le chauffeur n'atteigne son prochain arrêt."}},
-    {"@type":"Question","name":"Podfy peut-il être ajouté aux flux de dispatch existants sans intégration système ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Les liens Podfy sont générés par envoi via le portail, l'API ou un lot CSV, et peuvent être inclus dans WhatsApp, des SMS ou imprimés en tant que codes QR sur les lettres de voiture. Aucune intégration TMS ou système de dispatch n'est requise."}},
+    {"@type":"Question","name":"Podfy peut-il être ajouté aux flux de dispatch existants sans intégration système ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Les liens Podfy contiennent la référence d'envoi (ajoutée à votre lien Podfy, ou imprimée en carte QR depuis le portail), et peuvent être inclus dans WhatsApp, des SMS ou imprimés en tant que codes QR sur les lettres de voiture. Aucune intégration TMS ou système de dispatch n'est requise."}},
     {"@type":"Question","name":"Comment fonctionne la copie automatique pour le chauffeur dans le cadre du POD transporteur ?","acceptedAnswer":{"@type":"Answer","text":"Si le chauffeur saisit son e-mail lors du téléversement, il reçoit automatiquement une confirmation PDF personnalisée de la livraison. Les chauffeurs peuvent également consulter l'historique complet de leurs livraisons via un lien magique sur delivery.podfy.net."}}
   ]}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"HowTo","name":"Comment configurer la preuve de livraison GPS pour les transporteurs","step":[
-    {"@type":"HowToStep","position":1,"name":"Générer le lien de téléversement","text":"Créez un lien de téléversement Podfy pour la référence d'envoi via le portail, l'API ou un CSV en lot. Le lien encode automatiquement le numéro de bon de commande, l'itinéraire ou la référence CMR."},
+    {"@type":"HowToStep","position":1,"name":"Générer le lien de téléversement","text":"Créez un lien de téléversement Podfy pour la référence d'envoi en l'ajoutant à votre lien Podfy, ou via une carte QR depuis le portail. Le lien encode automatiquement le numéro de bon de commande, l'itinéraire ou la référence CMR."},
     {"@type":"HowToStep","position":2,"name":"Envoyer au chauffeur","text":"Incluez le lien dans le message de dispatch — WhatsApp, SMS ou imprimé sur la lettre de voiture sous forme de code QR. Aucun système supplémentaire ni étape de dispatch additionnelle n'est requise."},
     {"@type":"HowToStep","position":3,"name":"Le chauffeur téléverse à la livraison","text":"Le chauffeur ouvre le lien sur n'importe quel téléphone, photographie la CMR ou le point de livraison. La position GPS et l'horodatage sont capturés automatiquement en moins de 30 secondes."},
     {"@type":"HowToStep","position":4,"name":"L'enregistrement apparaît dans le portail","text":"La photo et les données GPS apparaissent immédiatement dans votre portail Podfy, consultables par référence, date, itinéraire ou chauffeur. Exportables en PDF pour soumission au donneur d'ordre ou audit."},
@@ -100,7 +100,7 @@
       <div class="container">
         <h2 class="v2-section-title" id="how-heading">Comment ça fonctionne pour les transporteurs</h2>
         <div class="v2-how-grid">
-          <div class="v2-how-step"><p class="v2-how-step-num">Étape 01</p><h3>Générer le lien</h3><p>Créez un lien de téléversement Podfy pour la référence d'envoi — via le portail, l'API ou un CSV en lot. Le lien encode automatiquement le numéro de bon de commande, l'itinéraire ou la référence CMR.</p></div>
+          <div class="v2-how-step"><p class="v2-how-step-num">Étape 01</p><h3>Générer le lien</h3><p>Créez un lien de téléversement Podfy pour la référence d'envoi: ajoutez-la à votre lien Podfy, ou imprimez une carte QR depuis le portail. Le lien encode automatiquement le numéro de bon de commande, l'itinéraire ou la référence CMR.</p></div>
           <div class="v2-how-step"><p class="v2-how-step-num">Étape 02</p><h3>Envoyer au chauffeur</h3><p>Incluez le lien dans le message de dispatch — WhatsApp, SMS ou imprimé sur la lettre de voiture sous forme de code QR. Aucun système supplémentaire, aucune étape additionnelle pour le dispatch.</p></div>
           <div class="v2-how-step"><p class="v2-how-step-num">Étape 03</p><h3>Le chauffeur téléverse à la livraison</h3><p>Le chauffeur ouvre le lien, photographie la CMR ou le point de livraison. GPS et horodatage capturés. En moins de 30 secondes.</p></div>
           <div class="v2-how-step"><p class="v2-how-step-num">Étape 04</p><h3>Enregistrement dans le portail</h3><p>La photo et les données GPS apparaissent immédiatement dans votre portail Podfy. Consultables par référence, date, itinéraire ou chauffeur. Exportables en PDF pour soumission au donneur d'ordre ou audit.</p></div>

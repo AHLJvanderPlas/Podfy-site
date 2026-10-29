@@ -1631,7 +1631,7 @@ Step 01
 
 #### Generate the link
 
-Create a Podfy link for the shipment via portal, API, or batch CSV import. Takes under 10 seconds.
+Create a Podfy link for the shipment in the portal, or print a QR card for it. Takes under 10 seconds.
 
 Step 02
 

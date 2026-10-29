@@ -1605,3 +1605,92 @@ html[data-theme="dark"] .v2-receipt {
     margin-top: 0.15rem;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   PODFY Report — design preview (2026-10). Solutions menu, two-solution
+   cards, preview label, status note, illustrative phone form.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Solutions menu (desktop): button + panel, keyboard and touch friendly */
+.site-nav-group { position: relative; display: inline-flex; }
+.site-nav-trigger { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; }
+.site-nav-trigger::after { content: "\25BE"; font-size: 0.7em; opacity: 0.7; }
+.site-nav-trigger:focus-visible { outline: 2px solid var(--v2-stamp); outline-offset: 3px; border-radius: 2px; }
+.site-subnav { position: absolute; top: calc(100% + 0.9rem); left: 50%; transform: translateX(-50%); z-index: 60;
+  display: grid; grid-template-columns: repeat(2, minmax(220px, 1fr)); gap: 1.5rem; padding: 1.25rem 1.4rem;
+  background: var(--v2-card); border: 1px solid var(--v2-line); border-radius: var(--v2-radius-lg); min-width: 520px; }
+.site-subnav[hidden] { display: none; }
+.site-subnav-col { display: flex; flex-direction: column; gap: 0.15rem; }
+.site-subnav-head { font-family: var(--v2-font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--v2-muted); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem; }
+.site-subnav a { padding: 0.3rem 0; font-size: 0.9rem; color: var(--v2-ink); text-decoration: none; }
+.site-subnav a:hover, .site-subnav a:focus-visible { color: var(--v2-stamp); }
+.site-subnav a.site-subnav-main { font-weight: 600; }
+.site-mobile-nav .site-mobile-sub { display: flex; flex-direction: column; padding-left: 1rem; border-left: 2px solid var(--v2-line); margin: 0.1rem 0 0.4rem; }
+.site-mobile-nav .site-mobile-sub a { font-size: 0.92rem; }
+.site-mobile-sub-head { font-family: var(--v2-font-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--v2-muted); margin-top: 0.5rem; }
+
+/* "Preview" label for Report while it is not live */
+.v2-badge-preview { display: inline-block; font-family: var(--v2-font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--v2-stamp); border: 1px solid currentColor; border-radius: 3px; padding: 0.05rem 0.35rem; line-height: 1.4; vertical-align: middle; }
+
+/* Two-solution cards (homepage + solutions index) */
+.v2-sol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; margin-top: 1.75rem; }
+.v2-sol-card { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.6rem 1.75rem; border: 1px solid var(--v2-line); border-top: 3px solid var(--v2-ink);
+  border-radius: var(--v2-radius); background: var(--v2-card); color: var(--v2-ink); text-decoration: none; transition: border-color 0.12s; }
+.v2-sol-card--report { border-top-color: var(--v2-stamp); }
+.v2-sol-card:hover { border-color: var(--v2-ink-2); }
+.v2-sol-card-kicker { font-family: var(--v2-font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--v2-muted); display: flex; gap: 0.5rem; align-items: center; }
+.v2-sol-card-title { font-family: var(--v2-font-serif); font-size: 1.4rem; font-weight: 700; line-height: 1.2; }
+.v2-sol-card-text { color: var(--v2-muted); line-height: 1.55; flex: 1; }
+.v2-sol-card-flow { font-family: var(--v2-font-mono); font-size: 0.72rem; color: var(--v2-ink-2); letter-spacing: 0.04em; }
+.v2-sol-card-cta { font-family: var(--v2-font-mono); font-size: 0.75rem; color: var(--v2-stamp); }
+
+/* Status note (Report is in development) */
+.v2-status-note { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.9rem 1.1rem; margin-top: 1.5rem; max-width: 46rem;
+  border: 1px dashed var(--v2-line-2); border-radius: var(--v2-radius); background: var(--v2-paper-2); font-size: 0.9rem; color: var(--v2-ink-2); line-height: 1.5; }
+.v2-status-note strong { color: var(--v2-ink); }
+
+/* Scan → Report → Notify */
+.v2-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; counter-reset: flow; }
+.v2-flow-step { position: relative; padding: 1.25rem 1.25rem 1.25rem 1.4rem; border: 1px solid var(--v2-line); border-radius: var(--v2-radius); background: var(--v2-card); }
+.v2-flow-step::before { counter-increment: flow; content: "0" counter(flow); font-family: var(--v2-font-mono); font-size: 0.7rem; color: var(--v2-stamp); letter-spacing: 0.08em; }
+.v2-flow-step h3 { font-family: var(--v2-font-serif); font-size: 1.15rem; margin: 0.35rem 0 0.4rem; }
+.v2-flow-step p { color: var(--v2-muted); font-size: 0.9rem; line-height: 1.5; margin: 0; }
+@media (max-width: 760px) { .v2-flow { grid-template-columns: 1fr; } .site-subnav { min-width: 0; grid-template-columns: 1fr; } }
+
+/* Report hero with an illustrative phone */
+.v2-rp-hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
+@media (max-width: 900px) { .v2-rp-hero-grid { grid-template-columns: 1fr; } }
+.v2-rp-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+
+.rp-phone { width: 100%; max-width: 300px; margin: 0 auto; border: 1px solid var(--v2-line-2); border-radius: var(--v2-radius-lg); padding: 10px; background: var(--v2-paper-2); }
+.rp-screen { border-radius: var(--v2-radius); background: var(--v2-card); border: 1px solid var(--v2-line); padding: 1rem 0.95rem 1.1rem; display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.82rem; }
+.rp-brand { display: flex; justify-content: space-between; align-items: center; font-family: var(--v2-font-mono); font-size: 0.62rem; color: var(--v2-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.rp-asset { padding: 0.55rem 0.65rem; border: 1px solid var(--v2-line); border-radius: var(--v2-radius); background: var(--v2-paper); }
+.rp-asset-id { font-family: var(--v2-font-mono); font-size: 0.75rem; color: var(--v2-ink); }
+.rp-asset-loc { color: var(--v2-muted); font-size: 0.72rem; }
+.rp-label { font-weight: 600; font-size: 0.78rem; color: var(--v2-ink); }
+.rp-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.rp-chip { padding: 0.28rem 0.55rem; border: 1px solid var(--v2-line-2); border-radius: 3px; font-size: 0.72rem; color: var(--v2-ink-2); }
+.rp-chip--on { border-color: var(--v2-stamp); color: var(--v2-stamp); background: color-mix(in srgb, var(--v2-stamp) 8%, transparent); }
+.rp-field { min-height: 2.6rem; border: 1px solid var(--v2-line); border-radius: var(--v2-radius); padding: 0.45rem 0.55rem; color: var(--v2-muted); font-size: 0.74rem; }
+.rp-photo { border: 1px dashed var(--v2-line-2); border-radius: var(--v2-radius); padding: 0.5rem; text-align: center; color: var(--v2-muted); font-size: 0.72rem; }
+.rp-submit { text-align: center; padding: 0.6rem; border-radius: var(--v2-radius); background: var(--v2-ink); color: var(--v2-paper); font-weight: 600; font-size: 0.8rem; }
+.rp-caption { text-align: center; font-family: var(--v2-font-mono); font-size: 0.64rem; color: var(--v2-muted); margin-top: 0.75rem; letter-spacing: 0.04em; }
+
+/* Boundaries: what Report does / does not do */
+.v2-bound-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+@media (max-width: 760px) { .v2-bound-grid { grid-template-columns: 1fr; } }
+.v2-bound { padding: 1.25rem 1.4rem; border: 1px solid var(--v2-line); border-radius: var(--v2-radius); background: var(--v2-card); }
+.v2-bound h3 { font-family: var(--v2-font-serif); font-size: 1.05rem; margin: 0 0 0.6rem; }
+.v2-bound ul { margin: 0; padding-left: 1.1rem; color: var(--v2-ink-2); line-height: 1.6; font-size: 0.92rem; }
+.v2-safety { margin-top: 1.25rem; padding: 0.9rem 1.1rem; border-left: 3px solid var(--v2-bad); background: var(--v2-paper-2); border-radius: 0 var(--v2-radius) var(--v2-radius) 0; font-size: 0.9rem; color: var(--v2-ink-2); line-height: 1.5; max-width: 46rem; }
+
+/* FAQ (native details/summary) */
+.v2-faq { margin-top: 1.25rem; border-top: 1px solid var(--v2-line); max-width: 52rem; }
+.v2-faq details { border-bottom: 1px solid var(--v2-line); padding: 0.9rem 0; }
+.v2-faq summary { cursor: pointer; font-weight: 600; color: var(--v2-ink); list-style-position: outside; }
+.v2-faq summary:focus-visible { outline: 2px solid var(--v2-stamp); outline-offset: 3px; }
+.v2-faq details p { margin: 0.6rem 0 0; color: var(--v2-ink-2); line-height: 1.6; }
+@media (prefers-reduced-motion: reduce) { .v2-sol-card, .v2-aud-tile { transition: none; } }
+.v2-field-hint { font-weight: 400; color: var(--v2-muted); font-size: 0.85em; }

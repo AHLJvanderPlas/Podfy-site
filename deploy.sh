@@ -11,7 +11,7 @@ PROJECT=$(sed -n 's/^name *= *"\(.*\)"/\1/p' wrangler.toml | head -1)
 rm -rf dist && mkdir dist
 rsync -a --include '/SECURITY.md' \
   --exclude '.claude' --exclude '.git' --exclude '.wrangler' --exclude 'dist' --exclude 'node_modules' \
-  --exclude 'functions' --exclude 'migrations' --exclude 'scripts' --exclude 'tests' \
+  --exclude 'functions' --exclude 'migrations' --exclude 'scripts' --exclude 'tests' --exclude 'docs' \
   --exclude 'wrangler.toml' --exclude '.gitignore' --exclude '.DS_Store' --exclude '.dev.vars*' --exclude '.env*' \
   --exclude 'CLAUDE.md' --exclude 'README.md' --exclude 'README.MD' --exclude 'SECURITY.md' --exclude '*.md' \
   --exclude 'package.json' --exclude 'package-lock.json' --exclude 'deploy.sh' \
