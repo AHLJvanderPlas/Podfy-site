@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Signaler une panne de consigne à colis par QR | PODFY</title>
+  <meta name="description" content="Permettez aux destinataires et livreurs de signaler une porte qui ne s&#x27;ouvre pas ou un casier endommagé via un QR code. Sans appli." />
+  <link rel="canonical" href="https://podfy.net/fr/solutions/qr-issue-reporting/parcel-lockers/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:title" content="Signaler une panne de consigne à colis par QR | PODFY" />
+  <meta property="og:description" content="Permettez aux destinataires et livreurs de signaler une porte qui ne s&#x27;ouvre pas ou un casier endommagé via un QR code. Sans appli." />
+  <meta property="og:url" content="https://podfy.net/fr/solutions/qr-issue-reporting/parcel-lockers/" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Signaler une panne de consigne à colis par QR | PODFY" />
+  <meta name="twitter:description" content="Permettez aux destinataires et livreurs de signaler une porte qui ne s&#x27;ouvre pas ou un casier endommagé via un QR code. Sans appli." />
+  <meta name="twitter:image" content="https://podfy.net/assets/og-image.jpg" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/parcel-lockers/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/parcel-lockers/" />
+  <link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/parcel-lockers/" />
+  <link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/parcel-lockers/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/solutions/qr-issue-reporting/parcel-lockers/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r4" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "PODFY", "item": "https://podfy.net/fr/"}, {"@type": "ListItem", "position": 2, "name": "Signalement QR", "item": "https://podfy.net/fr/solutions/qr-issue-reporting/"}, {"@type": "ListItem", "position": 3, "name": "Consignes à colis", "item": "https://podfy.net/fr/solutions/qr-issue-reporting/parcel-lockers/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Pouvons-nous signaler par casier ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Un code par consigne suffit pour la plupart des réseaux, mais les casiers peuvent avoir leur propre code pour que le signalement indique exactement quelle porte."}}, {"@type": "Question", "name": "Les livreurs peuvent-ils utiliser le même QR code ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Tout le monde peut le scanner ; vous pouvez ajouter une catégorie réservée aux livreurs, par exemple \"Consigne pleine\"."}}, {"@type": "Question", "name": "Faut-il une appli ou un compte pour signaler ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. On scanne le QR code avec l'appareil photo du téléphone et le formulaire s'ouvre dans le navigateur. Pas d'appli, pas de connexion, pas de compte."}}, {"@type": "Question", "name": "Les signalements peuvent-ils arriver dans notre outil de ticketing ou de maintenance ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Les signalements sont envoyés par e-mail aux adresses de votre choix et peuvent être transmis par webhook à votre outil de ticketing ou de maintenance. Une API ouverte pour vos propres intégrations arrive bientôt."}}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "Service", "name": "PODFY Signalement QR · Consignes à colis", "provider": {"@type": "Organization", "name": "PODFY", "url": "https://podfy.net"}, "description": "Permettez aux destinataires et livreurs de signaler une porte qui ne s'ouvre pas ou un casier endommagé via un QR code. Sans appli.", "areaServed": ["NL", "BE", "DE", "FR"], "url": "https://podfy.net/fr/solutions/qr-issue-reporting/parcel-lockers/", "serviceType": "Signalement d'incidents sur équipements"}
+  </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Aller au contenu</a>
+  [[PODFY_HEADER]]
+<nav class="v2-breadcrumb" aria-label="Breadcrumb"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/fr/">PODFY</a></li><li><a href="/fr/solutions/qr-issue-reporting/">Signalement QR</a></li><li aria-current="page">Consignes à colis</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="v2-aud-hero" aria-labelledby="sol-heading">
+      <div class="container v2-rp-hero-grid">
+        <div>
+          <p class="v2-eyebrow">PODFY Signalement QR &middot; Logistique</p>
+          <h1 class="v2-hero-title" id="sol-heading">Un casier ne s&#x27;ouvre pas ?<br><em>Faites-le signaler sur place.</em></h1>
+          <p class="v2-hero-sub">Un destinataire devant une consigne qui ne s&#x27;ouvre pas n&#x27;a personne à qui demander. Un livreur qui remarque un casier endommagé passe à l&#x27;arrêt suivant. Un QR code sur chaque consigne transforme ces deux moments en signalement, avec la consigne et le casier déjà connus.</p>
+          <div class="v2-rp-actions"><a href="/fr/contact?solution=report&amp;industry=parcel-lockers" class="v2-btn v2-btn-primary">Demander une démo &rarr;</a><a href="/fr/solutions/qr-issue-reporting/" class="v2-btn v2-btn-ghost">Comment fonctionne le signalement QR</a></div>
+        </div>
+        <figure class="v2-rp-figure">
+          <div class="rp-phone" aria-hidden="true">
+            <div class="rp-screen">
+              <div class="rp-brand"><span>ACME SERVICE</span><span>Signalement</span></div>
+              <div class="rp-asset"><div class="rp-asset-id">LOCKER-0331 · Casier 14</div><div class="rp-asset-loc">Utrecht Centraal, place 2</div></div>
+              <div class="rp-label">Quel est le problème ?</div>
+              <div class="rp-chips"><span class="rp-chip rp-chip--on">La porte ne s&#x27;ouvre pas</span><span class="rp-chip">Écran hors service</span><span class="rp-chip">Casier endommagé</span><span class="rp-chip">Colis absent</span><span class="rp-chip">Code refusé</span><span class="rp-chip">Autre</span></div>
+              <div class="rp-field">Code accepté, la porte reste fermée</div>
+              <div class="rp-photo">+ Ajouter une photo (facultatif)</div>
+              <div class="rp-submit">Envoyer le signalement</div>
+            </div>
+          </div>
+          <figcaption class="rp-caption">Exemple de formulaire de signalement QR</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="prob-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="prob-heading">Les consignes sont sans personnel. Pas les problèmes.</h2>
+        <div class="v2-two-col"><div class="v2-prose"><p>Les réseaux de consignes à colis grandissent vite, dans les gares, supermarchés et quartiers résidentiels. Quand une porte se bloque ou qu&#x27;un écran tombe en panne, le destinataire appelle la hotline de l&#x27;expéditeur, qui ne voit pas la consigne non plus, et le technicien reçoit un ticket vague.</p><p>PODFY Signalement QR place un QR code sur chaque consigne, et si vous le souhaitez sur chaque casier. Destinataires et livreurs signalent ce qui ne va pas en quelques secondes. Votre équipe d&#x27;exploitation voit la consigne, le casier et l&#x27;heure, et peut envoyer le bon technicien.</p><p>PODFY transmet le signalement. Le suivi des colis et les réclamations clients restent dans vos propres systèmes.</p></div><div><ul class="v2-check-list"><li>QR code par consigne ou par casier</li><li>Catégories pour portes, écrans, codes et dégâts</li><li>Signalements des destinataires et des livreurs</li><li>Webhook vers votre outil de maintenance terrain</li><li>Historique par emplacement de consigne</li><li>Construit sur la plateforme logistique de PODFY</li></ul></div></div>
+        <div class="v2-safety" role="note">PODFY ne suit pas les colis et ne traite pas les réclamations. L&#x27;autocollant peut indiquer où les destinataires s&#x27;adressent pour une question sur leur colis ; le signalement porte sur la consigne.</div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="how-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="how-heading">Comment les équipes l&#x27;utilisent</h2>
+        <div class="v2-how-grid"><div class="v2-how-step"><p class="v2-how-step-num">Cas d&#x27;usage 01</p><h3>Destinataires bloqués devant la consigne</h3><p>Un signalement clair au lieu d&#x27;un appel à une hotline qui ne voit pas la consigne.</p></div><div class="v2-how-step"><p class="v2-how-step-num">Cas d&#x27;usage 02</p><h3>Livreurs en tournée</h3><p>Dégâts ou consigne pleine signalés pendant la livraison, sans interrompre la tournée.</p></div><div class="v2-how-step"><p class="v2-how-step-num">Cas d&#x27;usage 03</p><h3>Maintenance du réseau</h3><p>L&#x27;historique par emplacement montre quelles consignes demandent de l&#x27;attention ou un remplacement.</p></div></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="asset-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Pour démarrer</p>
+        <h2 class="v2-section-title" id="asset-heading">Votre liste d&#x27;équipements en entrée, des autocollants en sortie</h2>
+        <div class="v2-asset-grid">
+          <ol class="v2-asset-steps"><li><strong>Téléchargez le modèle</strong> et renseignez les numéros, noms et emplacements de vos équipements, ou exportez-les depuis votre propre système.</li><li><strong>Importez-le dans PODFY.</strong> Chaque numéro d'équipement devient la référence d'un QR code dédié.</li><li><strong>Imprimez les autocollants.</strong> Un par équipement, avec votre logo et votre propre texte, par exemple "Un problème avec la consigne ? Scannez pour signaler".</li><li><strong>Collez-les, c'est prêt.</strong> Les signalements arrivent avec l'équipement déjà identifié.</li></ol>
+          <div class="rp-sticker" aria-hidden="true"><div class="rp-sticker-head">ACME SERVICE</div><img src="/assets/demo-qr.svg" alt="" width="120" height="120" /><div class="rp-sticker-cta">Un problème avec la consigne ? Scannez pour signaler</div><div class="rp-sticker-id">LOCKER-0331</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="v2-eyebrow">FAQ</p>
+        <h2 class="v2-section-title" id="faq-heading">Questions sur les consignes à colis</h2>
+        <div class="v2-faq"><details><summary>Pouvons-nous signaler par casier ?</summary><p>Oui. Un code par consigne suffit pour la plupart des réseaux, mais les casiers peuvent avoir leur propre code pour que le signalement indique exactement quelle porte.</p></details><details><summary>Les livreurs peuvent-ils utiliser le même QR code ?</summary><p>Oui. Tout le monde peut le scanner ; vous pouvez ajouter une catégorie réservée aux livreurs, par exemple &quot;Consigne pleine&quot;.</p></details><details><summary>Faut-il une appli ou un compte pour signaler ?</summary><p>Non. On scanne le QR code avec l&#x27;appareil photo du téléphone et le formulaire s&#x27;ouvre dans le navigateur. Pas d&#x27;appli, pas de connexion, pas de compte.</p></details><details><summary>Les signalements peuvent-ils arriver dans notre outil de ticketing ou de maintenance ?</summary><p>Oui. Les signalements sont envoyés par e-mail aux adresses de votre choix et peuvent être transmis par webhook à votre outil de ticketing ou de maintenance. Une API ouverte pour vos propres intégrations arrive bientôt.</p></details></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="rel-heading"><div class="container"><p class="v2-eyebrow">PODFY Signalement QR</p><h2 class="v2-section-title" id="rel-heading">Autres cas d&#x27;usage</h2><div class="v2-aud-grid"><a class="v2-aud-tile" href="/fr/solutions/qr-issue-reporting/trailers-containers/"><p class="v2-aud-tile-industry">Flotte et logistique</p><p class="v2-aud-tile-name">Remorques et conteneurs</p><p class="v2-aud-tile-desc">Chauffeurs et personnel de cour signalent dégâts, éclairage ou problèmes de froid sur remorques et conteneurs à la passation.</p><span class="v2-aud-tile-arrow">Voir comment &rarr;</span></a><a class="v2-aud-tile" href="/fr/solutions/qr-issue-reporting/ev-chargers/"><p class="v2-aud-tile-industry">Mobilité électrique</p><p class="v2-aud-tile-name">Bornes de recharge</p><p class="v2-aud-tile-desc">Les conducteurs signalent une borne qui ne démarre pas, un connecteur endommagé ou un problème de paiement, par point de charge.</p><span class="v2-aud-tile-arrow">Voir comment &rarr;</span></a><a class="v2-aud-tile" href="/fr/solutions/qr-issue-reporting/vending-machines/"><p class="v2-aud-tile-industry">Distribution automatique</p><p class="v2-aud-tile-name">Distributeurs automatiques</p><p class="v2-aud-tile-desc">Les clients signalent un produit coincé, un emplacement vide ou un problème de paiement directement sur le distributeur.</p><span class="v2-aud-tile-arrow">Voir comment &rarr;</span></a></div><p><a href="/fr/solutions/qr-issue-reporting/#cases" class="v2-link">Tous les cas d&#x27;usage &rarr;</a></p></div></section>
+
+    <section class="v2-cta-block" aria-label="Demander une démo"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">QR · Sans appli · Webhook</span><h2>Voyez-le sur vos<br><em>propres consignes à colis.</em></h2><p>Une démo de 15 minutes avec vos types d&#x27;équipements, vos catégories et le texte de votre autocollant.</p><div class="v2-cta-actions"><a href="/fr/contact?solution=report" class="v2-btn v2-btn-primary">Demander une démo &rarr;</a><a href="/fr/pricing#report-pricing" class="v2-btn v2-btn-ghost">Voir les tarifs</a></div></div></section>
+  </main>
+  [[PODFY_FOOTER]]
+</body>
+</html>

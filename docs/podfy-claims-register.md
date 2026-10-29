@@ -42,8 +42,15 @@ Status: **verified** · **incorrect** (fix now) · **needs owner approval** · *
 | R9 | Abuse protection on public links | single-use upload challenge, per-IP + per-recipient limits (`upload_guard`) | **supported** |
 | R10 | Public Report demo | Delivery demo only (demo brand, 72 h) | **future feature** |
 
+## Owner decisions 2026-10-29 (supersede the Report rows above where they conflict)
+
+- QR Reporting is presented as **New**, not Preview; mild overpromising is accepted.
+- Claimed as available: e-mail notifications, **webhooks** (build together, target live end of November 2026), asset template upload, QR stickers with custom text, own categories, photo required/optional/off.
+- **Open API: "Soon"** only.
+- Same functions for both solutions, different description.
+
 ## Copy rules derived from this register
 
-- Report is **not live**: marketing may present it as *coming soon / pilot* with **"Request a demo" / "Join the pilot"** only — no "Try it", no live form.
-- No API, webhook, CSV-import, "integrates with your ticketing system", OCPP or "proof of presence" claims.
-- Location is "permission-based where available"; storage is "in the EU" with named subprocessors — not "never leaves the EU".
+- QR Reporting: "Request a demo" / "Request a proposal"; no "Try it" until a QR demo brand exists.
+- Delivery: still no API or CSV-import claims (row 7).
+- Location is "permission-based where available"; storage is "in the EU" with named subprocessors, not "never leaves the EU".

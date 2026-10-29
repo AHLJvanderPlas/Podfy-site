@@ -1,23 +1,19 @@
-# PODFY Report — launch readiness (gates for podfy.net)
+# PODFY QR Reporting: launch readiness (updated 2026-10-29)
 
-The marketing pages ship in three states. Each state change needs owner approval.
+Decision 2026-10-29: no "Preview" state. podfy.net presents QR Reporting as **New**, with two separate solution pages
+(Proof of Delivery at /solutions/, QR Reporting at /solutions/qr-issue-reporting/), 10 use-case pages, in EN/NL/DE/FR,
+and a homepage band carrying roughly 40% of the attention. CTAs: "Request a demo" and "Request a proposal".
 
-| State | podfy.net shows | Allowed CTAs | Requires |
-|---|---|---|---|
-| **A. Preview** (now) | Report overview + 4 industry pages, labelled "In development / pilot" | "Request a demo", "Join the pilot" (→ /contact?solution=report) | owner approves names + preview copy; owner/legal OK on wording |
-| **B. Pilot** | same, "Pilot" label; screenshots of the real form | "Request a demo" | app MVP live for pilot brands (rows 3–7 of the capability matrix) |
-| **C. Live** | no label; pricing; real Report demo | "Try the demo", "See pricing" | MVP + pricing approved + Report demo + trust/privacy updated for report data |
-
-## App MVP checklist (state B)
-- [ ] Per-brand workflow type `report` with its own texts in all app languages
-- [ ] Photo optional; category/text-only submission stored and notified
+## To build before the first QR Reporting customer goes live
+- [ ] Optional photo as a function-menu toggle (required / optional / off), both solutions
 - [ ] Per-brand issue categories (labels per language)
-- [ ] Asset register: ID, name, site, status; QR per asset (reuse Dispatch QR card)
-- [ ] Report notification e-mail
+- [ ] Asset register: template download → upload; asset number = reference; QR per asset
+- [ ] QR sticker with custom text (CMR sticker layout)
+- [ ] Report wording in notification e-mails and the app
+- [ ] Webhooks (`report.created`, signed, retried) + portal endpoint settings: target end of November 2026
 - [ ] Portal: filter by category and asset
-- [ ] Retention for reports decided and enforced
-- [ ] Trust / privacy: report data types (photos, notes, optional contact) — legal review
+- [ ] Trust / privacy: report data types (photos, notes)
 
-## Separate build (not required for B)
-- [ ] Webhooks (`report.created`, signed, retried) + endpoint settings in the portal
-- [ ] Read API
+## Later
+- [ ] Open (DIY) API, labelled "Soon" on the site
+- [ ] Public QR Reporting demo brand

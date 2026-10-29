@@ -36,7 +36,7 @@
   <link rel="alternate" hreflang="fr" href="https://podfy.net/fr/contact" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/contact" />
 
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r3" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r4" />
   <script src="/assets/theme.js" defer></script>
 
   <!-- Turnstile — only loaded on this page -->
@@ -244,8 +244,26 @@
                   <option value="inbound-retail">Inbound &amp; Retail ontvangst</option>
                   <option value="construction-site">Bouw &amp; Locatieleveringen</option>
                   <option value="logistics-other">Logistiek — overig</option>
+                  <optgroup label="PODFY QR-meldingen">
+                    <option value="report-ev-chargers">Laadpalen</option>
+                    <option value="report-parcel-lockers">Pakketkluizen</option>
+                    <option value="report-trailers-containers">Trailers en containers</option>
+                    <option value="report-vending-machines">Verkoopautomaten</option>
+                    <option value="report-coffee-machines">Koffiemachines</option>
+                    <option value="report-printers-copiers">Printers en kopieerapparaten</option>
+                    <option value="report-restrooms-cleaning">Toiletten en schoonmaak</option>
+                    <option value="report-fitness-equipment">Fitnessapparatuur</option>
+                    <option value="report-waste-containers">Afvalcontainers</option>
+                    <option value="report-remote-equipment">Apparatuur op afstand</option>
+                    <option value="report-other">Overige apparatuur</option>
+                  </optgroup>
                   <option value="other">Anders</option>
                 </select>
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-assets" class="v2-field-label">Ongeveer aantal machines of locaties <span class="v2-field-hint">(optioneel, voor QR-meldingen)</span></label>
+                <input type="number" id="contact-assets" name="asset_count" class="v2-input" min="1" max="1000000" step="1" inputmode="numeric" />
               </div>
 
               <div class="v2-field">
@@ -330,6 +348,6 @@
 
   [[PODFY_FOOTER]]
 
-  <script src="/assets/js/i/141928e7b304.js"></script>
+  <script src="/assets/js/i/861db3c359eb.js"></script>
 </body>
 </html>

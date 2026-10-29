@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Signaler une panne de borne de recharge par QR | PODFY</title>
+  <meta name="description" content="Permettez aux conducteurs de signaler une borne qui ne démarre pas ou un connecteur endommagé via un QR code. Sans appli, par point de charge." />
+  <link rel="canonical" href="https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:title" content="Signaler une panne de borne de recharge par QR | PODFY" />
+  <meta property="og:description" content="Permettez aux conducteurs de signaler une borne qui ne démarre pas ou un connecteur endommagé via un QR code. Sans appli, par point de charge." />
+  <meta property="og:url" content="https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Signaler une panne de borne de recharge par QR | PODFY" />
+  <meta name="twitter:description" content="Permettez aux conducteurs de signaler une borne qui ne démarre pas ou un connecteur endommagé via un QR code. Sans appli, par point de charge." />
+  <meta name="twitter:image" content="https://podfy.net/assets/og-image.jpg" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/ev-chargers/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/ev-chargers/" />
+  <link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/ev-chargers/" />
+  <link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/solutions/qr-issue-reporting/ev-chargers/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r4" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "PODFY", "item": "https://podfy.net/fr/"}, {"@type": "ListItem", "position": 2, "name": "Signalement QR", "item": "https://podfy.net/fr/solutions/qr-issue-reporting/"}, {"@type": "ListItem", "position": 3, "name": "Bornes de recharge", "item": "https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Cela remplace-t-il notre supervision des points de charge ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. La supervision indique si une borne est en ligne. Les signalements des conducteurs ajoutent ce qu'elle ne voit pas, comme les dégâts physiques ou les problèmes de paiement. Les deux fonctionnent mieux ensemble."}}, {"@type": "Question", "name": "Pouvons-nous signaler par connecteur ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Donnez un QR code à toute la borne, ou un code à chaque connecteur pour que le signalement indique déjà lequel."}}, {"@type": "Question", "name": "Faut-il une appli ou un compte pour signaler ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. On scanne le QR code avec l'appareil photo du téléphone et le formulaire s'ouvre dans le navigateur. Pas d'appli, pas de connexion, pas de compte."}}, {"@type": "Question", "name": "Les signalements peuvent-ils arriver dans notre outil de ticketing ou de maintenance ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Les signalements sont envoyés par e-mail aux adresses de votre choix et peuvent être transmis par webhook à votre outil de ticketing ou de maintenance. Une API ouverte pour vos propres intégrations arrive bientôt."}}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "Service", "name": "PODFY Signalement QR · Bornes de recharge", "provider": {"@type": "Organization", "name": "PODFY", "url": "https://podfy.net"}, "description": "Permettez aux conducteurs de signaler une borne qui ne démarre pas ou un connecteur endommagé via un QR code. Sans appli, par point de charge.", "areaServed": ["NL", "BE", "DE", "FR"], "url": "https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/", "serviceType": "Signalement d'incidents sur équipements"}
+  </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Aller au contenu</a>
+  [[PODFY_HEADER]]
+<nav class="v2-breadcrumb" aria-label="Breadcrumb"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/fr/">PODFY</a></li><li><a href="/fr/solutions/qr-issue-reporting/">Signalement QR</a></li><li aria-current="page">Bornes de recharge</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="v2-aud-hero" aria-labelledby="sol-heading">
+      <div class="container v2-rp-hero-grid">
+        <div>
+          <p class="v2-eyebrow">PODFY Signalement QR &middot; Mobilité électrique</p>
+          <h1 class="v2-hero-title" id="sol-heading">Laissez les conducteurs<br><em>signaler un problème de recharge en quelques secondes.</em></h1>
+          <p class="v2-hero-sub">Un conducteur devant une borne qui ne démarre pas a généralement deux options : appeler une hotline ou repartir. Avec un QR code sur chaque point de charge, le problème est signalé en quelques secondes et votre équipe sait exactement quelle borne et quel connecteur sont concernés.</p>
+          <div class="v2-rp-actions"><a href="/fr/contact?solution=report&amp;industry=ev-chargers" class="v2-btn v2-btn-primary">Demander une démo &rarr;</a><a href="/fr/solutions/qr-issue-reporting/" class="v2-btn v2-btn-ghost">Comment fonctionne le signalement QR</a></div>
+        </div>
+        <figure class="v2-rp-figure">
+          <div class="rp-phone" aria-hidden="true">
+            <div class="rp-screen">
+              <div class="rp-brand"><span>ACME SERVICE</span><span>Signalement</span></div>
+              <div class="rp-asset"><div class="rp-asset-id">CP-AMS-0213 · Connecteur 2</div><div class="rp-asset-loc">Parking Zuidas, niveau -1</div></div>
+              <div class="rp-label">Que s&#x27;est-il passé ?</div>
+              <div class="rp-chips"><span class="rp-chip">Borne indisponible</span><span class="rp-chip rp-chip--on">Ne démarre pas</span><span class="rp-chip">Connecteur endommagé</span><span class="rp-chip">Erreur d&#x27;écran</span><span class="rp-chip">Problème de paiement</span><span class="rp-chip">Autre</span></div>
+              <div class="rp-field">Câble branché, la charge ne démarre pas</div>
+              <div class="rp-photo">+ Ajouter une photo (facultatif)</div>
+              <div class="rp-submit">Envoyer le signalement</div>
+            </div>
+          </div>
+          <figcaption class="rp-caption">Exemple de formulaire de signalement QR</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="prob-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="prob-heading">La supervision voit la borne. Les conducteurs voient le problème.</h2>
+        <div class="v2-two-col"><div class="v2-prose"><p>La supervision des points de charge vous indique si une borne est en ligne. Elle ne montre pas toujours un câble endommagé, un écran illisible au soleil ou une carte de recharge sans cesse refusée. Le conducteur devant la borne le sait, et n&#x27;a généralement aucun moyen simple de vous le dire.</p><p>PODFY Signalement QR donne à chaque point de charge, et si vous le souhaitez à chaque connecteur, son propre QR code. Le conducteur choisit ce qui ne va pas, peut ajouter une photo et envoie. Votre équipe reçoit un signalement avec la borne, le connecteur et l&#x27;heure, par e-mail ou directement dans votre outil de service.</p><p>Les signalements des conducteurs complètent votre supervision et votre hotline. Ils ne remplacent ni l&#x27;une ni l&#x27;autre.</p></div><div><ul class="v2-check-list"><li>Signalement par point de charge ou par connecteur</li><li>Catégories pour démarrage, connecteur, écran et paiement</li><li>Photo d&#x27;un câble ou d&#x27;un écran endommagé</li><li>Signalements vers votre service client ou votre prestataire de maintenance</li><li>Webhook vers votre outil de ticketing</li><li>Historique par borne pour repérer les pannes récurrentes</li></ul></div></div>
+        <div class="v2-safety" role="note">Pas un canal d&#x27;urgence. Un connecteur brûlé, des étincelles ou des fils à nu relèvent d&#x27;abord de votre procédure d&#x27;urgence et du numéro affiché sur la borne. Un scan QR ne prouve pas non plus que quelqu&#x27;un se trouve à la borne : traitez les signalements comme une information, pas comme des événements vérifiés.</div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="how-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="how-heading">Comment les équipes l&#x27;utilisent</h2>
+        <div class="v2-how-grid"><div class="v2-how-step"><p class="v2-how-step-num">Cas d&#x27;usage 01</p><h3>Les pannes que la supervision ne voit pas</h3><p>Dégâts physiques, cache manquant ou écran illisible, signalés par le conducteur qui les a vus.</p></div><div class="v2-how-step"><p class="v2-how-step-num">Cas d&#x27;usage 02</p><h3>Aider les prestataires de maintenance</h3><p>Un signalement indiquant borne et connecteur permet au prestataire d&#x27;apporter la bonne pièce dès la première visite.</p></div><div class="v2-how-step"><p class="v2-how-step-num">Cas d&#x27;usage 03</p><h3>Problèmes récurrents par site</h3><p>L&#x27;historique par borne montre quels sites génèrent sans cesse la même plainte.</p></div></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="asset-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Pour démarrer</p>
+        <h2 class="v2-section-title" id="asset-heading">Votre liste d&#x27;équipements en entrée, des autocollants en sortie</h2>
+        <div class="v2-asset-grid">
+          <ol class="v2-asset-steps"><li><strong>Téléchargez le modèle</strong> et renseignez les numéros, noms et emplacements de vos équipements, ou exportez-les depuis votre propre système.</li><li><strong>Importez-le dans PODFY.</strong> Chaque numéro d'équipement devient la référence d'un QR code dédié.</li><li><strong>Imprimez les autocollants.</strong> Un par équipement, avec votre logo et votre propre texte, par exemple "Borne en panne ? Scannez-moi".</li><li><strong>Collez-les, c'est prêt.</strong> Les signalements arrivent avec l'équipement déjà identifié.</li></ol>
+          <div class="rp-sticker" aria-hidden="true"><div class="rp-sticker-head">ACME SERVICE</div><img src="/assets/demo-qr.svg" alt="" width="120" height="120" /><div class="rp-sticker-cta">Borne en panne ? Scannez-moi</div><div class="rp-sticker-id">CP-AMS-0213</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="v2-eyebrow">FAQ</p>
+        <h2 class="v2-section-title" id="faq-heading">Questions sur les bornes de recharge</h2>
+        <div class="v2-faq"><details><summary>Cela remplace-t-il notre supervision des points de charge ?</summary><p>Non. La supervision indique si une borne est en ligne. Les signalements des conducteurs ajoutent ce qu&#x27;elle ne voit pas, comme les dégâts physiques ou les problèmes de paiement. Les deux fonctionnent mieux ensemble.</p></details><details><summary>Pouvons-nous signaler par connecteur ?</summary><p>Oui. Donnez un QR code à toute la borne, ou un code à chaque connecteur pour que le signalement indique déjà lequel.</p></details><details><summary>Faut-il une appli ou un compte pour signaler ?</summary><p>Non. On scanne le QR code avec l&#x27;appareil photo du téléphone et le formulaire s&#x27;ouvre dans le navigateur. Pas d&#x27;appli, pas de connexion, pas de compte.</p></details><details><summary>Les signalements peuvent-ils arriver dans notre outil de ticketing ou de maintenance ?</summary><p>Oui. Les signalements sont envoyés par e-mail aux adresses de votre choix et peuvent être transmis par webhook à votre outil de ticketing ou de maintenance. Une API ouverte pour vos propres intégrations arrive bientôt.</p></details></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="rel-heading"><div class="container"><p class="v2-eyebrow">PODFY Signalement QR</p><h2 class="v2-section-title" id="rel-heading">Autres cas d&#x27;usage</h2><div class="v2-aud-grid"><a class="v2-aud-tile" href="/fr/solutions/qr-issue-reporting/parcel-lockers/"><p class="v2-aud-tile-industry">Logistique</p><p class="v2-aud-tile-name">Consignes à colis</p><p class="v2-aud-tile-desc">Les destinataires signalent une porte qui ne s&#x27;ouvre pas, un casier endommagé ou un colis manquant, par consigne.</p><span class="v2-aud-tile-arrow">Voir comment &rarr;</span></a><a class="v2-aud-tile" href="/fr/solutions/qr-issue-reporting/remote-equipment/"><p class="v2-aud-tile-industry">Équipements sur le terrain</p><p class="v2-aud-tile-name">Équipements sur site</p><p class="v2-aud-tile-desc">Collaborateurs et sous-traitants consignent les dégâts ou pannes d&#x27;équipements répartis sur de nombreux sites.</p><span class="v2-aud-tile-arrow">Voir comment &rarr;</span></a><a class="v2-aud-tile" href="/fr/solutions/qr-issue-reporting/waste-containers/"><p class="v2-aud-tile-industry">Collectivités et espace public</p><p class="v2-aud-tile-name">Conteneurs à déchets</p><p class="v2-aud-tile-desc">Les habitants signalent un conteneur plein ou endommagé, ou des déchets déposés à côté, par emplacement.</p><span class="v2-aud-tile-arrow">Voir comment &rarr;</span></a></div><p><a href="/fr/solutions/qr-issue-reporting/#cases" class="v2-link">Tous les cas d&#x27;usage &rarr;</a></p></div></section>
+
+    <section class="v2-cta-block" aria-label="Demander une démo"><div class="container"><span class="v2-stamp-mark" aria-hidden="true">QR · Sans appli · Webhook</span><h2>Voyez-le sur vos<br><em>propres bornes de recharge.</em></h2><p>Une démo de 15 minutes avec vos types d&#x27;équipements, vos catégories et le texte de votre autocollant.</p><div class="v2-cta-actions"><a href="/fr/contact?solution=report" class="v2-btn v2-btn-primary">Demander une démo &rarr;</a><a href="/fr/pricing#report-pricing" class="v2-btn v2-btn-ghost">Voir les tarifs</a></div></div></section>
+  </main>
+  [[PODFY_FOOTER]]
+</body>
+</html>

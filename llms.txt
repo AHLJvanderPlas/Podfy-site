@@ -45,6 +45,30 @@ Key capabilities:
 - 7-year EU archive option (satisfies Dutch Belastingdienst and Belgian 7-year retention)
 - GDPR compliant: all data stored in Cloudflare's EU jurisdiction, DPA available
 
+## PODFY QR Reporting (second solution)
+
+PODFY QR Reporting puts a QR code on every machine or asset. Anyone (customers, staff, technicians, contractors) scans it with a phone camera, chooses what is wrong from the brand's own categories, optionally adds a note and photo, and sends it. No app and no account. The report reaches the responsible team by e-mail and by webhook to their ticketing or maintenance system; an open API is coming. Every report is stored per asset in the PODFY portal.
+
+- Same platform and same functions as PODFY Proof of Delivery: branding, 12 languages, notifications, webhooks, EU storage, searchable portal
+- Asset list via a downloadable template; each asset number becomes the reference behind its own QR code
+- Printable QR stickers per asset with the brand's logo and custom text, e.g. "Scan to report an issue"
+- Photo per form: required, optional or off
+- Not an emergency channel; repair planning and ticket follow-up stay in the customer's own tools
+- Pricing per project, based on the number of assets and reports
+- Overview: https://podfy.net/solutions/qr-issue-reporting/ (also /nl/, /de/, /fr/)
+
+Use cases:
+- EV chargers: https://podfy.net/solutions/qr-issue-reporting/ev-chargers/
+- Parcel lockers: https://podfy.net/solutions/qr-issue-reporting/parcel-lockers/
+- Trailers and containers: https://podfy.net/solutions/qr-issue-reporting/trailers-containers/
+- Vending machines: https://podfy.net/solutions/qr-issue-reporting/vending-machines/
+- Coffee machines: https://podfy.net/solutions/qr-issue-reporting/coffee-machines/
+- Printers and copiers: https://podfy.net/solutions/qr-issue-reporting/printers-copiers/
+- Restrooms and cleaning: https://podfy.net/solutions/qr-issue-reporting/restrooms-cleaning/
+- Fitness equipment: https://podfy.net/solutions/qr-issue-reporting/fitness-equipment/
+- Waste containers: https://podfy.net/solutions/qr-issue-reporting/waste-containers/
+- Remote equipment: https://podfy.net/solutions/qr-issue-reporting/remote-equipment/
+
 ## Who uses PODFY
 
 - **Carriers and transport companies**: GPS-stamped POD for every driver including subcontractors

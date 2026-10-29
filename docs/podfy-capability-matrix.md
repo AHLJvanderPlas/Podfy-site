@@ -1,25 +1,23 @@
-# PODFY capability matrix — Report vs. what exists (2026-10-29)
+# PODFY capability matrix: QR Reporting vs. what exists (updated 2026-10-29)
 
-Legend — **live**: in production · **extend**: exists for Delivery, needs a Report variant · **build**: does not exist · **phase 2**: after launch.
-"Copy treatment" = how podfy.net may describe it before it is live.
+Owner decisions 2026-10-29: QR Reporting gets **exactly the same functions as Proof of Delivery**, described differently.
+The site may overpromise a little: features below marked **claimed** are shown as available and are built before
+or with the first customers. Only the open API is labelled "Soon".
 
-| Capability (brief §11) | Existing implementation | Gap | Effort | Copy treatment now |
-|---|---|---|---|---|
-| Public link / QR per item, no app or login | podfy.app/{slug}/{ref}; Dispatch QR cards (PNG, label, A4) in the portal | asset wording; QR label template for machines | extend (S) | "QR code per machine" (planned) |
-| Reference pre-filled from QR | `ref1` in the URL, locked field | — | live | — |
-| Workflow type Delivery vs Report (texts, labels, success copy) | one Delivery workflow; texts in i18n.json (12 languages) | per-brand workflow type + Report text set | build (M) | do not show UI as live |
-| Issue categories, configurable per brand | 6 fixed delivery codes (optional) | per-brand category list + labels per language | extend (M) | example categories, labelled "example" |
-| Photo optional (category/text-only report) | at least one file required (client + server) | allow file-less submission for Report workflow; PDF/record without document | build (M) | "photo optional" only after built |
-| Asset register (ID, name, site, status, retire/move) | none (reference is free text) | table + portal UI + QR mapping | build (L) | "asset identified by its QR code" (planned) |
-| Notifications to the responsible team | brand recipients + custom notification templates (c_note) | Report e-mail wording | extend (S) | "e-mail notification" (planned) |
-| Webhook / API (`report.created`) | **none** (only Mollie → Podfy) | signed webhooks, retries, per-brand endpoint config, event log; later a read API | build (L) | **no claim**; "integrations on the roadmap — tell us your system" |
-| History per asset / category | portal list, search by reference / date / status | category filter, per-asset view | extend (M) | "searchable history" (planned) |
-| Branding + languages | live | — | live | — |
-| Abuse protection | upload challenge + rate limits | review limits for anonymous public reporters | extend (S) | — |
-| Location | EXIF → browser (permission) → IP | Report: location optional/off by default | extend (S) | "the machine's location comes from its QR code" |
-| Retention / deletion | per plan + cron cleanup | Report retention per plan (owner decision) | decide | none until decided |
-| Public Report demo | none | isolated demo brand with sample machine | build (S) after MVP | "Request a demo" |
-| Pricing | per POD / plan | asset-based or per-report model | decide | "Pricing on request" |
-| CSV asset import, bulk QR sheets, analytics, routing | none | — | phase 2 | not mentioned |
+Legend: **live** in production · **claimed** on the site, still to build · **soon** labelled "Soon" on the site.
 
-**Conclusion:** Report needs an app MVP (workflow type, optional photo, configurable categories, asset register, Report notifications) before anything on podfy.net can be called live. Webhooks/API are a separate build and the largest item; they are not required for an MVP that notifies by e-mail.
+| Capability | Today | To build | Site status |
+|---|---|---|---|
+| QR per asset, no app or login | podfy.app/{slug}/{ref}; Dispatch QR cards | — | live |
+| Asset pre-filled from QR | `ref1` in URL, locked field | — | live |
+| Asset register via template | none | download template (CSV/XLSX) → upload; asset number = reference; per-asset QR | claimed |
+| QR stickers with custom text | Dispatch label (CMR sticker layout) | same sticker, text set per brand (e.g. "Scan to report an issue") | claimed |
+| Own issue categories, per language | 6 fixed delivery codes | per-brand category list | claimed |
+| Photo required / optional / off | file always required | feature toggle in the function menu (both solutions) | claimed |
+| E-mail notifications | brand recipients + custom templates | report wording | live (wording: claimed) |
+| Webhook to ticketing / maintenance | none (only Mollie → Podfy) | signed `report.created` / `pod.created`, retries, endpoint settings; **target live end of November 2026**, built together with the first customer | claimed |
+| Open (DIY) API | none | read/receive API for custom integrations | soon |
+| History per asset | portal list, search by reference | category filter, per-asset view | claimed |
+| Branding, 12 languages, EU storage | live | — | live |
+| Abuse protection | upload challenge + rate limits | review for anonymous reporters | live |
+| Pricing | per POD / plan | per project (assets + reports) | "on request" |

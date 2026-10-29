@@ -1694,3 +1694,47 @@ html[data-theme="dark"] .v2-receipt {
 .v2-faq details p { margin: 0.6rem 0 0; color: var(--v2-ink-2); line-height: 1.6; }
 @media (prefers-reduced-motion: reduce) { .v2-sol-card, .v2-aud-tile { transition: none; } }
 .v2-field-hint { font-weight: 400; color: var(--v2-muted); font-size: 0.85em; }
+
+/* QR Reporting v2 (2026-10-29): homepage band (~40% of the page), sticker, shared feature grid */
+.v2-qr-band { background: var(--v2-ink); color: var(--v2-paper); padding: 4.5rem 0; }
+.v2-qr-band .v2-eyebrow { color: color-mix(in srgb, var(--v2-paper) 70%, transparent); }
+.v2-qr-band-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3rem; align-items: center; }
+@media (max-width: 900px) { .v2-qr-band-grid { grid-template-columns: 1fr; } .v2-qr-band { padding: 3rem 0; } }
+.v2-qr-band-title { font-family: var(--v2-font-serif); font-size: clamp(2.1rem, 4.4vw, 3.4rem); line-height: 1.08; font-weight: 600; margin: 0.4rem 0 1rem; color: var(--v2-paper); }
+.v2-qr-band-title em { color: var(--v2-stamp); font-style: italic; }
+.v2-qr-band-sub { font-size: 1.08rem; line-height: 1.6; color: color-mix(in srgb, var(--v2-paper) 82%, transparent); max-width: 40rem; }
+.v2-qr-cases { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 1.75rem; padding: 0; list-style: none; }
+.v2-qr-cases a { display: inline-block; padding: 0.4rem 0.7rem; border: 1px solid color-mix(in srgb, var(--v2-paper) 30%, transparent); border-radius: 3px; color: var(--v2-paper); text-decoration: none; font-size: 0.86rem; }
+.v2-qr-cases a:hover, .v2-qr-cases a:focus-visible { border-color: var(--v2-stamp); color: var(--v2-stamp); }
+.v2-qr-band .v2-btn-ghost { color: var(--v2-paper); border-color: color-mix(in srgb, var(--v2-paper) 40%, transparent); }
+.v2-qr-band-visual { display: flex; gap: 1.25rem; align-items: flex-end; justify-content: center; }
+.v2-qr-band .rp-phone { margin: 0; }
+.v2-badge-new { display: inline-block; font-family: var(--v2-font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--v2-paper);
+  background: var(--v2-stamp); border-radius: 3px; padding: 0.08rem 0.4rem; line-height: 1.4; vertical-align: middle; }
+
+/* Asset sticker (printable QR label, illustration) */
+.rp-sticker { width: 170px; flex: none; background: #FFFFFF; color: #0E1116; border: 1px solid var(--v2-line-2); border-radius: var(--v2-radius); padding: 0.75rem 0.75rem 0.65rem; text-align: center; }
+.rp-sticker-head { font-family: var(--v2-font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: #5A6473; }
+.rp-sticker img { display: block; width: 120px; height: 120px; margin: 0.45rem auto; }
+.rp-sticker-cta { font-weight: 700; font-size: 0.86rem; }
+.rp-sticker-id { font-family: var(--v2-font-mono); font-size: 0.68rem; color: #5A6473; margin-top: 0.15rem; }
+@media (max-width: 520px) { .v2-qr-band-visual .rp-sticker { display: none; } }
+
+/* Same platform, same functions */
+.v2-feat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.v2-feat { padding: 1.1rem 1.2rem; border: 1px solid var(--v2-line); border-radius: var(--v2-radius); background: var(--v2-card); }
+.v2-feat h3 { font-family: var(--v2-font-serif); font-size: 1.02rem; margin: 0 0 0.35rem; display: flex; gap: 0.45rem; align-items: center; flex-wrap: wrap; }
+.v2-feat p { margin: 0; color: var(--v2-muted); font-size: 0.88rem; line-height: 1.5; }
+.v2-badge-soon { font-family: var(--v2-font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--v2-muted); border: 1px solid var(--v2-line-2); border-radius: 3px; padding: 0.02rem 0.3rem; }
+.v2-asset-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; margin-top: 1.25rem; }
+@media (max-width: 860px) { .v2-asset-grid { grid-template-columns: 1fr; } }
+.v2-asset-steps { margin: 0; padding-left: 1.2rem; line-height: 1.7; color: var(--v2-ink-2); }
+.v2-asset-steps li + li { margin-top: 0.4rem; }
+.v2-qr-points { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin: 1.25rem 0 0; padding: 0; list-style: none; font-family: var(--v2-font-mono); font-size: 0.78rem; letter-spacing: 0.02em; color: color-mix(in srgb, var(--v2-paper) 80%, transparent); }
+.v2-qr-points li::before { content: "\2713"; color: var(--v2-stamp); margin-right: 0.45rem; }
+.v2-qr-cases-label { margin: 1.6rem 0 0; font-family: var(--v2-font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--v2-paper) 60%, transparent); }
+.v2-qr-cases-label + .v2-qr-cases { margin-top: 0.6rem; }
+.v2-qr-band .v2-rp-figure { margin: 0; }
+.v2-qr-band .rp-caption { color: color-mix(in srgb, var(--v2-paper) 60%, transparent); }
+.v2-qr-band .v2-btn-primary { background: var(--v2-stamp); border-color: var(--v2-stamp); color: #FFFFFF; }
+.v2-qr-band .v2-btn-primary:hover, .v2-qr-band .v2-btn-primary:focus-visible { background: color-mix(in srgb, var(--v2-stamp) 85%, #000); border-color: color-mix(in srgb, var(--v2-stamp) 85%, #000); color: #FFFFFF; }
