@@ -1101,6 +1101,6 @@ if __name__ == "__main__":
         build_home(lang)
     # regenerated pages lose their asset wiring: re-run the site tools so `npm test` stays green
     import subprocess
-    for tool in ("tools/extract-inline.mjs", "tools/inline-styles.mjs"):
+    for tool in ("tools/extract-inline.mjs", "tools/inline-styles.mjs", "tools/sitemap-lastmod.mjs"):
         subprocess.run(["node", tool], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
     print(f"built {len(LANGS)} languages × {1 + len(EN.ORDER)} pages; sitemap QR block: {n} URLs")

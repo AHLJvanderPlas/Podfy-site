@@ -74,3 +74,15 @@ test("CMR generator moved to /cmr/generator/ in every locale, and no link still 
     assert.doesNotMatch(s, />CMR generator<\/a>/.test(s) ? /href="\/cmr\/"[^>]*>CMR generator/ : /$^/, `${f}: CMR generator link points at /cmr/`);
   }
 });
+
+test("sitemap: every URL has a real <lastmod> (stamped from git by tools/sitemap-lastmod.mjs), no duplicates", () => {
+  const xml = readFileSync(`${ROOT}sitemap.xml`, "utf8");
+  const blocks = xml.match(/<url>[\s\S]*?<\/url>/g);
+  const locs = blocks.map((b) => b.match(/<loc>([^<]+)<\/loc>/)[1]);
+  assert.equal(new Set(locs).size, locs.length, "duplicate <loc>");
+  for (const b of blocks) {
+    const m = b.match(/<lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>/);
+    assert.ok(m, `no lastmod: ${b.match(/<loc>([^<]+)/)[1]}`);
+    assert.ok(m[1] <= new Date().toISOString().slice(0, 10), `lastmod in the future: ${m[1]}`);
+  }
+});

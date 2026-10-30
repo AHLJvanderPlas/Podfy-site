@@ -8,6 +8,9 @@ cd "$(dirname "$0")"
 if [ "$1" != "build" ]; then node --test tests/*.test.mjs >/dev/null 2>&1 || { echo "tests failed — run: npm test"; exit 1; }; fi
 PROJECT=$(sed -n 's/^name *= *"\(.*\)"/\1/p' wrangler.toml | head -1)
 
+# Sitemap <lastmod> = last change of each page (git), so Google can trust it
+node tools/sitemap-lastmod.mjs
+
 rm -rf dist && mkdir dist
 rsync -a --include '/SECURITY.md' \
   --exclude '.claude' --exclude '.git' --exclude '.wrangler' --exclude 'dist' --exclude 'node_modules' \
