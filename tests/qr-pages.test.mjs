@@ -38,3 +38,22 @@ test("homepage, solutions hub, pricing and contact carry the generated QR blocks
     assert.match(contact, /name="asset_count"/);
   }
 });
+
+test("QR landing page (/qr/) exists in every locale: noindex campaign page with the demo form", () => {
+  for (const loc of LOCALES) {
+    const f = `${ROOT}${loc}qr/index.html`;
+    assert.ok(existsSync(f), `missing ${f}`);
+    const s = readFileSync(f, "utf8");
+    const title = decode(s.match(/<title>(.*?)<\/title>/)[1]);
+    const desc = decode(s.match(/<meta name="description" content="(.*?)"/)[1]);
+    assert.ok(title.length <= 60, `${f}: title ${title.length} chars`);
+    assert.ok(desc.length <= 155, `${f}: description ${desc.length} chars`);
+    assert.match(s, /<meta name="robots" content="noindex,follow" \/>/);
+    assert.equal((s.match(/rel="alternate" hreflang="/g) || []).length, 5);
+    for (const id of ["contact-form", "contact-name", "contact-email", "contact-sector", "contact-message", "contact-consent", "hp_contact", "contact-turnstile-token", "contact-success", "contact-error"])
+      assert.match(s, new RegExp(`id="${id}"`), `${f}: form field ${id}`);
+    for (const c of CASES) assert.match(s, new RegExp(`value="report-${c}"`), `${f}: ${c}`);
+    const body = s.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<title>.*?<\/title>/, "");
+    assert.doesNotMatch(body, /[\u2013\u2014]/, `${f}: em/en dash`);
+  }
+});

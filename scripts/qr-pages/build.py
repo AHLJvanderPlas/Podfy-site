@@ -36,6 +36,7 @@ for l in LANGS[1:]:  # every language must cover exactly the same pages and keys
     for slug, v in EN.CASES.items():
         miss = set(v) - set(C[l].CASES[slug])
         assert not miss, f"{l}/{slug}: missing {miss}"
+    assert set(C[l].LP) == set(EN.LP), f"{l}: landing keys differ {set(C[l].LP) ^ set(EN.LP)}"
 
 esc = lambda s: html.escape(s, quote=True)
 pre = lambda lang: "" if lang == "en" else "/" + lang
@@ -472,6 +473,208 @@ def sync_contact():
         open(f, "w").write(s)
 
 
+# ── Landing page for introductions: podfy.net/qr/ (+ /nl/qr/, /de/qr/, /fr/qr/) ──
+LP_PATH = "/qr/"
+lp_url = lambda lang: SITE + pre(lang) + LP_PATH
+
+
+def lp_form(lang, c):
+    """The site contact form (same ids, same script, same /api/contact), narrowed to QR use cases."""
+    lp = c.LP
+    src = open(os.path.join(ROOT, pre(lang).lstrip("/"), "contact.html")).read()
+    a = src.index("<!-- Success state")
+    b = src.index("</form>", a) + len("</form>")
+    form = src[a:b]
+    script = re.findall(r'<script src="(/assets/js/i/[0-9a-f]+\.js)"></script>', src)[-1]
+    opts = "".join(f'<option value="report-{s}">{esc(c.CASES[s]["name"])}</option>' for s in c.ORDER)
+    other = CONTACT_TEXT[lang][0]
+    select = (f'<label for="contact-sector" class="v2-field-label">{esc(lp["sector_label"])}</label>\n'
+              f'                <select id="contact-sector" name="sector" class="v2-input"><option value="report-other">{esc(lp["sector_ph"])}</option>{opts}<option value="report-other">{esc(other)}</option></select>')
+    form = re.sub(r'<label for="contact-sector"[\s\S]*?</select>', lambda m: select, form)
+    form = re.sub(r'(id="contact-message"[\s\S]*?placeholder=")[^"]*(")', lambda m: m.group(1) + esc(lp["msg_ph"]) + m.group(2), form)
+    form = re.sub(r"\s*<!--[\s\S]*?-->", "", form)  # contact-page comments are not copy for this page
+    return form, script
+
+
+def build_landing(lang):
+    c, ui, ov, lp, p = C[lang], C[lang].UI, C[lang].OV, C[lang].LP, pre(lang)
+    ph = ov["phone"]
+    faq = [c.FAQ[k] for k in lp["faq_keys"]]
+    form, script = lp_form(lang, c)
+    alts = "".join(f'  <link rel="alternate" hreflang="{l}" href="{lp_url(l)}" />\n' for l in LANGS) + f'  <link rel="alternate" hreflang="x-default" href="{lp_url("en")}" />\n'
+    t, d = esc(lp["title"]), esc(lp["desc"])
+    ld = {"@context": "https://schema.org", "@type": "FAQPage",
+          "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
+    # Campaign page for introductions: noindex so it never competes with the indexed overview in search
+    head_html = f'''<!doctype html>
+<html lang="{lang}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{t}</title>
+  <meta name="description" content="{d}" />
+  <link rel="canonical" href="{lp_url(lang)}" />
+  <meta name="robots" content="noindex,follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:title" content="{t}" />
+  <meta property="og:description" content="{d}" />
+  <meta property="og:url" content="{lp_url(lang)}" />
+  <meta property="og:image" content="{SITE}/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{t}" />
+  <meta name="twitter:description" content="{d}" />
+  <meta name="twitter:image" content="{SITE}/assets/og-image.jpg" />
+{alts}  <link rel="stylesheet" href="/assets/styles.site.css?v={CSSV}" />
+  <script src="/assets/theme.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script type="application/ld+json">
+  {json.dumps(ld, ensure_ascii=False)}
+  </script>
+</head>
+'''
+    trust = "".join(f"<li>{esc(x)}</li>" for x in lp["trust"])
+    stats = "".join(f'<li class="v2-stat-band-item"><span class="v2-stat-band-num">{esc(n)}</span><span class="v2-stat-band-label">{esc(l)}</span></li>' for n, l in lp["stats"])
+    without = "".join(f"<li>{esc(x)}</li>" for x in lp["without"])
+    with_ = "".join(f"<li>{esc(x)}</li>" for x in lp["with"])
+    flow = "".join(f'<div class="v2-flow-step"><h3>{esc(h)}</h3><p>{esc(x)}</p></div>' for h, x in ov["flow"])
+    labels = lp["ticket_labels"]
+    vals = [ph[0], ph[1], ph[4], ph[5], lp["ticket_photo"], lp["ticket_received"], lp["ticket_sent"]]
+    rows = "".join(f'<div class="lp-ticket-row"><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in zip(labels, vals))
+    payload = json.dumps({"event": "report.created", "asset": ph[0], "location": ph[1], "category": ph[4], "note": ph[5],
+                          "photos": 1, "received_at": "2026-10-30T09:24:00+01:00",
+                          "url": "https://portal.podfy.net/report/7f3c9a"}, ensure_ascii=False, indent=2)
+    points = "".join(f"<li>{esc(x)}</li>" for x in lp["receive_points"])
+    roles = "".join(f'<div class="v2-feat"><h3>{esc(h)}</h3><p>{esc(x)}</p></div>' for h, x in lp["roles"])
+    nxt = "".join(f'<li><strong>{esc(h)}</strong><span>{esc(x)}</span></li>' for h, x in lp["next"])
+    body = f'''
+  <main id="main" class="v2-main lp">
+    <section class="lp-hero" aria-labelledby="lp-heading">
+      <div class="container lp-hero-grid">
+        <div>
+          <p class="v2-eyebrow"><span class="v2-badge-new">{esc(ui["badge_new"])}</span> {esc(ui["product"])}</p>
+          <h1 class="v2-hero-title" id="lp-heading">{esc(lp["h1a"])}<br><em>{esc(lp["h1em"])}</em></h1>
+          <p class="v2-hero-sub">{esc(lp["sub"])}</p>
+          <div class="v2-hero-actions"><a href="#start" class="v2-btn v2-btn-primary">{esc(lp["cta_demo"])} &rarr;</a><a href="#how" class="v2-btn v2-btn-ghost">{esc(lp["cta_how"])}</a></div>
+          <ul class="lp-trust">{trust}</ul>
+        </div>
+        <div class="v2-qr-band-visual lp-visual">
+          {phone(ui, *ph)}
+          <div class="rp-sticker" aria-hidden="true"><div class="rp-sticker-head">ACME SERVICE</div><img src="/assets/demo-qr.svg" alt="" width="120" height="120" /><div class="rp-sticker-cta">{esc(ui["sticker_default"])}</div><div class="rp-sticker-id">{esc(ph[0])}</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-stat-band-wrap" aria-label="{esc(ui["product"])}"><div class="container"><ul class="v2-stat-band" role="list">{stats}</ul></div></section>
+
+    <section class="v2-section" aria-labelledby="lp-cmp-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(lp["cmp_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="lp-cmp-heading">{esc(lp["cmp_title"])}</h2>
+        <div class="lp-cmp">
+          <div class="lp-cmp-col lp-cmp-col--without"><h3>{esc(lp["without_h"])}</h3><ul>{without}</ul></div>
+          <div class="lp-cmp-col lp-cmp-col--with"><h3>{esc(lp["with_h"])}</h3><ul>{with_}</ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="how" aria-labelledby="lp-how-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(ov["how_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="lp-how-heading">{esc(ov["how_title"])}</h2>
+        <div class="v2-flow">{flow}</div>
+      </div>
+    </section>
+
+    <section class="v2-qr-band lp-receive" aria-labelledby="lp-rec-heading">
+      <div class="container v2-qr-band-grid">
+        <div>
+          <p class="v2-eyebrow">{esc(lp["receive_eyebrow"])}</p>
+          <h2 class="v2-qr-band-title" id="lp-rec-heading">{esc(lp["receive_title"])}</h2>
+          <p class="v2-qr-band-sub">{esc(lp["receive_text"])}</p>
+          <ul class="v2-qr-points">{points}</ul>
+        </div>
+        <div class="lp-receive-visual">
+          <article class="lp-ticket" aria-label="{esc(lp["ticket_head"])}">
+            <header class="lp-ticket-head"><span>{esc(lp["ticket_head"])}</span><span class="lp-ticket-id">{esc(ph[0])}</span></header>
+            <dl class="lp-ticket-rows">{rows}</dl>
+            <span class="v2-stamp-mark lp-ticket-stamp">{esc(lp["ticket_stamp"])}</span>
+          </article>
+          <figure class="lp-json"><figcaption>{esc(lp["json_caption"])}</figcaption><pre><code>{esc(payload)}</code></pre></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="lp-roles-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(lp["roles_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="lp-roles-heading">{esc(lp["roles_title"])}</h2>
+        <div class="v2-feat-grid lp-roles">{roles}</div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="cases" aria-labelledby="lp-cases-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(ov["cases_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="lp-cases-heading">{esc(ov["cases_title"])}</h2>
+        <div class="v2-aud-grid">{tiles(lang, c, c.ORDER, ui)}</div>
+      </div>
+    </section>
+
+{asset_section(ui, ph[0], ui["sticker_default"])}
+
+    <section class="v2-section" aria-labelledby="feat-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(ov["feat_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="feat-heading">{esc(ov["feat_title"])}</h2>
+        <p class="v2-prose">{esc(ov["feat_intro"])}</p>
+        {features(c)}
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(ui["faq_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="faq-heading">{esc(ov["faq_title"])}</h2>
+        {faq_html(faq)}
+        <div class="v2-safety" role="note">{ov["safety"]}</div>
+      </div>
+    </section>
+
+    <section class="v2-section lp-start" id="start" aria-labelledby="lp-form-heading">
+      <div class="container lp-form-grid">
+        <div>
+          <p class="v2-eyebrow">{esc(lp["form_eyebrow"])}</p>
+          <h2 class="v2-section-title" id="lp-form-heading">{esc(lp["form_title"])}</h2>
+          <p class="v2-prose">{esc(lp["form_text"])}</p>
+          <h3 class="lp-next-h">{esc(lp["next_h"])}</h3>
+          <ol class="lp-next">{nxt}</ol>
+        </div>
+        <div class="lp-form-card">
+            {form}
+        </div>
+      </div>
+    </section>
+  </main>'''
+    full = head_html + '''<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">''' + {"en": "Skip to content", "nl": "Naar inhoud", "de": "Zum Inhalt", "fr": "Aller au contenu"}[lang] + '''</a>
+  [[PODFY_HEADER]]
+''' + body + f'''
+
+  [[PODFY_FOOTER]]
+
+  <script src="{script}"></script>
+</body>
+</html>
+'''
+    out = os.path.join(ROOT, p.lstrip("/"), LP_PATH.strip("/"))
+    os.makedirs(out, exist_ok=True)
+    open(os.path.join(out, "index.html"), "w").write(full)
+
+
 if __name__ == "__main__":
     for lang in LANGS:
         build(lang)
@@ -480,4 +683,10 @@ if __name__ == "__main__":
     sync_solutions_hub()
     sync_pricing()
     sync_contact()
+    for lang in LANGS:
+        build_landing(lang)
+    # regenerated pages lose their asset wiring: re-run the site tools so `npm test` stays green
+    import subprocess
+    for tool in ("tools/extract-inline.mjs", "tools/inline-styles.mjs"):
+        subprocess.run(["node", tool], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
     print(f"built {len(LANGS)} languages × {1 + len(EN.ORDER)} pages; sitemap QR block: {n} URLs")
