@@ -24,13 +24,16 @@
   <link rel="alternate" hreflang="de" href="https://podfy.net/de/" />
   <link rel="alternate" hreflang="fr" href="https://podfy.net/fr/" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r10" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r11" />
   <script src="/assets/theme.js" defer></script>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "Organization", "name": "PODFY", "url": "https://podfy.net", "logo": "https://podfy.net/assets/podfy.svg", "description": "Proof of delivery platform for carriers, 3PLs and logistics teams. GPS-stamped photo POD without an app. EU-hosted.", "contactPoint": {"@type": "ContactPoint", "email": "support@podfy.net", "contactType": "customer support"}, "address": {"@type": "PostalAddress", "streetAddress": "Rodenrijselaan 10A", "addressLocality": "Rotterdam", "postalCode": "3037 XE", "addressCountry": "NL"}, "vatID": "NL001170142B85", "areaServed": ["NL", "BE", "DE", "FR", "EU"], "sameAs": []}
   </script>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "WebSite", "name": "PODFY", "url": "https://podfy.net", "potentialAction": {"@type": "SearchAction", "target": {"@type": "EntryPoint", "urlTemplate": "https://podfy.net/changelog?q={search_term_string}"}, "query-input": "required name=search_term_string"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Qu'est-ce que PODFY ?", "acceptedAnswer": {"@type": "Answer", "text": "PODFY est une plateforme européenne qui collecte preuves et signalements depuis le terrain, sans appli. Elle propose deux solutions : CMR et preuve de livraison pour le transport et la logistique, et Signalement QR pour les machines et équipements."}}, {"@type": "Question", "name": "Quelle différence entre CMR et preuve de livraison et Signalement QR ?", "acceptedAnswer": {"@type": "Answer", "text": "CMR et preuve de livraison suit des envois : les chauffeurs envoient la CMR signée ou le bon de livraison par référence d'envoi. Signalement QR suit des équipements : un QR code permanent sur chaque machine permet à chacun de signaler un problème sur cet équipement."}}, {"@type": "Question", "name": "Pouvons-nous utiliser les deux ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Les deux fonctionnent sur la même plateforme avec le même portail, la même image, les mêmes notifications et webhooks : un seul compte peut collecter preuves de livraison et signalements d'équipements."}}, {"@type": "Question", "name": "Faut-il installer une appli ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Les chauffeurs et les personnes qui signalent utilisent le navigateur de leur propre téléphone, sans appli ni compte."}}, {"@type": "Question", "name": "Où les données sont-elles stockées ?", "acceptedAnswer": {"@type": "Answer", "text": "Les documents et signalements sont stockés dans l'UE. L'envoi des e-mails passe par les sous-traitants indiqués sur notre page Confiance."}}, {"@type": "Question", "name": "Combien cela coûte-t-il ?", "acceptedAnswer": {"@type": "Answer", "text": "CMR et preuve de livraison est facturé par document, à partir de 0,10 €. Le Signalement QR est tarifé par projet, selon le nombre d'équipements et de signalements."}}]}
   </script>
 <link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
 <script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
@@ -64,6 +67,51 @@
             <span class="door-cta">Vers le signalement QR &rarr;</span>
           </a>
         </div>
+      </div>
+    </section>
+
+    <section class="v2-section home-cmp" aria-labelledby="home-cmp-heading">
+      <div class="container">
+        <p class="v2-eyebrow">De quoi avez-vous besoin ?</p>
+        <h2 class="v2-section-title" id="home-cmp-heading">Deux solutions, une différence : ce que vous suivez</h2>
+        <p class="v2-prose">Les deux fonctionnent sur la même plateforme avec les mêmes fonctions. La différence, c&#x27;est ce à quoi le scan ou le lien est rattaché : un envoi qui se déplace, ou un équipement qui reste en place.</p>
+        <div class="home-cmp-wrap"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">De quoi avez-vous besoin ?</span></th><th scope="col"><a href="/fr/cmr/">CMR et preuve de livraison</a></th><th scope="col"><a href="/fr/qr/">Signalement QR</a></th></tr></thead><tbody><tr><th scope="row">Suit</th><td>Des envois qui vont de A à B</td><td>Des machines et équipements qui restent en place</td></tr><tr><th scope="row">Qui envoie</th><td>Les chauffeurs, salariés ou sous-traitants</td><td>Tout le monde : clients, collaborateurs, techniciens, prestataires</td></tr><tr><th scope="row">Commence par</th><td>Un lien par envoi ou une carte QR imprimée</td><td>Un autocollant QR permanent sur chaque équipement</td></tr><tr><th scope="row">Ce qui est saisi</th><td>CMR signée, bon de livraison, photos de la marchandise</td><td>Une catégorie, une courte note et une photo facultative</td></tr><tr><th scope="row">Rattaché à</th><td>La référence de l&#x27;envoi</td><td>Le numéro d&#x27;équipement</td></tr><tr><th scope="row">Votre équipe reçoit</th><td>Un PDF horodaté par envoi</td><td>Un signalement structuré par équipement</td></tr><tr><th scope="row">Utilisateurs types</th><td>Transporteurs, 3PL, expéditeurs, construction</td><td>Prestataires de service, services généraux, exploitants de réseaux de machines</td></tr><tr><th scope="row">Tarif</th><td>Par document, à partir de 0,10 €</td><td>Par projet, selon les équipements et signalements</td></tr></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="home-ex-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Exemples</p>
+        <h2 class="v2-section-title" id="home-ex-heading">Concrètement, sur le terrain</h2>
+        <div class="home-ex-grid"><article class="home-ex home-ex--cmr"><p class="home-ex-tag">CMR et preuve de livraison</p><h3>Un transporteur avec des chauffeurs sous-traitants</h3><p class="home-ex-before">Les CMR signées revenaient par la poste ou dans la cabine, des jours après la livraison. Les factures attendaient, et les planificateurs passaient leurs matinées à appeler les chauffeurs.</p><ul class="v2-check-list"><li>Chaque envoi reçoit un lien PODFY avec sa référence</li><li>Les chauffeurs photographient la CMR signée au quai et l&#x27;envoient en quelques secondes</li><li>La comptabilité facture le jour même, avec le PDF horodaté joint</li></ul><a class="v2-link" href="/fr/cmr/">Voir CMR et preuve de livraison &rarr;</a></article><article class="home-ex home-ex--qr"><p class="home-ex-tag">Signalement QR</p><h3>Un prestataire de machines à café</h3><p class="home-ex-before">Les pannes arrivaient au support sous forme d&#x27;e-mails vagues des services généraux, sans numéro de machine. Les techniciens venaient souvent sans la bonne pièce.</p><ul class="v2-check-list"><li>Chaque machine porte un autocollant avec son propre QR code</li><li>Les collaborateurs le scannent, choisissent la panne et photographient l&#x27;écran</li><li>Le signalement arrive dans l&#x27;outil de service avec la machine, le site et le code d&#x27;erreur</li></ul><a class="v2-link" href="/fr/solutions/qr-issue-reporting/coffee-machines/">Voir le cas des machines à café &rarr;</a></article></div>
+        <p class="home-ex-note">Exemples illustrant un usage typique.</p>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="home-steps-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Fonctionnement</p>
+        <h2 class="v2-section-title" id="home-steps-heading">Les trois mêmes étapes pour les deux</h2>
+        <div class="v2-flow"><div class="v2-flow-step"><h3>Partagez un lien ou un QR code</h3><p>Envoyez un lien par envoi, ou placez un QR code sur chaque équipement. Rien à installer pour personne.</p></div><div class="v2-flow-step"><h3>Saisissez avec n&#x27;importe quel téléphone</h3><p>Le chauffeur ou la personne devant la machine envoie une photo, un document ou un court signalement depuis le navigateur.</p></div><div class="v2-flow-step"><h3>Votre équipe agit</h3><p>Un dossier complet arrive dans votre portail, votre boîte mail et, par webhook, dans vos propres systèmes.</p></div></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="home-uc-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Cas d&#x27;usage fréquents</p>
+        <h2 class="v2-section-title" id="home-uc-heading">Trouvez votre situation</h2>
+        <div class="home-uc-grid">
+          <div class="home-uc"><h3><a href="/fr/cmr/">CMR et preuve de livraison</a></h3><ul><li><a href="/fr/solutions/carriers/">Transporteurs</a></li><li><a href="/fr/solutions/3pl/">3PL et e-logistique</a></li><li><a href="/fr/solutions/shippers/">Expéditeurs</a></li><li><a href="/fr/solutions/construction/">Livraisons de chantier</a></li><li><a href="/fr/solutions/retail/">Livraisons en magasin</a></li><li><a href="/fr/solutions/inbound/">Réception marchandises</a></li></ul><a class="v2-link" href="/fr/solutions/">Toutes les solutions de livraison &rarr;</a></div>
+          <div class="home-uc"><h3><a href="/fr/qr/">Signalement QR</a></h3><ul><li><a href="/fr/solutions/qr-issue-reporting/ev-chargers/">Bornes de recharge</a></li><li><a href="/fr/solutions/qr-issue-reporting/parcel-lockers/">Consignes à colis</a></li><li><a href="/fr/solutions/qr-issue-reporting/trailers-containers/">Remorques et conteneurs</a></li><li><a href="/fr/solutions/qr-issue-reporting/vending-machines/">Distributeurs automatiques</a></li><li><a href="/fr/solutions/qr-issue-reporting/coffee-machines/">Machines à café</a></li><li><a href="/fr/solutions/qr-issue-reporting/printers-copiers/">Imprimantes et copieurs</a></li></ul><a class="v2-link" href="/fr/solutions/qr-issue-reporting/#cases">Tous les cas d&#x27;usage QR &rarr;</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="v2-eyebrow">FAQ</p>
+        <h2 class="v2-section-title" id="faq-heading">Questions sur PODFY</h2>
+        <div class="v2-faq"><details><summary>Qu&#x27;est-ce que PODFY ?</summary><p>PODFY est une plateforme européenne qui collecte preuves et signalements depuis le terrain, sans appli. Elle propose deux solutions : CMR et preuve de livraison pour le transport et la logistique, et Signalement QR pour les machines et équipements.</p></details><details><summary>Quelle différence entre CMR et preuve de livraison et Signalement QR ?</summary><p>CMR et preuve de livraison suit des envois : les chauffeurs envoient la CMR signée ou le bon de livraison par référence d&#x27;envoi. Signalement QR suit des équipements : un QR code permanent sur chaque machine permet à chacun de signaler un problème sur cet équipement.</p></details><details><summary>Pouvons-nous utiliser les deux ?</summary><p>Oui. Les deux fonctionnent sur la même plateforme avec le même portail, la même image, les mêmes notifications et webhooks : un seul compte peut collecter preuves de livraison et signalements d&#x27;équipements.</p></details><details><summary>Faut-il installer une appli ?</summary><p>Non. Les chauffeurs et les personnes qui signalent utilisent le navigateur de leur propre téléphone, sans appli ni compte.</p></details><details><summary>Où les données sont-elles stockées ?</summary><p>Les documents et signalements sont stockés dans l&#x27;UE. L&#x27;envoi des e-mails passe par les sous-traitants indiqués sur notre page Confiance.</p></details><details><summary>Combien cela coûte-t-il ?</summary><p>CMR et preuve de livraison est facturé par document, à partir de 0,10 €. Le Signalement QR est tarifé par projet, selon le nombre d&#x27;équipements et de signalements.</p></details></div>
       </div>
     </section>
 

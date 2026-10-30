@@ -24,7 +24,7 @@
   <link rel="alternate" hreflang="de" href="https://podfy.net/de/" />
   <link rel="alternate" hreflang="fr" href="https://podfy.net/fr/" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r10" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r11" />
   <script src="/assets/theme.js" defer></script>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "Organization", "name": "PODFY", "url": "https://podfy.net", "logo": "https://podfy.net/assets/podfy.svg", "description": "Proof of delivery platform for carriers, 3PLs and logistics teams. GPS-stamped photo POD without an app. EU-hosted.", "contactPoint": {"@type": "ContactPoint", "email": "support@podfy.net", "contactType": "customer support"}, "address": {"@type": "PostalAddress", "streetAddress": "Rodenrijselaan 10A", "addressLocality": "Rotterdam", "postalCode": "3037 XE", "addressCountry": "NL"}, "vatID": "NL001170142B85", "areaServed": ["NL", "BE", "DE", "FR", "EU"], "sameAs": ["https://www.linkedin.com/company/podfy"]}
@@ -34,6 +34,9 @@
   </script>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Podfy", "url": "https://podfy.net", "applicationCategory": "BusinessApplication", "creator": {"@type": "Organization", "name": "Lake Project", "url": "https://lake-project.com"}, "author": {"@type": "Person", "name": "Alexander van der Plas", "url": "https://alexandervanderplas.com"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is PODFY?", "acceptedAnswer": {"@type": "Answer", "text": "PODFY is a European platform that collects proof and reports from the field without an app. It has two solutions: CMR and delivery proof for transport and logistics, and QR Reporting for machines and assets."}}, {"@type": "Question", "name": "What is the difference between CMR and delivery proof and QR Reporting?", "acceptedAnswer": {"@type": "Answer", "text": "CMR and delivery proof follows shipments: drivers send the signed CMR or delivery note per shipment reference. QR Reporting follows assets: a permanent QR code on each machine lets anyone report a problem with that asset."}}, {"@type": "Question", "name": "Can we use both?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Both run on the same platform with the same portal, branding, notifications and webhooks, so one account can collect delivery proof and equipment reports."}}, {"@type": "Question", "name": "Does anyone need to install an app?", "acceptedAnswer": {"@type": "Answer", "text": "No. Drivers and people reporting a problem use the browser on their own phone, without an app or an account."}}, {"@type": "Question", "name": "Where is the data stored?", "acceptedAnswer": {"@type": "Answer", "text": "Documents and reports are stored in the EU. E-mail delivery uses the subprocessors listed on our Trust page."}}, {"@type": "Question", "name": "What does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "CMR and delivery proof is priced per document, from €0.10. QR Reporting is priced per project, based on the number of assets and reports."}}]}
   </script>
 <link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
 <script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
@@ -67,6 +70,51 @@
             <span class="door-cta">Go to QR Reporting &rarr;</span>
           </a>
         </div>
+      </div>
+    </section>
+
+    <section class="v2-section home-cmp" aria-labelledby="home-cmp-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Which one do you need?</p>
+        <h2 class="v2-section-title" id="home-cmp-heading">Two solutions, one difference: what you are tracking</h2>
+        <p class="v2-prose">Both run on the same platform with the same functions. The difference is what the scan or link belongs to: a shipment that moves, or an asset that stays.</p>
+        <div class="home-cmp-wrap"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">Which one do you need?</span></th><th scope="col"><a href="/cmr/">CMR and delivery proof</a></th><th scope="col"><a href="/qr/">QR Reporting</a></th></tr></thead><tbody><tr><th scope="row">Tracks</th><td>Shipments that move from A to B</td><td>Machines and assets that stay in place</td></tr><tr><th scope="row">Who sends it</th><td>Drivers, employed or subcontracted</td><td>Anyone: customers, staff, technicians, contractors</td></tr><tr><th scope="row">Starts with</th><td>A link per shipment or a printed QR card</td><td>A permanent QR sticker on each asset</td></tr><tr><th scope="row">What is captured</th><td>Signed CMR, delivery note, photos of the goods</td><td>A category, a short note and an optional photo</td></tr><tr><th scope="row">Linked to</th><td>The shipment reference</td><td>The asset number</td></tr><tr><th scope="row">Your team receives</th><td>A stamped PDF per shipment</td><td>A structured report per asset</td></tr><tr><th scope="row">Typical users</th><td>Carriers, 3PLs, shippers, construction</td><td>Service providers, facility managers, machine network operators</td></tr><tr><th scope="row">Pricing</th><td>Per document, from €0.10</td><td>Per project, by assets and reports</td></tr></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="home-ex-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Examples</p>
+        <h2 class="v2-section-title" id="home-ex-heading">What it looks like in practice</h2>
+        <div class="home-ex-grid"><article class="home-ex home-ex--cmr"><p class="home-ex-tag">CMR and delivery proof</p><h3>A carrier with subcontracted drivers</h3><p class="home-ex-before">Signed CMRs came back by post or in the cab, days after delivery. Invoices waited, and planners spent mornings calling drivers for photos.</p><ul class="v2-check-list"><li>Each shipment gets a PODFY link with its reference</li><li>Drivers photograph the signed CMR at the dock and send it in seconds</li><li>Finance invoices the same day with the stamped PDF attached</li></ul><a class="v2-link" href="/cmr/">See CMR and delivery proof &rarr;</a></article><article class="home-ex home-ex--qr"><p class="home-ex-tag">QR Reporting</p><h3>A coffee machine service provider</h3><p class="home-ex-before">Faults reached the helpdesk as vague e-mails from office managers, without a machine number. Technicians often arrived without the right part.</p><ul class="v2-check-list"><li>Every machine carries a sticker with its own QR code</li><li>Employees scan it, choose the fault and add a photo of the display</li><li>The report lands in the service tool with machine, site and error code</li></ul><a class="v2-link" href="/solutions/qr-issue-reporting/coffee-machines/">See the coffee machine use case &rarr;</a></article></div>
+        <p class="home-ex-note">Illustrative examples of typical use.</p>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="home-steps-heading">
+      <div class="container">
+        <p class="v2-eyebrow">How it works</p>
+        <h2 class="v2-section-title" id="home-steps-heading">The same three steps for both</h2>
+        <div class="v2-flow"><div class="v2-flow-step"><h3>Share a link or QR code</h3><p>Send a link per shipment, or put a QR code on each asset. Nothing to install for anyone.</p></div><div class="v2-flow-step"><h3>Capture on any phone</h3><p>The driver or the person at the machine sends a photo, a document or a short report from the browser.</p></div><div class="v2-flow-step"><h3>Your team acts on it</h3><p>A complete record reaches your portal, your inbox and, by webhook, your own systems.</p></div></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="home-uc-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Popular use cases</p>
+        <h2 class="v2-section-title" id="home-uc-heading">Find your situation</h2>
+        <div class="home-uc-grid">
+          <div class="home-uc"><h3><a href="/cmr/">CMR and delivery proof</a></h3><ul><li><a href="/solutions/carriers/">Carriers</a></li><li><a href="/solutions/3pl/">3PL and fulfilment</a></li><li><a href="/solutions/shippers/">Shippers</a></li><li><a href="/solutions/construction/">Construction site deliveries</a></li><li><a href="/solutions/retail/">Retail deliveries</a></li><li><a href="/solutions/inbound/">Inbound receiving</a></li></ul><a class="v2-link" href="/solutions/">All delivery solutions &rarr;</a></div>
+          <div class="home-uc"><h3><a href="/qr/">QR Reporting</a></h3><ul><li><a href="/solutions/qr-issue-reporting/ev-chargers/">EV chargers</a></li><li><a href="/solutions/qr-issue-reporting/parcel-lockers/">Parcel lockers</a></li><li><a href="/solutions/qr-issue-reporting/trailers-containers/">Trailers and containers</a></li><li><a href="/solutions/qr-issue-reporting/vending-machines/">Vending machines</a></li><li><a href="/solutions/qr-issue-reporting/coffee-machines/">Coffee machines</a></li><li><a href="/solutions/qr-issue-reporting/printers-copiers/">Printers and copiers</a></li></ul><a class="v2-link" href="/solutions/qr-issue-reporting/#cases">All QR use cases &rarr;</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="v2-eyebrow">FAQ</p>
+        <h2 class="v2-section-title" id="faq-heading">Questions about PODFY</h2>
+        <div class="v2-faq"><details><summary>What is PODFY?</summary><p>PODFY is a European platform that collects proof and reports from the field without an app. It has two solutions: CMR and delivery proof for transport and logistics, and QR Reporting for machines and assets.</p></details><details><summary>What is the difference between CMR and delivery proof and QR Reporting?</summary><p>CMR and delivery proof follows shipments: drivers send the signed CMR or delivery note per shipment reference. QR Reporting follows assets: a permanent QR code on each machine lets anyone report a problem with that asset.</p></details><details><summary>Can we use both?</summary><p>Yes. Both run on the same platform with the same portal, branding, notifications and webhooks, so one account can collect delivery proof and equipment reports.</p></details><details><summary>Does anyone need to install an app?</summary><p>No. Drivers and people reporting a problem use the browser on their own phone, without an app or an account.</p></details><details><summary>Where is the data stored?</summary><p>Documents and reports are stored in the EU. E-mail delivery uses the subprocessors listed on our Trust page.</p></details><details><summary>What does it cost?</summary><p>CMR and delivery proof is priced per document, from €0.10. QR Reporting is priced per project, based on the number of assets and reports.</p></details></div>
       </div>
     </section>
 

@@ -36,6 +36,7 @@ for l in LANGS[1:]:  # every language must cover exactly the same pages and keys
     for slug, v in EN.CASES.items():
         miss = set(v) - set(C[l].CASES[slug])
         assert not miss, f"{l}/{slug}: missing {miss}"
+    assert set(C[l].HOME_MORE) == set(EN.HOME_MORE) and len(C[l].HOME_MORE["cmp_rows"]) == len(EN.HOME_MORE["cmp_rows"]), f"{l}: home body differs"
     assert set(C[l].CMR) == set(EN.CMR) and set(C[l].DOORS) == set(EN.DOORS), f"{l}: cmr/home keys differ"
     assert set(C[l].LP) == set(EN.LP), f"{l}: landing keys differ {set(C[l].LP) ^ set(EN.LP)}"
 
@@ -889,6 +890,14 @@ def build_home(lang):
             <span class="door-cta">{esc(door["cta"])} &rarr;</span>
           </a>'''
     shared = "".join(f"<li>{esc(x)}</li>" for x in d["shared"])
+    hm = c.HOME_MORE
+    cols = hm["cmp_cols"]
+    cmp_rows = "".join(f'<tr><th scope="row">{esc(a)}</th><td>{esc(b)}</td><td>{esc(q)}</td></tr>' for a, b, q in hm["cmp_rows"])
+    examples = "".join(f'''<article class="home-ex home-ex--{"cmr" if i == 0 else "qr"}"><p class="home-ex-tag">{esc(x["tag"])}</p><h3>{esc(x["title"])}</h3><p class="home-ex-before">{esc(x["before"])}</p><ul class="v2-check-list">{"".join(f"<li>{esc(y)}</li>" for y in x["after"])}</ul><a class="v2-link" href="{p}{x["href"]}">{esc(x["cta"])} &rarr;</a></article>''' for i, x in enumerate(hm["examples"]))
+    uc_cmr = "".join(f'<li><a href="{p}/solutions/{slug}/">{esc(n)}</a></li>' for slug, n in hm["uc_cmr"])
+    uc_qr = "".join(f'<li><a href="{p}{SECTION}{slug}/">{esc(c.CASES[slug]["name"])}</a></li>' for slug in c.ORDER[:6])
+    steps = "".join(f'<div class="v2-flow-step"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in hm["steps"])
+    ld = ld + [{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in hm["faq"]]}]
     body = f'''
   <main id="main" class="v2-main home">
     <section class="home-hero" aria-labelledby="home-heading">
@@ -898,6 +907,51 @@ def build_home(lang):
         <p class="v2-hero-sub home-sub">{esc(d["sub"])}</p>
         <div class="doors">{doors}
         </div>
+      </div>
+    </section>
+
+    <section class="v2-section home-cmp" aria-labelledby="home-cmp-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(hm["cmp_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="home-cmp-heading">{esc(hm["cmp_title"])}</h2>
+        <p class="v2-prose">{esc(hm["cmp_intro"])}</p>
+        <div class="home-cmp-wrap"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">{esc(hm["cmp_eyebrow"])}</span></th><th scope="col"><a href="{p}/cmr/">{esc(cols[1])}</a></th><th scope="col"><a href="{p}/qr/">{esc(cols[2])}</a></th></tr></thead><tbody>{cmp_rows}</tbody></table></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="home-ex-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(hm["ex_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="home-ex-heading">{esc(hm["ex_title"])}</h2>
+        <div class="home-ex-grid">{examples}</div>
+        <p class="home-ex-note">{esc(hm["ex_note"])}</p>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="home-steps-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(hm["steps_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="home-steps-heading">{esc(hm["steps_title"])}</h2>
+        <div class="v2-flow">{steps}</div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="home-uc-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(hm["uc_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="home-uc-heading">{esc(hm["uc_title"])}</h2>
+        <div class="home-uc-grid">
+          <div class="home-uc"><h3><a href="{p}/cmr/">{esc(hm["uc_cmr_h"])}</a></h3><ul>{uc_cmr}</ul><a class="v2-link" href="{p}/solutions/">{esc(hm["uc_all_cmr"])} &rarr;</a></div>
+          <div class="home-uc"><h3><a href="{p}/qr/">{esc(hm["uc_qr_h"])}</a></h3><ul>{uc_qr}</ul><a class="v2-link" href="{p}{SECTION}#cases">{esc(hm["uc_all_qr"])} &rarr;</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(ui["faq_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="faq-heading">{esc(hm["faq_title"])}</h2>
+        {faq_html(hm["faq"])}
       </div>
     </section>
 

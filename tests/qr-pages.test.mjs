@@ -34,6 +34,8 @@ test("homepage chooser, solutions hub, pricing and contact carry the generated b
     assert.match(home, new RegExp(`class="door door--cmr" href="/${loc}cmr/"`), `${loc}: CMR door`);
     assert.match(home, new RegExp(`class="door door--qr" href="/${loc}qr/"`), `${loc}: QR door`);
     assert.match(home, /"@type": "Organization"/, `${loc}: Organization JSON-LD kept`);
+    assert.match(home, /"@type": "FAQPage"/, `${loc}: homepage FAQ`);
+    assert.match(home, /class="home-cmp-table"/, `${loc}: comparison table`);
     assert.match(readFileSync(`${ROOT}${loc}solutions/index.html`, "utf8"), /QR Reporting banner \(generated/);
     assert.match(readFileSync(`${ROOT}${loc}pricing.html`, "utf8"), /id="report-pricing"/);
     const contact = readFileSync(`${ROOT}${loc}contact.html`, "utf8");
