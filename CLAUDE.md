@@ -176,7 +176,7 @@ Key rules:
 
 ## SEO Rules
 
-- Update `sitemap.xml` when adding/removing pages (107 URLs currently); no duplicate `<loc>` entries
+- Update `sitemap.xml` when adding/removing pages (153 URLs currently, incl. the generated QR Reporting block); no duplicate `<loc>` entries
 - Update `hreflang` on every page when adding locale variants
 - Keep `llms.txt` current with new features; regenerate `llms-full.txt` when guide/about content changes (it embeds full page text for LLM ingestion)
 - FAQ schema on all guide pages; BreadcrumbList on solutions + guides
@@ -239,6 +239,26 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
 | Design audit items | 🗓 Remaining | Consolidate stylesheets (`styles.css` → `styles.site.css` only); `prefers-reduced-motion` full block for all transitions; social proof section (named customer story) |
 
 ---
+
+## Changes (2026-10-30) — QR Reporting (second solution), production
+
+- **Generated, not hand-edited:** `python3 scripts/qr-pages/build.py` builds everything QR Reporting from
+  `scripts/qr-pages/content/{en,nl,de,fr}.py` (same keys in every language, asserted): overview + 10 use-case
+  pages per locale (`<prefix>/solutions/qr-issue-reporting/…`, indexable, hreflang ×4, FAQ/Breadcrumb/Service
+  JSON-LD), the sitemap block, and marked blocks in hand-written pages (homepage band, `/solutions/` banner,
+  pricing `#report-pricing`, contact QR options + `asset_count` field). It then re-runs `extract-inline` +
+  `inline-styles`. Edit the content files and re-run; never edit the generated blocks by hand.
+- **Landing page for introductions:** `/qr/`, `/nl/qr/`, `/de/qr/`, `/fr/qr/` — `noindex,follow` (campaign
+  page; must not compete with the overview), not in the sitemap, inline demo form = the contact form (same ids,
+  locale contact script, `/api/contact`; leads recognisable by `source_path`).
+- **Header menu:** two columns (Proof of Delivery / QR Reporting); labels with `data-t` are translated for
+  NL/DE/FR by the menu script in `partials/header.html` (map generated from the content files).
+- **Claims:** the site presents QR Reporting as available incl. webhooks (owner accepted mild overpromising;
+  target end of November 2026); only the open API says "Soon". See `docs/podfy-claims-register.md` +
+  `docs/podfy-capability-matrix.md` (docs/ is not published).
+- **Not published:** `deploy.sh` excludes `docs/`, `tools/`, `scripts/`; `_redirects` 301s `/tools/*`.
+- **Guard:** `tests/qr-pages.test.mjs` (pages in every locale, title ≤60 / description ≤155, hreflang,
+  no em/en dashes, generated blocks present, landing noindex + form fields).
 
 ## Changes (2026-07-22, later) — insights section pages converted to SSR, full 4-language crawlability
 
