@@ -810,3 +810,18 @@ SERVICE = {
            ("GDPR by default", "A data processing agreement, retention per plan and deletion on request."),
            ("Breach notification", "We inform you without delay, in line with the GDPR.")],
 }
+
+# ── QR Reporting price list + company details (Phase 0, 2026-10-30) ──
+QRPRICE = {
+ "eyebrow": "QR Reporting pricing", "title": "Per active asset per month. Nothing else.",
+ "intro": "One price per active machine or asset. Unlimited users, reports and QR codes, and retired assets are free.",
+ "cols": ["Active assets", "Per asset per month"], "range_from": "{a} to {b}", "range_plus": "{a} and more",
+ "included_h": "Included", "included": ["Asset register, QR codes and stickers", "Own categories, fields and photo settings", "Routing, status, priorities and duplicate grouping", "Dashboard, reports and full export", "Webhook to your systems", "Unlimited users, reports and QR codes (fair use)", "Your branding, 12 languages, EU storage", "Support: reply within one business day"],
+ "adv_h": "Advanced", "adv_price": "+{p} per asset per month", "adv": ["Open API", "Feedback to the reporter", "Critical incidents handled within 4 business hours"],
+ "terms_h": "Terms", "terms": ["Minimum {m} per month", "Free 6-week pilot for up to 100 assets", "No setup fee", "Cancel monthly", "Price fixed for 12 months, or 24 months with an annual commitment", "Annual prepayment: ask about the discount", "Fair use: on average about 10 reports per asset per month"],
+ "cta": "Request a proposal", "strip": "{p} per active asset per month, down to {low} at volume. Free 6-week pilot.", "strip_cta": "See QR pricing",
+}
+COMPANY = {"title": "Company details", "rows": ["Trade name", "Address", "Chamber of Commerce (KvK)", "VAT", "E-mail", "LinkedIn"], "trade": "PODFY is a trade name of Lake-Project"}
+FAQ["price"] = ("What does QR Reporting cost?", "€0.75 per active asset per month, down to €0.40 for fleets above 2,500 assets. No fees per report, per user or per QR code, retired assets are free, and the pilot is free for 6 weeks.")
+FEATURES = [(t, s, d + (" Part of Advanced." if t in ("Open API", "Feedback to the reporter") else "")) for t, s, d in FEATURES]
+SERVICE["items"] = [(h, "A reply within one business day; with Advanced, critical incidents within 4 business hours." if h == "Support that answers" else t) for h, t in SERVICE["items"]]

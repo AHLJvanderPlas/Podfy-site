@@ -487,3 +487,18 @@ SERVICE = {
            ("AVG als standaard", "Een verwerkersovereenkomst, bewaartermijnen per plan en verwijdering op verzoek."),
            ("Melding bij datalekken", "We informeren u zonder vertraging, conform de AVG.")],
 }
+
+# ── Prijslijst QR-meldingen + bedrijfsgegevens (fase 0, 2026-10-30) ──
+QRPRICE = {
+ "eyebrow": "Tarieven QR-meldingen", "title": "Per actief object per maand. Verder niets.",
+ "intro": "Eén prijs per actieve machine of object. Onbeperkt gebruikers, meldingen en QR-codes, en beëindigde objecten zijn gratis.",
+ "cols": ["Actieve objecten", "Per object per maand"], "range_from": "{a} tot {b}", "range_plus": "{a} en meer",
+ "included_h": "Inbegrepen", "included": ["Objectregister, QR-codes en stickers", "Eigen categorieën, velden en foto-instellingen", "Routering, status, prioriteiten en samenvoegen van dubbele meldingen", "Dashboard, rapportages en volledige export", "Webhook naar uw systemen", "Onbeperkt gebruikers, meldingen en QR-codes (fair use)", "Uw huisstijl, 12 talen, opslag in de EU", "Support: reactie binnen één werkdag"],
+ "adv_h": "Advanced", "adv_price": "+{p} per object per maand", "adv": ["Open API", "Terugkoppeling aan de melder", "Kritieke storingen opgepakt binnen 4 werkuren"],
+ "terms_h": "Voorwaarden", "terms": ["Minimaal {m} per maand", "Gratis pilot van 6 weken voor maximaal 100 objecten", "Geen opstartkosten", "Maandelijks opzegbaar", "Prijs 12 maanden vast, of 24 maanden bij een jaarcontract", "Jaarlijks vooruitbetalen: vraag naar de korting", "Fair use: gemiddeld ongeveer 10 meldingen per object per maand"],
+ "cta": "Offerte aanvragen", "strip": "{p} per actief object per maand, tot {low} bij grote aantallen. Gratis pilot van 6 weken.", "strip_cta": "Bekijk de tarieven",
+}
+COMPANY = {"title": "Bedrijfsgegevens", "rows": ["Handelsnaam", "Adres", "KvK", "Btw", "E-mail", "LinkedIn"], "trade": "PODFY is een handelsnaam van Lake-Project"}
+FAQ["price"] = ("Wat kosten QR-meldingen?", "€0,75 per actief object per maand, tot €0,40 bij meer dan 2.500 objecten. Geen kosten per melding, per gebruiker of per QR-code, beëindigde objecten zijn gratis, en de pilot is 6 weken gratis.")
+FEATURES = [(t, s, d + (" Onderdeel van Advanced." if t in ("Open API", "Terugkoppeling aan de melder") else "")) for t, s, d in FEATURES]
+SERVICE["items"] = [(h, "Reactie binnen één werkdag; met Advanced kritieke storingen binnen 4 werkuren." if h == "Support die antwoordt" else t) for h, t in SERVICE["items"]]

@@ -1866,3 +1866,21 @@ html[data-theme="dark"] .v2-receipt {
 .v2-trust-section { min-width: 0; }
 @media (max-width: 900px) { .v2-trust-section table { display: block; max-width: 100%; overflow-x: auto; } }
 @media (max-width: 900px) { .v2-trust-layout { grid-template-columns: minmax(0, 1fr); } .v2-trust-layout > * { min-width: 0; } }
+
+/* QR Reporting price list (pricing pages) and company details (contact pages), 2026-10-30 */
+.qrp-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; margin: 1.5rem 0; align-items: start; }
+@media (max-width: 980px) { .qrp-grid { grid-template-columns: minmax(0, 1fr); } }
+.qrp-table { width: 100%; border-collapse: collapse; border: 1px solid var(--v2-line); background: var(--v2-card); }
+.qrp-table th, .qrp-table td { padding: 0.75rem 1rem; text-align: left; border-top: 1px solid var(--v2-line); }
+.qrp-table thead th { border-top: 0; font-family: var(--v2-font-mono); font-weight: 400; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--v2-muted); }
+.qrp-price { font-family: var(--v2-font-serif); font-size: 1.25rem; font-weight: 600; color: var(--v2-ink); white-space: nowrap; }
+.qrp-table tbody tr:first-child .qrp-price { color: var(--v2-stamp); }
+.qrp-card { padding: 1.25rem 1.4rem; border: 1px solid var(--v2-line); border-radius: var(--v2-radius); background: var(--v2-card); }
+.qrp-card h3 { margin: 0 0 0.75rem; font-family: var(--v2-font-serif); font-size: 1.1rem; }
+.qrp-adv { font-family: var(--v2-font-mono); font-size: 0.78rem; font-weight: 400; color: var(--v2-stamp); }
+.qrp-terms-h { margin-top: 1.25rem !important; }
+.qrp-terms { margin: 0; padding-left: 1.1rem; color: var(--v2-ink-2); font-size: 0.92rem; line-height: 1.6; }
+.co-facts { margin: 1rem 0 0; max-width: 46rem; border-top: 1px solid var(--v2-line); }
+.co-facts .lp-ticket-row { grid-template-columns: 14rem 1fr; padding: 0.6rem 0; border-bottom: 1px solid var(--v2-line); font-size: 0.95rem; }
+.co-facts .lp-ticket-row dt { color: var(--v2-muted); }
+@media (max-width: 520px) { .co-facts .lp-ticket-row { grid-template-columns: 1fr; gap: 0.15rem; } }

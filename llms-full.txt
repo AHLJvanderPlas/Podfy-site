@@ -113,9 +113,9 @@ Stick and go. Reports arrive with the asset already identified.
 - Routing rules: Different recipients per location, asset group or category.
 - Status from new to resolved: New, in progress, resolved or rejected, with priorities and duplicate reports grouped.
 - Dashboard and reports: Reports per asset, location and period; see which machines keep failing.
-- Feedback to the reporter: An automatic confirmation, and a message when the issue is resolved.
+- Feedback to the reporter: An automatic confirmation, and a message when the issue is resolved. Part of Advanced.
 - Webhook to your systems: Every report to your ticketing, maintenance or work-order tool.
-- Open API: Fetch reports and update their status from your own systems.
+- Open API: Fetch reports and update their status from your own systems. Part of Advanced.
 - Export everything: CSV export at any time, and a full export including photos.
 - Your branding, 12 languages, EU storage: Your logo on the form, the reporter's language, data stored in the EU.
 
@@ -142,7 +142,7 @@ Q: Can reports go straight into our ticketing or maintenance system?
 A: Yes. Reports are e-mailed to the people you choose, routed per location or category, and sent by webhook to your ticketing, maintenance or work-order system. With the open API you fetch reports and update their status from your own tools.
 
 Q: What does QR Reporting cost?
-A: You pay a fixed amount per active asset per month. No fees per report, per user or per QR code, and retired assets are free. Ask for a proposal for your fleet size.
+A: €0.75 per active asset per month, down to €0.40 for fleets above 2,500 assets. No fees per report, per user or per QR code, retired assets are free, and the pilot is free for 6 weeks.
 
 Q: Where is report data stored?
 A: Reports and photos are stored in the EU on the same platform as PODFY's delivery records. E-mail delivery uses the subprocessors listed on the Trust page.
@@ -272,7 +272,7 @@ Q: Can the same QR code be used again?
 A: Yes. The code stays on the asset and every scan starts a new, separate report, so it works for the next problem too.
 
 Q: What does QR Reporting cost?
-A: You pay a fixed amount per active asset per month. No fees per report, per user or per QR code, and retired assets are free. Ask for a proposal for your fleet size.
+A: €0.75 per active asset per month, down to €0.40 for fleets above 2,500 assets. No fees per report, per user or per QR code, retired assets are free, and the pilot is free for 6 weeks.
 
 ---
 
@@ -365,7 +365,7 @@ Q: Is a photo required?
 A: You decide. Per QR form you choose whether a photo is required, optional or switched off.
 
 Q: What does QR Reporting cost?
-A: You pay a fixed amount per active asset per month. No fees per report, per user or per QR code, and retired assets are free. Ask for a proposal for your fleet size.
+A: €0.75 per active asset per month, down to €0.40 for fleets above 2,500 assets. No fees per report, per user or per QR code, retired assets are free, and the pilot is free for 6 weeks.
 
 ---
 

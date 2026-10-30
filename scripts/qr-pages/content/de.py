@@ -487,3 +487,18 @@ SERVICE = {
            ("DSGVO als Standard", "Ein Auftragsverarbeitungsvertrag, Aufbewahrung pro Plan und Löschung auf Anfrage."),
            ("Meldung bei Datenpannen", "Wir informieren Sie unverzüglich, gemäß DSGVO.")],
 }
+
+# ── Preisliste QR-Meldungen + Firmenangaben (Phase 0, 2026-10-30) ──
+QRPRICE = {
+ "eyebrow": "Preise QR-Meldungen", "title": "Pro aktivem Objekt und Monat. Sonst nichts.",
+ "intro": "Ein Preis pro aktiver Maschine oder pro aktivem Objekt. Unbegrenzt Nutzer, Meldungen und QR-Codes, und stillgelegte Objekte sind kostenlos.",
+ "cols": ["Aktive Objekte", "Pro Objekt und Monat"], "range_from": "{a} bis {b}", "range_plus": "ab {a}",
+ "included_h": "Inklusive", "included": ["Objektregister, QR-Codes und Aufkleber", "Eigene Kategorien, Felder und Foto-Einstellungen", "Routing, Status, Prioritäten und Zusammenführen von Doppelmeldungen", "Dashboard, Berichte und vollständiger Export", "Webhook an Ihre Systeme", "Unbegrenzt Nutzer, Meldungen und QR-Codes (Fair Use)", "Ihr Branding, 12 Sprachen, Speicherung in der EU", "Support: Antwort innerhalb eines Werktags"],
+ "adv_h": "Advanced", "adv_price": "+{p} pro Objekt und Monat", "adv": ["Offene API", "Rückmeldung an die meldende Person", "Kritische Störungen innerhalb von 4 Arbeitsstunden bearbeitet"],
+ "terms_h": "Bedingungen", "terms": ["Mindestens {m} pro Monat", "Kostenloser 6-Wochen-Pilot für bis zu 100 Objekte", "Keine Einrichtungsgebühr", "Monatlich kündbar", "Preis 12 Monate fest, oder 24 Monate bei Jahresvertrag", "Jährliche Vorauszahlung: fragen Sie nach dem Rabatt", "Fair Use: im Durchschnitt etwa 10 Meldungen pro Objekt und Monat"],
+ "cta": "Angebot anfordern", "strip": "{p} pro aktivem Objekt und Monat, bis zu {low} bei großen Flotten. Kostenloser 6-Wochen-Pilot.", "strip_cta": "Preise ansehen",
+}
+COMPANY = {"title": "Firmenangaben", "rows": ["Handelsname", "Adresse", "Handelsregister (KvK)", "USt-IdNr.", "E-Mail", "LinkedIn"], "trade": "PODFY ist ein Handelsname von Lake-Project"}
+FAQ["price"] = ("Was kosten QR-Meldungen?", "0,75 € pro aktivem Objekt und Monat, bis zu 0,40 € bei mehr als 2.500 Objekten. Keine Kosten pro Meldung, pro Nutzer oder pro QR-Code, stillgelegte Objekte sind kostenlos, und der Pilot ist 6 Wochen kostenlos.")
+FEATURES = [(t, s, d + (" Teil von Advanced." if t in ("Offene API", "Rückmeldung an die meldende Person") else "")) for t, s, d in FEATURES]
+SERVICE["items"] = [(h, "Antwort innerhalb eines Werktags; mit Advanced kritische Störungen innerhalb von 4 Arbeitsstunden." if h == "Support, der antwortet" else t) for h, t in SERVICE["items"]]

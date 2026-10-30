@@ -5,7 +5,8 @@ company, a complete procurement pack, transparent terms and a fast, precise answ
 
 ## A. One identity everywhere (this week)
 1. KvK: confirm "PODFY" is registered as trade name (handelsnaam) of Lake-Project (29816688). Retire or
-   update the old registration 83714200; external profiles still show it (an advisor quoted it on 2026-10-30).
+   update the old registration (the number blocked by tests/company.test.mjs); external profiles still show it
+   (an advisor quoted it on 2026-10-30).
 2. Same name, address, KvK, VAT, phone and website on: Google Business Profile, LinkedIn company page,
    every directory in admin Marketing > Backlinks, Mollie profile, invoices, e-mail signatures, DPA.
 3. A named contact person and a phone number on /contact; B2B buyers want a person, not only a form.

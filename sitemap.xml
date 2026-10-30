@@ -96,28 +96,28 @@
   </url>
 
   <!-- ═══ CONTACT ═══ -->
-  <url><loc>https://podfy.net/contact</loc><lastmod>2026-10-29</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+  <url><loc>https://podfy.net/contact</loc><lastmod>2026-10-30</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/contact" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/contact" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/contact" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/contact" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/contact" />
   </url>
-  <url><loc>https://podfy.net/nl/contact</loc><lastmod>2026-10-29</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+  <url><loc>https://podfy.net/nl/contact</loc><lastmod>2026-10-30</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/contact" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/contact" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/contact" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/contact" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/contact" />
   </url>
-  <url><loc>https://podfy.net/de/contact</loc><lastmod>2026-10-29</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+  <url><loc>https://podfy.net/de/contact</loc><lastmod>2026-10-30</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/contact" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/contact" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/contact" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/contact" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/contact" />
   </url>
-  <url><loc>https://podfy.net/fr/contact</loc><lastmod>2026-10-29</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+  <url><loc>https://podfy.net/fr/contact</loc><lastmod>2026-10-30</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/contact" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/contact" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/contact" />
@@ -730,7 +730,7 @@
   </url>
 
 
-  <url><loc>https://podfy.net/about</loc><lastmod>2026-10-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
+  <url><loc>https://podfy.net/about</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/about" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/about" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/about" />
@@ -738,7 +738,7 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/about" />
   </url>
 
-  <url><loc>https://podfy.net/nl/about</loc><lastmod>2026-10-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
+  <url><loc>https://podfy.net/nl/about</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/about" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/about" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/about" />
@@ -746,7 +746,7 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/about" />
   </url>
 
-  <url><loc>https://podfy.net/de/about</loc><lastmod>2026-10-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
+  <url><loc>https://podfy.net/de/about</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/about" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/about" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/about" />
@@ -754,7 +754,7 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/about" />
   </url>
 
-  <url><loc>https://podfy.net/fr/about</loc><lastmod>2026-10-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
+  <url><loc>https://podfy.net/fr/about</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/about" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/about" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/about" />

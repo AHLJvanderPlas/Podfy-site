@@ -487,3 +487,18 @@ SERVICE = {
            ("RGPD par défaut", "Un accord de traitement des données, une conservation par formule et la suppression sur demande."),
            ("Notification des violations", "Nous vous informons sans délai, conformément au RGPD.")],
 }
+
+# ── Grille tarifaire Signalement QR + informations société (phase 0, 2026-10-30) ──
+QRPRICE = {
+ "eyebrow": "Tarifs Signalement QR", "title": "Par équipement actif et par mois. Rien d'autre.",
+ "intro": "Un prix par machine ou équipement actif. Utilisateurs, signalements et QR codes illimités, et les équipements retirés sont gratuits.",
+ "cols": ["Équipements actifs", "Par équipement et par mois"], "range_from": "{a} à {b}", "range_plus": "{a} et plus",
+ "included_h": "Inclus", "included": ["Registre d'équipements, QR codes et autocollants", "Vos catégories, champs et réglages photo", "Routage, statut, priorités et regroupement des doublons", "Tableau de bord, rapports et export complet", "Webhook vers vos systèmes", "Utilisateurs, signalements et QR codes illimités (usage raisonnable)", "Votre image, 12 langues, stockage dans l'UE", "Support : réponse sous un jour ouvré"],
+ "adv_h": "Advanced", "adv_price": "+{p} par équipement et par mois", "adv": ["API ouverte", "Retour à la personne qui signale", "Incidents critiques traités sous 4 heures ouvrées"],
+ "terms_h": "Conditions", "terms": ["Minimum {m} par mois", "Pilote gratuit de 6 semaines jusqu'à 100 équipements", "Sans frais de mise en place", "Résiliable chaque mois", "Prix fixe 12 mois, ou 24 mois avec un engagement annuel", "Paiement annuel anticipé : demandez la remise", "Usage raisonnable : en moyenne environ 10 signalements par équipement et par mois"],
+ "cta": "Demander une proposition", "strip": "{p} par équipement actif et par mois, jusqu'à {low} pour les grands parcs. Pilote gratuit de 6 semaines.", "strip_cta": "Voir les tarifs QR",
+}
+COMPANY = {"title": "Informations société", "rows": ["Nom commercial", "Adresse", "Chambre de commerce (KvK)", "TVA", "E-mail", "LinkedIn"], "trade": "PODFY est un nom commercial de Lake-Project"}
+FAQ["price"] = ("Combien coûte le Signalement QR ?", "0,75 € par équipement actif et par mois, jusqu'à 0,40 € au-delà de 2 500 équipements. Pas de frais par signalement, par utilisateur ou par QR code, les équipements retirés sont gratuits, et le pilote est gratuit pendant 6 semaines.")
+FEATURES = [(t, s, d + (" Inclus dans Advanced." if t in ("API ouverte", "Retour à la personne qui signale") else "")) for t, s, d in FEATURES]
+SERVICE["items"] = [(h, "Réponse sous un jour ouvré ; avec Advanced, incidents critiques sous 4 heures ouvrées." if h == "Un support qui répond" else t) for h, t in SERVICE["items"]]
