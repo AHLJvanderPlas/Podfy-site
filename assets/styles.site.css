@@ -1862,3 +1862,6 @@ html[data-theme="dark"] .v2-receipt {
 @media (max-width: 420px) { .home-uc ul { columns: 1; } }
 .home-uc li { padding: 0.35rem 0; break-inside: avoid; }
 .home-uc li a { color: var(--v2-ink-2); }
+/* Trust page tables (subprocessors) scroll inside their column on phones instead of widening the page */
+.v2-trust-section { min-width: 0; }
+@media (max-width: 900px) { .v2-trust-section table { display: block; max-width: 100%; overflow-x: auto; } }
