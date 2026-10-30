@@ -1785,3 +1785,53 @@ html[data-theme="dark"] .v2-receipt {
 .lp-next strong { display: block; color: var(--v2-ink); }
 .lp-next span { display: block; color: var(--v2-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 0.15rem; }
 .v2-qr-band-grid > *, .lp-hero-grid > *, .lp-form-grid > *, .lp-receive-visual > * { min-width: 0; }
+
+/* Homepage chooser (2026-10-30): two doors, CMR and delivery proof / QR Reporting */
+.home-hero { padding: 4rem 0 3.5rem; }
+@media (max-width: 760px) { .home-hero { padding: 2.5rem 0 2.5rem; } }
+.home-title { max-width: 22ch; }
+.home-sub { max-width: 44rem; }
+.doors { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2.25rem; }
+@media (max-width: 860px) { .doors { grid-template-columns: 1fr; } }
+.door { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.6rem 1.6rem 1.5rem; border: 1px solid var(--v2-line-2); border-radius: var(--v2-radius); background: var(--v2-card); color: var(--v2-ink); text-decoration: none; transition: border-color 0.15s ease; min-width: 0; }
+.door:hover, .door:focus-visible { border-color: var(--v2-stamp); }
+.door:focus-visible { outline: 2px solid var(--v2-stamp); outline-offset: 3px; }
+.door--qr { background: var(--v2-ink); color: var(--v2-paper); border-color: var(--v2-ink); }
+.door-kicker { font-family: var(--v2-font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--v2-muted); }
+.door--qr .door-kicker { color: color-mix(in srgb, var(--v2-paper) 70%, transparent); }
+.door-title { font-family: var(--v2-font-serif); font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.1; font-weight: 600; }
+.door-text { line-height: 1.55; color: var(--v2-ink-2); }
+.door--qr .door-text { color: color-mix(in srgb, var(--v2-paper) 85%, transparent); }
+.door-points { margin: 0.2rem 0 0; padding: 0; list-style: none; font-size: 0.92rem; }
+.door-points li { padding: 0.3rem 0 0.3rem 1.4rem; position: relative; }
+.door-points li::before { content: "\2713"; position: absolute; left: 0; color: var(--v2-stamp); }
+.door-cta { margin-top: auto; padding-top: 0.8rem; font-weight: 700; color: var(--v2-stamp); }
+.door-vis { display: flex; align-items: center; gap: 1rem; min-height: 96px; margin-bottom: 0.4rem; }
+.door-vis--cmr .door-ref { font-family: var(--v2-font-mono); font-size: 0.78rem; color: var(--v2-muted); }
+.door-doc { display: inline-flex; flex-direction: column; gap: 6px; width: 64px; padding: 10px 8px; background: #FFFFFF; border: 1px solid var(--v2-line-2); border-radius: 2px; }
+.door-doc span { display: block; height: 4px; background: #D9D4C7; }
+.door-doc span:last-child { width: 60%; }
+.door-vis--cmr .v2-stamp-mark { transform: rotate(-5deg); }
+.door-vis--qr img { width: 84px; height: 84px; background: #FFFFFF; padding: 6px; border-radius: 2px; }
+.door-sticker-cta { font-weight: 700; font-size: 0.95rem; max-width: 14rem; }
+.home-shared { border-top: 1px solid var(--v2-line); }
+.home-shared-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+.home-shared-list li { padding: 0.45rem 0.8rem; border: 1px solid var(--v2-line-2); border-radius: 3px; font-size: 0.92rem; }
+.home-help { margin-top: 1.5rem; color: var(--v2-muted); }
+@media (prefers-reduced-motion: reduce) { .door { transition: none; } }
+
+/* CMR photo inside the phone mock (/cmr/) */
+.lp-shot { position: relative; display: flex; flex-direction: column; gap: 6px; margin: 0.5rem 0 0.75rem; padding: 12px 12px 26px; background: #FFFFFF; border: 1px solid #D9D4C7; border-radius: 2px; transform: rotate(-1.5deg); }
+.lp-shot-title { font-family: var(--v2-font-mono); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; color: #0E1116; }
+.lp-shot-line { display: block; height: 5px; background: #E4DFD3; }
+.lp-shot-line--short { width: 55%; }
+.lp-shot-sign { display: block; width: 46%; height: 14px; margin-top: 4px; border-bottom: 2px solid #1F3A8A; border-radius: 0 0 40% 10%; }
+.lp-shot-file { position: absolute; right: 8px; bottom: 6px; font-family: var(--v2-font-mono); font-size: 0.6rem; color: #5A6473; }
+/* Hero grid on phones: never wider than the viewport (CMR generator preview overflowed at 390px) */
+@media (max-width: 900px) { .v2-hero-grid { grid-template-columns: minmax(0, 1fr); } .cmr-preview-wrap { max-width: 100%; overflow-x: auto; } }
+/* Two-column sections on phones: long NL/DE words in the add-ons table widened the page */
+.v2-two-col > * { min-width: 0; }
+@media (max-width: 900px) { .v2-addons-table { display: block; max-width: 100%; overflow-x: auto; } }
+/* Primary button on the dark inline CTA bar: stamp colour, otherwise it disappears into the ink background */
+.v2-inline-cta .v2-btn-primary { background: var(--v2-stamp); border-color: var(--v2-stamp); color: #FFFFFF; }
+.v2-inline-cta .v2-btn-primary:hover, .v2-inline-cta .v2-btn-primary:focus-visible { background: color-mix(in srgb, var(--v2-stamp) 85%, #000); border-color: color-mix(in srgb, var(--v2-stamp) 85%, #000); color: #FFFFFF; opacity: 1; }

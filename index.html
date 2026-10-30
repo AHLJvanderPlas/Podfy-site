@@ -1,474 +1,85 @@
 <!doctype html>
-<!-- i18n:strings
-  eyebrow:   PROOF OF DELIVERY · WITHOUT THE APP
-  h1-line1:  Send a link.
-  h1-line2:  Get the CMR back
-  h1-line3:  the same day.
-  hero-sub:  Dutch and Benelux carriers and 3PLs use Podfy to collect signed delivery proof from any driver, no app, no account, no training required.
-  cta-primary:  Try the live demo
-  cta-ghost:    15-min walkthrough
-  trust-1:   11s median upload
-  trust-2:   0 apps installed
-  trust-3:   EU-jurisdiction hosting
-  trust-4:   Last shipped
-  how-title: How it works
-  how-1-h:   Driver opens link
-  how-1-p:   Send a URL by WhatsApp, SMS, or email. Any phone, any carrier. No account, no download.
-  how-2-h:   Snaps the CMR
-  how-2-p:   Photo, PDF, or scan. GPS stamp added automatically. Reference logged against your slug.
-  how-3-h:   Office gets stamped PDF
-  how-3-p:   Email notification in seconds. Document searchable in the portal. Ready for invoicing or audit.
-  changelog-title: Latest updates
--->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-
-  <title>PODFY — Proof of delivery, without the app.</title>
-  <meta name="description" content="Send a driver a link, get a stamped and archived CMR back in seconds. No app installed. Built for Dutch and Benelux carriers, 3PLs, and logistics teams." />
+  <title>PODFY: CMR proof and QR reporting, no app needed</title>
+  <meta name="description" content="Two solutions on one platform: signed CMRs and delivery proof from any driver, and QR codes so anyone can report a machine issue. No app." />
   <link rel="canonical" href="https://podfy.net/" />
-
-  <!-- SEO -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="format-detection" content="telephone=no,address=no,email=no" />
-  <meta name="keywords" content="proof of delivery, POD, CMR upload, no app delivery, Benelux logistics, 3PL, carrier POD, EU hosting" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="PODFY — Proof of delivery, without the app." />
-  <meta property="og:description" content="Send a link. Get the CMR back before Friday. No app, no account. Built for EU carriers and 3PLs." />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:title" content="PODFY: CMR proof and QR reporting, no app needed" />
+  <meta property="og:description" content="Two solutions on one platform: signed CMRs and delivery proof from any driver, and QR codes so anyone can report a machine issue. No app." />
   <meta property="og:url" content="https://podfy.net/" />
   <meta property="og:image" content="https://podfy.net/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="PODFY" />
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PODFY — Proof of delivery, without the app." />
-  <meta name="twitter:description" content="Send a link. Get the CMR back before Friday. No app, no account." />
+  <meta name="twitter:title" content="PODFY: CMR proof and QR reporting, no app needed" />
+  <meta name="twitter:description" content="Two solutions on one platform: signed CMRs and delivery proof from any driver, and QR codes so anyone can report a machine issue. No app." />
   <meta name="twitter:image" content="https://podfy.net/assets/og-image.jpg" />
-
-  <!-- Colour scheme -->
-  <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-
-  <!-- Hreflang -->
   <link rel="alternate" hreflang="en" href="https://podfy.net/" />
   <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/" />
   <link rel="alternate" hreflang="de" href="https://podfy.net/de/" />
-  <link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/" />
+  <link rel="alternate" hreflang="fr" href="https://podfy.net/fr/" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
-
-  <!-- Styles: base system + v2 visual layer -->
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r6" />
-
-  <!-- Structured data: Organization + WebSite entity signals for SEO and AI -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization",
-    "name":"PODFY","url":"https://podfy.net","logo":"https://podfy.net/assets/podfy.svg",
-    "description":"Proof of delivery platform for carriers, 3PLs and logistics teams. GPS-stamped photo POD without an app. EU-hosted.",
-    "contactPoint":{"@type":"ContactPoint","email":"support@podfy.net","contactType":"customer support"},
-    "address":{"@type":"PostalAddress","streetAddress":"Rodenrijselaan 10A","addressLocality":"Rotterdam","postalCode":"3037 XE","addressCountry":"NL"},
-    "vatID":"NL001170142B85",
-    "areaServed":["NL","BE","DE","FR","EU"],
-    "sameAs":["https://www.linkedin.com/company/podfy"]
-  }
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite",
-    "name":"PODFY","url":"https://podfy.net",
-    "potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://podfy.net/changelog?q={search_term_string}"},"query-input":"required name=search_term_string"}
-  }
-  </script>
-
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r10" />
   <script src="/assets/theme.js" defer></script>
-  <link rel="me" href="https://lake-project.com">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Podfy",
-    "url": "https://podfy.net",
-    "applicationCategory": "BusinessApplication",
-    "creator": {
-      "@type": "Organization",
-      "name": "Lake Project",
-      "url": "https://lake-project.com"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "Alexander van der Plas",
-      "url": "https://alexandervanderplas.com"
-    }
-  }
+  {"@context": "https://schema.org", "@type": "Organization", "name": "PODFY", "url": "https://podfy.net", "logo": "https://podfy.net/assets/podfy.svg", "description": "Proof of delivery platform for carriers, 3PLs and logistics teams. GPS-stamped photo POD without an app. EU-hosted.", "contactPoint": {"@type": "ContactPoint", "email": "support@podfy.net", "contactType": "customer support"}, "address": {"@type": "PostalAddress", "streetAddress": "Rodenrijselaan 10A", "addressLocality": "Rotterdam", "postalCode": "3037 XE", "addressCountry": "NL"}, "vatID": "NL001170142B85", "areaServed": ["NL", "BE", "DE", "FR", "EU"], "sameAs": ["https://www.linkedin.com/company/podfy"]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "WebSite", "name": "PODFY", "url": "https://podfy.net", "potentialAction": {"@type": "SearchAction", "target": {"@type": "EntryPoint", "urlTemplate": "https://podfy.net/changelog?q={search_term_string}"}, "query-input": "required name=search_term_string"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Podfy", "url": "https://podfy.net", "applicationCategory": "BusinessApplication", "creator": {"@type": "Organization", "name": "Lake Project", "url": "https://lake-project.com"}, "author": {"@type": "Person", "name": "Alexander van der Plas", "url": "https://alexandervanderplas.com"}}
   </script>
 <link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
 <script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
-
 <body class="v2">
+  <div id="v2-progress"></div>
   <a href="#main" class="sr-only">Skip to content</a>
-
   [[PODFY_HEADER]]
 
-  <main id="main" class="v2-main">
-
-    <!-- ================================================================
-         HERO
-         §3.1 · Working draft headline, confirm with maintainer before
-         final merge to main.
-         ================================================================ -->
-    <section class="v2-hero" aria-labelledby="hero-heading">
+  <main id="main" class="v2-main home">
+    <section class="home-hero" aria-labelledby="home-heading">
       <div class="container">
-        <div class="v2-hero-grid">
-
-          <!-- Left: copy -->
-          <div class="v2-hero-copy">
-            <p class="v2-eyebrow" aria-hidden="true">Proof of delivery · without the app</p>
-            <h1 class="v2-hero-title" id="hero-heading">
-              Send a link.<br>
-              Get the CMR back<br>
-              <span class="v2-hero-stamp" aria-label="the same day.">the same day.</span>
-            </h1>
-            <p class="v2-hero-sub">
-              Dutch and Benelux carriers and 3PLs use Podfy to collect signed delivery proof from any driver, no app, no account, no training required.
-            </p>
-            <div class="v2-hero-actions">
-              <a href="/demo" class="v2-btn v2-btn-primary">Try the live demo &rarr;</a>
-              <a href="/contact" class="v2-btn v2-btn-ghost">15-min walkthrough</a>
-            </div>
-          </div>
-
-          <!-- Right: receipt mock (CSS-only, aria-hidden) -->
-          <div class="v2-hero-visual" aria-hidden="true">
-            <div class="v2-receipt v2-hero-receipt">
-              <div class="v2-receipt-perforation"></div>
-              <div class="v2-receipt-inner">
-                <p class="v2-receipt-brand">Trans van Dijck B.V.</p>
-                <p class="v2-receipt-ref">REF&nbsp;&nbsp;TDV-2026-04-22-0041</p>
-                <hr class="v2-receipt-hr" />
-                <div class="v2-receipt-row">
-                  <span class="v2-receipt-label">Driver</span>
-                  <span class="v2-receipt-value">J. Kowalski</span>
-                </div>
-                <div class="v2-receipt-row">
-                  <span class="v2-receipt-label">Date</span>
-                  <span class="v2-receipt-value">2026-04-22 · 14:37 CET</span>
-                </div>
-                <div class="v2-receipt-row">
-                  <span class="v2-receipt-label">GPS</span>
-                  <span class="v2-receipt-value">52.37°N&nbsp;4.89°E</span>
-                </div>
-                <div class="v2-receipt-row">
-                  <span class="v2-receipt-label">File</span>
-                  <span class="v2-receipt-value">cmr_0041.pdf</span>
-                </div>
-                <hr class="v2-receipt-hr" />
-                <div class="v2-receipt-status">
-                  <span class="v2-stamp-mark">Delivered</span>
-                </div>
-              </div>
-              <div class="v2-receipt-perforation"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         STAT BAND, 4 numbered facts, large mono numerals
-         ================================================================ -->
-    <section class="v2-stat-band-wrap" aria-label="Key facts">
-      <div class="container">
-        <ul class="v2-stat-band" role="list">
-          <li class="v2-stat-band-item">
-            <span class="v2-stat-band-num">11&thinsp;s</span>
-            <span class="v2-stat-band-label">Median upload</span>
-          </li>
-          <li class="v2-stat-band-item">
-            <span class="v2-stat-band-num">0</span>
-            <span class="v2-stat-band-label">Apps installed</span>
-          </li>
-          <li class="v2-stat-band-item">
-            <span class="v2-stat-band-num">7&thinsp;years</span>
-            <span class="v2-stat-band-label">EU archive retention</span>
-          </li>
-          <li class="v2-stat-band-item v2-stat-band-item--live">
-            <a class="v2-stat-band-link" href="/changelog">
-              <span class="v2-stat-band-num" id="v2-last-shipped-num">&rarr;</span>
-              <span class="v2-stat-band-label">Latest release</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <script src="/assets/js/i/df7e2363a9fb.js"></script>
-
-    <!-- QR Reporting band (generated by scripts/qr-pages/build.py) -->
-    <section class="v2-qr-band" aria-labelledby="qr-band-heading">
-      <div class="container v2-qr-band-grid">
-        <div>
-          <p class="v2-eyebrow"><span class="v2-badge-new">New</span> PODFY QR Reporting</p>
-          <h2 class="v2-qr-band-title" id="qr-band-heading">One QR code on every machine.<br><em>Every issue reported.</em></h2>
-          <p class="v2-qr-band-sub">The same no-app link your drivers use for delivery proof now works for equipment. Customers, staff and technicians scan a sticker, choose what is wrong and send it. Your team gets a structured report by e-mail or webhook, with the asset already identified.</p>
-          <ul class="v2-qr-points"><li>No app, no account</li><li>Your own categories and sticker text</li><li>E-mail and webhook to your systems</li></ul>
-          <p class="v2-qr-cases-label">Ten use cases, one platform</p>
-          <ul class="v2-qr-cases"><li><a href="/solutions/qr-issue-reporting/ev-chargers/">EV chargers</a></li><li><a href="/solutions/qr-issue-reporting/parcel-lockers/">Parcel lockers</a></li><li><a href="/solutions/qr-issue-reporting/trailers-containers/">Trailers and containers</a></li><li><a href="/solutions/qr-issue-reporting/vending-machines/">Vending machines</a></li><li><a href="/solutions/qr-issue-reporting/coffee-machines/">Coffee machines</a></li><li><a href="/solutions/qr-issue-reporting/printers-copiers/">Printers and copiers</a></li><li><a href="/solutions/qr-issue-reporting/restrooms-cleaning/">Restrooms and cleaning</a></li><li><a href="/solutions/qr-issue-reporting/fitness-equipment/">Fitness equipment</a></li><li><a href="/solutions/qr-issue-reporting/waste-containers/">Waste containers</a></li><li><a href="/solutions/qr-issue-reporting/remote-equipment/">Remote equipment</a></li></ul>
-          <div class="v2-hero-actions"><a href="/solutions/qr-issue-reporting/" class="v2-btn v2-btn-primary">Explore QR Reporting &rarr;</a><a href="/contact?solution=report" class="v2-btn v2-btn-ghost">Request a demo</a></div>
-        </div>
-        <div class="v2-qr-band-visual">
-          <figure class="v2-rp-figure">
-          <div class="rp-phone" aria-hidden="true">
-            <div class="rp-screen">
-              <div class="rp-brand"><span>ACME SERVICE</span><span>Report</span></div>
-              <div class="rp-asset"><div class="rp-asset-id">COFFEE-0042</div><div class="rp-asset-loc">Building B, 2nd floor pantry</div></div>
-              <div class="rp-label">What is wrong?</div>
-              <div class="rp-chips"><span class="rp-chip">Not working</span><span class="rp-chip">No water</span><span class="rp-chip">No beans</span><span class="rp-chip">Cleaning needed</span><span class="rp-chip rp-chip--on">Leak</span><span class="rp-chip">Other</span></div>
-              <div class="rp-field">Water under the machine since this morning</div>
-              <div class="rp-photo">+ Add a photo (optional)</div>
-              <div class="rp-submit">Send report</div>
-            </div>
-          </div>
-          <figcaption class="rp-caption">Example of a QR reporting form</figcaption>
-        </figure>
-          <div class="rp-sticker" aria-hidden="true"><div class="rp-sticker-head">ACME SERVICE</div><img src="/assets/demo-qr.svg" alt="" width="120" height="120" /><div class="rp-sticker-cta">Scan to report an issue</div><div class="rp-sticker-id">COFFEE-0042</div></div>
-        </div>
-      </div>
-    </section>
-    <!-- /QR Reporting band -->
-
-    <!-- ================================================================
-         PROOF STRIP, 3 distinct artifacts telling the full story:
-         driver's phone → stamped record → portal archive
-         ================================================================ -->
-    <section class="v2-section" aria-labelledby="proof-heading">
-      <div class="container">
-        <h2 class="v2-section-title" id="proof-heading">What it looks like in practice</h2>
-        <div class="v2-proof-grid">
-
-          <!-- Artifact 1: The driver's view — upload link on phone -->
-          <article class="v2-proof-artifact v2-proof-phone" aria-label="Driver upload page — no app required">
-            <p class="v2-proof-artifact-label">01 &mdash; The driver&rsquo;s view</p>
-            <div class="v2-proof-phone-body">
-              <div class="v2-proof-phone-status">
-                <span>09:24</span><span aria-hidden="true">&#9602;&#9604;&#9605;&#9606; 5G</span>
-              </div>
-              <p class="v2-proof-phone-url">podfy.app/trans-van-dijck</p>
-              <hr class="v2-proof-hr" />
-              <div class="v2-proof-phone-cta" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="7" width="20" height="15" rx="2"/><circle cx="12" cy="14.5" r="3.5"/><path d="M16 7l-1.5-3h-5L8 7"/></svg>
-                Take photo
-              </div>
-              <p class="v2-proof-phone-note">Any phone &middot; No account &middot; No install</p>
-            </div>
-          </article>
-
-          <!-- Artifact 2: The stamped PDF record — document-page layout, not a receipt -->
-          <article class="v2-proof-artifact v2-proof-pdf" aria-label="Stamped delivery record PDF">
-            <p class="v2-proof-artifact-label">02 &mdash; The record you receive</p>
-            <div class="v2-proof-pdf-body">
-              <div class="v2-proof-pdf-letterhead">
-                <span class="v2-proof-pdf-brand">PODFY</span>
-                <span class="v2-proof-pdf-doctype">Delivery Record</span>
-              </div>
-              <div class="v2-proof-pdf-photo" aria-hidden="true">cmr_0041.pdf &middot; 1 page</div>
-              <dl class="v2-proof-pdf-meta">
-                <div><dt>GPS</dt><dd>52.37&deg;N &middot; 4.89&deg;E</dd></div>
-                <div><dt>Timestamp</dt><dd>2026-04-22&thinsp;14:37</dd></div>
-                <div><dt>REF</dt><dd>TDV-0041</dd></div>
-                <div><dt>Checksum</dt><dd>sha256:a3f4&hellip;</dd></div>
-              </dl>
-              <div class="v2-proof-pdf-stamp-row">
-                <span class="v2-stamp-mark">Delivered</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Artifact 3: The portal archive -->
-          <article class="v2-proof-artifact v2-proof-portal" aria-label="Delivery portal archive — searchable by reference">
-            <p class="v2-proof-artifact-label">03 &mdash; The archive</p>
-            <div class="v2-proof-portal-head" aria-hidden="true">
-              <span>Reference</span>
-              <span>Date</span>
-              <span>Driver</span>
-              <span>Status</span>
-            </div>
-            <div class="v2-proof-portal-row">
-              <span>TDV-0041</span>
-              <span>2026-04-22</span>
-              <span>J. Kowalski</span>
-              <span class="v2-stamp-mark">Delivered</span>
-            </div>
-            <div class="v2-proof-portal-row">
-              <span>BLG-1092</span>
-              <span>2026-04-20</span>
-              <span>M. Nowak</span>
-              <span class="v2-stamp-mark">Delivered</span>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SOCIAL PROOF -->
-    <section class="v2-section" aria-label="Customer testimonial">
-      <div class="container">
-        <figure class="v2-quote-block">
-          <blockquote class="v2-quote-text">
-            &ldquo;We used to chase paper CMRs for days. Now the stamped PDF is in our portal before the driver is back at the depot.&rdquo;
-          </blockquote>
-          <figcaption class="v2-quote-attr">
-            <span class="v2-quote-name">Transport operator</span>
-            <span>4 trucks &middot; North Brabant</span>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-    <!-- TODO(story): Replace with named customer story when sign-off is confirmed. -->
-
-    <!-- ================================================================
-         HOW IT WORKS, 3 columns, no generic icons
-         ================================================================ -->
-    <section class="v2-section" aria-labelledby="how-heading">
-      <div class="container">
-        <h2 class="v2-section-title" id="how-heading">How it works</h2>
-        <div class="v2-how-grid">
-
-          <div class="v2-how-step">
-            <p class="v2-how-step-num">01</p>
-            <h3>Driver opens link</h3>
-            <p>Send a URL by WhatsApp, SMS, or email. Any phone, any carrier. No account, no download, no training, if your driver is a subcontractor with a four-year-old Android, Podfy still works.</p>
-          </div>
-
-          <div class="v2-how-step">
-            <p class="v2-how-step-num">02</p>
-            <h3>Snaps the CMR</h3>
-            <p>Photo, PDF, or scan. GPS stamp and timestamp are added automatically. The reference is logged against your account. File goes to EU storage immediately.</p>
-          </div>
-
-          <div class="v2-how-step">
-            <p class="v2-how-step-num">03</p>
-            <h3>Office gets stamped PDF</h3>
-            <p>Email notification fires in seconds. The document is searchable in the portal, ready for invoicing, dispute resolution, or audit, without opening a ticket.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         WHAT EVERY UPLOAD CONTAINS, 2×2 grid
-         ================================================================ -->
-    <section class="v2-section" aria-labelledby="record-heading" data-u="ue67010d">
-      <div class="container">
-        <p class="v2-eyebrow">What you get</p>
-        <h2 class="v2-section-title" id="record-heading">What every Podfy record contains</h2>
-        <div class="v2-record-grid">
-          <div class="v2-how-step">
-            <p class="v2-how-step-num">The document</p>
-            <p>The original uploaded file, signed CMR, delivery note, or photo. Stored as-is under EU jurisdiction. Retrievable on demand for 7 years.</p>
-          </div>
-          <div class="v2-how-step">
-            <p class="v2-how-step-num">GPS coordinates</p>
-            <p>Latitude and longitude captured the moment the camera fires, not at upload. Server-stored, tamper-evident. Confirms the correct delivery location.</p>
-          </div>
-          <div class="v2-how-step">
-            <p class="v2-how-step-num">Timestamp</p>
-            <p>Exact date and time logged server-side. Cannot be retroactively altered. Establishes when the delivery happened, not when the paperwork arrived.</p>
-          </div>
-          <div class="v2-how-step">
-            <p class="v2-how-step-num">Reference linkage</p>
-            <p>The PO number, CMR reference, or shipment ID links the record to your invoice. Every delivery retrievable by the identifier your finance team uses.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         MID-PAGE CTA
-         ================================================================ -->
-    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">See it in 30 seconds</p><p class="v2-inline-cta-text">Open the driver link on your phone, photograph any document, watch the stamped record appear.</p></div><div data-u="u00d6500"><a href="/demo" class="v2-btn v2-btn-primary">Try the demo &rarr;</a><a href="/pricing" data-u="u9d40210">Or see the rate card &rarr;</a></div></div></div></div>
-
-    <!-- ================================================================
-         SOCIAL PROOF, activate when first customer reference is confirmed
-         ================================================================ -->
-    <!--
-    <section class="v2-section" aria-labelledby="proof-social-heading">
-      <div class="container" data-u="u91a8701">
-        <p class="v2-eyebrow">Trusted by</p>
-        <h2 class="v2-section-title" id="proof-social-heading" data-u="u101860a">Used by logistics teams across the Netherlands and Belgium</h2>
-        <p data-u="u8ef6af8">Customer logos, activate when sign-off obtained</p>
-      </div>
-    </section>
-    -->
-
-    <!-- ================================================================
-         WHO USES PODFY, 4 primary audience tiles (Carriers · 3PLs · Shippers · Construction)
-         Retail and Digitise link from /solutions/ hub page
-         ================================================================ -->
-    <section class="v2-section" aria-labelledby="audience-heading">
-      <div class="container">
-        <p class="v2-eyebrow">Who uses Podfy</p>
-        <h2 class="v2-section-title" id="audience-heading">Built for your operation</h2>
-        <div class="v2-aud-grid">
-          <a class="v2-aud-tile" href="/solutions/carriers/">
-            <p class="v2-aud-tile-industry">Transport</p>
-            <p class="v2-aud-tile-name">Carriers</p>
-            <p class="v2-aud-tile-desc">GPS-stamped POD for every driver, employed or subcontracted, no app required.</p>
-            <span class="v2-aud-tile-arrow">See solution &rarr;</span>
+        <p class="v2-eyebrow">PODFY</p>
+        <h1 class="v2-hero-title home-title" id="home-heading">Proof and reports straight from the field. <em>No app.</em></h1>
+        <p class="v2-hero-sub home-sub">PODFY turns any phone into a reporting tool. Drivers send the signed CMR, and anyone at a machine reports what is wrong, through a link or a QR code. Choose what you need.</p>
+        <div class="doors">
+          <a class="door door--cmr" href="/cmr/">
+            <div class="door-vis door-vis--cmr" aria-hidden="true"><span class="door-ref">TDV-2026-0841</span><span class="door-doc"><span></span><span></span><span></span></span><span class="v2-stamp-mark">Delivered</span></div>
+            <span class="door-kicker">For transport and logistics</span>
+            <span class="door-title">CMR and delivery proof</span>
+            <span class="door-text">Drivers photograph the signed CMR or delivery note. You get a stamped PDF the same day, searchable in your portal.</span>
+            <ul class="door-points"><li>No driver app, works for subcontractors</li><li>Stamped PDF with time and location</li><li>CMR generator in the portal</li></ul>
+            <span class="door-cta">Go to CMR and delivery proof &rarr;</span>
           </a>
-          <a class="v2-aud-tile" href="/solutions/3pl/">
-            <p class="v2-aud-tile-industry">Logistics</p>
-            <p class="v2-aud-tile-name">3PLs</p>
-            <p class="v2-aud-tile-desc">Multi-client archive with per-shipper namespacing, GDPR DPA, and audit export.</p>
-            <span class="v2-aud-tile-arrow">See solution &rarr;</span>
-          </a>
-          <a class="v2-aud-tile" href="/solutions/shippers/">
-            <p class="v2-aud-tile-industry">Procurement</p>
-            <p class="v2-aud-tile-name">Shippers</p>
-            <p class="v2-aud-tile-desc">Require GPS-stamped POD from all carriers without carrier onboarding or integration.</p>
-            <span class="v2-aud-tile-arrow">See solution &rarr;</span>
-          </a>
-          <a class="v2-aud-tile" href="/solutions/construction/">
-            <p class="v2-aud-tile-industry">Construction</p>
-            <p class="v2-aud-tile-name">Site deliveries</p>
-            <p class="v2-aud-tile-desc">Unattended drops and unmanned gates, GPS photo before anyone else touches the goods.</p>
-            <span class="v2-aud-tile-arrow">See solution &rarr;</span>
+          <a class="door door--qr" href="/qr/">
+            <div class="door-vis door-vis--qr" aria-hidden="true"><img src="/assets/demo-qr.svg" alt="" width="84" height="84" /><span class="door-sticker-cta">Scan to report an issue</span></div>
+            <span class="door-kicker">For equipment and facilities <span class="v2-badge-new">New</span></span>
+            <span class="door-title">QR Reporting</span>
+            <span class="door-text">A QR code on every machine. Anyone scans it and reports what is wrong; your team gets a complete report by e-mail or webhook.</span>
+            <ul class="door-points"><li>No app for the person reporting</li><li>Your own categories and stickers</li><li>Ten ready use cases</li></ul>
+            <span class="door-cta">Go to QR Reporting &rarr;</span>
           </a>
         </div>
-        <p data-u="ua0347ef"><a href="/solutions/" class="v2-link">All solutions &rarr;</a></p>
       </div>
     </section>
 
-    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Available on all plans</p><p class="v2-inline-cta-text">Generate CMR and AVC consignment notes directly in the portal. IRU layout, searchable archive. &euro;0.35 per waybill, billed with your PODs.</p></div><a href="/cmr/" class="v2-btn v2-btn-primary">CMR generator &rarr;</a></div></div></div>
-
-    <!-- ================================================================
-         CHANGELOG TEASER, 3 most recent releases, client-side fetch
-         ================================================================ -->
-    <section id="v2-changelog-teaser" class="v2-changelog-teaser" aria-labelledby="cl-teaser-heading">
+    <section class="v2-section home-shared" aria-labelledby="home-shared-heading">
       <div class="container">
-        <p class="v2-eyebrow">Platform updates</p>
-        <h2 class="v2-section-title" id="cl-teaser-heading">Recent releases</h2>
-        <div id="cl-teaser-list" class="v2-cl-teaser-list"></div>
-        <a href="/changelog" class="v2-link-arrow">View full changelog &rarr;</a>
+        <p class="v2-eyebrow">One platform</p>
+        <h2 class="v2-section-title" id="home-shared-heading">The same platform behind both</h2>
+        <ul class="home-shared-list"><li>No app, no account</li><li>Your logo and colours</li><li>12 languages</li><li>E-mail and webhook</li><li>Searchable portal</li><li>Stored in the EU</li></ul>
+        <p class="home-help">Not sure which fits? Tell us what you want to solve. <a href="/contact" class="v2-link">Contact us &rarr;</a></p>
       </div>
     </section>
-
   </main>
 
   [[PODFY_FOOTER]]
-
 </body>
 </html>

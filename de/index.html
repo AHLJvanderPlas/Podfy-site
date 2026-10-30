@@ -1,244 +1,80 @@
 <!doctype html>
-<!-- i18n:strings
-  title: PODFY, Liefernachweis, ohne App.
--->
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-
-  <title>PODFY — Liefernachweis, ohne App.</title>
-  <meta name="description" content="Schicken Sie einem Fahrer einen Link, erhalten Sie in Sekunden ein gestempeltes CMR zurück. Keine App. Für Spediteure und Logistikdienstleister." />
+  <title>PODFY: CMR-Nachweis und QR-Meldungen, ohne App</title>
+  <meta name="description" content="Zwei Lösungen, eine Plattform: unterschriebene CMRs von jedem Fahrer und QR-Codes, mit denen jeder eine Störung an einer Maschine meldet. Ohne App." />
   <link rel="canonical" href="https://podfy.net/de/" />
-
-  <meta name="robots" content="index,follow" />
-
-  <meta property="og:title" content="PODFY — Liefernachweis, ohne App." />
-  <meta property="og:description" content="Link senden. CMR vor Freitag erhalten. Keine App, kein Konto." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:title" content="PODFY: CMR-Nachweis und QR-Meldungen, ohne App" />
+  <meta property="og:description" content="Zwei Lösungen, eine Plattform: unterschriebene CMRs von jedem Fahrer und QR-Codes, mit denen jeder eine Störung an einer Maschine meldet. Ohne App." />
   <meta property="og:url" content="https://podfy.net/de/" />
   <meta property="og:image" content="https://podfy.net/assets/og-image.jpg" />
-  <meta property="og:site_name" content="PODFY" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PODFY — Liefernachweis, ohne App." />
-  <meta name="twitter:description" content="Schicken Sie einem Fahrer einen Link, erhalten Sie in Sekunden ein gestempeltes und archiviertes CMR zurück. Keine App. Gebaut für deutsche Spediteure und Logistikdienstleister." />
+  <meta name="twitter:title" content="PODFY: CMR-Nachweis und QR-Meldungen, ohne App" />
+  <meta name="twitter:description" content="Zwei Lösungen, eine Plattform: unterschriebene CMRs von jedem Fahrer und QR-Codes, mit denen jeder eine Störung an einer Maschine meldet. Ohne App." />
   <meta name="twitter:image" content="https://podfy.net/assets/og-image.jpg" />
-
-  <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EA" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#12100D" />
-
-  <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-
-  <!-- hreflang -->
-  <link rel="alternate" hreflang="en"        href="https://podfy.net/" />
-  <link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/" />
-  <link rel="alternate" hreflang="de"        href="https://podfy.net/de/" />
-  <link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/" />
+  <link rel="alternate" hreflang="de" href="https://podfy.net/de/" />
+  <link rel="alternate" hreflang="fr" href="https://podfy.net/fr/" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
-
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r6" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r10" />
   <script src="/assets/theme.js" defer></script>
-
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "PODFY",
-    "url": "https://podfy.net",
-    "logo": "https://podfy.net/assets/podfy.svg",
-    "description": "Liefernachweis-Plattform für Spediteure, Logistikdienstleister und Absender. GPS-gestempelter Foto-POD ohne App. EU-gehostet.",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "support@podfy.net",
-      "contactType": "customer support"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Rodenrijselaan 10A",
-      "addressLocality": "Rotterdam",
-      "postalCode": "3037 XE",
-      "addressCountry": "NL"
-    },
-    "vatID": "NL001170142B85",
-    "areaServed": [
-      "NL",
-      "BE",
-      "DE",
-      "FR",
-      "EU"
-    ],
-    "sameAs": [
-      "https://www.linkedin.com/company/podfy"
-    ]
-  }
+  {"@context": "https://schema.org", "@type": "Organization", "name": "PODFY", "url": "https://podfy.net", "logo": "https://podfy.net/assets/podfy.svg", "description": "Liefernachweis-Plattform für Spediteure, Logistikdienstleister und Absender. GPS-gestempelter Foto-POD ohne App. EU-gehostet.", "contactPoint": {"@type": "ContactPoint", "email": "support@podfy.net", "contactType": "customer support"}, "address": {"@type": "PostalAddress", "streetAddress": "Rodenrijselaan 10A", "addressLocality": "Rotterdam", "postalCode": "3037 XE", "addressCountry": "NL"}, "vatID": "NL001170142B85", "areaServed": ["NL", "BE", "DE", "FR", "EU"], "sameAs": ["https://www.linkedin.com/company/podfy"]}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "PODFY",
-    "url": "https://podfy.net/de/",
-    "inLanguage": "de"
-  }
+  {"@context": "https://schema.org", "@type": "WebSite", "name": "PODFY", "url": "https://podfy.net/de/", "inLanguage": "de"}
   </script>
 <link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
 <script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
-
 <body class="v2">
-  <a href="#main" class="sr-only">Zum Inhalt springen</a>
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Zum Inhalt</a>
   [[PODFY_HEADER]]
 
-  <main id="main" class="v2-main">
-
-    <section class="v2-hero" aria-labelledby="hero-heading">
+  <main id="main" class="v2-main home">
+    <section class="home-hero" aria-labelledby="home-heading">
       <div class="container">
-        <div class="v2-hero-grid">
-
-          <div class="v2-hero-copy">
-            <p class="v2-eyebrow" aria-hidden="true">Liefernachweis · ohne App</p>
-            <h1 class="v2-hero-title" id="hero-heading">
-              Link senden.<br>
-              CMR erhalten<br>
-              vor <em>Freitag.</em>
-            </h1>
-            <p class="v2-hero-sub">
-              Deutsche Spediteure und 3PL-Dienstleister nutzen Podfy, um unterzeichnete Liefernachweise von jedem Fahrer zu erfassen, keine App, kein Konto, keine Schulung erforderlich.
-            </p>
-            <div class="v2-hero-actions">
-              <a href="/de/demo" class="v2-btn v2-btn-primary">Live-Demo ausprobieren &rarr;</a>
-              <a href="/de/contact" class="v2-btn v2-btn-ghost">15-Minuten-Demo</a>
-            </div>
-          </div>
-
-          <div class="v2-hero-visual" aria-hidden="true">
-            <div class="v2-receipt v2-hero-receipt">
-              <div class="v2-receipt-perforation"></div>
-              <div class="v2-receipt-inner">
-                <p class="v2-receipt-brand">Müller Logistik GmbH</p>
-                <p class="v2-receipt-ref">REF&nbsp;&nbsp;MUL-2025-04-22-0041</p>
-                <hr class="v2-receipt-hr" />
-                <div class="v2-receipt-row">
-                  <span class="v2-receipt-label">Fahrer</span>
-                  <span class="v2-receipt-value">T. Kowalski</span>
-                </div>
-                <div class="v2-receipt-row">
-                  <span class="v2-receipt-label">Datum</span>
-                  <span class="v2-receipt-value">2025-04-22 · 14:37 CET</span>
-                </div>
-                <div class="v2-receipt-row">
-                  <span class="v2-receipt-label">GPS</span>
-                  <span class="v2-receipt-value">52.52°N&nbsp;13.40°E</span>
-                </div>
-                <div class="v2-receipt-row">
-                  <span class="v2-receipt-label">Datei</span>
-                  <span class="v2-receipt-value">cmr_0041.pdf</span>
-                </div>
-                <hr class="v2-receipt-hr" />
-                <div class="v2-receipt-status">
-                  <span class="v2-stamp-mark">Zugestellt</span>
-                </div>
-              </div>
-              <div class="v2-receipt-perforation"></div>
-            </div>
-          </div>
-
+        <p class="v2-eyebrow">PODFY</p>
+        <h1 class="v2-hero-title home-title" id="home-heading">Nachweise und Meldungen direkt aus dem Feld. <em>Ohne App.</em></h1>
+        <p class="v2-hero-sub home-sub">PODFY macht jedes Handy zum Meldewerkzeug. Fahrer senden den unterschriebenen CMR, und jeder an einer Maschine meldet, was nicht stimmt, per Link oder QR-Code. Wählen Sie, was Sie brauchen.</p>
+        <div class="doors">
+          <a class="door door--cmr" href="/de/cmr/">
+            <div class="door-vis door-vis--cmr" aria-hidden="true"><span class="door-ref">TDV-2026-0841</span><span class="door-doc"><span></span><span></span><span></span></span><span class="v2-stamp-mark">Zugestellt</span></div>
+            <span class="door-kicker">Für Transport und Logistik</span>
+            <span class="door-title">CMR und Liefernachweis</span>
+            <span class="door-text">Fahrer fotografieren den unterschriebenen CMR oder Lieferschein. Sie erhalten am selben Tag ein gestempeltes PDF, durchsuchbar im Portal.</span>
+            <ul class="door-points"><li>Keine Fahrer-App, auch für Subunternehmer</li><li>Gestempeltes PDF mit Zeit und Standort</li><li>CMR-Generator im Portal</li></ul>
+            <span class="door-cta">Zu CMR und Liefernachweis &rarr;</span>
+          </a>
+          <a class="door door--qr" href="/de/qr/">
+            <div class="door-vis door-vis--qr" aria-hidden="true"><img src="/assets/demo-qr.svg" alt="" width="84" height="84" /><span class="door-sticker-cta">Scannen, um eine Störung zu melden</span></div>
+            <span class="door-kicker">Für Geräte und Facility <span class="v2-badge-new">Neu</span></span>
+            <span class="door-title">QR-Meldungen</span>
+            <span class="door-text">Ein QR-Code an jeder Maschine. Jeder scannt ihn und meldet, was nicht stimmt; Ihr Team erhält eine vollständige Meldung per E-Mail oder Webhook.</span>
+            <ul class="door-points"><li>Keine App für die meldende Person</li><li>Eigene Kategorien und Aufkleber</li><li>Zehn fertige Anwendungsfälle</li></ul>
+            <span class="door-cta">Zu den QR-Meldungen &rarr;</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="v2-trust-belt" aria-label="Kernfakten">
+    <section class="v2-section home-shared" aria-labelledby="home-shared-heading">
       <div class="container">
-        <ul class="v2-trust-list" role="list">
-          <li class="v2-trust-item">11s medianer Upload</li>
-          <li class="v2-trust-item">0 Apps installiert</li>
-          <li class="v2-trust-item">Hosting nur in der EU</li>
-          <li class="v2-trust-item">
-            Letztes Update&nbsp;<a href="/changelog" class="v2-trust-link" aria-label="Changelog ansehen">&rarr;</a>
-          </li>
-        </ul>
+        <p class="v2-eyebrow">Eine Plattform</p>
+        <h2 class="v2-section-title" id="home-shared-heading">Dieselbe Plattform hinter beiden</h2>
+        <ul class="home-shared-list"><li>Keine App, kein Konto</li><li>Ihr Logo und Ihre Farben</li><li>12 Sprachen</li><li>E-Mail und Webhook</li><li>Durchsuchbares Portal</li><li>Speicherung in der EU</li></ul>
+        <p class="home-help">Nicht sicher, was passt? Sagen Sie uns, was Sie lösen möchten. <a href="/de/contact" class="v2-link">Kontakt aufnehmen &rarr;</a></p>
       </div>
     </section>
-
-    <!-- QR Reporting band (generated by scripts/qr-pages/build.py) -->
-    <section class="v2-qr-band" aria-labelledby="qr-band-heading">
-      <div class="container v2-qr-band-grid">
-        <div>
-          <p class="v2-eyebrow"><span class="v2-badge-new">Neu</span> PODFY QR-Meldungen</p>
-          <h2 class="v2-qr-band-title" id="qr-band-heading">Ein QR-Code an jeder Maschine.<br><em>Jede Störung gemeldet.</em></h2>
-          <p class="v2-qr-band-sub">Derselbe Link ohne App, den Ihre Fahrer für Liefernachweise nutzen, funktioniert jetzt auch für Geräte. Kunden, Mitarbeitende und Techniker scannen einen Aufkleber, wählen, was nicht stimmt, und senden es ab. Ihr Team erhält eine strukturierte Meldung per E-Mail oder Webhook, mit dem Objekt bereits erkannt.</p>
-          <ul class="v2-qr-points"><li>Keine App, kein Konto</li><li>Eigene Kategorien und Aufklebertexte</li><li>E-Mail und Webhook an Ihre Systeme</li></ul>
-          <p class="v2-qr-cases-label">Zehn Anwendungsfälle, eine Plattform</p>
-          <ul class="v2-qr-cases"><li><a href="/de/solutions/qr-issue-reporting/ev-chargers/">Ladestationen</a></li><li><a href="/de/solutions/qr-issue-reporting/parcel-lockers/">Paketstationen</a></li><li><a href="/de/solutions/qr-issue-reporting/trailers-containers/">Auflieger und Container</a></li><li><a href="/de/solutions/qr-issue-reporting/vending-machines/">Verkaufsautomaten</a></li><li><a href="/de/solutions/qr-issue-reporting/coffee-machines/">Kaffeemaschinen</a></li><li><a href="/de/solutions/qr-issue-reporting/printers-copiers/">Drucker und Kopierer</a></li><li><a href="/de/solutions/qr-issue-reporting/restrooms-cleaning/">Sanitärräume und Reinigung</a></li><li><a href="/de/solutions/qr-issue-reporting/fitness-equipment/">Fitnessgeräte</a></li><li><a href="/de/solutions/qr-issue-reporting/waste-containers/">Abfallbehälter</a></li><li><a href="/de/solutions/qr-issue-reporting/remote-equipment/">Geräte im Außeneinsatz</a></li></ul>
-          <div class="v2-hero-actions"><a href="/de/solutions/qr-issue-reporting/" class="v2-btn v2-btn-primary">QR-Meldungen entdecken &rarr;</a><a href="/de/contact?solution=report" class="v2-btn v2-btn-ghost">Demo anfragen</a></div>
-        </div>
-        <div class="v2-qr-band-visual">
-          <figure class="v2-rp-figure">
-          <div class="rp-phone" aria-hidden="true">
-            <div class="rp-screen">
-              <div class="rp-brand"><span>ACME SERVICE</span><span>Meldung</span></div>
-              <div class="rp-asset"><div class="rp-asset-id">COFFEE-0042</div><div class="rp-asset-loc">Gebäude B, Teeküche 2. OG</div></div>
-              <div class="rp-label">Was stimmt nicht?</div>
-              <div class="rp-chips"><span class="rp-chip">Funktioniert nicht</span><span class="rp-chip">Kein Wasser</span><span class="rp-chip">Keine Bohnen</span><span class="rp-chip">Reinigung nötig</span><span class="rp-chip rp-chip--on">Undicht</span><span class="rp-chip">Sonstiges</span></div>
-              <div class="rp-field">Seit heute Morgen Wasser unter der Maschine</div>
-              <div class="rp-photo">+ Foto hinzufügen (optional)</div>
-              <div class="rp-submit">Meldung senden</div>
-            </div>
-          </div>
-          <figcaption class="rp-caption">Beispiel eines QR-Meldeformulars</figcaption>
-        </figure>
-          <div class="rp-sticker" aria-hidden="true"><div class="rp-sticker-head">ACME SERVICE</div><img src="/assets/demo-qr.svg" alt="" width="120" height="120" /><div class="rp-sticker-cta">Scannen, um eine Störung zu melden</div><div class="rp-sticker-id">COFFEE-0042</div></div>
-        </div>
-      </div>
-    </section>
-    <!-- /QR Reporting band -->
-
-    <section class="v2-section" aria-labelledby="how-heading">
-      <div class="container">
-        <h2 class="v2-section-title" id="how-heading">So funktioniert es</h2>
-        <div class="v2-how-grid">
-
-          <div class="v2-how-step">
-            <p class="v2-how-step-num">01</p>
-            <h3>Fahrer öffnet den Link</h3>
-            <p>Link per WhatsApp, SMS oder E-Mail senden. Jedes Telefon, jeder Anbieter. Kein Konto, kein Download, auch wenn Ihr Fahrer ein Unterfrachtführer mit einem vier Jahre alten Android-Gerät ist.</p>
-          </div>
-
-          <div class="v2-how-step">
-            <p class="v2-how-step-num">02</p>
-            <h3>Foto vom CMR</h3>
-            <p>Foto, PDF oder Scan. GPS-Stempel und Zeitstempel werden automatisch hinzugefügt. Die Referenz wird erfasst. Datei geht direkt in EU-Speicher.</p>
-          </div>
-
-          <div class="v2-how-step">
-            <p class="v2-how-step-num">03</p>
-            <h3>Büro erhält gestempelte PDF</h3>
-            <p>E-Mail-Benachrichtigung in Sekunden. Das Dokument ist im Portal durchsuchbar, bereit für Rechnungsstellung, Streitbeilegung oder Prüfung.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Auf allen Tarifen verfügbar</p><p class="v2-inline-cta-text">Erstellen Sie CMR- und AVC-Frachtbriefe direkt im Portal. IRU-Layout, durchsuchbares Archiv. &euro;0,35 pro Frachtbrief, mit Ihren PODs in Rechnung gestellt.</p></div><a href="/de/cmr/" class="v2-btn v2-btn-primary">CMR-Generator &rarr;</a></div></div></div>
-
-    <section class="v2-section" aria-labelledby="cta-heading" data-u="ub0e4241">
-      <div class="container">
-        <h2 class="v2-section-title" id="cta-heading" data-u="u96dbd44">
-          Selbst ausprobieren?
-        </h2>
-        <div data-u="u6423325">
-          <a href="/de/demo" class="v2-btn v2-btn-primary">Live-Demo ausprobieren &rarr;</a>
-          <a href="/de/contact" class="v2-btn v2-btn-ghost">Kontakt aufnehmen</a>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   [[PODFY_FOOTER]]

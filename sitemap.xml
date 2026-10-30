@@ -700,33 +700,33 @@
   </url>
 
   <!-- ═══ CMR GENERATOR ═══ -->
-  <url><loc>https://podfy.net/cmr/</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/" />
-    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/" />
-    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/cmr/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/" />
+  <url><loc>https://podfy.net/cmr/generator/</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/generator/" />
   </url>
-  <url><loc>https://podfy.net/nl/cmr/</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/" />
-    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/" />
-    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/cmr/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/" />
+  <url><loc>https://podfy.net/nl/cmr/generator/</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/generator/" />
   </url>
-  <url><loc>https://podfy.net/de/cmr/</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/" />
-    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/" />
-    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/cmr/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/" />
+  <url><loc>https://podfy.net/de/cmr/generator/</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/generator/" />
   </url>
-  <url><loc>https://podfy.net/fr/cmr/</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/" />
-    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/" />
-    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/" />
-    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/cmr/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/" />
+  <url><loc>https://podfy.net/fr/cmr/generator/</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/cmr/generator/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/generator/" />
   </url>
 
 
@@ -1130,6 +1130,62 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/remote-equipment/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/remote-equipment/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/remote-equipment/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/cmr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/cmr/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/nl/cmr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/cmr/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/de/cmr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/cmr/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/fr/cmr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/cmr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/cmr/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/qr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/qr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/qr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/qr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/qr/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/nl/qr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/qr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/qr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/qr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/qr/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/de/qr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/qr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/qr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/qr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/qr/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/fr/qr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/qr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/qr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/qr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/qr/"/>
   </url>
   <!-- /QR Reporting -->
 </urlset>

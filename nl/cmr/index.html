@@ -3,379 +3,318 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CMR Generator &amp; Opslag — Digitale Vrachtbrieven | PODFY</title>
-  <meta name="description" content="Genereer CMR- en AVC-vrachtbrieven direct in het Podfy-portaal. Gestructureerd formulier, automatische PDF, doorzoekbaar archief. Prijs per CMR." />
+  <title>Digitale CMR en afleverbewijs, zonder chauffeursapp | PODFY</title>
+  <meta name="description" content="Chauffeurs fotograferen de getekende CMR met elke telefoon en u krijgt dezelfde dag een gestempelde PDF. Geen app, werkt voor charters, met CMR-generator." />
   <link rel="canonical" href="https://podfy.net/nl/cmr/" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="PODFY" />
-  <meta property="og:title" content="CMR Generator &amp; Opslag — Digitale Vrachtbrieven | PODFY" />
-  <meta property="og:description" content="Genereer CMR- en AVC-vrachtbrieven direct in het Podfy-portaal. Gestructureerd formulier, automatische PDF, doorzoekbaar archief. Prijs per gegenereerde CMR — niet per POD." />
+  <meta property="og:title" content="Digitale CMR en afleverbewijs, zonder chauffeursapp | PODFY" />
+  <meta property="og:description" content="Chauffeurs fotograferen de getekende CMR met elke telefoon en u krijgt dezelfde dag een gestempelde PDF. Geen app, werkt voor charters, met CMR-generator." />
   <meta property="og:url" content="https://podfy.net/nl/cmr/" />
   <meta property="og:image" content="https://podfy.net/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CMR Generator &amp; Opslag — Digitale Vrachtbrieven | PODFY" />
-  <meta name="twitter:description" content="Genereer CMR- en AVC-vrachtbrieven direct in het Podfy-portaal. Gestructureerd formulier, automatische PDF, doorzoekbaar archief. Prijs per gegenereerde CMR — niet per POD." />
+  <meta name="twitter:title" content="Digitale CMR en afleverbewijs, zonder chauffeursapp | PODFY" />
+  <meta name="twitter:description" content="Chauffeurs fotograferen de getekende CMR met elke telefoon en u krijgt dezelfde dag een gestempelde PDF. Geen app, werkt voor charters, met CMR-generator." />
   <meta name="twitter:image" content="https://podfy.net/assets/og-image.jpg" />
   <link rel="alternate" hreflang="en" href="https://podfy.net/cmr/" />
   <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/cmr/" />
   <link rel="alternate" hreflang="de" href="https://podfy.net/de/cmr/" />
-  <link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/cmr/" />
+  <link rel="alternate" hreflang="fr" href="https://podfy.net/fr/cmr/" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/cmr/" />
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r6" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r10" />
   <script src="/assets/theme.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"PODFY","item":"https://podfy.net/nl/"},
-    {"@type":"ListItem","position":2,"name":"CMR Generator","item":"https://podfy.net/nl/cmr/"}
-  ]}
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Heeft de chauffeur een app of account nodig?", "acceptedAnswer": {"@type": "Answer", "text": "Nee. De chauffeur opent een link of scant een QR-kaart, maakt een foto en verstuurt die vanuit de browser. Niets te installeren, geen login."}}, {"@type": "Question", "name": "Werkt het voor charters?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Zet de referentie in uw PODFY-link of print een QR-kaart vanuit het portaal. Charterchauffeurs sturen hun documenten op dezelfde manier, zonder account."}}, {"@type": "Question", "name": "Is een foto van de getekende CMR genoeg?", "acceptedAnswer": {"@type": "Answer", "text": "PODFY bewaart de foto of scan van de getekende CMR als gestempelde PDF met tijd, referentie en locatie waar beschikbaar. U heeft een doorzoekbare kopie voor facturatie en geschillen; de juridische rol van de papieren CMR verandert niet."}}, {"@type": "Question", "name": "Wat is het verschil met e-CMR?", "acceptedAnswer": {"@type": "Answer", "text": "Een e-CMR vervangt de papieren vrachtbrief onder het e-CMR-protocol. PODFY werkt met de getekende CMR die u al gebruikt, en met de CMR-generator maakt u ook CMR's in het portaal. Dat past bij gemengde vloten en charters."}}, {"@type": "Question", "name": "Kunnen documenten naar ons TMS?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Elk bewijs wordt gemaild en kan per webhook naar uw TMS of ERP. U kunt ook per periode exporteren voor facturatie."}}, {"@type": "Question", "name": "Hoe lang worden documenten bewaard?", "acceptedAnswer": {"@type": "Answer", "text": "Zo lang als uw plan aangeeft: van 14 dagen op Basic tot 7 jaar op Enterprise. Langere bewaring is beschikbaar als add-on."}}, {"@type": "Question", "name": "Wat kost het?", "acceptedAnswer": {"@type": "Answer", "text": "U betaalt per document, vanaf €0,10 per afleverbewijs. Geen licentiekosten en geen opstartkosten. De CMR-generator kost €0,35 per CMR."}}]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"Wat is een CMR-vrachtbrief?","acceptedAnswer":{"@type":"Answer","text":"Een CMR-vrachtbrief is het internationaal gestandaardiseerde vrachtdocument dat vereist is voor grensoverschrijdend wegvervoer op grond van het Verdrag betreffende de overeenkomst tot internationaal vervoer van goederen over de weg (CMR, Genève 1956). Het document legt afzender, ontvanger, vervoerder, goederen en vervoerscondities vast."}},
-    {"@type":"Question","name":"Wat is het verschil tussen CMR en AVC?","acceptedAnswer":{"@type":"Answer","text":"CMR is het internationale verdragsformulier dat door heel Europa en daarbuiten wordt gebruikt. AVC (Algemene Vervoerscondities 2002) is de Nederlandse binnenlandse variant met eigen standaardvoorwaarden. Podfy ondersteunt beide modi — wissel tussen CMR en AVC met één klik."}},
-    {"@type":"Question","name":"Hoe wordt de CMR-add-on geprijsd?","acceptedAnswer":{"@type":"Answer","text":"De CMR-add-on kost €0,35 per gegenereerde CMR. Dit staat los van uw POD-tarief — het genereren van een CMR telt niet als een verwerkte POD. De add-on is beschikbaar op alle abonnementen. Inbegrepen in Pro en Enterprise."}},
-    {"@type":"Question","name":"Moeten chauffeurs een app installeren?","acceptedAnswer":{"@type":"Answer","text":"Nee. Podfy genereert de CMR-PDF in het portaal. Chauffeurs en ontvangers ondertekenen op het fysieke document of op het scherm. Er is geen app-installatie vereist voor enige partij."}},
-    {"@type":"Question","name":"Hoe lang worden CMR-records bewaard?","acceptedAnswer":{"@type":"Answer","text":"CMR-records worden bewaard gedurende de retentieperiode van uw abonnement. Alle metadata, de gestructureerde formulierdata en de gegenereerde PDF worden bewaard en zijn doorzoekbaar vanuit het portaal. Export is altijd beschikbaar."}}
-  ]}
+  {"@context": "https://schema.org", "@type": "Service", "name": "PODFY CMR en afleverbewijs", "provider": {"@type": "Organization", "name": "PODFY", "url": "https://podfy.net"}, "description": "Chauffeurs fotograferen de getekende CMR met elke telefoon en u krijgt dezelfde dag een gestempelde PDF. Geen app, werkt voor charters, met CMR-generator.", "areaServed": ["NL", "BE", "DE", "FR"], "url": "https://podfy.net/nl/cmr/", "serviceType": "Proof of delivery and CMR management"}
   </script>
-  <link rel="stylesheet" href="/assets/css/i/c7d3f110069a.css">
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "PODFY", "item": "https://podfy.net/nl/"}, {"@type": "ListItem", "position": 2, "name": "CMR en afleverbewijs", "item": "https://podfy.net/nl/cmr/"}]}
+  </script>
 <link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
 <script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
 </head>
 <body class="v2">
   <div id="v2-progress"></div>
-  <a href="#main" class="sr-only">Naar inhoud springen</a>
+  <a href="#main" class="sr-only">Naar inhoud</a>
   [[PODFY_HEADER]]
-  <nav class="v2-breadcrumb" aria-label="Breadcrumb"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/nl/">PODFY</a></li><li aria-current="page">CMR Generator</li></ol></div></nav>
 
-  <main id="main" class="v2-main">
-
-    <section class="v2-aud-hero" aria-labelledby="cmr-heading">
-      <div class="container">
-        <div class="v2-hero-grid">
-          <div>
-            <p class="v2-eyebrow">Add-on · Advanced &amp; Pro</p>
-            <h1 class="v2-hero-title" id="cmr-heading">Digitale CMR.<br><em>Gegenereerd, opgeslagen,<br>opvraagbaar.</em></h1>
-            <p class="v2-hero-sub">Maak CMR- en AVC-vrachtbrieven direct in het Podfy-portaal. Gestructureerd formulier, IRU-layout PDF, doorzoekbaar archief. &euro;0,35 per gegenereerde CMR, gefactureerd samen met uw POD's.</p>
-            <div class="v2-hero-actions">
-              <a href="/nl/contact" class="v2-btn v2-btn-primary">15 minuten boeken &rarr;</a>
-              <a href="/nl/demo" class="v2-btn v2-btn-ghost">Eerst de demo proberen</a>
+  <main id="main" class="v2-main lp">
+    <section class="lp-hero" aria-labelledby="lp-heading">
+      <div class="container lp-hero-grid">
+        <div>
+          <p class="v2-eyebrow">PODFY CMR en afleverbewijs</p>
+          <h1 class="v2-hero-title" id="lp-heading">Stuur een link.<br><em>Krijg de CMR dezelfde dag terug.</em></h1>
+          <p class="v2-hero-sub">PODFY haalt getekende CMR&#x27;s en afleverbonnen direct bij de chauffeur op. Elke telefoon, elke chauffeur, eigen personeel of charter. Geen app, geen account, geen training. Uw team krijgt een gestempelde PDF met tijd en locatie, doorzoekbaar in uw portaal nog voordat de wagen terug is op het depot.</p>
+          <div class="v2-hero-actions"><a href="#start" class="v2-btn v2-btn-primary">Plan een demo van 15 minuten &rarr;</a><a href="/nl/demo" class="v2-btn v2-btn-ghost">Probeer de live demo</a></div>
+          <ul class="lp-trust"><li>Geen chauffeursapp</li><li>Werkt voor charters</li><li>Gestempelde PDF per zending</li><li>Opgeslagen in de EU</li></ul>
+        </div>
+        <div class="v2-qr-band-visual lp-visual">
+          <figure class="v2-rp-figure">
+          <div class="rp-phone" aria-hidden="true">
+            <div class="rp-screen">
+              <div class="rp-brand"><span>TRANS VAN DIJCK</span><span>CMR</span></div>
+              <div class="rp-asset"><div class="rp-asset-id">TDV-2026-0841</div><div class="rp-asset-loc">Levering DC Venlo, dock 7</div></div>
+              <div class="rp-label">Foto van de getekende CMR</div>
+              <div class="lp-shot"><span class="lp-shot-title">CMR</span><span class="lp-shot-line"></span><span class="lp-shot-line"></span><span class="lp-shot-line lp-shot-line--short"></span><span class="lp-shot-sign"></span><span class="lp-shot-file">cmr_0841.jpg</span></div>
+              <div class="rp-submit">Document versturen</div>
             </div>
           </div>
+        </figure>
+          <div class="rp-sticker" aria-hidden="true"><div class="rp-sticker-head">TRANS VAN DIJCK</div><img src="/assets/demo-qr.svg" alt="" width="120" height="120" /><div class="rp-sticker-cta">Scan om uw CMR te versturen</div><div class="rp-sticker-id">TDV-2026-0841</div></div>
+        </div>
+      </div>
+    </section>
 
-          <div aria-hidden="true">
-            <div class="cmr-preview-wrap">
-              <div class="cmr-doc">
-                <div class="cmr-legal-strip">Deze vrachtbrief is onderworpen aan het CMR-verdrag (Genève, 19 mei 1956) — ongeacht de woonplaats of nationaliteit van de partijen</div>
-                <div class="cmr-header">
-                  <div class="cmr-header-brand">PODFY</div>
-                  <div class="cmr-header-title">
-                    INTERNATIONALE VRACHTBRIEF
-                    <small>CMR &nbsp;·&nbsp; Verdrag nopens de overeenkomst tot internationaal vervoer van goederen over de weg</small>
+    <section class="v2-stat-band-wrap" aria-label="PODFY CMR en afleverbewijs"><div class="container"><ul class="v2-stat-band" role="list"><li class="v2-stat-band-item"><span class="v2-stat-band-num">0</span><span class="v2-stat-band-label">Apps voor chauffeurs</span></li><li class="v2-stat-band-item"><span class="v2-stat-band-num">1</span><span class="v2-stat-band-label">Link per zending</span></li><li class="v2-stat-band-item"><span class="v2-stat-band-num">12</span><span class="v2-stat-band-label">Talen</span></li><li class="v2-stat-band-item"><span class="v2-stat-band-num">EU</span><span class="v2-stat-band-label">Dataopslag</span></li></ul></div></section>
+
+    <section class="v2-section" aria-labelledby="lp-cmp-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Voor en na</p>
+        <h2 class="v2-section-title" id="lp-cmp-heading">Van papieren CMR&#x27;s najagen naar een gestempelde PDF op dezelfde dag</h2>
+        <div class="lp-cmp">
+          <div class="lp-cmp-col lp-cmp-col--without"><h3>Nu</h3><ul><li>Getekende CMR&#x27;s liggen dagen in de cabine of raken kwijt</li><li>Planners bellen chauffeurs en charters voor foto&#x27;s</li><li>Facturen wachten tot het papier terug is</li><li>Een geschil begint met zoeken in ordners</li></ul></div>
+          <div class="lp-cmp-col lp-cmp-col--with"><h3>Met PODFY</h3><ul><li>De chauffeur stuurt de getekende CMR ter plekke vanaf elke telefoon</li><li>Binnen seconden een gestempelde PDF met tijd en locatie</li><li>Dezelfde dag factureren, met het bewijs erbij</li><li>Elk document doorzoekbaar per referentie in uw portaal</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="how" aria-labelledby="lp-how-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Zo werkt het</p>
+        <h2 class="v2-section-title" id="lp-how-heading">Link. Foto. Gestempeld bewijs.</h2>
+        <div class="v2-flow"><div class="v2-flow-step"><h3>Stuur een link of QR-kaart</h3><p>Zet de referentie in uw PODFY-link, of print een QR-kaart vanuit het portaal. WhatsApp, sms of e-mail werkt allemaal.</p></div><div class="v2-flow-step"><h3>Chauffeur fotografeert de CMR</h3><p>De chauffeur opent de link op elke telefoon, fotografeert de getekende CMR of afleverbon en verstuurt hem. Seconden, geen account.</p></div><div class="v2-flow-step"><h3>Uw team krijgt het bewijs</h3><p>Een gestempelde PDF met tijd, locatie waar beschikbaar en referentie komt binnen in uw portaal en mailbox.</p></div></div>
+      </div>
+    </section>
+
+    <section class="v2-qr-band lp-receive" aria-labelledby="lp-rec-heading">
+      <div class="container v2-qr-band-grid">
+        <div>
+          <p class="v2-eyebrow">Wat uw team ontvangt</p>
+          <h2 class="v2-qr-band-title" id="lp-rec-heading">Een afleverbewijs waarop u kunt factureren</h2>
+          <p class="v2-qr-band-sub">Elk document wordt een gestempeld bewijs: de referentie, chauffeur, tijd, locatie waar beschikbaar en het originele bestand als PDF. Het gaat per e-mail naar planning of financiën, en als webhook naar uw TMS of ERP.</p>
+          <ul class="v2-qr-points"><li>Gestempelde PDF per zending, met het origineel erbij</li><li>Webhook met JSON-payload voor uw TMS of ERP</li><li>Zoeken en exporteren per referentie, periode of klant</li></ul>
+        </div>
+        <div class="lp-receive-visual">
+          <article class="lp-ticket" aria-label="Afleverbewijs">
+            <header class="lp-ticket-head"><span>Afleverbewijs</span><span class="lp-ticket-id">TDV-2026-0841</span></header>
+            <dl class="lp-ticket-rows"><div class="lp-ticket-row"><dt>Referentie</dt><dd>TDV-2026-0841</dd></div><div class="lp-ticket-row"><dt>Chauffeur</dt><dd>J. Kowalski (charter)</dd></div><div class="lp-ticket-row"><dt>Ontvangen</dt><dd>Vandaag, 14:37</dd></div><div class="lp-ticket-row"><dt>Locatie</dt><dd>52,37° N, 4,89° O (uit foto)</dd></div><div class="lp-ticket-row"><dt>Bestand</dt><dd>cmr_0841.pdf</dd></div><div class="lp-ticket-row"><dt>Verstuurd naar</dt><dd>planning@ en webhook</dd></div></dl>
+            <span class="v2-stamp-mark lp-ticket-stamp">Afgeleverd</span>
+          </article>
+          <figure class="lp-json"><figcaption>Webhook-payload (voorbeeld)</figcaption><pre><code>{
+  &quot;event&quot;: &quot;pod.created&quot;,
+  &quot;reference&quot;: &quot;TDV-2026-0841&quot;,
+  &quot;podfy_id&quot;: &quot;PFY-7Q4K2&quot;,
+  &quot;received_at&quot;: &quot;2026-10-30T14:37:00+01:00&quot;,
+  &quot;location&quot;: {
+    &quot;lat&quot;: 52.37,
+    &quot;lng&quot;: 4.89,
+    &quot;source&quot;: &quot;photo&quot;
+  },
+  &quot;files&quot;: [
+    &quot;cmr_0841.pdf&quot;
+  ],
+  &quot;url&quot;: &quot;https://portal.podfy.net/pod/3b8e1d&quot;
+}</code></pre></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="lp-roles-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Voor wie</p>
+        <h2 class="v2-section-title" id="lp-roles-heading">Gebouwd voor transport- en logistieke teams</h2>
+        <div class="v2-aud-grid"><a class="v2-aud-tile" href="/nl/solutions/carriers/"><p class="v2-aud-tile-name">Vervoerders</p><p class="v2-aud-tile-desc">Getekende CMR&#x27;s van elke chauffeur, eigen personeel of charter, dezelfde dag.</p><span class="v2-aud-tile-arrow">Bekijk hoe &rarr;</span></a><a class="v2-aud-tile" href="/nl/solutions/3pl/"><p class="v2-aud-tile-name">3PL en fulfilment</p><p class="v2-aud-tile-desc">Eén archief voor al uw klanten, met een eigen link per verlader.</p><span class="v2-aud-tile-arrow">Bekijk hoe &rarr;</span></a><a class="v2-aud-tile" href="/nl/solutions/shippers/"><p class="v2-aud-tile-name">Verladers</p><p class="v2-aud-tile-desc">Eis afleverbewijs van elke vervoerder, zonder onboarding of koppeling.</p><span class="v2-aud-tile-arrow">Bekijk hoe &rarr;</span></a><a class="v2-aud-tile" href="/nl/solutions/construction/"><p class="v2-aud-tile-name">Bouw</p><p class="v2-aud-tile-desc">Bewijs van onbemande bouwplaatsleveringen, gefotografeerd voordat iemand de goederen aanraakt.</p><span class="v2-aud-tile-arrow">Bekijk hoe &rarr;</span></a></div>
+        <p><a href="/nl/solutions/" class="v2-link">Alle oplossingen &rarr;</a></p>
+      </div>
+    </section>
+
+    <section class="v2-section" id="cmr-generator" aria-labelledby="lp-gen-heading">
+      <div class="container v2-asset-grid">
+        <div>
+          <p class="v2-eyebrow">CMR-generator</p>
+          <h2 class="v2-section-title" id="lp-gen-heading">Maak CMR-vrachtbrieven in het portaal</h2>
+          <p class="v2-prose">Vul de CMR één keer in, print hem of verstuur hem als PDF, en houd hem doorzoekbaar naast de getekende kopie die terugkomt. IRU-opmaak, adresboek voor afzenders, ontvangers en vervoerders.</p>
+          <ul class="v2-check-list"><li>CMR- en AVC-opmaak</li><li>Adresboek en kopiëren van een eerdere CMR</li><li>€0,35 per CMR, inbegrepen in Pro en Enterprise</li></ul>
+          <p><a href="/nl/cmr/generator/" class="v2-btn v2-btn-ghost">Bekijk de CMR-generator &rarr;</a></p>
+        </div>
+        <article class="lp-ticket" aria-label="CMR">
+            <header class="lp-ticket-head"><span>CMR</span><span class="lp-ticket-id">IRU 2007</span></header>
+            <dl class="lp-ticket-rows"><div class="lp-ticket-row"><dt>Referentie</dt><dd>TDV-2026-0841</dd></div><div class="lp-ticket-row"><dt>Locatie</dt><dd>Levering DC Venlo, dock 7</dd></div></dl>
+            <span class="v2-stamp-mark lp-ticket-stamp">PDF</span>
+          </article>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="feat-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Eén platform</p>
+        <h2 class="v2-section-title" id="feat-heading">Alles wat u nodig heeft rond de CMR</h2>
+        <div class="v2-feat-grid"><div class="v2-feat"><h3>Link en QR-kaart per zending</h3><p>Eén link per merk, de referentie per zending toegevoegd of op een QR-kaart geprint.</p></div><div class="v2-feat"><h3>Elke telefoon, geen app</h3><p>Chauffeurs en charters versturen vanuit de browser, in 12 talen.</p></div><div class="v2-feat"><h3>Gestempelde PDF</h3><p>Tijd, referentie en locatie waar beschikbaar, met het originele bestand.</p></div><div class="v2-feat"><h3>Meerdere pagina&#x27;s en bestanden</h3><p>CMR, afleverbon en foto&#x27;s van de goederen in één bewijs.</p></div><div class="v2-feat"><h3>Afwijkingen bij levering</h3><p>Schade, ontbrekende items of weigering gemeld bij de levering.</p></div><div class="v2-feat"><h3>E-mailmeldingen</h3><p>De juiste mensen per klant of depot, zodra een document binnenkomt.</p></div><div class="v2-feat"><h3>Webhook naar uw TMS of ERP</h3><p>Elk bewijs direct naar uw eigen systemen.</p></div><div class="v2-feat"><h3>Open API <span class="v2-badge-soon">Binnenkort</span></h3><p>Bouw uw eigen koppeling op dezelfde data.</p></div><div class="v2-feat"><h3>Doorzoekbaar portaal en export</h3><p>Zoek per referentie, periode of chauffeur; exporteer voor facturatie en audits.</p></div><div class="v2-feat"><h3>Uw huisstijl, opslag in de EU</h3><p>Uw logo en kleuren op de link, documenten opgeslagen in de EU.</p></div></div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Tarieven</p><p class="v2-inline-cta-text"><strong>Betaal per document. Geen licenties, geen opstartkosten.</strong> Vanaf €0,10 per afleverbewijs op het Basic-plan. Plannen verschillen in hoe lang documenten bewaard blijven en welke functies erin zitten. CMR-generator €0,35 per CMR.</p></div><a href="/nl/pricing" class="v2-btn v2-btn-primary">Bekijk de tarieven &rarr;</a></div></div></div>
+
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Veelgestelde vragen</p>
+        <h2 class="v2-section-title" id="faq-heading">Vragen over CMR en afleverbewijs</h2>
+        <div class="v2-faq"><details><summary>Heeft de chauffeur een app of account nodig?</summary><p>Nee. De chauffeur opent een link of scant een QR-kaart, maakt een foto en verstuurt die vanuit de browser. Niets te installeren, geen login.</p></details><details><summary>Werkt het voor charters?</summary><p>Ja. Zet de referentie in uw PODFY-link of print een QR-kaart vanuit het portaal. Charterchauffeurs sturen hun documenten op dezelfde manier, zonder account.</p></details><details><summary>Is een foto van de getekende CMR genoeg?</summary><p>PODFY bewaart de foto of scan van de getekende CMR als gestempelde PDF met tijd, referentie en locatie waar beschikbaar. U heeft een doorzoekbare kopie voor facturatie en geschillen; de juridische rol van de papieren CMR verandert niet.</p></details><details><summary>Wat is het verschil met e-CMR?</summary><p>Een e-CMR vervangt de papieren vrachtbrief onder het e-CMR-protocol. PODFY werkt met de getekende CMR die u al gebruikt, en met de CMR-generator maakt u ook CMR&#x27;s in het portaal. Dat past bij gemengde vloten en charters.</p></details><details><summary>Kunnen documenten naar ons TMS?</summary><p>Ja. Elk bewijs wordt gemaild en kan per webhook naar uw TMS of ERP. U kunt ook per periode exporteren voor facturatie.</p></details><details><summary>Hoe lang worden documenten bewaard?</summary><p>Zo lang als uw plan aangeeft: van 14 dagen op Basic tot 7 jaar op Enterprise. Langere bewaring is beschikbaar als add-on.</p></details><details><summary>Wat kost het?</summary><p>U betaalt per document, vanaf €0,10 per afleverbewijs. Geen licentiekosten en geen opstartkosten. De CMR-generator kost €0,35 per CMR.</p></details></div>
+      </div>
+    </section>
+
+    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label"><span class="v2-badge-new">Nieuw</span> Ook voor apparatuur</p><p class="v2-inline-cta-text">Wilt u dat iedereen een probleem met een machine meldt door een QR-code te scannen? Bekijk PODFY QR-meldingen, op hetzelfde platform.</p></div><a href="/nl/qr/" class="v2-btn v2-btn-primary">QR-meldingen &rarr;</a></div></div></div>
+
+    <section class="v2-section lp-start" id="start" aria-labelledby="lp-form-heading">
+      <div class="container lp-form-grid">
+        <div>
+          <p class="v2-eyebrow">Plan een demo</p>
+          <h2 class="v2-section-title" id="lp-form-heading">Bekijk het met uw eigen zendingen</h2>
+          <p class="v2-prose">Vertel ons over uw operatie. We laten in 15 minuten de hele keten zien: chauffeurslink, gestempeld bewijs, portaal en factuur.</p>
+          <h3 class="lp-next-h">Wat er daarna gebeurt</h3>
+          <ol class="lp-next"><li><strong>We reageren binnen één werkdag</strong><span>U krijgt direct een bevestiging en daarna een persoonlijke reactie om een tijd af te spreken.</span></li><li><strong>15 minuten via videobellen</strong><span>We doen een echte upload met uw referentieformaat en laten het portaal zien.</span></li><li><strong>Klein beginnen</strong><span>Start met één depot of een paar chauffeurs en breid daarna uit.</span></li></ol>
+        </div>
+        <div class="lp-form-card">
+            
+            <div id="contact-success" role="status" aria-live="polite" data-u="u6b99de8">
+              <div class="v2-receipt" data-u="u0fd8744">
+                <div class="v2-receipt-perforation"></div>
+                <div class="v2-receipt-inner">
+                  <p class="v2-receipt-brand">Bericht verzonden</p>
+                  <p class="v2-receipt-ref">We nemen spoedig contact op</p>
+                  <hr class="v2-receipt-hr" />
+                  <div class="v2-receipt-row">
+                    <span class="v2-receipt-label">Antwoord naar</span>
+                    <span class="v2-receipt-value" id="contact-success-email">uw e-mail</span>
                   </div>
-                  <div class="cmr-stamp">CMR<br>1956<br><span data-u="u7045378">IRU 2007</span></div>
-                </div>
-                <div class="cmr-grid">
-                  <div class="cmr-row cmr-row-2">
-                    <div class="cmr-box">
-                      <span class="cmr-box-num">1</span>
-                      <span class="cmr-box-label">Afzender (naam, adres, land)</span>
-                      <span class="cmr-box-value">Acme Logistics B.V.</span>
-                      <div class="cmr-box-sub">Industrieweg 42, 3044 AS Rotterdam, NL</div>
-                      <div class="cmr-box-sub">BTW NL123456789B01 · EORI NL123456789</div>
-                    </div>
-                    <div class="cmr-box">
-                      <span class="cmr-box-num">2</span>
-                      <span class="cmr-box-label">Geadresseerde (naam, adres, land)</span>
-                      <span class="cmr-box-value">Müller GmbH &amp; Co. KG</span>
-                      <div class="cmr-box-sub">Hauptstraße 17, 60311 Frankfurt, DE</div>
-                      <div class="cmr-box-sub">BTW DE987654321 · EORI DE987654321</div>
-                    </div>
+                  <div class="v2-receipt-row">
+                    <span class="v2-receipt-label">Volgende stap</span>
+                    <span class="v2-receipt-value">Controleer uw inbox</span>
                   </div>
-                  <div class="cmr-row cmr-row-2">
-                    <div class="cmr-box">
-                      <span class="cmr-box-num">3</span>
-                      <span class="cmr-box-label">Plaats van aflevering (plaats, land)</span>
-                      <span class="cmr-box-value">Frankfurt am Main, DE</span>
-                    </div>
-                    <div class="cmr-box">
-                      <span class="cmr-box-num">16</span>
-                      <span class="cmr-box-label">Vervoerder (naam, adres, land)</span>
-                      <span class="cmr-box-value">FastRoute Transport NV</span>
-                      <div class="cmr-box-sub">Antwerpen, BE &nbsp;·&nbsp; Vrachtwagen 1-ABC-234 &nbsp;·&nbsp; Oplegger TR-9987</div>
-                    </div>
-                  </div>
-                  <div class="cmr-row cmr-row-2">
-                    <div class="cmr-box">
-                      <span class="cmr-box-num">4</span>
-                      <span class="cmr-box-label">Plaats en datum van inontvangstneming (plaats, datum, tijd)</span>
-                      <span class="cmr-box-value">Rotterdam, NL &nbsp;·&nbsp; 11 mei 2026 &nbsp;·&nbsp; 08:30</span>
-                    </div>
-                    <div class="cmr-box">
-                      <span class="cmr-box-num">17</span>
-                      <span class="cmr-box-label">Opvolgende vervoerders</span>
-                      <span class="cmr-box-value" data-u="u1d85e1b">—</span>
-                    </div>
-                  </div>
-                  <div class="cmr-section-full">
-                    <span class="cmr-box-num">5</span>
-                    <span class="cmr-box-label" data-u="u973e0f4">Bijgevoegde documenten</span>
-                    <span class="cmr-box-value" data-u="u2d191d7">Paklijst PL-2026-0511 · EUR1 oorsprongsbewijs</span>
-                  </div>
-                  <div class="cmr-goods-section">
-                    <span class="cmr-box-num">6–12</span>
-                    <span class="cmr-box-label" data-u="u973e0f4">Merken &amp; nummers · Aantal colli · Aard verpakking · Aard goederen · Stat. nr. · Brutogewicht (kg) · Inhoud (m³) · ADR/UN</span>
-                    <table class="cmr-goods-table" data-u="u96ad609">
-                      <thead>
-                        <tr>
-                          <th>Merken &amp; nrs.</th>
-                          <th>Colli</th>
-                          <th>Verpakking</th>
-                          <th>Aard goederen</th>
-                          <th>Stat. nr.</th>
-                          <th>Bruto kg</th>
-                          <th>m³</th>
-                          <th>ADR/UN</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>AC-2026-0511</td>
-                          <td>24</td>
-                          <td>Pallets</td>
-                          <td>Industriële onderdelen</td>
-                          <td>8483.40</td>
-                          <td>1 240</td>
-                          <td>6,8</td>
-                          <td>—</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="cmr-row cmr-row-2">
-                    <div class="cmr-box">
-                      <span class="cmr-box-num">13</span>
-                      <span class="cmr-box-label">Instructies van de afzender</span>
-                      <span class="cmr-box-value">Temperatuur: omgevingstemperatuur. Voorzichtig behandelen.</span>
-                    </div>
-                    <div class="cmr-box">
-                      <span class="cmr-box-num">19</span>
-                      <span class="cmr-box-label">Bijzondere overeenkomsten</span>
-                      <span class="cmr-box-value" data-u="u1d85e1b">—</span>
-                    </div>
-                  </div>
-                  <div class="cmr-row cmr-row-2">
-                    <div class="cmr-box">
-                      <span class="cmr-box-num">14</span>
-                      <span class="cmr-box-label">Vrachtkosten</span>
-                      <div class="cmr-row-inline" data-u="uc00d391">
-                        <label data-u="uf466639"><input type="checkbox" disabled /> Franco</label>
-                        <label data-u="uf466639"><input type="checkbox" checked disabled /> Onvrij (rembours)</label>
-                      </div>
-                    </div>
-                    <div class="cmr-box">
-                      <span class="cmr-box-num">15</span>
-                      <span class="cmr-box-label">Rembours</span>
-                      <span class="cmr-box-value" data-u="u1d85e1b">—</span>
-                    </div>
-                  </div>
-                  <div class="cmr-section-full">
-                    <span class="cmr-box-num">20</span>
-                    <span class="cmr-box-label" data-u="u973e0f4">Te betalen kosten — door afzender / door geadresseerde</span>
-                    <table class="cmr-charges-table" data-u="u96ad609">
-                      <thead><tr><th></th><th>Afzender</th><th>Geadresseerde</th></tr></thead>
-                      <tbody>
-                        <tr><td>Vrachtkosten</td><td>—</td><td>€ 420,00</td></tr>
-                        <tr><td>Bijkomende kosten</td><td>—</td><td>—</td></tr>
-                        <tr><td>Douanekosten</td><td>—</td><td>—</td></tr>
-                        <tr><td>Overige</td><td>—</td><td>—</td></tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="cmr-section-full">
-                    <span class="cmr-box-num">21</span>
-                    <span class="cmr-box-label" data-u="u973e0f4">Opgemaakt te</span>
-                    <span class="cmr-box-value" data-u="u2d191d7">Rotterdam, NL &nbsp;·&nbsp; 11 mei 2026</span>
+                  <hr class="v2-receipt-hr" />
+                  <div class="v2-receipt-status">
+                    <span class="v2-stamp-mark">Ontvangen</span>
                   </div>
                 </div>
-                <div class="cmr-sig-row">
-                  <div class="cmr-sig-box">
-                    <div class="cmr-sig-label">22 · Handtekening en stempel afzender</div>
-                    <div class="cmr-sig-line"></div>
-                    <div data-u="udae09cd">Plaats / Datum / Handtekening</div>
-                  </div>
-                  <div class="cmr-sig-box">
-                    <div class="cmr-sig-label">23 · Handtekening en stempel vervoerder</div>
-                    <div class="cmr-sig-line"></div>
-                    <div data-u="udae09cd">Plaats / Datum / Handtekening</div>
-                  </div>
-                  <div class="cmr-sig-box">
-                    <div class="cmr-sig-label">24 · Goederen ontvangen (geadresseerde)</div>
-                    <div class="cmr-sig-line"></div>
-                    <div data-u="udae09cd">Plaats / Datum / Handtekening</div>
-                  </div>
-                </div>
-                <div class="cmr-footer">
-                  <span>4 originelen &nbsp;·&nbsp;</span>
-                  <span class="cmr-copy-dot" data-u="u9bf6751"></span>
-                  <span class="cmr-copy-dot" data-u="uc8ae208"></span>
-                  <span class="cmr-copy-dot" data-u="uf2f0387"></span>
-                  <span class="cmr-copy-dot" data-u="uc0ecdc4"></span>
-                  <span data-u="u46cec89">Gegenereerd door PODFY &nbsp;·&nbsp; CMR-acme-20260511-A7F2</span>
-                </div>
+                <div class="v2-receipt-perforation"></div>
               </div>
             </div>
-          </div>
+            <div id="contact-error" role="alert" aria-live="assertive" data-u="u9c0c36e"></div>
+            <form
+              id="contact-form"
+              class="v2-form"
+              novalidate
+              aria-label="Contactformulier">
+              <div data-u="u6b99de8" aria-hidden="true">
+                <label for="hp_contact">Laat dit veld leeg</label>
+                <input type="text" id="hp_contact" name="hp_contact" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-name" class="v2-field-label">Uw naam <span aria-hidden="true">*</span></label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  class="v2-input"
+                  required
+                  autocomplete="name"
+                  placeholder="Jan de Vries" />
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-email" class="v2-field-label">Zakelijk e-mailadres <span aria-hidden="true">*</span></label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  class="v2-input"
+                  required
+                  autocomplete="email"
+                  placeholder="jan@bedrijf.nl" />
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-company" class="v2-field-label">Bedrijf</label>
+                <input
+                  type="text"
+                  id="contact-company"
+                  name="company"
+                  class="v2-input"
+                  autocomplete="organization"
+                  placeholder="Van Dijck Transport B.V." />
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-sector" class="v2-field-label">Sector</label>
+                <select id="contact-sector" name="sector" class="v2-input">
+                  <option value="">Selecteer uw sector (optioneel)</option>
+                  <option value="carrier-3pl">Vervoerder / 3PL</option>
+                  <option value="inbound-retail">Inbound &amp; Retail ontvangst</option>
+                  <option value="construction-site">Bouw &amp; Locatieleveringen</option>
+                  <option value="logistics-other">Logistiek: overig</option>
+                  <option value="other">Anders</option>
+                </select>
+              </div>
+
+              <div class="v2-field">
+                <label for="contact-message" class="v2-field-label">Bericht <span aria-hidden="true">*</span></label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  class="v2-textarea"
+                  required
+                  rows="5"
+                  placeholder="Hoeveel zendingen per maand, en hoe komen getekende CMR&#x27;s nu terug?"></textarea>
+              </div>
+              <div class="v2-field" data-u="uaee885a">
+                <input type="hidden" id="contact-turnstile-token" name="cf_turnstile_token" value="" />
+                <div
+                  class="cf-turnstile"
+                  data-sitekey="0x4AAAAAACFOR78WSLkw_gB7"
+                  data-callback="onTurnstileCompleted"
+                  data-expired-callback="onTurnstileExpired"
+                  data-error-callback="onTurnstileError"
+                  data-theme="auto">
+                </div>
+              </div>
+              <div class="v2-consent">
+                <label class="v2-consent-label">
+                  <input
+                    type="checkbox"
+                    id="contact-consent"
+                    name="consent"
+                    class="v2-consent-check"
+                    required />
+                  <span>
+                    Ik ga akkoord met het <a href="/nl/trust#privacy" target="_blank" rel="noopener">privacybeleid</a>. PODFY gebruikt deze informatie om op mijn aanvraag te reageren en mag mij berichten sturen over relevante producten. Ik kan mij altijd afmelden.
+                  </span>
+                </label>
+              </div>
+
+              <div data-u="ufc511f0">
+                <button
+                  type="submit"
+                  id="contact-submit"
+                  class="v2-btn v2-btn-primary"
+                  aria-live="polite">
+                  Verstuur bericht &rarr;
+                </button>
+              </div>
+
+            </form>
         </div>
       </div>
     </section>
-
-    <section class="v2-section" aria-labelledby="cmr-features-heading">
-      <div class="container">
-        <p class="v2-eyebrow">Wat het doet</p>
-        <h2 class="v2-section-title" id="cmr-features-heading">Alles wat een CMR vereist. Niets meer.</h2>
-        <div class="v2-feat-grid">
-          <div class="v2-feat-card">
-            <p class="v2-feat-title">IRU-conforme opmaak</p>
-            <p class="v2-feat-desc">Elke gegenereerde PDF volgt de IRU 2007-modelopmaak, genummerde vakken in de juiste volgorde, juridische tekststrip, 4-exemplaar kleurconventie. Door heel Europa geaccepteerd zonder aanpassing.</p>
-          </div>
-          <div class="v2-feat-card">
-            <p class="v2-feat-title">CMR- en AVC-modus</p>
-            <p class="v2-feat-desc">Wissel tussen internationale CMR (Verdrag van Genève 1956) en Nederlandse AVC 2002 met één klik. Beide modi delen hetzelfde gestructureerde formulier en dezelfde PDF-output.</p>
-          </div>
-          <div class="v2-feat-card">
-            <p class="v2-feat-title">ADR / gevaarlijke goederen</p>
-            <p class="v2-feat-desc">De goederentabel bevat een speciale ADR/UN-kolom. Gevaarlijke zendingen worden correct vastgelegd in de gestructureerde data en afgedrukt in de PDF.</p>
-          </div>
-          <div class="v2-feat-card">
-            <p class="v2-feat-title">Automatische PDF-generatie</p>
-            <p class="v2-feat-desc">Het invullen van het formulier en exporteren genereert direct een afdrukklare PDF. Onmiddellijk opgeslagen in uw archief, opvraagbaar op transportreferentie, datum, afzender of geadresseerde.</p>
-          </div>
-          <div class="v2-feat-card">
-            <p class="v2-feat-title">Doorzoekbaar archief</p>
-            <p class="v2-feat-desc">Elk CMR-record is geïndexeerd op transportreferentie, datum, afzender, geadresseerde, vervoerder en afleverland. Elk document in seconden gevonden, geen mappen doorzoeken, geen papier.</p>
-          </div>
-          <div class="v2-feat-card">
-            <p class="v2-feat-title">Gefactureerd met uw POD's</p>
-            <p class="v2-feat-desc">CMR-records verschijnen op dezelfde maandelijkse factuur als uw POD-verwerking. &euro;0,35 per gegenereerde CMR, geprijsd per vrachtbrief, niet per upload.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="v2-section" aria-labelledby="cmr-how-heading">
-      <div class="container">
-        <p class="v2-eyebrow">Hoe het werkt</p>
-        <h2 class="v2-section-title" id="cmr-how-heading">Drie stappen van formulier naar archief</h2>
-        <div class="v2-steps">
-          <div class="v2-step">
-            <p class="v2-step-num">1</p>
-            <p class="v2-step-title">Vul het gestructureerde formulier in</p>
-            <p class="v2-step-desc">Open een nieuwe CMR in het portaal. Voer afzender, geadresseerde, vervoerder, goederenregels en vervoerscondities in. Alle velden valideren tegen de CMR-verdragsstructuur, verplichte vakken zijn duidelijk gemarkeerd.</p>
-          </div>
-          <div class="v2-step">
-            <p class="v2-step-num">2</p>
-            <p class="v2-step-title">Exporteer de PDF</p>
-            <p class="v2-step-desc">Klik op exporteren. Een afdrukklare IRU-layout PDF wordt direct gegenereerd. Druk vier originelen af ter ondertekening, of gebruik als elektronische vrachtbrief waar dit door vervoerder en geadresseerde wordt geaccepteerd.</p>
-          </div>
-          <div class="v2-step">
-            <p class="v2-step-num">3</p>
-            <p class="v2-step-title">Archiveer en raadpleeg</p>
-            <p class="v2-step-desc">Het CMR-record wordt opgeslagen in uw archief naast uw POD's. Filter op datum, referentie, afzender of geadresseerde. Exporteer individuele records of een volledig auditdataset op elk gewenst moment.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="v2-section" aria-labelledby="cmr-pricing-heading" id="pricing">
-      <div class="container">
-        <p class="v2-eyebrow">Prijzen</p>
-        <h2 class="v2-section-title" id="cmr-pricing-heading">Per CMR. Geen basiskosten.</h2>
-        <div class="v2-two-col">
-          <div>
-            <p class="v2-prose">De CMR-generator is een add-on beschikbaar op <strong>Advanced</strong>- en <strong>Pro</strong>-abonnementen. De prijs staat los van uw POD-tarief.</p>
-            <table class="v2-addons-table" aria-label="CMR add-on prijzen" data-u="u2239d6d">
-              <tbody>
-                <tr>
-                  <td class="v2-addon-name">CMR generator &amp; opslag</td>
-                  <td class="v2-addon-price">&euro;0,35 / CMR</td>
-                  <td class="v2-addon-desc">Per gegenereerde en geëxporteerde CMR. Opgeslagen PDF + volledige gestructureerde data. Maandelijks gefactureerd naast uw POD-factuur.</td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="v2-prose" data-u="u61421ec">Beschikbaar op alle abonnementen. Inbegrepen in Pro en Enterprise. Niet beschikbaar op Starter. <a href="/nl/pricing#addons" class="v2-link">Volledig prijsoverzicht &rarr;</a></p>
-          </div>
-          <div>
-            <ul class="v2-check-list">
-              <li>Geen apart contract: gefactureerd op uw bestaande Podfy-factuur</li>
-              <li>Prijs wordt eenmalig vastgelegd bij export: nooit herberekend bij herexport</li>
-              <li>Admin prijscorrectie beschikbaar vóór facturatie (geauditeerd)</li>
-              <li>CMR-records verschijnen op het tabblad Facturen naast POD-dekking</li>
-              <li>Volledig exportdataset beschikbaar voor audit en boekhouding</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="v2-inline-cta"><div class="container"><div class="v2-inline-cta-inner"><div><p class="v2-inline-cta-label">Zie het in het portaal</p><p class="v2-inline-cta-text">15 minuten demo, we lopen door het CMR-formulier, de PDF-output en het archief zoeken.</p></div><a href="/nl/demo" class="v2-btn v2-btn-primary">Demo proberen &rarr;</a></div></div></div>
-
-    <section class="v2-section" aria-labelledby="cmr-faq-heading">
-      <div class="container">
-        <h2 class="v2-section-title" id="cmr-faq-heading">CMR-vragen</h2>
-        <div class="v2-faq-list">
-
-          <div class="v2-faq-item">
-            <p class="v2-faq-q">Wat is een CMR-vrachtbrief?</p>
-            <p class="v2-faq-a">Een CMR-vrachtbrief is het internationaal gestandaardiseerde vrachtdocument dat vereist is voor grensoverschrijdend wegvervoer op grond van het Verdrag betreffende de overeenkomst tot internationaal vervoer van goederen over de weg (CMR, Genève 1956). Het legt afzender, ontvanger, vervoerder, goederen en vervoerscondities vast.</p>
-          </div>
-
-          <div class="v2-faq-item">
-            <p class="v2-faq-q">Wat is het verschil tussen CMR en AVC?</p>
-            <p class="v2-faq-a">CMR is het internationale verdragsformulier dat door heel Europa en daarbuiten wordt gebruikt. AVC (Algemene Vervoerscondities 2002) is de Nederlandse binnenlandse variant met eigen standaardvoorwaarden. Podfy ondersteunt beide modi, wissel tussen CMR en AVC met één klik in het formulier.</p>
-          </div>
-
-          <div class="v2-faq-item">
-            <p class="v2-faq-q">Hoe wordt de CMR-add-on geprijsd?</p>
-            <p class="v2-faq-a">De CMR-add-on kost &euro;0,35 per gegenereerde CMR. Dit staat los van uw POD-tarief, het genereren van een CMR telt niet als een verwerkte POD. De add-on is beschikbaar op alle abonnementen. Inbegrepen in Pro en Enterprise.</p>
-          </div>
-
-          <div class="v2-faq-item">
-            <p class="v2-faq-q">Moeten chauffeurs of ontvangers iets installeren?</p>
-            <p class="v2-faq-a">Nee. Podfy genereert de CMR-PDF in het portaal. Het document wordt fysiek afgedrukt en ondertekend, of op het scherm waar dit wordt geaccepteerd. Er is geen app-installatie vereist voor enige partij.</p>
-          </div>
-
-          <div class="v2-faq-item">
-            <p class="v2-faq-q">Hoe lang worden CMR-records bewaard?</p>
-            <p class="v2-faq-a">CMR-records worden bewaard gedurende de retentieperiode van uw abonnement. Alle metadata, de gestructureerde formulierdata en de gegenereerde PDF worden bewaard en zijn doorzoekbaar vanuit het portaal. Export is altijd beschikbaar.</p>
-          </div>
-
-          <div class="v2-faq-item">
-            <p class="v2-faq-q">Kan ik CMR gebruiken zonder ook Podfy te gebruiken voor POD?</p>
-            <p class="v2-faq-a">De CMR-generator is een add-on die naast uw Podfy POD-abonnement werkt. Het is niet beschikbaar als zelfstandig product. Neem contact met ons op als u uw specifieke situatie wilt bespreken.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="v2-cta-block" aria-label="Aan de slag met CMR">
-      <div class="container">
-        <span class="v2-stamp-mark" aria-hidden="true">CMR &middot; AVC &middot; Digitaal</span>
-        <h2>Vrachtbrieven.<br><em>Doorzoekbaar vanaf dag één.</em></h2>
-        <p>15 minuten demo. We lopen door het CMR-formulier, de PDF-output en hoe het naast uw POD-archief past.</p>
-        <div class="v2-cta-actions">
-          <a href="/nl/contact" class="v2-btn v2-btn-primary">15 minuten boeken &rarr;</a>
-          <a href="/nl/demo" class="v2-btn v2-btn-ghost">Eerst de demo proberen</a>
-        </div>
-      </div>
-    </section>
-
   </main>
+
   [[PODFY_FOOTER]]
-  <script src="/assets/js/i/c03166364940.js"></script>
+  <script src="/assets/js/i/861db3c359eb.js"></script>
 </body>
 </html>
