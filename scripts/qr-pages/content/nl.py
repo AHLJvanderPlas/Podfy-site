@@ -432,3 +432,58 @@ HOME_MORE = {
          ("Waar worden de gegevens opgeslagen?", "Documenten en meldingen worden in de EU opgeslagen. Voor e-mailverzending gebruiken we de subverwerkers die op onze pagina Vertrouwen staan."),
          ("Wat kost het?", "CMR en afleverbewijs wordt per document afgerekend, vanaf €0,10. QR-meldingen wordt per project geprijsd, op basis van het aantal objecten en meldingen.")],
 }
+
+# ── Mogelijkheden gepresenteerd als beschikbaar (besluit eigenaar 2026-10-30). Bouwplan en data:
+#    docs/podfy-capability-matrix.md. Deze toewijzingen overschrijven de waarden hierboven. ──
+FEATURES = [
+ ("QR-code en sticker per object", "", "Printklare stickers met uw logo en uw eigen oproep."),
+ ("Objectregister via sjabloon", "", "Upload objectnummers, namen en locaties; verplaats of beëindig objecten zelf."),
+ ("Uw eigen categorieën en velden", "", "Storingstypes, prioriteiten en extra velden zoals een terugbetalingsbedrag, in elke taal."),
+ ("Foto: verplicht, optioneel of uit", "", "Per formulier in te stellen, net als bij afleverdocumenten."),
+ ("Routeringsregels", "", "Andere ontvangers per locatie, objectgroep of categorie."),
+ ("Status van nieuw tot opgelost", "", "Nieuw, in behandeling, opgelost of afgewezen, met prioriteiten en dubbele meldingen samengevoegd."),
+ ("Dashboard en rapportages", "", "Meldingen per object, locatie en periode; zie welke machines steeds uitvallen."),
+ ("Terugkoppeling aan de melder", "", "Een automatische bevestiging, en een bericht zodra de storing is opgelost."),
+ ("Webhook naar uw systemen", "", "Elke melding naar uw ticket-, onderhouds- of werkordersysteem."),
+ ("Open API", "", "Haal meldingen op en werk hun status bij vanuit uw eigen systemen."),
+ ("Alles exporteren", "", "Altijd een CSV-export, en een volledige export inclusief foto's."),
+ ("Uw huisstijl, 12 talen, opslag in de EU", "", "Uw logo op het formulier, de taal van de melder, data opgeslagen in de EU."),
+]
+FAQ["integr"] = ("Kunnen meldingen direct in ons ticket- of onderhoudssysteem komen?", "Ja. Meldingen worden gemaild naar de mensen die u kiest, gerouteerd per locatie of categorie, en per webhook naar uw ticket-, onderhouds- of werkordersysteem gestuurd. Met de open API haalt u meldingen op en werkt u hun status bij vanuit uw eigen tools.")
+FAQ["price"] = ("Wat kosten QR-meldingen?", "U betaalt een vast bedrag per actief object per maand. Geen kosten per melding, per gebruiker of per QR-code, en beëindigde objecten zijn gratis. Vraag een voorstel aan voor uw aantal machines.")
+FAQ["exit"] = ("Wat gebeurt er met onze QR-codes en data als we stoppen?", "Die blijven van u. QR-codes zijn gekoppeld aan uw eigen objectnummers, en u kunt alle meldingen, foto's en QR-bestemmingen op elk moment exporteren. Als u vertrekt, sturen we uw QR-codes 12 maanden door naar een adres van uw keuze.")
+OV["faq_keys"] = OV["faq_keys"] + ["exit"]
+LP["faq_keys"] = LP["faq_keys"] + ["exit"]
+OV["does"] = ["Geeft elk object een QR-code, een sticker en een formulier in uw huisstijl", "Legt categorie, notitie, foto en tijd van elke melding vast", "Stuurt elke melding naar de juiste mensen en per webhook en API naar uw systemen", "Volgt elke melding van nieuw tot opgelost, met prioriteiten en dubbele meldingen samengevoegd", "Toont historie en rapportages per object, locatie en periode"]
+OV["stays"] = ["De reparatie plannen en een monteur sturen", "Terugbetalingen uitkeren", "Automatische bewaking van de machine zelf"]
+LP["receive_points"] = ["Gerouteerd per locatie, objectgroep of categorie", "Webhook en open API voor uw ticketsysteem", "Status van nieuw tot opgelost, met terugkoppeling aan de melder", "Elke melding per object bewaard, met rapportages per periode"]
+CMR["features"] = [
+ ("Link en QR-kaart per zending", "", "Eén link per merk, de referentie per zending toegevoegd of op een QR-kaart geprint."),
+ ("Elke telefoon, geen app", "", "Chauffeurs en charters versturen vanuit de browser, in 12 talen."),
+ ("Gestempelde PDF", "", "Tijd, referentie en locatie waar beschikbaar, met het originele bestand."),
+ ("Meerdere pagina's en bestanden", "", "CMR, afleverbon en foto's van de goederen in één bewijs."),
+ ("Afwijkingen bij levering", "", "Schade, ontbrekende items of weigering gemeld bij de levering."),
+ ("Routering per klant of depot", "", "Meldingen naar de juiste mensen per klant, depot of type afwijking."),
+ ("Status en geschillen", "", "Markeer bewijs als geaccepteerd, betwist of opgelost, met de historie bewaard."),
+ ("Webhook naar uw TMS of ERP", "", "Elk bewijs direct naar uw eigen systemen."),
+ ("Open API", "", "Haal bewijs op en werk de status bij vanuit uw eigen systemen."),
+ ("Doorzoekbaar portaal en rapportages", "", "Zoek per referentie, periode of chauffeur; rapportages per klant en periode."),
+ ("Alles exporteren", "", "Altijd een CSV en een volledige export inclusief de documenten."),
+ ("Uw huisstijl, opslag in de EU", "", "Uw logo en kleuren op de link, documenten opgeslagen in de EU."),
+]
+CMR["faq"] = [(q, a.replace("U kunt ook per periode exporteren voor facturatie.", "Met de open API haalt u bewijs op vanuit uw eigen systemen, en u kunt per periode exporteren voor facturatie.")) for q, a in CMR["faq"]]
+DOORS["shared"] = DOORS["shared"] + ["Open API"]
+_v = CASES["vending-machines"]
+_v["faq"] = [("Kunnen klanten via de melding een terugbetaling aanvragen?", "Ja. Voeg een terugbetalingsverzoek toe aan het formulier, met het bedrag en de betaalreferentie, en stuur het door naar uw team voor terugbetalingen. PODFY legt het verzoek vast en stuurt het door; de uitbetaling zelf blijft in uw eigen betaalproces.")] + _v["faq"][1:]
+_v["safety"] = "PODFY legt terugbetalingsverzoeken vast maar betaalt ze niet uit, en belooft klanten namens u geen reactietijd. Vermeld op de sticker hoe terugbetalingen in uw organisatie werken."
+SERVICE = {
+ "eyebrow": "Service en continuïteit", "title": "Waar u op kunt rekenen",
+ "items": [("99,5% uptime", "Per maand gemeten, met proactieve communicatie bij storingen."),
+           ("Support die antwoordt", "Reactie binnen één werkdag; kritieke storingen binnen 4 werkuren."),
+           ("Dagelijkse back-ups", "Elke dag een back-up, opgeslagen in de EU."),
+           ("Versleuteld", "Versleuteling tijdens transport en opslag."),
+           ("Uw data blijft van u", "Exporteer alles op elk moment, inclusief foto's en documenten."),
+           ("Geen lock-in", "Maandelijks opzegbaar. QR-codes blijven gekoppeld aan uw eigen ID's en blijven via een doorverwijzing werken als u vertrekt."),
+           ("AVG als standaard", "Een verwerkersovereenkomst, bewaartermijnen per plan en verwijdering op verzoek."),
+           ("Melding bij datalekken", "We informeren u zonder vertraging, conform de AVG.")],
+}

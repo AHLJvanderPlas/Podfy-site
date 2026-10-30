@@ -126,28 +126,28 @@
   </url>
 
   <!-- ═══ TRUST ═══ -->
-  <url><loc>https://podfy.net/trust</loc><lastmod>2026-10-09</lastmod><changefreq>yearly</changefreq><priority>0.4</priority>
+  <url><loc>https://podfy.net/trust</loc><lastmod>2026-10-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/trust" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/trust" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/trust" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/trust" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/trust" />
   </url>
-  <url><loc>https://podfy.net/nl/trust</loc><lastmod>2026-10-09</lastmod><changefreq>yearly</changefreq><priority>0.4</priority>
+  <url><loc>https://podfy.net/nl/trust</loc><lastmod>2026-10-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/trust" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/trust" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/trust" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/trust" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/trust" />
   </url>
-  <url><loc>https://podfy.net/de/trust</loc><lastmod>2026-10-09</lastmod><changefreq>yearly</changefreq><priority>0.4</priority>
+  <url><loc>https://podfy.net/de/trust</loc><lastmod>2026-10-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/trust" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/trust" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/trust" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/trust" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/trust" />
   </url>
-  <url><loc>https://podfy.net/fr/trust</loc><lastmod>2026-10-09</lastmod><changefreq>yearly</changefreq><priority>0.4</priority>
+  <url><loc>https://podfy.net/fr/trust</loc><lastmod>2026-10-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/trust" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/trust" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/trust" />
@@ -824,84 +824,84 @@
 
   <!-- QR Reporting (generated) -->
   <url>
-    <loc>https://podfy.net/solutions/qr-issue-reporting/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/solutions/qr-issue-reporting/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/"/>
   </url>
   <url>
-    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/"/>
   </url>
   <url>
-    <loc>https://podfy.net/de/solutions/qr-issue-reporting/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/de/solutions/qr-issue-reporting/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/"/>
   </url>
   <url>
-    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/"/>
   </url>
   <url>
-    <loc>https://podfy.net/solutions/qr-issue-reporting/ev-chargers/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/solutions/qr-issue-reporting/ev-chargers/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/"/>
   </url>
   <url>
-    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/ev-chargers/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/ev-chargers/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/"/>
   </url>
   <url>
-    <loc>https://podfy.net/de/solutions/qr-issue-reporting/ev-chargers/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/de/solutions/qr-issue-reporting/ev-chargers/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/"/>
   </url>
   <url>
-    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/ev-chargers/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/ev-chargers/"/>
   </url>
   <url>
-    <loc>https://podfy.net/solutions/qr-issue-reporting/parcel-lockers/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/solutions/qr-issue-reporting/parcel-lockers/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/parcel-lockers/"/>
   </url>
   <url>
-    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/parcel-lockers/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/parcel-lockers/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/parcel-lockers/"/>
   </url>
   <url>
-    <loc>https://podfy.net/de/solutions/qr-issue-reporting/parcel-lockers/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/de/solutions/qr-issue-reporting/parcel-lockers/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/parcel-lockers/"/>
   </url>
   <url>
-    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/parcel-lockers/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/parcel-lockers/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/parcel-lockers/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/parcel-lockers/"/>
@@ -936,56 +936,56 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/trailers-containers/"/>
   </url>
   <url>
-    <loc>https://podfy.net/solutions/qr-issue-reporting/vending-machines/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/solutions/qr-issue-reporting/vending-machines/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/vending-machines/"/>
   </url>
   <url>
-    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/vending-machines/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/vending-machines/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/vending-machines/"/>
   </url>
   <url>
-    <loc>https://podfy.net/de/solutions/qr-issue-reporting/vending-machines/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/de/solutions/qr-issue-reporting/vending-machines/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/vending-machines/"/>
   </url>
   <url>
-    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/vending-machines/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/vending-machines/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/vending-machines/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/vending-machines/"/>
   </url>
   <url>
-    <loc>https://podfy.net/solutions/qr-issue-reporting/coffee-machines/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/solutions/qr-issue-reporting/coffee-machines/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/coffee-machines/"/>
   </url>
   <url>
-    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/coffee-machines/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/coffee-machines/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/coffee-machines/"/>
   </url>
   <url>
-    <loc>https://podfy.net/de/solutions/qr-issue-reporting/coffee-machines/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/de/solutions/qr-issue-reporting/coffee-machines/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/coffee-machines/"/>
   </url>
   <url>
-    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/coffee-machines/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/coffee-machines/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/coffee-machines/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/coffee-machines/"/>
@@ -1020,28 +1020,28 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/printers-copiers/"/>
   </url>
   <url>
-    <loc>https://podfy.net/solutions/qr-issue-reporting/restrooms-cleaning/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/solutions/qr-issue-reporting/restrooms-cleaning/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/restrooms-cleaning/"/>
   </url>
   <url>
-    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/restrooms-cleaning/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/restrooms-cleaning/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/restrooms-cleaning/"/>
   </url>
   <url>
-    <loc>https://podfy.net/de/solutions/qr-issue-reporting/restrooms-cleaning/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/de/solutions/qr-issue-reporting/restrooms-cleaning/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/restrooms-cleaning/"/>
   </url>
   <url>
-    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/restrooms-cleaning/</loc><lastmod>2026-10-29</lastmod>
+    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/restrooms-cleaning/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/restrooms-cleaning/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/restrooms-cleaning/"/>

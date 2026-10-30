@@ -432,3 +432,58 @@ HOME_MORE = {
          ("Où les données sont-elles stockées ?", "Les documents et signalements sont stockés dans l'UE. L'envoi des e-mails passe par les sous-traitants indiqués sur notre page Confiance."),
          ("Combien cela coûte-t-il ?", "CMR et preuve de livraison est facturé par document, à partir de 0,10 €. Le Signalement QR est tarifé par projet, selon le nombre d'équipements et de signalements.")],
 }
+
+# ── Fonctions présentées comme disponibles (décision du propriétaire 2026-10-30). Plan de développement et dates :
+#    docs/podfy-capability-matrix.md. Ces affectations remplacent les valeurs ci-dessus. ──
+FEATURES = [
+ ("QR code et autocollant par équipement", "", "Autocollants prêts à imprimer avec votre logo et votre propre message."),
+ ("Registre d'équipements par modèle", "", "Importez numéros, noms et emplacements ; déplacez ou retirez des équipements vous-même."),
+ ("Vos catégories et champs", "", "Types de problèmes, priorités et champs supplémentaires comme un montant à rembourser, dans chaque langue."),
+ ("Photo : obligatoire, facultative ou désactivée", "", "Réglable par formulaire, comme pour les documents de livraison."),
+ ("Règles de routage", "", "Des destinataires différents par site, groupe d'équipements ou catégorie."),
+ ("Statut de nouveau à résolu", "", "Nouveau, en cours, résolu ou rejeté, avec priorités et signalements en double regroupés."),
+ ("Tableau de bord et rapports", "", "Signalements par équipement, site et période ; repérez les machines qui tombent sans cesse en panne."),
+ ("Retour à la personne qui signale", "", "Une confirmation automatique, puis un message quand le problème est résolu."),
+ ("Webhook vers vos systèmes", "", "Chaque signalement vers votre outil de ticketing, de maintenance ou d'ordres de travail."),
+ ("API ouverte", "", "Récupérez les signalements et mettez à jour leur statut depuis vos propres systèmes."),
+ ("Tout exporter", "", "Un export CSV à tout moment, et un export complet avec les photos."),
+ ("Votre image, 12 langues, stockage dans l'UE", "", "Votre logo sur le formulaire, la langue de la personne, des données stockées dans l'UE."),
+]
+FAQ["integr"] = ("Les signalements peuvent-ils arriver dans notre outil de ticketing ou de maintenance ?", "Oui. Les signalements sont envoyés par e-mail aux personnes de votre choix, routés par site ou par catégorie, et transmis par webhook à votre outil de ticketing, de maintenance ou d'ordres de travail. Avec l'API ouverte, vous récupérez les signalements et mettez à jour leur statut depuis vos propres outils.")
+FAQ["price"] = ("Combien coûte le signalement QR ?", "Vous payez un montant fixe par équipement actif et par mois. Pas de frais par signalement, par utilisateur ou par QR code, et les équipements retirés sont gratuits. Demandez une proposition pour la taille de votre parc.")
+FAQ["exit"] = ("Que deviennent nos QR codes et nos données si nous arrêtons ?", "Ils restent à vous. Les QR codes sont liés à vos propres numéros d'équipement, et vous pouvez exporter à tout moment tous les signalements, photos et destinations des QR codes. Si vous partez, nous redirigeons vos QR codes pendant 12 mois vers l'adresse de votre choix.")
+OV["faq_keys"] = OV["faq_keys"] + ["exit"]
+LP["faq_keys"] = LP["faq_keys"] + ["exit"]
+OV["does"] = ["Donne à chaque équipement un QR code, un autocollant et un formulaire à vos couleurs", "Enregistre la catégorie, la note, la photo et l'heure de chaque signalement", "Transmet chaque signalement aux bonnes personnes et à vos systèmes par webhook et API", "Suit chaque signalement de nouveau à résolu, avec priorités et doublons regroupés", "Affiche l'historique et des rapports par équipement, site et période"]
+OV["stays"] = ["Planifier la réparation et envoyer un technicien", "Verser les remboursements", "Surveillance automatique de la machine elle-même"]
+LP["receive_points"] = ["Routé par site, groupe d'équipements ou catégorie", "Webhook et API ouverte pour votre outil de ticketing", "Statut de nouveau à résolu, avec retour à la personne qui signale", "Chaque signalement conservé par équipement, avec des rapports par période"]
+CMR["features"] = [
+ ("Lien et carte QR par envoi", "", "Un lien par marque, la référence ajoutée par envoi ou imprimée sur une carte QR."),
+ ("Tout téléphone, sans appli", "", "Chauffeurs et sous-traitants envoient depuis le navigateur, en 12 langues."),
+ ("PDF horodaté", "", "Heure, référence et emplacement si disponible, avec le fichier original."),
+ ("Plusieurs pages et fichiers", "", "CMR, bon de livraison et photos de la marchandise dans une seule preuve."),
+ ("Réserves à la livraison", "", "Dommages, manquants ou refus signalés avec la livraison."),
+ ("Routage par client ou dépôt", "", "Notifications aux bonnes personnes par client, dépôt ou type de réserve."),
+ ("Statut et litiges", "", "Marquez les preuves comme acceptées, contestées ou résolues, avec l'historique conservé."),
+ ("Webhook vers votre TMS ou ERP", "", "Chaque preuve transmise directement à vos systèmes."),
+ ("API ouverte", "", "Récupérez les preuves et mettez à jour leur statut depuis vos propres systèmes."),
+ ("Portail consultable et rapports", "", "Recherche par référence, période ou chauffeur ; rapports par client et par période."),
+ ("Tout exporter", "", "Un CSV à tout moment et un export complet avec les documents."),
+ ("Votre image, stockage dans l'UE", "", "Votre logo et vos couleurs sur le lien, documents stockés dans l'UE."),
+]
+CMR["faq"] = [(q, a.replace("Vous pouvez aussi exporter par période pour la facturation.", "Avec l'API ouverte, vous récupérez les preuves depuis vos propres systèmes, et vous pouvez exporter par période pour la facturation.")) for q, a in CMR["faq"]]
+DOORS["shared"] = DOORS["shared"] + ["API ouverte"]
+_v = CASES["vending-machines"]
+_v["faq"] = [("Les clients peuvent-ils demander un remboursement via le signalement ?", "Oui. Ajoutez une demande de remboursement au formulaire, avec le montant et la référence de paiement, et transmettez-la à votre équipe remboursements. PODFY enregistre et transmet la demande ; le versement reste dans votre propre processus de paiement.")] + _v["faq"][1:]
+_v["safety"] = "PODFY enregistre les demandes de remboursement mais ne les verse pas, et ne promet aux clients aucun délai de réponse en votre nom. Indiquez sur l'autocollant comment fonctionnent les remboursements dans votre organisation."
+SERVICE = {
+ "eyebrow": "Service et continuité", "title": "Ce sur quoi vous pouvez compter",
+ "items": [("99,5 % de disponibilité", "Mesurée chaque mois, avec une communication proactive en cas d'incident."),
+           ("Un support qui répond", "Réponse sous un jour ouvré ; incidents critiques sous 4 heures ouvrées."),
+           ("Sauvegardes quotidiennes", "Une sauvegarde chaque jour, stockée dans l'UE."),
+           ("Chiffré", "Chiffrement en transit et au repos."),
+           ("Vos données restent à vous", "Exportez tout à tout moment, photos et documents compris."),
+           ("Sans dépendance", "Résiliable chaque mois. Les QR codes restent liés à vos propres identifiants et continuent de fonctionner via une redirection après votre départ."),
+           ("RGPD par défaut", "Un accord de traitement des données, une conservation par formule et la suppression sur demande."),
+           ("Notification des violations", "Nous vous informons sans délai, conformément au RGPD.")],
+}

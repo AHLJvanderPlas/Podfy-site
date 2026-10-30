@@ -45,10 +45,12 @@ Fill in the CMR once, print it or send it as PDF, and keep it searchable next to
 - Stamped PDF: Time, reference and location where available, with the original file.
 - Multi-page and multiple files: CMR, delivery note and photos of the goods in one record.
 - Delivery exceptions: Damage, missing items or refusal reported with the delivery.
-- E-mail notifications: The right people per customer or depot, the moment a document arrives.
+- Routing per customer or depot: Notifications to the right people per customer, depot or exception type.
+- Status and disputes: Mark records as accepted, disputed or resolved, with the history kept.
 - Webhook to your TMS or ERP: Every record sent to your own systems as it arrives.
-- Open API (coming soon): Build your own integration on the same data.
-- Searchable portal and export: Search per reference, period or driver; export for invoicing and audits.
+- Open API: Fetch records and update their status from your own systems.
+- Searchable portal and reports: Search per reference, period or driver; reports per customer and period.
+- Export everything: CSV at any time and a full export including the documents.
 - Your branding, EU storage: Your logo and colours on the link, documents stored in the EU.
 
 ## Pay per document. No seats, no setup.
@@ -68,7 +70,7 @@ Q: What is the difference with e-CMR?
 A: An e-CMR replaces the paper consignment note under the e-CMR protocol. PODFY works with the signed CMR you already use, and with the CMR generator you can also create CMRs in the portal. That makes it a fit for mixed fleets and subcontractors.
 
 Q: Can documents go into our TMS?
-A: Yes. Every record is sent by e-mail and can be sent by webhook to your TMS or ERP. You can also export per period for invoicing.
+A: Yes. Every record is sent by e-mail and can be sent by webhook to your TMS or ERP. With the open API you fetch records from your own systems, and you can export per period for invoicing.
 
 Q: How long are documents kept?
 A: As long as your plan specifies: from 14 days on Basic up to 7 years on Enterprise. Longer retention is available as an add-on.
@@ -105,15 +107,17 @@ Stick and go. Reports arrive with the asset already identified.
 
 ## The same functions as PODFY proof of delivery
 - QR code and sticker per asset: Print-ready stickers with your logo and your own call to action.
-- Asset list from a template: Download the template, add your asset numbers, upload it back.
-- Your categories: The issue types that match your equipment, in every language.
+- Asset register from a template: Upload asset numbers, names and locations; move or retire assets yourself.
+- Your own categories and fields: Issue types, priorities and extra fields such as a refund amount, in every language.
 - Photo: required, optional or off: Set per form, the same way as for delivery documents.
-- E-mail notifications: Each report to the people you choose, per asset group.
-- Webhook to your systems: Send every report to your ticketing or maintenance tool.
-- Open API (coming soon): Build your own integration on the same data.
-- Searchable history: Every report per asset in the PODFY portal, with time and photo.
-- Your branding, 12 languages: The form speaks the reporter's language and shows your logo.
-- EU storage, no app: Same platform and security as PODFY proof of delivery.
+- Routing rules: Different recipients per location, asset group or category.
+- Status from new to resolved: New, in progress, resolved or rejected, with priorities and duplicate reports grouped.
+- Dashboard and reports: Reports per asset, location and period; see which machines keep failing.
+- Feedback to the reporter: An automatic confirmation, and a message when the issue is resolved.
+- Webhook to your systems: Every report to your ticketing, maintenance or work-order tool.
+- Open API: Fetch reports and update their status from your own systems.
+- Export everything: CSV export at any time, and a full export including photos.
+- Your branding, 12 languages, EU storage: Your logo on the form, the reporter's language, data stored in the EU.
 
 ## Questions about QR Reporting
 Q: Do the people reporting need an app or an account?
@@ -135,13 +139,16 @@ Q: Does PODFY use the phone's location?
 A: It does not need to. The asset and its location are known from the QR code, so a report works without location permission.
 
 Q: Can reports go straight into our ticketing or maintenance system?
-A: Yes. Reports are e-mailed to the addresses you choose and can be sent to your ticketing or maintenance system with a webhook. An open API for your own integrations is coming.
+A: Yes. Reports are e-mailed to the people you choose, routed per location or category, and sent by webhook to your ticketing, maintenance or work-order system. With the open API you fetch reports and update their status from your own tools.
 
 Q: What does QR Reporting cost?
-A: Pricing depends on the number of assets and reports. Ask for a proposal and we will set it up for your situation.
+A: You pay a fixed amount per active asset per month. No fees per report, per user or per QR code, and retired assets are free. Ask for a proposal for your fleet size.
 
 Q: Where is report data stored?
 A: Reports and photos are stored in the EU on the same platform as PODFY's delivery records. E-mail delivery uses the subprocessors listed on the Trust page.
+
+Q: What happens to our QR codes and data if we stop?
+A: They stay yours. QR codes are linked to your own asset numbers, and you can export all reports, photos and QR destinations at any time. When you leave, we redirect your QR codes to an address of your choice for 12 months.
 
 ---
 
@@ -172,7 +179,7 @@ Q: Do the people reporting need an app or an account?
 A: No. They scan the QR code with their phone camera and the form opens in the browser. No app, no login, no account.
 
 Q: Can reports go straight into our ticketing or maintenance system?
-A: Yes. Reports are e-mailed to the addresses you choose and can be sent to your ticketing or maintenance system with a webhook. An open API for your own integrations is coming.
+A: Yes. Reports are e-mailed to the people you choose, routed per location or category, and sent by webhook to your ticketing, maintenance or work-order system. With the open API you fetch reports and update their status from your own tools.
 
 ---
 
@@ -203,7 +210,7 @@ Q: Do the people reporting need an app or an account?
 A: No. They scan the QR code with their phone camera and the form opens in the browser. No app, no login, no account.
 
 Q: Can reports go straight into our ticketing or maintenance system?
-A: Yes. Reports are e-mailed to the addresses you choose and can be sent to your ticketing or maintenance system with a webhook. An open API for your own integrations is coming.
+A: Yes. Reports are e-mailed to the people you choose, routed per location or category, and sent by webhook to your ticketing, maintenance or work-order system. With the open API you fetch reports and update their status from your own tools.
 
 ---
 
@@ -253,10 +260,10 @@ PODFY routes the report. Refunds, payment reversals and customer replies stay in
 - Smarter service rounds: Reports per machine help route planners decide which locations need a visit first.
 - Spot problem machines: The history shows which machines keep failing, useful when deciding on repair or replacement.
 
-PODFY does not handle refunds or payment reversals and does not promise customers a response time. Tell customers on the sticker how refunds work in your organisation.
+PODFY records refund requests but does not pay them out, and it does not promise customers a response time on your behalf. State on the sticker how refunds work in your organisation.
 
 Q: Can customers request a refund through the report?
-A: The report can include what happened, but PODFY does not process refunds. Your own refund process stays in charge; mention it on the sticker.
+A: Yes. Add a refund request to the form, with the amount and the payment reference, and route it to your refund team. PODFY records and forwards the request; the payout itself stays in your own payment process.
 
 Q: Do we need one QR code per machine?
 A: Yes. Every machine gets its own code, so each report is linked to the right machine and location without the customer typing anything.
@@ -265,7 +272,7 @@ Q: Can the same QR code be used again?
 A: Yes. The code stays on the asset and every scan starts a new, separate report, so it works for the next problem too.
 
 Q: What does QR Reporting cost?
-A: Pricing depends on the number of assets and reports. Ask for a proposal and we will set it up for your situation.
+A: You pay a fixed amount per active asset per month. No fees per report, per user or per QR code, and retired assets are free. Ask for a proposal for your fleet size.
 
 ---
 
@@ -296,7 +303,7 @@ Q: Is a photo required?
 A: You decide. Per QR form you choose whether a photo is required, optional or switched off.
 
 Q: Can reports go straight into our ticketing or maintenance system?
-A: Yes. Reports are e-mailed to the addresses you choose and can be sent to your ticketing or maintenance system with a webhook. An open API for your own integrations is coming.
+A: Yes. Reports are e-mailed to the people you choose, routed per location or category, and sent by webhook to your ticketing, maintenance or work-order system. With the open API you fetch reports and update their status from your own tools.
 
 ---
 
@@ -358,7 +365,7 @@ Q: Is a photo required?
 A: You decide. Per QR form you choose whether a photo is required, optional or switched off.
 
 Q: What does QR Reporting cost?
-A: Pricing depends on the number of assets and reports. Ask for a proposal and we will set it up for your situation.
+A: You pay a fixed amount per active asset per month. No fees per report, per user or per QR code, and retired assets are free. Ask for a proposal for your fleet size.
 
 ---
 

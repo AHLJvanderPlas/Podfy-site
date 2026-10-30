@@ -755,3 +755,58 @@ HOME_MORE = {
          ("Where is the data stored?", "Documents and reports are stored in the EU. E-mail delivery uses the subprocessors listed on our Trust page."),
          ("What does it cost?", "CMR and delivery proof is priced per document, from €0.10. QR Reporting is priced per project, based on the number of assets and reports.")],
 }
+
+# ── Capabilities presented as available (owner decision 2026-10-30). Build plan and dates:
+#    docs/podfy-capability-matrix.md. These assignments override the values above. ──
+FEATURES = [
+ ("QR code and sticker per asset", "", "Print-ready stickers with your logo and your own call to action."),
+ ("Asset register from a template", "", "Upload asset numbers, names and locations; move or retire assets yourself."),
+ ("Your own categories and fields", "", "Issue types, priorities and extra fields such as a refund amount, in every language."),
+ ("Photo: required, optional or off", "", "Set per form, the same way as for delivery documents."),
+ ("Routing rules", "", "Different recipients per location, asset group or category."),
+ ("Status from new to resolved", "", "New, in progress, resolved or rejected, with priorities and duplicate reports grouped."),
+ ("Dashboard and reports", "", "Reports per asset, location and period; see which machines keep failing."),
+ ("Feedback to the reporter", "", "An automatic confirmation, and a message when the issue is resolved."),
+ ("Webhook to your systems", "", "Every report to your ticketing, maintenance or work-order tool."),
+ ("Open API", "", "Fetch reports and update their status from your own systems."),
+ ("Export everything", "", "CSV export at any time, and a full export including photos."),
+ ("Your branding, 12 languages, EU storage", "", "Your logo on the form, the reporter's language, data stored in the EU."),
+]
+FAQ["integr"] = ("Can reports go straight into our ticketing or maintenance system?", "Yes. Reports are e-mailed to the people you choose, routed per location or category, and sent by webhook to your ticketing, maintenance or work-order system. With the open API you fetch reports and update their status from your own tools.")
+FAQ["price"] = ("What does QR Reporting cost?", "You pay a fixed amount per active asset per month. No fees per report, per user or per QR code, and retired assets are free. Ask for a proposal for your fleet size.")
+FAQ["exit"] = ("What happens to our QR codes and data if we stop?", "They stay yours. QR codes are linked to your own asset numbers, and you can export all reports, photos and QR destinations at any time. When you leave, we redirect your QR codes to an address of your choice for 12 months.")
+OV["faq_keys"] = OV["faq_keys"] + ["exit"]
+LP["faq_keys"] = LP["faq_keys"] + ["exit"]
+OV["does"] = ["Gives every asset a QR code, a sticker and a form in your branding", "Captures the category, note, photo and time of every report", "Routes each report to the right people and to your systems by webhook and API", "Tracks every report from new to resolved, with priorities and duplicates grouped", "Shows history and reports per asset, location and period"]
+OV["stays"] = ["Planning the repair and sending a technician", "Paying out refunds", "Automatic monitoring of the machine itself"]
+LP["receive_points"] = ["Routed per location, asset group or category", "Webhook and open API for your ticket system", "Status from new to resolved, with feedback to the reporter", "Every report stored per asset, with reports per period"]
+CMR["features"] = [
+ ("Link and QR card per shipment", "", "One link per brand, the reference added per shipment or printed on a QR card."),
+ ("Any phone, no app", "", "Drivers and subcontractors send from the browser, in 12 languages."),
+ ("Stamped PDF", "", "Time, reference and location where available, with the original file."),
+ ("Multi-page and multiple files", "", "CMR, delivery note and photos of the goods in one record."),
+ ("Delivery exceptions", "", "Damage, missing items or refusal reported with the delivery."),
+ ("Routing per customer or depot", "", "Notifications to the right people per customer, depot or exception type."),
+ ("Status and disputes", "", "Mark records as accepted, disputed or resolved, with the history kept."),
+ ("Webhook to your TMS or ERP", "", "Every record sent to your own systems as it arrives."),
+ ("Open API", "", "Fetch records and update their status from your own systems."),
+ ("Searchable portal and reports", "", "Search per reference, period or driver; reports per customer and period."),
+ ("Export everything", "", "CSV at any time and a full export including the documents."),
+ ("Your branding, EU storage", "", "Your logo and colours on the link, documents stored in the EU."),
+]
+CMR["faq"] = [(q, a.replace("You can also export per period for invoicing.", "With the open API you fetch records from your own systems, and you can export per period for invoicing.")) for q, a in CMR["faq"]]
+DOORS["shared"] = DOORS["shared"] + ["Open API"]
+_v = CASES["vending-machines"]
+_v["faq"] = [("Can customers request a refund through the report?", "Yes. Add a refund request to the form, with the amount and the payment reference, and route it to your refund team. PODFY records and forwards the request; the payout itself stays in your own payment process.")] + _v["faq"][1:]
+_v["safety"] = "PODFY records refund requests but does not pay them out, and it does not promise customers a response time on your behalf. State on the sticker how refunds work in your organisation."
+SERVICE = {
+ "eyebrow": "Service and continuity", "title": "What you can count on",
+ "items": [("99.5% uptime", "Measured per month, with incidents communicated proactively."),
+           ("Support that answers", "A reply within one business day; critical incidents within 4 business hours."),
+           ("Daily backups", "Backups every day, stored in the EU."),
+           ("Encrypted", "Encryption in transit and at rest."),
+           ("Your data stays yours", "Export everything at any time, including photos and documents."),
+           ("No lock-in", "Cancel monthly. QR codes stay linked to your own IDs and keep working through a redirect after you leave."),
+           ("GDPR by default", "A data processing agreement, retention per plan and deletion on request."),
+           ("Breach notification", "We inform you without delay, in line with the GDPR.")],
+}

@@ -49,6 +49,14 @@ Status: **verified** · **incorrect** (fix now) · **needs owner approval** · *
 - **Open API: "Soon"** only.
 - Same functions for both solutions, different description.
 
+## Owner decision 2026-10-30 (later): present everything as available
+
+The site now presents routing, status management, priorities, duplicate grouping, dashboards and reports,
+reporter feedback, refund fields, full export, the open API, QR portability and the service promises
+(99.5% uptime, support times, monthly cancellation) as available. Build dates per item:
+`podfy-capability-matrix.md`. Third-party payment platforms are not named on the site (integration is
+described as "via webhook and API").
+
 ## Copy rules derived from this register
 
 - QR Reporting: "Request a demo" / "Request a proposal"; no "Try it" until a QR demo brand exists.

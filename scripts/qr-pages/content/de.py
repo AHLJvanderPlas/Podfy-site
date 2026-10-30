@@ -432,3 +432,58 @@ HOME_MORE = {
          ("Wo werden die Daten gespeichert?", "Dokumente und Meldungen werden in der EU gespeichert. Für den E-Mail-Versand nutzen wir die auf unserer Seite Vertrauen genannten Unterauftragsverarbeiter."),
          ("Was kostet es?", "CMR und Liefernachweis wird pro Dokument berechnet, ab 0,10 €. QR-Meldungen wird pro Projekt bepreist, nach Anzahl der Objekte und Meldungen.")],
 }
+
+# ── Funktionen als verfügbar dargestellt (Entscheidung des Inhabers 2026-10-30). Bauplan und Termine:
+#    docs/podfy-capability-matrix.md. Diese Zuweisungen überschreiben die Werte oben. ──
+FEATURES = [
+ ("QR-Code und Aufkleber pro Objekt", "", "Druckfertige Aufkleber mit Ihrem Logo und Ihrem eigenen Aufruf."),
+ ("Objektregister per Vorlage", "", "Objektnummern, Namen und Standorte hochladen; Objekte selbst verschieben oder stilllegen."),
+ ("Eigene Kategorien und Felder", "", "Störungsarten, Prioritäten und zusätzliche Felder wie ein Erstattungsbetrag, in jeder Sprache."),
+ ("Foto: Pflicht, optional oder aus", "", "Pro Formular einstellbar, wie bei Lieferdokumenten."),
+ ("Routing-Regeln", "", "Andere Empfänger pro Standort, Objektgruppe oder Kategorie."),
+ ("Status von neu bis erledigt", "", "Neu, in Bearbeitung, erledigt oder abgelehnt, mit Prioritäten und zusammengeführten Doppelmeldungen."),
+ ("Dashboard und Berichte", "", "Meldungen pro Objekt, Standort und Zeitraum; sehen Sie, welche Maschinen immer wieder ausfallen."),
+ ("Rückmeldung an die meldende Person", "", "Eine automatische Bestätigung und eine Nachricht, sobald die Störung behoben ist."),
+ ("Webhook an Ihre Systeme", "", "Jede Meldung an Ihr Ticket-, Wartungs- oder Auftragssystem."),
+ ("Offene API", "", "Meldungen abrufen und ihren Status aus Ihren eigenen Systemen aktualisieren."),
+ ("Alles exportieren", "", "Jederzeit ein CSV-Export und ein vollständiger Export inklusive Fotos."),
+ ("Ihr Branding, 12 Sprachen, Speicherung in der EU", "", "Ihr Logo auf dem Formular, die Sprache der meldenden Person, Daten in der EU gespeichert."),
+]
+FAQ["integr"] = ("Können Meldungen direkt in unser Ticket- oder Wartungssystem gehen?", "Ja. Meldungen gehen per E-Mail an die Personen, die Sie wählen, mit Routing nach Standort oder Kategorie, und per Webhook in Ihr Ticket-, Wartungs- oder Auftragssystem. Mit der offenen API rufen Sie Meldungen ab und aktualisieren ihren Status aus Ihren eigenen Tools.")
+FAQ["price"] = ("Was kosten QR-Meldungen?", "Sie zahlen einen festen Betrag pro aktivem Objekt und Monat. Keine Kosten pro Meldung, pro Nutzer oder pro QR-Code, und stillgelegte Objekte sind kostenlos. Fordern Sie ein Angebot für Ihre Flottengröße an.")
+FAQ["exit"] = ("Was passiert mit unseren QR-Codes und Daten, wenn wir aufhören?", "Sie bleiben Ihre. QR-Codes sind mit Ihren eigenen Objektnummern verknüpft, und Sie können alle Meldungen, Fotos und QR-Ziele jederzeit exportieren. Wenn Sie gehen, leiten wir Ihre QR-Codes 12 Monate lang an eine Adresse Ihrer Wahl weiter.")
+OV["faq_keys"] = OV["faq_keys"] + ["exit"]
+LP["faq_keys"] = LP["faq_keys"] + ["exit"]
+OV["does"] = ["Gibt jedem Objekt einen QR-Code, einen Aufkleber und ein Formular in Ihrem Branding", "Erfasst Kategorie, Notiz, Foto und Zeitpunkt jeder Meldung", "Leitet jede Meldung an die richtigen Personen und per Webhook und API an Ihre Systeme", "Verfolgt jede Meldung von neu bis erledigt, mit Prioritäten und zusammengeführten Doppelmeldungen", "Zeigt Historie und Berichte pro Objekt, Standort und Zeitraum"]
+OV["stays"] = ["Die Reparatur planen und einen Techniker schicken", "Erstattungen auszahlen", "Automatische Überwachung der Maschine selbst"]
+LP["receive_points"] = ["Weitergeleitet nach Standort, Objektgruppe oder Kategorie", "Webhook und offene API für Ihr Ticketsystem", "Status von neu bis erledigt, mit Rückmeldung an die meldende Person", "Jede Meldung pro Objekt gespeichert, mit Berichten pro Zeitraum"]
+CMR["features"] = [
+ ("Link und QR-Karte pro Sendung", "", "Ein Link pro Marke, die Referenz pro Sendung ergänzt oder auf einer QR-Karte gedruckt."),
+ ("Jedes Handy, keine App", "", "Fahrer und Subunternehmer senden aus dem Browser, in 12 Sprachen."),
+ ("Gestempeltes PDF", "", "Zeit, Referenz und Standort wo verfügbar, mit der Originaldatei."),
+ ("Mehrere Seiten und Dateien", "", "CMR, Lieferschein und Fotos der Ware in einem Nachweis."),
+ ("Abweichungen bei der Lieferung", "", "Schäden, Fehlmengen oder Annahmeverweigerung mit der Lieferung gemeldet."),
+ ("Routing pro Kunde oder Depot", "", "Benachrichtigungen an die richtigen Personen pro Kunde, Depot oder Abweichungsart."),
+ ("Status und Streitfälle", "", "Nachweise als akzeptiert, strittig oder geklärt markieren, mit vollständiger Historie."),
+ ("Webhook an Ihr TMS oder ERP", "", "Jeder Nachweis direkt an Ihre eigenen Systeme."),
+ ("Offene API", "", "Nachweise abrufen und den Status aus Ihren eigenen Systemen aktualisieren."),
+ ("Durchsuchbares Portal und Berichte", "", "Suche nach Referenz, Zeitraum oder Fahrer; Berichte pro Kunde und Zeitraum."),
+ ("Alles exportieren", "", "Jederzeit CSV und ein vollständiger Export inklusive der Dokumente."),
+ ("Ihr Branding, Speicherung in der EU", "", "Ihr Logo und Ihre Farben auf dem Link, Dokumente in der EU gespeichert."),
+]
+CMR["faq"] = [(q, a.replace("Sie können auch pro Zeitraum für die Abrechnung exportieren.", "Mit der offenen API rufen Sie Nachweise aus Ihren eigenen Systemen ab, und Sie können pro Zeitraum für die Abrechnung exportieren.")) for q, a in CMR["faq"]]
+DOORS["shared"] = DOORS["shared"] + ["Offene API"]
+_v = CASES["vending-machines"]
+_v["faq"] = [("Können Kunden über die Meldung eine Erstattung anfordern?", "Ja. Ergänzen Sie das Formular um eine Erstattungsanfrage mit Betrag und Zahlungsreferenz und leiten Sie sie an Ihr Erstattungsteam weiter. PODFY erfasst die Anfrage und leitet sie weiter; die Auszahlung selbst bleibt in Ihrem eigenen Zahlungsprozess.")] + _v["faq"][1:]
+_v["safety"] = "PODFY erfasst Erstattungsanfragen, zahlt sie aber nicht aus, und verspricht Kunden in Ihrem Namen keine Reaktionszeit. Geben Sie auf dem Aufkleber an, wie Erstattungen in Ihrer Organisation funktionieren."
+SERVICE = {
+ "eyebrow": "Service und Kontinuität", "title": "Worauf Sie sich verlassen können",
+ "items": [("99,5 % Verfügbarkeit", "Monatlich gemessen, mit proaktiver Kommunikation bei Störungen."),
+           ("Support, der antwortet", "Antwort innerhalb eines Werktags; kritische Störungen innerhalb von 4 Arbeitsstunden."),
+           ("Tägliche Backups", "Jeden Tag ein Backup, in der EU gespeichert."),
+           ("Verschlüsselt", "Verschlüsselung bei Übertragung und Speicherung."),
+           ("Ihre Daten bleiben Ihre", "Exportieren Sie jederzeit alles, inklusive Fotos und Dokumente."),
+           ("Kein Lock-in", "Monatlich kündbar. QR-Codes bleiben mit Ihren eigenen IDs verknüpft und funktionieren nach dem Ausstieg per Weiterleitung weiter."),
+           ("DSGVO als Standard", "Ein Auftragsverarbeitungsvertrag, Aufbewahrung pro Plan und Löschung auf Anfrage."),
+           ("Meldung bei Datenpannen", "Wir informieren Sie unverzüglich, gemäß DSGVO.")],
+}

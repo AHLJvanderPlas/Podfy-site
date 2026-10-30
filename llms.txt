@@ -56,14 +56,15 @@ Key capabilities:
 
 ## PODFY QR Reporting (second solution)
 
-PODFY QR Reporting puts a QR code on every machine or asset. Anyone (customers, staff, technicians, contractors) scans it with a phone camera, chooses what is wrong from the brand's own categories, optionally adds a note and photo, and sends it. No app and no account. The report reaches the responsible team by e-mail and by webhook to their ticketing or maintenance system; an open API is coming. Every report is stored per asset in the PODFY portal.
+PODFY QR Reporting puts a QR code on every machine or asset. Anyone (customers, staff, technicians, contractors) scans it with a phone camera, chooses what is wrong from the brand's own categories, optionally adds a note and photo, and sends it. No app and no account. The report reaches the responsible team by e-mail, routed per location or category, and by webhook to their ticketing or maintenance system; an open API fetches reports and updates their status. Every report has a status (new, in progress, resolved, rejected), priorities and duplicate grouping, and is stored per asset with reports per location and period. The reporter gets a confirmation and a message when the issue is resolved.
 
 - Same platform and same functions as PODFY CMR and delivery proof: branding, 12 languages, notifications, webhooks, EU storage, searchable portal
 - Asset list via a downloadable template; each asset number becomes the reference behind its own QR code
 - Printable QR stickers per asset with the brand's logo and custom text, e.g. "Scan to report an issue"
 - Photo per form: required, optional or off
 - Not an emergency channel; repair planning and ticket follow-up stay in the customer's own tools
-- Pricing per project, based on the number of assets and reports
+- Pricing per active asset per month: no fees per report, per user or per QR code; retired assets are free
+- Service: 99.5% uptime measured monthly, support reply within one business day (critical incidents within 4 business hours), daily backups in the EU, encryption in transit and at rest, export of all data at any time, monthly cancellation, QR codes redirected for 12 months after leaving
 
 Use cases:
 - EV chargers: https://podfy.net/solutions/qr-issue-reporting/ev-chargers/
