@@ -1865,3 +1865,4 @@ html[data-theme="dark"] .v2-receipt {
 /* Trust page tables (subprocessors) scroll inside their column on phones instead of widening the page */
 .v2-trust-section { min-width: 0; }
 @media (max-width: 900px) { .v2-trust-section table { display: block; max-width: 100%; overflow-x: auto; } }
+@media (max-width: 900px) { .v2-trust-layout { grid-template-columns: minmax(0, 1fr); } .v2-trust-layout > * { min-width: 0; } }
