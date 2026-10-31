@@ -1,19 +1,19 @@
 # PODFY company facts
 
-DRAFT, owner approval needed. Fields marked [OWNER] must be filled in before this sheet is sent. Facts without a mark come from PODFY's own records (invoices, terms, privacy statement).
+DRAFT, owner approval needed. Fields marked [OWNER] must be filled in before this sheet is sent. Facts without a mark come from PODFY's own records (invoices, terms, privacy statement) and Lake-Project's records (lake-project.com trust page and terms, filled 2026-10-31).
 
 | Item | Value |
 |---|---|
 | Trade name | PODFY |
 | Legal entity | Lake-Project (PODFY is a trade name of Lake-Project) |
-| Legal form | [OWNER: for example eenmanszaak, VOF, BV] |
+| Legal form | Sole proprietorship (eenmanszaak) |
 | Registered address | Rodenrijselaan 10A, 3037 XE Rotterdam, the Netherlands |
 | Chamber of Commerce (KvK) | 29816688 |
 | VAT number | NL001170142B85 |
 | KvK registration of the trade name PODFY | [OWNER: confirm that "PODFY" is registered as trade name of Lake-Project and that the old registration is retired] |
-| Founded | [OWNER: year; note that one website page says "Founded in The Hague", correct or remove it] |
-| Owner / managing person | [OWNER: name and role] |
-| Number of employees | [OWNER] |
+| Founded | [OWNER: KvK registration date of Lake-Project; the Lake-Project brand says "est. 2024". podfy.net/about says "Founded in The Hague" while the address is Rotterdam: confirm or correct] |
+| Owner / managing person | Alexander van der Plas, owner |
+| Number of employees | 1 FTE (owner) [OWNER: confirm; add contractors if any] |
 | Website | https://podfy.net |
 | Support e-mail | support@podfy.net |
 | Named contact | [OWNER: name, role, direct phone] |
@@ -33,18 +33,16 @@ DRAFT, owner approval needed. Fields marked [OWNER] must be filled in before thi
 
 | Item | Value |
 |---|---|
-| Bank name | [OWNER] |
-| Account holder | [OWNER: Lake-Project or other] |
-| IBAN | [OWNER] |
-| BIC | [OWNER] |
+| How invoices are paid | Pay link on every invoice (Mollie, PODFY profile): iDEAL/Wero, card, Bancontact or bank transfer; the invoice is marked paid automatically. PODFY invoices print no IBAN today. |
+| IBAN for direct bank transfer | [DECIDE: buyers' accounts payable often require an IBAN on the invoice. Lake-Project invoices print the Mollie collection IBAN NL62 MLLE 0363 968555 with the invoice number as reference; recommendation: confirm with Mollie that this IBAN may also be used for PODFY-profile invoices, then print it on PODFY invoices and here] |
 
 ## Insurance
 
 | Policy | Insurer | Policy number | Insured sum | Valid until |
 |---|---|---|---|---|
+| Liability (aansprakelijkheidsverzekering) | [OWNER: Lake-Project terms art. 9 refer to an existing liability insurance; insurer, policy, cover] | [OWNER] | [OWNER] | [OWNER] |
 | Professional liability | [OWNER] | [OWNER] | [OWNER] | [OWNER] |
 | Cyber insurance | [OWNER] | [OWNER] | [OWNER] | [OWNER] |
-| General liability | [OWNER, if any] | [OWNER] | [OWNER] | [OWNER] |
 
 Insurance certificates are attached on request. [OWNER: obtain quotes and certificates; buyers ask for them.]
 
@@ -52,6 +50,6 @@ Insurance certificates are attached on request. [OWNER: obtain quotes and certif
 
 | Item | Value |
 |---|---|
-| ISO 27001 / SOC 2 | [OWNER: none held, or details. State plainly if none.] |
-| Customer reference | [OWNER: named customer with permission; none yet] |
-| Data protection contact / officer | [OWNER: name or "support@podfy.net"] |
+| ISO 27001 / SOC 2 | None held. Infrastructure certifications are Cloudflare's (see security overview). [OWNER: confirm] |
+| Customer reference | None yet; first named case study after the first pilot |
+| Data protection contact / officer | Alexander van der Plas, support@podfy.net. No data protection officer appointed (not required for this organisation; Lake-Project is below the NIS2 threshold) |

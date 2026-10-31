@@ -16,7 +16,7 @@ company, a complete procurement pack, transparent terms and a fast, precise answ
 | E comparison page | **live 2026-10-31**: /vs-qr-form-tools/ (EN/NL/DE/FR) |
 | E status page, changelog per feature | Phase 1 (WP 1.8, 1.9) |
 | F support process, auto-reply, incident and breach procedure | **drafted** (`docs/procurement/support-process.md`, `incident-and-breach-procedure.md`); auto-reply setup + backup person + phone line open (owner) |
-| F 5-minute uptime check + phone alert | Phase 1 WP 1.8 (Pushover, owner provides keys) |
+| F 5-minute uptime check + phone alert | Phase 1 WP 1.8 (e-mail; phone via ops webhook to the owner's Homey flow, owner sets the URL) |
 | G terms + privacy for QR Reporting | **drafted** in `docs/drafts/qr-reporting-legal.{en,nl,de,fr}.md`; owner + lawyer approval before publishing |
 | G open claims | decided and fixed live 2026-10-31 (GPS timing, EU wording, EU storage badge, CMR availability, testimonial removed); see claims register |
 

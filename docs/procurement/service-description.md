@@ -62,7 +62,7 @@ Availability for a month is the percentage of check intervals in which the check
 | Check frequency | Hourly, from the PODFY background worker | Every 5 minutes (schedule `2-59/5 * * * *`) |
 | Targets | podfy.net, podfy.app, admin.podfy.net, portal.podfy.net/login | podfy.net, podfy.app, portal.podfy.net/login, admin.podfy.net, delivery.podfy.net, one API health URL |
 | Failure definition | Connection error, timeout after 10 seconds, or HTTP status 500 or higher | Same |
-| Alerting | E-mail to the owner on a change from up to down | Phone push alert (Pushover) plus e-mail, on state change and after 2 consecutive failures |
+| Alerting | E-mail to the owner on a change from up to down | Phone alert via an ops webhook plus e-mail, on state change and after 2 consecutive failures |
 | Evidence | Not published | Results stored in the EU (database `podfy-public-eu`), raw checks 35 days, daily totals 400 days; public status page with 90-day bars and monthly percentage at podfy.net/status |
 | Monthly figure | Not published | Published monthly |
 

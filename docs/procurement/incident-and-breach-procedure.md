@@ -14,7 +14,7 @@ PODFY is a processor for customer operational data and a controller for its own 
 
 | Source | Today | Planned |
 |---|---|---|
-| Uptime alert | Hourly check of podfy.net, podfy.app, admin.podfy.net, portal.podfy.net/login. E-mail to the owner on change from up to down. | Phase 1 (by 27 November 2026): check every 5 minutes of six targets (adds delivery.podfy.net and an API health URL); phone push alert via Pushover plus e-mail on state change and after 2 consecutive failures. |
+| Uptime alert | Hourly check of podfy.net, podfy.app, admin.podfy.net, portal.podfy.net/login. E-mail to the owner on change from up to down. | Phase 1 (by 27 November 2026): check every 5 minutes of six targets (adds delivery.podfy.net and an API health URL); phone alert via an ops webhook plus e-mail on state change and after 2 consecutive failures. |
 | Backup alert | E-mail to the owner if the nightly export of a database fails. | Same |
 | CSP violation reports | Aggregated in the `csp_reports` table for portal, admin, delivery portal and website. Review: weekly during the report-only phase [OWNER: confirm rhythm]. | Same |
 | Customer report | support@podfy.net, contact form, phone for critical incidents [OWNER: number]. | Auto-acknowledgement (see support-process.md) |
@@ -203,7 +203,7 @@ Within 10 business days after a critical incident or any personal data breach:
 | 1 | Backup person, with access and authority | [OWNER] |
 | 2 | Phone number for critical incidents | [OWNER] |
 | 3 | Adviser for breach assessment; incident contractor on call | [OWNER] |
-| 4 | Pushover account and keys in worker secrets (Phase 1) | [OWNER] |
+| 4 | Ops alert webhook URL (Homey flow) in the podfy-cron secret `OPS_ALERT_WEBHOOK_URL` (Phase 1) | [OWNER] |
 | 5 | Breach register location | [OWNER] |
 | 6 | 36 hours to notify controllers | [DECIDE] recommend yes |
 | 7 | Annual exercise | [DECIDE] recommend yes |

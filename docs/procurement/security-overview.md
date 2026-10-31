@@ -87,7 +87,7 @@ PODFY does not offer a separate second factor such as TOTP. A passkey is itself 
 | API usage log | Per-call log of AI provider usage (call site, model, token counts, estimated cost); it does not store document contents. | [OWNER] |
 | Uptime | Hourly check today, results used for owner alerts only. From Phase 1: 5-minute checks stored 35 days, daily totals 400 days, public status page. | Planned, by 27 November 2026 |
 
-Alerting: an uptime failure or a failed nightly backup produces an e-mail alert to the owner (Live). A phone push alert (Pushover) and a 5-minute check are **Planned for Phase 1 (by 27 November 2026)**.
+Alerting: an uptime failure or a failed nightly backup produces an e-mail alert to the owner (Live). A phone alert (an ops webhook that pushes critical alerts to the owner's phone) and a 5-minute check are **Planned for Phase 1 (by 27 November 2026)**.
 
 Limits to state honestly: there is no central SIEM, no tamper-evident log store, and no formal log review schedule [OWNER: if a review rhythm exists, state it].
 
@@ -143,7 +143,7 @@ Source: podfy.net/trust, section Sub-processors. Customers with a DPA receive at
 | Provider | Purpose | Notes |
 |---|---|---|
 | Anthropic PBC (USA) | Document OCR and AI document check (Claude API). Documents or images of a customer's uploads are sent to the API only for brands that have these add-ons active. | The add-ons are in a testing state (hidden from customers in the plan catalogue). Active so far only for internal demo use. Must be listed before any customer activates them. Data location USA; transfer basis to be confirmed (SCCs in Anthropic's commercial DPA) [verify]. |
-| Pushover (planned) | Phone push alerts for uptime. | Alert texts carry system names and URLs, no customer personal data. Not a sub-processor of customer personal data. Planned for Phase 1. |
+| Ops alert webhook (planned) | Phone alerts for uptime via the owner's home automation (Homey). | Alert texts carry system names and URLs, no customer personal data. Not a sub-processor of customer personal data. Planned for Phase 1. |
 | Cloudflare Workers AI | Bound to the background worker; used to generate images for website articles. | No customer data. |
 
 ## 12. Certifications, assurance and insurance
