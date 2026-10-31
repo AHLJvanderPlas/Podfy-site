@@ -17,6 +17,7 @@ export async function onRequest(context) {
     url.pathname.startsWith("/api/") ||
     url.pathname.startsWith("/li/") ||
     url.pathname === "/changelog.rss" ||
+    url.pathname === "/status" ||
     url.pathname === "/insights/confirm" ||
     url.pathname === "/insights/unsubscribe" ||
     url.pathname === "/insights/preferences" ||
