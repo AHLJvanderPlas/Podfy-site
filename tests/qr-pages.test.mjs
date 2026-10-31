@@ -2,7 +2,7 @@
 // overview + every case page, with SEO limits, hreflang ×4 and no em/en dashes in the copy.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 
 const ROOT = new URL("../", import.meta.url).pathname;
 const CASES = ["ev-chargers", "parcel-lockers", "trailers-containers", "vending-machines", "coffee-machines",
@@ -126,4 +126,27 @@ test("comparison page /vs-qr-form-tools/ exists in every locale with the SEO and
   }
   assert.match(readFileSync(`${ROOT}llms.txt`, "utf8"), /vs-qr-form-tools/);
   assert.match(readFileSync(`${ROOT}llms-full.txt`, "utf8"), /Source: https:\/\/podfy.net\/vs-qr-form-tools\//);
+});
+
+// Owner decision D7: the app is in 42 languages, the portal, driver portal and e-mails are English only.
+// The old "12 languages" claim must not come back in any page or in the llms files.
+test("no page or llms file claims 12 languages; the home page states app 42 / portal English", () => {
+  const files = [];
+  const walk = (dir) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      if (["node_modules", "dist", ".git", ".claude"].includes(e.name)) continue;
+      const p = dir + e.name;
+      if (e.isDirectory()) walk(p + "/");
+      else if (p.endsWith(".html")) files.push(p);
+    }
+  };
+  walk(ROOT);
+  files.push(`${ROOT}llms.txt`, `${ROOT}llms-full.txt`);
+  assert.ok(files.length > 40, "page walk found the built pages");
+  for (const f of files) {
+    assert.doesNotMatch(readFileSync(f, "utf8"), /\b(12|twelve)[ -](languages?|talen|Sprachen|langues)\b/i, `${f}: stale "12 languages" claim`);
+  }
+  const claim = { "": /App in 42 languages, portal in English/, "nl/": /App in 42 talen, portaal in het Engels/,
+    "de/": /App in 42 Sprachen, Portal auf Englisch/, "fr/": /Application en 42 langues, portail en anglais/ };
+  for (const loc of LOCALES) assert.match(readFileSync(`${ROOT}${loc}index.html`, "utf8"), claim[loc], `${loc}: homepage claim`);
 });

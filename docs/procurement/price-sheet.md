@@ -60,7 +60,7 @@ Billed per active asset per month. Nothing per report, user or QR code. Billing 
 - Dashboard, reports and full export
 - Webhook to your systems
 - Unlimited users, reports and QR codes (fair use)
-- Your branding, 12 languages, EU storage
+- Your branding, app in 42 languages, portal in English, EU storage
 - Support: reply within one business day
 
 Capability dates are on the product sheet (product-sheet-qr-reporting.md).

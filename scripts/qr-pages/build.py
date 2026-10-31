@@ -1094,7 +1094,7 @@ def sync_llms():
 
 PODFY QR Reporting puts a QR code on every machine or asset. Anyone (customers, staff, technicians, contractors) scans it with a phone camera, chooses what is wrong from the brand's own categories, optionally adds a note and photo, and sends it. No app and no account. The report reaches the responsible team by e-mail, routed per location or category, and by webhook to their ticketing or maintenance system; an open API fetches reports and updates their status. Every report has a status (new, in progress, resolved, rejected), priorities and duplicate grouping, and is stored per asset with reports per location and period. The reporter gets a confirmation and a message when the issue is resolved.
 
-- Same platform and same functions as PODFY CMR and delivery proof: branding, 12 languages, notifications, webhooks, EU storage, searchable portal
+- Same platform and same functions as PODFY CMR and delivery proof: branding, app in 42 languages (portal in English), notifications, webhooks, EU storage, searchable portal
 - Asset list via a downloadable template; each asset number becomes the reference behind its own QR code
 - Printable QR stickers per asset with the brand's logo and custom text, e.g. "Scan to report an issue"
 - Photo per form: required, optional or off

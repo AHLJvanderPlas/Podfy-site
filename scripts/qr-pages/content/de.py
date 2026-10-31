@@ -58,13 +58,13 @@ FAQ = {
 FEATURES = [
  ("QR-Code und Aufkleber pro Objekt", "", "Druckfertige Aufkleber mit Ihrem Logo und Ihrem eigenen Aufruf."),
  ("Objektliste per Vorlage", "", "Vorlage herunterladen, Objektnummern eintragen, wieder hochladen."),
- ("Ihre eigenen Kategorien", "", "Die Störungsarten, die zu Ihren Geräten passen, in jeder Sprache."),
+ ("Ihre eigenen Kategorien", "", "Die Störungsarten, die zu Ihren Geräten passen, mit Beschriftungen auf Deutsch, Englisch, Niederländisch und Französisch."),
  ("Foto: Pflicht, optional oder aus", "", "Pro Formular einstellbar, wie bei Lieferdokumenten."),
  ("E-Mail-Benachrichtigungen", "", "Jede Meldung an die Personen, die Sie wählen, pro Objektgruppe."),
  ("Webhook an Ihre Systeme", "", "Senden Sie jede Meldung an Ihr Ticket- oder Wartungssystem."),
  ("Offene API", "soon", "Bauen Sie Ihre eigene Integration auf denselben Daten."),
  ("Durchsuchbare Historie", "", "Jede Meldung pro Objekt im PODFY-Portal, mit Zeit und Foto."),
- ("Ihr Branding, 12 Sprachen", "", "Das Formular spricht die Sprache der meldenden Person und zeigt Ihr Logo."),
+ ("Ihr Branding, App in 42 Sprachen", "", "Das Formular spricht die Sprache der meldenden Person und zeigt Ihr Logo."),
  ("Speicherung in der EU, keine App", "", "Dieselbe Plattform und Sicherheit wie der PODFY Liefernachweis."),
 ]
 
@@ -291,7 +291,7 @@ LP = {
  "sub": "PODFY QR-Meldungen bringt einen QR-Code an jeder Maschine, Ladestation, Paketstation oder jedem Fahrzeug an, das Sie betreuen. Wer ein Problem bemerkt, scannt ihn, wählt, was nicht stimmt, und sendet es in Sekunden. Ihr Team erhält eine vollständige Meldung mit dem Objekt bereits erkannt, per E-Mail oder direkt in Ihr Ticketsystem.",
  "cta_demo": "15-Minuten-Demo planen", "cta_how": "So funktioniert es",
  "trust": ["Keine App, kein Konto", "Ihr Logo und Ihre Kategorien", "E-Mail und Webhook", "Speicherung in der EU"],
- "stats": [("0", "Apps zu installieren"), ("1", "Scan pro Meldung"), ("12", "Sprachen"), ("EU", "Datenspeicherung")],
+ "stats": [("0", "Apps zu installieren"), ("1", "Scan pro Meldung"), ("42", "App-Sprachen"), ("EU", "Datenspeicherung")],
  "cmp_eyebrow": "Vorher und nachher", "cmp_title": "Von der verblassten Telefonnummer zur vollständigen Meldung",
  "without_h": "Heute", "without": ["Eine Telefonnummer auf einem verblassten Aufkleber, die niemand anruft", "E-Mails über \"die Maschine\" ohne Objektnummer", "Ihr Team ruft zurück, um zu fragen, wo und was", "Kein Überblick, welche Maschinen immer wieder ausfallen"],
  "with_h": "Mit PODFY QR-Meldungen", "with": ["Ein Scan öffnet ein kurzes Formular, ohne App oder Konto", "Objekt, Standort und Uhrzeit werden automatisch ausgefüllt", "Kategorie, Notiz und Foto kommen in einer strukturierten Meldung an", "Eine Historie pro Objekt zeigt, wo sich Probleme wiederholen"],
@@ -324,7 +324,7 @@ CMR = {
  "sub": "PODFY holt unterschriebene CMR-Frachtbriefe und Lieferscheine direkt beim Fahrer ab. Jedes Handy, jeder Fahrer, angestellt oder Subunternehmer. Keine App, kein Konto, keine Schulung. Ihr Team erhält ein gestempeltes PDF mit Zeit und Standort, durchsuchbar im Portal, bevor der Lkw zurück im Depot ist.",
  "cta_demo": "15-Minuten-Demo planen", "cta_try": "Live-Demo ausprobieren",
  "trust": ["Keine Fahrer-App", "Funktioniert mit Subunternehmern", "Gestempeltes PDF pro Sendung", "Speicherung in der EU"],
- "stats": [("0", "Apps für Fahrer"), ("1", "Link pro Sendung"), ("12", "Sprachen"), ("EU", "Datenspeicherung")],
+ "stats": [("0", "Apps für Fahrer"), ("1", "Link pro Sendung"), ("42", "App-Sprachen"), ("EU", "Datenspeicherung")],
  "phone": {"brand": "TRANS VAN DIJCK", "tag": "CMR", "ref": "TDV-2026-0841", "loc": "Lieferung DC Venlo, Rampe 7", "label": "Foto des unterschriebenen CMR", "shot": "cmr_0841.jpg", "send": "Dokument senden"},
  "cmp_eyebrow": "Vorher und nachher", "cmp_title": "Vom Hinterherlaufen nach Papier-CMRs zum gestempelten PDF am selben Tag",
  "without_h": "Heute", "without": ["Unterschriebene CMRs liegen tagelang im Führerhaus oder gehen verloren", "Disponenten rufen Fahrer und Subunternehmer wegen Fotos an", "Rechnungen warten, bis das Papier zurück ist", "Ein Streitfall beginnt mit der Suche in Ordnern"],
@@ -351,7 +351,7 @@ CMR = {
  "gen_cta": "Zum CMR-Generator",
  "feat_eyebrow": "Eine Plattform", "feat_title": "Alles, was Sie rund um den CMR brauchen",
  "features": [("Link und QR-Karte pro Sendung", "", "Ein Link pro Marke, die Referenz pro Sendung ergänzt oder auf einer QR-Karte gedruckt."),
-              ("Jedes Handy, keine App", "", "Fahrer und Subunternehmer senden aus dem Browser, in 12 Sprachen."),
+              ("Jedes Handy, keine App", "", "Fahrer und Subunternehmer senden aus dem Browser. Die App gibt es in 42 Sprachen, das Portal auf Englisch."),
               ("Gestempeltes PDF", "", "Zeit, Referenz und Standort wo verfügbar, mit der Originaldatei."),
               ("Mehrere Seiten und Dateien", "", "CMR, Lieferschein und Fotos der Ware in einem Nachweis."),
               ("Abweichungen bei der Lieferung", "", "Schäden, Fehlmengen oder Annahmeverweigerung mit der Lieferung gemeldet."),
@@ -393,7 +393,7 @@ DOORS = {
    {"kicker": "Für Geräte und Facility", "title": "QR-Meldungen", "text": "Ein QR-Code an jeder Maschine. Jeder scannt ihn und meldet, was nicht stimmt; Ihr Team erhält eine vollständige Meldung per E-Mail oder Webhook.",
     "points": ["Keine App für die meldende Person", "Eigene Kategorien und Aufkleber", "Zehn fertige Anwendungsfälle"], "cta": "Zu den QR-Meldungen", "href": "/qr/"}],
  "shared_eyebrow": "Eine Plattform", "shared_title": "Dieselbe Plattform hinter beiden",
- "shared": ["Keine App, kein Konto", "Ihr Logo und Ihre Farben", "12 Sprachen", "E-Mail und Webhook", "Durchsuchbares Portal", "Speicherung in der EU"],
+ "shared": ["Keine App, kein Konto", "Ihr Logo und Ihre Farben", "App in 42 Sprachen, Portal auf Englisch", "E-Mail und Webhook", "Durchsuchbares Portal", "Speicherung in der EU"],
  "help_text": "Nicht sicher, was passt? Sagen Sie uns, was Sie lösen möchten.", "help_cta": "Kontakt aufnehmen",
 }
 
@@ -438,7 +438,7 @@ HOME_MORE = {
 FEATURES = [
  ("QR-Code und Aufkleber pro Objekt", "", "Druckfertige Aufkleber mit Ihrem Logo und Ihrem eigenen Aufruf."),
  ("Objektregister per Vorlage", "", "Objektnummern, Namen und Standorte hochladen; Objekte selbst verschieben oder stilllegen."),
- ("Eigene Kategorien und Felder", "", "Störungsarten, Prioritäten und zusätzliche Felder wie ein Erstattungsbetrag, in jeder Sprache."),
+ ("Eigene Kategorien und Felder", "", "Störungsarten, Prioritäten und zusätzliche Felder wie ein Erstattungsbetrag, mit Beschriftungen auf Deutsch, Englisch, Niederländisch und Französisch."),
  ("Foto: Pflicht, optional oder aus", "", "Pro Formular einstellbar, wie bei Lieferdokumenten."),
  ("Routing-Regeln", "", "Andere Empfänger pro Standort, Objektgruppe oder Kategorie."),
  ("Status von neu bis erledigt", "", "Neu, in Bearbeitung, erledigt oder abgelehnt, mit Prioritäten und zusammengeführten Doppelmeldungen."),
@@ -447,7 +447,7 @@ FEATURES = [
  ("Webhook an Ihre Systeme", "", "Jede Meldung an Ihr Ticket-, Wartungs- oder Auftragssystem."),
  ("Offene API", "", "Meldungen abrufen und ihren Status aus Ihren eigenen Systemen aktualisieren."),
  ("Alles exportieren", "", "Jederzeit ein CSV-Export und ein vollständiger Export inklusive Fotos."),
- ("Ihr Branding, 12 Sprachen, Speicherung in der EU", "", "Ihr Logo auf dem Formular, die Sprache der meldenden Person, Daten in der EU gespeichert."),
+ ("Ihr Branding, App in 42 Sprachen, Speicherung in der EU", "", "Ihr Logo auf dem Formular, die Sprache der meldenden Person, Daten in der EU gespeichert."),
 ]
 FAQ["integr"] = ("Können Meldungen direkt in unser Ticket- oder Wartungssystem gehen?", "Ja. Meldungen gehen per E-Mail an die Personen, die Sie wählen, mit Routing nach Standort oder Kategorie, und per Webhook in Ihr Ticket-, Wartungs- oder Auftragssystem. Mit der offenen API rufen Sie Meldungen ab und aktualisieren ihren Status aus Ihren eigenen Tools.")
 FAQ["price"] = ("Was kosten QR-Meldungen?", "Sie zahlen einen festen Betrag pro aktivem Objekt und Monat. Keine Kosten pro Meldung, pro Nutzer oder pro QR-Code, und stillgelegte Objekte sind kostenlos. Fordern Sie ein Angebot für Ihre Flottengröße an.")
@@ -459,7 +459,7 @@ OV["stays"] = ["Die Reparatur planen und einen Techniker schicken", "Erstattunge
 LP["receive_points"] = ["Weitergeleitet nach Standort, Objektgruppe oder Kategorie", "Webhook und offene API für Ihr Ticketsystem", "Status von neu bis erledigt, mit Rückmeldung an die meldende Person", "Jede Meldung pro Objekt gespeichert, mit Berichten pro Zeitraum"]
 CMR["features"] = [
  ("Link und QR-Karte pro Sendung", "", "Ein Link pro Marke, die Referenz pro Sendung ergänzt oder auf einer QR-Karte gedruckt."),
- ("Jedes Handy, keine App", "", "Fahrer und Subunternehmer senden aus dem Browser, in 12 Sprachen."),
+ ("Jedes Handy, keine App", "", "Fahrer und Subunternehmer senden aus dem Browser. Die App gibt es in 42 Sprachen, das Portal auf Englisch."),
  ("Gestempeltes PDF", "", "Zeit, Referenz und Standort wo verfügbar, mit der Originaldatei."),
  ("Mehrere Seiten und Dateien", "", "CMR, Lieferschein und Fotos der Ware in einem Nachweis."),
  ("Abweichungen bei der Lieferung", "", "Schäden, Fehlmengen oder Annahmeverweigerung mit der Lieferung gemeldet."),
@@ -493,7 +493,7 @@ QRPRICE = {
  "eyebrow": "Preise QR-Meldungen", "title": "Pro aktivem Objekt und Monat. Sonst nichts.",
  "intro": "Ein Preis pro aktiver Maschine oder pro aktivem Objekt. Unbegrenzt Nutzer, Meldungen und QR-Codes, und stillgelegte Objekte sind kostenlos.",
  "cols": ["Aktive Objekte", "Pro Objekt und Monat"], "range_from": "{a} bis {b}", "range_plus": "ab {a}",
- "included_h": "Inklusive", "included": ["Objektregister, QR-Codes und Aufkleber", "Eigene Kategorien, Felder und Foto-Einstellungen", "Routing, Status, Prioritäten und Zusammenführen von Doppelmeldungen", "Dashboard, Berichte und vollständiger Export", "Webhook an Ihre Systeme", "Unbegrenzt Nutzer, Meldungen und QR-Codes (Fair Use)", "Ihr Branding, 12 Sprachen, Speicherung in der EU", "Support: Antwort innerhalb eines Werktags"],
+ "included_h": "Inklusive", "included": ["Objektregister, QR-Codes und Aufkleber", "Eigene Kategorien, Felder und Foto-Einstellungen", "Routing, Status, Prioritäten und Zusammenführen von Doppelmeldungen", "Dashboard, Berichte und vollständiger Export", "Webhook an Ihre Systeme", "Unbegrenzt Nutzer, Meldungen und QR-Codes (Fair Use)", "Ihr Branding, App in 42 Sprachen, Speicherung in der EU", "Support: Antwort innerhalb eines Werktags"],
  "adv_h": "Advanced", "adv_price": "+{p} pro Objekt und Monat", "adv": ["Offene API", "Rückmeldung an die meldende Person", "Kritische Störungen innerhalb von 4 Arbeitsstunden bearbeitet"],
  "terms_h": "Bedingungen", "terms": ["Mindestens {m} pro Monat", "Kostenloser 6-Wochen-Pilot für bis zu 100 Objekte", "Keine Einrichtungsgebühr", "Monatlich kündbar", "Preis 12 Monate fest, oder 24 Monate bei Jahresvertrag", "Jährliche Vorauszahlung: fragen Sie nach dem Rabatt", "Fair Use: im Durchschnitt etwa 10 Meldungen pro Objekt und Monat"],
  "cta": "Angebot anfordern", "strip": "{p} pro aktivem Objekt und Monat, bis zu {low} bei großen Flotten. Kostenloser 6-Wochen-Pilot.", "strip_cta": "Preise ansehen",
@@ -529,7 +529,7 @@ VSQR = {
   ("Objektregister mit Import und Stillegung", "Nicht Bestandteil des Tools. Die Liste lebt in einer Tabelle.", "Laden Sie Ihre Objekte aus einer Vorlage hoch. Verschieben oder stilllegen Sie Objekte selbst; stillgelegte Objekte sind kostenlos."),
   ("Aufkleber mit eigenem Text", "Ein einfaches QR-Bild, das Sie in Ihr Layout einplatzieren.", "Druckfertige Aufkleber pro Objekt mit Ihrem Logo und eigenem Text, zum Beispiel \"Scannen, um eine Störung zu melden\"."),
   ("Foto optional oder Pflicht", "Meist ein Datei-Upload-Feld, das Sie pro Formular konfigurieren.", "Pflicht, optional oder aus, pro Formular."),
-  ("Kategorien und zusätzliche Felder", "Ja, Sie erstellen jedes Feld selbst.", "Eigene Kategorien und Felder für Ihre Geräte, in jeder Sprache."),
+  ("Kategorien und zusätzliche Felder", "Ja, Sie erstellen jedes Feld selbst.", "Eigene Kategorien und Felder für Ihre Geräte, mit Beschriftungen auf Deutsch, Englisch, Niederländisch und Französisch."),
   ("Routing und Nachverfolgungs-Status", "Typisch eine E-Mail an eine Adresse. Nachverfolgung läuft in einer Tabelle oder Postfach.", "Routing pro Standort oder Kategorie. Status von neu bis erledigt, mit Prioritäten und zusammengeführten Doppelmeldungen."),
   ("Webhooks", "Hängt vom Tool und Plan ab. Braucht oft einen zahlungspflichtigen Tarif oder einen Connector.", "Webhook zu Ihrem Ticket- oder Wartungssystem. Offene API: in Kürze."),
   ("EU-Speicherung und DSGVO", "Hängt vom Anbieter und Plan ab. Prüfen Sie, wo Antworten und Uploads gespeichert sind.", "Meldungen und Fotos in der EU gespeichert, Auftragsverarbeitungsvertrag und Löschung auf Anfrage."),
@@ -553,7 +553,7 @@ VSQR = {
  "faq": [("Warum nicht einfach einen Formular-Builder mit QR-Code nutzen?",
           "Sie können, und für einige wenige Objekte funktioniert es. Ein generisches Formular kennt das gescannte Objekt nicht, daher muss die meldende Person es tippen. PODFY gibt jedem Objekt einen eigenen QR-Code, verknüpft mit dem Objektregister, daher kommt die Meldung mit Objektnummer, Standort und Gruppe an."),
          ("Können wir unsere bestehenden Kategorien und Fragen behalten?",
-          "Ja. Sie stellen eigene Kategorien und Felder pro Formular ein, in jeder Sprache, und entscheiden, ob ein Foto Pflicht, optional oder aus ist."),
+          "Ja. Sie stellen eigene Kategorien und Felder pro Formular ein, mit Beschriftungen auf Deutsch, Englisch, Niederländisch und Französisch, und entscheiden, ob ein Foto Pflicht, optional oder aus ist."),
          ("Was passiert mit unseren bestehenden QR-Codes und Aufklebern?",
           "Aufkleber von einem generischen Tool zeigen auf das Formular dieses Tools, daher müssen sie durch PODFY-Aufkleber ersetzt werden. Die neuen Aufkleber tragen Ihr Logo und Ihren Text, und die QR-Codes bleiben mit Ihren Objekt-IDs verknüpft."),
          ("Gehen Meldungen in unser Ticket- oder Wartungssystem?",

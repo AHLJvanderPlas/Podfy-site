@@ -58,13 +58,13 @@ FAQ = {
 FEATURES = [
  ("QR code et autocollant par équipement", "", "Autocollants prêts à imprimer avec votre logo et votre propre message."),
  ("Liste d'équipements par modèle", "", "Téléchargez le modèle, renseignez les numéros, importez-le."),
- ("Vos propres catégories", "", "Les types de problèmes adaptés à vos équipements, dans chaque langue."),
+ ("Vos propres catégories", "", "Les types de problèmes adaptés à vos équipements, avec des libellés en français, anglais, néerlandais et allemand."),
  ("Photo : obligatoire, facultative ou désactivée", "", "Réglable par formulaire, comme pour les documents de livraison."),
  ("Notifications par e-mail", "", "Chaque signalement aux personnes de votre choix, par groupe d'équipements."),
  ("Webhook vers vos systèmes", "", "Transmettez chaque signalement à votre outil de ticketing ou de maintenance."),
  ("API ouverte", "soon", "Construisez votre propre intégration sur les mêmes données."),
  ("Historique consultable", "", "Chaque signalement par équipement dans le portail PODFY, avec heure et photo."),
- ("Votre image, 12 langues", "", "Le formulaire parle la langue de la personne et affiche votre logo."),
+ ("Votre image, application en 42 langues", "", "Le formulaire parle la langue de la personne et affiche votre logo."),
  ("Stockage dans l'UE, sans appli", "", "La même plateforme et la même sécurité que PODFY Preuve de livraison."),
 ]
 
@@ -291,7 +291,7 @@ LP = {
  "sub": "PODFY Signalement QR place un QR code sur chaque machine, borne, consigne ou véhicule dont vous avez la charge. La personne qui remarque un problème le scanne, choisit ce qui ne va pas et l'envoie en quelques secondes. Votre équipe reçoit un signalement complet avec l'équipement déjà identifié, par e-mail ou directement dans votre outil de ticketing.",
  "cta_demo": "Planifier une démo de 15 minutes", "cta_how": "Voir le fonctionnement",
  "trust": ["Sans appli, sans compte", "Votre logo et vos catégories", "E-mail et webhook", "Stocké dans l'UE"],
- "stats": [("0", "Appli à installer"), ("1", "Scan par signalement"), ("12", "Langues"), ("UE", "Stockage des données")],
+ "stats": [("0", "Appli à installer"), ("1", "Scan par signalement"), ("42", "Langues de l'appli"), ("UE", "Stockage des données")],
  "cmp_eyebrow": "Avant et après", "cmp_title": "D'un numéro délavé à un signalement complet",
  "without_h": "Aujourd'hui", "without": ["Un numéro sur un autocollant délavé que personne n'appelle", "Des e-mails sur \"la machine\" sans numéro d'équipement", "Votre équipe rappelle pour demander où et quoi", "Aucune vue sur les machines qui tombent sans cesse en panne"],
  "with_h": "Avec PODFY Signalement QR", "with": ["Un scan ouvre un court formulaire, sans appli ni compte", "Équipement, emplacement et heure sont renseignés automatiquement", "Catégorie, note et photo arrivent dans un signalement structuré", "Un historique par équipement montre où les problèmes se répètent"],
@@ -324,7 +324,7 @@ CMR = {
  "sub": "PODFY récupère les CMR signées et les bons de livraison directement auprès du chauffeur. N'importe quel téléphone, n'importe quel chauffeur, salarié ou sous-traitant. Sans appli, sans compte, sans formation. Votre équipe reçoit un PDF horodaté avec l'heure et l'emplacement, consultable dans votre portail avant que le camion ne soit rentré au dépôt.",
  "cta_demo": "Planifier une démo de 15 minutes", "cta_try": "Essayer la démo",
  "trust": ["Sans appli chauffeur", "Fonctionne avec les sous-traitants", "PDF horodaté par envoi", "Stocké dans l'UE"],
- "stats": [("0", "Appli pour les chauffeurs"), ("1", "Lien par envoi"), ("12", "Langues"), ("UE", "Stockage des données")],
+ "stats": [("0", "Appli pour les chauffeurs"), ("1", "Lien par envoi"), ("42", "Langues de l'appli"), ("UE", "Stockage des données")],
  "phone": {"brand": "TRANS VAN DIJCK", "tag": "CMR", "ref": "TDV-2026-0841", "loc": "Livraison DC Venlo, quai 7", "label": "Photo de la CMR signée", "shot": "cmr_0841.jpg", "send": "Envoyer le document"},
  "cmp_eyebrow": "Avant et après", "cmp_title": "De la chasse aux CMR papier à un PDF horodaté le jour même",
  "without_h": "Aujourd'hui", "without": ["Les CMR signées restent des jours dans la cabine ou se perdent", "Les planificateurs appellent chauffeurs et sous-traitants pour des photos", "Les factures attendent le retour du papier", "Un litige commence par une recherche dans les classeurs"],
@@ -351,7 +351,7 @@ CMR = {
  "gen_cta": "Voir le générateur CMR",
  "feat_eyebrow": "Une seule plateforme", "feat_title": "Tout ce qu'il vous faut autour de la CMR",
  "features": [("Lien et carte QR par envoi", "", "Un lien par marque, la référence ajoutée par envoi ou imprimée sur une carte QR."),
-              ("Tout téléphone, sans appli", "", "Chauffeurs et sous-traitants envoient depuis le navigateur, en 12 langues."),
+              ("Tout téléphone, sans appli", "", "Chauffeurs et sous-traitants envoient depuis le navigateur. L'application existe en 42 langues, le portail en anglais."),
               ("PDF horodaté", "", "Heure, référence et emplacement si disponible, avec le fichier original."),
               ("Plusieurs pages et fichiers", "", "CMR, bon de livraison et photos de la marchandise dans une seule preuve."),
               ("Réserves à la livraison", "", "Dommages, manquants ou refus signalés avec la livraison."),
@@ -393,7 +393,7 @@ DOORS = {
    {"kicker": "Pour les équipements et services généraux", "title": "Signalement QR", "text": "Un QR code sur chaque machine. Chacun le scanne et signale ce qui ne va pas ; votre équipe reçoit un signalement complet par e-mail ou webhook.",
     "points": ["Sans appli pour la personne qui signale", "Vos catégories et vos autocollants", "Dix cas d'usage prêts"], "cta": "Vers le signalement QR", "href": "/qr/"}],
  "shared_eyebrow": "Une seule plateforme", "shared_title": "La même plateforme derrière les deux",
- "shared": ["Sans appli, sans compte", "Votre logo et vos couleurs", "12 langues", "E-mail et webhook", "Portail consultable", "Stocké dans l'UE"],
+ "shared": ["Sans appli, sans compte", "Votre logo et vos couleurs", "Application en 42 langues, portail en anglais", "E-mail et webhook", "Portail consultable", "Stocké dans l'UE"],
  "help_text": "Vous hésitez ? Dites-nous ce que vous voulez résoudre.", "help_cta": "Nous contacter",
 }
 
@@ -438,7 +438,7 @@ HOME_MORE = {
 FEATURES = [
  ("QR code et autocollant par équipement", "", "Autocollants prêts à imprimer avec votre logo et votre propre message."),
  ("Registre d'équipements par modèle", "", "Importez numéros, noms et emplacements ; déplacez ou retirez des équipements vous-même."),
- ("Vos catégories et champs", "", "Types de problèmes, priorités et champs supplémentaires comme un montant à rembourser, dans chaque langue."),
+ ("Vos catégories et champs", "", "Types de problèmes, priorités et champs supplémentaires comme un montant à rembourser, avec des libellés en français, anglais, néerlandais et allemand."),
  ("Photo : obligatoire, facultative ou désactivée", "", "Réglable par formulaire, comme pour les documents de livraison."),
  ("Règles de routage", "", "Des destinataires différents par site, groupe d'équipements ou catégorie."),
  ("Statut de nouveau à résolu", "", "Nouveau, en cours, résolu ou rejeté, avec priorités et signalements en double regroupés."),
@@ -447,7 +447,7 @@ FEATURES = [
  ("Webhook vers vos systèmes", "", "Chaque signalement vers votre outil de ticketing, de maintenance ou d'ordres de travail."),
  ("API ouverte", "", "Récupérez les signalements et mettez à jour leur statut depuis vos propres systèmes."),
  ("Tout exporter", "", "Un export CSV à tout moment, et un export complet avec les photos."),
- ("Votre image, 12 langues, stockage dans l'UE", "", "Votre logo sur le formulaire, la langue de la personne, des données stockées dans l'UE."),
+ ("Votre image, application en 42 langues, stockage dans l'UE", "", "Votre logo sur le formulaire, la langue de la personne, des données stockées dans l'UE."),
 ]
 FAQ["integr"] = ("Les signalements peuvent-ils arriver dans notre outil de ticketing ou de maintenance ?", "Oui. Les signalements sont envoyés par e-mail aux personnes de votre choix, routés par site ou par catégorie, et transmis par webhook à votre outil de ticketing, de maintenance ou d'ordres de travail. Avec l'API ouverte, vous récupérez les signalements et mettez à jour leur statut depuis vos propres outils.")
 FAQ["price"] = ("Combien coûte le signalement QR ?", "Vous payez un montant fixe par équipement actif et par mois. Pas de frais par signalement, par utilisateur ou par QR code, et les équipements retirés sont gratuits. Demandez une proposition pour la taille de votre parc.")
@@ -459,7 +459,7 @@ OV["stays"] = ["Planifier la réparation et envoyer un technicien", "Verser les 
 LP["receive_points"] = ["Routé par site, groupe d'équipements ou catégorie", "Webhook et API ouverte pour votre outil de ticketing", "Statut de nouveau à résolu, avec retour à la personne qui signale", "Chaque signalement conservé par équipement, avec des rapports par période"]
 CMR["features"] = [
  ("Lien et carte QR par envoi", "", "Un lien par marque, la référence ajoutée par envoi ou imprimée sur une carte QR."),
- ("Tout téléphone, sans appli", "", "Chauffeurs et sous-traitants envoient depuis le navigateur, en 12 langues."),
+ ("Tout téléphone, sans appli", "", "Chauffeurs et sous-traitants envoient depuis le navigateur. L'application existe en 42 langues, le portail en anglais."),
  ("PDF horodaté", "", "Heure, référence et emplacement si disponible, avec le fichier original."),
  ("Plusieurs pages et fichiers", "", "CMR, bon de livraison et photos de la marchandise dans une seule preuve."),
  ("Réserves à la livraison", "", "Dommages, manquants ou refus signalés avec la livraison."),
@@ -493,7 +493,7 @@ QRPRICE = {
  "eyebrow": "Tarifs Signalement QR", "title": "Par équipement actif et par mois. Rien d'autre.",
  "intro": "Un prix par machine ou équipement actif. Utilisateurs, signalements et QR codes illimités, et les équipements retirés sont gratuits.",
  "cols": ["Équipements actifs", "Par équipement et par mois"], "range_from": "{a} à {b}", "range_plus": "{a} et plus",
- "included_h": "Inclus", "included": ["Registre d'équipements, QR codes et autocollants", "Vos catégories, champs et réglages photo", "Routage, statut, priorités et regroupement des doublons", "Tableau de bord, rapports et export complet", "Webhook vers vos systèmes", "Utilisateurs, signalements et QR codes illimités (usage raisonnable)", "Votre image, 12 langues, stockage dans l'UE", "Support : réponse sous un jour ouvré"],
+ "included_h": "Inclus", "included": ["Registre d'équipements, QR codes et autocollants", "Vos catégories, champs et réglages photo", "Routage, statut, priorités et regroupement des doublons", "Tableau de bord, rapports et export complet", "Webhook vers vos systèmes", "Utilisateurs, signalements et QR codes illimités (usage raisonnable)", "Votre image, application en 42 langues, stockage dans l'UE", "Support : réponse sous un jour ouvré"],
  "adv_h": "Advanced", "adv_price": "+{p} par équipement et par mois", "adv": ["API ouverte", "Retour à la personne qui signale", "Incidents critiques traités sous 4 heures ouvrées"],
  "terms_h": "Conditions", "terms": ["Minimum {m} par mois", "Pilote gratuit de 6 semaines jusqu'à 100 équipements", "Sans frais de mise en place", "Résiliable chaque mois", "Prix fixe 12 mois, ou 24 mois avec un engagement annuel", "Paiement annuel anticipé : demandez la remise", "Usage raisonnable : en moyenne environ 10 signalements par équipement et par mois"],
  "cta": "Demander une proposition", "strip": "{p} par équipement actif et par mois, jusqu'à {low} pour les grands parcs. Pilote gratuit de 6 semaines.", "strip_cta": "Voir les tarifs QR",
@@ -529,7 +529,7 @@ VSQR = {
   ("Registre d'équipements avec import et retrait", "Pas inclus dans l'outil. La liste vit dans un tableur.", "Importez vos équipements à partir d'un modèle. Déplacez ou retirez des équipements vous-même ; les retraits sont gratuits."),
   ("Autocollants avec votre propre texte", "Une image QR brute que vous placez dans votre mise en page.", "Autocollants prêts à imprimer par équipement, avec votre logo et votre texte, par exemple \"Scannez pour signaler un problème\"."),
   ("Photo facultative ou obligatoire", "Un champ de téléchargement habituellement, configuré par formulaire.", "Obligatoire, facultative ou désactivée, par formulaire."),
-  ("Catégories et champs supplémentaires", "Oui, vous créez chaque champ vous-même.", "Vos propres catégories et champs pour vos équipements, dans chaque langue."),
+  ("Catégories et champs supplémentaires", "Oui, vous créez chaque champ vous-même.", "Vos propres catégories et champs pour vos équipements, avec des libellés en français, anglais, néerlandais et allemand."),
   ("Routage et statut de suivi", "Un e-mail à une adresse habituellement. Le suivi se fait dans un tableur ou une boîte de réception.", "Routage par emplacement ou catégorie. Statut de nouveau à résolu, priorités et signalements en double regroupés."),
   ("Webhooks", "Dépend de l'outil et de la formule. Souvent besoin d'une formule payante ou d'un connecteur.", "Webhook vers votre outil de ticketing ou de maintenance. API ouverte : bientôt."),
   ("Hébergement UE et RGPD", "Dépend du fournisseur et de la formule. Vérifiez où les réponses et fichiers sont stockés.", "Signalements et photos stockés dans l'UE, accord de traitement et suppression sur demande."),
@@ -553,7 +553,7 @@ VSQR = {
  "faq": [("Pourquoi ne pas utiliser un formulaire générique avec code QR ?",
           "Vous pouvez, et pour quelques équipements c'est suffisant. Un formulaire générique ne sait pas quel équipement a été scanné, donc la personne doit le taper. PODFY donne à chaque équipement son propre code QR lié au registre, donc le signalement arrive avec numéro, emplacement et groupe."),
          ("Pouvons-nous garder nos catégories et questions existantes ?",
-          "Oui. Vous définissez vos propres catégories et champs par formulaire, dans chaque langue, et décidez si la photo est obligatoire, facultative ou désactivée."),
+          "Oui. Vous définissez vos propres catégories et champs par formulaire, avec des libellés en français, anglais, néerlandais et allemand, et décidez si la photo est obligatoire, facultative ou désactivée."),
          ("Que deviennent nos codes QR et autocollants existants ?",
           "Les autocollants d'un outil générique pointent vers le formulaire de cet outil, ils doivent donc être remplacés par des autocollants PODFY. Les nouveaux portent votre logo et votre texte, et les codes QR restent liés à vos propres identifiants."),
          ("Les signalements vont-ils dans notre outil de ticketing ou de maintenance ?",

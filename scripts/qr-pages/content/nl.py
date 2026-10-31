@@ -58,13 +58,13 @@ FAQ = {
 FEATURES = [
  ("QR-code en sticker per object", "", "Printklare stickers met uw logo en uw eigen oproep."),
  ("Objectenlijst via sjabloon", "", "Download het sjabloon, vul uw objectnummers in en upload het terug."),
- ("Uw eigen categorieën", "", "De storingstypes die passen bij uw apparatuur, in elke taal."),
+ ("Uw eigen categorieën", "", "De storingstypes die passen bij uw apparatuur, met labels in het Nederlands, Engels, Duits en Frans."),
  ("Foto: verplicht, optioneel of uit", "", "Per formulier in te stellen, net als bij afleverdocumenten."),
  ("E-mailnotificaties", "", "Elke melding naar de mensen die u kiest, per objectgroep."),
  ("Webhook naar uw systemen", "", "Stuur elke melding naar uw ticket- of onderhoudssysteem."),
  ("Open API", "soon", "Bouw uw eigen koppeling op dezelfde gegevens."),
  ("Doorzoekbare historie", "", "Elke melding per object in het PODFY-portaal, met tijd en foto."),
- ("Uw huisstijl, 12 talen", "", "Het formulier spreekt de taal van de melder en toont uw logo."),
+ ("Uw huisstijl, app in 42 talen", "", "Het formulier spreekt de taal van de melder en toont uw logo."),
  ("Opslag in de EU, geen app", "", "Hetzelfde platform en dezelfde beveiliging als PODFY afleverbewijs."),
 ]
 
@@ -291,7 +291,7 @@ LP = {
  "sub": "PODFY QR-meldingen zet een QR-code op elke machine, laadpaal, kluis of elk voertuig dat u beheert. Wie een probleem ziet, scant de code, kiest wat er mis is en verstuurt het in seconden. Uw team ontvangt een complete melding met het object al herkend, per e-mail of direct in uw ticketsysteem.",
  "cta_demo": "Plan een demo van 15 minuten", "cta_how": "Zo werkt het",
  "trust": ["Geen app, geen account", "Uw logo en categorieën", "E-mail en webhook", "Opgeslagen in de EU"],
- "stats": [("0", "Apps te installeren"), ("1", "Scan per melding"), ("12", "Talen"), ("EU", "Dataopslag")],
+ "stats": [("0", "Apps te installeren"), ("1", "Scan per melding"), ("42", "Talen in de app"), ("EU", "Dataopslag")],
  "cmp_eyebrow": "Voor en na", "cmp_title": "Van een vervaagd telefoonnummer naar een complete melding",
  "without_h": "Nu", "without": ["Een telefoonnummer op een vervaagde sticker dat niemand belt", "E-mails over \"de machine\" zonder objectnummer", "Uw team belt terug om te vragen waar en wat", "Geen overzicht van welke machines steeds uitvallen"],
  "with_h": "Met PODFY QR-meldingen", "with": ["Eén scan opent een kort formulier, zonder app of account", "Object, locatie en tijd worden automatisch ingevuld", "Categorie, notitie en foto komen binnen in één gestructureerde melding", "Een historie per object laat zien waar problemen terugkomen"],
@@ -324,7 +324,7 @@ CMR = {
  "sub": "PODFY haalt getekende CMR's en afleverbonnen direct bij de chauffeur op. Elke telefoon, elke chauffeur, eigen personeel of charter. Geen app, geen account, geen training. Uw team krijgt een gestempelde PDF met tijd en locatie, doorzoekbaar in uw portaal nog voordat de wagen terug is op het depot.",
  "cta_demo": "Plan een demo van 15 minuten", "cta_try": "Probeer de live demo",
  "trust": ["Geen chauffeursapp", "Werkt voor charters", "Gestempelde PDF per zending", "Opgeslagen in de EU"],
- "stats": [("0", "Apps voor chauffeurs"), ("1", "Link per zending"), ("12", "Talen"), ("EU", "Dataopslag")],
+ "stats": [("0", "Apps voor chauffeurs"), ("1", "Link per zending"), ("42", "Talen in de app"), ("EU", "Dataopslag")],
  "phone": {"brand": "TRANS VAN DIJCK", "tag": "CMR", "ref": "TDV-2026-0841", "loc": "Levering DC Venlo, dock 7", "label": "Foto van de getekende CMR", "shot": "cmr_0841.jpg", "send": "Document versturen"},
  "cmp_eyebrow": "Voor en na", "cmp_title": "Van papieren CMR's najagen naar een gestempelde PDF op dezelfde dag",
  "without_h": "Nu", "without": ["Getekende CMR's liggen dagen in de cabine of raken kwijt", "Planners bellen chauffeurs en charters voor foto's", "Facturen wachten tot het papier terug is", "Een geschil begint met zoeken in ordners"],
@@ -351,7 +351,7 @@ CMR = {
  "gen_cta": "Bekijk de CMR-generator",
  "feat_eyebrow": "Eén platform", "feat_title": "Alles wat u nodig heeft rond de CMR",
  "features": [("Link en QR-kaart per zending", "", "Eén link per merk, de referentie per zending toegevoegd of op een QR-kaart geprint."),
-              ("Elke telefoon, geen app", "", "Chauffeurs en charters versturen vanuit de browser, in 12 talen."),
+              ("Elke telefoon, geen app", "", "Chauffeurs en charters versturen vanuit de browser. De app is in 42 talen, het portaal in het Engels."),
               ("Gestempelde PDF", "", "Tijd, referentie en locatie waar beschikbaar, met het originele bestand."),
               ("Meerdere pagina's en bestanden", "", "CMR, afleverbon en foto's van de goederen in één bewijs."),
               ("Afwijkingen bij levering", "", "Schade, ontbrekende items of weigering gemeld bij de levering."),
@@ -393,7 +393,7 @@ DOORS = {
    {"kicker": "Voor apparatuur en facilitair", "title": "QR-meldingen", "text": "Een QR-code op elke machine. Iedereen scant hem en meldt wat er mis is; uw team krijgt een complete melding per e-mail of webhook.",
     "points": ["Geen app voor wie meldt", "Uw eigen categorieën en stickers", "Tien kant-en-klare toepassingen"], "cta": "Naar QR-meldingen", "href": "/qr/"}],
  "shared_eyebrow": "Eén platform", "shared_title": "Hetzelfde platform achter beide",
- "shared": ["Geen app, geen account", "Uw logo en kleuren", "12 talen", "E-mail en webhook", "Doorzoekbaar portaal", "Opgeslagen in de EU"],
+ "shared": ["Geen app, geen account", "Uw logo en kleuren", "App in 42 talen, portaal in het Engels", "E-mail en webhook", "Doorzoekbaar portaal", "Opgeslagen in de EU"],
  "help_text": "Twijfelt u wat past? Vertel ons wat u wilt oplossen.", "help_cta": "Neem contact op",
 }
 
@@ -438,7 +438,7 @@ HOME_MORE = {
 FEATURES = [
  ("QR-code en sticker per object", "", "Printklare stickers met uw logo en uw eigen oproep."),
  ("Objectregister via sjabloon", "", "Upload objectnummers, namen en locaties; verplaats of beëindig objecten zelf."),
- ("Uw eigen categorieën en velden", "", "Storingstypes, prioriteiten en extra velden zoals een terugbetalingsbedrag, in elke taal."),
+ ("Uw eigen categorieën en velden", "", "Storingstypes, prioriteiten en extra velden zoals een terugbetalingsbedrag, met labels in het Nederlands, Engels, Duits en Frans."),
  ("Foto: verplicht, optioneel of uit", "", "Per formulier in te stellen, net als bij afleverdocumenten."),
  ("Routeringsregels", "", "Andere ontvangers per locatie, objectgroep of categorie."),
  ("Status van nieuw tot opgelost", "", "Nieuw, in behandeling, opgelost of afgewezen, met prioriteiten en dubbele meldingen samengevoegd."),
@@ -447,7 +447,7 @@ FEATURES = [
  ("Webhook naar uw systemen", "", "Elke melding naar uw ticket-, onderhouds- of werkordersysteem."),
  ("Open API", "", "Haal meldingen op en werk hun status bij vanuit uw eigen systemen."),
  ("Alles exporteren", "", "Altijd een CSV-export, en een volledige export inclusief foto's."),
- ("Uw huisstijl, 12 talen, opslag in de EU", "", "Uw logo op het formulier, de taal van de melder, data opgeslagen in de EU."),
+ ("Uw huisstijl, app in 42 talen, opslag in de EU", "", "Uw logo op het formulier, de taal van de melder, data opgeslagen in de EU."),
 ]
 FAQ["integr"] = ("Kunnen meldingen direct in ons ticket- of onderhoudssysteem komen?", "Ja. Meldingen worden gemaild naar de mensen die u kiest, gerouteerd per locatie of categorie, en per webhook naar uw ticket-, onderhouds- of werkordersysteem gestuurd. Met de open API haalt u meldingen op en werkt u hun status bij vanuit uw eigen tools.")
 FAQ["price"] = ("Wat kosten QR-meldingen?", "U betaalt een vast bedrag per actief object per maand. Geen kosten per melding, per gebruiker of per QR-code, en beëindigde objecten zijn gratis. Vraag een voorstel aan voor uw aantal machines.")
@@ -459,7 +459,7 @@ OV["stays"] = ["De reparatie plannen en een monteur sturen", "Terugbetalingen ui
 LP["receive_points"] = ["Gerouteerd per locatie, objectgroep of categorie", "Webhook en open API voor uw ticketsysteem", "Status van nieuw tot opgelost, met terugkoppeling aan de melder", "Elke melding per object bewaard, met rapportages per periode"]
 CMR["features"] = [
  ("Link en QR-kaart per zending", "", "Eén link per merk, de referentie per zending toegevoegd of op een QR-kaart geprint."),
- ("Elke telefoon, geen app", "", "Chauffeurs en charters versturen vanuit de browser, in 12 talen."),
+ ("Elke telefoon, geen app", "", "Chauffeurs en charters versturen vanuit de browser. De app is in 42 talen, het portaal in het Engels."),
  ("Gestempelde PDF", "", "Tijd, referentie en locatie waar beschikbaar, met het originele bestand."),
  ("Meerdere pagina's en bestanden", "", "CMR, afleverbon en foto's van de goederen in één bewijs."),
  ("Afwijkingen bij levering", "", "Schade, ontbrekende items of weigering gemeld bij de levering."),
@@ -493,7 +493,7 @@ QRPRICE = {
  "eyebrow": "Tarieven QR-meldingen", "title": "Per actief object per maand. Verder niets.",
  "intro": "Eén prijs per actieve machine of object. Onbeperkt gebruikers, meldingen en QR-codes, en beëindigde objecten zijn gratis.",
  "cols": ["Actieve objecten", "Per object per maand"], "range_from": "{a} tot {b}", "range_plus": "{a} en meer",
- "included_h": "Inbegrepen", "included": ["Objectregister, QR-codes en stickers", "Eigen categorieën, velden en foto-instellingen", "Routering, status, prioriteiten en samenvoegen van dubbele meldingen", "Dashboard, rapportages en volledige export", "Webhook naar uw systemen", "Onbeperkt gebruikers, meldingen en QR-codes (fair use)", "Uw huisstijl, 12 talen, opslag in de EU", "Support: reactie binnen één werkdag"],
+ "included_h": "Inbegrepen", "included": ["Objectregister, QR-codes en stickers", "Eigen categorieën, velden en foto-instellingen", "Routering, status, prioriteiten en samenvoegen van dubbele meldingen", "Dashboard, rapportages en volledige export", "Webhook naar uw systemen", "Onbeperkt gebruikers, meldingen en QR-codes (fair use)", "Uw huisstijl, app in 42 talen, opslag in de EU", "Support: reactie binnen één werkdag"],
  "adv_h": "Advanced", "adv_price": "+{p} per object per maand", "adv": ["Open API", "Terugkoppeling aan de melder", "Kritieke storingen opgepakt binnen 4 werkuren"],
  "terms_h": "Voorwaarden", "terms": ["Minimaal {m} per maand", "Gratis pilot van 6 weken voor maximaal 100 objecten", "Geen opstartkosten", "Maandelijks opzegbaar", "Prijs 12 maanden vast, of 24 maanden bij een jaarcontract", "Jaarlijks vooruitbetalen: vraag naar de korting", "Fair use: gemiddeld ongeveer 10 meldingen per object per maand"],
  "cta": "Offerte aanvragen", "strip": "{p} per actief object per maand, tot {low} bij grote aantallen. Gratis pilot van 6 weken.", "strip_cta": "Bekijk de tarieven",
@@ -531,7 +531,7 @@ VSQR = {
   ("Objectregister met import en beëindiging", "Geen onderdeel van het hulpmiddel. De lijst staat in een spreadsheet.", "Upload uw objecten via een sjabloon. Verplaats of beëindig objecten zelf; beëindigde objecten zijn gratis."),
   ("Stickers met uw eigen tekst", "Een gewone QR-afbeelding die u in uw eigen opmaak plaatst.", "Printklare stickers per object met uw logo en uw eigen tekst, bijvoorbeeld 'Scan om een storing te melden'."),
   ("Foto optioneel of verplicht", "Meestal een bestandsuploadveld dat u per formulier configureert.", "Verplicht, optioneel of uit, per formulier."),
-  ("Categorieën en extra velden", "Ja, u bouwt elk veld zelf.", "Uw eigen categorieën en velden voor uw apparatuur, in elke taal."),
+  ("Categorieën en extra velden", "Ja, u bouwt elk veld zelf.", "Uw eigen categorieën en velden voor uw apparatuur, met labels in het Nederlands, Engels, Duits en Frans."),
   ("Routering en vervolgstatus", "Meestal een e-mail naar één adres. Vervolgactiviteiten gebeuren in een spreadsheet of inbox.", "Routering per locatie of categorie. Status van nieuw tot opgelost, met prioriteiten en dubbele meldingen samengevoegd."),
   ("Webhooks", "Hangt af van het hulpmiddel en het plan. Heeft vaak een betaald abonnement of aansluiting nodig.", "Webhook naar uw ticket- of onderhoudssysteem. Open API: binnenkort."),
   ("Hosting in de EU en AVG", "Hangt af van de leverancier en het plan. Controleer waar antwoorden en uploads worden opgeslagen.", "Meldingen en foto's opgeslagen in de EU, een verwerkersovereenkomst en verwijdering op aanvraag."),
@@ -555,7 +555,7 @@ VSQR = {
  "faq": [("Waarom geen formulierbouwer met QR-code gebruiken?",
           "U kunt dat, en voor een paar objecten werkt het. Een generiek formulier weet niet welk object is gescand, dus de melder moet het typen. PODFY geeft elk object zijn eigen QR-code gekoppeld aan het objectregister, zodat de melding met objectnummer, locatie en groep binnenkomt."),
          ("Kunnen we onze bestaande categorieën en vragen houden?",
-          "Ja. U stelt uw eigen categorieën en velden per formulier in, in elke taal, en bepaalt of een foto verplicht, optioneel of uit is."),
+          "Ja. U stelt uw eigen categorieën en velden per formulier in, met labels in het Nederlands, Engels, Duits en Frans, en bepaalt of een foto verplicht, optioneel of uit is."),
          ("Wat gebeurt er met onze bestaande QR-codes en stickers?",
           "Stickers van een generiek hulpmiddel verwijzen naar het formulier van dat hulpmiddel, dus moet u ze vervangen door PODFY stickers. De nieuwe stickers hebben uw logo en uw eigen tekst, en de QR-codes blijven gekoppeld aan uw objectid's."),
          ("Gaan meldingen naar ons ticket- of onderhoudssysteem?",

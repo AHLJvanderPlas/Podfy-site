@@ -118,13 +118,13 @@ FAQ = {'app': ('Do the people reporting need an app or an account?',
 
 FEATURES = [('QR code and sticker per asset', '', 'Print-ready stickers with your logo and your own call to action.'),
  ('Asset list from a template', '', 'Download the template, add your asset numbers, upload it back.'),
- ('Your categories', '', 'The issue types that match your equipment, in every language.'),
+ ('Your categories', '', 'The issue types that match your equipment, with labels in English, Dutch, German and French.'),
  ('Photo: required, optional or off', '', 'Set per form, the same way as for delivery documents.'),
  ('E-mail notifications', '', 'Each report to the people you choose, per asset group.'),
  ('Webhook to your systems', '', 'Send every report to your ticketing or maintenance tool.'),
  ('Open API', 'soon', 'Build your own integration on the same data.'),
  ('Searchable history', '', 'Every report per asset in the PODFY portal, with time and photo.'),
- ('Your branding, 12 languages', '', "The form speaks the reporter's language and shows your logo."),
+ ('Your branding, app in 42 languages', '', "The form speaks the reporter's language and shows your logo."),
  ('EU storage, no app', '', 'Same platform and security as PODFY proof of delivery.')]
 
 CASES = {'ev-chargers': {'name': 'EV chargers',
@@ -612,7 +612,7 @@ LP = {
  "sub": "PODFY QR Reporting puts a QR code on each machine, charger, locker or vehicle you look after. Whoever spots a problem scans it, picks what is wrong and sends it in seconds. Your team receives a complete report with the asset already identified, by e-mail or straight into your ticket system.",
  "cta_demo": "Plan a 15-minute demo", "cta_how": "See how it works",
  "trust": ["No app, no account", "Your logo and categories", "E-mail and webhook", "Stored in the EU"],
- "stats": [("0", "Apps to install"), ("1", "Scan per report"), ("12", "Languages"), ("EU", "Data storage")],
+ "stats": [("0", "Apps to install"), ("1", "Scan per report"), ("42", "App languages"), ("EU", "Data storage")],
  "cmp_eyebrow": "Before and after", "cmp_title": "From a faded phone number to a complete report",
  "without_h": "Today", "without": ["A phone number on a faded sticker that nobody calls", "E-mails about \"the machine\" without an asset number", "Your team calls back to ask where and what", "No overview of which machines keep failing"],
  "with_h": "With PODFY QR Reporting", "with": ["One scan opens a short form, no app or account", "Asset, location and time are filled in automatically", "Category, note and photo arrive in one structured report", "A history per asset shows where problems repeat"],
@@ -646,7 +646,7 @@ CMR = {
  "sub": "PODFY collects signed CMRs and delivery notes straight from the driver. Any phone, any driver, employed or subcontracted. No app, no account, no training. Your team gets a stamped PDF with time and location, searchable in your portal before the truck is back at the depot.",
  "cta_demo": "Plan a 15-minute demo", "cta_try": "Try the live demo",
  "trust": ["No driver app", "Works for subcontractors", "Stamped PDF per shipment", "Stored in the EU"],
- "stats": [("0", "Apps for drivers"), ("1", "Link per shipment"), ("12", "Languages"), ("EU", "Data storage")],
+ "stats": [("0", "Apps for drivers"), ("1", "Link per shipment"), ("42", "App languages"), ("EU", "Data storage")],
  "phone": {"brand": "TRANS VAN DIJCK", "tag": "CMR", "ref": "TDV-2026-0841", "loc": "Delivery Venlo DC, dock 7", "label": "Photo of the signed CMR", "shot": "cmr_0841.jpg", "send": "Send document"},
  "cmp_eyebrow": "Before and after", "cmp_title": "From chasing paper CMRs to a stamped PDF the same day",
  "without_h": "Today", "without": ["Signed CMRs travel in the cab for days or get lost", "Planners call drivers and subcontractors for photos", "Invoices wait until the paperwork is back", "Disputes start with searching through folders"],
@@ -673,7 +673,7 @@ CMR = {
  "gen_cta": "See the CMR generator",
  "feat_eyebrow": "One platform", "feat_title": "Everything you need around the CMR",
  "features": [("Link and QR card per shipment", "", "One link per brand, the reference added per shipment or printed on a QR card."),
-              ("Any phone, no app", "", "Drivers and subcontractors send from the browser, in 12 languages."),
+              ("Any phone, no app", "", "Drivers and subcontractors send from the browser. The app is in 42 languages, the portal is in English."),
               ("Stamped PDF", "", "Time, reference and location where available, with the original file."),
               ("Multi-page and multiple files", "", "CMR, delivery note and photos of the goods in one record."),
               ("Delivery exceptions", "", "Damage, missing items or refusal reported with the delivery."),
@@ -716,7 +716,7 @@ DOORS = {
    {"kicker": "For equipment and facilities", "title": "QR Reporting", "text": "A QR code on every machine. Anyone scans it and reports what is wrong; your team gets a complete report by e-mail or webhook.",
     "points": ["No app for the person reporting", "Your own categories and stickers", "Ten ready use cases"], "cta": "Go to QR Reporting", "href": "/qr/"}],
  "shared_eyebrow": "One platform", "shared_title": "The same platform behind both",
- "shared": ["No app, no account", "Your logo and colours", "12 languages", "E-mail and webhook", "Searchable portal", "Stored in the EU"],
+ "shared": ["No app, no account", "Your logo and colours", "App in 42 languages, portal in English", "E-mail and webhook", "Searchable portal", "Stored in the EU"],
  "help_text": "Not sure which fits? Tell us what you want to solve.", "help_cta": "Contact us",
 }
 
@@ -761,7 +761,7 @@ HOME_MORE = {
 FEATURES = [
  ("QR code and sticker per asset", "", "Print-ready stickers with your logo and your own call to action."),
  ("Asset register from a template", "", "Upload asset numbers, names and locations; move or retire assets yourself."),
- ("Your own categories and fields", "", "Issue types, priorities and extra fields such as a refund amount, in every language."),
+ ("Your own categories and fields", "", "Issue types, priorities and extra fields such as a refund amount, with labels in English, Dutch, German and French."),
  ("Photo: required, optional or off", "", "Set per form, the same way as for delivery documents."),
  ("Routing rules", "", "Different recipients per location, asset group or category."),
  ("Status from new to resolved", "", "New, in progress, resolved or rejected, with priorities and duplicate reports grouped."),
@@ -770,7 +770,7 @@ FEATURES = [
  ("Webhook to your systems", "", "Every report to your ticketing, maintenance or work-order tool."),
  ("Open API", "", "Fetch reports and update their status from your own systems."),
  ("Export everything", "", "CSV export at any time, and a full export including photos."),
- ("Your branding, 12 languages, EU storage", "", "Your logo on the form, the reporter's language, data stored in the EU."),
+ ("Your branding, app in 42 languages, EU storage", "", "Your logo on the form, the reporter's language, data stored in the EU."),
 ]
 FAQ["integr"] = ("Can reports go straight into our ticketing or maintenance system?", "Yes. Reports are e-mailed to the people you choose, routed per location or category, and sent by webhook to your ticketing, maintenance or work-order system. With the open API you fetch reports and update their status from your own tools.")
 FAQ["price"] = ("What does QR Reporting cost?", "You pay a fixed amount per active asset per month. No fees per report, per user or per QR code, and retired assets are free. Ask for a proposal for your fleet size.")
@@ -782,7 +782,7 @@ OV["stays"] = ["Planning the repair and sending a technician", "Paying out refun
 LP["receive_points"] = ["Routed per location, asset group or category", "Webhook and open API for your ticket system", "Status from new to resolved, with feedback to the reporter", "Every report stored per asset, with reports per period"]
 CMR["features"] = [
  ("Link and QR card per shipment", "", "One link per brand, the reference added per shipment or printed on a QR card."),
- ("Any phone, no app", "", "Drivers and subcontractors send from the browser, in 12 languages."),
+ ("Any phone, no app", "", "Drivers and subcontractors send from the browser. The app is in 42 languages, the portal is in English."),
  ("Stamped PDF", "", "Time, reference and location where available, with the original file."),
  ("Multi-page and multiple files", "", "CMR, delivery note and photos of the goods in one record."),
  ("Delivery exceptions", "", "Damage, missing items or refusal reported with the delivery."),
@@ -816,7 +816,7 @@ QRPRICE = {
  "eyebrow": "QR Reporting pricing", "title": "Per active asset per month. Nothing else.",
  "intro": "One price per active machine or asset. Unlimited users, reports and QR codes, and retired assets are free.",
  "cols": ["Active assets", "Per asset per month"], "range_from": "{a} to {b}", "range_plus": "{a} and more",
- "included_h": "Included", "included": ["Asset register, QR codes and stickers", "Own categories, fields and photo settings", "Routing, status, priorities and duplicate grouping", "Dashboard, reports and full export", "Webhook to your systems", "Unlimited users, reports and QR codes (fair use)", "Your branding, 12 languages, EU storage", "Support: reply within one business day"],
+ "included_h": "Included", "included": ["Asset register, QR codes and stickers", "Own categories, fields and photo settings", "Routing, status, priorities and duplicate grouping", "Dashboard, reports and full export", "Webhook to your systems", "Unlimited users, reports and QR codes (fair use)", "Your branding, app in 42 languages, EU storage", "Support: reply within one business day"],
  "adv_h": "Advanced", "adv_price": "+{p} per asset per month", "adv": ["Open API", "Feedback to the reporter", "Critical incidents handled within 4 business hours"],
  "terms_h": "Terms", "terms": ["Minimum {m} per month", "Free 6-week pilot for up to 100 assets", "No setup fee", "Cancel monthly", "Price fixed for 12 months, or 24 months with an annual commitment", "Annual prepayment: ask about the discount", "Fair use: on average about 10 reports per asset per month"],
  "cta": "Request a proposal", "strip": "{p} per active asset per month, down to {low} at volume. Free 6-week pilot.", "strip_cta": "See QR pricing",
@@ -854,7 +854,7 @@ VSQR = {
   ("Asset register with import and retire", "Not part of the tool. The list lives in a spreadsheet.", "Upload your assets from a template. Move or retire assets yourself; retired assets are free."),
   ("Stickers with your own text", "A plain QR image that you place in your own layout.", "Print-ready stickers per asset with your logo and your own text, such as \"Scan to report an issue\"."),
   ("Photo optional or required", "Usually a file upload field that you configure per form.", "Required, optional or off, per form."),
-  ("Categories and extra fields", "Yes, you build every field yourself.", "Your own categories and fields for your equipment, in every language."),
+  ("Categories and extra fields", "Yes, you build every field yourself.", "Your own categories and fields for your equipment, with labels in English, Dutch, German and French."),
   ("Routing and follow up status", "Typically an e-mail to one address. Follow up happens in a spreadsheet or inbox.", "Routing per location or category. Status from new to resolved, with priorities and duplicate reports grouped."),
   ("Webhooks", "Depends on the tool and the plan. Often needs a paid tier or a connector.", "Webhook to your ticketing or maintenance system. Open API: soon."),
   ("EU hosting and GDPR", "Depends on the vendor and the plan. Check where answers and uploads are stored.", "Reports and photos stored in the EU, a data processing agreement and deletion on request."),
@@ -878,7 +878,7 @@ VSQR = {
  "faq": [("Why not just use a form builder with a QR code?",
           "You can, and for a few assets it works. A generic form does not know which asset was scanned, so the reporter must type it. PODFY gives every asset its own QR code linked to the asset register, so the report arrives with asset number, location and group."),
          ("Can we keep our existing categories and questions?",
-          "Yes. You set your own categories and fields per form, in every language, and decide whether a photo is required, optional or off."),
+          "Yes. You set your own categories and fields per form, with labels in English, Dutch, German and French, and decide whether a photo is required, optional or off."),
          ("What happens to our existing QR codes and stickers?",
           "Stickers from a generic tool point to that tool's form, so they need to be replaced by PODFY stickers. The new stickers carry your logo and your own text, and the QR codes stay linked to your own asset IDs."),
          ("Do reports go to our ticketing or maintenance system?",

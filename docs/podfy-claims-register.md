@@ -38,7 +38,7 @@ Status: **verified** · **incorrect** (fix now) · **needs owner approval** · *
 | R5 | Asset register (name, site, status, retire/move) | none | **future feature** |
 | R6 | Notifications to the responsible team | brand e-mail recipients + custom notification templates exist | **supported** (wording is delivery-specific) |
 | R7 | Report history per asset/date/category | portal list with search by reference/date/status | **partly supported** (no category filter/asset view) |
-| R8 | Branding, multilingual reporting form | brand colours/logo + 12-language app UI | **supported** |
+| R8 | Branding, multilingual reporting form | brand colours/logo + app UI in 42 languages (portal, driver portal and e-mails are English only) | **supported** |
 | R9 | Abuse protection on public links | single-use upload challenge, per-IP + per-recipient limits (`upload_guard`) | **supported** |
 | R10 | Public Report demo | Delivery demo only (demo brand, 72 h) | **future feature** |
 

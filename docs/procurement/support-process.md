@@ -45,7 +45,7 @@ Tools to look up context (admin application): brand, plan, users, recent uploads
 
 ## 4. Handling and closing
 
-- Reply in the language of the customer where possible (the site is available in 12 languages; support replies in Dutch, English, and, with care, German and French [OWNER: confirm languages offered]).
+- Reply in the language of the customer where possible (the app is available in 42 languages and the portal is in English; support replies in Dutch, English, and, with care, German and French [OWNER: confirm languages offered]).
 - State what was checked, what was found, and what happens next. Give a date for the next update when the issue is not resolved.
 - Close with the customer's confirmation or after 5 business days without reply (one reminder before closing).
 - Record recurring issues and feed them into the roadmap and the changelog.

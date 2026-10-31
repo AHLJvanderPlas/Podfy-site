@@ -208,7 +208,7 @@ Voeg toe als Bijlage (of schema) aan de PODFY Verwerkingsovereenkomst. De bestaa
 
 ## Deel 4. Meldingstekst voor klanten (sticker of formulier)
 
-Ter beschikking gesteld door PODFY als modeltext. De klant vult de tijdelijke aanduidingen in. Beschikbaar in alle 12 talen zodra de vertalingen zijn goedgekeurd; dit is de NL-versie.
+Ter beschikking gesteld door PODFY als modeltext. De klant vult de tijdelijke aanduidingen in. Beschikbaar in alle 42 app-talen zodra de vertalingen zijn goedgekeurd; dit is de NL-versie.
 
 **Korte versie (voor de sticker of in de buurt van de QR-code):**
 

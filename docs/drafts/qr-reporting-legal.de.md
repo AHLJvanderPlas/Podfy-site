@@ -208,7 +208,7 @@ Als Anlage (oder Anlage) zur PODFY-Auftragsverarbeitungsvereinbarung hinzufügen
 
 ## Teil 4. Mitteilungstext für Kunden (Aufkleber oder Formular)
 
-Bereitgestellt von PODFY als Mustertext. Der Kunde füllt die Platzhalter aus. Verfügbar in allen 12 Sprachen, sobald die Übersetzungen genehmigt sind; dies ist der DE-Master.
+Bereitgestellt von PODFY als Mustertext. Der Kunde füllt die Platzhalter aus. Verfügbar in allen 42 App-Sprachen, sobald die Übersetzungen genehmigt sind; dies ist der DE-Master.
 
 **Kurzversion (für den Aufkleber oder neben dem QR-Code):**
 

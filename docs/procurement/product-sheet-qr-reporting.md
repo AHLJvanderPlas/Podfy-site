@@ -17,7 +17,7 @@ When a machine, vending unit, vehicle or property asset has a fault, the report 
 
 | Capability | Availability |
 |---|---|
-| QR per asset, your branding, 12 languages, EU storage, e-mail notification | Available now (today per reference, without asset register) |
+| QR per asset, your branding, app in 42 languages, portal in English, EU storage, e-mail notification | Available now (today per reference, without asset register) |
 | Your own categories and extra fields (for example refund amount and payment reference) | Available from November 2026 |
 | Photo required, optional or off, per form | Available from November 2026 |
 | Asset register from a template upload, move and retire assets, stickers with custom text | Available from November 2026 |

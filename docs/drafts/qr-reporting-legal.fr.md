@@ -208,7 +208,7 @@ Ajouter en tant qu'Annexe (ou calendrier) à l'Accord de traitement des données
 
 ## Partie 4. Texte d'avis pour les clients (autocollant ou formulaire)
 
-Fourni par PODFY comme texte modèle. Le client remplit les espaces réservés. Disponible dans les 12 langues une fois les traductions approuvées ; ceci est la version EN maître.
+Fourni par PODFY comme texte modèle. Le client remplit les espaces réservés. Disponible dans les 42 langues de l'application une fois les traductions approuvées ; ceci est la version EN maître.
 
 **Version courte (pour l'autocollant ou près du code QR) :**
 

@@ -26,7 +26,7 @@ PODFY is a hosted, browser-based service. Nothing is installed on the customer s
 ### 1.1 Product: CMR and delivery proof (Live)
 
 - QR code per shipment or location, capture of photos or PDF documents through the phone browser, no app.
-- Branding per customer, 12 languages, e-mail notifications, searchable history, CSV export.
+- Branding per customer, app in 42 languages, portal in English, e-mail notifications, searchable history, CSV export.
 - Retention per plan (see Privacy Policy section 5), deletion at the end of retention, deletion on request.
 - Optional add-ons per customer configuration, for example PDF header and footer, PDF merge, GPS stamp, driver copy by e-mail. OCR text extraction and AI document check exist as add-ons that are not yet generally offered (they are in a testing state in the plan catalogue); they are only active for a customer who has agreed to them. See the Security Overview and the Questionnaire Answers for the data flow.
 

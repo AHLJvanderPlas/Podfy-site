@@ -17,7 +17,7 @@ Proof of delivery arrives late, incomplete or on paper. Drivers and subcontracto
 
 | Capability | Availability |
 |---|---|
-| Branded upload link and QR card per shipment, 12 languages, any phone, no app | Available now |
+| Branded upload link and QR card per shipment, app in 42 languages, portal in English, any phone, no app | Available now |
 | Time-stamped PDF, multi-file upload and PDF merge (Starter and up) | Available now |
 | E-mail notifications per customer or depot, driver copy | Available now |
 | Portal with search, multi-user roles, damage and exception reporting (Advanced and up) | Available now |

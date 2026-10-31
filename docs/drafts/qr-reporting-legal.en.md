@@ -276,7 +276,7 @@ Add as Annex (or schedule) to the PODFY Data Processing Addendum. The existing D
 
 ## Part 4. Notice text for customers (sticker or form)
 
-Provided by PODFY as a model text. The customer fills in the placeholders. Available in all 12 languages once the translations are approved; this is the EN master.
+Provided by PODFY as a model text. The customer fills in the placeholders. Available in all 42 app languages once the translations are approved; this is the EN master.
 
 **Short version (for the sticker or near the QR code):**
 

@@ -9,7 +9,7 @@ start date; never sign a start date before the build date in this table.
 
 | Capability (as promised on the site) | Today | Build | Phase / target |
 |---|---|---|---|
-| QR per asset/shipment, no app, branding, 12 languages, EU storage | live | — | live |
+| QR per asset/shipment, no app, branding, app in 42 languages, portal in English, EU storage | live | — | live |
 | E-mail notifications, searchable history, CSV export | live | — | live |
 | Daily backups, encryption, DPA, retention, deletion | live (nightly D1 backup, 14 days) | — | live |
 | Own categories and extra fields (e.g. refund amount + payment reference) | **built, on QA** (app QA + portal configurator live; app production after owner approval) | per-brand category + field list | 1 · 27 Nov 2026 |
