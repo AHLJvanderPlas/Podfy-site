@@ -468,3 +468,7 @@ edge/cache staleness was ruled out too.
   `excerpt_de`/`excerpt_fr` (AI-translated from NL, written from podfy-admin). Seeded
   with one row (`regelgeving-update`) ahead of any operator UI use, feeding the new
   Thursday repository→blog pipeline in podfy-admin.
+
+## Phase 1 (2026-10-31)
+
+Live in production. New status page: podfy.net/status (functions/status/index.js, supports ?lang=nl|de|fr), linked in footer, included in sitemap. Capability matrix updated. Tests: 23 tests covering status page and phase 1 features.
