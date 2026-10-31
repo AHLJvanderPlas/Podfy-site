@@ -24,6 +24,6 @@ start date; never sign a start date before the build date in this table.
 | Reporter confirmation + "resolved" message | driver copy e-mail | reuse + status trigger | 2–3 · Jan 2027 |
 | Open API (fetch records, update status) | none | API keys per brand | 3 · Feb 2027 |
 | QR portability: export destinations, 12-month redirect after leaving | none | per-brand redirect setting | 3 · Feb 2027 |
-| 99.5% uptime measured monthly, proactive incident communication | **live**: podfy.net/status, checks every 5 minutes, owner alert by e-mail (+ optional ops webhook); monthly report not built | public status page + monthly report | 1 · Nov 2026 |
+| 99.5% uptime measured monthly, proactive incident communication | **live**: podfy.net/status, checks every 5 minutes, owner alert by e-mail (+ optional ops webhook); monthly uptime report by e-mail + archived JSON (1st of each month) | public status page + monthly report | 1 · Nov 2026 |
 | Support: 1 business day; critical within 4 business hours | inbox | support process, on-call rule | 0 · now (process) |
 | Monthly cancellation | terms | terms text for QR Reporting | 0 · now |
