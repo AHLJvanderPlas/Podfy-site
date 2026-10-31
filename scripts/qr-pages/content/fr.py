@@ -499,7 +499,7 @@ QRPRICE = {
  "cta": "Demander une proposition", "strip": "{p} par équipement actif et par mois, jusqu'à {low} pour les grands parcs. Pilote gratuit de 6 semaines.", "strip_cta": "Voir les tarifs QR",
 }
 COMPANY = {"title": "Informations société", "rows": ["Nom commercial", "Adresse", "Chambre de commerce (KvK)", "TVA", "E-mail", "LinkedIn"], "trade": "PODFY est un nom commercial de Lake-Project"}
-FAQ["price"] = ("Combien coûte le Signalement QR ?", "0,75 € par équipement actif et par mois, jusqu'à 0,40 € au-delà de 2 500 équipements. Pas de frais par signalement, par utilisateur ou par QR code, les équipements retirés sont gratuits, et le pilote est gratuit pendant 6 semaines.")
+FAQ["price"] = ("Combien coûte le Signalement QR ?", "0,68 € par équipement actif et par mois, jusqu'à 0,27 € au-delà de 2 500 équipements. Pas de frais par signalement, par utilisateur ou par QR code, les équipements retirés sont gratuits, et le pilote est gratuit pendant 6 semaines.")
 FEATURES = [(t, s, d + (" Inclus dans Advanced." if t in ("API ouverte", "Retour à la personne qui signale") else "")) for t, s, d in FEATURES]
 SERVICE["items"] = [(h, "Réponse sous un jour ouvré ; avec Advanced, incidents critiques sous 4 heures ouvrées." if h == "Un support qui répond" else t) for h, t in SERVICE["items"]]
 

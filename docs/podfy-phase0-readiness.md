@@ -44,8 +44,8 @@ company, a complete procurement pack, transparent terms and a fast, precise answ
 
 ## C. Commercial best practice
 - Publish QR Reporting prices: transparent pricing wins against suppliers that hide it.
-  Proposal: €0.75 per active asset per month; 251-1,000 €0.60; 1,001-2,500 €0.50; 2,501+ €0.40;
-  minimum €25 per month; Advanced (API, reporter feedback, priority support) +€0.25.
+  Decided 2026-10-31 (P2-1, 10% below benchmark): €0.68 per active asset per month; 251-1,000 €0.45; 1,001-2,500 €0.36; 2,501+ €0.27;
+  minimum €13.50 per month; Advanced (API, reporter feedback, priority support) +€0.25.
 - The buyer's model, not ours: per active asset; nothing per report, user or QR code; free pilot;
   monthly cancellable; price fixed 12 months (24 with an annual commitment).
 - Annual prepayment discount through pre-paid credit (already built).

@@ -39,16 +39,16 @@ Billed per active asset per month. Nothing per report, user or QR code. Billing 
 
 | Active assets | Price per asset per month |
 |---|---|
-| 1 to 250 | EUR 0.75 |
-| 251 to 1,000 | EUR 0.60 |
-| 1,001 to 2,500 | EUR 0.50 |
-| 2,501 and more | EUR 0.40 |
+| 1 to 250 | EUR 0.68 |
+| 251 to 1,000 | EUR 0.45 |
+| 1,001 to 2,500 | EUR 0.36 |
+| 2,501 and more | EUR 0.27 |
 
-**Volume pricing: the whole fleet pays the price of the tier it reaches.** With 251 assets, all 251 cost EUR 0.60. Consequence: 251 assets (EUR 150.60) cost less than 250 assets (EUR 187.50), and 1,001 assets (EUR 500.50) cost less than 1,000 (EUR 600.00).
+**Volume pricing: the whole fleet pays the price of the tier it reaches.** With 251 assets, all 251 cost EUR 0.45. Consequence: 251 assets (EUR 112.95) cost less than 250 assets (EUR 170.00), and 1,001 assets (EUR 360.36) cost less than 1,000 (EUR 450.00).
 
 **Active asset.** An asset counts for a month if it is in your register and active at any time in that month. An asset retired during a month counts for that month and is free from the next month. [DECIDE: no pro rata for assets added or retired mid-month. Recommendation: keep it, because it is simple to audit.]
 
-**Minimum fee.** EUR 25 per month. It applies when the monthly total of the QR Reporting lines is below EUR 25, which at EUR 0.75 is the case below 34 assets (33 assets = EUR 24.75).
+**Minimum fee.** EUR 13.50 per month. It applies when the monthly total of the QR Reporting lines is below EUR 13.50, which at EUR 0.68 is the case below 20 assets (19 assets = EUR 12.92).
 
 **Advanced add-on.** + EUR 0.25 per active asset per month. Adds: open API (from February 2027), feedback to the reporter (from January 2027), critical incidents handled within 4 business hours.
 
@@ -80,24 +80,24 @@ Capability dates are on the product sheet (product-sheet-qr-reporting.md).
 
 | Line | Calculation | Amount |
 |---|---|---|
-| QR Reporting | 180 x EUR 0.75 | EUR 135.00 |
-| Subtotal (without Advanced) | | EUR 135.00 |
-| VAT 21% | | EUR 28.35 |
-| Total | | EUR 163.35 |
-| With Advanced | 180 x EUR 1.00 | EUR 180.00 |
-| VAT 21% | | EUR 37.80 |
-| Total with Advanced | | EUR 217.80 |
+| QR Reporting | 180 x EUR 0.68 | EUR 122.40 |
+| Subtotal (without Advanced) | | EUR 122.40 |
+| VAT 21% | | EUR 25.70 |
+| Total | | EUR 148.10 |
+| With Advanced | 180 x EUR 0.93 | EUR 167.40 |
+| VAT 21% | | EUR 35.15 |
+| Total with Advanced | | EUR 202.55 |
 
 **Example B: 1,200 assets**
 
 | Line | Calculation | Amount |
 |---|---|---|
-| QR Reporting (tier 1,001 to 2,500) | 1,200 x EUR 0.50 | EUR 600.00 |
-| VAT 21% | | EUR 126.00 |
-| Total | | EUR 726.00 |
-| With Advanced | 1,200 x EUR 0.75 | EUR 900.00 |
-| VAT 21% | | EUR 189.00 |
-| Total with Advanced | | EUR 1,089.00 |
+| QR Reporting (tier 1,001 to 2,500) | 1,200 x EUR 0.36 | EUR 432.00 |
+| VAT 21% | | EUR 90.72 |
+| Total | | EUR 522.72 |
+| With Advanced | 1,200 x EUR 0.61 | EUR 732.00 |
+| VAT 21% | | EUR 153.72 |
+| Total with Advanced | | EUR 885.72 |
 
 ### Fair use
 

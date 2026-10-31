@@ -30,12 +30,12 @@ Vous, et non PODFY, décidez de ce que vous ferez avec un Signalement. PODFY ne 
 
 | Équipements actifs au cours de la période | Tarif par Équipement actif par mois |
 |---|---|
-| 1 à 250 | 0,75 EUR |
-| 251 à 1 000 | 0,60 EUR |
-| 1 001 à 2 500 | 0,50 EUR |
-| 2 501 et plus | 0,40 EUR |
+| 1 à 250 | 0,68 EUR |
+| 251 à 1 000 | 0,45 EUR |
+| 1 001 à 2 500 | 0,36 EUR |
+| 2 501 et plus | 0,27 EUR |
 
-**Frais minimum.** Le montant minimum est de 25 EUR par mois. Si le montant calculé à partir des Équipements Actifs est inférieur, la facture montre un complément à 25 EUR.
+**Frais minimum.** Le montant minimum est de 13,50 EUR par mois. Si le montant calculé à partir des Équipements Actifs est inférieur, la facture montre un complément à 13,50 EUR.
 
 **Offre Advanced.** L'offre Advanced coûte 0,25 EUR par Équipement actif par mois, en plus du tarif ci-dessus, pour les Équipements pour lesquels elle est activée.
 

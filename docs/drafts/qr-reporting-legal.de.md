@@ -30,12 +30,12 @@ Sie, nicht PODFY, entscheiden darüber, was Sie mit einer Meldung tun. PODFY üb
 
 | Aktive Objekte im Zeitraum | Preis pro aktivem Objekt pro Monat |
 |---|---|
-| 1 bis 250 | EUR 0,75 |
-| 251 bis 1.000 | EUR 0,60 |
-| 1.001 bis 2.500 | EUR 0,50 |
-| 2.501 und mehr | EUR 0,40 |
+| 1 bis 250 | EUR 0,68 |
+| 251 bis 1.000 | EUR 0,45 |
+| 1.001 bis 2.500 | EUR 0,36 |
+| 2.501 und mehr | EUR 0,27 |
 
-**Mindestgebühr.** Die Mindestgebühr beträgt EUR 25 pro Monat. Wenn der aus aktiven Objekten berechnete Betrag geringer ist, zeigt die Rechnung einen Ausgleich auf EUR 25.
+**Mindestgebühr.** Die Mindestgebühr beträgt EUR 13,50 pro Monat. Wenn der aus aktiven Objekten berechnete Betrag geringer ist, zeigt die Rechnung einen Ausgleich auf EUR 13,50.
 
 **Advanced-Add-on.** Das Advanced-Add-on kostet EUR 0,25 pro aktivem Objekt pro Monat, zusätzlich zum obigen Preis, für die Objekte, für die es aktiviert ist.
 

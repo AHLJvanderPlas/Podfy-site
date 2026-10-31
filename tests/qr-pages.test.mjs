@@ -92,10 +92,10 @@ test("QR price list and company facts are consistent in every locale", () => {
   for (const loc of LOCALES) {
     const pricing = readFileSync(`${ROOT}${loc}pricing.html`, "utf8");
     const prices = [...pricing.matchAll(/class="qrp-price">([^<]*)</g)].map((m) => norm(m[1]));
-    assert.deepEqual(prices, ["0.75", "0.60", "0.50", "0.40"], `${loc}pricing: QR tiers`);
-    assert.match(pricing, /"name": "QR Reporting", "price": "0.75"/, `${loc}pricing: QR offer JSON-LD`);
+    assert.deepEqual(prices, ["0.68", "0.45", "0.36", "0.27"], `${loc}pricing: QR tiers`);
+    assert.match(pricing, /"name": "QR Reporting", "price": "0.68"/, `${loc}pricing: QR offer JSON-LD`);
     const faqPrice = readFileSync(`${ROOT}${loc}qr/index.html`, "utf8");
-    assert.match(faqPrice.replace(/ /g, " "), /0[.,]75/, `${loc}qr: price in FAQ`);
+    assert.match(faqPrice.replace(/ /g, " "), /0[.,]68/, `${loc}qr: price in FAQ`);
     const home = readFileSync(`${ROOT}${loc}index.html`, "utf8");
     assert.match(home, /"legalName": "Lake-Project"/); assert.match(home, /"propertyID": "KvK", "value": "29816688"/);
     const contact = readFileSync(`${ROOT}${loc}contact.html`, "utf8");

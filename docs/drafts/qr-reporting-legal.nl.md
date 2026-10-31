@@ -30,12 +30,12 @@ U, niet PODFY, beslist wat u met een Melding doet. PODFY verifieert de inhoud va
 
 | Objecten in gebruik in de periode | Prijs per Object in gebruik per maand |
 |---|---|
-| 1 tot 250 | EUR 0,75 |
-| 251 tot 1.000 | EUR 0,60 |
-| 1.001 tot 2.500 | EUR 0,50 |
-| 2.501 en meer | EUR 0,40 |
+| 1 tot 250 | EUR 0,68 |
+| 251 tot 1.000 | EUR 0,45 |
+| 1.001 tot 2.500 | EUR 0,36 |
+| 2.501 en meer | EUR 0,27 |
 
-**Minimumvergoeding.** De minimumvergoeding is EUR 25 per maand. Als het berekende bedrag lager is, toont de factuur een aanvulling tot EUR 25.
+**Minimumvergoeding.** De minimumvergoeding is EUR 13,50 per maand. Als het berekende bedrag lager is, toont de factuur een aanvulling tot EUR 13,50.
 
 **Invoegtoepassing Geavanceerd.** De invoegtoepassing Geavanceerd kost EUR 0,25 per Object in gebruik per maand, aanvullend op bovenstaande prijs, voor de Objecten waarvoor deze is ingeschakeld.
 

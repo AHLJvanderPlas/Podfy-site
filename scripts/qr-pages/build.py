@@ -1099,7 +1099,7 @@ PODFY QR Reporting puts a QR code on every machine or asset. Anyone (customers, 
 - Printable QR stickers per asset with the brand's logo and custom text, e.g. "Scan to report an issue"
 - Photo per form: required, optional or off
 - Not an emergency channel; repair planning and ticket follow-up stay in the customer's own tools
-- Pricing: €0.75 per active asset per month (251-1,000: €0.60; 1,001-2,500: €0.50; 2,501+: €0.40), minimum €25 per month, Advanced add-on +€0.25 (open API, reporter feedback, 4-hour critical support); no fees per report, per user or per QR code; retired assets free; free 6-week pilot for up to 100 assets; no setup fee; cancel monthly
+- Pricing: €0.68 per active asset per month (251-1,000: €0.45; 1,001-2,500: €0.36; 2,501+: €0.27), minimum €13.50 per month, Advanced add-on +€0.25 (open API, reporter feedback, 4-hour critical support); no fees per report, per user or per QR code; retired assets free; free 6-week pilot for up to 100 assets; no setup fee; cancel monthly
 - Service: 99.5% uptime measured monthly, support reply within one business day (critical incidents within 4 business hours), daily backups in the EU, encryption in transit and at rest, export of all data at any time, monthly cancellation, QR codes redirected for 12 months after leaving
 
 Use cases:
@@ -1219,8 +1219,10 @@ def sync_trust():
 
 
 # ── One source for the QR price list and the company facts (Phase 0) ──
-QR_TIERS = [(1, 250, 0.75), (251, 1000, 0.60), (1001, 2500, 0.50), (2501, None, 0.40)]
-QR_MIN, QR_ADV = 25, 0.25
+# Owner decision P2-1 (2026-10-31): 10% below the median of comparable QR fault-reporting tools per volume band
+# (benchmark in plans/open-points.md). The whole fleet pays the price of the band it reaches.
+QR_TIERS = [(1, 250, 0.68), (251, 1000, 0.45), (1001, 2500, 0.36), (2501, None, 0.27)]
+QR_MIN, QR_ADV = 13.50, 0.25
 FACTS = {"legal": "Lake-Project", "street": "Rodenrijselaan 10A", "postcode": "3037 XE", "city": "Rotterdam", "country": "NL",
          "kvk": "29816688", "vat": "NL001170142B85", "email": "support@podfy.net", "linkedin": "https://www.linkedin.com/company/podfy"}
 

@@ -52,12 +52,12 @@ Per active asset per month. Nothing per report, user or QR code. Retired assets 
 
 | Active assets | Per asset per month |
 |---|---|
-| 1 to 250 | EUR 0.75 |
-| 251 to 1,000 | EUR 0.60 |
-| 1,001 to 2,500 | EUR 0.50 |
-| 2,501 and more | EUR 0.40 |
+| 1 to 250 | EUR 0.68 |
+| 251 to 1,000 | EUR 0.45 |
+| 1,001 to 2,500 | EUR 0.36 |
+| 2,501 and more | EUR 0.27 |
 
-The whole fleet pays the price of the tier it reaches. Minimum EUR 25 per month. Advanced adds EUR 0.25 per asset per month. Free 6-week pilot for up to 100 assets. Cancel monthly. Details: price-sheet.md.
+The whole fleet pays the price of the tier it reaches. Minimum EUR 13.50 per month. Advanced adds EUR 0.25 per asset per month. Free 6-week pilot for up to 100 assets. Cancel monthly. Details: price-sheet.md.
 
 ## Contact
 

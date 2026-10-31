@@ -98,12 +98,12 @@ You, not PODFY, decide what you do with a Report. PODFY does not verify the cont
 
 | Active Assets in the period | Price per Active Asset per month |
 |---|---|
-| 1 to 250 | EUR 0.75 |
-| 251 to 1,000 | EUR 0.60 |
-| 1,001 to 2,500 | EUR 0.50 |
-| 2,501 and more | EUR 0.40 |
+| 1 to 250 | EUR 0.68 |
+| 251 to 1,000 | EUR 0.45 |
+| 1,001 to 2,500 | EUR 0.36 |
+| 2,501 and more | EUR 0.27 |
 
-**Minimum fee.** The minimum fee is EUR 25 per month. If the amount calculated from Active Assets is lower, the invoice shows a top-up to EUR 25.
+**Minimum fee.** The minimum fee is EUR 13.50 per month. If the amount calculated from Active Assets is lower, the invoice shows a top-up to EUR 13.50.
 
 **Advanced add-on.** The Advanced add-on costs EUR 0.25 per Active Asset per month, in addition to the price above, for the Assets for which it is switched on.
 

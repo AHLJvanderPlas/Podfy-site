@@ -64,7 +64,7 @@ PODFY QR Reporting puts a QR code on every machine or asset. Anyone (customers, 
 - Printable QR stickers per asset with the brand's logo and custom text, e.g. "Scan to report an issue"
 - Photo per form: required, optional or off
 - Not an emergency channel; repair planning and ticket follow-up stay in the customer's own tools
-- Pricing: €0.75 per active asset per month (251-1,000: €0.60; 1,001-2,500: €0.50; 2,501+: €0.40), minimum €25 per month, Advanced add-on +€0.25 (open API, reporter feedback, 4-hour critical support); no fees per report, per user or per QR code; retired assets free; free 6-week pilot for up to 100 assets; no setup fee; cancel monthly
+- Pricing: €0.68 per active asset per month (251-1,000: €0.45; 1,001-2,500: €0.36; 2,501+: €0.27), minimum €13.50 per month, Advanced add-on +€0.25 (open API, reporter feedback, 4-hour critical support); no fees per report, per user or per QR code; retired assets free; free 6-week pilot for up to 100 assets; no setup fee; cancel monthly
 - Service: 99.5% uptime measured monthly, support reply within one business day (critical incidents within 4 business hours), daily backups in the EU, encryption in transit and at rest, export of all data at any time, monthly cancellation, QR codes redirected for 12 months after leaving
 
 Use cases:

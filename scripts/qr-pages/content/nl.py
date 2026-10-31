@@ -499,7 +499,7 @@ QRPRICE = {
  "cta": "Offerte aanvragen", "strip": "{p} per actief object per maand, tot {low} bij grote aantallen. Gratis pilot van 6 weken.", "strip_cta": "Bekijk de tarieven",
 }
 COMPANY = {"title": "Bedrijfsgegevens", "rows": ["Handelsnaam", "Adres", "KvK", "Btw", "E-mail", "LinkedIn"], "trade": "PODFY is een handelsnaam van Lake-Project"}
-FAQ["price"] = ("Wat kosten QR-meldingen?", "€0,75 per actief object per maand, tot €0,40 bij meer dan 2.500 objecten. Geen kosten per melding, per gebruiker of per QR-code, beëindigde objecten zijn gratis, en de pilot is 6 weken gratis.")
+FAQ["price"] = ("Wat kosten QR-meldingen?", "€0,68 per actief object per maand, tot €0,27 bij meer dan 2.500 objecten. Geen kosten per melding, per gebruiker of per QR-code, beëindigde objecten zijn gratis, en de pilot is 6 weken gratis.")
 FEATURES = [(t, s, d + (" Onderdeel van Advanced." if t in ("Open API", "Terugkoppeling aan de melder") else "")) for t, s, d in FEATURES]
 SERVICE["items"] = [(h, "Reactie binnen één werkdag; met Advanced kritieke storingen binnen 4 werkuren." if h == "Support die antwoordt" else t) for h, t in SERVICE["items"]]
 

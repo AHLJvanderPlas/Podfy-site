@@ -822,7 +822,7 @@ QRPRICE = {
  "cta": "Request a proposal", "strip": "{p} per active asset per month, down to {low} at volume. Free 6-week pilot.", "strip_cta": "See QR pricing",
 }
 COMPANY = {"title": "Company details", "rows": ["Trade name", "Address", "Chamber of Commerce (KvK)", "VAT", "E-mail", "LinkedIn"], "trade": "PODFY is a trade name of Lake-Project"}
-FAQ["price"] = ("What does QR Reporting cost?", "€0.75 per active asset per month, down to €0.40 for fleets above 2,500 assets. No fees per report, per user or per QR code, retired assets are free, and the pilot is free for 6 weeks.")
+FAQ["price"] = ("What does QR Reporting cost?", "€0.68 per active asset per month, down to €0.27 for fleets above 2,500 assets. No fees per report, per user or per QR code, retired assets are free, and the pilot is free for 6 weeks.")
 FEATURES = [(t, s, d + (" Part of Advanced." if t in ("Open API", "Feedback to the reporter") else "")) for t, s, d in FEATURES]
 SERVICE["items"] = [(h, "A reply within one business day; with Advanced, critical incidents within 4 business hours." if h == "Support that answers" else t) for h, t in SERVICE["items"]]
 

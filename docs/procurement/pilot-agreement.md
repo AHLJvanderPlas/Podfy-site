@@ -66,7 +66,7 @@ The Customer and PODFY review these figures at the end of the pilot. Reaching th
 
 ## 9. Conversion
 
-- Price after the pilot: per the PODFY price sheet at the tier reached, minimum EUR 25 per month, excluding VAT, or as agreed here: [price per asset, or "price sheet"].
+- Price after the pilot: per the PODFY price sheet at the tier reached, minimum EUR 13.50 per month, excluding VAT, or as agreed here: [price per asset, or "price sheet"].
 - Advanced add-on (EUR 0.25 per asset per month): [yes / no].
 - Price fixation: [12 / 24 months with annual commitment].
 - Number of assets at conversion (estimate): [number].
