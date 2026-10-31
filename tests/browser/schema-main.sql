@@ -581,3 +581,132 @@ CREATE TABLE IF NOT EXISTS csp_reports (
   last_seen  TEXT    NOT NULL,
   PRIMARY KEY (app, directive, blocked, source, document)
 );
+
+-- migration 080 (process mode, register, events), appended 2026-10-31
+ALTER TABLE brand_details ADD COLUMN process_mode TEXT NOT NULL DEFAULT 'delivery'
+  CHECK (process_mode IN ('delivery','report'));
+ALTER TABLE brand_details ADD COLUMN file_requirement TEXT NOT NULL DEFAULT 'required'
+  CHECK (file_requirement IN ('required','optional','off'));
+ALTER TABLE brand_details ADD COLUMN billing_unit TEXT NOT NULL DEFAULT 'document'
+  CHECK (billing_unit IN ('document','active_asset'));
+ALTER TABLE brand_details ADD COLUMN pilot_until TEXT;
+ALTER TABLE transactions ADD COLUMN form_data_json TEXT;
+ALTER TABLE transactions ADD COLUMN ref_snapshot_json TEXT;
+ALTER TABLE transactions ADD COLUMN priority TEXT
+  CHECK (priority IS NULL OR priority IN ('low','normal','high','critical'));
+ALTER TABLE transactions ADD COLUMN work_status TEXT
+  CHECK (work_status IS NULL OR work_status IN ('new','in_progress','resolved','rejected'));
+ALTER TABLE transactions ADD COLUMN assignee TEXT;
+ALTER TABLE transactions ADD COLUMN duplicate_of TEXT;
+ALTER TABLE transactions ADD COLUMN resolved_at TEXT;
+CREATE TABLE IF NOT EXISTS brand_references (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug TEXT NOT NULL,
+  ref TEXT NOT NULL,
+  kind TEXT NOT NULL DEFAULT 'asset' CHECK (kind IN ('asset','shipment')),
+  name TEXT,
+  location TEXT,
+  group_code TEXT,
+  status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active','retired')),
+  active_from TEXT NOT NULL DEFAULT (datetime('now')),
+  retired_at TEXT,
+  meta_json TEXT,
+  sticker_text TEXT,
+  created_by TEXT,
+  created_at TEXT DEFAULT (datetime('now')),
+  updated_at TEXT,
+  UNIQUE (slug, ref)
+);
+CREATE INDEX IF NOT EXISTS idx_bref_slug_status ON brand_references(slug, status);
+CREATE TABLE IF NOT EXISTS transaction_events (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  podfy_id TEXT NOT NULL,
+  slug TEXT NOT NULL,
+  type TEXT NOT NULL,   -- created | status | comment | assign | duplicate | notified | webhook | export
+  from_value TEXT,
+  to_value TEXT,
+  note TEXT,
+  actor TEXT,
+  created_at TEXT DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_tev_record ON transaction_events(podfy_id, created_at);
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Form categories', 0, 'addon', 'form_categories', 'manual', 'flat_monthly', 'testing', 200, 0,
+  'Your own list of categories on the form, with labels per language, a priority and a photo rule per category.',
+  '{"group":"form","modes":["delivery","report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'form_categories');
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Custom fields', 0, 'addon', 'custom_fields', 'manual', 'flat_monthly', 'testing', 205, 0,
+  'Extra fields on the form: text, number, amount, select or yes/no, optional or required.',
+  '{"group":"form","modes":["delivery","report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'custom_fields');
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Asset register', 0, 'addon', 'asset_register', 'manual', 'flat_monthly', 'testing', 210, 0,
+  'A register of your assets or shipments with name, location and group; QR stickers per asset.',
+  '{"group":"assets","modes":["delivery","report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'asset_register');
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Webhooks', 0, 'addon', 'webhooks', 'manual', 'flat_monthly', 'testing', 215, 0,
+  'Send every new record to your own systems as a signed HTTPS request, in the standard format or one you build.',
+  '{"group":"integrations","modes":["delivery","report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'webhooks');
+
+-- migration 081 (webhooks, test inbox), appended 2026-10-31
+CREATE TABLE IF NOT EXISTS brand_webhooks (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug TEXT NOT NULL,
+  url TEXT NOT NULL,                                  -- scheme + host + path fixed at save (HTTPS, no IP literal, no podfy domain)
+  secret_enc TEXT NOT NULL,                           -- AES-GCM with WEBHOOK_KEY; plain secret shown once at creation
+  events TEXT NOT NULL DEFAULT '["*"]',
+  is_active INTEGER NOT NULL DEFAULT 1,
+  is_qa INTEGER NOT NULL DEFAULT 0,                   -- 1 = only qa.podfy.app records; 0 = only production records
+  payload_mode TEXT NOT NULL DEFAULT 'standard' CHECK (payload_mode IN ('standard','custom')),
+  method TEXT NOT NULL DEFAULT 'POST' CHECK (method IN ('POST','GET')),
+  content_type TEXT NOT NULL DEFAULT 'application/json'
+    CHECK (content_type IN ('application/json','application/x-www-form-urlencoded','text/plain')),
+  url_query_template TEXT,
+  body_template TEXT,
+  headers_json TEXT,
+  failure_count INTEGER NOT NULL DEFAULT 0,
+  last_success_at TEXT,
+  created_by TEXT,
+  created_at TEXT DEFAULT (datetime('now')),
+  updated_at TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_bwh_slug ON brand_webhooks(slug, is_active);
+CREATE TABLE IF NOT EXISTS webhook_deliveries (
+  id TEXT PRIMARY KEY,                                -- dlv_<random>
+  webhook_id INTEGER NOT NULL,
+  slug TEXT NOT NULL,
+  event TEXT NOT NULL,
+  podfy_id TEXT,
+  payload TEXT NOT NULL,                              -- standard payload JSON (custom templates render from it at send)
+  status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','ok','failed')),
+  attempts INTEGER NOT NULL DEFAULT 0,
+  response_code INTEGER,
+  last_error TEXT,
+  next_attempt_at TEXT,
+  created_at TEXT DEFAULT (datetime('now')),
+  delivered_at TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_wdl_webhook ON webhook_deliveries(webhook_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_wdl_slug ON webhook_deliveries(slug, created_at);
+CREATE TABLE IF NOT EXISTS webhook_test_inboxes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  token_hash TEXT NOT NULL UNIQUE,
+  label TEXT,
+  created_by TEXT,
+  created_at TEXT DEFAULT (datetime('now')),
+  last_request_at TEXT
+);
+CREATE TABLE IF NOT EXISTS webhook_test_inbox (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  inbox_id INTEGER NOT NULL,
+  method TEXT NOT NULL,
+  query TEXT,
+  headers_json TEXT,                                  -- without cookie / authorization
+  body TEXT,                                          -- max 64 KB
+  signature_result TEXT,                              -- valid | invalid | no_secret | missing
+  received_at TEXT DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_wti_inbox ON webhook_test_inbox(inbox_id, received_at);
