@@ -3,6 +3,23 @@
 Goal: every prospect, procurement officer, accountant or AI assistant that checks PODFY finds one consistent
 company, a complete procurement pack, transparent terms and a fast, precise answer. Owner: Alexander.
 
+## Status 2026-10-31
+
+| Item | Status |
+|---|---|
+| A1 KvK trade name, retire old registration | open (owner) |
+| A2 same identity on external profiles, Mollie, signatures | open (owner); on podfy.net done 2026-10-30 |
+| A3 contact on /contact | support@podfy.net on every /contact page and as ContactPoint in the JSON-LD (owner decision 2026-10-31: use support@ for now); named person + phone still open |
+| B procurement pack | **drafted** in `docs/procurement/` (13 files, EN); owner review + [OWNER]/[DECIDE] items in `docs/procurement/README.md` |
+| C commercial | done (prices published 2026-10-30) |
+| D demo brand on QA | after Phase 1 (needs report mode) |
+| E comparison page | **live 2026-10-31**: /vs-qr-form-tools/ (EN/NL/DE/FR) |
+| E status page, changelog per feature | Phase 1 (WP 1.8, 1.9) |
+| F support process, auto-reply, incident and breach procedure | **drafted** (`docs/procurement/support-process.md`, `incident-and-breach-procedure.md`); auto-reply setup + backup person + phone line open (owner) |
+| F 5-minute uptime check + phone alert | Phase 1 WP 1.8 (Pushover, owner provides keys) |
+| G terms + privacy for QR Reporting | **drafted** in `docs/drafts/qr-reporting-legal.{en,nl,de,fr}.md`; owner + lawyer approval before publishing |
+| G open claims | decided and fixed live 2026-10-31 (GPS timing, EU wording, EU storage badge, CMR availability, testimonial removed); see claims register |
+
 ## A. One identity everywhere (this week)
 1. KvK: confirm "PODFY" is registered as trade name (handelsnaam) of Lake-Project (29816688). Retire or
    update the old registration (the number blocked by tests/company.test.mjs); external profiles still show it

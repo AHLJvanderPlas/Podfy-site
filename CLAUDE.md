@@ -240,6 +240,23 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
 
 ---
 
+## Changes (2026-10-31) — Phase 0: comparison page, claim fixes, procurement and legal drafts (production)
+
+- **New generated page `/vs-qr-form-tools/`** (×4 locales): "QR Reporting vs generic QR form tools". `build_vsqr` in
+  `scripts/qr-pages/build.py`, content key `VSQR` in every content file; prices filled from `QR_TIERS`/`QR_MIN` at
+  build time. Linked from the QR overview pages (generated "Comparison" block) and the llms blocks; in the sitemap
+  block (44 URLs). Covered by `tests/qr-pages.test.mjs`. No competitor names, by design.
+- **Claims corrected live (owner decisions 2026-10-31, see `docs/podfy-claims-register.md`):** location wording (photo
+  location, else phone location at sending with permission, else IP estimate; timestamp set by the server; no
+  offline queue), "stored in the EU" instead of "no data leaves the EU" (incl. trust page lifecycle line), header
+  badge "EU storage" (NL/DE/FR translated in `partials/header.html`; hidden 768 to 1099 px where it squeezed the
+  logo; `.site-brand` no longer shrinks), CMR generator "add-on on Advanced, included in Pro and Enterprise, not on
+  Basic or Starter" everywhere, unsourced pricing testimonial removed. Retention add-on texts were checked against
+  `Podfy-app/functions/_upload/brand.js:31-34` and are correct.
+- **Not published (docs/ is excluded by deploy.sh):** `docs/procurement/` (procurement pack drafts) and
+  `docs/drafts/qr-reporting-legal.{en,nl,de,fr}.md` (terms and privacy additions for QR Reporting; need owner and
+  lawyer approval). Phase 0 status table: `docs/podfy-phase0-readiness.md`.
+
 ## Changes (2026-10-30, later) — homepage chooser, CMR landing, generator moved (production)
 
 - **Site structure:** `/` (×4 locales) is a chooser: two doors, **CMR and delivery proof → `/cmr/`** and

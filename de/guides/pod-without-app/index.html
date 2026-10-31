@@ -40,7 +40,7 @@
     {"@type":"Question","name":"Kann die Fahrer-Upload-Seite in mehreren Sprachen angezeigt werden?",
       "acceptedAnswer":{"@type":"Answer","text":"Ja. Die Upload-Erfahrung kann in 43 Sprachen angezeigt werden, damit Fahrer in der Sprache arbeiten können, die sie verstehen. Das verbessert die Abschlussraten und reduziert Supportanfragen."}},
     {"@type":"Question","name":"Was passiert, wenn der Fahrer am Lieferort kein Signal hat?",
-      "acceptedAnswer":{"@type":"Answer","text":"GPS-Koordinaten und das Foto werden zum Zeitpunkt des Kameraauslösers erfasst, nicht wenn der Upload abgeschlossen ist. Wenn kein Signal vorhanden ist, wartet die Datei und wird gesendet, sobald das Telefon Empfang hat. Der ursprüngliche Zeitstempel bleibt erhalten."}},
+      "acceptedAnswer":{"@type":"Answer","text":"Der Upload braucht eine Verbindung. Ohne Signal geht er nicht durch, und der Fahrer sendet erneut, sobald das Telefon Empfang hat. Der Standort stammt aus dem Foto, wenn es einen enthält, sonst vom Telefon beim Absenden. Der Zeitstempel wird gesetzt, wenn der Upload eintrifft."}},
     {"@type":"Question","name":"Können wir den Upload-Flow mit unserem Markenauftritt versehen?",
       "acceptedAnswer":{"@type":"Answer","text":"Ja. Der Upload-Flow kann mit Ihrem Logo und Farbschema gestaltet werden, damit Fahrer und Partner Ihren Auftritt sehen."}},
     {"@type":"Question","name":"Welche Dokumenttypen können Fahrer hochladen?",
@@ -142,7 +142,7 @@
           <div class="v2-how-step">
             <p class="v2-how-step-num">02 — Am Tor</p>
             <h3>In jedem Browser öffnen, ein Tippen</h3>
-            <p>Der Fahrer öffnet den Link, macht ein Foto des unterschriebenen Frachtbriefs und tippt Senden. GPS wird zum Zeitpunkt des Kameraauslösers erfasst. Funktioniert auf jedem Telefon ab 2017, iOS, Android, alt oder neu.</p>
+            <p>Der Fahrer öffnet den Link, macht ein Foto des unterschriebenen Frachtbriefs und tippt Senden. Der Standort stammt aus dem Foto oder, mit Erlaubnis, vom Telefon. Funktioniert auf jedem Telefon ab 2017, iOS, Android, alt oder neu.</p>
           </div>
           <div class="v2-how-step">
             <p class="v2-how-step-num">03 — Sofort</p>
@@ -160,7 +160,7 @@
               <tr><td>Fahrer-Onboarding</td><td class="v2-col-paper">App installieren, Konto erstellen, Trainingsession</td><td class="v2-col-digital">Null, Link öffnen und fotografieren</td></tr>
               <tr><td>Funktioniert für Unterfrachtführer</td><td class="v2-col-paper">Nein, sie installieren Ihre App nicht</td><td class="v2-col-digital">Ja, jeder Browser, kein Konto</td></tr>
               <tr><td>Geräteanforderung</td><td class="v2-col-paper">Kompatibles Telefon, aktuelles OS</td><td class="v2-col-digital">Jedes Telefon mit Kamera ab 2017+</td></tr>
-              <tr><td>Verhalten ohne Signal</td><td class="v2-col-paper">Upload schlägt fehl, Zeitstempel verloren</td><td class="v2-col-digital">Wartet, lädt bei Signalwiederherstellung hoch; ursprünglicher Zeitstempel erhalten</td></tr>
+              <tr><td>Verhalten ohne Signal</td><td class="v2-col-paper">Upload schlägt fehl, Zeitstempel verloren</td><td class="v2-col-digital">Braucht eine Verbindung; der Fahrer sendet erneut, sobald Signal da ist</td></tr>
               <tr><td>IT-Genehmigung erforderlich</td><td class="v2-col-paper">Oft ja (MDM, App-Store-Richtlinie)</td><td class="v2-col-digital">Nein, es ist eine Webseite</td></tr>
             </tbody>
           </table>
@@ -194,7 +194,7 @@
           </div>
           <div class="v2-faq-acc-item">
             <button class="v2-faq-btn">Was passiert, wenn der Fahrer am Lieferort kein Signal hat?</button>
-            <div class="v2-faq-answer"><p>GPS-Koordinaten und das Foto werden zum Zeitpunkt des Kameraauslösers erfasst, nicht wenn der Upload abgeschlossen ist. Wenn kein Signal vorhanden ist, wartet die Datei und wird gesendet, sobald das Telefon Empfang hat. Der ursprüngliche Erfassungszeitstempel bleibt erhalten.</p></div>
+            <div class="v2-faq-answer"><p>Der Upload braucht eine Verbindung. Ohne Signal geht er nicht durch, und der Fahrer sendet erneut, sobald das Telefon Empfang hat. Der Standort stammt aus dem Foto, wenn es einen enthält, sonst vom Telefon beim Absenden. Der Zeitstempel wird gesetzt, wenn der Upload eintrifft.</p></div>
           </div>
           <div class="v2-faq-acc-item">
             <button class="v2-faq-btn">Können wir den Upload-Flow mit unserem Markenauftritt versehen?</button>

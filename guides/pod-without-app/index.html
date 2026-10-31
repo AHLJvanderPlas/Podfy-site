@@ -40,7 +40,7 @@
     {"@type":"Question","name":"Can the driver upload page be shown in multiple languages?",
       "acceptedAnswer":{"@type":"Answer","text":"Yes. The upload experience can be displayed in 43 languages so drivers can work in the language they understand. This improves completion rates and reduces support questions."}},
     {"@type":"Question","name":"What happens if the driver has no signal at the delivery point?",
-      "acceptedAnswer":{"@type":"Answer","text":"GPS coordinates and the photo are captured at the moment the camera fires, not when the upload completes. If there is no signal, the file queues and submits as soon as the phone reaches coverage. The original timestamp is preserved."}},
+      "acceptedAnswer":{"@type":"Answer","text":"The upload needs a connection. Without signal it does not go through, and the driver sends it again once the phone has coverage. The location comes from the photo when it carries one, otherwise from the phone when the file is sent. The timestamp is set when the upload arrives."}},
     {"@type":"Question","name":"Can we brand the upload flow?",
       "acceptedAnswer":{"@type":"Answer","text":"Yes. The upload flow can be branded with your logo and color scheme so drivers and partners see your look and feel."}},
     {"@type":"Question","name":"What types of documents can drivers upload?",
@@ -143,7 +143,7 @@
           <div class="v2-how-step">
             <p class="v2-how-step-num">02 — At the gate</p>
             <h3>Open in any browser, tap once</h3>
-            <p>The driver opens the link, takes a photo of the signed CMR, and taps send. GPS captures at the moment the camera fires. Works on any phone from 2017 onwards, iOS, Android, old or new.</p>
+            <p>The driver opens the link, takes a photo of the signed CMR, and taps send. The location comes from the photo or, with permission, from the phone. Works on any phone from 2017 onwards, iOS, Android, old or new.</p>
           </div>
           <div class="v2-how-step">
             <p class="v2-how-step-num">03 — Instantly</p>
@@ -161,7 +161,7 @@
               <tr><td>Driver onboarding</td><td class="v2-col-paper">Install app, create account, training session</td><td class="v2-col-digital">Zero, open link and photograph</td></tr>
               <tr><td>Works for subcontractors</td><td class="v2-col-paper">No, they won't install your app</td><td class="v2-col-digital">Yes, any browser, no account</td></tr>
               <tr><td>Device requirement</td><td class="v2-col-paper">Compatible phone, current OS</td><td class="v2-col-digital">Any phone with a camera from 2017+</td></tr>
-              <tr><td>No-signal behaviour</td><td class="v2-col-paper">Upload fails, timestamp lost</td><td class="v2-col-digital">Queues, uploads when signal returns; original timestamp preserved</td></tr>
+              <tr><td>No-signal behaviour</td><td class="v2-col-paper">Upload fails, timestamp lost</td><td class="v2-col-digital">Needs a connection; the driver sends again when signal returns</td></tr>
               <tr><td>IT approval required</td><td class="v2-col-paper">Often yes (MDM, app store policy)</td><td class="v2-col-digital">No, it's a web page</td></tr>
             </tbody>
           </table>
@@ -196,7 +196,7 @@
           </div>
           <div class="v2-faq-acc-item">
             <button class="v2-faq-btn">What happens if the driver has no signal at the delivery point?</button>
-            <div class="v2-faq-answer"><p>GPS coordinates and the photo are captured at the moment the camera fires, not when the upload completes. If there is no signal, the file queues and submits as soon as the phone reaches coverage. The original capture timestamp is preserved.</p></div>
+            <div class="v2-faq-answer"><p>The upload needs a connection. Without signal it does not go through, and the driver sends it again once the phone has coverage. The location comes from the photo when it carries one, otherwise from the phone when the file is sent. The timestamp is set when the upload arrives.</p></div>
           </div>
           <div class="v2-faq-acc-item">
             <button class="v2-faq-btn">Can we brand the upload flow?</button>

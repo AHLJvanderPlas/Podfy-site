@@ -191,6 +191,11 @@ html[data-theme="dark"] .site-brand img {
 @media (min-width: 640px) {
   .site-eu-mark { display: inline-block; }
 }
+/* The translated badge (DE/FR) is wider than the old "EU · only": hide it where the nav and badge compete */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .site-eu-mark { display: none; }
+}
+.site-brand { flex-shrink: 0; }
 @media (prefers-reduced-motion: reduce) {
   .site-eu-mark { transform: rotate(0deg); }
 }

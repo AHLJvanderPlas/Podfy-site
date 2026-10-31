@@ -40,7 +40,7 @@
     {"@type":"Question","name":"Kan de chauffeurs-uploadpagina in meerdere talen worden weergegeven?",
       "acceptedAnswer":{"@type":"Answer","text":"Ja. De uploadervaring kan worden weergegeven in 43 talen zodat chauffeurs kunnen werken in de taal die ze begrijpen. Dit verbetert voltooiingspercentages en vermindert ondersteuningsvragen."}},
     {"@type":"Question","name":"Wat gebeurt er als de chauffeur geen signaal heeft op het afleveringspunt?",
-      "acceptedAnswer":{"@type":"Answer","text":"GPS-coördinaten en de foto worden vastgelegd op het moment dat de camera afvuurt, niet wanneer de upload voltooid is. Als er geen signaal is, staat het bestand in de wachtrij en wordt het verzonden zodra de telefoon bereik heeft. Het oorspronkelijke tijdstempel wordt bewaard."}},
+      "acceptedAnswer":{"@type":"Answer","text":"De upload heeft een verbinding nodig. Zonder signaal gaat hij niet door en verstuurt de chauffeur opnieuw zodra de telefoon bereik heeft. De locatie komt uit de foto als die er een bevat, anders van de telefoon op het moment van verzenden. Het tijdstempel wordt gezet op het moment dat de upload binnenkomt."}},
     {"@type":"Question","name":"Kunnen we de uploadflow voorzien van ons merk?",
       "acceptedAnswer":{"@type":"Answer","text":"Ja. De uploadflow kan worden voorzien van uw logo en kleurschema zodat chauffeurs en partners uw uitstraling zien."}},
     {"@type":"Question","name":"Welke typen documenten kunnen chauffeurs uploaden?",
@@ -143,7 +143,7 @@
           <div class="v2-how-step">
             <p class="v2-how-step-num">02 — Bij de poort</p>
             <h3>Openen in elke browser, één tik</h3>
-            <p>De chauffeur opent de link, neemt een foto van de ondertekende CMR en tikt op verzenden. GPS legt vast op het moment dat de camera afvuurt. Werkt op elke telefoon vanaf 2017, iOS, Android, oud of nieuw.</p>
+            <p>De chauffeur opent de link, neemt een foto van de ondertekende CMR en tikt op verzenden. De locatie komt uit de foto of, met toestemming, van de telefoon. Werkt op elke telefoon vanaf 2017, iOS, Android, oud of nieuw.</p>
           </div>
           <div class="v2-how-step">
             <p class="v2-how-step-num">03 — Direct</p>
@@ -161,7 +161,7 @@
               <tr><td>Chauffeur-onboarding</td><td class="v2-col-paper">App installeren, account aanmaken, trainingssessie</td><td class="v2-col-digital">Nul, link openen en fotograferen</td></tr>
               <tr><td>Werkt voor onderaannemers</td><td class="v2-col-paper">Nee, ze installeren uw app niet</td><td class="v2-col-digital">Ja, elke browser, geen account</td></tr>
               <tr><td>Apparaatvereiste</td><td class="v2-col-paper">Compatibele telefoon, huidig OS</td><td class="v2-col-digital">Elke telefoon met camera vanaf 2017+</td></tr>
-              <tr><td>Gedrag zonder signaal</td><td class="v2-col-paper">Upload mislukt, tijdstempel verloren</td><td class="v2-col-digital">Staat in wachtrij, uploadt bij herstel signaal; oorspronkelijk tijdstempel bewaard</td></tr>
+              <tr><td>Gedrag zonder signaal</td><td class="v2-col-paper">Upload mislukt, tijdstempel verloren</td><td class="v2-col-digital">Heeft een verbinding nodig; de chauffeur verstuurt opnieuw zodra er signaal is</td></tr>
               <tr><td>IT-goedkeuring vereist</td><td class="v2-col-paper">Vaak ja (MDM, app store beleid)</td><td class="v2-col-digital">Nee, het is een webpagina</td></tr>
             </tbody>
           </table>
@@ -195,7 +195,7 @@
           </div>
           <div class="v2-faq-acc-item">
             <button class="v2-faq-btn">Wat gebeurt er als de chauffeur geen signaal heeft op het afleveringspunt?</button>
-            <div class="v2-faq-answer"><p>GPS-coördinaten en de foto worden vastgelegd op het moment dat de camera afvuurt, niet wanneer de upload voltooid is. Als er geen signaal is, staat het bestand in de wachtrij en wordt het verzonden zodra de telefoon bereik heeft. Het oorspronkelijke vastleggingstijdstempel wordt bewaard.</p></div>
+            <div class="v2-faq-answer"><p>De upload heeft een verbinding nodig. Zonder signaal gaat hij niet door en verstuurt de chauffeur opnieuw zodra de telefoon bereik heeft. De locatie komt uit de foto als die er een bevat, anders van de telefoon op het moment van verzenden. Het tijdstempel wordt gezet op het moment dat de upload binnenkomt.</p></div>
           </div>
           <div class="v2-faq-acc-item">
             <button class="v2-faq-btn">Kunnen we de uploadflow voorzien van ons merk?</button>

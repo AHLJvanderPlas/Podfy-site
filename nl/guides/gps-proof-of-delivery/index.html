@@ -38,8 +38,8 @@
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Vereist GPS-bewijs van aflevering een smartphone?","acceptedAnswer":{"@type":"Answer","text":"Elke smartphone vanaf 2017 met een camera en een browser volstaat. Een aparte GPS-chip is niet vereist: moderne telefoons gebruiken netwerkondersteunde positionering (zendmasten + wifi + GPS), wat voldoende is om de afleverlocatie te verifiëren."}},
     {"@type":"Question","name":"Hoe nauwkeurig is GPS-bewijs van aflevering?","acceptedAnswer":{"@type":"Answer","text":"Doorgaans nauwkeurig tot 3 à 10 meter in open gebied. Voldoende om aflevering op een specifiek adres of bij een specifieke poort te bevestigen. In dichtbebouwd stedelijk gebied of grote magazijnen kan de nauwkeurigheid lager zijn; in die gevallen vormen tijdstempel en foto samen voldoende bewijs."}},
-    {"@type":"Question","name":"Kunnen GPS-coördinaten worden vervalst?","acceptedAnswer":{"@type":"Answer","text":"Bij Podfy worden coördinaten server-side vastgelegd bij ontvangst van de upload en vergeleken met de door het toestel gemelde locatie op het moment dat de camera afgaat. Het record is manipulatiebestendig: wijziging zou toegang tot de server vereisen, niet alleen tot het toestel."}},
-    {"@type":"Question","name":"Is GPS-stempeling beschikbaar op alle Podfy-plannen?","acceptedAnswer":{"@type":"Answer","text":"Ja. GPS-stempeling is inbegrepen op alle Podfy-plannen, inclusief Basic. Het is geen uitbreiding."}}
+    {"@type":"Question","name":"Kunnen GPS-coördinaten worden vervalst?","acceptedAnswer":{"@type":"Answer","text":"Bij Podfy wordt de locatie server-side bij het record opgeslagen, samen met de gebruikte bron (de locatie van de foto zelf, de locatie van de telefoon bij het verzenden, of een schatting op basis van de verbinding). Het record is manipulatiebestendig: wijziging zou toegang tot de server vereisen, niet alleen tot het toestel."}},
+    {"@type":"Question","name":"Is GPS-stempeling beschikbaar op alle Podfy-plannen?","acceptedAnswer":{"@type":"Answer","text":"Elk record krijgt een tijdstempel. De locatie wordt toegevoegd als die beschikbaar is, en dat hangt af van de foto en van de toestemming van de chauffeur."}}
   ]}
   </script>
 <link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
@@ -77,10 +77,10 @@
         <h2 class="v2-section-title" id="what-heading">Wat GPS-bewijs van aflevering is</h2>
         <div class="v2-prose">
           <p>
-            GPS-bewijs van aflevering is een leveringsrecord waarin GPS-coördinaten worden
-            vastgelegd op het moment dat de camera afgaat, niet wanneer het bestand wordt
-            geüpload. De lengte- en breedtegraad worden server-side in het record geschreven
-            en kunnen achteraf niet worden gewijzigd.
+            GPS-bewijs van aflevering is een leveringsrecord met de locatie van de aflevering:
+            de locatie van de foto zelf als die er is, anders de locatie van de telefoon op het
+            moment dat de chauffeur het bestand verstuurt. De lengte- en breedtegraad worden
+            server-side in het record geschreven en kunnen achteraf niet worden gewijzigd.
           </p>
           <p>
             Dit is belangrijk omdat het de exacte afleverlocatie vaststelt, onafhankelijk van
@@ -147,11 +147,12 @@
             en verstuurt.
           </p>
           <p>
-            GPS-coördinaten worden vastgelegd op het moment dat de camera afgaat, niet op het
-            moment van uploaden. Dat is het cruciale onderscheid dat de tijdstempel betrouwbaar
-            maakt: een chauffeur die de foto op het afleverpunt maakt en later verstuurt
-            (wanneer hij weer 4G-bereik heeft) produceert nog steeds een record dat de locatie
-            bij aflevering bewijst, niet de locatie bij verzending.
+            De locatie komt uit de foto zelf als de foto er een bevat, en die geeft aan waar de
+            foto is genomen, ook als de chauffeur later verstuurt. Anders wordt de locatie van de
+            telefoon opgevraagd op het moment van verzenden, met toestemming van de chauffeur, en
+            als laatste redmiddel wordt de locatie geschat op basis van de verbinding. Het record
+            vermeldt welke bron is gebruikt, zodat een lezer kan beoordelen hoeveel gewicht de
+            locatie heeft.
           </p>
           <p>
             Het GPS-gestempelde record verschijnt binnen seconden na de upload in het
@@ -167,7 +168,7 @@
       <div class="container">
         <h2 class="v2-section-title" id="record-heading">Wat een GPS-gestempeld record bevat</h2>
         <ul class="v2-check-list" data-u="uc03bdb7">
-          <li><strong>GPS-coördinaten:</strong> lengte- en breedtegraad op het moment dat de camera afgaat</li>
+          <li><strong>GPS-coördinaten:</strong> lengte- en breedtegraad uit de foto of de telefoon, met vermelding van de bron</li>
           <li><strong>Tijdstempel:</strong> server-side, kan achteraf niet worden gewijzigd</li>
           <li><strong>Het document:</strong> origineel geüpload bestand, ongewijzigd opgeslagen</li>
           <li><strong>Referentiekoppeling:</strong> PO- of CMR-referentie koppelt het record aan uw factuur</li>
@@ -204,11 +205,11 @@
           </div>
           <div class="v2-faq-item">
             <p class="v2-faq-q">Kunnen GPS-coördinaten worden vervalst?</p>
-            <p class="v2-faq-a">Bij Podfy worden coördinaten server-side vastgelegd bij ontvangst van de upload en vergeleken met de door het toestel gemelde locatie op het moment dat de camera afgaat. Het record is manipulatiebestendig: wijziging zou toegang tot de server vereisen, niet alleen tot het toestel.</p>
+            <p class="v2-faq-a">Bij Podfy wordt de locatie server-side bij het record opgeslagen, samen met de gebruikte bron (de locatie van de foto zelf, de locatie van de telefoon bij het verzenden, of een schatting op basis van de verbinding). Het record is manipulatiebestendig: wijziging zou toegang tot de server vereisen, niet alleen tot het toestel.</p>
           </div>
           <div class="v2-faq-item">
             <p class="v2-faq-q">Is GPS-stempeling beschikbaar op alle Podfy-plannen?</p>
-            <p class="v2-faq-a">Ja. GPS-stempeling is inbegrepen op alle Podfy-plannen, inclusief Basic. Het is geen uitbreiding.</p>
+            <p class="v2-faq-a">Elk record krijgt een tijdstempel. De locatie wordt toegevoegd als die beschikbaar is, en dat hangt af van de foto en van de toestemming van de chauffeur.</p>
           </div>
         </div>
       </div>

@@ -219,7 +219,7 @@ Sticky, `z-index: 40`, `border-bottom: 1px solid var(--v2-line)`.
     </nav>
 
     <div class="site-header-actions">
-      <span class="site-trust-pill" aria-label="Hosted in the EU (Cloudflare EU jurisdiction)">EU&thinsp;&middot;&thinsp;only</span>
+      <span class="site-trust-pill" aria-label="Data stored in the EU (Cloudflare EU jurisdiction)">EU storage</span>
 
       <div class="site-locale" id="localeWrapper" aria-label="Language">
         <button class="site-locale-btn" id="localeBtn" type="button"

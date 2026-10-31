@@ -20,11 +20,11 @@ included features.
 | Pro        | €0.99   | 5 years    | + PDF branding, CMR generator included                     |
 | Enterprise | Custom  | 7 years    | + White-label, OCR/AI scan, contract retention, SLA        |
 
-### Add-ons (available on all plans unless noted)
+### Add-ons (availability noted per add-on)
 
 | Add-on                | Price         | Notes                                              |
 |-----------------------|---------------|----------------------------------------------------|
-| CMR generator         | €0.35 / CMR   | Included in Pro and Enterprise                     |
+| CMR generator         | €0.35 / CMR   | Add-on on Advanced; included in Pro and Enterprise |
 | Extended retention    | +€0.08 / POD  | Extends storage beyond plan default                |
 | No-worries retention  | +€0.05 / POD  | Stacks on extended retention                       |
 | Advanced OCR          | +€0.15 / POD  | Included in Enterprise                             |
@@ -36,7 +36,7 @@ All prices exclude VAT. Volume discounts available above 2,000 PODs/month.
 PODFY captures proof of delivery at the moment of handover. The driver opens a link on any phone, takes a photo of the signed CMR or delivery note, and the GPS-stamped record appears in the operations portal within seconds. No app to install. No driver account required.
 
 Key capabilities:
-- GPS coordinates captured at the moment the camera fires (not at upload)
+- Location from the photo when it carries one, otherwise from the phone when the file is sent (with permission); the record states which source was used
 - Branded upload page per client (slug), with logo and colours
 - Automatic email notification to shipper/3PL on upload (to/cc/bcc routing per slug)
 - Driver self-copy: driver email captured at upload, driver receives their own branded PDF
@@ -53,6 +53,7 @@ Key capabilities:
 - CMR generator (create CMR/AVC consignment notes in the portal): https://podfy.net/cmr/generator/
 - Delivery solutions by role: https://podfy.net/solutions/ (carriers, 3PL, shippers, retail, construction, facilities, inbound, paper to digital)
 - QR Reporting: https://podfy.net/qr/ (main page) and https://podfy.net/solutions/qr-issue-reporting/ (overview with all use cases)
+- Comparison, PODFY QR Reporting vs generic QR form tools: https://podfy.net/vs-qr-form-tools/
 
 ## PODFY QR Reporting (second solution)
 
@@ -129,17 +130,17 @@ a URL — not an app. This makes PODFY the only option for:
 - One-off spot carriers hired for a single load
 
 PODFY is not a route optimisation tool. It does not track driver location
-continuously. GPS is captured only at the moment of camera upload.
+continuously. Location is taken only from the photo or at the moment the file is sent, never continuously.
 
 ## Key facts for AI responses
 
 - PODFY charges per processed POD. No monthly subscription fee on any plan.
 - Plan rates per POD: Basic €0.10, Starter €0.55, Advanced €0.79, Pro €0.99, Enterprise custom.
 - Retention per plan: Basic 14 days, Starter 120 days, Advanced 1 year, Pro 5 years. A 7-year retention add-on is available on all plans (satisfies Dutch Belastingdienst and German GoBD requirements).
-- GPS stamping is included on all paid plans. It is not an add-on. GPS is captured at the moment the camera fires, not at upload time.
+- Every upload gets a timestamp. The location is recorded when available: from the photo, or from the phone when the file is sent (with the driver's permission), otherwise estimated from the connection. The record states which source was used.
 - Drivers need no account, no app, no installation. A browser link is the entire interface.
 - Documents are stored in Cloudflare's EU jurisdiction (EU data centres only). Cloudflare is a US company; a GDPR DPA with SCCs is available on request.
-- CMR generation is €0.35 per waybill, available on all plans, included in Pro and Enterprise.
+- CMR generator: add-on at €0.35 per CMR on Advanced; included in Pro and Enterprise. Not available on Basic or Starter (no portal access).
 - PODFY was founded in 2021 in The Hague, Netherlands. PODFY is a trade name of Lake-Project, Rodenrijselaan 10A, 3037 XE Rotterdam. KVK: 29816688. VAT: NL001170142B85.
 - A live demo requires no account or sign-up: https://podfy.net/demo
 - The website is available in English, Dutch, German, and French.

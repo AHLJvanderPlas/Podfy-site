@@ -102,3 +102,28 @@ test("QR price list and company facts are consistent in every locale", () => {
     assert.match(contact, /id="company"[\s\S]*29816688[\s\S]*NL001170142B85/, `${loc}contact: company details`);
   }
 });
+
+test("comparison page /vs-qr-form-tools/ exists in every locale with the SEO and copy rules, in the sitemap", () => {
+  const xml = readFileSync(`${ROOT}sitemap.xml`, "utf8");
+  for (const loc of LOCALES) {
+    const f = `${ROOT}${loc}vs-qr-form-tools/index.html`;
+    assert.ok(existsSync(f), `missing ${f}`);
+    const s = readFileSync(f, "utf8");
+    const title = decode(s.match(/<title>(.*?)<\/title>/)[1]);
+    const desc = decode(s.match(/<meta name="description" content="(.*?)"/)[1]);
+    assert.ok(title.length <= 60, `${f}: title ${title.length} chars`);
+    assert.ok(desc.length <= 155, `${f}: description ${desc.length} chars`);
+    assert.match(s, new RegExp(`<link rel="canonical" href="https://podfy.net/${loc}vs-qr-form-tools/"`));
+    assert.equal((s.match(/rel="alternate" hreflang="/g) || []).length, 5, `${f}: hreflang`);
+    assert.match(s, /<meta name="robots" content="index,follow/);
+    assert.match(s, /"@type": "BreadcrumbList"/); assert.match(s, /"@type": "FAQPage"/);
+    assert.match(s, /home-cmp-table/, `${f}: comparison table`);
+    assert.doesNotMatch(s, /\sstyle=|\{[pm]\}|\{low\}/, `${f}: inline style or unfilled price placeholder`);
+    const body = s.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<title>.*?<\/title>/, "");
+    assert.doesNotMatch(body, /[\u2013\u2014]/, `${f}: em/en dash in copy`);
+    assert.ok(xml.includes(`<loc>https://podfy.net/${loc}vs-qr-form-tools/</loc>`), `${loc}: not in sitemap`);
+    assert.match(readFileSync(`${ROOT}${loc}solutions/qr-issue-reporting/index.html`, "utf8"), new RegExp(`href="/${loc}vs-qr-form-tools/"`), `${loc}: overview links to the comparison`);
+  }
+  assert.match(readFileSync(`${ROOT}llms.txt`, "utf8"), /vs-qr-form-tools/);
+  assert.match(readFileSync(`${ROOT}llms-full.txt`, "utf8"), /Source: https:\/\/podfy.net\/vs-qr-form-tools\//);
+});

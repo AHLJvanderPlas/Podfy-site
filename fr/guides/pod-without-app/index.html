@@ -40,7 +40,7 @@
     {"@type":"Question","name":"La page de téléversement du chauffeur peut-elle être affichée en plusieurs langues ?",
       "acceptedAnswer":{"@type":"Answer","text":"Oui. L'interface de téléversement peut être affichée dans 43 langues afin que les chauffeurs puissent travailler dans la langue qu'ils comprennent. Cela améliore les taux de complétion et réduit les questions d'assistance."}},
     {"@type":"Question","name":"Que se passe-t-il si le chauffeur n'a pas de signal au point de livraison ?",
-      "acceptedAnswer":{"@type":"Answer","text":"Les coordonnées GPS et la photo sont capturées au moment du déclenchement de l'appareil photo, et non à la fin du téléversement. En l'absence de signal, le fichier est mis en file d'attente et envoyé dès que le téléphone retrouve une couverture. L'horodatage original est préservé."}},
+      "acceptedAnswer":{"@type":"Answer","text":"Le téléversement a besoin d'une connexion. Sans signal, il n'aboutit pas et le chauffeur renvoie dès que le téléphone retrouve une couverture. La localisation provient de la photo lorsqu'elle en contient une, sinon du téléphone au moment de l'envoi. L'horodatage est fixé à l'arrivée du téléversement."}},
     {"@type":"Question","name":"Pouvons-nous personnaliser le flux de téléversement à notre image ?",
       "acceptedAnswer":{"@type":"Answer","text":"Oui. Le flux de téléversement peut être personnalisé avec votre logo et votre charte graphique afin que les chauffeurs et les partenaires voient votre identité visuelle."}},
     {"@type":"Question","name":"Quels types de documents les chauffeurs peuvent-ils téléverser ?",
@@ -143,7 +143,7 @@
           <div class="v2-how-step">
             <p class="v2-how-step-num">02 — À la grille</p>
             <h3>Ouvrir dans n'importe quel navigateur, appuyer une fois</h3>
-            <p>Le chauffeur ouvre le lien, prend une photo du CMR signé, et appuie sur envoyer. Le GPS capture au moment du déclenchement de l'appareil photo. Fonctionne sur tout téléphone depuis 2017, iOS, Android, ancien ou récent.</p>
+            <p>Le chauffeur ouvre le lien, prend une photo du CMR signé, et appuie sur envoyer. La localisation provient de la photo ou, avec autorisation, du téléphone. Fonctionne sur tout téléphone depuis 2017, iOS, Android, ancien ou récent.</p>
           </div>
           <div class="v2-how-step">
             <p class="v2-how-step-num">03 — Instantanément</p>
@@ -161,7 +161,7 @@
               <tr><td>Intégration du chauffeur</td><td class="v2-col-paper">Installer l'application, créer un compte, session de formation</td><td class="v2-col-digital">Zéro, ouvrir le lien et photographier</td></tr>
               <tr><td>Fonctionne pour les sous-traitants</td><td class="v2-col-paper">Non, ils n'installeront pas votre application</td><td class="v2-col-digital">Oui, tout navigateur, sans compte</td></tr>
               <tr><td>Exigences de l'appareil</td><td class="v2-col-paper">Téléphone compatible, OS à jour</td><td class="v2-col-digital">Tout téléphone avec appareil photo depuis 2017+</td></tr>
-              <tr><td>Comportement sans signal</td><td class="v2-col-paper">Le téléversement échoue, l'horodatage est perdu</td><td class="v2-col-digital">Mis en file d'attente, téléversé dès le retour du signal ; horodatage original préservé</td></tr>
+              <tr><td>Comportement sans signal</td><td class="v2-col-paper">Le téléversement échoue, l'horodatage est perdu</td><td class="v2-col-digital">Nécessite une connexion ; le chauffeur renvoie dès le retour du signal</td></tr>
               <tr><td>Approbation informatique requise</td><td class="v2-col-paper">Souvent oui (MDM, politique de la boutique d'applications)</td><td class="v2-col-digital">Non, c'est une page web</td></tr>
             </tbody>
           </table>
@@ -196,7 +196,7 @@
           </div>
           <div class="v2-faq-acc-item">
             <button class="v2-faq-btn">Que se passe-t-il si le chauffeur n'a pas de signal au point de livraison ?</button>
-            <div class="v2-faq-answer"><p>Les coordonnées GPS et la photo sont capturées au moment du déclenchement de l'appareil photo, et non à la fin du téléversement. En l'absence de signal, le fichier est mis en file d'attente et envoyé dès que le téléphone retrouve une couverture. L'horodatage de capture original est préservé.</p></div>
+            <div class="v2-faq-answer"><p>Le téléversement a besoin d'une connexion. Sans signal, il n'aboutit pas et le chauffeur renvoie dès que le téléphone retrouve une couverture. La localisation provient de la photo lorsqu'elle en contient une, sinon du téléphone au moment de l'envoi. L'horodatage est fixé à l'arrivée du téléversement.</p></div>
           </div>
           <div class="v2-faq-acc-item">
             <button class="v2-faq-btn">Pouvons-nous personnaliser le flux de téléversement à notre image ?</button>

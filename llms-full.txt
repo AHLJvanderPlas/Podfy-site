@@ -152,6 +152,64 @@ A: They stay yours. QR codes are linked to your own asset numbers, and you can e
 
 ---
 
+# QR Reporting vs Generic QR Form Tools
+Source: https://podfy.net/vs-qr-form-tools/
+
+A form with a QR code, or a report that knows the asset.
+
+Generic form builders and QR form tools collect text. PODFY QR Reporting knows which asset was scanned, so every report arrives with the asset number, the location and the group.
+
+A generic form builder gives you one form and one QR code. Whoever scans it has to say which machine they mean, where it stands and what is wrong. Typed asset numbers are missing, misspelled or guessed, and someone on your side has to sort it out before anything can be fixed.
+PODFY works the other way round. Every asset gets its own QR code, linked to your asset register. The scan already identifies the asset, so the reporter only says what is wrong. The report arrives with the asset number, the location and the group, and it is added to the history of that asset.
+
+## Side by side
+- Asset identified automatically: generic form builder: Usually one shared form. The reporter types the asset number, or you build and maintain one form per asset by hand. PODFY: Yes. One QR code per asset, linked to the asset register.
+- What arrives with the report: generic form builder: The answers the reporter filled in, including any typing mistakes. PODFY: Asset number, location and group, added automatically.
+- Asset register with import and retire: generic form builder: Not part of the tool. The list lives in a spreadsheet. PODFY: Upload your assets from a template. Move or retire assets yourself; retired assets are free.
+- Stickers with your own text: generic form builder: A plain QR image that you place in your own layout. PODFY: Print-ready stickers per asset with your logo and your own text, such as "Scan to report an issue".
+- Photo optional or required: generic form builder: Usually a file upload field that you configure per form. PODFY: Required, optional or off, per form.
+- Categories and extra fields: generic form builder: Yes, you build every field yourself. PODFY: Your own categories and fields for your equipment, in every language.
+- Routing and follow up status: generic form builder: Typically an e-mail to one address. Follow up happens in a spreadsheet or inbox. PODFY: Routing per location or category. Status from new to resolved, with priorities and duplicate reports grouped.
+- Webhooks: generic form builder: Depends on the tool and the plan. Often needs a paid tier or a connector. PODFY: Webhook to your ticketing or maintenance system. Open API: soon.
+- EU hosting and GDPR: generic form builder: Depends on the vendor and the plan. Check where answers and uploads are stored. PODFY: Reports and photos stored in the EU, a data processing agreement and deletion on request.
+- Pricing: generic form builder: Often per user, per form or per response, so the bill follows the volume. PODFY: €0.75 per active asset per month, down to €0.40 at volume. Nothing per report, per user or per QR code.
+- No lock in: generic form builder: You can usually export answers, but printed QR codes point to the vendor's form. PODFY: Export all your data. QR codes stay linked to your own IDs and keep working through a redirect for 12 months after you leave.
+
+## When a generic form is enough
+- You have a handful of assets in one place and someone reads every message
+- You want feedback or a survey, not a fault report tied to a specific machine
+- You do not need a history per asset, routing or follow up status
+- A one-off event or a short project where setup time matters more than structure
+
+It starts to hurt when assets multiply, when several teams handle reports, or when someone asks which machine fails most often. That is where an asset register pays off.
+
+## From a form to a register in four steps
+1. Export your asset list: Take the list from your spreadsheet or maintenance system. Asset numbers, names and locations are enough.
+2. Upload it to PODFY: Fill in the template and upload it. Every asset number becomes the reference behind its own QR code.
+3. Set up categories and routing: Choose the issue types, the photo setting and who receives which reports, with an optional webhook.
+4. Print and replace the stickers: Print one sticker per asset with your own text and replace the old QR codes. A free 6-week pilot for up to 100 assets lets you try it first.
+
+## Questions about the comparison
+Q: Why not just use a form builder with a QR code?
+A: You can, and for a few assets it works. A generic form does not know which asset was scanned, so the reporter must type it. PODFY gives every asset its own QR code linked to the asset register, so the report arrives with asset number, location and group.
+
+Q: Can we keep our existing categories and questions?
+A: Yes. You set your own categories and fields per form, in every language, and decide whether a photo is required, optional or off.
+
+Q: What happens to our existing QR codes and stickers?
+A: Stickers from a generic tool point to that tool's form, so they need to be replaced by PODFY stickers. The new stickers carry your logo and your own text, and the QR codes stay linked to your own asset IDs.
+
+Q: Do reports go to our ticketing or maintenance system?
+A: Yes. Reports can be routed per location or category and sent by webhook to your ticketing or maintenance system. An open API for your own integrations is coming soon.
+
+Q: What does PODFY cost compared with a form tool?
+A: €0.75 per active asset per month, down to €0.40 for fleets above 2,500 assets, with a minimum of €25 per month. Nothing is charged per report, per user or per QR code, and retired assets are free. The pilot is free for 6 weeks.
+
+Q: Where is the data stored and can we leave?
+A: Reports and photos are stored in the EU. You can export all your data at any time, and after you leave your QR codes keep working through a redirect for 12 months.
+
+---
+
 # Charger Fault Reporting by QR Code
 Source: https://podfy.net/solutions/qr-issue-reporting/ev-chargers/
 
@@ -481,9 +539,7 @@ PODFY captures proof of delivery at the moment of handover. The driver opens a l
 on any phone, photographs the signed CMR or delivery note, and the GPS-stamped record
 appears in the operations portal within seconds. No app. No account. No training.
 
-The record contains GPS coordinates captured at the moment the camera fires, not at
-upload time. It cannot be retroactively altered. It is stored in Cloudflare's EU jurisdiction,
-meaning no data leaves the European Union.
+The record contains the delivery location: taken from the photo itself when it carries one, otherwise from the phone's location when the driver sends the file (with permission), otherwise estimated from the connection. The record states which source was used. It cannot be retroactively altered. Records and files are stored in the EU (Cloudflare EU jurisdiction); e-mail delivery and optional AI reading use the sub-processors listed on the trust page.
 
 ### Why we built it
 
@@ -675,7 +731,7 @@ See the demo →
 Factor Paper POD Digital POD (Podfy)
 
 Document availability 3–7 days after delivery (return loop) Within seconds of upload
-GPS confirmation None, location is unverified GPS captured at moment of camera fire
+GPS confirmation None, location is unverified Location from the photo or the phone, source recorded
 Searchability Manual, filing cabinets, scanned PDFs in email Instant, by reference, date, driver, or route
 Works for sub-contractors Driver-dependent, often fails Yes, no app, no account, any phone
 Document damage/loss risk High, paper degrades, gets lost in cabs None, central digital archive
@@ -766,9 +822,10 @@ in disputes, and how carriers collect it without a driver app.
 
 ### What GPS proof of delivery is
 
-GPS proof of delivery is a delivery record in which GPS coordinates are captured
-at the moment the camera fires, not when the file is uploaded. The latitude and
-longitude are written to the record server-side and cannot be retroactively altered.
+GPS proof of delivery is a delivery record that carries the location of the delivery:
+the photo's own location when it has one, otherwise the phone's location when the
+driver sends the file. The latitude and longitude are written to the record
+server-side and cannot be retroactively altered.
 
 This matters because it establishes the exact delivery location independently of
 the driver's assertion. A traditional signed delivery note confirms only that
@@ -814,17 +871,18 @@ The process is entirely browser-based. The carrier sends a link via WhatsApp,
 SMS, or prints it as a QR code on the waybill. At the delivery point the driver
 opens the link in any browser, photographs the CMR or delivery point, and submits.
 
-GPS coordinates are captured at the moment the camera fires, not at upload time.
-This is the crucial distinction that makes the timestamp reliable: a driver who
-takes the photo at the delivery point and submits later (when back in 4G range)
-still produces a record that proves location at delivery, not location at submission.
+The location comes from the photo itself when the photo carries one, which reflects
+where it was taken even if the driver submits later. Otherwise the phone's location
+is requested when the driver sends the file, with the driver's permission, and as a
+last resort the location is estimated from the connection. The record states which
+source was used, so a reader can judge how much weight the location carries.
 
 The GPS-stamped record appears in the operations portal within seconds of upload.
 Email notification fires to the carrier's office automatically.
 
 ### What a GPS-stamped record contains
 
-- GPS coordinates: latitude and longitude at moment of camera fire
+- GPS coordinates: latitude and longitude from the photo or the phone, with the source stated
 
 - Timestamp: server-side, cannot be retroactively altered
 
@@ -856,11 +914,11 @@ Typically accurate to 3–10 metres in open areas. Sufficient to confirm deliver
 
 Can GPS coordinates be faked?
 
-With Podfy, coordinates are captured server-side when the upload is received and cross-referenced with the device's reported location at the moment the camera fires. The record is tamper-evident, altering it would require access to the server, not just the device.
+With Podfy, the location is stored server-side with the record, together with the source used (the photo's own location, the phone's location when the file is sent, or an estimate from the connection). The record is tamper-evident, altering it would require access to the server, not just the device.
 
 Is GPS stamping available on all Podfy plans?
 
-Yes. GPS stamping is included on all Podfy plans including Basic. It is not an add-on.
+Every record gets a timestamp. The location is added when it is available, which depends on the photo and on the driver's permission.
 
 Read more
 
@@ -1167,9 +1225,9 @@ Multi-file upload and PDF merge. When multiple photos are captured for a single 
 
 Does photo proof of delivery replace a signed CMR? In most commercial disputes: yes. A GPS-stamped photo is more persuasive because it shows the physical state of goods and location at delivery, things a signature doesn't capture. For international CMR compliance, the paper CMR may still be legally required. Best practice: capture both, use the photo for disputes.
 
-What should a photo proof of delivery capture? At minimum: goods at the delivery point (condition and quantity visible), any damage present at handover, and the delivery location. For unattended deliveries: secure placement of the goods. GPS and timestamp are captured automatically by Podfy at the moment of upload.
+What should a photo proof of delivery capture? At minimum: goods at the delivery point (condition and quantity visible), any damage present at handover, and the delivery location. For unattended deliveries: secure placement of the goods. Podfy adds the timestamp automatically, and the location when it is available (from the photo, or from the phone with permission).
 
-How does GPS-stamping work in Podfy? When the driver opens the Podfy link and uploads, the browser captures GPS coordinates at that moment. These are stored server-side, not in the image EXIF, which can be stripped, with a verified timestamp. The location data is tamper-evident and exportable for audit purposes.
+How does GPS-stamping work in Podfy? The location comes from the photo itself when it carries one. Otherwise the browser asks the phone for its location when the driver sends the file (with permission), and as a last resort it is estimated from the connection. It is stored server-side with a timestamp and the source used. The location data is tamper-evident and exportable for audit purposes.
 
 Can photo POD be used for unattended deliveries? Yes, this is one of the strongest use cases. A GPS-stamped photo of goods placed at an unattended drop point is the only verifiable evidence of delivery when no signature is possible. Construction sites, side gates, parcel lockers, and out-of-hours drops all benefit from photo POD.
 
@@ -1255,7 +1313,7 @@ See the demo →
 
 Delivery documents often contain personal data: driver names, vehicle license plates, GPS locations tied to individuals, and customer contact information. Under GDPR, this data must be processed and stored in accordance with the Regulation, and for organizations subject to Dutch or Belgian law, storage within the EU is strongly preferred.
 
-All data stored via Podfy is stored under Cloudflare's EU jurisdiction (EU data centres only). Stored data never leaves the EU; email delivery and optional AI document reading use subprocessors listed in the DPA. This satisfies Dutch and Belgian GDPR data residency expectations without requiring a supplementary legal instrument (SCC).
+All data stored via Podfy is stored under Cloudflare's EU jurisdiction (EU data centres only). Records and files are stored in the EU; email delivery and optional AI document reading use subprocessors listed in the DPA. This satisfies Dutch and Belgian GDPR data residency expectations without requiring a supplementary legal instrument (SCC).
 
 For procurement and compliance purposes, Podfy provides a Data Processing Agreement (DPA). This is required if you process personal data of EU residents on behalf of a controller, for example, if you are a 3PL processing delivery records on behalf of shipper clients.
 
@@ -1269,7 +1327,7 @@ A legible copy of the signed CMR, delivery note, or photo evidence. Must be retr
 Element 02
 
 #### Timestamp and GPS
-The exact time of delivery and the GPS coordinates, captured at the moment of upload. These establish that the document was created at the delivery point at a specific time — not fabricated after the fact.
+The timestamp, set by the server when the upload arrives, and the GPS coordinates, taken from the photo or the phone. These establish that the document was created at the delivery point at a specific time — not fabricated after the fact.
 
 Element 03
 
@@ -1280,7 +1338,7 @@ The record must be linkable to the invoice and purchase order. A consistent refe
 
 How long must POD documents be retained in the Netherlands and Belgium? 7 years in both jurisdictions for commercial and financial records. CMR documents for cross-border freight have a 1-year claims window but best practice is to retain for the full 7-year period. Podfy's 7-year archive option covers both requirements.
 
-Does Podfy store data in the EU? Yes. All data is stored in Cloudflare's EU jurisdiction (EU data centres only). Stored data never leaves the EU; email delivery and optional AI document reading use subprocessors listed in the DPA. A Data Processing Agreement is available for organizations with formal GDPR compliance requirements.
+Does Podfy store data in the EU? Yes. All data is stored in Cloudflare's EU jurisdiction (EU data centres only). Records and files are stored in the EU; email delivery and optional AI document reading use subprocessors listed in the DPA. A Data Processing Agreement is available for organizations with formal GDPR compliance requirements.
 
 What counts as an audit-ready delivery record? An audit-ready record includes: the document itself (signed CMR or delivery note), a timestamp, GPS coordinates confirming location, and a reference linking it to the invoice or PO. All four are captured automatically in every Podfy submission.
 
@@ -1369,7 +1427,7 @@ Delivery note on file (no photo). A paper delivery note that was scanned days la
 
 Photo of signed CMR. A photo of the signed delivery document, even via WhatsApp, is stronger, it shows signature and document content.
 
-GPS-stamped digital upload. The strongest evidence: a photo or PDF upload where GPS coordinates are captured at the moment of camera fire, with a timestamp that cannot be altered after the fact. This confirms location, time, and document content in one tamper-resistant record.
+GPS-stamped digital upload. The strongest evidence: a photo or PDF upload with a location (from the photo, or from the phone when the file is sent) and a server-set timestamp that cannot be altered after the fact. This confirms location, time, and document content in one tamper-resistant record.
 
 For shortage disputes, a photo of the goods at delivery, showing quantity and condition, is what turns a "my word vs your word" situation into a settled matter.
 
@@ -1426,7 +1484,7 @@ How quickly can a dispute be resolved with digital POD? With digital POD in the 
 
 Can a customer dispute a delivery if they signed the CMR? Yes, but it is much harder for them to succeed. A signed CMR establishes a prima facie case that delivery occurred. Exceptions noted on the CMR at signing become the basis for shortage or damage claims.
 
-What if the driver submitted proof but the customer still disputes? Share the Podfy portal record, GPS coordinates, timestamp, and uploaded document. This is captured at the moment of delivery, not upload, so it cannot be manipulated after the fact. This combination typically closes the dispute without escalation.
+What if the driver submitted proof but the customer still disputes? Share the Podfy portal record, GPS coordinates, timestamp, and uploaded document. The timestamp is set by the server when the upload arrives, so it cannot be manipulated after the fact. This combination typically closes the dispute without escalation.
 
 Related reading
 
@@ -1665,7 +1723,7 @@ When you assign a route or shipment, include the Podfy link in your dispatch mes
 
 #### Open in any browser, tap once
 
-The driver opens the link, takes a photo of the signed CMR, and taps send. GPS captures at the moment the camera fires. Works on any phone from 2017 onwards, iOS, Android, old or new.
+The driver opens the link, takes a photo of the signed CMR, and taps send. The location comes from the photo or, with permission, from the phone. Works on any phone from 2017 onwards, iOS, Android, old or new.
 
 03 — Instantly
 
@@ -1680,7 +1738,7 @@ Factor App-based POD Link-based (Podfy)
 Driver onboarding Install app, create account, training session Zero, open link and photograph
 Works for subcontractors No, they won't install your app Yes, any browser, no account
 Device requirement Compatible phone, current OS Any phone with a camera from 2017+
-No-signal behaviour Upload fails, timestamp lost Queues, uploads when signal returns; original timestamp preserved
+No-signal behaviour Upload fails, timestamp lost Needs a connection; the driver sends again when signal returns
 IT approval required Often yes (MDM, app store policy) No, it's a web page
 
 ### Specific to subcontractor networks
@@ -1702,7 +1760,7 @@ Can the driver upload page be shown in multiple languages?
 Yes. The upload experience can be displayed in 43 languages so drivers can work in the language they understand. This improves completion rates particularly for international subcontractor routes.
 
 What happens if the driver has no signal at the delivery point?
-GPS coordinates and the photo are captured at the moment the camera fires, not when the upload completes. If there is no signal, the file queues and submits as soon as the phone reaches coverage. The original capture timestamp is preserved.
+The upload needs a connection. Without signal it does not go through, and the driver sends it again once the phone has coverage. The location comes from the photo when it carries one, otherwise from the phone when the file is sent. The timestamp is set when the upload arrives.
 
 Can we brand the upload flow?
 Yes. The upload flow can be branded with your logo and color scheme so drivers and partners see your look and feel. This supports trust and consistency across your network.
@@ -1896,7 +1954,7 @@ A unique URL is generated per delivery reference. It can be included in a dispat
 
 #### Photo or file upload
 
-The driver opens the link, photographs the signed CMR or delivery note, and taps send. GPS coordinates are captured at the moment the camera fires, not when the upload completes. Works on any mobile network; no Wi-Fi required.
+The driver opens the link, photographs the signed CMR or delivery note, and taps send. The location comes from the photo when it carries one, otherwise from the phone when the file is sent (with permission). Works on any mobile network; no Wi-Fi required.
 
 03 — Centrally
 

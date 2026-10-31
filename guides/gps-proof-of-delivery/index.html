@@ -40,8 +40,8 @@
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Does GPS proof of delivery require a smartphone?","acceptedAnswer":{"@type":"Answer","text":"Any smartphone from 2017 with a camera and a browser. No GPS chip is required — modern phones use network-assisted positioning (cell towers + WiFi + GPS) which is sufficient for delivery location verification."}},
     {"@type":"Question","name":"How accurate is GPS proof of delivery?","acceptedAnswer":{"@type":"Answer","text":"Typically accurate to 3–10 metres in open areas. Sufficient to confirm delivery to a specific address or site gate. Accuracy may be lower in dense urban areas or large warehouses — in those cases the timestamp and photo together provide sufficient evidence."}},
-    {"@type":"Question","name":"Can GPS coordinates be faked?","acceptedAnswer":{"@type":"Answer","text":"With Podfy, coordinates are captured server-side when the upload is received and cross-referenced with the device's reported location at the moment the camera fires. The record is tamper-evident — altering it would require access to the server, not just the device."}},
-    {"@type":"Question","name":"Is GPS stamping available on all Podfy plans?","acceptedAnswer":{"@type":"Answer","text":"Yes. GPS stamping is included on all Podfy plans including Basic. It is not an add-on."}}
+    {"@type":"Question","name":"Can GPS coordinates be faked?","acceptedAnswer":{"@type":"Answer","text":"With Podfy, the location is stored server-side with the record, together with the source used (the photo's own location, the phone's location when the file is sent, or an estimate from the connection). The record is tamper-evident — altering it would require access to the server, not just the device."}},
+    {"@type":"Question","name":"Is GPS stamping available on all Podfy plans?","acceptedAnswer":{"@type":"Answer","text":"Every record gets a timestamp. The location is added when it is available, which depends on the photo and on the driver's permission."}}
   ]}
   </script>
 <link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
@@ -79,9 +79,10 @@
         <h2 class="v2-section-title" id="what-heading">What GPS proof of delivery is</h2>
         <div class="v2-prose">
           <p>
-            GPS proof of delivery is a delivery record in which GPS coordinates are captured
-            at the moment the camera fires, not when the file is uploaded. The latitude and
-            longitude are written to the record server-side and cannot be retroactively altered.
+            GPS proof of delivery is a delivery record that carries the location of the delivery:
+            the photo's own location when it has one, otherwise the phone's location when the
+            driver sends the file. The latitude and longitude are written to the record
+            server-side and cannot be retroactively altered.
           </p>
           <p>
             This matters because it establishes the exact delivery location independently of
@@ -143,10 +144,11 @@
             opens the link in any browser, photographs the CMR or delivery point, and submits.
           </p>
           <p>
-            GPS coordinates are captured at the moment the camera fires, not at upload time.
-            This is the crucial distinction that makes the timestamp reliable: a driver who
-            takes the photo at the delivery point and submits later (when back in 4G range)
-            still produces a record that proves location at delivery, not location at submission.
+            The location comes from the photo itself when the photo carries one, which reflects
+            where it was taken even if the driver submits later. Otherwise the phone's location
+            is requested when the driver sends the file, with the driver's permission, and as a
+            last resort the location is estimated from the connection. The record states which
+            source was used, so a reader can judge how much weight the location carries.
           </p>
           <p>
             The GPS-stamped record appears in the operations portal within seconds of upload.
@@ -161,7 +163,7 @@
       <div class="container">
         <h2 class="v2-section-title" id="record-heading">What a GPS-stamped record contains</h2>
         <ul class="v2-check-list" data-u="uc03bdb7">
-          <li><strong>GPS coordinates:</strong> latitude and longitude at moment of camera fire</li>
+          <li><strong>GPS coordinates:</strong> latitude and longitude from the photo or the phone, with the source stated</li>
           <li><strong>Timestamp:</strong> server-side, cannot be retroactively altered</li>
           <li><strong>The document:</strong> original uploaded file stored as-is</li>
           <li><strong>Reference linkage:</strong> PO or CMR reference links the record to your invoice</li>
@@ -198,11 +200,11 @@
           </div>
           <div class="v2-faq-item">
             <p class="v2-faq-q">Can GPS coordinates be faked?</p>
-            <p class="v2-faq-a">With Podfy, coordinates are captured server-side when the upload is received and cross-referenced with the device's reported location at the moment the camera fires. The record is tamper-evident, altering it would require access to the server, not just the device.</p>
+            <p class="v2-faq-a">With Podfy, the location is stored server-side with the record, together with the source used (the photo's own location, the phone's location when the file is sent, or an estimate from the connection). The record is tamper-evident, altering it would require access to the server, not just the device.</p>
           </div>
           <div class="v2-faq-item">
             <p class="v2-faq-q">Is GPS stamping available on all Podfy plans?</p>
-            <p class="v2-faq-a">Yes. GPS stamping is included on all Podfy plans including Basic. It is not an add-on.</p>
+            <p class="v2-faq-a">Every record gets a timestamp. The location is added when it is available, which depends on the photo and on the driver's permission.</p>
           </div>
         </div>
       </div>

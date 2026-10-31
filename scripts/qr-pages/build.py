@@ -17,6 +17,7 @@ LANGS = ["en", "nl", "de", "fr"]
 CSSV = re.search(r"styles\.site\.css\?v=([\w-]+)", open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "index.html")).read()).group(1)  # follow the site-wide version
 SITE = "https://podfy.net"
 SECTION = "/solutions/qr-issue-reporting/"
+VSQR_PATH = "/vs-qr-form-tools/"
 
 
 def load(lang):
@@ -38,6 +39,7 @@ for l in LANGS[1:]:  # every language must cover exactly the same pages and keys
         assert not miss, f"{l}/{slug}: missing {miss}"
     assert set(C[l].HOME_MORE) == set(EN.HOME_MORE) and len(C[l].HOME_MORE["cmp_rows"]) == len(EN.HOME_MORE["cmp_rows"]), f"{l}: home body differs"
     assert set(C[l].CMR) == set(EN.CMR) and set(C[l].DOORS) == set(EN.DOORS), f"{l}: cmr/home keys differ"
+    assert set(C[l].VSQR) == set(EN.VSQR) and len(C[l].VSQR["cmp_rows"]) == len(EN.VSQR["cmp_rows"]) and len(C[l].VSQR["faq"]) == len(EN.VSQR["faq"]), f"{l}: VSQR differs"
     assert set(C[l].LP) == set(EN.LP), f"{l}: landing keys differ {set(C[l].LP) ^ set(EN.LP)}"
 
 esc = lambda s: html.escape(s, quote=True)
@@ -240,6 +242,14 @@ def build(lang):
 
 {service_section(lang)}
 
+    <section class="v2-section" aria-labelledby="cmp-link-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(c.VSQR["link_label"])}</p>
+        <h2 class="v2-section-title" id="cmp-link-heading">{esc(c.VSQR["link_text"])}</h2>
+        <p><a href="{p}{VSQR_PATH}" class="v2-link">{esc(c.VSQR["link_cta"])} &rarr;</a></p>
+      </div>
+    </section>
+
     <section class="v2-section" aria-labelledby="faq-heading">
       <div class="container">
         <p class="v2-eyebrow">{esc(ui["faq_eyebrow"])}</p>
@@ -316,7 +326,7 @@ def sync_sitemap():
         for lang in LANGS:
             alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{url(l, path)}"/>' for l in LANGS)
             block.append(f"  <url>\n    <loc>{url(lang, path)}</loc>{alts}\n  </url>")
-    for path in ("/cmr/", "/qr/"):
+    for path in ("/cmr/", "/qr/", VSQR_PATH):
         for lang in LANGS:
             alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE + pre(l) + path}"/>' for l in LANGS)
             block.append(f"  <url>\n    <loc>{SITE + pre(lang) + path}</loc>{alts}\n  </url>")
@@ -948,6 +958,115 @@ def build_home(lang):
     page_shell(lang, "/", d["title"], d["desc"], ld, body)
 
 
+# ── Comparison page: PODFY QR Reporting vs generic QR form tools ──
+def vs_fmt(lang, s):
+    return s.format(p=money(lang, QR_TIERS[0][2]), low=money(lang, QR_TIERS[-1][2]), m=money(lang, QR_MIN))
+
+
+def vsqr_llms():
+    v = EN.VSQR
+    rows = "\n".join(f"- {a}: generic form builder: {vs_fmt('en', b)} PODFY: {vs_fmt('en', q)}" for a, b, q in v["cmp_rows"])
+    faq = "\n\n".join(f"Q: {q}\nA: {vs_fmt('en', a)}" for q, a in v["faq"])
+    return f"""---
+
+# {v["title"].replace(" | PODFY", "")}
+Source: {SITE}{VSQR_PATH}
+
+{v["h1a"]} {v["h1b"]}
+
+{v["sub"]}
+
+{chr(10).join(v["core"])}
+
+## {v["cmp_title"]}
+{rows}
+
+## {v["enough_h"]}
+{chr(10).join("- " + x for x in v["enough"])}
+
+{v["enough_more"]}
+
+## {v["switch_title"]}
+{chr(10).join(f"{i + 1}. {h}: {t}" for i, (h, t) in enumerate(v["switch"]))}
+
+## {v["faq_title"]}
+{faq}
+"""
+
+
+def build_vsqr(lang):
+    c, ui, v, p = C[lang], C[lang].UI, C[lang].VSQR, pre(lang)
+    home = (p or "") + "/"
+    faq = [(q, vs_fmt(lang, a)) for q, a in v["faq"]]
+    crumbs = [(ui["crumb_home"], SITE + home), (ui["crumb_qr"], url(lang)), (v["crumb"], page_url(lang, VSQR_PATH))]
+    ld = [{"@context": "https://schema.org", "@type": "BreadcrumbList",
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs)]},
+          {"@context": "https://schema.org", "@type": "FAQPage",
+           "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}]
+    cols = v["cmp_cols"]
+    rows = "".join(f'<tr><th scope="row">{esc(a)}</th><td>{esc(vs_fmt(lang, b))}</td><td>{esc(vs_fmt(lang, q))}</td></tr>' for a, b, q in v["cmp_rows"])
+    steps = "".join(f'<div class="v2-flow-step"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in v["switch"])
+    body = crumbs_nav([(ui["crumb_home"], home), (ui["crumb_qr"], p + SECTION), (v["crumb"], p + VSQR_PATH)]) + f'''
+
+  <main id="main" class="v2-main">
+    <section class="home-hero" aria-labelledby="vs-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(v["eyebrow"])}</p>
+        <h1 class="v2-hero-title home-title" id="vs-heading">{esc(v["h1a"])} <em>{esc(v["h1b"])}</em></h1>
+        <p class="v2-hero-sub home-sub">{esc(v["sub"])}</p>
+        <div class="v2-rp-actions"><a href="{p}/contact?solution=report" class="v2-btn v2-btn-primary">{esc(ui["req_demo"])} &rarr;</a><a href="{p}{SECTION}" class="v2-btn v2-btn-ghost">{esc(ui["how_works"])}</a></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="core-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="core-heading">{esc(v["core_h"])}</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose">{"".join(f"<p>{esc(x)}</p>" for x in v["core"])}</div>
+          <div><ul class="v2-check-list">{"".join(f"<li>{esc(x)}</li>" for x in v["core_points"])}</ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section home-cmp" aria-labelledby="cmp-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="cmp-heading">{esc(v["cmp_title"])}</h2>
+        <p class="v2-prose">{esc(v["cmp_intro"])}</p>
+        <div class="home-cmp-wrap"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">{esc(cols[0])}</span></th><th scope="col">{esc(cols[1])}</th><th scope="col"><a href="{p}{SECTION}">{esc(cols[2])}</a></th></tr></thead><tbody>{rows}</tbody></table></div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="enough-heading">
+      <div class="container">
+        <h2 class="v2-section-title" id="enough-heading">{esc(v["enough_h"])}</h2>
+        <div class="v2-two-col">
+          <div class="v2-prose"><p>{esc(v["enough_intro"])}</p><p>{esc(v["enough_more"])}</p></div>
+          <div><ul class="v2-check-list">{"".join(f"<li>{esc(x)}</li>" for x in v["enough"])}</ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="switch" aria-labelledby="switch-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(v["switch_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="switch-heading">{esc(v["switch_title"])}</h2>
+        <div class="v2-flow">{steps}</div>
+      </div>
+    </section>
+
+    <section class="v2-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(ui["faq_eyebrow"])}</p>
+        <h2 class="v2-section-title" id="faq-heading">{esc(v["faq_title"])}</h2>
+        {faq_html(faq)}
+      </div>
+    </section>
+
+{cta_block(lang, ui, v["cta_a"], v["cta_b"])}
+  </main>'''
+    page_shell(lang, VSQR_PATH, v["title"], v["desc"], ld, body)
+
+
 LLMS_START, LLMS_END = "<!-- generated by scripts/qr-pages/build.py -->", "<!-- /generated -->"
 
 
@@ -969,6 +1088,7 @@ def sync_llms():
 - CMR generator (create CMR/AVC consignment notes in the portal): {SITE}/cmr/generator/
 - Delivery solutions by role: {SITE}/solutions/ (carriers, 3PL, shippers, retail, construction, facilities, inbound, paper to digital)
 - QR Reporting: {SITE}/qr/ (main page) and {SITE}{SECTION} (overview with all use cases)
+- Comparison, PODFY QR Reporting vs generic QR form tools: {SITE}{VSQR_PATH}
 
 ## PODFY QR Reporting (second solution)
 
@@ -1046,6 +1166,7 @@ Source: {SITE}/qr/ and {SITE}{SECTION}
 ## {e.OV["faq_title"]}
 {qa([e.FAQ[k] for k in e.OV["faq_keys"]])}
 """]
+    full.append(vsqr_llms())
     for s in e.ORDER:
         v = e.CASES[s]
         faq = [resolve(e, f) for f in v["faq"]]
@@ -1231,6 +1352,7 @@ if __name__ == "__main__":
     for lang in LANGS:
         build_landing(lang)
         build_cmr(lang)
+        build_vsqr(lang)
         build_home(lang)
     # regenerated pages lose their asset wiring: re-run the site tools so `npm test` stays green
     import subprocess
