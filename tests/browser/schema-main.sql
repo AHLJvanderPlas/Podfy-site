@@ -906,3 +906,87 @@ ALTER TABLE brand_details ADD COLUMN terminated_at TEXT;
 -- 90 days after creation at the latest (podfy-cron), and by retention / erasure with the record.
 ALTER TABLE transactions ADD COLUMN reporter_contact_enc TEXT;
 CREATE INDEX IF NOT EXISTS idx_tx_reporter_contact ON transactions(created_at) WHERE reporter_contact_enc IS NOT NULL;
+
+-- migration 086 (Phase 4: refund_requests, brand_domains, ai triage kind, usage slug, catalog keys), appended 2026-11-01
+-- 086_phase4.sql — Phase 4: refund requests, own domains, AI triage, insights index, catalog keys
+-- (plans/70-phase4.md, plans/01-core-model.md §12). Additive only.
+-- Live schema checked 2026-11-01: no refund_requests / brand_domains tables; transaction_ai_scan has no kind column;
+-- api_usage_log has no slug column; no idx_tx_slug_upload_date / idx_usage_site_created; no catalog rows for the keys below.
+
+-- One refund request per record, created by Podfy-app at upload (report mode, refund_requests effective).
+-- id = 'rfd_' + 16 random hex, also the idempotency key for the receiving payment platform.
+-- status: requested -> approved | rejected; approved -> paid | failed (REFUND_TRANSITIONS in process-core).
+CREATE TABLE IF NOT EXISTS refund_requests (
+  id TEXT PRIMARY KEY,
+  slug TEXT NOT NULL,
+  podfy_id TEXT NOT NULL UNIQUE,
+  amount_cents INTEGER NOT NULL CHECK (amount_cents > 0),
+  currency TEXT NOT NULL DEFAULT 'EUR',
+  pay_ref TEXT,
+  status TEXT NOT NULL DEFAULT 'requested',
+  flags TEXT,
+  decided_by TEXT,
+  decided_at TEXT,
+  decision_note TEXT,
+  platform_ref TEXT,
+  result_note TEXT,
+  result_at TEXT,
+  is_qa INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT DEFAULT (datetime('now')),
+  updated_at TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_refund_slug_status ON refund_requests(slug, status, created_at);
+CREATE INDEX IF NOT EXISTS idx_refund_slug_payref ON refund_requests(slug, pay_ref) WHERE pay_ref IS NOT NULL;
+
+-- Own domain per brand (Cloudflare Pages custom domain on podfy-app / podfy-app-qa), managed by Podfy staff in admin.
+CREATE TABLE IF NOT EXISTS brand_domains (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug TEXT NOT NULL,
+  hostname TEXT NOT NULL UNIQUE,
+  environment TEXT NOT NULL DEFAULT 'production',
+  status TEXT NOT NULL DEFAULT 'pending',
+  cf_status TEXT,
+  cf_detail TEXT,
+  last_checked_at TEXT,
+  created_by TEXT,
+  created_at TEXT DEFAULT (datetime('now')),
+  activated_at TEXT,
+  removed_at TEXT
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_bdom_one_live ON brand_domains(slug, environment) WHERE status IN ('pending','active');
+
+-- AI triage rows share transaction_ai_scan with the document scan; kind tells them apart.
+ALTER TABLE transaction_ai_scan ADD COLUMN kind TEXT NOT NULL DEFAULT 'document';
+-- AI cost per brand.
+ALTER TABLE api_usage_log ADD COLUMN slug TEXT;
+CREATE INDEX IF NOT EXISTS idx_usage_site_created ON api_usage_log(call_site, created_at);
+-- Dashboard / insights period scans.
+CREATE INDEX IF NOT EXISTS idx_tx_slug_upload_date ON transactions(slug, upload_date);
+
+-- Catalog (visibility 'testing'). refund_requests and ai_triage are Advanced keys (one rule, ADVANCED_KEYS);
+-- own_domain is a priced add-on (owner decision D4: EUR 25 per month per domain, included in Enterprise).
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema, requires_feature_key)
+SELECT 'Refund requests', 0, 'addon', 'refund_requests', 'manual', 'flat_monthly', 'testing', 250, 1,
+  'Refund requests from the report form are approved by your admins and sent as a signed request to your payment platform; the result comes back through the API. PODFY never pays out. Part of Advanced.',
+  '{"group":"followup","modes":["report"]}', 'custom_fields'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'refund_requests');
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'AI triage', 0, 'addon', 'ai_triage', 'manual', 'flat_monthly', 'testing', 255, 1,
+  'Optional: report photos are checked by AI and you get a suggested category and priority, a safety flag and a short description. Nothing changes automatically. Part of Advanced.',
+  '{"group":"followup","modes":["report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'ai_triage');
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Own domain', 25, 'addon', 'own_domain', 'manual', 'flat_monthly', 'testing', 260, 1,
+  'Your report form and QR codes on your own subdomain, for example meld.yourcompany.com. Set up by PODFY.',
+  '{"group":"branding","modes":["delivery","report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'own_domain');
+
+INSERT OR IGNORE INTO plan_features (subscription, feature_key, is_included)
+SELECT LOWER(p.plan_name), f.feature_key, 0
+FROM billing_plan_catalog p, billing_plan_catalog f
+WHERE p.type = 'plan' AND p.is_active = 1 AND f.feature_key IN ('refund_requests','ai_triage','own_domain');
+UPDATE plan_features SET is_included = 1 WHERE subscription = 'enterprise' AND feature_key = 'own_domain';
+
+-- Global AI triage controls (owner decision D6): kill switch and monthly budget in USD.
+INSERT OR IGNORE INTO linkedin_settings (key, value) VALUES ('AI_TRIAGE_ENABLED', 'on');
+INSERT OR IGNORE INTO linkedin_settings (key, value) VALUES ('AI_TRIAGE_MONTHLY_USD', '25');
