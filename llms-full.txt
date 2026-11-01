@@ -254,6 +254,11 @@ List endpoints return {"data": [...], "next_cursor": "…"}. Pass next_cursor ba
 - POST /references (scope references:write): Create a reference
 - GET /references/{ref} (scope references:read): Get a reference
 - PATCH /references/{ref} (scope references:write): Update a reference
+- GET /refunds (scope refunds:read): List refunds
+- GET /refunds/{id} (scope refunds:read): Get a refund
+- POST /refunds/{id}/approve (scope refunds:write): Approve a refund
+- POST /refunds/{id}/reject (scope refunds:write): Reject a refund
+- POST /refunds/{id}/result (scope refunds:write): Report the payout result
 
 Specification (OpenAPI 3.1): https://podfy.net/docs/api/openapi.json
 

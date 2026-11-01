@@ -3,7 +3,7 @@
   "info": {
     "title": "PODFY Open API",
     "version": "1.0.0",
-    "description": "Read records (proofs of delivery and reports) and update their status from your own systems, and manage your reference (asset) register.\n\n**Authentication.** Send `Authorization: Bearer <key>` on every request. Keys are created by a brand admin in the portal (Settings → Integrations → API keys) and shown once. `pk_live_…` keys see only production records; `pk_test_…` keys (\"QA records only\") see only test records from qa.podfy.app (podfy_id starting with `QA-`). A key never works in a query parameter. A missing, malformed, unknown or revoked key always gets the same `401 invalid_key`.\n\n**Availability.** The Open API is part of PODFY Advanced. When it is not active for the brand, every call answers `403 feature_not_active`.\n\n**Scopes.** `records:read`, `records:write`, `references:read`, `references:write`. A write scope also allows reading the same resource; nothing else is implied. Missing scope: `403 insufficient_scope`.\n\n**Rate limit.** 600 requests per minute per key (fixed one-minute windows). Every answer carries `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset` (unix seconds when the window ends). Above the limit: `429 rate_limited` with `Retry-After` (seconds).\n\n**Isolation.** A record or reference of another brand, or a record of the other environment, answers `404 not_found`, never 403.\n\n**Paging.** List endpoints return `{data, next_cursor}`. Pass `next_cursor` back as `cursor` until it is `null`. Records are newest first. Cursors are opaque.\n\n**Errors.** Every error is JSON `{\"error\":{\"code\":\"…\",\"message\":\"…\"}}`. Responses are never cached (`Cache-Control: no-store`). No CORS: call the API from your server, never from a browser.",
+    "description": "Read records (proofs of delivery and reports) and update their status from your own systems, manage your reference (asset) register, and approve refund requests and report their payout result.\n\n**Authentication.** Send `Authorization: Bearer <key>` on every request. Keys are created by a brand admin in the portal (Settings → Integrations → API keys) and shown once. `pk_live_…` keys see only production records; `pk_test_…` keys (\"QA records only\") see only test records from qa.podfy.app (podfy_id starting with `QA-`). A key never works in a query parameter. A missing, malformed, unknown or revoked key always gets the same `401 invalid_key`.\n\n**Availability.** The Open API is part of PODFY Advanced. When it is not active for the brand, every call answers `403 feature_not_active`.\n\n**Scopes.** `records:read`, `records:write`, `references:read`, `references:write`, `refunds:read`, `refunds:write`. A write scope also allows reading the same resource; nothing else is implied. Missing scope: `403 insufficient_scope`.\n\n**Rate limit.** 600 requests per minute per key (fixed one-minute windows). Every answer carries `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset` (unix seconds when the window ends). Above the limit: `429 rate_limited` with `Retry-After` (seconds).\n\n**Isolation.** A record, reference or refund of another brand, or a record or refund of the other environment, answers `404 not_found`, never 403.\n\n**Refunds.** PODFY records refund requests from the report form and never pays them out. A brand admin (in the portal) or your system (`POST /refunds/{id}/approve`) approves a request; PODFY then sends the signed webhook `refund.approved` to webhooks that subscribed to it by name. Your payment platform pays and reports back with `POST /refunds/{id}/result`. Use the refund `id` as the idempotency key: sending the same result again answers the same refund and changes nothing.\n\n**Paging.** List endpoints return `{data, next_cursor}`. Pass `next_cursor` back as `cursor` until it is `null`. Records are newest first. Cursors are opaque.\n\n**Errors.** Every error is JSON `{\"error\":{\"code\":\"…\",\"message\":\"…\"}}`. Responses are never cached (`Cache-Control: no-store`). No CORS: call the API from your server, never from a browser.",
     "contact": {
       "name": "PODFY support",
       "email": "support@podfy.net",
@@ -28,6 +28,10 @@
     {
       "name": "References",
       "description": "The reference (asset) register; requires the asset register to be active"
+    },
+    {
+      "name": "Refunds",
+      "description": "Refund requests from the report form; requires refund requests to be active (part of Advanced)"
     }
   ],
   "paths": {
@@ -605,6 +609,385 @@
           }
         }
       }
+    },
+    "/refunds": {
+      "get": {
+        "summary": "List refunds",
+        "description": "Refund requests of the brand, newest first.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:read` (a key with `refunds:write` may also call it).",
+        "x-podfy-scope": "refunds:read",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Refunds"
+        ],
+        "operationId": "listRefunds",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Refund status, one or more comma separated.",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "requested",
+                "approved,paid"
+              ]
+            }
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of refunds.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefundList"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/refunds/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/refund_id"
+        }
+      ],
+      "get": {
+        "summary": "Get a refund",
+        "description": "One refund request.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:read` (a key with `refunds:write` may also call it).",
+        "x-podfy-scope": "refunds:read",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Refunds"
+        ],
+        "operationId": "getRefund",
+        "responses": {
+          "200": {
+            "description": "The refund.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Refund"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/refunds/{id}/approve": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/refund_id"
+        }
+      ],
+      "post": {
+        "summary": "Approve a refund",
+        "description": "Moves a `requested` refund to `approved` (actor `api:<key prefix>`). Sends the webhook `refund.approved` to webhooks that subscribed to it by name (never to `*`). Any other status: `409 invalid_transition`. The body is optional.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:write`.",
+        "x-podfy-scope": "refunds:write",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Refunds"
+        ],
+        "operationId": "approveRefund",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefundDecision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The refund after the change.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Refund"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "409": {
+            "$ref": "#/components/responses/RefundConflict"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/refunds/{id}/reject": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/refund_id"
+        }
+      ],
+      "post": {
+        "summary": "Reject a refund",
+        "description": "Moves a `requested` refund to `rejected` (actor `api:<key prefix>`). Sends the webhook `refund.updated` to webhooks that subscribed to it by name (never to `*`). Any other status: `409 invalid_transition`. The body is optional.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:write`.",
+        "x-podfy-scope": "refunds:write",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Refunds"
+        ],
+        "operationId": "rejectRefund",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefundDecision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The refund after the change.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Refund"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "409": {
+            "$ref": "#/components/responses/RefundConflict"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/refunds/{id}/result": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/refund_id"
+        }
+      ],
+      "post": {
+        "summary": "Report the payout result",
+        "description": "Your payment platform reports the result of an `approved` refund: `paid` or `failed`. Sends the webhook `refund.updated` to webhooks that subscribed to it by name. Idempotent: the same status again answers `200` with the stored refund and changes nothing. A result for a refund that is not approved (or a different result after a final one): `409 invalid_transition`.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:write`.",
+        "x-podfy-scope": "refunds:write",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Refunds"
+        ],
+        "operationId": "recordRefundResult",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefundResult"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The refund with its result.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Refund"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "409": {
+            "$ref": "#/components/responses/RefundConflict"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -655,6 +1038,16 @@
         "schema": {
           "type": "string"
         }
+      },
+      "refund_id": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "The refund id, e.g. rfd_3f9a0c1d2e4b5a69.",
+        "schema": {
+          "type": "string",
+          "pattern": "^rfd_[A-Za-z0-9]{1,64}$"
+        }
       }
     },
     "headers": {
@@ -685,7 +1078,7 @@
     },
     "responses": {
       "BadRequest": {
-        "description": "Invalid query parameter or body. Codes: `invalid_parameter`, `invalid_cursor`, `invalid_body`, `invalid_status`, `invalid_priority`, `invalid_assignee`, `invalid_comment`, `comment_too_long`, `nothing_to_update`, `invalid_ref`, `name_too_long`, `location_too_long`, `group_code_too_long`, `sticker_text_too_long`, `no_valid_fields`.",
+        "description": "Invalid query parameter or body. Codes: `invalid_parameter`, `invalid_cursor`, `invalid_body`, `invalid_status`, `invalid_priority`, `invalid_assignee`, `invalid_comment`, `comment_too_long`, `nothing_to_update`, `invalid_ref`, `name_too_long`, `location_too_long`, `group_code_too_long`, `sticker_text_too_long`, `no_valid_fields`, `invalid_note`, `note_too_long`, `invalid_platform_ref`, `platform_ref_too_long`.",
         "content": {
           "application/json": {
             "schema": {
@@ -712,7 +1105,7 @@
         }
       },
       "Forbidden": {
-        "description": "The Open API (or, for references, the reference register; for record updates, status tracking) is not active for the brand, or the key lacks the scope. Codes: `feature_not_active`, `insufficient_scope`.",
+        "description": "The Open API (or, for references, the reference register; for record updates, status tracking; for refunds, refund requests) is not active for the brand, or the key lacks the scope. Codes: `feature_not_active`, `insufficient_scope`.",
         "content": {
           "application/json": {
             "schema": {
@@ -722,7 +1115,7 @@
         }
       },
       "NotFound": {
-        "description": "No such endpoint, or no such record / reference for this key's brand and environment. Codes: `not_found`.",
+        "description": "No such endpoint, or no such record / reference / refund for this key's brand and environment. Codes: `not_found`.",
         "content": {
           "application/json": {
             "schema": {
@@ -784,6 +1177,16 @@
       },
       "ServerError": {
         "description": "Unexpected error; try again later. Codes: `server_error`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "RefundConflict": {
+        "description": "The refund is not in a status that allows this change (requested → approved | rejected; approved → paid | failed). Codes: `invalid_transition`.",
         "content": {
           "application/json": {
             "schema": {
@@ -1318,6 +1721,210 @@
               "string",
               "null"
             ]
+          }
+        }
+      },
+      "Refund": {
+        "type": "object",
+        "required": [
+          "id",
+          "amount",
+          "currency",
+          "pay_ref",
+          "status",
+          "decided_at",
+          "result",
+          "podfy_id",
+          "reference",
+          "created_at",
+          "flags",
+          "decided_by",
+          "decision_note",
+          "result_note"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Refund id; use it as the idempotency key.",
+            "examples": [
+              "rfd_3f9a0c1d2e4b5a69"
+            ]
+          },
+          "amount": {
+            "type": "string",
+            "description": "Amount with two decimals.",
+            "examples": [
+              "2.50"
+            ]
+          },
+          "currency": {
+            "type": "string",
+            "examples": [
+              "EUR"
+            ]
+          },
+          "pay_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Payment reference the reporter gave (max 120)."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "requested",
+              "approved",
+              "rejected",
+              "paid",
+              "failed"
+            ]
+          },
+          "decided_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "result": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Set once the platform reported paid or failed.",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "paid",
+                  "failed"
+                ]
+              },
+              "platform_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              }
+            }
+          },
+          "podfy_id": {
+            "type": "string",
+            "description": "The record the refund belongs to."
+          },
+          "reference": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The record's reference (asset)."
+          },
+          "created_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "e.g. `duplicate_pay_ref` (the payment reference was used by another request of this brand)."
+          },
+          "decided_by": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Who approved or rejected: a portal user's e-mail, `auto`, or `api:<key prefix>`."
+          },
+          "decision_note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "result_note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "RefundList": {
+        "type": "object",
+        "required": [
+          "data",
+          "next_cursor"
+        ],
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Refund"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "RefundDecision": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "note": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500,
+            "description": "Optional note (stored with the refund, never sent in webhooks)."
+          }
+        }
+      },
+      "RefundResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "paid",
+              "failed"
+            ]
+          },
+          "platform_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 120,
+            "description": "Your platform's payout / transaction id."
+          },
+          "note": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
           }
         }
       }
