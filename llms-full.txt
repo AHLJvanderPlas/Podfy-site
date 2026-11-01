@@ -210,6 +210,55 @@ A: Reports and photos are stored in the EU. You can export all your data at any 
 
 ---
 
+# Open API reference: PODFY
+Source: https://podfy.net/docs/api/
+
+PODFY Open API reference
+
+Fetch records, update their status and manage your reference register from your own systems. A JSON REST API, part of PODFY Advanced.
+
+## What the API is
+The PODFY Open API lets your own systems read records (proofs of delivery and QR reports), update their work status and manage the reference (asset) register. It is a JSON REST API for server to server use. There is no CORS: call it from your backend, never from a browser.
+The Open API is part of PODFY Advanced. When it is not active for your brand, every call answers 403 feature_not_active. The specification is OpenAPI 3.1 and the reference below is generated from the same file.
+
+## Get an API key
+A brand admin creates keys in the portal under Settings → Integrations → API keys. Give the key a name and choose its scopes. The key is shown once, so store it in your secrets manager. You can revoke a key at any time, and a revoked key stops working immediately.
+- records:read: read records
+- records:write: update records (also allows reading them)
+- references:read: read the reference register
+- references:write: create and change references (also allows reading them)
+
+## Base URL and authentication
+The base URL is https://portal.podfy.net/api/v1. Send your key as a Bearer token in the Authorization header on every request. A key never works in a query parameter.
+A missing, malformed, unknown or revoked key always gets the same answer, 401 invalid_key. A key without the required scope gets 403 insufficient_scope.
+
+## Live and test keys
+Keys starting with pk_live_ see only production records. Keys starting with pk_test_ (QA records only) see only test records from qa.podfy.app, whose PODFY IDs start with QA-. The two environments never mix.
+The reference register is shared with production, so test keys cannot create or change references (403 insufficient_scope). A record or reference of another brand, or a record of the other environment, answers 404 not_found, never 403.
+
+## Rate limit
+Each key may make 600 requests per minute, counted in fixed one-minute windows. Every answer carries X-RateLimit-Limit, X-RateLimit-Remaining and X-RateLimit-Reset (unix seconds when the window ends).
+Above the limit you get 429 rate_limited with a Retry-After header (seconds). Wait that long and try again.
+
+## Errors
+Every error is JSON in the same shape: {"error":{"code":"…","message":"…"}}. Handle errors by the HTTP status and the code, not by the message text. Responses are never cached (Cache-Control: no-store). The full list of codes is in the reference below.
+
+## Pagination
+List endpoints return {"data": [...], "next_cursor": "…"}. Pass next_cursor back as the cursor parameter to get the next page, until it is null. Cursors are opaque: do not build or change them. Records are listed newest first. The page size is set with limit (1 to 200, default 50).
+
+## Operations (base URL https://portal.podfy.net/api/v1)
+- GET /records (scope records:read): List records
+- GET /records/{podfy_id} (scope records:read): Get a record
+- PATCH /records/{podfy_id} (scope records:write): Update a record
+- GET /references (scope references:read): List references
+- POST /references (scope references:write): Create a reference
+- GET /references/{ref} (scope references:read): Get a reference
+- PATCH /references/{ref} (scope references:write): Update a reference
+
+Specification (OpenAPI 3.1): https://podfy.net/docs/api/openapi.json
+
+---
+
 # Charger Fault Reporting by QR Code
 Source: https://podfy.net/solutions/qr-issue-reporting/ev-chargers/
 

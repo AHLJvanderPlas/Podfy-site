@@ -54,6 +54,7 @@ Key capabilities:
 - Delivery solutions by role: https://podfy.net/solutions/ (carriers, 3PL, shippers, retail, construction, facilities, inbound, paper to digital)
 - QR Reporting: https://podfy.net/qr/ (main page) and https://podfy.net/solutions/qr-issue-reporting/ (overview with all use cases)
 - Comparison, PODFY QR Reporting vs generic QR form tools: https://podfy.net/vs-qr-form-tools/
+- Open API reference (REST, part of Advanced; intro also in /nl/, /de/, /fr/): https://podfy.net/docs/api/ ; specification https://podfy.net/docs/api/openapi.json
 
 ## PODFY QR Reporting (second solution)
 

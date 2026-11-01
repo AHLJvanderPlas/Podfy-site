@@ -12,9 +12,9 @@ PROJECT=$(sed -n 's/^name *= *"\(.*\)"/\1/p' wrangler.toml | head -1)
 node tools/sitemap-lastmod.mjs
 
 rm -rf dist && mkdir dist
-rsync -a --include '/SECURITY.md' \
+rsync -a --include '/SECURITY.md' --include '/docs/' --include '/docs/api/' --include '/docs/api/index.html' --include '/docs/api/openapi.json' --exclude '/docs/*' \
   --exclude '.claude' --exclude '.git' --exclude '.wrangler' --exclude 'dist' --exclude 'node_modules' \
-  --exclude 'functions' --exclude 'migrations' --exclude 'scripts' --exclude 'tests' --exclude 'docs' --exclude 'tools' \
+  --exclude 'functions' --exclude 'migrations' --exclude 'scripts' --exclude 'tests' --exclude 'tools' \
   --exclude 'wrangler.toml' --exclude '.gitignore' --exclude '.DS_Store' --exclude '.dev.vars*' --exclude '.env*' \
   --exclude 'CLAUDE.md' --exclude 'README.md' --exclude 'README.MD' --exclude 'SECURITY.md' --exclude '*.md' \
   --exclude 'package.json' --exclude 'package-lock.json' --exclude 'deploy.sh' \

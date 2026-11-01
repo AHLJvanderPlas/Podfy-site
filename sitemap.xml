@@ -6,28 +6,28 @@
   <!-- EN · NL · DE · FR entries grouped per page, each with full hreflang cross-references -->
 
   <!-- ═══ HOME ═══ -->
-  <url><loc>https://podfy.net/</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>1.0</priority>
+  <url><loc>https://podfy.net/</loc><lastmod>2026-11-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
   </url>
-  <url><loc>https://podfy.net/nl/</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority>
+  <url><loc>https://podfy.net/nl/</loc><lastmod>2026-11-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
   </url>
-  <url><loc>https://podfy.net/de/</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority>
+  <url><loc>https://podfy.net/de/</loc><lastmod>2026-11-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/" />
   </url>
-  <url><loc>https://podfy.net/fr/</loc><lastmod>2026-10-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority>
+  <url><loc>https://podfy.net/fr/</loc><lastmod>2026-11-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/" />
@@ -66,28 +66,28 @@
   </url>
 
   <!-- ═══ PRICING ═══ -->
-  <url><loc>https://podfy.net/pricing</loc><lastmod>2026-10-31</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+  <url><loc>https://podfy.net/pricing</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/pricing" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/pricing" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/pricing" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/pricing" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/pricing" />
   </url>
-  <url><loc>https://podfy.net/nl/pricing</loc><lastmod>2026-10-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://podfy.net/nl/pricing</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/pricing" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/pricing" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/pricing" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/pricing" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/pricing" />
   </url>
-  <url><loc>https://podfy.net/de/pricing</loc><lastmod>2026-10-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://podfy.net/de/pricing</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/pricing" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/pricing" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/pricing" />
     <xhtml:link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/pricing" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://podfy.net/pricing" />
   </url>
-  <url><loc>https://podfy.net/fr/pricing</loc><lastmod>2026-10-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://podfy.net/fr/pricing</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://podfy.net/pricing" />
     <xhtml:link rel="alternate" hreflang="nl"        href="https://podfy.net/nl/pricing" />
     <xhtml:link rel="alternate" hreflang="de"        href="https://podfy.net/de/pricing" />
@@ -833,28 +833,28 @@
 
   <!-- QR Reporting (generated) -->
   <url>
-    <loc>https://podfy.net/solutions/qr-issue-reporting/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/solutions/qr-issue-reporting/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/"/>
   </url>
   <url>
-    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/nl/solutions/qr-issue-reporting/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/"/>
   </url>
   <url>
-    <loc>https://podfy.net/de/solutions/qr-issue-reporting/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/de/solutions/qr-issue-reporting/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/"/>
   </url>
   <url>
-    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/fr/solutions/qr-issue-reporting/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/solutions/qr-issue-reporting/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/solutions/qr-issue-reporting/"/>
@@ -1141,56 +1141,56 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/solutions/qr-issue-reporting/remote-equipment/"/>
   </url>
   <url>
-    <loc>https://podfy.net/cmr/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/cmr/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/cmr/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/cmr/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/cmr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/cmr/"/>
   </url>
   <url>
-    <loc>https://podfy.net/nl/cmr/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/nl/cmr/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/cmr/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/cmr/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/cmr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/cmr/"/>
   </url>
   <url>
-    <loc>https://podfy.net/de/cmr/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/de/cmr/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/cmr/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/cmr/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/cmr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/cmr/"/>
   </url>
   <url>
-    <loc>https://podfy.net/fr/cmr/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/fr/cmr/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/cmr/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/cmr/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/cmr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/cmr/"/>
   </url>
   <url>
-    <loc>https://podfy.net/qr/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/qr/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/qr/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/qr/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/qr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/qr/"/>
   </url>
   <url>
-    <loc>https://podfy.net/nl/qr/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/nl/qr/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/qr/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/qr/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/qr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/qr/"/>
   </url>
   <url>
-    <loc>https://podfy.net/de/qr/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/de/qr/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/qr/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/qr/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/qr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/qr/"/>
   </url>
   <url>
-    <loc>https://podfy.net/fr/qr/</loc><lastmod>2026-10-31</lastmod>
+    <loc>https://podfy.net/fr/qr/</loc><lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/qr/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/qr/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/qr/"/>
@@ -1223,6 +1223,34 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/vs-qr-form-tools/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/vs-qr-form-tools/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/vs-qr-form-tools/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/docs/api/</loc><lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/api/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/nl/docs/api/</loc><lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/api/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/de/docs/api/</loc><lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/api/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/fr/docs/api/</loc><lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/api/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/api/"/>
   </url>
   <!-- /QR Reporting -->
 </urlset>

@@ -176,7 +176,7 @@ Key rules:
 
 ## SEO Rules
 
-- Update `sitemap.xml` when adding/removing pages (161 URLs currently; the generated block covers QR Reporting, /cmr/ and /qr/); no duplicate `<loc>` entries
+- Update `sitemap.xml` when adding/removing pages (170 URLs currently; the generated block covers QR Reporting, /cmr/, /qr/, the comparison page and /docs/api/); no duplicate `<loc>` entries
 - Update `hreflang` on every page when adding locale variants
 - Keep `llms.txt` current with new features; regenerate `llms-full.txt` when guide/about content changes (it embeds full page text for LLM ingestion)
 - FAQ schema on all guide pages; BreadcrumbList on solutions + guides
@@ -239,6 +239,22 @@ Per `instructions/Podfy-site-overhaul.claude.md` brief:
 | Design audit items | 🗓 Remaining | Consolidate stylesheets (`styles.css` → `styles.site.css` only); `prefers-reduced-motion` full block for all transitions; social proof section (named customer story) |
 
 ---
+
+## Changes (2026-11-01) - Phase 3 WP 3.2: API reference `/docs/api` (x4 locales, not yet deployed)
+
+- **Generated, not hand-edited:** `scripts/qr-pages/apidocs.py` (called by `build.py` `build_api`) renders `/docs/api/`,
+  `/nl/docs/api/`, `/de/docs/api/`, `/fr/docs/api/`. The intro (what the API is, keys, auth, live/test keys, rate limit,
+  errors, pagination) is translated (`INTRO` in apidocs.py, NL "je", DE "Sie", FR "vous"); the reference (one section per
+  operation: scope, parameters, request fields, response fields, error codes, curl example) is generated from the spec and stays
+  English. Static HTML, no Swagger UI/Redoc, no third-party scripts. Styles: `.api-*` in `assets/styles.site.css` (CSS version
+  bumped v3-r14 to v3-r15 in its own commit).
+- **Spec copy:** `docs/api/openapi.json` (served at `/docs/api/openapi.json`). Refresh: `node tools/sync-openapi.mjs &&
+  python3 scripts/qr-pages/build.py`. `tests/api-docs.test.mjs` fails when the copy differs from `../podfy-portal/public/openapi.json`
+  (skipped when the portal checkout is absent).
+- **deploy.sh** now anchors the docs exclude (`/docs/*`) and publishes only `docs/api/index.html` + `openapi.json`; an unanchored
+  `docs` exclude would also drop `/nl|de|fr/docs/api`.
+- Footer link "API reference" (translated in the footer label maps); feature lists that name the Open API link to the reference.
+  The "Soon" badges / "coming soon" sentences for the Open API in `scripts/qr-pages/content/*.py` are NOT switched yet.
 
 ## Changes (2026-10-31) — Phase 0: comparison page, claim fixes, procurement and legal drafts (production)
 

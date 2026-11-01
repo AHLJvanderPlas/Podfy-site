@@ -1,0 +1,1326 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PODFY Open API",
+    "version": "1.0.0",
+    "description": "Read records (proofs of delivery and reports) and update their status from your own systems, and manage your reference (asset) register.\n\n**Authentication.** Send `Authorization: Bearer <key>` on every request. Keys are created by a brand admin in the portal (Settings → Integrations → API keys) and shown once. `pk_live_…` keys see only production records; `pk_test_…` keys (\"QA records only\") see only test records from qa.podfy.app (podfy_id starting with `QA-`). A key never works in a query parameter. A missing, malformed, unknown or revoked key always gets the same `401 invalid_key`.\n\n**Availability.** The Open API is part of PODFY Advanced. When it is not active for the brand, every call answers `403 feature_not_active`.\n\n**Scopes.** `records:read`, `records:write`, `references:read`, `references:write`. A write scope also allows reading the same resource; nothing else is implied. Missing scope: `403 insufficient_scope`.\n\n**Rate limit.** 600 requests per minute per key (fixed one-minute windows). Every answer carries `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset` (unix seconds when the window ends). Above the limit: `429 rate_limited` with `Retry-After` (seconds).\n\n**Isolation.** A record or reference of another brand, or a record of the other environment, answers `404 not_found`, never 403.\n\n**Paging.** List endpoints return `{data, next_cursor}`. Pass `next_cursor` back as `cursor` until it is `null`. Records are newest first. Cursors are opaque.\n\n**Errors.** Every error is JSON `{\"error\":{\"code\":\"…\",\"message\":\"…\"}}`. Responses are never cached (`Cache-Control: no-store`). No CORS: call the API from your server, never from a browser.",
+    "contact": {
+      "name": "PODFY support",
+      "email": "support@podfy.net",
+      "url": "https://podfy.net"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://portal.podfy.net/api/v1"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Records",
+      "description": "Proofs of delivery and reports"
+    },
+    {
+      "name": "References",
+      "description": "The reference (asset) register; requires the asset register to be active"
+    }
+  ],
+  "paths": {
+    "/records": {
+      "get": {
+        "summary": "List records",
+        "description": "Records of your brand, newest first. Deleted records are never listed.\n\nRequired scope: `records:read` (a key with `records:write` may also call it).",
+        "x-podfy-scope": "records:read",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Records"
+        ],
+        "operationId": "listRecords",
+        "parameters": [
+          {
+            "name": "since",
+            "in": "query",
+            "description": "Only records created at or after this moment (ISO 8601 date or date-time; a time without zone is UTC).",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "2026-11-01",
+                "2026-11-01T08:00:00Z"
+              ]
+            }
+          },
+          {
+            "name": "updated_since",
+            "in": "query",
+            "description": "Only records changed (or created) at or after this moment (ISO 8601).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Work status, one or more comma separated.",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "new,in_progress"
+              ]
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "Exact reference (1–100 characters).",
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Category code (letters, digits, _ and -; case-insensitive).",
+            "schema": {
+              "type": "string",
+              "maxLength": 40
+            }
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of records.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordList"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/records/{podfy_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/podfy_id"
+        }
+      ],
+      "get": {
+        "summary": "Get a record",
+        "description": "One record with its timeline (`created`, `status`, `comment`, `assign`, `priority`, `duplicate`). Mail recipients and reporter data never appear.\n\nRequired scope: `records:read` (a key with `records:write` may also call it).",
+        "x-podfy-scope": "records:read",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Records"
+        ],
+        "operationId": "getRecord",
+        "responses": {
+          "200": {
+            "description": "The record.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordWithEvents"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update a record",
+        "description": "Change the work status, assignee or priority, or add a comment. Same rules as the portal: one timeline event per change, webhooks `record.status_changed` / `record.updated` are sent, the actor is `api:<key prefix>`. Needs status tracking (report mode or the status tracking add-on), else `403 feature_not_active`. Only the fields below are accepted.\n\nRequired scope: `records:write`.",
+        "x-podfy-scope": "records:write",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Records"
+        ],
+        "operationId": "updateRecord",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The record after the update. `changed` is false when nothing differed.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "changed",
+                    "record"
+                  ],
+                  "properties": {
+                    "changed": {
+                      "type": "boolean"
+                    },
+                    "record": {
+                      "$ref": "#/components/schemas/Record"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/references": {
+      "get": {
+        "summary": "List references",
+        "description": "Your reference register, ordered by ref.\n\nRequired scope: `references:read` (a key with `references:write` may also call it).",
+        "x-podfy-scope": "references:read",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "References"
+        ],
+        "operationId": "listReferences",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "active",
+                "retired"
+              ]
+            }
+          },
+          {
+            "name": "group",
+            "in": "query",
+            "description": "Exact group code.",
+            "schema": {
+              "type": "string",
+              "maxLength": 40
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Text contained in ref, name or location (1–100 characters).",
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of references.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceList"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a reference",
+        "description": "Adds one reference. `409 ref_exists` when the ref is already in the register.\n\nRequired scope: `references:write`. QA keys (pk_test_) cannot change references: the register is shared with production records (403 insufficient_scope).",
+        "x-podfy-scope": "references:write",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "References"
+        ],
+        "operationId": "createReference",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReferenceCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The new reference.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reference"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/references/{ref}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ref"
+        }
+      ],
+      "get": {
+        "summary": "Get a reference",
+        "description": "One reference.\n\nRequired scope: `references:read` (a key with `references:write` may also call it).",
+        "x-podfy-scope": "references:read",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "References"
+        ],
+        "operationId": "getReference",
+        "responses": {
+          "200": {
+            "description": "The reference.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reference"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update a reference",
+        "description": "Edit, move, retire (`status: retired`) or reactivate a reference. Only the fields below are accepted; an empty string clears a text field.\n\nRequired scope: `references:write`. QA keys (pk_test_) cannot change references: the register is shared with production records (403 insufficient_scope).",
+        "x-podfy-scope": "references:write",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "References"
+        ],
+        "operationId": "updateReference",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReferenceUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The reference after the update.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "changed",
+                    "reference"
+                  ],
+                  "properties": {
+                    "changed": {
+                      "type": "boolean"
+                    },
+                    "reference": {
+                      "$ref": "#/components/schemas/Reference"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "pk_live_… / pk_test_… (40 hex characters after the prefix)",
+        "description": "API key from Settings → Integrations → API keys."
+      }
+    },
+    "parameters": {
+      "podfy_id": {
+        "name": "podfy_id",
+        "in": "path",
+        "required": true,
+        "description": "The record's PODFY ID, e.g. PFY-7Q4K2-1 (QA-… for test records).",
+        "schema": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,64}$"
+        }
+      },
+      "ref": {
+        "name": "ref",
+        "in": "path",
+        "required": true,
+        "description": "The reference (1–64 characters: letters, digits, dot, underscore, hyphen).",
+        "schema": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]{1,64}$"
+        }
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "Page size, 1–200 (default 50; larger values are capped at 200).",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 50,
+          "maximum": 200
+        }
+      },
+      "cursor": {
+        "name": "cursor",
+        "in": "query",
+        "description": "The `next_cursor` of the previous page (opaque).",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "headers": {
+      "X-RateLimit-Limit": {
+        "description": "Requests allowed per minute for this key (600).",
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "X-RateLimit-Remaining": {
+        "description": "Requests left in the current window.",
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "X-RateLimit-Reset": {
+        "description": "Unix time (seconds) when the current window ends.",
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "Retry-After": {
+        "description": "Seconds until the next window.",
+        "schema": {
+          "type": "integer"
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Invalid query parameter or body. Codes: `invalid_parameter`, `invalid_cursor`, `invalid_body`, `invalid_status`, `invalid_priority`, `invalid_assignee`, `invalid_comment`, `comment_too_long`, `nothing_to_update`, `invalid_ref`, `name_too_long`, `location_too_long`, `group_code_too_long`, `sticker_text_too_long`, `no_valid_fields`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "The API key is missing, malformed, unknown or revoked (always the same body). Codes: `invalid_key`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        },
+        "headers": {
+          "WWW-Authenticate": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "The Open API (or, for references, the reference register; for record updates, status tracking) is not active for the brand, or the key lacks the scope. Codes: `feature_not_active`, `insufficient_scope`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "No such endpoint, or no such record / reference for this key's brand and environment. Codes: `not_found`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "MethodNotAllowed": {
+        "description": "The endpoint exists but not with this method; `Allow` lists the methods. Codes: `method_not_allowed`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        },
+        "headers": {
+          "Allow": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "The reference already exists. Codes: `ref_exists`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "RateLimited": {
+        "description": "More than 600 requests in this minute for this key. Codes: `rate_limited`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        },
+        "headers": {
+          "X-RateLimit-Limit": {
+            "$ref": "#/components/headers/X-RateLimit-Limit"
+          },
+          "X-RateLimit-Remaining": {
+            "$ref": "#/components/headers/X-RateLimit-Remaining"
+          },
+          "X-RateLimit-Reset": {
+            "$ref": "#/components/headers/X-RateLimit-Reset"
+          },
+          "Retry-After": {
+            "$ref": "#/components/headers/Retry-After"
+          }
+        }
+      },
+      "ServerError": {
+        "description": "Unexpected error; try again later. Codes: `server_error`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "examples": [
+          {
+            "error": {
+              "code": "insufficient_scope",
+              "message": "This API key does not have the records:write scope."
+            }
+          }
+        ]
+      },
+      "Record": {
+        "type": "object",
+        "description": "The same record object as in webhook payloads, plus timestamps and the assignee.",
+        "required": [
+          "podfy_id",
+          "mode",
+          "work_status",
+          "priority",
+          "group_id",
+          "files",
+          "created_at"
+        ],
+        "properties": {
+          "podfy_id": {
+            "type": "string",
+            "examples": [
+              "PFY-7Q4K2-1"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "delivery",
+              "report"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "description": "Empty string when none."
+          },
+          "asset": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "location": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "group": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "description": "Register data at upload time."
+          },
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Category code (report mode) or delivery issue code."
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "normal",
+              "high",
+              "critical"
+            ]
+          },
+          "work_status": {
+            "type": "string",
+            "enum": [
+              "new",
+              "in_progress",
+              "resolved",
+              "rejected"
+            ]
+          },
+          "note": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Custom form fields."
+          },
+          "group_id": {
+            "type": "string",
+            "description": "Records of one multi-file upload share it (the podfy_id without the -N suffix)."
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          },
+          "location": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "lat": {
+                "type": "number"
+              },
+              "lng": {
+                "type": "number"
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "duplicate_of": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "podfy_id of the first report this one duplicates."
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri",
+            "description": "Public detail page of the record."
+          },
+          "assignee": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "E-mail of the assigned brand member."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "resolved_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "keep_informed": {
+            "type": "boolean",
+            "description": "True when the reporter asked to be kept informed (a confirmation or resolved message was or can be sent). Never the address."
+          }
+        }
+      },
+      "Event": {
+        "type": "object",
+        "required": [
+          "type",
+          "created_at"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "created",
+              "status",
+              "comment",
+              "assign",
+              "priority",
+              "duplicate"
+            ]
+          },
+          "from": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "to": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "note": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The comment text (comment events only)."
+          },
+          "actor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Brand member e-mail, `app`, or `api:<key prefix>`."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "RecordWithEvents": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Record"
+          },
+          {
+            "type": "object",
+            "required": [
+              "events"
+            ],
+            "properties": {
+              "events": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "RecordUpdate": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "work_status": {
+            "type": "string",
+            "enum": [
+              "new",
+              "in_progress",
+              "resolved",
+              "rejected"
+            ]
+          },
+          "assignee": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "email",
+            "description": "An active member of the brand, or null to unassign."
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "normal",
+              "high",
+              "critical"
+            ]
+          },
+          "comment": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 2000,
+            "description": "Added to the timeline."
+          }
+        }
+      },
+      "RecordList": {
+        "type": "object",
+        "required": [
+          "data",
+          "next_cursor"
+        ],
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Record"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "Reference": {
+        "type": "object",
+        "required": [
+          "ref",
+          "status",
+          "qr_url"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "kind": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "asset",
+              "shipment",
+              null
+            ]
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "location": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "group_code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sticker_text": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "retired"
+            ]
+          },
+          "active_from": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "retired_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "qr_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "https://podfy.app/{brand}/{ref}"
+          }
+        }
+      },
+      "ReferenceCreate": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9._-]{1,64}$"
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 120
+          },
+          "location": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 120
+          },
+          "group_code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 40
+          },
+          "sticker_text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 120
+          }
+        }
+      },
+      "ReferenceUpdate": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 120
+          },
+          "location": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 120
+          },
+          "group_code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 40
+          },
+          "sticker_text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 120
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "retired"
+            ]
+          }
+        }
+      },
+      "ReferenceList": {
+        "type": "object",
+        "required": [
+          "data",
+          "next_cursor"
+        ],
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reference"
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
