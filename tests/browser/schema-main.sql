@@ -831,3 +831,78 @@ CREATE TABLE IF NOT EXISTS brand_exports (
 );
 CREATE INDEX IF NOT EXISTS idx_bexp_slug ON brand_exports(slug, created_at);
 CREATE INDEX IF NOT EXISTS idx_bexp_status ON brand_exports(status, delete_after);
+
+-- migration 083 (Phase 3: Open API keys, rate windows, open_api / reporter_feedback catalog keys), appended 2026-11-01
+-- 083_open_api.sql — Phase 3 WP 3.1: Open API v1 keys + rate windows; catalog keys open_api, reporter_feedback
+-- (plans/01-core-model.md §6, §11). Additive only.
+-- Live schema checked 2026-11-01: no brand_api_keys / api_rate_windows tables; no open_api / reporter_feedback rows.
+
+-- One row per key. The full key ("pk_live_…" production records, "pk_test_…" QA- records only) is shown once at
+-- creation and never stored: key_hash = SHA-256 hex of the full key, prefix = first 16 chars for display.
+-- A revoked key (revoked_at set) never authenticates again; rows are kept for the audit trail.
+CREATE TABLE IF NOT EXISTS brand_api_keys (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug TEXT NOT NULL,
+  name TEXT NOT NULL,
+  prefix TEXT NOT NULL,
+  key_hash TEXT NOT NULL UNIQUE,
+  scopes TEXT NOT NULL DEFAULT '["records:read"]',
+  is_qa INTEGER NOT NULL DEFAULT 0,
+  created_by TEXT,
+  created_at TEXT DEFAULT (datetime('now')),
+  last_used_at TEXT,
+  revoked_at TEXT,
+  revoked_by TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_bak_slug ON brand_api_keys(slug, revoked_at);
+
+-- Fixed one-minute windows per key (600 requests/min, API_RATE_LIMIT_PER_MIN). window_start = unix minute.
+-- podfy-cron cleanup deletes windows older than one hour.
+CREATE TABLE IF NOT EXISTS api_rate_windows (
+  key_id INTEGER NOT NULL,
+  window_start INTEGER NOT NULL,
+  count INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (key_id, window_start)
+);
+
+-- Advanced feature keys (visibility 'testing', €0 flat_monthly: priced through the QR Advanced add-on).
+-- Gating (§11): a key works only when its brand_feature_configs row is active AND (qr_advanced is active for the
+-- brand OR the brand's plan includes the key or qr_advanced in plan_features). requires_feature_key stays NULL so a
+-- delivery plan can include the key through the plan matrix; the portal checks Advanced itself.
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Open API', 0, 'addon', 'open_api', 'manual', 'flat_monthly', 'testing', 240, 1,
+  'Fetch records and update their status from your own systems with API keys. Part of Advanced.',
+  '{"group":"integrations","modes":["delivery","report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'open_api');
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Reporter feedback', 0, 'addon', 'reporter_feedback', 'manual', 'flat_monthly', 'testing', 245, 1,
+  'The reporter can leave an e-mail address and gets a confirmation and a message when the issue is resolved. Part of Advanced.',
+  '{"group":"followup","modes":["report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'reporter_feedback');
+
+-- Plan matrix: a not-included row on every active plan (what admin plans.ts does for a new key). Nothing is included
+-- anywhere by default; Advanced (qr_advanced) unlocks both keys through the gating rule above.
+INSERT OR IGNORE INTO plan_features (subscription, feature_key, is_included)
+SELECT LOWER(p.plan_name), f.feature_key, 0
+FROM billing_plan_catalog p, billing_plan_catalog f
+WHERE p.type = 'plan' AND p.is_active = 1 AND f.feature_key IN ('open_api','reporter_feedback');
+
+-- migration 085 (Phase 3: lifecycle + redirect, reporter_contact_enc), appended 2026-11-01
+-- 085_portability_feedback.sql — Phase 3 WP 3.3 + 3.4: reporter contact (encrypted) and QR portability
+-- (plans/01-core-model.md §4, §8, §11). Additive only. (084 stays unused: uptime lives on podfy-public-eu.)
+-- Live schema checked 2026-11-01: brand_details has no lifecycle / redirect_template / redirect_until /
+-- terminated_at; transactions has no reporter_contact_enc.
+
+-- lifecycle: 'active' | 'terminated'. A terminated brand takes no new uploads or API calls; while
+-- redirect_until (YYYY-MM-DD, inclusive) is not passed, podfy.app/{slug}/{ref} answers 302 to redirect_template
+-- with {ref} substituted (default redirect_until = terminated_at + 12 months). Admin-only columns.
+ALTER TABLE brand_details ADD COLUMN lifecycle TEXT NOT NULL DEFAULT 'active';
+ALTER TABLE brand_details ADD COLUMN redirect_template TEXT;
+ALTER TABLE brand_details ADD COLUMN redirect_until TEXT;
+ALTER TABLE brand_details ADD COLUMN terminated_at TEXT;
+
+-- Reporter e-mail for "Keep me informed" (reporter_feedback, Advanced): AES-256-GCM with secret CONTACT_KEY and the
+-- podfy_id as additional data ("c1:<iv>:<ct>", process-core encryptContact). Cleared after the "resolved" mail,
+-- 90 days after creation at the latest (podfy-cron), and by retention / erasure with the record.
+ALTER TABLE transactions ADD COLUMN reporter_contact_enc TEXT;
+CREATE INDEX IF NOT EXISTS idx_tx_reporter_contact ON transactions(created_at) WHERE reporter_contact_enc IS NOT NULL;
