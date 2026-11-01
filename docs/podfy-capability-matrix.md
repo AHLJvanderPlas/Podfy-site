@@ -1,4 +1,4 @@
-# PODFY capability matrix: what the site promises and when it is built (updated 2026-11-01, Phase 3 live)
+# PODFY capability matrix: what the site promises and when it is built (updated 2026-11-01, Phase 4 built)
 
 Owner decision 2026-10-30: podfy.net presents every capability below as **available** for both solutions
 (CMR and delivery proof, QR Reporting). One generic app and one background flow: the process differs only
@@ -27,3 +27,9 @@ start date; never sign a start date before the build date in this table.
 | 99.5% uptime measured monthly, proactive incident communication | **live**: podfy.net/status, checks every 5 minutes, owner alert by e-mail (+ optional ops webhook); monthly uptime report by e-mail + archived JSON (1st of each month) | public status page + monthly report | 1 · Nov 2026 |
 | Support: 1 business day; critical within 4 business hours | inbox | support process, on-call rule | 0 · now (process) |
 | Monthly cancellation | terms | terms text for QR Reporting | 0 · now |
+| Refund requests to payment platforms (amount + payment reference on the form, approval, signed webhook, result via API) | **built 2026-11-01** (portal + API + cron live; app on QA until owner approval): admins approve, optional auto-approval up to €10, PODFY never pays out; feature `refund_requests` (Advanced) testing | refund_requests + refund.* events | 4 · built |
+| Own domain for the form and QR codes (white label of podfy.app; portal stays PODFY) | **built 2026-11-01**: set up by PODFY in admin (Cloudflare Pages custom domain), €25/month per domain, included in Enterprise; feature `own_domain` testing | brand_domains + host resolution | 4 · built |
+| AI triage of report photos (suggestions only, opt-in) | **built 2026-11-01**: Claude Haiku 4.5, up to 3 photos, suggested category/priority, safety flag, description; per-brand monthly limit and global budget; stays testing until the legal pass (Anthropic sub-processor, DPA) | triage sweep | 4 · built, testing |
+| Recurring problems per asset / location / category | **live 2026-11-01** in the portal dashboard (recurring assets, repeat after fix, hotspots, weekly trend, CSV) | insights | 4 · live |
+| Asset register import from Excel (XLSX) | **live 2026-11-01** next to CSV (template and export as XLSX) | XLSX in the browser | 4 · live |
+
