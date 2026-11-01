@@ -710,3 +710,124 @@ CREATE TABLE IF NOT EXISTS webhook_test_inbox (
   received_at TEXT DEFAULT (datetime('now'))
 );
 CREATE INDEX IF NOT EXISTS idx_wti_inbox ON webhook_test_inbox(inbox_id, received_at);
+
+-- migration 082 (Phase 2: asset billing, lifecycle indexes, transaction_files, brand_exports), appended 2026-11-01
+-- 082_phase2.sql — Phase 2: billing per active asset, status lifecycle, routing, duplicates, export, several photos
+-- per report (plans/01-core-model.md §4, §7; plans/README.md "Phase 2 decisions"). Additive only.
+-- Live schema checked 2026-11-01: billing_plan_catalog and billing_rates have no tiers_json / minimum_fee;
+-- transaction_files, brand_exports and the indexes below do not exist; there is no SQL CHECK on pricing_mode
+-- (admin plans.ts validModes gains 'per_active_asset' in the same pass).
+
+-- ── Billing per active asset (WP 2.6) ──────────────────────────────────────
+-- tiers_json: [{"from":1,"price":0.68},…] ascending, first row from 1; volume pricing (the whole fleet pays the
+-- price of the tier it reaches). minimum_fee: monthly minimum; the invoice adds a top-up line when below it.
+ALTER TABLE billing_plan_catalog ADD COLUMN tiers_json TEXT;
+ALTER TABLE billing_plan_catalog ADD COLUMN minimum_fee REAL;
+-- Per-brand override (negotiated deals). Rows for asset pricing use subscription = 'QR Business' / 'QR Advanced'
+-- (= catalog plan_name, same convention as the flat_monthly rate lookup) and may carry their own tiers + minimum.
+ALTER TABLE billing_rates ADD COLUMN tiers_json TEXT;
+ALTER TABLE billing_rates ADD COLUMN minimum_fee REAL;
+
+-- Plan "QR Business" (P2-1, decided 2026-10-31): €0.68 / 0.45 / 0.36 / 0.27 at 1 / 251 / 1,001 / 2,501 assets,
+-- minimum €13.50 per month. Brand subscription value = LOWER(plan_name) = 'qr business'.
+-- visibility 'testing': not on Site_Pricing (cron + admin sync only active AND public rows); the site keeps its
+-- generated price list (Podfy-site scripts/qr-pages/build.py) until the catalog goes public.
+INSERT INTO billing_plan_catalog (plan_name, default_price, currency, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, tiers_json, minimum_fee, config_schema)
+SELECT 'QR Business', 0.68, 'EUR', 'plan', 'qr_business', 'manual', 'per_active_asset', 'testing', 300, 1,
+  'QR Reporting: price per active asset per month, volume tiers, monthly minimum. No fee per report, user or QR code.',
+  '[{"from":1,"price":0.68},{"from":251,"price":0.45},{"from":1001,"price":0.36},{"from":2501,"price":0.27}]',
+  13.50, '{"group":"billing","modes":["report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'qr_business');
+
+-- Add-on "QR Advanced": €0.25 per active asset per month on top of the plan. Phase 3 gates open_api and
+-- reporter_feedback on it (and priority support); no tiers, no minimum.
+INSERT INTO billing_plan_catalog (plan_name, default_price, currency, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, tiers_json, minimum_fee, config_schema)
+SELECT 'QR Advanced', 0.25, 'EUR', 'addon', 'qr_advanced', 'manual', 'per_active_asset', 'testing', 305, 1,
+  'Open API, reporter feedback and priority support, per active asset per month.',
+  NULL, NULL, '{"group":"billing","modes":["report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'qr_advanced');
+
+-- ── Phase 2 feature keys (visibility 'testing'; €0 flat_monthly until priced) ─
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Status tracking', 0, 'addon', 'work_status', 'manual', 'flat_monthly', 'testing', 220, 1,
+  'Status per record (new, in progress, resolved, rejected) with assignee, comments and a timeline.',
+  '{"group":"followup","modes":["delivery","report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'work_status');
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Routing rules', 0, 'addon', 'routing_rules', 'manual', 'flat_monthly', 'testing', 225, 1,
+  'Send each record to the right people by group, location, category or priority.',
+  '{"group":"followup","modes":["delivery","report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'routing_rules');
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Duplicate grouping', 0, 'addon', 'duplicate_grouping', 'manual', 'flat_monthly', 'testing', 230, 1,
+  'Group repeat reports for the same asset and category; mail only the first one.',
+  '{"group":"followup","modes":["report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'duplicate_grouping');
+INSERT INTO billing_plan_catalog (plan_name, default_price, type, feature_key, activation, pricing_mode, visibility, sort_order, is_active, description, config_schema)
+SELECT 'Full export', 0, 'addon', 'full_export', 'manual', 'flat_monthly', 'testing', 235, 1,
+  'Export all records with their photos and documents as one ZIP file.',
+  '{"group":"data","modes":["delivery","report"]}'
+WHERE NOT EXISTS (SELECT 1 FROM billing_plan_catalog WHERE feature_key = 'full_export');
+
+-- Plan matrix: the NEW keys get a not-included row on every active plan (what admin plans.ts does for a new key;
+-- existing plans keep their other rows as they are), and the new plan 'qr business' gets a row for every add-on.
+-- Then QR Business includes the Phase 1–2 keys and portal access.
+INSERT OR IGNORE INTO plan_features (subscription, feature_key, is_included)
+SELECT LOWER(p.plan_name), f.feature_key, 0
+FROM billing_plan_catalog p, billing_plan_catalog f
+WHERE p.type = 'plan' AND p.is_active = 1 AND f.type = 'addon'
+  AND f.feature_key IN ('qr_advanced','work_status','routing_rules','duplicate_grouping','full_export');
+INSERT OR IGNORE INTO plan_features (subscription, feature_key, is_included)
+SELECT 'qr business', f.feature_key, 0
+FROM billing_plan_catalog f
+WHERE f.type = 'addon' AND f.feature_key IS NOT NULL;
+UPDATE plan_features SET is_included = 1
+WHERE subscription = 'qr business' AND feature_key IN
+  ('portal_access','mail_notification','form_categories','custom_fields','asset_register','webhooks',
+   'work_status','routing_rules','duplicate_grouping','full_export');
+
+-- ── Status lifecycle, dashboard, duplicates (WP 2.1–2.4) ───────────────────
+CREATE INDEX IF NOT EXISTS idx_tx_slug_work_status ON transactions(slug, work_status);
+CREATE INDEX IF NOT EXISTS idx_tx_slug_ref_cat ON transactions(slug, reference, delivery_issue_code, created_at);
+CREATE INDEX IF NOT EXISTS idx_tx_duplicate_of ON transactions(duplicate_of) WHERE duplicate_of IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_tev_slug_type ON transaction_events(slug, type, created_at);
+
+-- ── Several photos per report (WP 2.9, decision P2-3) ──────────────────────
+-- One record holds up to 5 photos. transactions.storage_key keeps the FIRST file (so the public file route,
+-- cron sweeps and today's portal views keep working); transaction_files lists every file incl. the first
+-- (idx 0). Delivery mode is unchanged (one row per file) and writes no transaction_files rows.
+-- Retention and erasure delete these rows and their R2 objects with the record.
+CREATE TABLE IF NOT EXISTS transaction_files (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  podfy_id TEXT NOT NULL,
+  slug TEXT NOT NULL,
+  idx INTEGER NOT NULL,                 -- 0-based order on the form
+  storage_key TEXT NOT NULL,            -- R2 key in the uploads bucket
+  file_name TEXT,
+  content_type TEXT,
+  size_bytes INTEGER,
+  created_at TEXT DEFAULT (datetime('now')),
+  UNIQUE (podfy_id, idx)
+);
+CREATE INDEX IF NOT EXISTS idx_tfiles_slug ON transaction_files(slug, created_at);
+
+-- ── Full export (WP 2.5, P2-4: link valid 24 h, files deleted after 7 days) ─
+CREATE TABLE IF NOT EXISTS brand_exports (
+  id TEXT PRIMARY KEY,                  -- exp_<random>
+  slug TEXT NOT NULL,
+  requested_by TEXT NOT NULL,           -- portal user e-mail
+  period_from TEXT,                     -- YYYY-MM-DD, NULL = from the first record
+  period_to TEXT,                       -- YYYY-MM-DD, NULL = up to today
+  include_files INTEGER NOT NULL DEFAULT 1,
+  status TEXT NOT NULL DEFAULT 'queued' CHECK (status IN ('queued','running','ready','failed','expired')),
+  r2_key TEXT,                          -- exports/{slug}/{id}.zip
+  row_count INTEGER, file_count INTEGER, size_bytes INTEGER,
+  token_hash TEXT,                      -- SHA-256 hex of the download token (token only in the mail)
+  link_expires_at TEXT,                 -- +24 h after ready
+  delete_after TEXT,                    -- +7 days after ready: cron deletes the ZIP, status → expired
+  error TEXT,
+  created_at TEXT DEFAULT (datetime('now')),
+  completed_at TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_bexp_slug ON brand_exports(slug, created_at);
+CREATE INDEX IF NOT EXISTS idx_bexp_status ON brand_exports(status, delete_after);
