@@ -1,5 +1,7 @@
 > ENTWURF, nicht veröffentlicht. Rechtliche Prüfung erforderlich.
 
+> 2026-11-01: Phase 3 is built. What these texts still need is listed in Part 0 of qr-reporting-legal.en.md (EN first; this translation follows after approval, which is deferred until after the final phase).
+
 # QR Reporting: Zusätze zu den Rechtsdokumenten (ENTWURF, DE)
 
 Übersetzung des englischen Entwurfs; Erläuterungen und [DECIDE]-Punkte stehen in qr-reporting-legal.en.md.

@@ -1,8 +1,29 @@
 # QR Reporting: legal text additions (DRAFT, EN)
 
-Status: draft for owner approval, 2026-10-31. Nothing here is published. Source of facts: capability matrix (2026-10-30), phase 0 readiness (sections B and G), QR pricing source (`build.py` QR_TIERS, QR_MIN, QR_ADV), plans 01 and 10. Style, defined terms and tone follow `trust.html` (Terms, Privacy Policy, "What you can count on").
+Status: draft for owner approval, 2026-10-31; Part 0 added 2026-11-01 (approval deferred until after the final phase). Nothing here is published. Source of facts: capability matrix (2026-10-30), phase 0 readiness (sections B and G), QR pricing source (`build.py` QR_TIERS, QR_MIN, QR_ADV), plans 01 and 10. Style, defined terms and tone follow `trust.html` (Terms, Privacy Policy, "What you can count on").
 
 This is a drafting aid, not legal advice. Items marked [DECIDE] need the owner, and the ones marked [DECIDE, LAWYER] should be seen by a lawyer before publication.
+
+---
+
+## Part 0. Phase 3 is built (2026-11-01): what these texts still need
+
+Owner decision 2026-11-01: describe what is needed now; review and approval of the texts happen **after the final phase**
+(Phase 4), in one pass with a lawyer. Nothing below is published. The features themselves are live (Podfy-app, portal, admin,
+cron, site), behind the Advanced add-on where noted. Facts: `plans/reports/phase3-facts.md`, contracts `plans/01-core-model.md` §11.
+
+| # | Topic | What the draft says now | What is built | What the text needs |
+|---|---|---|---|---|
+| L1 | Reporter e-mail retention (Privacy table, [DECIDE 12]) | Deleted 30 days after the Report is resolved, or with the Report | Encrypted address (AES-256-GCM) is deleted right after the "resolved" message is sent, and in any case 90 days after the report was made; deleted with the Report (retention) and by erasure. A keyed hash of the address stays with the Report so the reporter can see it under "My reports" on delivery.podfy.net, and is removed with the Report or by erasure | Replace [DECIDE 12] with the built rule: "deleted after we have told you the issue is resolved, and at the latest 90 days after your report"; mention the keyed hash for "My reports" and that it is deleted with the Report |
+| L2 | What the reporter receives (Privacy 9.2, reporter notice Part 4) | Confirmation and resolved message described as Phase 3 | Confirmation mail when the report is received and a message when the customer marks it resolved, each switchable by the customer; sent by Resend from noreply@podfy.net in English, Dutch, German or French (the form language, else English); no other mail is sent; consent box is required when an address is given | Remove the "do not publish before it ships" owner notes in 9.2 and 9.6; state the two messages, that the customer decides whether they are sent, and the sender |
+| L3 | Withdrawing consent (Privacy 9.6) | "using the link in the e-mail you receive" | **No unsubscribe link exists.** After the resolved message the address is deleted anyway | Either (a) build a one-click "stop updates" link in both reporter mails (small build item, recommended before publishing 9.6), or (b) reword 9.6 to "reply to support@podfy.net or contact the customer; the address is deleted after the resolved message or 90 days in any case". Decide at approval |
+| L4 | QR redirect (Terms 16, [DECIDE 9], [DECIDE 18]) | 12 months, manual until Feb 2027; neutral page naming the customer when no destination is given | Built in admin: brand lifecycle "terminated", destination address required (https, own domain, no PODFY or IP addresses), end date default 12 months after termination, at most 24; podfy.app answers with a direct 302 redirect until the end date; after it, the existing "invalid link" page (no neutral page naming the customer); a terminated brand accepts no new reports and no API calls | Remove the "manual until February 2027" owner note; say a destination is required at termination; replace the neutral-page promise with the built behaviour, or keep it as a small build item (Phase 4) if the owner wants it; keep (c) the right to switch a harmful destination off (admin can change or clear it) |
+| L5 | Export of QR destinations (Terms 16) | "export all reports, photos and QR destinations" | Admin CSV of every reference with its QR address and redirect address; the customer's full export ZIP now contains `references.csv` with the same columns | No change in substance; may name the file |
+| L6 | Open API (Terms 11, Service Description, DPA 2 and 9.7) | Advanced "includes API access" by reference to the Service Description; DPA purpose names e-mail and webhook only | Keys per brand created by a brand admin (shown once, stored hashed, revocable), scopes (read/write records, read/write references), live keys see live records only, test keys see test records only and cannot change the register, 600 requests per minute per key, documented at podfy.net/docs/api | Service Description: an "Open API" paragraph (scopes, rate limit, no availability promise beyond the platform target, fair use). Terms 14 (customer responsibilities): keep keys secret, revoke on suspicion, PODFY may revoke a key that is abused. DPA purpose: add "making Reports available to the customer's systems through the API" |
+| L7 | Build-date table (Part 1.2) | Phase 3 dates Jan / Feb 2027 | Built and live 2026-11-01 | Update the dates; remove the manual-redirect fallback rows |
+| L8 | Security / TOMs (DPA 10) | "reporter e-mail stored encrypted [Phase 3]" | Encrypted with a key held only by the upload and mail services, bound to the record; API keys stored as SHA-256 hashes | Drop the [Phase 3] marker; optionally add the API key hashing |
+
+Translations (NL, DE, FR drafts) follow the EN text after approval; they are not updated now.
 
 ---
 
