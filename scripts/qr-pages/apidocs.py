@@ -296,31 +296,31 @@ INTRO = {
     },
     "nl": {
         "title": "Open API-documentatie | PODFY",
-        "desc": "Documentatie van de PODFY Open API: haal bewijs en QR-meldingen op, werk de status bij en beheer objecten vanuit je eigen systemen. Onderdeel van Advanced.",
+        "desc": "Documentatie van de PODFY Open API: haal bewijs en QR-meldingen op, werk de status bij en beheer objecten vanuit uw eigen systemen. Onderdeel van Advanced.",
         "crumb_home": "Home", "crumb": "API-documentatie",
         "eyebrow": "Voor ontwikkelaars", "h1": "PODFY Open API", "h1em": "documentatie",
-        "sub": "Haal meldingen en bewijs op, werk de status bij en beheer je referentieregister vanuit je eigen systemen. Een JSON REST API, onderdeel van PODFY Advanced.",
+        "sub": "Haal meldingen en bewijs op, werk de status bij en beheer uw referentieregister vanuit uw eigen systemen. Een JSON REST API, onderdeel van PODFY Advanced.",
         "download": "Download openapi.json", "contact": "Vraag naar Advanced", "toc": "Op deze pagina", "toc_ref": "API-referentie",
         "sections": [
             ("overview", "Wat de API is", [
-                "Met de PODFY Open API lezen je eigen systemen records (afleverbewijzen en QR-meldingen), werken ze de werkstatus bij en beheren ze het referentieregister (objecten). Het is een JSON REST API voor gebruik van server naar server. Er is geen CORS: roep de API aan vanuit je backend, nooit vanuit een browser.",
-                "De Open API is onderdeel van PODFY Advanced. Is hij niet actief voor je merk, dan antwoordt elke aanroep met 403 feature_not_active. De specificatie is OpenAPI 3.1 en de referentie hieronder is uit hetzelfde bestand gegenereerd."], [], None),
+                "Met de PODFY Open API lezen uw eigen systemen records (afleverbewijzen en QR-meldingen), werken ze de werkstatus bij en beheren ze het referentieregister (objecten). Het is een JSON REST API voor gebruik van server naar server. Er is geen CORS: roep de API aan vanuit uw backend, nooit vanuit een browser.",
+                "De Open API is onderdeel van PODFY Advanced. Is hij niet actief voor uw merk, dan antwoordt elke aanroep met 403 feature_not_active. De specificatie is OpenAPI 3.1 en de referentie hieronder is uit hetzelfde bestand gegenereerd."], [], None),
             ("keys", "Een API-sleutel aanmaken", [
-                "Een beheerder van je merk maakt sleutels aan in het portaal (dat in het Engels is) onder Settings → Integrations → API keys. Geef de sleutel een naam en kies de scopes. De sleutel wordt één keer getoond, dus bewaar hem in je wachtwoord- of secretsbeheer. Je kunt een sleutel altijd intrekken, en een ingetrokken sleutel werkt meteen niet meer."],
+                "Een beheerder van uw merk maakt sleutels aan in het portaal (dat in het Engels is) onder Settings → Integrations → API keys. Geef de sleutel een naam en kies de scopes. De sleutel wordt één keer getoond, dus bewaar hem in uw wachtwoord- of secretsbeheer. U kunt een sleutel altijd intrekken, en een ingetrokken sleutel werkt meteen niet meer."],
              ["records:read: records lezen", "records:write: records bijwerken (staat ook lezen toe)", "references:read: het referentieregister lezen", "references:write: referenties aanmaken en wijzigen (staat ook lezen toe)"], None),
             ("auth", "Basis-URL en authenticatie", [
-                "De basis-URL is https://portal.podfy.net/api/v1. Stuur je sleutel bij elk verzoek mee als Bearer-token in de Authorization-header. Een sleutel werkt nooit als queryparameter.",
+                "De basis-URL is https://portal.podfy.net/api/v1. Stuur uw sleutel bij elk verzoek mee als Bearer-token in de Authorization-header. Een sleutel werkt nooit als queryparameter.",
                 "Een ontbrekende, onjuiste, onbekende of ingetrokken sleutel krijgt altijd hetzelfde antwoord: 401 invalid_key. Een sleutel zonder de vereiste scope krijgt 403 insufficient_scope."], [], "auth"),
             ("environments", "Live- en testsleutels", [
                 "Sleutels die beginnen met pk_live_ zien alleen productierecords. Sleutels die beginnen met pk_test_ (alleen QA-records) zien alleen testrecords van qa.podfy.app, waarvan de PODFY-ID's met QA- beginnen. De twee omgevingen mengen nooit.",
                 "Het referentieregister wordt gedeeld met productie, dus testsleutels kunnen geen referenties aanmaken of wijzigen (403 insufficient_scope). Een record of referentie van een ander merk, of een record uit de andere omgeving, geeft 404 not_found, nooit 403."], [], None),
             ("limits", "Rate limit", [
                 "Elke sleutel mag 600 verzoeken per minuut doen, geteld in vaste vensters van een minuut. Elk antwoord bevat X-RateLimit-Limit, X-RateLimit-Remaining en X-RateLimit-Reset (unix-seconden waarop het venster eindigt).",
-                "Boven de limiet krijg je 429 rate_limited met een Retry-After-header (seconden). Wacht zo lang en probeer het opnieuw."], [], None),
+                "Boven de limiet krijgt u 429 rate_limited met een Retry-After-header (seconden). Wacht zo lang en probeer het opnieuw."], [], None),
             ("errors", "Foutmeldingen", [
                 "Elke fout is JSON in dezelfde vorm: {\"error\":{\"code\":\"…\",\"message\":\"…\"}}. Verwerk fouten op basis van de HTTP-status en de code, niet op de tekst van het bericht. Antwoorden worden nooit gecachet (Cache-Control: no-store). De volledige lijst met codes staat in de referentie hieronder."], [], None),
             ("paging", "Paginering", [
-                "Lijstendpoints geven {\"data\": [...], \"next_cursor\": \"…\"} terug. Geef next_cursor door als parameter cursor om de volgende pagina te krijgen, tot hij null is. Cursors zijn ondoorzichtig: bouw of wijzig ze niet. Records staan met de nieuwste eerst. De paginagrootte stel je in met limit (1 tot 200, standaard 50)."], [], None),
+                "Lijstendpoints geven {\"data\": [...], \"next_cursor\": \"…\"} terug. Geef next_cursor door als parameter cursor om de volgende pagina te krijgen, tot hij null is. Cursors zijn ondoorzichtig: bouw of wijzig ze niet. Records staan met de nieuwste eerst. De paginagrootte stelt u in met limit (1 tot 200, standaard 50)."], [], None),
         ],
         "ref_eyebrow": "Referentie", "ref_title": "Operaties",
         "ref_note": "De referentie hieronder is gegenereerd uit het OpenAPI-bestand en staat in elke taal in het Engels. Download de specificatie:",

@@ -4,20 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Open API-documentatie | PODFY</title>
-  <meta name="description" content="Documentatie van de PODFY Open API: haal bewijs en QR-meldingen op, werk de status bij en beheer objecten vanuit je eigen systemen. Onderdeel van Advanced." />
+  <meta name="description" content="Documentatie van de PODFY Open API: haal bewijs en QR-meldingen op, werk de status bij en beheer objecten vanuit uw eigen systemen. Onderdeel van Advanced." />
   <link rel="canonical" href="https://podfy.net/nl/docs/api/" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="PODFY" />
   <meta property="og:title" content="Open API-documentatie | PODFY" />
-  <meta property="og:description" content="Documentatie van de PODFY Open API: haal bewijs en QR-meldingen op, werk de status bij en beheer objecten vanuit je eigen systemen. Onderdeel van Advanced." />
+  <meta property="og:description" content="Documentatie van de PODFY Open API: haal bewijs en QR-meldingen op, werk de status bij en beheer objecten vanuit uw eigen systemen. Onderdeel van Advanced." />
   <meta property="og:url" content="https://podfy.net/nl/docs/api/" />
   <meta property="og:image" content="https://podfy.net/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Open API-documentatie | PODFY" />
-  <meta name="twitter:description" content="Documentatie van de PODFY Open API: haal bewijs en QR-meldingen op, werk de status bij en beheer objecten vanuit je eigen systemen. Onderdeel van Advanced." />
+  <meta name="twitter:description" content="Documentatie van de PODFY Open API: haal bewijs en QR-meldingen op, werk de status bij en beheer objecten vanuit uw eigen systemen. Onderdeel van Advanced." />
   <meta name="twitter:image" content="https://podfy.net/assets/og-image.jpg" />
   <link rel="alternate" hreflang="en" href="https://podfy.net/docs/api/" />
   <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/api/" />
@@ -30,7 +30,7 @@
   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://podfy.net/nl/"}, {"@type": "ListItem", "position": 2, "name": "API-documentatie", "item": "https://podfy.net/nl/docs/api/"}]}
   </script>
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "TechArticle", "headline": "Open API-documentatie", "description": "Documentatie van de PODFY Open API: haal bewijs en QR-meldingen op, werk de status bij en beheer objecten vanuit je eigen systemen. Onderdeel van Advanced.", "inLanguage": "nl", "url": "https://podfy.net/nl/docs/api/", "about": {"@type": "WebAPI", "name": "PODFY Open API", "documentation": "https://podfy.net/nl/docs/api/", "url": "https://portal.podfy.net/api/v1"}, "publisher": {"@type": "Organization", "name": "PODFY", "url": "https://podfy.net/"}}
+  {"@context": "https://schema.org", "@type": "TechArticle", "headline": "Open API-documentatie", "description": "Documentatie van de PODFY Open API: haal bewijs en QR-meldingen op, werk de status bij en beheer objecten vanuit uw eigen systemen. Onderdeel van Advanced.", "inLanguage": "nl", "url": "https://podfy.net/nl/docs/api/", "about": {"@type": "WebAPI", "name": "PODFY Open API", "documentation": "https://podfy.net/nl/docs/api/", "url": "https://portal.podfy.net/api/v1"}, "publisher": {"@type": "Organization", "name": "PODFY", "url": "https://podfy.net/"}}
   </script>
 <link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
 <script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
@@ -46,7 +46,7 @@
       <div class="container">
         <p class="v2-eyebrow">Voor ontwikkelaars</p>
         <h1 class="v2-hero-title home-title" id="api-heading">PODFY Open API <em>documentatie</em></h1>
-        <p class="v2-hero-sub home-sub">Haal meldingen en bewijs op, werk de status bij en beheer je referentieregister vanuit je eigen systemen. Een JSON REST API, onderdeel van PODFY Advanced.</p>
+        <p class="v2-hero-sub home-sub">Haal meldingen en bewijs op, werk de status bij en beheer uw referentieregister vanuit uw eigen systemen. Een JSON REST API, onderdeel van PODFY Advanced.</p>
         <div class="v2-rp-actions"><a href="/docs/api/openapi.json" class="v2-btn v2-btn-primary" download>Download openapi.json &darr;</a><a href="/nl/contact" class="v2-btn v2-btn-ghost">Vraag naar Advanced</a></div>
         <nav class="api-toc" aria-label="Op deze pagina"><p class="v2-eyebrow">Op deze pagina</p><ul><li><a href="#overview">Wat de API is</a></li><li><a href="#keys">Een API-sleutel aanmaken</a></li><li><a href="#auth">Basis-URL en authenticatie</a></li><li><a href="#environments">Live- en testsleutels</a></li><li><a href="#limits">Rate limit</a></li><li><a href="#errors">Foutmeldingen</a></li><li><a href="#paging">Paginering</a></li><li><a href="#reference">API-referentie</a></li></ul></nav>
       </div>
@@ -55,21 +55,21 @@
     <section class="v2-section" id="overview" aria-labelledby="overview-h">
       <div class="container">
         <h2 class="v2-section-title" id="overview-h">Wat de API is</h2>
-        <div class="v2-prose api-intro"><p>Met de PODFY Open API lezen je eigen systemen records (afleverbewijzen en QR-meldingen), werken ze de werkstatus bij en beheren ze het referentieregister (objecten). Het is een JSON REST API voor gebruik van server naar server. Er is geen CORS: roep de API aan vanuit je backend, nooit vanuit een browser.</p><p>De Open API is onderdeel van PODFY Advanced. Is hij niet actief voor je merk, dan antwoordt elke aanroep met <code>403 feature_not_active</code>. De specificatie is OpenAPI 3.1 en de referentie hieronder is uit hetzelfde bestand gegenereerd.</p></div>
+        <div class="v2-prose api-intro"><p>Met de PODFY Open API lezen uw eigen systemen records (afleverbewijzen en QR-meldingen), werken ze de werkstatus bij en beheren ze het referentieregister (objecten). Het is een JSON REST API voor gebruik van server naar server. Er is geen CORS: roep de API aan vanuit uw backend, nooit vanuit een browser.</p><p>De Open API is onderdeel van PODFY Advanced. Is hij niet actief voor uw merk, dan antwoordt elke aanroep met <code>403 feature_not_active</code>. De specificatie is OpenAPI 3.1 en de referentie hieronder is uit hetzelfde bestand gegenereerd.</p></div>
       </div>
     </section>
 
     <section class="v2-section" id="keys" aria-labelledby="keys-h">
       <div class="container">
         <h2 class="v2-section-title" id="keys-h">Een API-sleutel aanmaken</h2>
-        <div class="v2-prose api-intro"><p>Een beheerder van je merk maakt sleutels aan in het portaal (dat in het Engels is) onder Settings → Integrations → API keys. Geef de sleutel een naam en kies de scopes. De sleutel wordt één keer getoond, dus bewaar hem in je wachtwoord- of secretsbeheer. Je kunt een sleutel altijd intrekken, en een ingetrokken sleutel werkt meteen niet meer.</p><ul class="v2-check-list"><li><code>records:read</code>: records lezen</li><li><code>records:write</code>: records bijwerken (staat ook lezen toe)</li><li><code>references:read</code>: het referentieregister lezen</li><li><code>references:write</code>: referenties aanmaken en wijzigen (staat ook lezen toe)</li></ul></div>
+        <div class="v2-prose api-intro"><p>Een beheerder van uw merk maakt sleutels aan in het portaal (dat in het Engels is) onder Settings → Integrations → API keys. Geef de sleutel een naam en kies de scopes. De sleutel wordt één keer getoond, dus bewaar hem in uw wachtwoord- of secretsbeheer. U kunt een sleutel altijd intrekken, en een ingetrokken sleutel werkt meteen niet meer.</p><ul class="v2-check-list"><li><code>records:read</code>: records lezen</li><li><code>records:write</code>: records bijwerken (staat ook lezen toe)</li><li><code>references:read</code>: het referentieregister lezen</li><li><code>references:write</code>: referenties aanmaken en wijzigen (staat ook lezen toe)</li></ul></div>
       </div>
     </section>
 
     <section class="v2-section" id="auth" aria-labelledby="auth-h">
       <div class="container">
         <h2 class="v2-section-title" id="auth-h">Basis-URL en authenticatie</h2>
-        <div class="v2-prose api-intro"><p>De basis-URL is <code>https://portal.podfy.net/api/v1</code>. Stuur je sleutel bij elk verzoek mee als <code>Bearer</code>-token in de <code>Authorization</code>-header. Een sleutel werkt nooit als queryparameter.</p><p>Een ontbrekende, onjuiste, onbekende of ingetrokken sleutel krijgt altijd hetzelfde antwoord: <code>401 invalid_key</code>. Een sleutel zonder de vereiste scope krijgt <code>403 insufficient_scope</code>.</p><pre class="api-code"><code>curl -H &quot;Authorization: Bearer $PODFY_API_KEY&quot; \
+        <div class="v2-prose api-intro"><p>De basis-URL is <code>https://portal.podfy.net/api/v1</code>. Stuur uw sleutel bij elk verzoek mee als <code>Bearer</code>-token in de <code>Authorization</code>-header. Een sleutel werkt nooit als queryparameter.</p><p>Een ontbrekende, onjuiste, onbekende of ingetrokken sleutel krijgt altijd hetzelfde antwoord: <code>401 invalid_key</code>. Een sleutel zonder de vereiste scope krijgt <code>403 insufficient_scope</code>.</p><pre class="api-code"><code>curl -H &quot;Authorization: Bearer $PODFY_API_KEY&quot; \
   &quot;https://portal.podfy.net/api/v1/records?limit=10&quot;</code></pre></div>
       </div>
     </section>
@@ -84,7 +84,7 @@
     <section class="v2-section" id="limits" aria-labelledby="limits-h">
       <div class="container">
         <h2 class="v2-section-title" id="limits-h">Rate limit</h2>
-        <div class="v2-prose api-intro"><p>Elke sleutel mag 600 verzoeken per minuut doen, geteld in vaste vensters van een minuut. Elk antwoord bevat <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code> en <code>X-RateLimit-Reset</code> (unix-seconden waarop het venster eindigt).</p><p>Boven de limiet krijg je <code>429 rate_limited</code> met een <code>Retry-After</code>-header (seconden). Wacht zo lang en probeer het opnieuw.</p></div>
+        <div class="v2-prose api-intro"><p>Elke sleutel mag 600 verzoeken per minuut doen, geteld in vaste vensters van een minuut. Elk antwoord bevat <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code> en <code>X-RateLimit-Reset</code> (unix-seconden waarop het venster eindigt).</p><p>Boven de limiet krijgt u <code>429 rate_limited</code> met een <code>Retry-After</code>-header (seconden). Wacht zo lang en probeer het opnieuw.</p></div>
       </div>
     </section>
 
@@ -98,7 +98,7 @@
     <section class="v2-section" id="paging" aria-labelledby="paging-h">
       <div class="container">
         <h2 class="v2-section-title" id="paging-h">Paginering</h2>
-        <div class="v2-prose api-intro"><p>Lijstendpoints geven <code>{&quot;data&quot;: [...], &quot;next_cursor&quot;: &quot;…&quot;}</code> terug. Geef <code>next_cursor</code> door als parameter <code>cursor</code> om de volgende pagina te krijgen, tot hij null is. Cursors zijn ondoorzichtig: bouw of wijzig ze niet. Records staan met de nieuwste eerst. De paginagrootte stel je in met <code>limit</code> (1 tot 200, standaard 50).</p></div>
+        <div class="v2-prose api-intro"><p>Lijstendpoints geven <code>{&quot;data&quot;: [...], &quot;next_cursor&quot;: &quot;…&quot;}</code> terug. Geef <code>next_cursor</code> door als parameter <code>cursor</code> om de volgende pagina te krijgen, tot hij null is. Cursors zijn ondoorzichtig: bouw of wijzig ze niet. Records staan met de nieuwste eerst. De paginagrootte stelt u in met <code>limit</code> (1 tot 200, standaard 50).</p></div>
       </div>
     </section>
 
