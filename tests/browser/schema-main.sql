@@ -990,3 +990,17 @@ UPDATE plan_features SET is_included = 1 WHERE subscription = 'enterprise' AND f
 -- Global AI triage controls (owner decision D6): kill switch and monthly budget in USD.
 INSERT OR IGNORE INTO linkedin_settings (key, value) VALUES ('AI_TRIAGE_ENABLED', 'on');
 INSERT OR IGNORE INTO linkedin_settings (key, value) VALUES ('AI_TRIAGE_MONTHLY_USD', '25');
+
+-- migration 087 (process-mode split of legacy feature keys; refund_requests + own_domain beta), appended 2026-11-01
+-- 087_feature_modes.sql — Phase 4 go-live: process-mode split of the pre-Phase-1 feature keys (owner request 2026-11-01:
+-- "make sure the function split is well done between the CMR and QR versions of the portal").
+-- The portal hides a card whose config_schema.modes excludes the brand's mode, and (with this release) refuses to switch it on.
+-- Rows without config_schema showed in both modes. Delivery-only (CMR / proof of delivery): the driver checks, the reference
+-- field, PDF tools, multi-file uploads, the CMR builder and the document OCR / AI scan (report photos never go to those).
+-- Keys that work in both modes keep config_schema NULL. Data only; only rows that still have no config_schema are touched.
+UPDATE billing_plan_catalog SET config_schema = '{"modes":["delivery"]}', updated_at = datetime('now')
+ WHERE config_schema IS NULL
+   AND feature_key IN ('cmr_tool','check_gps','check_copy','check_clean','check_ref','pdf_merge','pdf_header','pdf_footer',
+                       'multi_file','ocr_extraction','ai_doc_scan');
+-- Go-live (owner 2026-11-01): refund requests and own domain testing -> beta. ai_triage stays testing (decision D6).
+UPDATE billing_plan_catalog SET visibility = 'beta', updated_at = datetime('now') WHERE feature_key IN ('refund_requests','own_domain');
