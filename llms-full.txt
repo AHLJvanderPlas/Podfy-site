@@ -170,7 +170,7 @@ PODFY works the other way round. Every asset gets its own QR code, linked to you
 - Photo optional or required: generic form builder: Usually a file upload field that you configure per form. PODFY: Required, optional or off, per form.
 - Categories and extra fields: generic form builder: Yes, you build every field yourself. PODFY: Your own categories and fields for your equipment, with labels in English, Dutch, German and French.
 - Routing and follow up status: generic form builder: Typically an e-mail to one address. Follow up happens in a spreadsheet or inbox. PODFY: Routing per location or category. Status from new to resolved, with priorities and duplicate reports grouped.
-- Webhooks: generic form builder: Depends on the tool and the plan. Often needs a paid tier or a connector. PODFY: Webhook to your ticketing or maintenance system. Open API: soon.
+- Webhooks: generic form builder: Depends on the tool and the plan. Often needs a paid tier or a connector. PODFY: Webhook to your ticketing or maintenance system, plus an open API.
 - EU hosting and GDPR: generic form builder: Depends on the vendor and the plan. Check where answers and uploads are stored. PODFY: Reports and photos stored in the EU, a data processing agreement and deletion on request.
 - Pricing: generic form builder: Often per user, per form or per response, so the bill follows the volume. PODFY: €0.68 per active asset per month, down to €0.27 at volume. Nothing per report, per user or per QR code.
 - No lock in: generic form builder: You can usually export answers, but printed QR codes point to the vendor's form. PODFY: Export all your data. QR codes stay linked to your own IDs and keep working through a redirect for 12 months after you leave.
@@ -200,7 +200,7 @@ Q: What happens to our existing QR codes and stickers?
 A: Stickers from a generic tool point to that tool's form, so they need to be replaced by PODFY stickers. The new stickers carry your logo and your own text, and the QR codes stay linked to your own asset IDs.
 
 Q: Do reports go to our ticketing or maintenance system?
-A: Yes. Reports can be routed per location or category and sent by webhook to your ticketing or maintenance system. An open API for your own integrations is coming soon.
+A: Yes. Reports can be routed per location or category and sent by webhook to your ticketing or maintenance system. With the open API you fetch reports and update their status from your own tools.
 
 Q: What does PODFY cost compared with a form tool?
 A: €0.68 per active asset per month, down to €0.27 for fleets above 2,500 assets, with a minimum of €13.50 per month. Nothing is charged per report, per user or per QR code, and retired assets are free. The pilot is free for 6 weeks.

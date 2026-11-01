@@ -112,3 +112,17 @@ test("pages that mention the Open API link to the reference of their own locale"
     }
   }
 });
+
+// Phase 3 (2026-11-01): the Open API is live (behind Advanced), so no page or llms file may still call it "soon".
+test("no page calls the Open API 'soon' any more", async () => {
+  const { readdirSync, statSync, readFileSync: rf } = await import("node:fs");
+  const { join } = await import("node:path");
+  const root = new URL("..", import.meta.url).pathname;
+  const SOON = /(open api|offene api|api ouverte)[^<]{0,12}(soon|binnenkort|in kürze|bientôt)|api[^<.]{0,40}(coming soon|komt binnenkort|komt eraan|kommt in kürze|folgt\.|arrive bientôt|is coming)/i;
+  const bad = [];
+  const walk = (d) => { for (const n of readdirSync(d)) { if (["node_modules", ".git", "dist", "docs"].includes(n)) continue;
+    const p = join(d, n); const st = statSync(p);
+    if (st.isDirectory()) walk(p); else if (/\.(html|txt|py)$/.test(n) && SOON.test(rf(p, "utf8"))) bad.push(p.slice(root.length)); } };
+  walk(root);
+  assert.deepEqual(bad, []);
+});
