@@ -18,6 +18,9 @@ CSSV = re.search(r"styles\.site\.css\?v=([\w-]+)", open(os.path.join(os.path.dir
 SITE = "https://podfy.net"
 SECTION = "/solutions/qr-issue-reporting/"
 VSQR_PATH = "/vs-qr-form-tools/"
+import sys; sys.path.insert(0, HERE)
+import apidocs  # API reference generator (docs/api/openapi.json)
+API_PATH = apidocs.PATH
 
 
 def load(lang):
@@ -143,10 +146,22 @@ def tiles(lang, c, slugs, ui):
         f'<span class="v2-aud-tile-arrow">{esc(ui["see_how"])} &rarr;</span></a>' for s in slugs)
 
 
+API_NAMES = {"Open API", "Offene API", "API ouverte"}  # the feature title in every language
+
+
+def api_link(lang, t):
+    """Feature titles that name the Open API link to the API reference."""
+    return f'<a href="{pre(lang)}{API_PATH}">{esc(t)}</a>' if t in API_NAMES else esc(t)
+
+
+def lang_of(c):
+    return next(l for l in LANGS if C[l] is c)
+
+
 def features(c):
-    soon = c.UI["soon"]
+    soon, lang = c.UI["soon"], lang_of(c)
     return '<div class="v2-feat-grid">' + "".join(
-        f'<div class="v2-feat"><h3>{esc(t)}{f" <span class=\"v2-badge-soon\">{esc(soon)}</span>" if s else ""}</h3><p>{esc(d)}</p></div>'
+        f'<div class="v2-feat"><h3>{api_link(lang, t)}{f" <span class=\"v2-badge-soon\">{esc(soon)}</span>" if s else ""}</h3><p>{esc(d)}</p></div>'
         for t, s, d in c.FEATURES) + "</div>"
 
 
@@ -326,7 +341,7 @@ def sync_sitemap():
         for lang in LANGS:
             alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{url(l, path)}"/>' for l in LANGS)
             block.append(f"  <url>\n    <loc>{url(lang, path)}</loc>{alts}\n  </url>")
-    for path in ("/cmr/", "/qr/", VSQR_PATH):
+    for path in ("/cmr/", "/qr/", VSQR_PATH, API_PATH):
         for lang in LANGS:
             alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE + pre(l) + path}"/>' for l in LANGS)
             block.append(f"  <url>\n    <loc>{SITE + pre(lang) + path}</loc>{alts}\n  </url>")
@@ -722,7 +737,7 @@ def build_cmr(lang):
                           "location": {"lat": 52.37, "lng": 4.89, "source": "photo"}, "files": ["cmr_0841.pdf"],
                           "url": "https://portal.podfy.net/pod/3b8e1d"}, ensure_ascii=False, indent=2)
     roles = "".join(f'<a class="v2-aud-tile" href="{p}/solutions/{slug}/"><p class="v2-aud-tile-name">{esc(n)}</p><p class="v2-aud-tile-desc">{esc(d)}</p><span class="v2-aud-tile-arrow">{esc(ui["see_how"])} &rarr;</span></a>' for slug, n, d in m["roles"])
-    feats = '<div class="v2-feat-grid">' + "".join(f'<div class="v2-feat"><h3>{esc(t)}{" <span class=\"v2-badge-soon\">" + esc(ui["soon"]) + "</span>" if s else ""}</h3><p>{esc(d)}</p></div>' for t, s, d in m["features"]) + "</div>"
+    feats = '<div class="v2-feat-grid">' + "".join(f'<div class="v2-feat"><h3>{api_link(lang, t)}{" <span class=\"v2-badge-soon\">" + esc(ui["soon"]) + "</span>" if s else ""}</h3><p>{esc(d)}</p></div>' for t, s, d in m["features"]) + "</div>"
     nxt = "".join(f'<li><strong>{esc(h)}</strong><span>{esc(x)}</span></li>' for h, x in m["next"])
     ld = [{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in m["faq"]]},
           {"@context": "https://schema.org", "@type": "Service", "name": m["product"], "provider": {"@type": "Organization", "name": "PODFY", "url": SITE},
@@ -880,7 +895,7 @@ def build_home(lang):
             <ul class="door-points">{pts}</ul>
             <span class="door-cta">{esc(door["cta"])} &rarr;</span>
           </a>'''
-    shared = "".join(f"<li>{esc(x)}</li>" for x in d["shared"])
+    shared = "".join(f"<li>{api_link(lang, x)}</li>" for x in d["shared"])
     hm = c.HOME_MORE
     cols = hm["cmp_cols"]
     cmp_rows = "".join(f'<tr><th scope="row">{esc(a)}</th><td>{esc(b)}</td><td>{esc(q)}</td></tr>' for a, b, q in hm["cmp_rows"])
@@ -1067,6 +1082,61 @@ def build_vsqr(lang):
     page_shell(lang, VSQR_PATH, v["title"], v["desc"], ld, body)
 
 
+def build_api(lang):
+    """/docs/api/ in every locale: translated intro, generated English reference, TechArticle + BreadcrumbList."""
+    spec, t, p = apidocs.load_spec(), apidocs.INTRO[lang], pre(lang)
+    labels = {**t, **apidocs.REF_LABELS}
+    home = (p or "") + "/"
+    crumbs = [(t["crumb_home"], SITE + home), (t["crumb"], page_url(lang, API_PATH))]
+    ld = [{"@context": "https://schema.org", "@type": "BreadcrumbList",
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs)]},
+          {"@context": "https://schema.org", "@type": "TechArticle", "headline": re.sub(r" \| PODFY$", "", t["title"]),
+           "description": t["desc"], "inLanguage": lang, "url": page_url(lang, API_PATH),
+           "about": {"@type": "WebAPI", "name": spec["info"]["title"], "documentation": page_url(lang, API_PATH),
+                     "url": apidocs.server(spec)},
+           "publisher": {"@type": "Organization", "name": "PODFY", "url": SITE + "/"}}]
+    toc = "".join(f'<li><a href="#{sid}">{esc(h)}</a></li>' for sid, h, *_ in t["sections"]) + f'<li><a href="#reference">{esc(t["toc_ref"])}</a></li>'
+    body = crumbs_nav([(t["crumb_home"], home), (t["crumb"], p + API_PATH)]) + f'''
+
+  <main id="main" class="v2-main">
+    <section class="home-hero" aria-labelledby="api-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(t["eyebrow"])}</p>
+        <h1 class="v2-hero-title home-title" id="api-heading">{esc(t["h1"])} <em>{esc(t["h1em"])}</em></h1>
+        <p class="v2-hero-sub home-sub">{esc(t["sub"])}</p>
+        <div class="v2-rp-actions"><a href="{API_PATH}openapi.json" class="v2-btn v2-btn-primary" download>{esc(t["download"])} &darr;</a><a href="{p}/contact" class="v2-btn v2-btn-ghost">{esc(t["contact"])}</a></div>
+        <nav class="api-toc" aria-label="{esc(t["toc"])}"><p class="v2-eyebrow">{esc(t["toc"])}</p><ul>{toc}</ul></nav>
+      </div>
+    </section>
+
+{apidocs.intro_html(spec, t)}
+
+{apidocs.reference_html(spec, labels)}
+  </main>'''
+    page_shell(lang, API_PATH, t["title"], t["desc"], ld, body)
+
+
+def api_llms():
+    spec, t = apidocs.load_spec(), apidocs.INTRO["en"]
+    secs = "\n\n".join(f"## {h}\n" + "\n".join(ps) + ("\n" + "\n".join("- " + b for b in bl) if bl else "") for _, h, ps, bl, _c in t["sections"])
+    return f"""---
+
+# {t["title"].replace(" | PODFY", "")}: PODFY
+Source: {SITE}{API_PATH}
+
+{t["h1"]} {t["h1em"]}
+
+{t["sub"]}
+
+{secs}
+
+## Operations (base URL {apidocs.server(spec)})
+{apidocs.llms_text(spec)}
+
+Specification (OpenAPI 3.1): {SITE}{API_PATH}openapi.json
+"""
+
+
 LLMS_START, LLMS_END = "<!-- generated by scripts/qr-pages/build.py -->", "<!-- /generated -->"
 
 
@@ -1089,6 +1159,7 @@ def sync_llms():
 - Delivery solutions by role: {SITE}/solutions/ (carriers, 3PL, shippers, retail, construction, facilities, inbound, paper to digital)
 - QR Reporting: {SITE}/qr/ (main page) and {SITE}{SECTION} (overview with all use cases)
 - Comparison, PODFY QR Reporting vs generic QR form tools: {SITE}{VSQR_PATH}
+- Open API reference (REST, part of Advanced; intro also in /nl/, /de/, /fr/): {SITE}{API_PATH} ; specification {SITE}{API_PATH}openapi.json
 
 ## PODFY QR Reporting (second solution)
 
@@ -1167,6 +1238,7 @@ Source: {SITE}/qr/ and {SITE}{SECTION}
 {qa([e.FAQ[k] for k in e.OV["faq_keys"]])}
 """]
     full.append(vsqr_llms())
+    full.append(api_llms())
     for s in e.ORDER:
         v = e.CASES[s]
         faq = [resolve(e, f) for f in v["faq"]]
@@ -1254,7 +1326,7 @@ def qr_price_section(lang):
         <div class="qrp-grid">
           <div class="qrp-tiers"><table class="qrp-table"><thead><tr><th scope="col">{esc(q["cols"][0])}</th><th scope="col">{esc(q["cols"][1])}</th></tr></thead><tbody>{rows}</tbody></table></div>
           <div class="qrp-card"><h3>{esc(q["included_h"])}</h3><ul class="v2-check-list">{li(q["included"])}</ul></div>
-          <div class="qrp-card"><h3>{esc(q["adv_h"])} <span class="qrp-adv">{esc(q["adv_price"].format(p=money(lang, QR_ADV)))}</span></h3><ul class="v2-check-list">{li(q["adv"])}</ul>
+          <div class="qrp-card"><h3>{esc(q["adv_h"])} <span class="qrp-adv">{esc(q["adv_price"].format(p=money(lang, QR_ADV)))}</span></h3><ul class="v2-check-list">{"".join(f"<li>{api_link(lang, x)}</li>" for x in q["adv"])}</ul>
             <h3 class="qrp-terms-h">{esc(q["terms_h"])}</h3><ul class="qrp-terms">{li(terms)}</ul></div>
         </div>
         <p><a href="{p}/contact?solution=report" class="v2-btn v2-btn-primary">{esc(q["cta"])} &rarr;</a></p>
@@ -1355,6 +1427,7 @@ if __name__ == "__main__":
         build_landing(lang)
         build_cmr(lang)
         build_vsqr(lang)
+        build_api(lang)
         build_home(lang)
     # regenerated pages lose their asset wiring: re-run the site tools so `npm test` stays green
     import subprocess

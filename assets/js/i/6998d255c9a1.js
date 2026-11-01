@@ -1,4 +1,5 @@
 
+
     (function () {
       /* Year */
       var yEl = document.querySelector(".v2-footer-year");
@@ -29,6 +30,7 @@
       /* Translate footer labels for NL / DE / FR */
       var FOOTER_LABELS = {
         nl: {
+          "API reference":"API-documentatie",
           "Product":"Product","Solutions":"Oplossingen","Guides":"Gidsen",
           "Trust & Legal":"Vertrouwen & Juridisch","Contact":"Contact",
           "Pricing":"Tarieven","CMR generator":"CMR-generator",
@@ -53,6 +55,7 @@
           "Imprint":"Impressum","Disclosure":"Openbaarmaking"
         },
         de: {
+          "API reference":"API-Referenz",
           "Product":"Produkt","Solutions":"Lösungen","Guides":"Leitfäden",
           "Trust & Legal":"Vertrauen & Recht","Contact":"Kontakt",
           "Pricing":"Preise","CMR generator":"CMR-Generator",
@@ -77,6 +80,7 @@
           "Imprint":"Impressum","Disclosure":"Offenlegung"
         },
         fr: {
+          "API reference":"Référence API",
           "Product":"Produit","Solutions":"Solutions","Guides":"Guides",
           "Trust & Legal":"Confiance & Légal","Contact":"Contact",
           "Pricing":"Tarifs","CMR generator":"Générateur CMR",
