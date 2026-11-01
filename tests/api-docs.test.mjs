@@ -75,11 +75,11 @@ test("API pages: no inline style or script, no third-party scripts or API explor
   }
 });
 
-test("translated intros keep their register: NL je, DE Sie, FR vous; the reference stays English and says so", () => {
+test("translated intros keep their register: NL u (site register), DE Sie, FR vous; the reference stays English and says so", () => {
   const text = (loc) => decode(readFileSync(`${ROOT}${loc}docs/api/index.html`, "utf8").replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, " "));
   const nl = text("nl/"), de = text("de/"), fr = text("fr/");
   const word = (w, f = "") => new RegExp(`(?<![\\p{L}])(${w})(?![\\p{L}])`, "u" + f); // unicode-aware \b (JS \b treats e-circumflex as a boundary)
-  assert.match(nl, word("je")); assert.doesNotMatch(nl, word("u|uw|U|Uw"), "nl: formal u/uw");
+  assert.match(nl, word("uw")); assert.doesNotMatch(nl, word("je|jouw|jij|Je"), "nl: the site uses formal u/uw");
   assert.match(de, word("Sie")); assert.doesNotMatch(de, word("du|dich|dein|deine|deinen", "i"), "de: informal du");
   assert.match(fr, word("vous")); assert.doesNotMatch(fr, word("tu|toi|ton|ta|tes", "i"), "fr: informal tu");
   for (const [l, t] of [["nl", nl], ["de", de], ["fr", fr]]) assert.match(t, /openapi\.json/, `${l}: download`);
