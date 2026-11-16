@@ -1,0 +1,43 @@
+name: CI
+
+# CI only checks. It never deploys and holds no secrets: deploys are manual (deploy script on the owner machine);
+# GitHub is an archive. See CLAUDE.md.
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: npm test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      # npm test also runs inline-styles.mjs --check and extract-inline.mjs --check (tests/no-inline.test.mjs)
+      # tests/api-docs.test.mjs skips itself without a podfy-portal checkout next to this repo
+      - run: npm test
+
+  audit:
+    name: npm audit (production dependencies)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm audit --omit=dev --audit-level=high
