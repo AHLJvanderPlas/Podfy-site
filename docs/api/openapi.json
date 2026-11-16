@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "PODFY Open API",
-    "version": "1.0.0",
-    "description": "Read records (proofs of delivery and reports) and update their status from your own systems, manage your reference (asset) register, and approve refund requests and report their payout result.\n\n**Authentication.** Send `Authorization: Bearer <key>` on every request. Keys are created by a brand admin in the portal (Settings → Integrations → API keys) and shown once. `pk_live_…` keys see only production records; `pk_test_…` keys (\"QA records only\") see only test records from qa.podfy.app (podfy_id starting with `QA-`). A key never works in a query parameter. A missing, malformed, unknown or revoked key always gets the same `401 invalid_key`.\n\n**Availability.** The Open API is part of PODFY Advanced. When it is not active for the brand, every call answers `403 feature_not_active`.\n\n**Scopes.** `records:read`, `records:write`, `references:read`, `references:write`, `refunds:read`, `refunds:write`. A write scope also allows reading the same resource; nothing else is implied. Missing scope: `403 insufficient_scope`.\n\n**Rate limit.** 600 requests per minute per key (fixed one-minute windows). Every answer carries `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset` (unix seconds when the window ends). Above the limit: `429 rate_limited` with `Retry-After` (seconds).\n\n**Isolation.** A record, reference or refund of another brand, or a record or refund of the other environment, answers `404 not_found`, never 403.\n\n**Refunds.** PODFY records refund requests from the report form and never pays them out. A brand admin (in the portal) or your system (`POST /refunds/{id}/approve`) approves a request; PODFY then sends the signed webhook `refund.approved` to webhooks that subscribed to it by name. Your payment platform pays and reports back with `POST /refunds/{id}/result`. Use the refund `id` as the idempotency key: sending the same result again answers the same refund and changes nothing.\n\n**Paging.** List endpoints return `{data, next_cursor}`. Pass `next_cursor` back as `cursor` until it is `null`. Records are newest first. Cursors are opaque.\n\n**Errors.** Every error is JSON `{\"error\":{\"code\":\"…\",\"message\":\"…\"}}`. Responses are never cached (`Cache-Control: no-store`). No CORS: call the API from your server, never from a browser.",
+    "version": "1.1.0",
+    "description": "Read records (proofs of delivery and reports) and update their status from your own systems, manage your reference (asset) register, and approve refund requests and report their payout result.\n\n**Authentication.** Send `Authorization: Bearer <key>` on every request. Keys are created by a brand admin in the portal (Settings → Integrations → API keys) and shown once. `pk_live_…` keys see only production records; `pk_test_…` keys (\"QA records only\") see only test records from qa.podfy.app (podfy_id starting with `QA-`). A key never works in a query parameter. A missing, malformed, unknown or revoked key always gets the same `401 invalid_key`.\n\n**Availability.** The Open API is part of PODFY Advanced. When it is not active for the brand, every call answers `403 feature_not_active`.\n\n**Scopes.** `records:read`, `records:write`, `references:read`, `references:write`, `refunds:read`, `refunds:write`. A write scope also allows reading the same resource; nothing else is implied. Missing scope: `403 insufficient_scope`.\n\n**Rate limits.** 600 requests per minute per key (fixed one-minute windows). Every answer for an authenticated key carries `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset` (unix seconds when the window ends). Above the limit: `429 rate_limited` with `Retry-After` (seconds). Before the key is even looked up, a second limit of 1200 requests per minute per IP address applies (also `429 rate_limited` + `Retry-After`).\n\n**Idempotency.** Send `Idempotency-Key: <1 to 255 visible ASCII characters>` on `POST` and `PATCH` (optional) to make a retry safe. The first request with a key runs; a repeat with the same key and the same method, path and body returns the stored status and body with `Idempotent-Replayed: true` and changes nothing (no second event, webhook or audit entry). While the first request is still running a repeat answers `409 idempotency_in_progress` (retry after a moment). The same key with a different method, path or body answers `422 idempotency_key_reused`. Only 2xx and 4xx answers are stored; after a 5xx the key is released so you can retry. Keys are per API key and kept for 24 hours; a stored body above 64 KB is not kept (the status is replayed with `{}`). A write refused for a read-only (`pk_test_`) key is refused before idempotency and stores nothing.\n\n**Conditional requests.** `GET` of one record, reference or refund returns a strong `ETag`. Send it back as `If-None-Match` to get `304 Not Modified` when nothing changed, or as `If-Match` on `PATCH` to change the resource only if it is still the version you read (`412 precondition_failed` otherwise, nothing is changed). `If-Match` is optional; without it a `PATCH` applies as before.\n\n**Isolation.** A record, reference or refund of another brand, or a record or refund of the other environment, answers `404 not_found`, never 403.\n\n**Refunds.** PODFY records refund requests from the report form and never pays them out. A brand admin (in the portal) or your system (`POST /refunds/{id}/approve`) approves a request; PODFY then sends the signed webhook `refund.approved` to webhooks that subscribed to it by name. Your payment platform pays and reports back with `POST /refunds/{id}/result`. Use the refund `id` as the idempotency key: sending the same result again answers the same refund and changes nothing.\n\n**Paging.** List endpoints return `{data, next_cursor}`. Pass `next_cursor` back as `cursor` until it is `null`. Records are newest first. Cursors are opaque.\n\n**Errors.** Every error is JSON `{\"error\":{\"code\":\"…\",\"message\":\"…\"}}` with `code` one of a fixed list (the `Error` schema). Use `code` for logic and `message` for people. Several causes share a code (all malformed requests are `invalid_request`, all state conflicts `conflict`); the optional `detail` then names the specific reason (for example `ref_exists`, `invalid_transition`, `invalid_cursor`, `comment_too_long`) and is absent when there is nothing more specific. `detail` is an open list. Unexpected failures answer `500 internal_error` without details. A method the endpoint does not serve answers `405 method_not_allowed` with an `Allow` header; a body above 16 KB answers `413 payload_too_large`. Responses are never cached (`Cache-Control: no-store`). No CORS: call the API from your server, never from a browser.\n\n**Webhooks.** PODFY can also push events to your server; see the `webhooks` section of this document for every event, its payload and how to verify the signature.",
     "contact": {
       "name": "PODFY support",
       "email": "support@podfy.net",
@@ -32,6 +32,10 @@
     {
       "name": "Refunds",
       "description": "Refund requests from the report form; requires refund requests to be active (part of Advanced)"
+    },
+    {
+      "name": "Webhooks",
+      "description": "Events PODFY sends to your endpoint (configured in the portal under Integrations)"
     }
   ],
   "paths": {
@@ -108,7 +112,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A page of records.",
+            "description": "The page of records, newest first.",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -124,6 +128,48 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RecordList"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "data": [
+                        {
+                          "podfy_id": "PFY-7Q4K2-1",
+                          "mode": "report",
+                          "reference": "COFFEE-1",
+                          "asset": {
+                            "name": "Coffee machine",
+                            "location": "Floor 2",
+                            "group": "B"
+                          },
+                          "category": "NOT_WORKING",
+                          "priority": "high",
+                          "work_status": "in_progress",
+                          "note": "Makes a grinding noise",
+                          "fields": {
+                            "floor": "2"
+                          },
+                          "group_id": "PFY-7Q4K2",
+                          "files": [
+                            {
+                              "name": "photo.jpg",
+                              "url": "https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file"
+                            }
+                          ],
+                          "location": null,
+                          "duplicate_of": null,
+                          "url": "https://portal.podfy.net/pod/3f9a0c1d2e4b5a69",
+                          "updated_at": "2026-11-16T09:24:00Z",
+                          "keep_informed": false,
+                          "assignee": "mate@acme.example",
+                          "created_at": "2026-11-16T08:02:11Z",
+                          "resolved_at": null
+                        }
+                      ],
+                      "next_cursor": "MTIz"
+                    }
+                  }
                 }
               }
             }
@@ -136,9 +182,6 @@
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           },
           "405": {
             "$ref": "#/components/responses/MethodNotAllowed"
@@ -183,15 +226,76 @@
               },
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
+              },
+              "ETag": {
+                "$ref": "#/components/headers/ETag"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RecordWithEvents"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "mode": "report",
+                      "reference": "COFFEE-1",
+                      "asset": {
+                        "name": "Coffee machine",
+                        "location": "Floor 2",
+                        "group": "B"
+                      },
+                      "category": "NOT_WORKING",
+                      "priority": "high",
+                      "work_status": "in_progress",
+                      "note": "Makes a grinding noise",
+                      "fields": {
+                        "floor": "2"
+                      },
+                      "group_id": "PFY-7Q4K2",
+                      "files": [
+                        {
+                          "name": "photo.jpg",
+                          "url": "https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file"
+                        }
+                      ],
+                      "location": null,
+                      "duplicate_of": null,
+                      "url": "https://portal.podfy.net/pod/3f9a0c1d2e4b5a69",
+                      "updated_at": "2026-11-16T09:24:00Z",
+                      "keep_informed": false,
+                      "assignee": "mate@acme.example",
+                      "created_at": "2026-11-16T08:02:11Z",
+                      "resolved_at": null,
+                      "events": [
+                        {
+                          "type": "created",
+                          "from": null,
+                          "to": null,
+                          "note": null,
+                          "actor": "app",
+                          "created_at": "2026-11-16T08:02:11Z"
+                        },
+                        {
+                          "type": "status",
+                          "from": "new",
+                          "to": "in_progress",
+                          "note": null,
+                          "actor": "api:pk_live_3f9a0c1",
+                          "created_at": "2026-11-16T09:24:00Z"
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -214,11 +318,16 @@
           "500": {
             "$ref": "#/components/responses/ServerError"
           }
-        }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IfNoneMatch"
+          }
+        ]
       },
       "patch": {
         "summary": "Update a record",
-        "description": "Change the work status, assignee or priority, or add a comment. Same rules as the portal: one timeline event per change, webhooks `record.status_changed` / `record.updated` are sent, the actor is `api:<key prefix>`. Needs status tracking (report mode or the status tracking add-on), else `403 feature_not_active`. Only the fields below are accepted.\n\nRequired scope: `records:write`.",
+        "description": "Change the work status, assignee or priority, or add a comment. Same rules as the portal: one timeline event per change, webhooks `record.status_changed` / `record.updated` are sent, the actor is `api:<key prefix>`. Needs status tracking (report mode or the status tracking add-on), else `403 feature_not_active`. Only the fields below are accepted. Send `If-Match` with the `ETag` of your last `GET` to refuse the change when the record changed meanwhile (`412 precondition_failed`).\n\nRequired scope: `records:write`.",
         "x-podfy-scope": "records:write",
         "security": [
           {
@@ -241,7 +350,7 @@
         },
         "responses": {
           "200": {
-            "description": "The record after the update. `changed` is false when nothing differed.",
+            "description": "The record after the update. `changed` is false when nothing differed. `ETag` is the new version.",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -251,6 +360,12 @@
               },
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
+              },
+              "ETag": {
+                "$ref": "#/components/headers/ETag"
+              },
+              "Idempotent-Replayed": {
+                "$ref": "#/components/headers/Idempotent-Replayed"
               }
             },
             "content": {
@@ -267,6 +382,46 @@
                     },
                     "record": {
                       "$ref": "#/components/schemas/Record"
+                    }
+                  }
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "changed": true,
+                      "record": {
+                        "podfy_id": "PFY-7Q4K2-1",
+                        "mode": "report",
+                        "reference": "COFFEE-1",
+                        "asset": {
+                          "name": "Coffee machine",
+                          "location": "Floor 2",
+                          "group": "B"
+                        },
+                        "category": "NOT_WORKING",
+                        "priority": "high",
+                        "work_status": "in_progress",
+                        "note": "Makes a grinding noise",
+                        "fields": {
+                          "floor": "2"
+                        },
+                        "group_id": "PFY-7Q4K2",
+                        "files": [
+                          {
+                            "name": "photo.jpg",
+                            "url": "https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file"
+                          }
+                        ],
+                        "location": null,
+                        "duplicate_of": null,
+                        "url": "https://portal.podfy.net/pod/3f9a0c1d2e4b5a69",
+                        "updated_at": "2026-11-16T09:24:00Z",
+                        "keep_informed": false,
+                        "assignee": "mate@acme.example",
+                        "created_at": "2026-11-16T08:02:11Z",
+                        "resolved_at": null
+                      }
                     }
                   }
                 }
@@ -288,13 +443,36 @@
           "405": {
             "$ref": "#/components/responses/MethodNotAllowed"
           },
+          "409": {
+            "$ref": "#/components/responses/IdempotencyInProgress"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "413": {
+            "$ref": "#/components/responses/PayloadTooLarge"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "422": {
+            "$ref": "#/components/responses/IdempotencyKeyReused"
+          },
           "429": {
             "$ref": "#/components/responses/RateLimited"
           },
           "500": {
             "$ref": "#/components/responses/ServerError"
           }
-        }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/IfMatch"
+          }
+        ]
       }
     },
     "/references": {
@@ -350,7 +528,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A page of references.",
+            "description": "The page of references (ordered by `ref`).",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -366,6 +544,30 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ReferenceList"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "data": [
+                        {
+                          "ref": "COFFEE-1",
+                          "kind": "asset",
+                          "name": "Coffee machine",
+                          "location": "Floor 2",
+                          "group_code": "B",
+                          "sticker_text": null,
+                          "status": "active",
+                          "active_from": "2026-10-01",
+                          "retired_at": null,
+                          "created_at": "2026-10-01T09:00:00Z",
+                          "updated_at": "2026-11-02T10:00:00Z",
+                          "qr_url": "https://podfy.app/acme/COFFEE-1"
+                        }
+                      ],
+                      "next_cursor": null
+                    }
+                  }
                 }
               }
             }
@@ -378,9 +580,6 @@
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           },
           "405": {
             "$ref": "#/components/responses/MethodNotAllowed"
@@ -395,7 +594,7 @@
       },
       "post": {
         "summary": "Create a reference",
-        "description": "Adds one reference. `409 ref_exists` when the ref is already in the register.\n\nRequired scope: `references:write`. QA keys (pk_test_) cannot change references: the register is shared with production records (403 insufficient_scope).",
+        "description": "Adds one reference. `409 conflict` when the ref is already in the register.\n\nRequired scope: `references:write`. QA keys (pk_test_) cannot change references: the register is shared with production records (403 insufficient_scope).",
         "x-podfy-scope": "references:write",
         "security": [
           {
@@ -418,7 +617,7 @@
         },
         "responses": {
           "201": {
-            "description": "The new reference.",
+            "description": "The created reference.",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -428,12 +627,37 @@
               },
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
+              },
+              "ETag": {
+                "$ref": "#/components/headers/ETag"
+              },
+              "Idempotent-Replayed": {
+                "$ref": "#/components/headers/Idempotent-Replayed"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Reference"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "ref": "COFFEE-1",
+                      "kind": "asset",
+                      "name": "Coffee machine",
+                      "location": "Floor 2",
+                      "group_code": "B",
+                      "sticker_text": null,
+                      "status": "active",
+                      "active_from": "2026-10-01",
+                      "retired_at": null,
+                      "created_at": "2026-10-01T09:00:00Z",
+                      "updated_at": "2026-11-02T10:00:00Z",
+                      "qr_url": "https://podfy.app/acme/COFFEE-1"
+                    }
+                  }
                 }
               }
             }
@@ -447,14 +671,20 @@
           "403": {
             "$ref": "#/components/responses/Forbidden"
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
           "405": {
             "$ref": "#/components/responses/MethodNotAllowed"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
+          },
+          "413": {
+            "$ref": "#/components/responses/PayloadTooLarge"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "422": {
+            "$ref": "#/components/responses/IdempotencyKeyReused"
           },
           "429": {
             "$ref": "#/components/responses/RateLimited"
@@ -462,7 +692,12 @@
           "500": {
             "$ref": "#/components/responses/ServerError"
           }
-        }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ]
       }
     },
     "/references/{ref}": {
@@ -496,15 +731,40 @@
               },
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
+              },
+              "ETag": {
+                "$ref": "#/components/headers/ETag"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Reference"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "ref": "COFFEE-1",
+                      "kind": "asset",
+                      "name": "Coffee machine",
+                      "location": "Floor 2",
+                      "group_code": "B",
+                      "sticker_text": null,
+                      "status": "active",
+                      "active_from": "2026-10-01",
+                      "retired_at": null,
+                      "created_at": "2026-10-01T09:00:00Z",
+                      "updated_at": "2026-11-02T10:00:00Z",
+                      "qr_url": "https://podfy.app/acme/COFFEE-1"
+                    }
+                  }
                 }
               }
             }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -527,11 +787,16 @@
           "500": {
             "$ref": "#/components/responses/ServerError"
           }
-        }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IfNoneMatch"
+          }
+        ]
       },
       "patch": {
         "summary": "Update a reference",
-        "description": "Edit, move, retire (`status: retired`) or reactivate a reference. Only the fields below are accepted; an empty string clears a text field.\n\nRequired scope: `references:write`. QA keys (pk_test_) cannot change references: the register is shared with production records (403 insufficient_scope).",
+        "description": "Edit, move, retire (`status: retired`) or reactivate a reference. Only the fields below are accepted; an empty string clears a text field.\n\nRequired scope: `references:write`. QA keys (pk_test_) cannot change references: the register is shared with production records (403 insufficient_scope).\n\nSend `If-Match` with the `ETag` of your last `GET` to refuse the change when the reference changed meanwhile (`412 precondition_failed`).",
         "x-podfy-scope": "references:write",
         "security": [
           {
@@ -554,7 +819,7 @@
         },
         "responses": {
           "200": {
-            "description": "The reference after the update.",
+            "description": "The reference after the update. `changed` is false when nothing differed. `ETag` is the new version.",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -564,6 +829,12 @@
               },
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
+              },
+              "ETag": {
+                "$ref": "#/components/headers/ETag"
+              },
+              "Idempotent-Replayed": {
+                "$ref": "#/components/headers/Idempotent-Replayed"
               }
             },
             "content": {
@@ -580,6 +851,28 @@
                     },
                     "reference": {
                       "$ref": "#/components/schemas/Reference"
+                    }
+                  }
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "changed": true,
+                      "reference": {
+                        "ref": "COFFEE-1",
+                        "kind": "asset",
+                        "name": "Coffee machine",
+                        "location": "Floor 2",
+                        "group_code": "B",
+                        "sticker_text": null,
+                        "status": "active",
+                        "active_from": "2026-10-01",
+                        "retired_at": null,
+                        "created_at": "2026-10-01T09:00:00Z",
+                        "updated_at": "2026-11-02T10:00:00Z",
+                        "qr_url": "https://podfy.app/acme/COFFEE-1"
+                      }
                     }
                   }
                 }
@@ -601,13 +894,36 @@
           "405": {
             "$ref": "#/components/responses/MethodNotAllowed"
           },
+          "409": {
+            "$ref": "#/components/responses/IdempotencyInProgress"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "413": {
+            "$ref": "#/components/responses/PayloadTooLarge"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "422": {
+            "$ref": "#/components/responses/IdempotencyKeyReused"
+          },
           "429": {
             "$ref": "#/components/responses/RateLimited"
           },
           "500": {
             "$ref": "#/components/responses/ServerError"
           }
-        }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/IfMatch"
+          }
+        ]
       }
     },
     "/refunds": {
@@ -646,7 +962,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A page of refunds.",
+            "description": "The page of refunds, newest first.",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -662,6 +978,33 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RefundList"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "data": [
+                        {
+                          "id": "rfd_3f9a0c1d2e4b5a69",
+                          "amount": "2.50",
+                          "currency": "EUR",
+                          "pay_ref": "TX-88123",
+                          "status": "approved",
+                          "decided_at": "2026-11-16T10:12:00Z",
+                          "result": null,
+                          "podfy_id": "PFY-7Q4K2-1",
+                          "reference": "COFFEE-1",
+                          "created_at": "2026-11-16T08:02:12Z",
+                          "updated_at": "2026-11-16T10:12:00Z",
+                          "flags": [],
+                          "decided_by": "api:pk_live_3f9a0c1",
+                          "decision_note": null,
+                          "result_note": null
+                        }
+                      ],
+                      "next_cursor": null
+                    }
+                  }
                 }
               }
             }
@@ -674,9 +1017,6 @@
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
           },
           "405": {
             "$ref": "#/components/responses/MethodNotAllowed"
@@ -721,15 +1061,43 @@
               },
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
+              },
+              "ETag": {
+                "$ref": "#/components/headers/ETag"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Refund"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "id": "rfd_3f9a0c1d2e4b5a69",
+                      "amount": "2.50",
+                      "currency": "EUR",
+                      "pay_ref": "TX-88123",
+                      "status": "approved",
+                      "decided_at": "2026-11-16T10:12:00Z",
+                      "result": null,
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "reference": "COFFEE-1",
+                      "created_at": "2026-11-16T08:02:12Z",
+                      "updated_at": "2026-11-16T10:12:00Z",
+                      "flags": [],
+                      "decided_by": "api:pk_live_3f9a0c1",
+                      "decision_note": null,
+                      "result_note": null
+                    }
+                  }
                 }
               }
             }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -752,7 +1120,12 @@
           "500": {
             "$ref": "#/components/responses/ServerError"
           }
-        }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IfNoneMatch"
+          }
+        ]
       }
     },
     "/refunds/{id}/approve": {
@@ -763,7 +1136,7 @@
       ],
       "post": {
         "summary": "Approve a refund",
-        "description": "Moves a `requested` refund to `approved` (actor `api:<key prefix>`). Sends the webhook `refund.approved` to webhooks that subscribed to it by name (never to `*`). Any other status: `409 invalid_transition`. The body is optional.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:write`.",
+        "description": "Moves a `requested` refund to `approved` (actor `api:<key prefix>`). Sends the webhook `refund.approved` to webhooks that subscribed to it by name (never to `*`). Any other status: `409 conflict`. The body is optional.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:write`.",
         "x-podfy-scope": "refunds:write",
         "security": [
           {
@@ -796,12 +1169,37 @@
               },
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
+              },
+              "Idempotent-Replayed": {
+                "$ref": "#/components/headers/Idempotent-Replayed"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Refund"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "id": "rfd_3f9a0c1d2e4b5a69",
+                      "amount": "2.50",
+                      "currency": "EUR",
+                      "pay_ref": "TX-88123",
+                      "status": "approved",
+                      "decided_at": "2026-11-16T10:12:00Z",
+                      "result": null,
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "reference": "COFFEE-1",
+                      "created_at": "2026-11-16T08:02:12Z",
+                      "updated_at": "2026-11-16T10:12:00Z",
+                      "flags": [],
+                      "decided_by": "api:pk_live_3f9a0c1",
+                      "decision_note": null,
+                      "result_note": null
+                    }
+                  }
                 }
               }
             }
@@ -824,13 +1222,27 @@
           "409": {
             "$ref": "#/components/responses/RefundConflict"
           },
+          "413": {
+            "$ref": "#/components/responses/PayloadTooLarge"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "422": {
+            "$ref": "#/components/responses/IdempotencyKeyReused"
+          },
           "429": {
             "$ref": "#/components/responses/RateLimited"
           },
           "500": {
             "$ref": "#/components/responses/ServerError"
           }
-        }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ]
       }
     },
     "/refunds/{id}/reject": {
@@ -841,7 +1253,7 @@
       ],
       "post": {
         "summary": "Reject a refund",
-        "description": "Moves a `requested` refund to `rejected` (actor `api:<key prefix>`). Sends the webhook `refund.updated` to webhooks that subscribed to it by name (never to `*`). Any other status: `409 invalid_transition`. The body is optional.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:write`.",
+        "description": "Moves a `requested` refund to `rejected` (actor `api:<key prefix>`). Sends the webhook `refund.updated` to webhooks that subscribed to it by name (never to `*`). Any other status: `409 conflict`. The body is optional.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:write`.",
         "x-podfy-scope": "refunds:write",
         "security": [
           {
@@ -874,12 +1286,37 @@
               },
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
+              },
+              "Idempotent-Replayed": {
+                "$ref": "#/components/headers/Idempotent-Replayed"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Refund"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "id": "rfd_3f9a0c1d2e4b5a69",
+                      "amount": "2.50",
+                      "currency": "EUR",
+                      "pay_ref": "TX-88123",
+                      "status": "rejected",
+                      "decided_at": "2026-11-16T10:12:00Z",
+                      "result": null,
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "reference": "COFFEE-1",
+                      "created_at": "2026-11-16T08:02:12Z",
+                      "updated_at": "2026-11-16T10:12:00Z",
+                      "flags": [],
+                      "decided_by": "api:pk_live_3f9a0c1",
+                      "decision_note": null,
+                      "result_note": null
+                    }
+                  }
                 }
               }
             }
@@ -902,13 +1339,27 @@
           "409": {
             "$ref": "#/components/responses/RefundConflict"
           },
+          "413": {
+            "$ref": "#/components/responses/PayloadTooLarge"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "422": {
+            "$ref": "#/components/responses/IdempotencyKeyReused"
+          },
           "429": {
             "$ref": "#/components/responses/RateLimited"
           },
           "500": {
             "$ref": "#/components/responses/ServerError"
           }
-        }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ]
       }
     },
     "/refunds/{id}/result": {
@@ -919,7 +1370,7 @@
       ],
       "post": {
         "summary": "Report the payout result",
-        "description": "Your payment platform reports the result of an `approved` refund: `paid` or `failed`. Sends the webhook `refund.updated` to webhooks that subscribed to it by name. Idempotent: the same status again answers `200` with the stored refund and changes nothing. A result for a refund that is not approved (or a different result after a final one): `409 invalid_transition`.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:write`.",
+        "description": "Your payment platform reports the result of an `approved` refund: `paid` or `failed`. Sends the webhook `refund.updated` to webhooks that subscribed to it by name. Idempotent: the same status again answers `200` with the stored refund and changes nothing. A result for a refund that is not approved (or a different result after a final one): `409 conflict`.\n\nNeeds refund requests active for the brand (part of Advanced), else `403 feature_not_active`. `pk_test_…` keys see and change only refunds of QA records, `pk_live_…` keys only production refunds; anything else answers `404 not_found`.\n\nRequired scope: `refunds:write`.",
         "x-podfy-scope": "refunds:write",
         "security": [
           {
@@ -942,7 +1393,7 @@
         },
         "responses": {
           "200": {
-            "description": "The refund with its result.",
+            "description": "The refund after the change (or unchanged for a repeat of the same result).",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -952,12 +1403,41 @@
               },
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
+              },
+              "Idempotent-Replayed": {
+                "$ref": "#/components/headers/Idempotent-Replayed"
               }
             },
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Refund"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Example",
+                    "value": {
+                      "id": "rfd_3f9a0c1d2e4b5a69",
+                      "amount": "2.50",
+                      "currency": "EUR",
+                      "pay_ref": "TX-88123",
+                      "status": "paid",
+                      "decided_at": "2026-11-16T10:12:00Z",
+                      "result": {
+                        "status": "paid",
+                        "platform_ref": "po_123",
+                        "at": "2026-11-16T11:00:00Z"
+                      },
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "reference": "COFFEE-1",
+                      "created_at": "2026-11-16T08:02:12Z",
+                      "updated_at": "2026-11-16T10:12:00Z",
+                      "flags": [],
+                      "decided_by": "api:pk_live_3f9a0c1",
+                      "decision_note": null,
+                      "result_note": null
+                    }
+                  }
                 }
               }
             }
@@ -980,11 +1460,909 @@
           "409": {
             "$ref": "#/components/responses/RefundConflict"
           },
+          "413": {
+            "$ref": "#/components/responses/PayloadTooLarge"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "422": {
+            "$ref": "#/components/responses/IdempotencyKeyReused"
+          },
           "429": {
             "$ref": "#/components/responses/RateLimited"
           },
           "500": {
             "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ]
+      }
+    }
+  },
+  "webhooks": {
+    "pod.created": {
+      "post": {
+        "summary": "A proof of delivery was uploaded",
+        "description": "Sent for every new record of a brand in delivery mode. Subscribe with `pod.created` or `*`.",
+        "operationId": "webhook_pod_created",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "Podfy-Signature",
+            "in": "header",
+            "required": true,
+            "description": "See the header description.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "t=1795000000,v1=5b1f…,v2=c0a8…"
+          },
+          {
+            "name": "Podfy-Delivery",
+            "in": "header",
+            "required": true,
+            "description": "Unique delivery id (`dlv_…`).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "dlv_3f9a0c1d2e4b5a69c0de"
+          },
+          {
+            "name": "Podfy-Event",
+            "in": "header",
+            "required": false,
+            "description": "The event name, as in the body.",
+            "schema": {
+              "type": "string",
+              "const": "pod.created"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "description": "`PODFY-Webhooks/1.0`.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WebhookPayload"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "event": {
+                        "const": "pod.created"
+                      }
+                    }
+                  }
+                ]
+              },
+              "examples": {
+                "example": {
+                  "summary": "Example",
+                  "value": {
+                    "id": "evt_5d1e8a07b3c94f2a61d0e7f8",
+                    "version": 1,
+                    "event": "pod.created",
+                    "created_at": "2026-11-16T09:24:00Z",
+                    "brand": "acme",
+                    "record": {
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "mode": "report",
+                      "reference": "COFFEE-1",
+                      "asset": {
+                        "name": "Coffee machine",
+                        "location": "Floor 2",
+                        "group": "B"
+                      },
+                      "category": "NOT_WORKING",
+                      "priority": "high",
+                      "work_status": "new",
+                      "note": "Makes a grinding noise",
+                      "fields": {
+                        "floor": "2"
+                      },
+                      "group_id": "PFY-7Q4K2",
+                      "files": [
+                        {
+                          "name": "photo.jpg",
+                          "url": "https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file"
+                        }
+                      ],
+                      "location": null,
+                      "duplicate_of": null,
+                      "url": "https://portal.podfy.net/pod/3f9a0c1d2e4b5a69",
+                      "updated_at": "2026-11-16T09:24:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": {
+            "description": "Any 2xx answer acknowledges the delivery. Other answers, timeouts and network errors are retried with increasing delays; redirects are not followed. Answer quickly and process afterwards."
+          }
+        }
+      }
+    },
+    "report.created": {
+      "post": {
+        "summary": "A report was submitted",
+        "description": "Sent for every new record of a brand in report mode. Subscribe with `report.created` or `*`.",
+        "operationId": "webhook_report_created",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "Podfy-Signature",
+            "in": "header",
+            "required": true,
+            "description": "See the header description.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "t=1795000000,v1=5b1f…,v2=c0a8…"
+          },
+          {
+            "name": "Podfy-Delivery",
+            "in": "header",
+            "required": true,
+            "description": "Unique delivery id (`dlv_…`).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "dlv_3f9a0c1d2e4b5a69c0de"
+          },
+          {
+            "name": "Podfy-Event",
+            "in": "header",
+            "required": false,
+            "description": "The event name, as in the body.",
+            "schema": {
+              "type": "string",
+              "const": "report.created"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "description": "`PODFY-Webhooks/1.0`.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WebhookPayload"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "event": {
+                        "const": "report.created"
+                      }
+                    }
+                  }
+                ]
+              },
+              "examples": {
+                "example": {
+                  "summary": "Example",
+                  "value": {
+                    "id": "evt_5d1e8a07b3c94f2a61d0e7f8",
+                    "version": 1,
+                    "event": "report.created",
+                    "created_at": "2026-11-16T09:24:00Z",
+                    "brand": "acme",
+                    "record": {
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "mode": "report",
+                      "reference": "COFFEE-1",
+                      "asset": {
+                        "name": "Coffee machine",
+                        "location": "Floor 2",
+                        "group": "B"
+                      },
+                      "category": "NOT_WORKING",
+                      "priority": "high",
+                      "work_status": "new",
+                      "note": "Makes a grinding noise",
+                      "fields": {
+                        "floor": "2"
+                      },
+                      "group_id": "PFY-7Q4K2",
+                      "files": [
+                        {
+                          "name": "photo.jpg",
+                          "url": "https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file"
+                        }
+                      ],
+                      "location": null,
+                      "duplicate_of": null,
+                      "url": "https://portal.podfy.net/pod/3f9a0c1d2e4b5a69",
+                      "updated_at": "2026-11-16T09:24:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": {
+            "description": "Any 2xx answer acknowledges the delivery. Other answers, timeouts and network errors are retried with increasing delays; redirects are not followed. Answer quickly and process afterwards."
+          }
+        }
+      }
+    },
+    "record.status_changed": {
+      "post": {
+        "summary": "The work status of a record changed",
+        "description": "Sent when `work_status` changes (portal, bulk change or API). `change` names the old and new status.",
+        "operationId": "webhook_record_status_changed",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "Podfy-Signature",
+            "in": "header",
+            "required": true,
+            "description": "See the header description.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "t=1795000000,v1=5b1f…,v2=c0a8…"
+          },
+          {
+            "name": "Podfy-Delivery",
+            "in": "header",
+            "required": true,
+            "description": "Unique delivery id (`dlv_…`).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "dlv_3f9a0c1d2e4b5a69c0de"
+          },
+          {
+            "name": "Podfy-Event",
+            "in": "header",
+            "required": false,
+            "description": "The event name, as in the body.",
+            "schema": {
+              "type": "string",
+              "const": "record.status_changed"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "description": "`PODFY-Webhooks/1.0`.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WebhookPayload"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "event": {
+                        "const": "record.status_changed"
+                      }
+                    },
+                    "required": [
+                      "change"
+                    ]
+                  }
+                ]
+              },
+              "examples": {
+                "example": {
+                  "summary": "Example",
+                  "value": {
+                    "id": "evt_5d1e8a07b3c94f2a61d0e7f8",
+                    "version": 1,
+                    "event": "record.status_changed",
+                    "created_at": "2026-11-16T09:24:00Z",
+                    "brand": "acme",
+                    "record": {
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "mode": "report",
+                      "reference": "COFFEE-1",
+                      "asset": {
+                        "name": "Coffee machine",
+                        "location": "Floor 2",
+                        "group": "B"
+                      },
+                      "category": "NOT_WORKING",
+                      "priority": "high",
+                      "work_status": "in_progress",
+                      "note": "Makes a grinding noise",
+                      "fields": {
+                        "floor": "2"
+                      },
+                      "group_id": "PFY-7Q4K2",
+                      "files": [
+                        {
+                          "name": "photo.jpg",
+                          "url": "https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file"
+                        }
+                      ],
+                      "location": null,
+                      "duplicate_of": null,
+                      "url": "https://portal.podfy.net/pod/3f9a0c1d2e4b5a69",
+                      "updated_at": "2026-11-16T09:24:00Z"
+                    },
+                    "change": {
+                      "field": "work_status",
+                      "from": "new",
+                      "to": "in_progress"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": {
+            "description": "Any 2xx answer acknowledges the delivery. Other answers, timeouts and network errors are retried with increasing delays; redirects are not followed. Answer quickly and process afterwards."
+          }
+        }
+      }
+    },
+    "record.updated": {
+      "post": {
+        "summary": "Another field of a record changed",
+        "description": "Sent once per changed field other than the status (`assignee`, `priority`, `duplicate_of`). `change` names the field and its old and new value. A comment alone sends no webhook.",
+        "operationId": "webhook_record_updated",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "Podfy-Signature",
+            "in": "header",
+            "required": true,
+            "description": "See the header description.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "t=1795000000,v1=5b1f…,v2=c0a8…"
+          },
+          {
+            "name": "Podfy-Delivery",
+            "in": "header",
+            "required": true,
+            "description": "Unique delivery id (`dlv_…`).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "dlv_3f9a0c1d2e4b5a69c0de"
+          },
+          {
+            "name": "Podfy-Event",
+            "in": "header",
+            "required": false,
+            "description": "The event name, as in the body.",
+            "schema": {
+              "type": "string",
+              "const": "record.updated"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "description": "`PODFY-Webhooks/1.0`.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WebhookPayload"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "event": {
+                        "const": "record.updated"
+                      }
+                    },
+                    "required": [
+                      "change"
+                    ]
+                  }
+                ]
+              },
+              "examples": {
+                "example": {
+                  "summary": "Example",
+                  "value": {
+                    "id": "evt_5d1e8a07b3c94f2a61d0e7f8",
+                    "version": 1,
+                    "event": "record.updated",
+                    "created_at": "2026-11-16T09:24:00Z",
+                    "brand": "acme",
+                    "record": {
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "mode": "report",
+                      "reference": "COFFEE-1",
+                      "asset": {
+                        "name": "Coffee machine",
+                        "location": "Floor 2",
+                        "group": "B"
+                      },
+                      "category": "NOT_WORKING",
+                      "priority": "high",
+                      "work_status": "in_progress",
+                      "note": "Makes a grinding noise",
+                      "fields": {
+                        "floor": "2"
+                      },
+                      "group_id": "PFY-7Q4K2",
+                      "files": [
+                        {
+                          "name": "photo.jpg",
+                          "url": "https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file"
+                        }
+                      ],
+                      "location": null,
+                      "duplicate_of": null,
+                      "url": "https://portal.podfy.net/pod/3f9a0c1d2e4b5a69",
+                      "updated_at": "2026-11-16T09:24:00Z"
+                    },
+                    "change": {
+                      "field": "priority",
+                      "from": "normal",
+                      "to": "high"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": {
+            "description": "Any 2xx answer acknowledges the delivery. Other answers, timeouts and network errors are retried with increasing delays; redirects are not followed. Answer quickly and process afterwards."
+          }
+        }
+      }
+    },
+    "webhook.test": {
+      "post": {
+        "summary": "Test delivery",
+        "description": "Sent when a brand admin presses Send test in the portal. The record is a sample (or the latest record, as chosen); the headers and signature are the real ones, so you can test your verification.",
+        "operationId": "webhook_webhook_test",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "Podfy-Signature",
+            "in": "header",
+            "required": true,
+            "description": "See the header description.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "t=1795000000,v1=5b1f…,v2=c0a8…"
+          },
+          {
+            "name": "Podfy-Delivery",
+            "in": "header",
+            "required": true,
+            "description": "Unique delivery id (`dlv_…`).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "dlv_3f9a0c1d2e4b5a69c0de"
+          },
+          {
+            "name": "Podfy-Event",
+            "in": "header",
+            "required": false,
+            "description": "The event name, as in the body.",
+            "schema": {
+              "type": "string",
+              "const": "webhook.test"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "description": "`PODFY-Webhooks/1.0`.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WebhookPayload"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "event": {
+                        "const": "webhook.test"
+                      }
+                    }
+                  }
+                ]
+              },
+              "examples": {
+                "example": {
+                  "summary": "Example",
+                  "value": {
+                    "id": "evt_5d1e8a07b3c94f2a61d0e7f8",
+                    "version": 1,
+                    "event": "webhook.test",
+                    "created_at": "2026-11-16T09:24:00Z",
+                    "brand": "acme",
+                    "record": {
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "mode": "report",
+                      "reference": "COFFEE-1",
+                      "asset": {
+                        "name": "Coffee machine",
+                        "location": "Floor 2",
+                        "group": "B"
+                      },
+                      "category": "NOT_WORKING",
+                      "priority": "high",
+                      "work_status": "in_progress",
+                      "note": "Makes a grinding noise",
+                      "fields": {
+                        "floor": "2"
+                      },
+                      "group_id": "PFY-7Q4K2",
+                      "files": [
+                        {
+                          "name": "photo.jpg",
+                          "url": "https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file"
+                        }
+                      ],
+                      "location": null,
+                      "duplicate_of": null,
+                      "url": "https://portal.podfy.net/pod/3f9a0c1d2e4b5a69",
+                      "updated_at": "2026-11-16T09:24:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": {
+            "description": "Any 2xx answer acknowledges the delivery. Other answers, timeouts and network errors are retried with increasing delays; redirects are not followed. Answer quickly and process afterwards."
+          }
+        }
+      }
+    },
+    "refund.approved": {
+      "post": {
+        "summary": "A refund request was approved",
+        "description": "Sent to webhooks that subscribe to it **by name** (`*` never matches refund events). Pay the amount in your payment platform and report the outcome with `POST /refunds/{id}/result`. PODFY never pays out. `record.refund` carries the refund; use `record.refund.id` as your idempotency key. The approver's e-mail is not included.",
+        "operationId": "webhook_refund_approved",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "Podfy-Signature",
+            "in": "header",
+            "required": true,
+            "description": "See the header description.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "t=1795000000,v1=5b1f…,v2=c0a8…"
+          },
+          {
+            "name": "Podfy-Delivery",
+            "in": "header",
+            "required": true,
+            "description": "Unique delivery id (`dlv_…`).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "dlv_3f9a0c1d2e4b5a69c0de"
+          },
+          {
+            "name": "Podfy-Event",
+            "in": "header",
+            "required": false,
+            "description": "The event name, as in the body.",
+            "schema": {
+              "type": "string",
+              "const": "refund.approved"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "description": "`PODFY-Webhooks/1.0`.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WebhookPayload"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "event": {
+                        "const": "refund.approved"
+                      },
+                      "record": {
+                        "type": "object",
+                        "required": [
+                          "refund"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "record"
+                    ]
+                  }
+                ]
+              },
+              "examples": {
+                "example": {
+                  "summary": "Example",
+                  "value": {
+                    "id": "evt_5d1e8a07b3c94f2a61d0e7f8",
+                    "version": 1,
+                    "event": "refund.approved",
+                    "created_at": "2026-11-16T09:24:00Z",
+                    "brand": "acme",
+                    "record": {
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "mode": "report",
+                      "reference": "COFFEE-1",
+                      "asset": {
+                        "name": "Coffee machine",
+                        "location": "Floor 2",
+                        "group": "B"
+                      },
+                      "category": "NOT_WORKING",
+                      "priority": "high",
+                      "work_status": "in_progress",
+                      "note": "Makes a grinding noise",
+                      "fields": {
+                        "floor": "2"
+                      },
+                      "group_id": "PFY-7Q4K2",
+                      "files": [
+                        {
+                          "name": "photo.jpg",
+                          "url": "https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file"
+                        }
+                      ],
+                      "location": null,
+                      "duplicate_of": null,
+                      "url": "https://portal.podfy.net/pod/3f9a0c1d2e4b5a69",
+                      "updated_at": "2026-11-16T09:24:00Z",
+                      "refund": {
+                        "id": "rfd_3f9a0c1d2e4b5a69",
+                        "amount": "2.50",
+                        "currency": "EUR",
+                        "pay_ref": "TX-88123",
+                        "status": "approved",
+                        "decided_at": "2026-11-16T10:12:00Z",
+                        "result": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": {
+            "description": "Any 2xx answer acknowledges the delivery. Other answers, timeouts and network errors are retried with increasing delays; redirects are not followed. Answer quickly and process afterwards."
+          }
+        }
+      }
+    },
+    "refund.updated": {
+      "post": {
+        "summary": "A refund was rejected or its payout result was recorded",
+        "description": "Sent to webhooks that subscribe to it **by name**, for a rejection and for a result (`paid` or `failed`) reported through the API. `record.refund.status` and `record.refund.result` tell which.",
+        "operationId": "webhook_refund_updated",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "Podfy-Signature",
+            "in": "header",
+            "required": true,
+            "description": "See the header description.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "t=1795000000,v1=5b1f…,v2=c0a8…"
+          },
+          {
+            "name": "Podfy-Delivery",
+            "in": "header",
+            "required": true,
+            "description": "Unique delivery id (`dlv_…`).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "dlv_3f9a0c1d2e4b5a69c0de"
+          },
+          {
+            "name": "Podfy-Event",
+            "in": "header",
+            "required": false,
+            "description": "The event name, as in the body.",
+            "schema": {
+              "type": "string",
+              "const": "refund.updated"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": false,
+            "description": "`PODFY-Webhooks/1.0`.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WebhookPayload"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "event": {
+                        "const": "refund.updated"
+                      },
+                      "record": {
+                        "type": "object",
+                        "required": [
+                          "refund"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "record"
+                    ]
+                  }
+                ]
+              },
+              "examples": {
+                "example": {
+                  "summary": "Example",
+                  "value": {
+                    "id": "evt_5d1e8a07b3c94f2a61d0e7f8",
+                    "version": 1,
+                    "event": "refund.updated",
+                    "created_at": "2026-11-16T09:24:00Z",
+                    "brand": "acme",
+                    "record": {
+                      "podfy_id": "PFY-7Q4K2-1",
+                      "mode": "report",
+                      "reference": "COFFEE-1",
+                      "asset": {
+                        "name": "Coffee machine",
+                        "location": "Floor 2",
+                        "group": "B"
+                      },
+                      "category": "NOT_WORKING",
+                      "priority": "high",
+                      "work_status": "in_progress",
+                      "note": "Makes a grinding noise",
+                      "fields": {
+                        "floor": "2"
+                      },
+                      "group_id": "PFY-7Q4K2",
+                      "files": [
+                        {
+                          "name": "photo.jpg",
+                          "url": "https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file"
+                        }
+                      ],
+                      "location": null,
+                      "duplicate_of": null,
+                      "url": "https://portal.podfy.net/pod/3f9a0c1d2e4b5a69",
+                      "updated_at": "2026-11-16T09:24:00Z",
+                      "refund": {
+                        "id": "rfd_3f9a0c1d2e4b5a69",
+                        "amount": "2.50",
+                        "currency": "EUR",
+                        "pay_ref": "TX-88123",
+                        "status": "paid",
+                        "decided_at": "2026-11-16T10:12:00Z",
+                        "result": {
+                          "status": "paid",
+                          "platform_ref": "po_123",
+                          "at": "2026-11-16T11:00:00Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": {
+            "description": "Any 2xx answer acknowledges the delivery. Other answers, timeouts and network errors are retried with increasing delays; redirects are not followed. Answer quickly and process afterwards."
           }
         }
       }
@@ -1048,6 +2426,39 @@
           "type": "string",
           "pattern": "^rfd_[A-Za-z0-9]{1,64}$"
         }
+      },
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": false,
+        "description": "Makes a retry safe: 1 to 255 visible ASCII characters, unique per request you intend. The same key with the same request replays the stored answer (`Idempotent-Replayed: true`); the same key with a different request answers `422 idempotency_key_reused`. Kept 24 hours per API key.",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "pattern": "^[\\x21-\\x7e]+$"
+        },
+        "example": "7c0a3f3e-1d3b-4c43-9a55-0f1d7a2b9c10"
+      },
+      "IfMatch": {
+        "name": "If-Match",
+        "in": "header",
+        "required": false,
+        "description": "The `ETag` of the version you read. When the resource changed since, the answer is `412 precondition_failed` and nothing is changed. `*` matches any existing resource. Optional.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "\"9f2c6a0d41b87e35c7a1d0b2e4f69a38\""
+      },
+      "IfNoneMatch": {
+        "name": "If-None-Match",
+        "in": "header",
+        "required": false,
+        "description": "The `ETag` you already have. When it is still current the answer is `304 Not Modified` without a body.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "\"9f2c6a0d41b87e35c7a1d0b2e4f69a38\""
       }
     },
     "headers": {
@@ -1070,96 +2481,249 @@
         }
       },
       "Retry-After": {
-        "description": "Seconds until the next window.",
+        "description": "Seconds until the request may be retried (the next rate-limit window, or the moment a running idempotent request is expected to be done).",
         "schema": {
           "type": "integer"
         }
+      },
+      "ETag": {
+        "description": "Strong validator of the resource (changes with every write). Send it back as `If-None-Match` (GET) or `If-Match` (PATCH).",
+        "schema": {
+          "type": "string"
+        },
+        "example": "\"9f2c6a0d41b87e35c7a1d0b2e4f69a38\""
+      },
+      "Idempotent-Replayed": {
+        "description": "`true` when this answer is the stored answer of an earlier request with the same `Idempotency-Key`; nothing was executed again.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "true"
+          ]
+        }
+      },
+      "Podfy-Signature": {
+        "description": "`t=<unix seconds>,v1=<hex>,v2=<hex>`. `v1` = HMAC-SHA256 (hex) of `<t>.<raw body>` with your webhook secret; `v2` = HMAC-SHA256 (hex) of `<t>.<Podfy-Delivery>.<raw body>`, so a captured request cannot be replayed under another delivery id. During a secret rotation (24 hours) a second `v1`/`v2` pair signed with the previous secret follows: accept the request when any pair matches. Compare in constant time and reject a `t` more than 5 minutes from your clock.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "t=1795000000,v1=5b1f…,v2=c0a8…"
+      },
+      "Podfy-Delivery": {
+        "description": "Unique id of this delivery (`dlv_…`); a retry of the same delivery carries the same id. Use it to de-duplicate.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "dlv_3f9a0c1d2e4b5a69c0de"
       }
     },
     "responses": {
       "BadRequest": {
-        "description": "Invalid query parameter or body. Codes: `invalid_parameter`, `invalid_cursor`, `invalid_body`, `invalid_status`, `invalid_priority`, `invalid_assignee`, `invalid_comment`, `comment_too_long`, `nothing_to_update`, `invalid_ref`, `name_too_long`, `location_too_long`, `group_code_too_long`, `sticker_text_too_long`, `no_valid_fields`, `invalid_note`, `note_too_long`, `invalid_platform_ref`, `platform_ref_too_long`.",
+        "description": "The request is not valid: an unknown or malformed query parameter, cursor, body field or `Idempotency-Key`; the `message` names it and `detail` (when present) gives the specific reason, e.g. `invalid_cursor` or `comment_too_long`. Code: `invalid_request`.",
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "parameter": {
+                "summary": "Bad query parameter",
+                "value": {
+                  "error": {
+                    "code": "invalid_request",
+                    "message": "limit: must be a whole number from 1 to 200",
+                    "detail": "invalid_parameter"
+                  }
+                }
+              },
+              "body": {
+                "summary": "Unknown body field",
+                "value": {
+                  "error": {
+                    "code": "invalid_request",
+                    "message": "Unknown field: owner. Allowed: ref, name, location, group_code, sticker_text.",
+                    "detail": "invalid_body"
+                  }
+                }
+              },
+              "cursor": {
+                "summary": "Bad cursor",
+                "value": {
+                  "error": {
+                    "code": "invalid_request",
+                    "message": "cursor: not a cursor returned by this API",
+                    "detail": "invalid_cursor"
+                  }
+                }
+              },
+              "comment": {
+                "summary": "Comment too long",
+                "value": {
+                  "error": {
+                    "code": "invalid_request",
+                    "message": "comment is too long.",
+                    "detail": "comment_too_long"
+                  }
+                }
+              }
             }
           }
         }
       },
       "Unauthorized": {
-        "description": "The API key is missing, malformed, unknown or revoked (always the same body). Codes: `invalid_key`.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        },
+        "description": "The API key is missing, malformed, unknown or revoked (always the same body). Code: `invalid_key`.",
         "headers": {
           "WWW-Authenticate": {
             "schema": {
               "type": "string"
             }
           }
-        }
-      },
-      "Forbidden": {
-        "description": "The Open API (or, for references, the reference register; for record updates, status tracking; for refunds, refund requests) is not active for the brand, or the key lacks the scope. Codes: `feature_not_active`, `insufficient_scope`.",
+        },
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "invalid_key": {
+                "summary": "Invalid key",
+                "value": {
+                  "error": {
+                    "code": "invalid_key",
+                    "message": "The API key is missing, malformed, unknown or revoked."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "The Open API (or, for references, the reference register; for record updates, status tracking; for refunds, refund requests) is not active for the brand, the key lacks the scope, or a `pk_test_` key tried to change references. Codes: `feature_not_active`, `insufficient_scope`, `read_only_key`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "scope": {
+                "summary": "Missing scope",
+                "value": {
+                  "error": {
+                    "code": "insufficient_scope",
+                    "message": "This API key does not have the records:write scope."
+                  }
+                }
+              },
+              "feature": {
+                "summary": "Feature not active",
+                "value": {
+                  "error": {
+                    "code": "feature_not_active",
+                    "message": "The reference register is not active for this brand."
+                  }
+                }
+              },
+              "read_only": {
+                "summary": "QA key",
+                "value": {
+                  "error": {
+                    "code": "read_only_key",
+                    "message": "QA API keys (pk_test_) cannot change references."
+                  }
+                }
+              }
             }
           }
         }
       },
       "NotFound": {
-        "description": "No such endpoint, or no such record / reference / refund for this key's brand and environment. Codes: `not_found`.",
+        "description": "No such endpoint, or no such record / reference / refund for this key's brand and environment. Code: `not_found`.",
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "not_found": {
+                "summary": "Not found",
+                "value": {
+                  "error": {
+                    "code": "not_found",
+                    "message": "Record not found."
+                  }
+                }
+              }
             }
           }
         }
       },
       "MethodNotAllowed": {
-        "description": "The endpoint exists but not with this method; `Allow` lists the methods. Codes: `method_not_allowed`.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        },
+        "description": "The endpoint exists but not with this method; `Allow` lists the methods it serves. Code: `method_not_allowed`.",
         "headers": {
           "Allow": {
             "schema": {
               "type": "string"
             }
           }
-        }
-      },
-      "Conflict": {
-        "description": "The reference already exists. Codes: `ref_exists`.",
+        },
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "method": {
+                "summary": "Wrong method",
+                "value": {
+                  "error": {
+                    "code": "method_not_allowed",
+                    "message": "Use GET."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "The reference already exists (`detail`: `ref_exists`), or a repeat of the request is still running. Codes: `conflict`, `idempotency_in_progress`.",
+        "headers": {
+          "Retry-After": {
+            "$ref": "#/components/headers/Retry-After"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "exists": {
+                "summary": "Reference exists",
+                "value": {
+                  "error": {
+                    "code": "conflict",
+                    "message": "A reference with this ref already exists.",
+                    "detail": "ref_exists"
+                  }
+                }
+              },
+              "running": {
+                "summary": "Still running",
+                "value": {
+                  "error": {
+                    "code": "idempotency_in_progress",
+                    "message": "A request with this Idempotency-Key is still being processed. Retry shortly."
+                  }
+                }
+              }
             }
           }
         }
       },
       "RateLimited": {
-        "description": "More than 600 requests in this minute for this key. Codes: `rate_limited`.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        },
+        "description": "More than 600 requests in this minute for this key, or more than 1200 per IP address (checked before the key). Code: `rate_limited`.",
         "headers": {
           "X-RateLimit-Limit": {
             "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -1173,24 +2737,206 @@
           "Retry-After": {
             "$ref": "#/components/headers/Retry-After"
           }
-        }
-      },
-      "ServerError": {
-        "description": "Unexpected error; try again later. Codes: `server_error`.",
+        },
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "key": {
+                "summary": "Key limit",
+                "value": {
+                  "error": {
+                    "code": "rate_limited",
+                    "message": "Rate limit of 600 requests per minute exceeded."
+                  }
+                }
+              },
+              "ip": {
+                "summary": "IP limit",
+                "value": {
+                  "error": {
+                    "code": "rate_limited",
+                    "message": "Too many requests from this IP address (limit 1200 per minute)."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ServerError": {
+        "description": "Unexpected error; no details are given. Try again later. Code: `internal_error`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "internal": {
+                "summary": "Server error",
+                "value": {
+                  "error": {
+                    "code": "internal_error",
+                    "message": "Something went wrong. Try again later."
+                  }
+                }
+              }
             }
           }
         }
       },
       "RefundConflict": {
-        "description": "The refund is not in a status that allows this change (requested → approved | rejected; approved → paid | failed). Codes: `invalid_transition`.",
+        "description": "The refund is not in a status that allows this change (requested → approved | rejected; approved → paid | failed), (`detail`: `invalid_transition`), or a repeat of the request is still running. Codes: `conflict`, `idempotency_in_progress`.",
+        "headers": {
+          "Retry-After": {
+            "$ref": "#/components/headers/Retry-After"
+          }
+        },
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "transition": {
+                "summary": "Wrong status",
+                "value": {
+                  "error": {
+                    "code": "conflict",
+                    "message": "This refund cannot make that change in its current status (requested → approved | rejected; approved → paid | failed).",
+                    "detail": "invalid_transition"
+                  }
+                }
+              },
+              "running": {
+                "summary": "Still running",
+                "value": {
+                  "error": {
+                    "code": "idempotency_in_progress",
+                    "message": "A request with this Idempotency-Key is still being processed. Retry shortly."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "IdempotencyInProgress": {
+        "description": "A request with this `Idempotency-Key` is still being processed. Retry after a moment with the same key. Code: `idempotency_in_progress`.",
+        "headers": {
+          "Retry-After": {
+            "$ref": "#/components/headers/Retry-After"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "running": {
+                "summary": "Still running",
+                "value": {
+                  "error": {
+                    "code": "idempotency_in_progress",
+                    "message": "A request with this Idempotency-Key is still being processed. Retry shortly."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "PreconditionFailed": {
+        "description": "`If-Match` does not match the current `ETag`: the resource changed since you read it. Nothing was changed; GET it again and retry. Code: `precondition_failed`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "stale": {
+                "summary": "Stale ETag",
+                "value": {
+                  "error": {
+                    "code": "precondition_failed",
+                    "message": "The resource changed since the ETag in If-Match was issued. GET it again and retry."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "UnsupportedMediaType": {
+        "description": "The body is not `application/json`. Code: `unsupported_media_type`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "media": {
+                "summary": "Wrong content type",
+                "value": {
+                  "error": {
+                    "code": "unsupported_media_type",
+                    "message": "Send a JSON body with Content-Type: application/json."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "IdempotencyKeyReused": {
+        "description": "This `Idempotency-Key` was already used for a different method, path or body. Code: `idempotency_key_reused`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "reused": {
+                "summary": "Key reused",
+                "value": {
+                  "error": {
+                    "code": "idempotency_key_reused",
+                    "message": "This Idempotency-Key was already used for a different request."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotModified": {
+        "description": "The `ETag` in `If-None-Match` is still current; no body.",
+        "headers": {
+          "ETag": {
+            "$ref": "#/components/headers/ETag"
+          }
+        }
+      },
+      "PayloadTooLarge": {
+        "description": "The body is larger than 16 KB. Code: `payload_too_large`.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "examples": {
+              "large": {
+                "summary": "Body too large",
+                "value": {
+                  "error": {
+                    "code": "payload_too_large",
+                    "message": "The body is larger than 16 KB."
+                  }
+                }
+              }
             }
           }
         }
@@ -1211,10 +2957,33 @@
             ],
             "properties": {
               "code": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "invalid_key",
+                  "feature_not_active",
+                  "insufficient_scope",
+                  "not_found",
+                  "rate_limited",
+                  "invalid_request",
+                  "conflict",
+                  "read_only_key",
+                  "precondition_failed",
+                  "idempotency_key_reused",
+                  "idempotency_in_progress",
+                  "unsupported_media_type",
+                  "method_not_allowed",
+                  "payload_too_large",
+                  "internal_error"
+                ],
+                "description": "Machine-readable code. `invalid_key`: 401. The API key is missing, malformed, unknown or revoked. `feature_not_active`: 403. The Open API, or the feature behind the endpoint (reference register, status tracking, refund requests), is not active for the brand. `insufficient_scope`: 403. The key lacks the scope the endpoint needs. `not_found`: 404. No such endpoint, or no such record, reference or refund for this key's brand and environment. `method_not_allowed`: 405. The endpoint does not serve this method; `Allow` lists the ones it does. `payload_too_large`: 413. The body is larger than 16 KB. `rate_limited`: 429. Too many requests for this key or from this IP address; see `Retry-After`. `invalid_request`: 400. The query parameter, cursor, body or `Idempotency-Key` is not valid (the message names it). `conflict`: 409. The request conflicts with the current state: the reference already exists, or a refund is not in a status that allows the change. `read_only_key`: 403. A `pk_test_` (QA) key tried to change production data (references). `precondition_failed`: 412. `If-Match` does not match the current `ETag`; nothing was changed. `idempotency_key_reused`: 422. This `Idempotency-Key` was used for a different method, path or body. `idempotency_in_progress`: 409. A request with this `Idempotency-Key` is still running. `unsupported_media_type`: 415. A `POST` or `PATCH` body must be `application/json`. `internal_error`: 500. Unexpected failure; no details are given. Retry later (an `Idempotency-Key` is released after a 5xx)."
               },
               "message": {
-                "type": "string"
+                "type": "string",
+                "description": "For people; names the detail. Do not parse it (use `code` and `detail`)."
+              },
+              "detail": {
+                "type": "string",
+                "description": "Optional, an open list: the specific reason behind a general `code`, so you can branch on it. Absent when there is nothing more specific. New values may appear without notice, so treat an unknown one like no detail. Known values: `invalid_parameter`, `invalid_cursor`, `invalid_body`, `invalid_status`, `invalid_priority`, `invalid_assignee`, `invalid_comment`, `comment_too_long`, `nothing_to_update`, `record_has_duplicates`, `invalid_ref`, `ref_exists`, `name_too_long`, `location_too_long`, `group_code_too_long`, `sticker_text_too_long`, `no_valid_fields`, `invalid_transition`, `invalid_note`, `note_too_long`, `invalid_platform_ref`, `platform_ref_too_long`, `duplicate_pay_ref`."
               }
             }
           }
@@ -1740,7 +3509,8 @@
           "flags",
           "decided_by",
           "decision_note",
-          "result_note"
+          "result_note",
+          "updated_at"
         ],
         "properties": {
           "id": {
@@ -1859,6 +3629,14 @@
               "string",
               "null"
             ]
+          },
+          "updated_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Last change of the refund (also drives the `ETag`)."
           }
         }
       },
@@ -1925,6 +3703,352 @@
               "null"
             ],
             "maxLength": 500
+          }
+        }
+      },
+      "WebhookRefund": {
+        "type": "object",
+        "description": "`record.refund` of `refund.approved` / `refund.updated`. The approver's e-mail is never included. Use `id` as your idempotency key.",
+        "required": [
+          "id",
+          "amount",
+          "currency",
+          "pay_ref",
+          "status",
+          "decided_at",
+          "result"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "examples": [
+              "rfd_3f9a0c1d2e4b5a69"
+            ]
+          },
+          "amount": {
+            "type": "string",
+            "examples": [
+              "2.50"
+            ]
+          },
+          "currency": {
+            "type": "string",
+            "examples": [
+              "EUR"
+            ]
+          },
+          "pay_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "requested",
+              "approved",
+              "rejected",
+              "paid",
+              "failed"
+            ]
+          },
+          "decided_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "result": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "status",
+              "platform_ref",
+              "at"
+            ],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "paid",
+                  "failed"
+                ]
+              },
+              "platform_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      },
+      "WebhookChange": {
+        "type": "object",
+        "description": "What changed (`record.status_changed` and `record.updated` only).",
+        "required": [
+          "field",
+          "from",
+          "to"
+        ],
+        "properties": {
+          "field": {
+            "type": "string",
+            "enum": [
+              "work_status",
+              "assignee",
+              "priority",
+              "duplicate_of"
+            ]
+          },
+          "from": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "to": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "WebhookRecord": {
+        "type": "object",
+        "description": "The record at the time of the event. The same object as `Record` in the API without `assignee`, `created_at`, `resolved_at` and `keep_informed`.",
+        "required": [
+          "podfy_id",
+          "mode",
+          "reference",
+          "asset",
+          "category",
+          "priority",
+          "work_status",
+          "note",
+          "fields",
+          "group_id",
+          "files",
+          "location",
+          "duplicate_of",
+          "url",
+          "updated_at"
+        ],
+        "properties": {
+          "podfy_id": {
+            "type": "string",
+            "examples": [
+              "PFY-7Q4K2-1"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "delivery",
+              "report"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "description": "Empty string when none."
+          },
+          "asset": {
+            "type": "object",
+            "required": [
+              "name",
+              "location",
+              "group"
+            ],
+            "properties": {
+              "name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "location": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "group": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "normal",
+              "high",
+              "critical"
+            ]
+          },
+          "work_status": {
+            "type": "string",
+            "enum": [
+              "new",
+              "in_progress",
+              "resolved",
+              "rejected"
+            ]
+          },
+          "note": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Custom form fields."
+          },
+          "group_id": {
+            "type": "string"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "url"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          },
+          "location": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "lat",
+              "lng",
+              "source"
+            ],
+            "properties": {
+              "lat": {
+                "type": "number"
+              },
+              "lng": {
+                "type": "number"
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "duplicate_of": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          },
+          "updated_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Last change of the record; for a created event the event time. Compare it to drop out-of-order deliveries."
+          },
+          "refund": {
+            "$ref": "#/components/schemas/WebhookRefund"
+          }
+        }
+      },
+      "WebhookPayload": {
+        "type": "object",
+        "description": "The JSON body of every standard webhook. (Webhooks configured with a custom payload template send your own body instead; the signature and headers are the same.) New fields may be added without a `version` change; `version` is bumped only for a breaking change.",
+        "required": [
+          "id",
+          "version",
+          "event",
+          "created_at",
+          "brand",
+          "record"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Event id (`evt_…`).",
+            "examples": [
+              "evt_5d1e8a07b3c94f2a61d0e7f8"
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "enum": [
+              1
+            ],
+            "description": "Payload format version."
+          },
+          "event": {
+            "type": "string",
+            "enum": [
+              "pod.created",
+              "report.created",
+              "record.status_changed",
+              "record.updated",
+              "webhook.test",
+              "refund.approved",
+              "refund.updated"
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "brand": {
+            "type": "string",
+            "description": "The brand slug."
+          },
+          "record": {
+            "$ref": "#/components/schemas/WebhookRecord"
+          },
+          "change": {
+            "$ref": "#/components/schemas/WebhookChange"
           }
         }
       }
