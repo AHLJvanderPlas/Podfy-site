@@ -42,12 +42,12 @@
   <link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/pricing" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/pricing" />
 
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r15" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r16" />
   <link rel="stylesheet" href="/assets/advisor.css" />
   <script src="/assets/theme.js" defer></script>
 
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PODFY", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Plateforme de preuve de livraison pour transporteurs et équipes logistiques. Horodaté GPS, sans application pour les chauffeurs.", "url": "https://podfy.net", "offers": [{"@type": "Offer", "name": "Basic", "price": "0.10", "priceCurrency": "EUR", "description": "Entrée de gamme, paiement au POD. Horodaté GPS, notification e-mail, lien de marque. Conservation 14 jours."}, {"@type": "Offer", "name": "Starter", "price": "0.55", "priceCurrency": "EUR", "description": "GPS, notifications e-mail, fusion PDF multi-fichiers, lien de marque. Conservation 120 jours."}, {"@type": "Offer", "name": "Advanced", "price": "0.79", "priceCurrency": "EUR", "description": "Accès portail, fonctions de marque, archive consultable. Conservation 1 an."}, {"@type": "Offer", "name": "Pro", "price": "0.99", "priceCurrency": "EUR", "description": "Tout Advanced plus 5 ans de conservation pour des archives prêtes pour l'audit."}, {"@type": "Offer", "name": "Enterprise", "price": "1.49", "priceCurrency": "EUR", "description": "Sur mesure pour gros volumes : OCR, fonctions étendues, grille tarifaire dédiée."}, {"@type": "Offer", "name": "QR Reporting", "price": "0.68", "priceCurrency": "EUR", "description": "0,68 € par équipement actif et par mois, jusqu'à 0,27 € pour les grands parcs. Pilote gratuit de 6 semaines.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "0.68", "priceCurrency": "EUR", "unitText": "active asset per month"}}]}
+  {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PODFY", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Plateforme de preuve de livraison pour transporteurs et équipes logistiques. Horodatage serveur et localisation si disponible, sans application pour les chauffeurs.", "url": "https://podfy.net", "offers": [{"@type": "Offer", "name": "Basic", "price": "0.10", "priceCurrency": "EUR", "description": "Entrée de gamme, paiement au POD. Horodatage serveur et localisation si disponible, notification e-mail, lien de marque. Conservation 14 jours."}, {"@type": "Offer", "name": "Starter", "price": "0.55", "priceCurrency": "EUR", "description": "Localisation, notifications e-mail, fusion PDF multi-fichiers, lien de marque. Conservation 120 jours."}, {"@type": "Offer", "name": "Advanced", "price": "0.79", "priceCurrency": "EUR", "description": "Accès portail, fonctions de marque, archive consultable. Conservation 1 an."}, {"@type": "Offer", "name": "Pro", "price": "0.99", "priceCurrency": "EUR", "description": "Tout Advanced plus 5 ans de conservation pour des archives prêtes pour l'audit."}, {"@type": "Offer", "name": "Enterprise", "price": "1.49", "priceCurrency": "EUR", "description": "Sur mesure pour gros volumes : OCR, fonctions étendues, grille tarifaire dédiée."}, {"@type": "Offer", "name": "QR Reporting", "price": "0.68", "priceCurrency": "EUR", "description": "0,68 € par équipement actif et par mois, jusqu'à 0,27 € pour les grands parcs. Pilote gratuit de 6 semaines.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "0.68", "priceCurrency": "EUR", "unitText": "active asset per month"}}]}
   </script>
   <script type="application/ld+json">
   {
@@ -74,7 +74,6 @@
 </head>
 
 <body class="v2">
-  <a href="#main" class="sr-only">Aller au contenu</a>
   [[PODFY_HEADER]]
 
   <main id="main" class="v2-main">
@@ -150,7 +149,7 @@
           Tous les prix sont indicatifs et s'entendent hors TVA. Des remises sur volume sont disponibles, apportez votre volume mensuel de POD lorsque vous nous contactez.
         </p>
 
-        <div class="v2-price-table-wrap">
+        <div class="v2-price-table-wrap" tabindex="0" role="region" aria-label="Tarifs par formule">
           <table class="v2-price-table" aria-label="Grille tarifaire par formule">
             <thead>
               <tr>
@@ -188,7 +187,7 @@
                 <td><span class="v2-price-check">Oui</span></td>
               </tr>
               <tr>
-                <td class="v2-price-row-label">Horodatage GPS + PDF horodaté</td>
+                <td class="v2-price-row-label">Horodatage + localisation si disponible + PDF</td>
                 <td><span class="v2-price-check">Oui</span></td>
                 <td><span class="v2-price-check">Oui</span></td>
                 <td><span class="v2-price-check">Oui</span></td>
@@ -329,7 +328,7 @@
               <li>Upload mobile: 4G ou mieux, pas de Wi-Fi requis</li>
               <li>Tout navigateur, tout téléphone depuis 2018</li>
               <li>Accord de traitement des données disponible sur demande</li>
-              <li>Option d'archive d'audit 7 ans disponible (toutes formules)</li>
+              <li>Jusqu'à 7 ans de conservation : inclus avec Enterprise, ou avec les extensions de conservation sur Advanced et Pro</li>
             </ul>
           </div>
         </div>
@@ -348,6 +347,7 @@
           <div class="qrp-card"><h3>Advanced <span class="qrp-adv">+0,25 € par équipement et par mois</span></h3><ul class="v2-check-list"><li><a href="/fr/docs/api/">API ouverte</a></li><li>Retour à la personne qui signale</li><li>Incidents critiques traités sous 4 heures ouvrées</li></ul>
             <h3 class="qrp-terms-h">Conditions</h3><ul class="qrp-terms"><li>Minimum 13,50 € par mois</li><li>Pilote gratuit de 6 semaines jusqu&#x27;à 100 équipements</li><li>Sans frais de mise en place</li><li>Résiliable chaque mois</li><li>Prix fixe 12 mois, ou 24 mois avec un engagement annuel</li><li>Paiement annuel anticipé : demandez la remise</li><li>Usage raisonnable : en moyenne environ 10 signalements par équipement et par mois</li></ul></div>
         </div>
+        <div class="v2-faq-item" id="report-pricing-bands"><p class="v2-faq-q">Comment fonctionnent les paliers de volume ?</p><p class="v2-faq-a">Tout le parc paie le prix du palier atteint, pas seulement les équipements au-delà du seuil. À 250 équipements, le prix est de 0,68 € par équipement, soit 170 € par mois. À 251 équipements, il est de 0,45 € par équipement, soit 112,95 € par mois. Un parc juste au-dessus d&#x27;un seuil peut donc coûter moins cher au total qu&#x27;un parc juste en dessous. Le minimum mensuel est de 13,50 € : jusqu&#x27;à 19 équipements, vous payez ce minimum. Les équipements retirés sont gratuits et ne comptent pas.</p></div>
         <p><a href="/fr/contact?solution=report" class="v2-btn v2-btn-primary">Demander une proposition &rarr;</a></p>
       </div>
     </section>
@@ -365,7 +365,7 @@
           <div class="v2-example-card">
             <p class="v2-example-label">Exemple 1, Micro-transporteur</p>
             <p class="v2-example-scenario">50 POD/mois · Formule Basic</p>
-            <p class="v2-example-calc">50 POD &times; &euro;0,10<br>Horodatage GPS + notification e-mail</p>
+            <p class="v2-example-calc">50 POD &times; &euro;0,10<br>Horodatage et localisation + notification e-mail</p>
             <div class="v2-example-total">&euro;5,00 <span class="v2-example-total-label">/ mois HT</span></div>
           </div>
 
@@ -385,7 +385,7 @@
 
           <div class="v2-example-card">
             <p class="v2-example-label">Exemple 4, Entreprise de construction</p>
-            <p class="v2-example-scenario">300 POD/mois · Formule Pro + archive 7 ans</p>
+            <p class="v2-example-scenario">300 POD/mois · Formule Pro + extensions de conservation (10 ans)</p>
             <p class="v2-example-calc">300 POD &times; &euro;0,99 base<br>+ &euro;0,08 conservation étendue<br>+ &euro;0,05 longue durée = &euro;1,12 / POD</p>
             <div class="v2-example-total">&euro;336,00 <span class="v2-example-total-label">/ mois HT</span></div>
           </div>
@@ -410,7 +410,7 @@
 
           <div class="v2-faq-item">
             <p class="v2-faq-q">Qu'est-ce qu'un POD traité ?</p>
-            <p class="v2-faq-a">Un POD est comptabilisé lorsqu'un fichier est téléversé avec succès, horodaté GPS et qu'un PDF est généré. Les soumissions en échec ou les doublons ne sont pas comptés.</p>
+            <p class="v2-faq-a">Un POD est comptabilisé lorsqu'un fichier est téléversé avec succès, horodaté par le serveur et qu'un PDF est généré. Les soumissions en échec ou les doublons ne sont pas comptés.</p>
           </div>
 
           <div class="v2-faq-item">
@@ -424,8 +424,8 @@
           </div>
 
           <div class="v2-faq-item">
-            <p class="v2-faq-q">L'archive d'audit 7 ans est-elle disponible sur toutes les formules ?</p>
-            <p class="v2-faq-a">Oui. L'option d'archive 7 ans peut être ajoutée à toute formule en tant qu'extension de conservation. Elle satisfait aux exigences de conservation fiscale et est disponible sur demande lors de l'embarquement.</p>
+            <p class="v2-faq-q">Quelles formules peuvent conserver les enregistrements pendant 7 ans ?</p>
+            <p class="v2-faq-a">Enterprise conserve les enregistrements 7 ans en standard. Sur Advanced, l'extension Conservation longue durée porte la conservation à 7 ans ; sur Pro, la Conservation étendue la fait passer de 5 à 7 ans. Starter atteint au maximum 3 ans avec les extensions, et Basic conserve les enregistrements 14 jours. Les extensions se configurent lors de la mise en route.</p>
           </div>
 
           <div class="v2-faq-item">

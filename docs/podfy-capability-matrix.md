@@ -11,11 +11,11 @@ start date; never sign a start date before the build date in this table.
 |---|---|---|---|
 | QR per asset/shipment, no app, branding, app in 42 languages, portal in English, EU storage | live | — | live |
 | E-mail notifications, searchable history, CSV export | live | — | live |
-| Daily backups, encryption, DPA, retention, deletion | live (nightly D1 backup, 14 days) | — | live |
+| Daily database backups, encryption, DPA, retention, deletion | live (nightly D1 backup, 14 days, encrypted; files in R2 are not in it; first restore drill 2026-11-16; "encrypted, restore tested" is claimed on the trust page only) | — | live |
 | Own categories and extra fields (e.g. refund amount + payment reference) | **live** (app production 2026-10-31; portal configurator) | per-brand category + field list | 1 · live |
 | Photo required / optional / off | **live** (delivery: required/optional, report: all three); **up to 5 photos in one report live 2026-11-01** | form setting + transaction_files | 1 · live; 5 photos: 2 · live |
 | Asset register from template, move/retire, stickers with custom text | **live** (feature `asset_register`, beta) | reference register + sticker text | 1 · live |
-| Webhook (`pod.created` / `report.created`, plus `record.status_changed` / `record.updated` from Phase 2) | **live** (portal settings, custom payload builder, signed, retries 1 min to 12 h, delivery log, resend; feature `webhooks` beta) | signed, retries, delivery log | 1 · live |
+| Webhook (`pod.created` / `report.created`, plus `record.status_changed` / `record.updated` from Phase 2) | **live** (portal settings, custom payload builder, signed, retries 1 min to 12 h, delivery log, resend; feature `webhooks` beta; receiver guide with signature v1/v2, rotation, retries and Node.js/Python samples: podfy.net/docs/webhooks, 4 locales, 2026-11-16) | signed, retries, delivery log | 1 · live |
 | Routing rules per location / group / category | **live 2026-11-01** (portal configurator + test panel, app routing; feature `routing_rules` beta) | rules engine | 2 · live |
 | Status new → in progress → resolved / rejected; priorities; duplicate grouping | **live 2026-11-01** (status, assignee, comments, timeline, bulk update, priority; duplicate detection; features `work_status`, `duplicate_grouping` beta) | shared lifecycle | 2 · live |
 | Dashboard and reports per asset, location, period | **live in portal 2026-11-01** (report-mode Stats: counts, time to resolve, per category/location/group, top assets, assets without reports, per-asset view) | per-reference view + reports | 2 · live |

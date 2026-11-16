@@ -21,6 +21,8 @@ VSQR_PATH = "/vs-qr-form-tools/"
 import sys; sys.path.insert(0, HERE)
 import apidocs  # API reference generator (docs/api/openapi.json)
 API_PATH = apidocs.PATH
+import webhookdocs  # webhook receiver guide (/docs/webhooks/)
+WH_PATH = webhookdocs.PATH
 
 
 def load(lang):
@@ -168,7 +170,6 @@ def features(c):
 def write(lang, path, head_html, body):
     full = head_html + '''<body class="v2">
   <div id="v2-progress"></div>
-  <a href="#main" class="sr-only">''' + {"en": "Skip to content", "nl": "Naar inhoud", "de": "Zum Inhalt", "fr": "Aller au contenu"}[lang] + '''</a>
   [[PODFY_HEADER]]
 ''' + body + '''
   [[PODFY_FOOTER]]
@@ -341,7 +342,7 @@ def sync_sitemap():
         for lang in LANGS:
             alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{url(l, path)}"/>' for l in LANGS)
             block.append(f"  <url>\n    <loc>{url(lang, path)}</loc>{alts}\n  </url>")
-    for path in ("/cmr/", "/qr/", VSQR_PATH, API_PATH):
+    for path in ("/cmr/", "/qr/", VSQR_PATH, API_PATH, WH_PATH):
         for lang in LANGS:
             alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE + pre(l) + path}"/>' for l in LANGS)
             block.append(f"  <url>\n    <loc>{SITE + pre(lang) + path}</loc>{alts}\n  </url>")
@@ -558,7 +559,7 @@ def build_landing(lang):
             <dl class="lp-ticket-rows">{rows}</dl>
             <span class="v2-stamp-mark lp-ticket-stamp">{esc(lp["ticket_stamp"])}</span>
           </article>
-          <figure class="lp-json"><figcaption>{esc(lp["json_caption"])}</figcaption><pre><code>{esc(payload)}</code></pre></figure>
+          <figure class="lp-json"><figcaption>{esc(lp["json_caption"])}</figcaption><pre tabindex="0" role="region" aria-label="{esc(lp["json_caption"])}"><code>{esc(payload)}</code></pre></figure>
         </div>
       </div>
     </section>
@@ -620,7 +621,6 @@ def build_landing(lang):
   </main>'''
     full = head_html + '''<body class="v2">
   <div id="v2-progress"></div>
-  <a href="#main" class="sr-only">''' + {"en": "Skip to content", "nl": "Naar inhoud", "de": "Zum Inhalt", "fr": "Aller au contenu"}[lang] + '''</a>
   [[PODFY_HEADER]]
 ''' + body + f'''
 
@@ -671,7 +671,6 @@ def page_shell(lang, path, title, desc, ld, body, script=None, turnstile=False, 
 {ts}{extra_head}{lds}</head>
 <body class="v2">
   <div id="v2-progress"></div>
-  <a href="#main" class="sr-only">{ {"en": "Skip to content", "nl": "Naar inhoud", "de": "Zum Inhalt", "fr": "Aller au contenu"}[lang] }</a>
   [[PODFY_HEADER]]
 {body}
 
@@ -794,7 +793,7 @@ def build_cmr(lang):
         </div>
         <div class="lp-receive-visual">
           {ticket(m["ticket_head"], m["ticket_vals"][0], m["ticket_labels"], m["ticket_vals"], m["ticket_stamp"])}
-          <figure class="lp-json"><figcaption>{esc(m["json_caption"])}</figcaption><pre><code>{esc(payload)}</code></pre></figure>
+          <figure class="lp-json"><figcaption>{esc(m["json_caption"])}</figcaption><pre tabindex="0" role="region" aria-label="{esc(m["json_caption"])}"><code>{esc(payload)}</code></pre></figure>
         </div>
       </div>
     </section>
@@ -921,7 +920,7 @@ def build_home(lang):
         <p class="v2-eyebrow">{esc(hm["cmp_eyebrow"])}</p>
         <h2 class="v2-section-title" id="home-cmp-heading">{esc(hm["cmp_title"])}</h2>
         <p class="v2-prose">{esc(hm["cmp_intro"])}</p>
-        <div class="home-cmp-wrap"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">{esc(hm["cmp_eyebrow"])}</span></th><th scope="col"><a href="{p}/cmr/">{esc(cols[1])}</a></th><th scope="col"><a href="{p}/qr/">{esc(cols[2])}</a></th></tr></thead><tbody>{cmp_rows}</tbody></table></div>
+        <div class="home-cmp-wrap" tabindex="0" role="region" aria-labelledby="home-cmp-heading"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">{esc(hm["cmp_eyebrow"])}</span></th><th scope="col"><a href="{p}/cmr/">{esc(cols[1])}</a></th><th scope="col"><a href="{p}/qr/">{esc(cols[2])}</a></th></tr></thead><tbody>{cmp_rows}</tbody></table></div>
       </div>
     </section>
 
@@ -1047,7 +1046,7 @@ def build_vsqr(lang):
       <div class="container">
         <h2 class="v2-section-title" id="cmp-heading">{esc(v["cmp_title"])}</h2>
         <p class="v2-prose">{esc(v["cmp_intro"])}</p>
-        <div class="home-cmp-wrap"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">{esc(cols[0])}</span></th><th scope="col">{esc(cols[1])}</th><th scope="col"><a href="{p}{SECTION}">{esc(cols[2])}</a></th></tr></thead><tbody>{rows}</tbody></table></div>
+        <div class="home-cmp-wrap" tabindex="0" role="region" aria-labelledby="cmp-heading"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">{esc(cols[0])}</span></th><th scope="col">{esc(cols[1])}</th><th scope="col"><a href="{p}{SECTION}">{esc(cols[2])}</a></th></tr></thead><tbody>{rows}</tbody></table></div>
       </div>
     </section>
 
@@ -1085,7 +1084,7 @@ def build_vsqr(lang):
 def build_api(lang):
     """/docs/api/ in every locale: translated intro, generated English reference, TechArticle + BreadcrumbList."""
     spec, t, p = apidocs.load_spec(), apidocs.INTRO[lang], pre(lang)
-    labels = {**t, **apidocs.REF_LABELS}
+    labels = {**t, **apidocs.REF_LABELS, "wh_href": pre(lang) + WH_PATH}
     home = (p or "") + "/"
     crumbs = [(t["crumb_home"], SITE + home), (t["crumb"], page_url(lang, API_PATH))]
     ld = [{"@context": "https://schema.org", "@type": "BreadcrumbList",
@@ -1109,11 +1108,65 @@ def build_api(lang):
       </div>
     </section>
 
-{apidocs.intro_html(spec, t)}
+{apidocs.intro_html(spec, t, pre(lang))}
 
 {apidocs.reference_html(spec, labels)}
   </main>'''
     page_shell(lang, API_PATH, t["title"], t["desc"], ld, body)
+
+
+def build_webhooks(lang):
+    """/docs/webhooks/ in every locale: translated intro, English reference, TechArticle + BreadcrumbList."""
+    t, p = webhookdocs.INTRO[lang], pre(lang)
+    home = (p or "") + "/"
+    crumbs = [(t["crumb_home"], SITE + home), (t["crumb"], page_url(lang, WH_PATH))]
+    ld = [{"@context": "https://schema.org", "@type": "BreadcrumbList",
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs)]},
+          {"@context": "https://schema.org", "@type": "TechArticle", "headline": re.sub(r" \| PODFY$", "", t["title"]),
+           "description": t["desc"], "inLanguage": lang, "url": page_url(lang, WH_PATH),
+           "publisher": {"@type": "Organization", "name": "PODFY", "url": SITE + "/"}}]
+    toc = "".join(f'<li><a href="#{sid}">{esc(h)}</a></li>' for sid, h, _ in t["sections"]) + f'<li><a href="#reference">{esc(t["toc_ref"])}</a></li>'
+    body = crumbs_nav([(t["crumb_home"], home), (t["crumb"], p + WH_PATH)]) + f'''
+
+  <main id="main" class="v2-main">
+    <section class="home-hero" aria-labelledby="wh-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(t["eyebrow"])}</p>
+        <h1 class="v2-hero-title home-title" id="wh-heading">{esc(t["h1"])} <em>{esc(t["h1em"])}</em></h1>
+        <p class="v2-hero-sub home-sub">{esc(t["sub"])}</p>
+        <div class="v2-rp-actions"><a href="{p}{API_PATH}" class="v2-btn v2-btn-ghost">{esc(t["api_btn"])}</a></div>
+        <nav class="api-toc" aria-label="{esc(t["toc"])}"><p class="v2-eyebrow">{esc(t["toc"])}</p><ul>{toc}</ul></nav>
+      </div>
+    </section>
+
+{webhookdocs.intro_html(t)}
+
+{webhookdocs.reference_html(t)}
+  </main>'''
+    page_shell(lang, WH_PATH, t["title"], t["desc"], ld, body)
+
+
+def webhooks_llms():
+    t = webhookdocs.INTRO["en"]
+    secs = "\n\n".join(f"## {h}\n" + "\n".join(ps) for _, h, ps in t["sections"])
+    return f"""---
+
+# {t["title"].replace(" | PODFY", "")}: PODFY
+Source: {SITE}{WH_PATH}
+
+{t["sub"]}
+
+{secs}
+
+## Events
+{webhookdocs.llms_text()}
+
+## Signature
+Header Podfy-Signature: t=<unix>,v1=<hex>[,v2=<hex>]. v1 = HMAC-SHA256(secret, t + "." + body) hex; v2 = HMAC-SHA256(secret, t + "." + Podfy-Delivery + "." + body) hex (recommended). Reject t older than 5 minutes, compare in constant time. During a secret rotation (24 hours) a second pair signed with the previous secret follows: accept if any pair matches.
+
+## Delivery
+Answer 2xx within 10 seconds. Retries after 1 min, 5 min, 30 min, 2 h, 6 h, 12 h, then failed. Use the event id (and Podfy-Delivery) as idempotency key. Receivers must tolerate new fields. Targets: HTTPS, public host names only.
+"""
 
 
 def api_llms():
@@ -1160,6 +1213,7 @@ def sync_llms():
 - QR Reporting: {SITE}/qr/ (main page) and {SITE}{SECTION} (overview with all use cases)
 - Comparison, PODFY QR Reporting vs generic QR form tools: {SITE}{VSQR_PATH}
 - Open API reference (REST, part of Advanced; intro also in /nl/, /de/, /fr/): {SITE}{API_PATH} ; specification {SITE}{API_PATH}openapi.json
+- Webhook receiver guide (events, payload, signature v1/v2, retries, Node.js and Python samples; also /nl/, /de/, /fr/): {SITE}{WH_PATH}
 
 ## PODFY QR Reporting (second solution)
 
@@ -1170,8 +1224,8 @@ PODFY QR Reporting puts a QR code on every machine or asset. Anyone (customers, 
 - Printable QR stickers per asset with the brand's logo and custom text, e.g. "Scan to report an issue"
 - Photo per form: required, optional or off
 - Not an emergency channel; repair planning and ticket follow-up stay in the customer's own tools
-- Pricing: €0.68 per active asset per month (251-1,000: €0.45; 1,001-2,500: €0.36; 2,501+: €0.27), minimum €13.50 per month, Advanced add-on +€0.25 (open API, reporter feedback, 4-hour critical support); no fees per report, per user or per QR code; retired assets free; free 6-week pilot for up to 100 assets; no setup fee; cancel monthly
-- Service: 99.5% uptime measured monthly, support reply within one business day (critical incidents within 4 business hours), daily backups in the EU, encryption in transit and at rest, export of all data at any time, monthly cancellation, QR codes redirected for 12 months after leaving
+- Pricing: €0.68 per active asset per month (251-1,000: €0.45; 1,001-2,500: €0.36; 2,501+: €0.27; the whole fleet pays the price of the band it reaches, so 251 assets can cost less in total than 250), minimum €13.50 per month, Advanced add-on +€0.25 (open API, reporter feedback, 4-hour critical support); no fees per report, per user or per QR code; retired assets free; free 6-week pilot for up to 100 assets; no setup fee; cancel monthly
+- Service: 99.5% uptime measured monthly, support reply within one business day (critical incidents within 4 business hours), daily database backups in the EU (files are not part of the nightly backup), encryption in transit and at rest, export of all data at any time, monthly cancellation, QR codes redirected for 12 months after leaving
 
 Use cases:
 {cases}"""
@@ -1239,6 +1293,7 @@ Source: {SITE}/qr/ and {SITE}{SECTION}
 """]
     full.append(vsqr_llms())
     full.append(api_llms())
+    full.append(webhooks_llms())
     for s in e.ORDER:
         v = e.CASES[s]
         faq = [resolve(e, f) for f in v["faq"]]
@@ -1311,8 +1366,22 @@ def num(lang, n):
     return {"en": s, "nl": s.replace(",", "."), "de": s.replace(",", "."), "fr": s.replace(",", " ")}[lang]
 
 
+def band_example(lang):
+    """Question and answer on how the volume bands work. The numbers come from QR_TIERS and QR_MIN, never typed by hand:
+    the last asset of the first band against the first asset of the next band, and the fleet size where the minimum stops applying."""
+    q = C[lang].QRPRICE
+    n1, p1 = QR_TIERS[0][1], QR_TIERS[0][2]
+    n2, p2 = QR_TIERS[1][0], QR_TIERS[1][2]
+    c1, c2 = round(n1 * p1, 2), round(n2 * p2, 2)
+    assert c2 < c1, "the example only holds while the next band is cheaper in total"
+    k = max(n for n in range(1, n1 + 1) if round(n * p1, 2) < QR_MIN)
+    return q["band_q"], q["band_a"].format(n1=num(lang, n1), n2=num(lang, n2), p1=money(lang, p1), p2=money(lang, p2),
+                                           c1=money(lang, c1), c2=money(lang, c2), m=money(lang, QR_MIN), k=num(lang, k))
+
+
 def qr_price_section(lang):
     c, q, p = C[lang], C[lang].QRPRICE, pre(lang)
+    bq, ba = band_example(lang)
     rows = "".join(
         f'<tr><td>{esc(q["range_from"].format(a=num(lang, a), b=num(lang, b)) if b else q["range_plus"].format(a=num(lang, a)))}</td><td class="qrp-price">{esc(money(lang, v))}</td></tr>'
         for a, b, v in QR_TIERS)
@@ -1329,6 +1398,7 @@ def qr_price_section(lang):
           <div class="qrp-card"><h3>{esc(q["adv_h"])} <span class="qrp-adv">{esc(q["adv_price"].format(p=money(lang, QR_ADV)))}</span></h3><ul class="v2-check-list">{"".join(f"<li>{api_link(lang, x)}</li>" for x in q["adv"])}</ul>
             <h3 class="qrp-terms-h">{esc(q["terms_h"])}</h3><ul class="qrp-terms">{li(terms)}</ul></div>
         </div>
+        <div class="v2-faq-item" id="report-pricing-bands"><p class="v2-faq-q">{esc(bq)}</p><p class="v2-faq-a">{esc(ba)}</p></div>
         <p><a href="{p}/contact?solution=report" class="v2-btn v2-btn-primary">{esc(q["cta"])} &rarr;</a></p>
       </div>
     </section>'''
@@ -1428,6 +1498,7 @@ if __name__ == "__main__":
         build_cmr(lang)
         build_vsqr(lang)
         build_api(lang)
+        build_webhooks(lang)
         build_home(lang)
     # regenerated pages lose their asset wiring: re-run the site tools so `npm test` stays green
     import subprocess

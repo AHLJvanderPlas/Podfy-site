@@ -5,6 +5,13 @@
   var STORAGE_KEY = "podfy-theme";
   var root = document.documentElement;
   var current = "system";
+  var LABELS = {
+    en: { system: "System", light: "Light", dark: "Dark" },
+    nl: { system: "Systeem", light: "Licht", dark: "Donker" },
+    de: { system: "System", light: "Hell", dark: "Dunkel" },
+    fr: { system: "Système", light: "Clair", dark: "Sombre" }
+  };
+  var NAME = { en: "Colour mode", nl: "Kleurmodus", de: "Farbmodus", fr: "Mode de couleur" };
 
   function getSystemMode() {
     return window.matchMedia &&
@@ -41,13 +48,12 @@
     if (btn) {
       btn.dataset.mode = mode;
 
+      // The accessible name contains the visible label (WCAG 2.5.3), in the page language
+      var lang = (root.lang || "en").slice(0, 2).toLowerCase();
+      var text = (LABELS[lang] || LABELS.en)[mode];
       var label = btn.querySelector(".site-theme-label");
-      if (label) {
-        label.textContent =
-          mode === "system" ? "System" :
-          mode === "light"  ? "Light"  :
-                              "Dark";
-      }
+      if (label) label.textContent = text;
+      btn.setAttribute("aria-label", (NAME[lang] || NAME.en) + ": " + text);
     }
 
     // Keep Turnstile in sync (light/dark). Safe no-op if widget/script not present.

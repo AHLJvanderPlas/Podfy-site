@@ -36,7 +36,7 @@
   <link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/trust" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/trust" />
 
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r15" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r16" />
   <script src="/assets/theme.js" defer></script>
 
   <script type="application/ld+json">
@@ -78,7 +78,6 @@
 </head>
 
 <body class="v2">
-  <a href="#main" class="sr-only">Zum Inhalt springen</a>
   [[PODFY_HEADER]]
 
   <main id="main" class="v2-main">
@@ -418,6 +417,8 @@
               <p>Uploads akzeptieren einen kontrollierten Satz von Dateitypen. Objekte werden in verschlüsseltem Objektspeicher gespeichert; Metadaten in einer dem Mandanten zugeordneten Datenbank. Aufbewahrungsfristen sind pro Kunde konfigurierbar; nach Ablauf werden Dateien zur Löschung eingeplant.</p>
               <p>Fahrer und Partner rufen PODs über per E-Mail gesendete Links mit langen, unrate-baren Tokens ab, die serverseitig validiert und zeitbegrenzt sind und auf spezifische PODs beschränkt sein können. Portal-Ansichten werden mit Zeitstempel, Token-Referenz und grundlegenden User-Agent-Daten für die Prüfbarkeit protokolliert.</p>
 
+              <p>Die Datenbank wird jede Nacht gesichert. Die Sicherung ist verschlüsselt, und eine Wiederherstellung wurde am 16. November 2026 getestet (erste Übung). Hochgeladene Dateien sind nicht Teil der nächtlichen Sicherung.</p>
+
               <h3>4. Website-Sicherheit (podfy.net)</h3>
               <p>Als statische Site über Cloudflare Pages bereitgestellt; dynamisches Verhalten wird durch Workers-Funktionen abgewickelt. Kein direkter Datenbankzugriff über den Browser; Formulareinsendungen gehen über Backend-Handler. Kontakt- und Konfigurationsformulare verwenden Cloudflare Turnstile zur Reduzierung automatisierten Missbrauchs. Eingaben werden serverseitig validiert, bevor sie gespeichert oder per E-Mail weitergeleitet werden.</p>
 
@@ -479,7 +480,7 @@
       <div class="container">
         <p class="v2-eyebrow">Service und Kontinuität</p>
         <h2 class="v2-section-title" id="svc-heading">Worauf Sie sich verlassen können</h2>
-        <div class="v2-feat-grid"><div class="v2-feat"><h3>99,5 % Verfügbarkeit</h3><p>Monatlich gemessen, mit proaktiver Kommunikation bei Störungen.</p></div><div class="v2-feat"><h3>Support, der antwortet</h3><p>Antwort innerhalb eines Werktags; mit Advanced kritische Störungen innerhalb von 4 Arbeitsstunden.</p></div><div class="v2-feat"><h3>Tägliche Backups</h3><p>Jeden Tag ein Backup, in der EU gespeichert.</p></div><div class="v2-feat"><h3>Verschlüsselt</h3><p>Verschlüsselung bei Übertragung und Speicherung.</p></div><div class="v2-feat"><h3>Ihre Daten bleiben Ihre</h3><p>Exportieren Sie jederzeit alles, inklusive Fotos und Dokumente.</p></div><div class="v2-feat"><h3>Kein Lock-in</h3><p>Monatlich kündbar. QR-Codes bleiben mit Ihren eigenen IDs verknüpft und funktionieren nach dem Ausstieg per Weiterleitung weiter.</p></div><div class="v2-feat"><h3>DSGVO als Standard</h3><p>Ein Auftragsverarbeitungsvertrag, Aufbewahrung pro Plan und Löschung auf Anfrage.</p></div><div class="v2-feat"><h3>Meldung bei Datenpannen</h3><p>Wir informieren Sie unverzüglich, gemäß DSGVO.</p></div></div>
+        <div class="v2-feat-grid"><div class="v2-feat"><h3>99,5 % Verfügbarkeit</h3><p>Monatlich gemessen, mit proaktiver Kommunikation bei Störungen.</p></div><div class="v2-feat"><h3>Support, der antwortet</h3><p>Antwort innerhalb eines Werktags; mit Advanced kritische Störungen innerhalb von 4 Arbeitsstunden.</p></div><div class="v2-feat"><h3>Tägliche Datenbank-Backups</h3><p>Jeden Tag ein Backup der Datenbank, in der EU gespeichert. Dateien sind nicht Teil des nächtlichen Backups.</p></div><div class="v2-feat"><h3>Verschlüsselt</h3><p>Verschlüsselung bei Übertragung und Speicherung.</p></div><div class="v2-feat"><h3>Ihre Daten bleiben Ihre</h3><p>Exportieren Sie jederzeit alles, inklusive Fotos und Dokumente.</p></div><div class="v2-feat"><h3>Kein Lock-in</h3><p>Monatlich kündbar. QR-Codes bleiben mit Ihren eigenen IDs verknüpft und funktionieren nach dem Ausstieg per Weiterleitung weiter.</p></div><div class="v2-feat"><h3>DSGVO als Standard</h3><p>Ein Auftragsverarbeitungsvertrag, Aufbewahrung pro Plan und Löschung auf Anfrage.</p></div><div class="v2-feat"><h3>Meldung bei Datenpannen</h3><p>Wir informieren Sie unverzüglich, gemäß DSGVO.</p></div></div>
       </div>
     </section>
     <!-- /Service and continuity -->

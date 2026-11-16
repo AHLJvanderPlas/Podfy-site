@@ -34,7 +34,7 @@ test("every locale page lists every operation of the spec, with a curl example a
       assert.ok(s.includes(`<span class="api-method api-method-${o.method.toLowerCase()}">${o.method}</span> <code>${o.path.replace(/[{}]/g, (c) => c)}</code>`), `${f}: ${o.method} ${o.path} heading`);
     }
     assert.equal((s.match(/<article class="api-op"/g) || []).length, ops.length, `${f}: article count`);
-    assert.equal((s.match(/<pre class="api-code">/g) || []).length, ops.length + 1, `${f}: curl examples (+1 in the intro)`);
+    assert.equal((s.match(/<pre class="api-code"[^>]*><code>curl/g) || []).length, ops.length + 1, `${f}: curl examples (+1 in the intro)`);
     assert.match(s, /id="error-codes"/);
     assert.match(s, /href="\/docs\/api\/openapi\.json"/, `${f}: download link`);
     assert.match(s, /pk_live_/); assert.match(s, /pk_test_/); assert.match(s, /600/); assert.match(s, /next_cursor/);
@@ -125,4 +125,28 @@ test("no page calls the Open API 'soon' any more", async () => {
     if (st.isDirectory()) walk(p); else if (/\.(html|txt|py)$/.test(n) && SOON.test(rf(p, "utf8"))) bad.push(p.slice(root.length)); } };
   walk(root);
   assert.deepEqual(bad, []);
+});
+
+test("API intro (x4): idempotency, conditional requests, per-IP limit, error shape with detail, read_only_key, link to the webhook guide", () => {
+  for (const loc of LOCALES) {
+    const s = readFileSync(`${ROOT}${loc}docs/api/index.html`, "utf8");
+    for (const t of ["Idempotency-Key", "Idempotent-Replayed", "idempotency_in_progress", "idempotency_key_reused", "If-None-Match", "If-Match", "ETag", "304", "412", "read_only_key", "&quot;detail&quot;"])
+      assert.ok(s.includes(t), `${loc || "en/"}: ${t}`);
+    assert.match(s, /1[.,    ]?200/, `${loc}: per-IP limit 1,200`);
+    assert.ok(s.includes(`href="/${loc}docs/webhooks/"`), `${loc}: link to the webhook guide`);
+  }
+});
+
+// Constructs of the newer spec (headers, examples, 304, allOf, const, Error schema, webhooks): checked when the copy has them.
+const hasNew = !!spec.webhooks;
+test("API reference renders header parameters, response headers, examples, 304, webhooks and the Error shape (newer spec)", { skip: hasNew ? false : "spec copy predates the webhooks section" }, () => {
+  const s = readFileSync(`${ROOT}docs/api/index.html`, "utf8");
+  assert.match(s, /<code>Idempotency-Key<\/code>/); assert.match(s, /<code>If-Match<\/code>/);
+  assert.match(s, /-H &quot;Idempotency-Key: /); assert.match(s, /-H &quot;If-Match: /); assert.match(s, /-H &quot;If-None-Match: /);
+  assert.match(s, /Response headers/); assert.match(s, /<code>ETag<\/code>/); assert.match(s, /Idempotent-Replayed/);
+  assert.match(s, /Example response/);
+  assert.match(s, /<h4>Response <code>304<\/code><\/h4>/);
+  assert.match(s, /id="error-shape"/); assert.match(s, /<code>read_only_key<\/code>/);
+  assert.match(s, /id="webhooks"/);
+  for (const ev of Object.keys(spec.webhooks)) assert.ok(s.includes(`<code>${ev}</code>`), ev);
 });

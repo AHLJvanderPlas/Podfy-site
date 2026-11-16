@@ -38,7 +38,7 @@
   <link rel="alternate" hreflang="de" href="https://podfy.net/de/trust" />
   <link rel="alternate" hreflang="fr"        href="https://podfy.net/fr/trust" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/trust" />
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r15" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r16" />
   <script src="/assets/theme.js" defer></script>
 
   <script type="application/ld+json">
@@ -81,7 +81,6 @@
 </head>
 
 <body class="v2">
-  <a href="#main" class="sr-only">Skip to content</a>
   [[PODFY_HEADER]]
 
   <main id="main" class="v2-main">
@@ -104,7 +103,7 @@
           <!-- Data lifecycle SVG -->
           <p data-u="u65978db">Data lifecycle, stored in EU jurisdiction</p>
           <svg viewBox="0 0 580 78" xmlns="http://www.w3.org/2000/svg"
-            role="img" aria-label="Data lifecycle: driver upload goes to R2 EU storage, then D1 EU database, then email via Resend EU, then 7-year archive"
+            role="img" aria-label="Data lifecycle: driver upload goes to R2 EU storage, then D1 EU database, then email via Resend EU, then archive"
             data-u="ue7475f6">
 
             <!-- Box 1: Driver upload -->
@@ -145,7 +144,7 @@
 
             <!-- Box 5: Archive (stamp colour) -->
             <rect x="473" y="21" width="104" height="36" rx="3" fill="none" stroke="var(--v2-stamp,#D24A1F)" stroke-width="1.4"/>
-            <text x="525" y="36" text-anchor="middle" font-size="9" fill="currentColor" font-family="monospace" font-weight="600">7-year archive</text>
+            <text x="525" y="36" text-anchor="middle" font-size="9" fill="currentColor" font-family="monospace" font-weight="600">Archive</text>
             <text x="525" y="49" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace" opacity=".55">audit-ready</text>
           </svg>
 
@@ -537,6 +536,8 @@
               <p>Drivers and partners access PODs via emailed links containing long, unguessable tokens, validated server-side and may be time-limited and scoped to specific PODs. Portal views are logged with timestamp, token reference and basic user-agent for auditability.</p>
               <p>PODFY aims to store production POD data in EU regions. Data does not move outside the selected region for product functionality without appropriate safeguards.</p>
 
+              <p>The database is backed up every night. The backup is encrypted, and a restore was tested on 16 November 2026 (first drill). Uploaded files are not part of the nightly backup.</p>
+
               <h3>4. Website security (podfy.net)</h3>
               <p>Deployed as a static site via Cloudflare Pages; dynamic behaviour handled by Workers functions. No direct database access from the browser; form submissions go through backend handlers. Contact and configuration forms use Cloudflare Turnstile to reduce automated abuse. Input is validated server-side before being written to storage or forwarded by email.</p>
               <p>The marketing site and operational app are treated as separate surfaces. Sessions are not shared, databases are distinct, and issues in one do not automatically compromise the other.</p>
@@ -655,7 +656,7 @@
       <div class="container">
         <p class="v2-eyebrow">Service and continuity</p>
         <h2 class="v2-section-title" id="svc-heading">What you can count on</h2>
-        <div class="v2-feat-grid"><div class="v2-feat"><h3>99.5% uptime</h3><p>Measured per month, with incidents communicated proactively.</p></div><div class="v2-feat"><h3>Support that answers</h3><p>A reply within one business day; with Advanced, critical incidents within 4 business hours.</p></div><div class="v2-feat"><h3>Daily backups</h3><p>Backups every day, stored in the EU.</p></div><div class="v2-feat"><h3>Encrypted</h3><p>Encryption in transit and at rest.</p></div><div class="v2-feat"><h3>Your data stays yours</h3><p>Export everything at any time, including photos and documents.</p></div><div class="v2-feat"><h3>No lock-in</h3><p>Cancel monthly. QR codes stay linked to your own IDs and keep working through a redirect after you leave.</p></div><div class="v2-feat"><h3>GDPR by default</h3><p>A data processing agreement, retention per plan and deletion on request.</p></div><div class="v2-feat"><h3>Breach notification</h3><p>We inform you without delay, in line with the GDPR.</p></div></div>
+        <div class="v2-feat-grid"><div class="v2-feat"><h3>99.5% uptime</h3><p>Measured per month, with incidents communicated proactively.</p></div><div class="v2-feat"><h3>Support that answers</h3><p>A reply within one business day; with Advanced, critical incidents within 4 business hours.</p></div><div class="v2-feat"><h3>Daily database backups</h3><p>A backup of the database every day, stored in the EU. Files are not part of the nightly backup.</p></div><div class="v2-feat"><h3>Encrypted</h3><p>Encryption in transit and at rest.</p></div><div class="v2-feat"><h3>Your data stays yours</h3><p>Export everything at any time, including photos and documents.</p></div><div class="v2-feat"><h3>No lock-in</h3><p>Cancel monthly. QR codes stay linked to your own IDs and keep working through a redirect after you leave.</p></div><div class="v2-feat"><h3>GDPR by default</h3><p>A data processing agreement, retention per plan and deletion on request.</p></div><div class="v2-feat"><h3>Breach notification</h3><p>We inform you without delay, in line with the GDPR.</p></div></div>
       </div>
     </section>
     <!-- /Service and continuity -->

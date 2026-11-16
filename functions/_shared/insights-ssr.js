@@ -108,7 +108,7 @@ export async function htmlResponse(env, url, body, opts) {
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12100D" />
   <link rel="icon" type="image/svg+xml" href="/assets/podfy-favicon.svg" />
   ${opts.extraHead || ""}
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r2" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r16" />
   <script src="/assets/theme.js" defer></script>
   ${(opts.jsonLd || []).map(o => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join("\n  ")}
 <link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">

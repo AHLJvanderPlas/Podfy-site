@@ -36,7 +36,7 @@
   <link rel="alternate" hreflang="fr" href="https://podfy.net/fr/trust" />
   <link rel="alternate" hreflang="x-default" href="https://podfy.net/trust" />
 
-  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r15" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r16" />
   <script src="/assets/theme.js" defer></script>
 
   <script type="application/ld+json">
@@ -78,7 +78,6 @@
 </head>
 
 <body class="v2">
-  <a href="#main" class="sr-only">Naar inhoud</a>
   [[PODFY_HEADER]]
 
   <main id="main" class="v2-main">
@@ -101,7 +100,7 @@
           <!-- Data lifecycle SVG -->
           <p data-u="u65978db">Dataverloop, opgeslagen in EU-jurisdictie</p>
           <svg viewBox="0 0 580 78" xmlns="http://www.w3.org/2000/svg"
-            role="img" aria-label="Dataverloop: chauffeur-upload gaat naar R2 EU-opslag, dan D1 EU-database, dan e-mail via Resend EU, dan 7-jarig archief"
+            role="img" aria-label="Dataverloop: chauffeur-upload gaat naar R2 EU-opslag, dan D1 EU-database, dan e-mail via Resend EU, dan archief"
             data-u="ue7475f6">
 
             <!-- Box 1: Driver upload -->
@@ -142,7 +141,7 @@
 
             <!-- Box 5: Archive (stamp colour) -->
             <rect x="473" y="21" width="104" height="36" rx="3" fill="none" stroke="var(--v2-stamp,#D24A1F)" stroke-width="1.4"/>
-            <text x="525" y="36" text-anchor="middle" font-size="9" fill="currentColor" font-family="monospace" font-weight="600">7-jarig archief</text>
+            <text x="525" y="36" text-anchor="middle" font-size="9" fill="currentColor" font-family="monospace" font-weight="600">Archief</text>
             <text x="525" y="49" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace" opacity=".55">audit-gereed</text>
           </svg>
 
@@ -419,6 +418,8 @@
               <p>Chauffeurs en partners raadplegen POD's via ge-e-mailde links met lange, onraadbare tokens, die server-side worden gevalideerd en tijdbeperkt en afgeschermd kunnen zijn tot specifieke POD's. Portalweergaven worden gelogd met tijdstempel, tokenreferentie en basisgegevens van de user-agent voor auditbaarheid.</p>
               <p>PODFY streeft ernaar productie-POD-gegevens in EU-regio's op te slaan. Gegevens worden niet buiten de geselecteerde regio verplaatst voor productfunctionaliteit zonder passende waarborgen.</p>
 
+              <p>De database wordt elke nacht geback-upt. De back-up is versleuteld en een herstel is getest op 16 november 2026 (eerste oefening). Geüploade bestanden zitten niet in de nachtelijke back-up.</p>
+
               <h3>4. Websitebeveiliging (podfy.net)</h3>
               <p>Gedeployed als statische site via Cloudflare Pages; dynamisch gedrag afgehandeld door Workers-functies. Geen directe databasetoegang vanuit de browser; formulierinzendingen gaan via backend-handlers. Contact- en configuratieformulieren gebruiken Cloudflare Turnstile om geautomatiseerd misbruik te verminderen. Invoer wordt server-side gevalideerd voordat deze wordt opgeslagen of doorgestuurd per e-mail.</p>
               <p>De marketingsite en de operationele app worden behandeld als afzonderlijke oppervlakken. Sessies worden niet gedeeld, databases zijn onderscheiden, en problemen in de ene compromitteren de andere niet automatisch.</p>
@@ -482,7 +483,7 @@
       <div class="container">
         <p class="v2-eyebrow">Service en continuïteit</p>
         <h2 class="v2-section-title" id="svc-heading">Waar u op kunt rekenen</h2>
-        <div class="v2-feat-grid"><div class="v2-feat"><h3>99,5% uptime</h3><p>Per maand gemeten, met proactieve communicatie bij storingen.</p></div><div class="v2-feat"><h3>Support die antwoordt</h3><p>Reactie binnen één werkdag; met Advanced kritieke storingen binnen 4 werkuren.</p></div><div class="v2-feat"><h3>Dagelijkse back-ups</h3><p>Elke dag een back-up, opgeslagen in de EU.</p></div><div class="v2-feat"><h3>Versleuteld</h3><p>Versleuteling tijdens transport en opslag.</p></div><div class="v2-feat"><h3>Uw data blijft van u</h3><p>Exporteer alles op elk moment, inclusief foto&#x27;s en documenten.</p></div><div class="v2-feat"><h3>Geen lock-in</h3><p>Maandelijks opzegbaar. QR-codes blijven gekoppeld aan uw eigen ID&#x27;s en blijven via een doorverwijzing werken als u vertrekt.</p></div><div class="v2-feat"><h3>AVG als standaard</h3><p>Een verwerkersovereenkomst, bewaartermijnen per plan en verwijdering op verzoek.</p></div><div class="v2-feat"><h3>Melding bij datalekken</h3><p>We informeren u zonder vertraging, conform de AVG.</p></div></div>
+        <div class="v2-feat-grid"><div class="v2-feat"><h3>99,5% uptime</h3><p>Per maand gemeten, met proactieve communicatie bij storingen.</p></div><div class="v2-feat"><h3>Support die antwoordt</h3><p>Reactie binnen één werkdag; met Advanced kritieke storingen binnen 4 werkuren.</p></div><div class="v2-feat"><h3>Dagelijkse database-back-ups</h3><p>Elke dag een back-up van de database, opgeslagen in de EU. Bestanden zitten niet in de nachtelijke back-up.</p></div><div class="v2-feat"><h3>Versleuteld</h3><p>Versleuteling tijdens transport en opslag.</p></div><div class="v2-feat"><h3>Uw data blijft van u</h3><p>Exporteer alles op elk moment, inclusief foto&#x27;s en documenten.</p></div><div class="v2-feat"><h3>Geen lock-in</h3><p>Maandelijks opzegbaar. QR-codes blijven gekoppeld aan uw eigen ID&#x27;s en blijven via een doorverwijzing werken als u vertrekt.</p></div><div class="v2-feat"><h3>AVG als standaard</h3><p>Een verwerkersovereenkomst, bewaartermijnen per plan en verwijdering op verzoek.</p></div><div class="v2-feat"><h3>Melding bij datalekken</h3><p>We informeren u zonder vertraging, conform de AVG.</p></div></div>
       </div>
     </section>
     <!-- /Service and continuity -->

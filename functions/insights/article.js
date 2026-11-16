@@ -29,7 +29,7 @@ export async function onRequestGet(context) {
 
   if (!p) {
     return htmlResponse(env, url, `
-      <main class="container" data-u="u1ffd077">
+      <main id="main" class="container" data-u="u1ffd077">
         <h1>Not found</h1><p>${UI[lang].notfound} <a href="/insights/${lang === "en" ? "" : `?lang=${lang}`}">→ /insights</a></p>
       </main>`, { title: "Not found — PODFY", status: 404, noindex: true, lang });
   }
@@ -176,7 +176,7 @@ export async function onRequestGet(context) {
   }
 
   const body = `
-    <main class="container" data-u="u6328854">
+    <main id="main" class="container" data-u="u6328854">
       <p data-u="ub89cfb0"><a href="/insights/${effLang === "en" ? "" : `?lang=${effLang}`}" data-u="ud6e47aa">← ${UI[effLang].back}</a></p>
       <article>
         ${seriesBadgeHtml}

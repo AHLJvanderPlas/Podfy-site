@@ -248,3 +248,19 @@ test("Status page has correct hreflang links for all languages", async () => {
   assert.match(html, /rel="alternate" hreflang="fr"/);
   assert.match(html, /rel="alternate" hreflang="x-default"/);
 });
+
+test("Status page has og:image and WebPage JSON-LD in every language", async () => {
+  for (const lang of LANGS) {
+    const res = await onRequestGet({
+      request: new Request(`https://podfy.net/status?lang=${lang}`),
+      env: createMockEnv(createMockDB()),
+    });
+    const html = await res.text();
+    assert.match(html, /<meta property="og:image" content="https:\/\/podfy\.net\/assets\/og-image\.jpg"/);
+    const ld = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+    const page = ld.find((o) => o["@type"] === "WebPage");
+    assert.ok(page, `${lang}: WebPage JSON-LD`);
+    assert.equal(page.inLanguage, lang);
+    assert.match(page.url, /^https:\/\/podfy\.net\/status/);
+  }
+});

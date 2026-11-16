@@ -803,7 +803,7 @@ SERVICE = {
  "eyebrow": "Service and continuity", "title": "What you can count on",
  "items": [("99.5% uptime", "Measured per month, with incidents communicated proactively."),
            ("Support that answers", "A reply within one business day; critical incidents within 4 business hours."),
-           ("Daily backups", "Backups every day, stored in the EU."),
+           ("Daily database backups", "A backup of the database every day, stored in the EU. Files are not part of the nightly backup."),
            ("Encrypted", "Encryption in transit and at rest."),
            ("Your data stays yours", "Export everything at any time, including photos and documents."),
            ("No lock-in", "Cancel monthly. QR codes stay linked to your own IDs and keep working through a redirect after you leave."),
@@ -819,6 +819,7 @@ QRPRICE = {
  "included_h": "Included", "included": ["Asset register, QR codes and stickers", "Own categories, fields and photo settings", "Routing, status, priorities and duplicate grouping", "Dashboard, reports and full export", "Webhook to your systems", "Unlimited users, reports and QR codes (fair use)", "Your branding, app in 42 languages, EU storage", "Support: reply within one business day"],
  "adv_h": "Advanced", "adv_price": "+{p} per asset per month", "adv": ["Open API", "Feedback to the reporter", "Critical incidents handled within 4 business hours"],
  "terms_h": "Terms", "terms": ["Minimum {m} per month", "Free 6-week pilot for up to 100 assets", "No setup fee", "Cancel monthly", "Price fixed for 12 months, or 24 months with an annual commitment", "Annual prepayment: ask about the discount", "Fair use: on average about 10 reports per asset per month"],
+ "band_q": 'How do the volume bands work?', "band_a": 'The whole fleet pays the price of the band it reaches, not only the assets above the threshold. At {n1} assets the price is {p1} per asset, so {c1} per month. At {n2} assets it is {p2} per asset, so {c2} per month. A fleet just above a band threshold can therefore cost less in total than one just below it. The monthly minimum is {m}: up to {k} assets you pay that minimum. Retired assets are free and do not count.',
  "cta": "Request a proposal", "strip": "{p} per active asset per month, down to {low} at volume. Free 6-week pilot.", "strip_cta": "See QR pricing",
 }
 COMPANY = {"title": "Company details", "rows": ["Trade name", "Address", "Chamber of Commerce (KvK)", "VAT", "E-mail", "LinkedIn"], "trade": "PODFY is a trade name of Lake-Project"}

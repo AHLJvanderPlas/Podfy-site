@@ -189,7 +189,7 @@ export async function onRequestGet(context) {
 
     // Build the HTML body
     const body = `
-<main class="v2-container">
+<main id="main" class="v2-container">
   <h1>${esc(ui.heading)}</h1>
 
   <section class="v2-status-overall">
@@ -199,7 +199,7 @@ export async function onRequestGet(context) {
 
   <section class="v2-status-services">
     ${allChecks === 0 ? `<p>${esc(ui.notFound)}</p>` : `
-      <div class="v2-status-table-wrapper">
+      <div class="v2-status-table-wrapper" tabindex="0" role="region" aria-label="${esc(ui.heading)}">
         <table class="v2-status-table">
           <thead>
             <tr>
@@ -246,10 +246,20 @@ export async function onRequestGet(context) {
       description: ui.description,
       canonical,
       alternates,
+      og: { type: "website", title: ui.title, description: ui.description, url: canonical, image: "https://podfy.net/assets/og-image.jpg" },
+      jsonLd: [{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: ui.title,
+        description: ui.description,
+        url: canonical,
+        inLanguage: lang,
+        isPartOf: { "@type": "WebSite", name: "PODFY", url: "https://podfy.net" },
+      }],
     });
   } catch (err) {
     console.error("Status page error:", err);
-    return htmlResponse(env, url, `<main class="v2-container"><h1>${esc(ui.heading)}</h1><p>${esc(ui.error)}</p></main>`, {
+    return htmlResponse(env, url, `<main id="main" class="v2-container"><h1>${esc(ui.heading)}</h1><p>${esc(ui.error)}</p></main>`, {
       lang,
       title: ui.title,
       noindex: true,

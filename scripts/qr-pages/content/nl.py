@@ -480,7 +480,7 @@ SERVICE = {
  "eyebrow": "Service en continuïteit", "title": "Waar u op kunt rekenen",
  "items": [("99,5% uptime", "Per maand gemeten, met proactieve communicatie bij storingen."),
            ("Support die antwoordt", "Reactie binnen één werkdag; kritieke storingen binnen 4 werkuren."),
-           ("Dagelijkse back-ups", "Elke dag een back-up, opgeslagen in de EU."),
+           ("Dagelijkse database-back-ups", "Elke dag een back-up van de database, opgeslagen in de EU. Bestanden zitten niet in de nachtelijke back-up."),
            ("Versleuteld", "Versleuteling tijdens transport en opslag."),
            ("Uw data blijft van u", "Exporteer alles op elk moment, inclusief foto's en documenten."),
            ("Geen lock-in", "Maandelijks opzegbaar. QR-codes blijven gekoppeld aan uw eigen ID's en blijven via een doorverwijzing werken als u vertrekt."),
@@ -496,6 +496,7 @@ QRPRICE = {
  "included_h": "Inbegrepen", "included": ["Objectregister, QR-codes en stickers", "Eigen categorieën, velden en foto-instellingen", "Routering, status, prioriteiten en samenvoegen van dubbele meldingen", "Dashboard, rapportages en volledige export", "Webhook naar uw systemen", "Onbeperkt gebruikers, meldingen en QR-codes (fair use)", "Uw huisstijl, app in 42 talen, opslag in de EU", "Support: reactie binnen één werkdag"],
  "adv_h": "Advanced", "adv_price": "+{p} per object per maand", "adv": ["Open API", "Terugkoppeling aan de melder", "Kritieke storingen opgepakt binnen 4 werkuren"],
  "terms_h": "Voorwaarden", "terms": ["Minimaal {m} per maand", "Gratis pilot van 6 weken voor maximaal 100 objecten", "Geen opstartkosten", "Maandelijks opzegbaar", "Prijs 12 maanden vast, of 24 maanden bij een jaarcontract", "Jaarlijks vooruitbetalen: vraag naar de korting", "Fair use: gemiddeld ongeveer 10 meldingen per object per maand"],
+ "band_q": 'Hoe werken de volumebanden?', "band_a": 'De hele vloot betaalt de prijs van de band die wordt bereikt, niet alleen de objecten boven de grens. Bij {n1} objecten is dat {p1} per object, dus {c1} per maand. Bij {n2} objecten is het {p2} per object, dus {c2} per maand. Een vloot net boven een grens kan in totaal dus minder kosten dan een vloot net eronder. Het maandminimum is {m}: tot en met {k} objecten betaalt u dat minimum. Beëindigde objecten zijn gratis en tellen niet mee.',
  "cta": "Offerte aanvragen", "strip": "{p} per actief object per maand, tot {low} bij grote aantallen. Gratis pilot van 6 weken.", "strip_cta": "Bekijk de tarieven",
 }
 COMPANY = {"title": "Bedrijfsgegevens", "rows": ["Handelsnaam", "Adres", "KvK", "Btw", "E-mail", "LinkedIn"], "trade": "PODFY is een handelsnaam van Lake-Project"}

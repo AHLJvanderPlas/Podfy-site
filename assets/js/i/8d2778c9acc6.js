@@ -31,6 +31,7 @@
       var FOOTER_LABELS = {
         nl: {
           "API reference":"API-documentatie",
+          "Webhook guide":"Webhooks ontvangen",
           "Product":"Product","Solutions":"Oplossingen","Guides":"Gidsen",
           "Trust & Legal":"Vertrouwen & Juridisch","Contact":"Contact",
           "Pricing":"Tarieven","CMR generator":"CMR-generator",
@@ -56,6 +57,7 @@
         },
         de: {
           "API reference":"API-Referenz",
+          "Webhook guide":"Webhooks empfangen",
           "Product":"Produkt","Solutions":"Lösungen","Guides":"Leitfäden",
           "Trust & Legal":"Vertrauen & Recht","Contact":"Kontakt",
           "Pricing":"Preise","CMR generator":"CMR-Generator",
@@ -81,6 +83,7 @@
         },
         fr: {
           "API reference":"Référence API",
+          "Webhook guide":"Guide des webhooks",
           "Product":"Produit","Solutions":"Solutions","Guides":"Guides",
           "Trust & Legal":"Confiance & Légal","Contact":"Contact",
           "Pricing":"Tarifs","CMR generator":"Générateur CMR",
@@ -112,6 +115,12 @@
           var txt = el.textContent.trim();
           if (lmap[txt]) el.textContent = lmap[txt];
         });
+      }
+
+      /* EU badge: storage in the EU (not "data never leaves the EU") */
+      var EU_BADGE = { nl: "Opslag in de EU", de: "Speicherung in der EU", fr: "Stockage dans l\u2019UE" };
+      if (locale && EU_BADGE[locale]) {
+        document.querySelectorAll(".site-footer-eu-badge").forEach(function (el) { el.textContent = EU_BADGE[locale]; });
       }
 
       /* Rewrite footer column links for NL/DE locales */

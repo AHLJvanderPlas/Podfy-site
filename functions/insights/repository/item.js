@@ -30,7 +30,7 @@ export async function onRequestGet(context) {
   ).bind(slug).first();
   if (!item) {
     return htmlResponse(env, url, `
-      <main class="container" data-u="u1ffd077">
+      <main id="main" class="container" data-u="u1ffd077">
         <h1>Not found</h1><p>${T.notfound} <a href="/insights/repository/${lang === "en" ? "" : `?lang=${lang}`}">→ /insights/repository</a></p>
       </main>`, { title: "Not found — PODFY", status: 404, noindex: true, lang });
   }
@@ -121,7 +121,7 @@ export async function onRequestGet(context) {
         </section>` : "";
 
   const body = `
-    <main class="container" data-u="u06a9470">
+    <main id="main" class="container" data-u="u06a9470">
       <p data-u="ub89cfb0"><a href="/insights/repository/${lang === "en" ? "" : `?lang=${lang}`}" data-u="ud6e47aa">← ${T.back}</a></p>
       <article>
         ${catLabel ? `<span data-u="uc792b58">${esc(catLabel)}</span>` : ""}
