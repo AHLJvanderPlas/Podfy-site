@@ -1225,32 +1225,60 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/vs-qr-form-tools/"/>
   </url>
   <url>
-    <loc>https://podfy.net/docs/api/</loc><lastmod>2026-11-01</lastmod>
+    <loc>https://podfy.net/docs/api/</loc><lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/api/"/>
   </url>
   <url>
-    <loc>https://podfy.net/nl/docs/api/</loc><lastmod>2026-11-01</lastmod>
+    <loc>https://podfy.net/nl/docs/api/</loc><lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/api/"/>
   </url>
   <url>
-    <loc>https://podfy.net/de/docs/api/</loc><lastmod>2026-11-01</lastmod>
+    <loc>https://podfy.net/de/docs/api/</loc><lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/api/"/>
   </url>
   <url>
-    <loc>https://podfy.net/fr/docs/api/</loc><lastmod>2026-11-01</lastmod>
+    <loc>https://podfy.net/fr/docs/api/</loc><lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/api/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/api/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/docs/webhooks/</loc><lastmod>2026-11-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/webhooks/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/nl/docs/webhooks/</loc><lastmod>2026-11-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/webhooks/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/de/docs/webhooks/</loc><lastmod>2026-11-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/webhooks/"/>
+  </url>
+  <url>
+    <loc>https://podfy.net/fr/docs/webhooks/</loc><lastmod>2026-11-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://podfy.net/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/webhooks/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/webhooks/"/>
   </url>
   <!-- /QR Reporting -->
 </urlset>

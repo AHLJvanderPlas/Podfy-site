@@ -54,15 +54,24 @@ def merged(spec, schema):
         out = {"type": "object", "properties": {}, "required": []}
         for part in schema["allOf"]:
             p = merged(spec, part)
-            out["properties"].update(p.get("properties", {}))
-            out["required"] += p.get("required", [])
+            for name, prop in p.get("properties", {}).items():
+                old = out["properties"].get(name)
+                # a later part may only narrow a property (for example `event: {const: ...}`): keep the earlier detail
+                out["properties"][name] = {**ref(spec, old), **ref(spec, prop)} if old else prop
+            out["required"] += [r for r in p.get("required", []) if r not in out["required"]]
+        if schema.get("description"):
+            out["description"] = schema["description"]
         return out
     return schema
 
 
 def type_str(spec, s):
     s = ref(spec, s)
+    if "allOf" in s:
+        s = {**merged(spec, s), **{k: v for k, v in s.items() if k != "allOf"}}
     t = s.get("type", "object" if "properties" in s else "")
+    if not t and "const" in s:
+        t = {bool: "boolean", int: "integer", float: "number"}.get(type(s["const"]), "string")
     t = " or ".join(t) if isinstance(t, list) else t
     if t == "array":
         it = ref(spec, s.get("items", {}))
@@ -70,6 +79,8 @@ def type_str(spec, s):
     extra = []
     if s.get("enum"):
         extra.append("one of " + ", ".join(f"`{v}`" if v is not None else "`null`" for v in s["enum"] if v is not None))
+    if "const" in s:
+        extra.append(f"always `{s['const']}`")
     if s.get("format"):
         extra.append(s["format"])
     if "maxLength" in s:
@@ -155,6 +166,16 @@ def curl(spec, op):
              if p["in"] == "query" and "default" in ref(spec, p.get("schema", {}))]
     url = server(spec) + path + ("?" + "&".join(query) if query else "")
     lines = [f"curl -X {op['method']} \\" if op["method"] != "GET" else "curl \\", f'  -H "Authorization: Bearer $PODFY_API_KEY" \\']
+    etag = None
+    for r in op["responses"].values():
+        h = ref(spec, r).get("headers", {}).get("ETag")
+        if h:
+            etag = ref(spec, h).get("example")
+    for prm in op["params"]:
+        if prm["in"] == "header":
+            val = prm.get("example") or (etag if prm["name"] in ("If-Match", "If-None-Match") else None)
+            if val:
+                lines.append(f'  -H "{prm["name"]}: {str(val).replace(chr(34), chr(92) + chr(34))}" \\')
     if op["body"]:
         schema = merged(spec, op["body"]["content"]["application/json"]["schema"])
         props, req = schema.get("properties", {}), schema.get("required", [])
@@ -182,19 +203,48 @@ def all_error_rows(spec, ops):
     seen = {}
     for op in ops:
         for status, codes, text in error_rows(spec, op):
-            seen.setdefault(status, (codes, text))
-    return sorted((s, c, t) for s, (c, t) in seen.items())
+            seen.setdefault((status, tuple(codes)), text)
+    return sorted((s, list(c), t) for (s, c), t in seen.items())
+
+
+def response_headers(spec, r):
+    """[(name, type, description)] of a response's headers ($ref resolved)."""
+    out = []
+    for name, h in (r.get("headers") or {}).items():
+        h = ref(spec, h)
+        out.append((name, type_str(spec, h.get("schema", {}))[0], h.get("description", "")))
+    return out
+
+
+def examples_of(spec, r):
+    """[(summary, value)] of the JSON examples of a response."""
+    media = (r.get("content") or {}).get("application/json") or {}
+    out = [(e.get("summary", name), e["value"]) for name, e in (media.get("examples") or {}).items() if "value" in e]
+    if not out and "example" in media:
+        out = [("Example", media["example"])]
+    return out
+
+
+def error_code_rows(spec):
+    """(code, status, meaning) parsed from the description of the Error schema's `code` enum."""
+    err = spec["components"]["schemas"].get("Error", {})
+    code = err.get("properties", {}).get("error", {}).get("properties", {}).get("code", {})
+    desc = code.get("description", "")
+    rows = []
+    for m in re.finditer(r"`([a-z_]+)`: (\d{3})\. (.*?)(?= `[a-z_]+`: \d{3}\.|$)", desc):
+        rows.append((m.group(1), m.group(2), m.group(3).strip()))
+    return rows or [(c, "", "") for c in code.get("enum", [])]
 
 
 # ── HTML ───────────────────────────────────────────────────────────────────────────────────────
 def table(head, rows, cls="api-table"):
     th = "".join(f'<th scope="col">{esc(h)}</th>' for h in head)
     tr = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows)
-    return f'<div class="api-table-wrap"><table class="{cls}"><thead><tr>{th}</tr></thead><tbody>{tr}</tbody></table></div>'
+    return f'<div class="api-table-wrap" tabindex="0" role="region" aria-label="{esc("Table: " + ", ".join(head))}"><table class="{cls}"><thead><tr>{th}</tr></thead><tbody>{tr}</tbody></table></div>'
 
 
 def code_block(text):
-    return f'<pre class="api-code"><code>{esc(text)}</code></pre>'
+    return f'<pre class="api-code" tabindex="0" role="region" aria-label="Code example"><code>{esc(text)}</code></pre>'
 
 
 def field_cells(spec, rows):
@@ -221,12 +271,17 @@ def op_html(spec, op, labels):
     if op["body"]:
         schema = op["body"]["content"]["application/json"]["schema"]
         parts.append(f"<h4>{esc(labels['body'])}</h4>" + table(["Field", "Type", "Required", "Description"], field_cells(spec, fields(spec, schema))))
-    ok = [(s, ref(spec, r)) for s, r in op["responses"].items() if s.startswith("2")]
+    ok = [(s, ref(spec, r)) for s, r in op["responses"].items() if s.startswith(("2", "3"))]
     for status, r in ok:
         schema = r.get("content", {}).get("application/json", {}).get("schema")
         parts.append(f"<h4>{esc(labels['response'])} <code>{esc(status)}</code></h4><p>{inline(r.get('description', ''))}</p>")
         if schema:
             parts.append(table(["Field", "Type", "Required", "Description"], field_cells(spec, fields(spec, schema))))
+        hdrs = response_headers(spec, r)
+        if hdrs:
+            parts.append(f"<h5>{esc(labels['headers'])}</h5>" + table(["Header", "Type", "Description"], [[f"<code>{esc(n)}</code>", esc(t), inline(d)] for n, t, d in hdrs]))
+        for summary, value in examples_of(spec, r)[:1]:
+            parts.append(f"<h5>{esc(labels['resp_example'])}</h5>" + code_block(json.dumps(value, indent=2, ensure_ascii=False)))
     errs = error_rows(spec, op)
     parts.append(f"<h4>{esc(labels['errors'])}</h4>" + table(["Status", "Codes", "Meaning"], [[f"<code>{esc(s)}</code>", " ".join(f"<code>{esc(c)}</code>" for c in codes), inline(t)] for s, codes, t in errs]))
     parts.append(f"<h4>{esc(labels['example'])}</h4>" + code_block(curl(spec, op)))
@@ -234,10 +289,43 @@ def op_html(spec, op, labels):
     return "".join(parts)
 
 
+def error_shape_html(spec, labels):
+    """The Error schema: shape, the `code` list with status and meaning, and the optional `detail`."""
+    rows = error_code_rows(spec)
+    if not rows or "Error" not in spec["components"]["schemas"]:
+        return ""
+    props = spec["components"]["schemas"]["Error"]["properties"]["error"]["properties"]
+    detail = props.get("detail", {}).get("description", "")
+    msg = props.get("message", {}).get("description", "")
+    shape = code_block('{"error": {"code": "invalid_request", "message": "limit: must be a whole number from 1 to 200", "detail": "invalid_parameter"}}')
+    t = table(["Code", "Status", "Meaning"], [[f"<code>{esc(c)}</code>", f"<code>{esc(st)}</code>", inline(m)] for c, st, m in rows])
+    return (f'<h3 class="api-sub" id="error-shape">{esc(labels["error_schema"])}</h3>' + shape
+            + f"<p>{inline('`code` is always one of the values below (use it for logic). `message`: ' + msg)}</p>" + t
+            + (f"<p>{inline('`detail` (optional): ' + detail)}</p>" if detail else ""))
+
+
+def webhooks_html(spec, labels):
+    """A short list of the webhook events of the spec; the guide has the rest."""
+    hooks = spec.get("webhooks")
+    if not hooks:
+        return ""
+    rows = []
+    for name, item in hooks.items():
+        op = item.get("post") or next(iter(item.values()))
+        rows.append([f"<code>{esc(name)}</code>", inline(op.get("summary", "")), inline(op.get("description", ""))])
+    href = labels.get("wh_href", "/docs/webhooks/")
+    return (f'<h3 class="api-sub" id="webhooks">{esc(labels["webhooks"])}</h3>'
+            f'<p>{inline("PODFY pushes these events to your HTTPS endpoint, signed with `Podfy-Signature`. Payload, headers, signature verification, retries and code samples are in the")} '
+            f'<a href="{esc(href)}">webhook receiver guide</a>.</p>'
+            + table(["Event", "Summary", "Description"], rows))
+
+
 def reference_html(spec, labels):
     ops = operations(spec)
     nav = "".join(f'<li><a href="#op-{o["id"]}"><span class="api-method api-method-{o["method"].lower()}">{o["method"]}</span> <code>{esc(o["path"])}</code> <span class="api-nav-sum">{esc(clean(o["summary"]))}</span></a></li>' for o in ops)
     errs = table(["Status", "Codes", "Meaning"], [[f"<code>{esc(s)}</code>", " ".join(f"<code>{esc(c)}</code>" for c in codes), inline(t)] for s, codes, t in all_error_rows(spec, ops)])
+    shape = error_shape_html(spec, labels)
+    hooks = webhooks_html(spec, labels)
     return f'''    <section class="v2-section" id="reference" aria-labelledby="ref-heading">
       <div class="container">
         <p class="v2-eyebrow">{esc(labels["ref_eyebrow"])}</p>
@@ -246,6 +334,8 @@ def reference_html(spec, labels):
         <nav class="api-nav" aria-label="{esc(labels["ops_nav"])}"><ul>{nav}</ul></nav>
         <h3 class="api-sub" id="error-codes">{esc(labels["all_errors"])}</h3>
         {errs}
+        {shape}
+        {hooks}
         <div class="api-ops">{"".join(op_html(spec, o, labels) for o in ops)}</div>
       </div>
     </section>'''
@@ -268,6 +358,7 @@ INTRO = {
         "crumb_home": "Home", "crumb": "API reference",
         "eyebrow": "For developers", "h1": "PODFY Open API", "h1em": "reference",
         "sub": "Fetch records, update their status and manage your reference register from your own systems. A JSON REST API, part of PODFY Advanced.",
+        "wh_link": "Read the webhook receiver guide",
         "download": "Download openapi.json", "contact": "Ask about Advanced", "toc": "On this page", "toc_ref": "API reference",
         "sections": [
             ("overview", "What the API is", [
@@ -281,14 +372,17 @@ INTRO = {
                 "A missing, malformed, unknown or revoked key always gets the same answer, 401 invalid_key. A key without the required scope gets 403 insufficient_scope."], [], "auth"),
             ("environments", "Live and test keys", [
                 "Keys starting with pk_live_ see only production records. Keys starting with pk_test_ (QA records only) see only test records from qa.podfy.app, whose PODFY IDs start with QA-. The two environments never mix.",
-                "The reference register is shared with production, so test keys cannot create or change references (403 insufficient_scope). A record or reference of another brand, or a record of the other environment, answers 404 not_found, never 403."], [], None),
+                "The reference register is shared with production, so test keys cannot create or change references (403 read_only_key). A record or reference of another brand, or a record of the other environment, answers 404 not_found, never 403."], [], None),
             ("limits", "Rate limit", [
-                "Each key may make 600 requests per minute, counted in fixed one-minute windows. Every answer carries X-RateLimit-Limit, X-RateLimit-Remaining and X-RateLimit-Reset (unix seconds when the window ends).",
-                "Above the limit you get 429 rate_limited with a Retry-After header (seconds). Wait that long and try again."], [], None),
+                "Each key may make 600 requests per minute, counted in fixed one-minute windows. Every answer for an authenticated key carries X-RateLimit-Limit, X-RateLimit-Remaining and X-RateLimit-Reset (unix seconds when the window ends).",
+                "Before the key is even looked up, a second limit of 1,200 requests per minute per IP address applies. Above either limit you get 429 rate_limited with a Retry-After header (seconds). Wait that long and try again."], [], None),
             ("errors", "Errors", [
-                "Every error is JSON in the same shape: {\"error\":{\"code\":\"…\",\"message\":\"…\"}}. Handle errors by the HTTP status and the code, not by the message text. Responses are never cached (Cache-Control: no-store). The full list of codes is in the reference below."], [], None),
+                "Every error is JSON in the same shape: {\"error\":{\"code\":\"…\",\"message\":\"…\",\"detail\":\"…\"}}. The code is one of a fixed list (the Error shape in the reference): use it for your logic. The message is for people. The optional detail names a specific reason behind a general code, for example ref_exists or invalid_transition. It is absent when there is nothing more specific, and new values may appear, so treat an unknown detail like none. Responses are never cached (Cache-Control: no-store). The full list of codes is in the reference below."], [], None),
             ("paging", "Pagination", [
                 "List endpoints return {\"data\": [...], \"next_cursor\": \"…\"}. Pass next_cursor back as the cursor parameter to get the next page, until it is null. Cursors are opaque: do not build or change them. Records are listed newest first. The page size is set with limit (1 to 200, default 50)."], [], None),
+            ("idempotency", "Idempotency", ["Send an Idempotency-Key header (1 to 255 visible characters) on POST and PATCH to make a retry safe. The first request with a key runs. A repeat with the same key, method, path and body returns the stored answer, marked with Idempotent-Replayed: true, and changes nothing. While the first request is still running, a repeat gets 409 idempotency_in_progress. The same key with a different request gets 422 idempotency_key_reused. Keys are kept for 24 hours per API key. After a 5xx answer the key is released, so you can retry."], [], None),
+            ("conditional", "Conditional requests", ["A GET of one record, reference or refund returns an ETag. Send it back as If-None-Match to get 304 Not Modified when nothing changed. Send it as If-Match on a PATCH to change the resource only if it is still the version you read, otherwise you get 412 precondition_failed and nothing changes. If-Match is optional."], [], None),
+            ("webhooks", "Webhooks", ["PODFY can also push events to your server, so you do not have to poll the API. The events are listed in the reference below, and the guide explains how to receive and verify them."], [], "webhooks"),
         ],
         "ref_eyebrow": "Reference", "ref_title": "Operations",
         "ref_note": "The reference below is generated from the OpenAPI file and is in English in every language. Download the specification:",
@@ -300,6 +394,7 @@ INTRO = {
         "crumb_home": "Home", "crumb": "API-documentatie",
         "eyebrow": "Voor ontwikkelaars", "h1": "PODFY Open API", "h1em": "documentatie",
         "sub": "Haal meldingen en bewijs op, werk de status bij en beheer uw referentieregister vanuit uw eigen systemen. Een JSON REST API, onderdeel van PODFY Advanced.",
+        "wh_link": "Lees de gids voor het ontvangen van webhooks",
         "download": "Download openapi.json", "contact": "Vraag naar Advanced", "toc": "Op deze pagina", "toc_ref": "API-referentie",
         "sections": [
             ("overview", "Wat de API is", [
@@ -313,14 +408,17 @@ INTRO = {
                 "Een ontbrekende, onjuiste, onbekende of ingetrokken sleutel krijgt altijd hetzelfde antwoord: 401 invalid_key. Een sleutel zonder de vereiste scope krijgt 403 insufficient_scope."], [], "auth"),
             ("environments", "Live- en testsleutels", [
                 "Sleutels die beginnen met pk_live_ zien alleen productierecords. Sleutels die beginnen met pk_test_ (alleen QA-records) zien alleen testrecords van qa.podfy.app, waarvan de PODFY-ID's met QA- beginnen. De twee omgevingen mengen nooit.",
-                "Het referentieregister wordt gedeeld met productie, dus testsleutels kunnen geen referenties aanmaken of wijzigen (403 insufficient_scope). Een record of referentie van een ander merk, of een record uit de andere omgeving, geeft 404 not_found, nooit 403."], [], None),
+                "Het referentieregister wordt gedeeld met productie, dus testsleutels kunnen geen referenties aanmaken of wijzigen (403 read_only_key). Een record of referentie van een ander merk, of een record uit de andere omgeving, geeft 404 not_found, nooit 403."], [], None),
             ("limits", "Rate limit", [
-                "Elke sleutel mag 600 verzoeken per minuut doen, geteld in vaste vensters van een minuut. Elk antwoord bevat X-RateLimit-Limit, X-RateLimit-Remaining en X-RateLimit-Reset (unix-seconden waarop het venster eindigt).",
-                "Boven de limiet krijgt u 429 rate_limited met een Retry-After-header (seconden). Wacht zo lang en probeer het opnieuw."], [], None),
+                "Elke sleutel mag 600 verzoeken per minuut doen, geteld in vaste vensters van een minuut. Elk antwoord voor een geauthenticeerde sleutel bevat X-RateLimit-Limit, X-RateLimit-Remaining en X-RateLimit-Reset (unix-seconden waarop het venster eindigt).",
+                "Nog voordat de sleutel wordt opgezocht geldt een tweede limiet van 1.200 verzoeken per minuut per IP-adres. Boven een van beide limieten krijgt u 429 rate_limited met een Retry-After-header (seconden). Wacht zo lang en probeer het opnieuw."], [], None),
             ("errors", "Foutmeldingen", [
-                "Elke fout is JSON in dezelfde vorm: {\"error\":{\"code\":\"…\",\"message\":\"…\"}}. Verwerk fouten op basis van de HTTP-status en de code, niet op de tekst van het bericht. Antwoorden worden nooit gecachet (Cache-Control: no-store). De volledige lijst met codes staat in de referentie hieronder."], [], None),
+                "Elke fout is JSON in dezelfde vorm: {\"error\":{\"code\":\"…\",\"message\":\"…\",\"detail\":\"…\"}}. De code komt uit een vaste lijst (de foutvorm in de referentie): gebruik die voor uw logica. Het bericht is voor mensen. Het optionele detail noemt een specifieke reden achter een algemene code, bijvoorbeeld ref_exists of invalid_transition. Het ontbreekt als er niets specifiekers is, en er kunnen nieuwe waarden bijkomen, behandel een onbekend detail dus als geen detail. Antwoorden worden nooit gecachet (Cache-Control: no-store). De volledige lijst met codes staat in de referentie hieronder."], [], None),
             ("paging", "Paginering", [
                 "Lijstendpoints geven {\"data\": [...], \"next_cursor\": \"…\"} terug. Geef next_cursor door als parameter cursor om de volgende pagina te krijgen, tot hij null is. Cursors zijn ondoorzichtig: bouw of wijzig ze niet. Records staan met de nieuwste eerst. De paginagrootte stelt u in met limit (1 tot 200, standaard 50)."], [], None),
+            ("idempotency", "Idempotentie", ["Stuur een Idempotency-Key-header (1 tot 255 zichtbare tekens) mee bij POST en PATCH om een nieuwe poging veilig te maken. Het eerste verzoek met een sleutel wordt uitgevoerd. Een herhaling met dezelfde sleutel, methode, pad en body geeft het opgeslagen antwoord terug, gemarkeerd met Idempotent-Replayed: true, en wijzigt niets. Terwijl het eerste verzoek nog loopt, krijgt een herhaling 409 idempotency_in_progress. Dezelfde sleutel met een ander verzoek geeft 422 idempotency_key_reused. Sleutels blijven 24 uur bewaard per API-sleutel. Na een 5xx-antwoord wordt de sleutel vrijgegeven, zodat u het opnieuw kunt proberen."], [], None),
+            ("conditional", "Voorwaardelijke verzoeken", ["Een GET van één record, referentie of terugbetaling geeft een ETag terug. Stuur die terug als If-None-Match om 304 Not Modified te krijgen wanneer er niets is veranderd. Stuur hem als If-Match mee bij een PATCH om de resource alleen te wijzigen als het nog de versie is die u las, anders krijgt u 412 precondition_failed en verandert er niets. If-Match is optioneel."], [], None),
+            ("webhooks", "Webhooks", ["PODFY kan ook zelf events naar uw server sturen, zodat u de API niet hoeft te bevragen. De events staan in de referentie hieronder en de gids legt uit hoe u ze ontvangt en verifieert."], [], "webhooks"),
         ],
         "ref_eyebrow": "Referentie", "ref_title": "Operaties",
         "ref_note": "De referentie hieronder is gegenereerd uit het OpenAPI-bestand en staat in elke taal in het Engels. Download de specificatie:",
@@ -332,6 +430,7 @@ INTRO = {
         "crumb_home": "Startseite", "crumb": "API-Referenz",
         "eyebrow": "Für Entwickler", "h1": "PODFY Open API", "h1em": "Referenz",
         "sub": "Rufen Sie Meldungen und Nachweise ab, aktualisieren Sie deren Status und verwalten Sie Ihr Referenzregister aus Ihren eigenen Systemen. Eine JSON-REST-API, Teil von PODFY Advanced.",
+        "wh_link": "Zum Leitfaden: Webhooks empfangen",
         "download": "openapi.json herunterladen", "contact": "Fragen zu Advanced", "toc": "Auf dieser Seite", "toc_ref": "API-Referenz",
         "sections": [
             ("overview", "Was die API ist", [
@@ -345,14 +444,17 @@ INTRO = {
                 "Ein fehlender, fehlerhafter, unbekannter oder widerrufener Schlüssel erhält immer dieselbe Antwort: 401 invalid_key. Ein Schlüssel ohne den erforderlichen Scope erhält 403 insufficient_scope."], [], "auth"),
             ("environments", "Live- und Testschlüssel", [
                 "Schlüssel mit dem Präfix pk_live_ sehen nur Produktivdatensätze. Schlüssel mit dem Präfix pk_test_ (nur QA-Datensätze) sehen nur Testdatensätze von qa.podfy.app, deren PODFY-IDs mit QA- beginnen. Die beiden Umgebungen vermischen sich nie.",
-                "Das Referenzregister wird mit der Produktion geteilt, daher können Testschlüssel keine Referenzen anlegen oder ändern (403 insufficient_scope). Ein Datensatz oder eine Referenz einer anderen Marke oder ein Datensatz der anderen Umgebung ergibt 404 not_found, nie 403."], [], None),
+                "Das Referenzregister wird mit der Produktion geteilt, daher können Testschlüssel keine Referenzen anlegen oder ändern (403 read_only_key). Ein Datensatz oder eine Referenz einer anderen Marke oder ein Datensatz der anderen Umgebung ergibt 404 not_found, nie 403."], [], None),
             ("limits", "Rate Limit", [
-                "Jeder Schlüssel darf 600 Anfragen pro Minute stellen, gezählt in festen Minutenfenstern. Jede Antwort enthält X-RateLimit-Limit, X-RateLimit-Remaining und X-RateLimit-Reset (Unix-Sekunden, zu denen das Fenster endet).",
-                "Über dem Limit erhalten Sie 429 rate_limited mit einem Retry-After-Header (Sekunden). Warten Sie diese Zeit ab und versuchen Sie es erneut."], [], None),
+                "Jeder Schlüssel darf 600 Anfragen pro Minute stellen, gezählt in festen Minutenfenstern. Jede Antwort für einen authentifizierten Schlüssel enthält X-RateLimit-Limit, X-RateLimit-Remaining und X-RateLimit-Reset (Unix-Sekunden, zu denen das Fenster endet).",
+                "Noch bevor der Schlüssel nachgeschlagen wird, gilt ein zweites Limit von 1.200 Anfragen pro Minute pro IP-Adresse. Über einem der beiden Limits erhalten Sie 429 rate_limited mit einem Retry-After-Header (Sekunden). Warten Sie diese Zeit ab und versuchen Sie es erneut."], [], None),
             ("errors", "Fehler", [
-                "Jeder Fehler ist JSON in derselben Form: {\"error\":{\"code\":\"…\",\"message\":\"…\"}}. Verarbeiten Sie Fehler anhand des HTTP-Status und des Codes, nicht anhand des Nachrichtentexts. Antworten werden nie zwischengespeichert (Cache-Control: no-store). Die vollständige Liste der Codes finden Sie in der Referenz weiter unten."], [], None),
+                "Jeder Fehler ist JSON in derselben Form: {\"error\":{\"code\":\"…\",\"message\":\"…\",\"detail\":\"…\"}}. Der Code stammt aus einer festen Liste (die Fehlerform in der Referenz): Nutzen Sie ihn für Ihre Logik. Die Nachricht ist für Menschen. Das optionale detail nennt einen konkreten Grund hinter einem allgemeinen Code, zum Beispiel ref_exists oder invalid_transition. Es fehlt, wenn es nichts Genaueres gibt, und es können neue Werte hinzukommen, behandeln Sie ein unbekanntes detail daher wie keines. Antworten werden nie zwischengespeichert (Cache-Control: no-store). Die vollständige Liste der Codes finden Sie in der Referenz weiter unten."], [], None),
             ("paging", "Seitenweise Abfrage", [
                 "Listen-Endpunkte liefern {\"data\": [...], \"next_cursor\": \"…\"}. Geben Sie next_cursor als Parameter cursor zurück, um die nächste Seite zu erhalten, bis er null ist. Cursor sind undurchsichtig: Bauen oder ändern Sie sie nicht. Datensätze werden neueste zuerst aufgelistet. Die Seitengröße legen Sie mit limit fest (1 bis 200, Standard 50)."], [], None),
+            ("idempotency", "Idempotenz", ["Senden Sie bei POST und PATCH einen Idempotency-Key-Header (1 bis 255 sichtbare Zeichen) mit, damit eine Wiederholung sicher ist. Die erste Anfrage mit einem Schlüssel wird ausgeführt. Eine Wiederholung mit demselben Schlüssel, derselben Methode, demselben Pfad und demselben Body liefert die gespeicherte Antwort, markiert mit Idempotent-Replayed: true, und ändert nichts. Läuft die erste Anfrage noch, erhält eine Wiederholung 409 idempotency_in_progress. Derselbe Schlüssel mit einer anderen Anfrage ergibt 422 idempotency_key_reused. Schlüssel werden 24 Stunden pro API-Schlüssel aufbewahrt. Nach einer 5xx-Antwort wird der Schlüssel freigegeben, sodass Sie es erneut versuchen können."], [], None),
+            ("conditional", "Bedingte Anfragen", ["Ein GET auf einen einzelnen Datensatz, eine Referenz oder eine Erstattung liefert ein ETag. Senden Sie es als If-None-Match zurück, um 304 Not Modified zu erhalten, wenn sich nichts geändert hat. Senden Sie es als If-Match bei einem PATCH, um die Ressource nur zu ändern, wenn sie noch der Version entspricht, die Sie gelesen haben, sonst erhalten Sie 412 precondition_failed und nichts wird geändert. If-Match ist optional."], [], None),
+            ("webhooks", "Webhooks", ["PODFY kann Ereignisse auch selbst an Ihren Server senden, damit Sie die API nicht abfragen müssen. Die Ereignisse stehen in der Referenz weiter unten, und der Leitfaden erklärt, wie Sie sie empfangen und prüfen."], [], "webhooks"),
         ],
         "ref_eyebrow": "Referenz", "ref_title": "Operationen",
         "ref_note": "Die Referenz weiter unten wird aus der OpenAPI-Datei erzeugt und ist in jeder Sprache auf Englisch. Spezifikation herunterladen:",
@@ -364,6 +466,7 @@ INTRO = {
         "crumb_home": "Accueil", "crumb": "Référence API",
         "eyebrow": "Pour les développeurs", "h1": "API ouverte PODFY", "h1em": "référence",
         "sub": "Récupérez les enregistrements, mettez à jour leur statut et gérez votre registre de références depuis vos propres systèmes. Une API REST JSON, incluse dans PODFY Advanced.",
+        "wh_link": "Lire le guide de réception des webhooks",
         "download": "Télécharger openapi.json", "contact": "Questions sur Advanced", "toc": "Sur cette page", "toc_ref": "Référence de l'API",
         "sections": [
             ("overview", "Ce qu'est l'API", [
@@ -377,14 +480,17 @@ INTRO = {
                 "Une clé absente, mal formée, inconnue ou révoquée reçoit toujours la même réponse : 401 invalid_key. Une clé sans le scope requis reçoit 403 insufficient_scope."], [], "auth"),
             ("environments", "Clés live et clés de test", [
                 "Les clés qui commencent par pk_live_ ne voient que les enregistrements de production. Les clés qui commencent par pk_test_ (enregistrements QA uniquement) ne voient que les enregistrements de test de qa.podfy.app, dont les ID PODFY commencent par QA-. Les deux environnements ne se mélangent jamais.",
-                "Le registre de références est partagé avec la production : les clés de test ne peuvent donc ni créer ni modifier de références (403 insufficient_scope). Un enregistrement ou une référence d'une autre marque, ou un enregistrement de l'autre environnement, répond 404 not_found, jamais 403."], [], None),
+                "Le registre de références est partagé avec la production : les clés de test ne peuvent donc ni créer ni modifier de références (403 read_only_key). Un enregistrement ou une référence d'une autre marque, ou un enregistrement de l'autre environnement, répond 404 not_found, jamais 403."], [], None),
             ("limits", "Limite de débit", [
-                "Chaque clé peut effectuer 600 requêtes par minute, comptées par fenêtres fixes d'une minute. Chaque réponse contient X-RateLimit-Limit, X-RateLimit-Remaining et X-RateLimit-Reset (secondes unix de la fin de la fenêtre).",
-                "Au-delà de la limite, vous recevez 429 rate_limited avec un en-tête Retry-After (secondes). Attendez ce délai, puis réessayez."], [], None),
+                "Chaque clé peut effectuer 600 requêtes par minute, comptées par fenêtres fixes d'une minute. Chaque réponse pour une clé authentifiée contient X-RateLimit-Limit, X-RateLimit-Remaining et X-RateLimit-Reset (secondes unix de la fin de la fenêtre).",
+                "Avant même la recherche de la clé, une seconde limite de 1 200 requêtes par minute et par adresse IP s'applique. Au-delà de l'une ou l'autre limite, vous recevez 429 rate_limited avec un en-tête Retry-After (secondes). Attendez ce délai, puis réessayez."], [], None),
             ("errors", "Erreurs", [
-                "Chaque erreur est un JSON de même forme : {\"error\":{\"code\":\"…\",\"message\":\"…\"}}. Traitez les erreurs selon le statut HTTP et le code, pas selon le texte du message. Les réponses ne sont jamais mises en cache (Cache-Control: no-store). La liste complète des codes figure dans la référence ci-dessous."], [], None),
+                "Chaque erreur est un JSON de même forme : {\"error\":{\"code\":\"…\",\"message\":\"…\",\"detail\":\"…\"}}. Le code vient d'une liste fixe (la forme d'erreur de la référence) : utilisez-le pour votre logique. Le message s'adresse aux personnes. Le champ optionnel detail nomme une raison précise derrière un code général, par exemple ref_exists ou invalid_transition. Il est absent quand il n'y a rien de plus précis, et de nouvelles valeurs peuvent apparaître : traitez un detail inconnu comme une absence de detail. Les réponses ne sont jamais mises en cache (Cache-Control: no-store). La liste complète des codes figure dans la référence ci-dessous."], [], None),
             ("paging", "Pagination", [
                 "Les points de terminaison de liste renvoient {\"data\": [...], \"next_cursor\": \"…\"}. Renvoyez next_cursor comme paramètre cursor pour obtenir la page suivante, jusqu'à ce qu'il soit null. Les curseurs sont opaques : ne les construisez pas et ne les modifiez pas. Les enregistrements sont listés du plus récent au plus ancien. La taille de page se règle avec limit (de 1 à 200, 50 par défaut)."], [], None),
+            ("idempotency", "Idempotence", ["Envoyez un en-tête Idempotency-Key (1 à 255 caractères visibles) avec POST et PATCH pour rendre une nouvelle tentative sûre. La première requête avec une clé est exécutée. Une répétition avec la même clé, la même méthode, le même chemin et le même corps renvoie la réponse enregistrée, marquée Idempotent-Replayed: true, et ne modifie rien. Tant que la première requête est en cours, une répétition reçoit 409 idempotency_in_progress. La même clé avec une requête différente reçoit 422 idempotency_key_reused. Les clés sont conservées 24 heures par clé API. Après une réponse 5xx, la clé est libérée : vous pouvez réessayer."], [], None),
+            ("conditional", "Requêtes conditionnelles", ["Un GET d'un seul enregistrement, d'une référence ou d'un remboursement renvoie un ETag. Renvoyez-le dans If-None-Match pour obtenir 304 Not Modified quand rien n'a changé. Envoyez-le dans If-Match avec un PATCH pour ne modifier la ressource que si elle est toujours dans la version que vous avez lue, sinon vous recevez 412 precondition_failed et rien ne change. If-Match est facultatif."], [], None),
+            ("webhooks", "Webhooks", ["PODFY peut aussi envoyer lui-même des événements à votre serveur, sans que vous interrogiez l'API. Les événements sont listés dans la référence ci-dessous et le guide explique comment les recevoir et les vérifier."], [], "webhooks"),
         ],
         "ref_eyebrow": "Référence", "ref_title": "Opérations",
         "ref_note": "La référence ci-dessous est générée à partir du fichier OpenAPI et reste en anglais dans toutes les langues. Téléchargez la spécification :",
@@ -392,10 +498,11 @@ INTRO = {
     },
 }
 # The generated reference is English whatever the page language: its labels stay English too.
-REF_LABELS = {"scope": "Required scope", "params": "Parameters", "body": "Request body (JSON)", "response": "Response", "errors": "Errors", "example": "Example"}
+REF_LABELS = {"scope": "Required scope", "params": "Parameters", "body": "Request body (JSON)", "response": "Response", "errors": "Errors", "example": "Example",
+              "headers": "Response headers", "resp_example": "Example response", "webhooks": "Webhooks", "error_schema": "Error shape"}
 
 
-TOKEN = re.compile(r"(\{&quot;error.*?\}\}|\{&quot;data.*?&quot;\}|https://portal\.podfy\.net/api/v1|\b\d{3} [a-z_]+_[a-z_]+\b|\bpk_(?:live|test)_|\bQA-(?=\W)|qa\.podfy\.app|\bX-RateLimit-\w+|\bRetry-After\b|\bAuthorization\b|\bnext_cursor\b|\bCache-Control: no-store|\b(?:records|references):(?:read|write)\b|\bcursor\b(?= parameter| param)|\bparameter cursor\b|\blimit\b(?= \()|\bBearer\b)")
+TOKEN = re.compile(r"(\{&quot;error.*?\}\}|\{&quot;data.*?&quot;\}|https://portal\.podfy\.net/api/v1|\b\d{3} [a-z_]+_[a-z_]+\b|\bpk_(?:live|test)_|\bQA-(?=\W)|qa\.podfy\.app|\bX-RateLimit-\w+|\bRetry-After\b|\bAuthorization\b|\bnext_cursor\b|\bCache-Control: no-store|\b(?:records|references):(?:read|write)\b|\bcursor\b(?= parameter| param)|\bparameter cursor\b|\blimit\b(?= \()|\bBearer\b|\b(?:Idempotency-Key|Idempotent-Replayed|If-None-Match|If-Match|ETag)\b|\bread_only_key\b)")
 
 
 def intro_inline(text):
@@ -403,12 +510,14 @@ def intro_inline(text):
     return out
 
 
-def intro_html(spec, t):
+def intro_html(spec, t, prefix=""):
     out = []
     for sid, h, ps, bullets, code in t["sections"]:
         body = "".join(f"<p>{intro_inline(p)}</p>" for p in ps)
         if bullets:
             body += '<ul class="v2-check-list">' + "".join(f"<li>{intro_inline(b)}</li>" for b in bullets) + "</ul>"
+        if code == "webhooks":
+            body += f'<p><a class="v2-link" href="{esc(prefix)}/docs/webhooks/">{esc(t["wh_link"])} &rarr;</a></p>'
         if code == "auth":
             body += code_block(f'curl -H "Authorization: Bearer $PODFY_API_KEY" \\\n  "{server(spec)}/records?limit=10"')
         out.append(f'''    <section class="v2-section" id="{sid}" aria-labelledby="{sid}-h">

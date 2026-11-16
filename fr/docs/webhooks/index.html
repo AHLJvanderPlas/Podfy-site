@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Recevoir les webhooks | PODFY</title>
+  <meta name="description" content="Comment recevoir et vérifier les webhooks PODFY : événements, payload, signature (v1, v2), nouvelles tentatives et exemples en Node.js et Python." />
+  <link rel="canonical" href="https://podfy.net/fr/docs/webhooks/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PODFY" />
+  <meta property="og:title" content="Recevoir les webhooks | PODFY" />
+  <meta property="og:description" content="Comment recevoir et vérifier les webhooks PODFY : événements, payload, signature (v1, v2), nouvelles tentatives et exemples en Node.js et Python." />
+  <meta property="og:url" content="https://podfy.net/fr/docs/webhooks/" />
+  <meta property="og:image" content="https://podfy.net/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Recevoir les webhooks | PODFY" />
+  <meta name="twitter:description" content="Comment recevoir et vérifier les webhooks PODFY : événements, payload, signature (v1, v2), nouvelles tentatives et exemples en Node.js et Python." />
+  <meta name="twitter:image" content="https://podfy.net/assets/og-image.jpg" />
+  <link rel="alternate" hreflang="en" href="https://podfy.net/docs/webhooks/" />
+  <link rel="alternate" hreflang="nl" href="https://podfy.net/nl/docs/webhooks/" />
+  <link rel="alternate" hreflang="de" href="https://podfy.net/de/docs/webhooks/" />
+  <link rel="alternate" hreflang="fr" href="https://podfy.net/fr/docs/webhooks/" />
+  <link rel="alternate" hreflang="x-default" href="https://podfy.net/docs/webhooks/" />
+  <link rel="stylesheet" href="/assets/styles.site.css?v=v3-r15" />
+  <script src="/assets/theme.js" defer></script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://podfy.net/fr/"}, {"@type": "ListItem", "position": 2, "name": "Guide des webhooks", "item": "https://podfy.net/fr/docs/webhooks/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "TechArticle", "headline": "Recevoir les webhooks", "description": "Comment recevoir et vérifier les webhooks PODFY : événements, payload, signature (v1, v2), nouvelles tentatives et exemples en Node.js et Python.", "inLanguage": "fr", "url": "https://podfy.net/fr/docs/webhooks/", "publisher": {"@type": "Organization", "name": "PODFY", "url": "https://podfy.net/"}}
+  </script>
+<link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
+<script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
+</head>
+<body class="v2">
+  <div id="v2-progress"></div>
+  <a href="#main" class="sr-only">Aller au contenu</a>
+  [[PODFY_HEADER]]
+<nav class="v2-breadcrumb" aria-label="Breadcrumb"><div class="container"><ol class="v2-breadcrumb-list"><li><a href="/fr/">Accueil</a></li><li aria-current="page">Guide des webhooks</li></ol></div></nav>
+
+  <main id="main" class="v2-main">
+    <section class="home-hero" aria-labelledby="wh-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Pour les développeurs</p>
+        <h1 class="v2-hero-title home-title" id="wh-heading">Guide des <em>webhooks</em></h1>
+        <p class="v2-hero-sub home-sub">Recevez les événements PODFY sur votre propre serveur et vérifiez que chaque requête est authentique : signature, nouvelles tentatives et exemples de code.</p>
+        <div class="v2-rp-actions"><a href="/fr/docs/api/" class="v2-btn v2-btn-ghost">Référence de l&#x27;API</a></div>
+        <nav class="api-toc" aria-label="Sur cette page"><p class="v2-eyebrow">Sur cette page</p><ul><li><a href="#overview">Ce qu&#x27;est un webhook ici</a></li><li><a href="#setup">Configurer et tester un webhook</a></li><li><a href="#targets">Où PODFY envoie</a></li><li><a href="#reference">Référence</a></li></ul></nav>
+      </div>
+    </section>
+
+    <section class="v2-section" id="overview" aria-labelledby="overview-h">
+      <div class="container">
+        <h2 class="v2-section-title" id="overview-h">Ce qu&#x27;est un webhook ici</h2>
+        <div class="v2-prose api-intro"><p>Un webhook est une requête que PODFY envoie à votre serveur dès qu&#x27;il se passe quelque chose : une preuve de livraison ou un signalement arrive, un statut de traitement change ou un remboursement est approuvé. Vous n&#x27;avez pas à interroger l&#x27;API en continu. Chaque requête est signée : votre serveur peut ainsi vérifier qu&#x27;elle vient bien de PODFY et n&#x27;a pas été modifiée en chemin.</p><p>Cette page explique comment recevoir les webhooks. Les événements et le format du corps de la requête figurent dans la référence ci-dessous, en anglais, comme la référence de l&#x27;API. L&#x27;API REST est décrite dans la référence de l&#x27;API.</p></div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="setup" aria-labelledby="setup-h">
+      <div class="container">
+        <h2 class="v2-section-title" id="setup-h">Configurer et tester un webhook</h2>
+        <div class="v2-prose api-intro"><p>Un administrateur de votre marque ajoute un webhook dans le portail (en anglais), sous <code>Settings → Integrations → Webhooks</code>, avec <code>Add webhook</code>. Saisissez l&#x27;adresse HTTPS de votre récepteur et choisissez les événements. Le secret avec lequel PODFY signe n&#x27;est affiché qu&#x27;une fois : conservez-le dans votre gestionnaire de secrets. Avec <code>New secret</code>, vous créez un nouveau secret : l&#x27;ancien reste valable 24 heures, ce qui vous laisse le temps de basculer votre récepteur sans manquer une requête.</p><p>Avec <code>Send test</code>, PODFY envoie un événement <code>webhook.test</code> avec les vrais en-têtes et la vraie signature à votre adresse, pour que vous puissiez tester votre vérification avant l&#x27;arrivée d&#x27;événements réels. Le journal des envois du portail affiche le code de réponse de chaque tentative, et <code>Resend</code> renvoie un envoi.</p><p>Si vous n&#x27;avez pas encore de récepteur, demandez au support PODFY une boîte de test. Elle accepte les requêtes signées et montre ce qui est arrivé. Selon son réglage QA, un webhook reçoit soit les enregistrements de production, soit uniquement les enregistrements de test de <code>qa.podfy.app</code>.</p></div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="targets" aria-labelledby="targets-h">
+      <div class="container">
+        <h2 class="v2-section-title" id="targets-h">Où PODFY envoie</h2>
+        <div class="v2-prose api-intro"><p>PODFY n&#x27;envoie qu&#x27;à des adresses HTTPS dont le nom d&#x27;hôte est public, sur le port 443. Les adresses IP, les adresses avec identifiant ou mot de passe, les hôtes de PODFY lui-même et les hôtes sous <code>workers.dev</code> ou <code>pages.dev</code> sont refusés à l&#x27;enregistrement. PODFY ne suit pas les redirections : indiquez donc l&#x27;adresse finale.</p><p>Un webhook peut aussi utiliser <code>GET</code> avec sa propre chaîne de requête (charge utile personnalisée). La signature couvre alors l&#x27;URL complète, voir la référence.</p></div>
+      </div>
+    </section>
+
+    <section class="v2-section" id="reference" aria-labelledby="ref-heading">
+      <div class="container">
+        <p class="v2-eyebrow">Référence</p>
+        <h2 class="v2-section-title" id="ref-heading">Recevoir les webhooks</h2>
+        <p class="v2-prose api-note">La référence ci-dessous reste en anglais dans toutes les langues, comme la référence de l&#x27;API.</p>
+        <h3 class="api-sub" id="events">Events</h3><p>A webhook subscribes to the events it lists, or to all standard events with <code>*</code>. <code>*</code> never matches the refund events: list <code>refund.approved</code> and <code>refund.updated</code> by name.</p><div class="api-table-wrap" tabindex="0" role="region" aria-label="Table: Event, Sent when, Notes"><table class="api-table"><thead><tr><th scope="col">Event</th><th scope="col">Sent when</th><th scope="col">Notes</th></tr></thead><tbody><tr><td><code>pod.created</code></td><td>A new record of a brand in delivery mode (a proof of delivery was uploaded).</td><td></td></tr><tr><td><code>report.created</code></td><td>A new record of a brand in report mode (a QR report was submitted).</td><td></td></tr><tr><td><code>record.status_changed</code></td><td>The work status of a record changed (portal, bulk change or API).</td><td>Adds <code>change</code>.</td></tr><tr><td><code>record.updated</code></td><td>Another field of a record changed: <code>assignee</code>, <code>priority</code> or <code>duplicate_of</code>. One event per changed field. A comment alone sends nothing.</td><td>Adds <code>change</code>.</td></tr><tr><td><code>webhook.test</code></td><td>A brand admin pressed Send test in the portal.</td><td>A sample or the latest record, with the real headers and signature.</td></tr><tr><td><code>refund.approved</code></td><td>A refund request was approved. PODFY records and forwards the request; it never pays out.</td><td>Only when the webhook lists it by name. Adds <code>record.refund</code>.</td></tr><tr><td><code>refund.updated</code></td><td>A refund was rejected, or its payout result (<code>paid</code> or <code>failed</code>) was recorded through the API.</td><td>Only when the webhook lists it by name. Adds <code>record.refund</code>.</td></tr></tbody></table></div>
+        <h3 class="api-sub" id="request">The request</h3><p>PODFY sends a signed request to your URL for every event (POST with a JSON body, or GET for a custom webhook).</p><div class="api-table-wrap" tabindex="0" role="region" aria-label="Table: Header, Value"><table class="api-table"><thead><tr><th scope="col">Header</th><th scope="col">Value</th></tr></thead><tbody><tr><td><code>Podfy-Signature</code></td><td><code>t=&lt;unix seconds&gt;,v1=&lt;hex&gt;,v2=&lt;hex&gt;</code>. See Verify the signature.</td></tr><tr><td><code>Podfy-Delivery</code></td><td>Unique delivery id (<code>dlv_…</code>). Identical on every retry of the same delivery.</td></tr><tr><td><code>Podfy-Event</code></td><td>The event name, as in the body.</td></tr><tr><td><code>Content-Type</code></td><td><code>application/json</code> for the standard payload. A custom webhook sends the content type you chose.</td></tr><tr><td><code>User-Agent</code></td><td><code>PODFY-Webhooks/1.0</code></td></tr></tbody></table></div>
+        <h3 class="api-sub" id="payload">The payload</h3><p>This is the standard body. A custom webhook sends the body you built from the template.</p><div class="api-table-wrap" tabindex="0" role="region" aria-label="Table: Field, Type, Description"><table class="api-table"><thead><tr><th scope="col">Field</th><th scope="col">Type</th><th scope="col">Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>string</td><td>Event id (<code>evt_…</code>). Use it as an idempotency key.</td></tr><tr><td><code>version</code></td><td>integer</td><td>Payload format version, <code>1</code>. Bumped only for a breaking change; new fields do not bump it.</td></tr><tr><td><code>event</code></td><td>string</td><td>One of the events above.</td></tr><tr><td><code>created_at</code></td><td>string</td><td>ISO 8601 time of the event.</td></tr><tr><td><code>brand</code></td><td>string</td><td>The brand slug.</td></tr><tr><td><code>record</code></td><td>object</td><td>The record: <code>podfy_id</code>, <code>mode</code>, <code>reference</code>, <code>asset</code>, <code>category</code>, <code>priority</code>, <code>work_status</code>, <code>note</code>, <code>fields</code>, <code>group_id</code>, <code>files</code>, <code>location</code>, <code>duplicate_of</code>, <code>url</code> and <code>updated_at</code> (time of the last change of the record).</td></tr><tr><td><code>change</code></td><td>object</td><td>Only on <code>record.status_changed</code> and <code>record.updated</code>: <code>{field, from, to}</code>.</td></tr><tr><td><code>record.refund</code></td><td>object</td><td>Only on <code>refund.approved</code> and <code>refund.updated</code>: <code>{id, amount, currency, pay_ref, status, decided_at, result}</code>. Use <code>refund.id</code> as your idempotency key. The approver&#x27;s e-mail is never included.</td></tr></tbody></table></div><p><strong>Example: report.created</strong></p><pre class="api-code" tabindex="0"><code>{
+  &quot;id&quot;: &quot;evt_5d1e8a07b3c94f2a61d0e7f8&quot;,
+  &quot;version&quot;: 1,
+  &quot;event&quot;: &quot;report.created&quot;,
+  &quot;created_at&quot;: &quot;2026-11-16T09:24:00Z&quot;,
+  &quot;brand&quot;: &quot;acme&quot;,
+  &quot;record&quot;: {
+    &quot;podfy_id&quot;: &quot;PFY-7Q4K2-1&quot;,
+    &quot;mode&quot;: &quot;report&quot;,
+    &quot;reference&quot;: &quot;COFFEE-1&quot;,
+    &quot;asset&quot;: {
+      &quot;name&quot;: &quot;Coffee machine&quot;,
+      &quot;location&quot;: &quot;Floor 2&quot;,
+      &quot;group&quot;: &quot;B&quot;
+    },
+    &quot;category&quot;: &quot;NOT_WORKING&quot;,
+    &quot;priority&quot;: &quot;high&quot;,
+    &quot;work_status&quot;: &quot;new&quot;,
+    &quot;note&quot;: &quot;Makes a grinding noise&quot;,
+    &quot;fields&quot;: {
+      &quot;floor&quot;: &quot;2&quot;
+    },
+    &quot;group_id&quot;: &quot;PFY-7Q4K2&quot;,
+    &quot;files&quot;: [
+      {
+        &quot;name&quot;: &quot;photo.jpg&quot;,
+        &quot;url&quot;: &quot;https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file&quot;
+      }
+    ],
+    &quot;location&quot;: null,
+    &quot;duplicate_of&quot;: null,
+    &quot;url&quot;: &quot;https://portal.podfy.net/pod/3f9a0c1d2e4b5a69&quot;,
+    &quot;updated_at&quot;: &quot;2026-11-16T09:24:00Z&quot;
+  }
+}</code></pre>
+        <h3 class="api-sub" id="verify">Verify the signature</h3><p>Check every request before you trust it. You need the secret of the webhook, the <code>Podfy-Signature</code> and <code>Podfy-Delivery</code> headers and the raw request body.</p><ol><li>Split <code>Podfy-Signature</code> at the commas. Take <code>t</code> and every <code>v1</code> and <code>v2</code> value.</li><li>Reject the request when <code>t</code> is more than 5 minutes (300 seconds) away from your clock.</li><li>Compute <code>v2</code> = HMAC-SHA256 (hex) with your secret of <code>t + &quot;.&quot; + delivery id + &quot;.&quot; + raw body</code>, where the delivery id is the <code>Podfy-Delivery</code> header. This is recommended: it also binds the delivery id, so a captured request cannot be replayed under another one.</li><li><code>v1</code> = HMAC-SHA256 (hex) of <code>t + &quot;.&quot; + raw body</code>. It stays valid and is what you check when you do not use the delivery id.</li><li>Compare your value with the received one in constant time. Accept the request when any received pair matches (during a rotation there are two pairs).</li><li>Answer with a 2xx status. A request that fails verification should get a 4xx and no further processing.</li></ol><p>Sign the raw bytes. Parsing the JSON and serialising it again changes spacing and key order, and the signature will not match. A GET webhook has no body: the signed content is the full request URL as sent, including the query string.</p><h3 class="api-sub" id="worked-example">Worked example</h3><p>Secret, delivery id and body below are an example you can run your code against. The body is the exact string that was signed. Every character counts, so use the raw bytes you receive.</p><div class="api-table-wrap" tabindex="0" role="region" aria-label="Table: Part, Value"><table class="api-table"><thead><tr><th scope="col">Part</th><th scope="col">Value</th></tr></thead><tbody><tr><td>Secret</td><td><code id="we-secret">whsec_0123456789abcdef0123456789abcdef0123456789abcdef</code></td></tr><tr><td><code>t</code></td><td><code id="we-t">1795000000</code></td></tr><tr><td><code>Podfy-Delivery</code></td><td><code id="we-delivery">dlv_3f9a0c1d2e4b5a69c0de</code></td></tr></tbody></table></div><p><strong>Body</strong></p><pre class="api-code" tabindex="0"><code id="we-body">{&quot;id&quot;:&quot;evt_5d1e8a07b3c94f2a61d0e7f8&quot;,&quot;version&quot;:1,&quot;event&quot;:&quot;report.created&quot;,&quot;created_at&quot;:&quot;2026-11-16T09:24:00Z&quot;,&quot;brand&quot;:&quot;acme&quot;,&quot;record&quot;:{&quot;podfy_id&quot;:&quot;PFY-7Q4K2-1&quot;,&quot;mode&quot;:&quot;report&quot;,&quot;reference&quot;:&quot;COFFEE-1&quot;,&quot;asset&quot;:{&quot;name&quot;:&quot;Coffee machine&quot;,&quot;location&quot;:&quot;Floor 2&quot;,&quot;group&quot;:&quot;B&quot;},&quot;category&quot;:&quot;NOT_WORKING&quot;,&quot;priority&quot;:&quot;high&quot;,&quot;work_status&quot;:&quot;new&quot;,&quot;note&quot;:&quot;Makes a grinding noise&quot;,&quot;fields&quot;:{&quot;floor&quot;:&quot;2&quot;},&quot;group_id&quot;:&quot;PFY-7Q4K2&quot;,&quot;files&quot;:[{&quot;name&quot;:&quot;photo.jpg&quot;,&quot;url&quot;:&quot;https://portal.podfy.net/api/public/pod/3f9a0c1d2e4b5a69/file&quot;}],&quot;location&quot;:null,&quot;duplicate_of&quot;:null,&quot;url&quot;:&quot;https://portal.podfy.net/pod/3f9a0c1d2e4b5a69&quot;,&quot;updated_at&quot;:&quot;2026-11-16T09:24:00Z&quot;}}</code></pre><p><strong>Podfy-Signature</strong></p><pre class="api-code" tabindex="0"><code id="we-header">t=1795000000,v1=7a4613e656dc09602ed02650fc2439d25640c0e0af5e7964446ac850feb81a0d,v2=32cb0d5cef76e5d988b540c71b54aea8047766be7cc9eb761a950c0deab398a9</code></pre><p>With a rotation in progress the header holds a second <code>v1</code>/<code>v2</code> pair made with the previous secret, for example <code>t=…,v1=A,v2=A,v1=B,v2=B</code>.</p>
+        <h3 class="api-sub" id="samples">Code samples</h3><p>Both samples use only the standard library of the language. They check the timestamp, compare in constant time, prefer <code>v2</code> when the delivery id is available and accept any matching pair.</p><h4 class="api-sample-h">Node.js: verify.js</h4><pre class="api-code" tabindex="0"><code id="sample-node">const crypto = require(&quot;node:crypto&quot;);
+
+// rawBody: the request body exactly as received (Buffer), never re-serialised JSON.
+// For a GET webhook pass the full request URL instead of a body.
+function verifyPodfyWebhook(secret, signatureHeader, deliveryId, rawBody, nowSeconds = Math.floor(Date.now() / 1000)) {
+  let t = null;
+  const v1 = [];
+  const v2 = [];
+  for (const part of String(signatureHeader || &quot;&quot;).split(&quot;,&quot;)) {
+    const i = part.indexOf(&quot;=&quot;);
+    if (i &lt; 1) continue;
+    const key = part.slice(0, i).trim();
+    const value = part.slice(i + 1).trim();
+    if (key === &quot;t&quot;) t = value;
+    else if (key === &quot;v1&quot;) v1.push(value);
+    else if (key === &quot;v2&quot;) v2.push(value);
+  }
+  const timestamp = Number(t);
+  if (!t || !Number.isFinite(timestamp)) return false;
+  if (Math.abs(nowSeconds - timestamp) &gt; 300) return false; // older (or newer) than 5 minutes
+
+  const body = Buffer.isBuffer(rawBody) ? rawBody : Buffer.from(String(rawBody), &quot;utf8&quot;);
+  const sign = (prefix) =&gt;
+    crypto.createHmac(&quot;sha256&quot;, secret).update(prefix).update(body).digest(&quot;hex&quot;);
+  const equal = (a, b) =&gt;
+    a.length === b.length &amp;&amp; crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
+
+  // v2 also binds the delivery id (recommended). During a secret rotation the header holds two pairs:
+  // accept the request when any of them matches.
+  if (deliveryId &amp;&amp; v2.length) {
+    const expected = sign(`${t}.${deliveryId}.`);
+    return v2.some((candidate) =&gt; equal(expected, candidate));
+  }
+  const expected = sign(`${t}.`);
+  return v1.some((candidate) =&gt; equal(expected, candidate));
+}
+
+module.exports = { verifyPodfyWebhook };
+</code></pre><h4 class="api-sample-h">Node.js: a receiver</h4><pre class="api-code" tabindex="0"><code id="sample-node-server">const http = require(&quot;node:http&quot;);
+const { verifyPodfyWebhook } = require(&quot;./verify&quot;);
+
+const secret = process.env.PODFY_WEBHOOK_SECRET;
+const seen = new Set(); // use a database or cache with an expiry in production
+
+http.createServer((req, res) =&gt; {
+  const chunks = [];
+  req.on(&quot;data&quot;, (chunk) =&gt; chunks.push(chunk));
+  req.on(&quot;end&quot;, () =&gt; {
+    const rawBody = Buffer.concat(chunks);
+    const ok = verifyPodfyWebhook(secret, req.headers[&quot;podfy-signature&quot;], req.headers[&quot;podfy-delivery&quot;], rawBody);
+    if (!ok) { res.writeHead(400).end(); return; }
+
+    res.writeHead(200).end(&quot;ok&quot;); // answer within 10 seconds, then process
+    const event = JSON.parse(rawBody.toString(&quot;utf8&quot;));
+    if (seen.has(event.id)) return; // a retry of an event you already handled
+    seen.add(event.id);
+    console.log(event.event, event.record.podfy_id);
+  });
+}).listen(3000);
+</code></pre><h4 class="api-sample-h">Python: verify.py</h4><pre class="api-code" tabindex="0"><code id="sample-python">import hashlib
+import hmac
+import time
+
+
+def verify_podfy_webhook(secret, signature_header, delivery_id, raw_body, now=None):
+    &quot;&quot;&quot;raw_body: the request body as bytes, exactly as received (for a GET webhook: the full URL as bytes).&quot;&quot;&quot;
+    t, v1, v2 = None, [], []
+    for part in (signature_header or &quot;&quot;).split(&quot;,&quot;):
+        key, _, value = part.strip().partition(&quot;=&quot;)
+        if key == &quot;t&quot;:
+            t = value
+        elif key == &quot;v1&quot;:
+            v1.append(value)
+        elif key == &quot;v2&quot;:
+            v2.append(value)
+    try:
+        timestamp = int(t)
+    except (TypeError, ValueError):
+        return False
+    if abs((time.time() if now is None else now) - timestamp) &gt; 300:  # older (or newer) than 5 minutes
+        return False
+
+    def sign(prefix):
+        return hmac.new(secret.encode(), prefix.encode() + raw_body, hashlib.sha256).hexdigest()
+
+    # v2 also binds the delivery id (recommended). During a secret rotation the header holds two pairs:
+    # accept the request when any of them matches.
+    if delivery_id and v2:
+        expected, candidates = sign(f&quot;{t}.{delivery_id}.&quot;), v2
+    else:
+        expected, candidates = sign(f&quot;{t}.&quot;), v1
+    return any(hmac.compare_digest(expected, c) for c in candidates)
+</code></pre><h4 class="api-sample-h">Python: a receiver</h4><pre class="api-code" tabindex="0"><code id="sample-python-server">from http.server import BaseHTTPRequestHandler, HTTPServer
+import json
+import os
+
+SECRET = os.environ[&quot;PODFY_WEBHOOK_SECRET&quot;]
+seen = set()  # use a database or cache with an expiry in production
+
+
+class Handler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        raw_body = self.rfile.read(int(self.headers.get(&quot;Content-Length&quot;, 0)))
+        ok = verify_podfy_webhook(SECRET, self.headers.get(&quot;Podfy-Signature&quot;), self.headers.get(&quot;Podfy-Delivery&quot;), raw_body)
+        self.send_response(200 if ok else 400)
+        self.end_headers()
+        if not ok:
+            return
+        event = json.loads(raw_body)  # answered first in real code: queue the work
+        if event[&quot;id&quot;] in seen:  # a retry of an event you already handled
+            return
+        seen.add(event[&quot;id&quot;])
+        print(event[&quot;event&quot;], event[&quot;record&quot;][&quot;podfy_id&quot;])
+
+
+HTTPServer((&quot;&quot;, 3000), Handler).serve_forever()
+</code></pre>
+        <h3 class="api-sub" id="rotation">Secret rotation</h3><p>When a brand admin creates a new secret (New secret in the portal), the previous secret stays valid for 24 hours. During that time every request carries a second <code>v1</code>/<code>v2</code> pair signed with the previous secret. Accept the request when any pair matches: a receiver that still has the old secret and one that already has the new secret both verify. After 24 hours only the new secret signs.</p>
+        <h3 class="api-sub" id="delivery">Delivery, retries and idempotency</h3><ul class="v2-check-list"><li>Answer with any 2xx status within 10 seconds. Anything else, a timeout or a network error counts as a failure. Redirects are not followed. Answer first and process afterwards.</li><li>A failed delivery is tried again after 1 minute, 5 minutes, 30 minutes, 2 hours, 6 hours and 12 hours. After that it is marked <code>failed</code>. A delivery that stays <code>pending</code> is put back in the queue automatically. The delivery log in the portal shows every attempt, and Resend sends a delivery again by hand.</li><li>A delivery can arrive more than once (a retry after a timeout, or a resend). Treat the event <code>id</code> (and the <code>Podfy-Delivery</code> header) as the idempotency key: store the ids you handled and ignore a repeat. For refunds use <code>record.refund.id</code>.</li><li>Events of one record can arrive out of order. Use <code>record.updated_at</code> to ignore an older event.</li><li>Receivers must tolerate new fields. New fields are added without a new <code>version</code>; only a breaking change raises <code>version</code>.</li><li>A webhook with a custom payload sends your own body and content type. The headers and the signature are the same, and the signature covers the body as sent.</li></ul>
+        <h3 class="api-sub" id="targets">Allowed targets</h3><ul class="v2-check-list"><li>HTTPS only, on port 443, with a public host name. No IP addresses, no user name or password in the URL, no <code>podfy.app</code> or <code>podfy.net</code> hosts (except a PODFY test inbox address), no <code>workers.dev</code> or <code>pages.dev</code>, no local or internal host names.</li><li>The address is checked when you save the webhook. Variables of a custom payload are allowed in the query string and the body only, never in the scheme, host or path.</li></ul>
+      </div>
+    </section>
+  </main>
+
+  [[PODFY_FOOTER]]
+</body>
+</html>

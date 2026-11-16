@@ -21,6 +21,8 @@ VSQR_PATH = "/vs-qr-form-tools/"
 import sys; sys.path.insert(0, HERE)
 import apidocs  # API reference generator (docs/api/openapi.json)
 API_PATH = apidocs.PATH
+import webhookdocs  # webhook receiver guide (/docs/webhooks/)
+WH_PATH = webhookdocs.PATH
 
 
 def load(lang):
@@ -341,7 +343,7 @@ def sync_sitemap():
         for lang in LANGS:
             alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{url(l, path)}"/>' for l in LANGS)
             block.append(f"  <url>\n    <loc>{url(lang, path)}</loc>{alts}\n  </url>")
-    for path in ("/cmr/", "/qr/", VSQR_PATH, API_PATH):
+    for path in ("/cmr/", "/qr/", VSQR_PATH, API_PATH, WH_PATH):
         for lang in LANGS:
             alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE + pre(l) + path}"/>' for l in LANGS)
             block.append(f"  <url>\n    <loc>{SITE + pre(lang) + path}</loc>{alts}\n  </url>")
@@ -1085,7 +1087,7 @@ def build_vsqr(lang):
 def build_api(lang):
     """/docs/api/ in every locale: translated intro, generated English reference, TechArticle + BreadcrumbList."""
     spec, t, p = apidocs.load_spec(), apidocs.INTRO[lang], pre(lang)
-    labels = {**t, **apidocs.REF_LABELS}
+    labels = {**t, **apidocs.REF_LABELS, "wh_href": pre(lang) + WH_PATH}
     home = (p or "") + "/"
     crumbs = [(t["crumb_home"], SITE + home), (t["crumb"], page_url(lang, API_PATH))]
     ld = [{"@context": "https://schema.org", "@type": "BreadcrumbList",
@@ -1109,11 +1111,65 @@ def build_api(lang):
       </div>
     </section>
 
-{apidocs.intro_html(spec, t)}
+{apidocs.intro_html(spec, t, pre(lang))}
 
 {apidocs.reference_html(spec, labels)}
   </main>'''
     page_shell(lang, API_PATH, t["title"], t["desc"], ld, body)
+
+
+def build_webhooks(lang):
+    """/docs/webhooks/ in every locale: translated intro, English reference, TechArticle + BreadcrumbList."""
+    t, p = webhookdocs.INTRO[lang], pre(lang)
+    home = (p or "") + "/"
+    crumbs = [(t["crumb_home"], SITE + home), (t["crumb"], page_url(lang, WH_PATH))]
+    ld = [{"@context": "https://schema.org", "@type": "BreadcrumbList",
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(crumbs)]},
+          {"@context": "https://schema.org", "@type": "TechArticle", "headline": re.sub(r" \| PODFY$", "", t["title"]),
+           "description": t["desc"], "inLanguage": lang, "url": page_url(lang, WH_PATH),
+           "publisher": {"@type": "Organization", "name": "PODFY", "url": SITE + "/"}}]
+    toc = "".join(f'<li><a href="#{sid}">{esc(h)}</a></li>' for sid, h, _ in t["sections"]) + f'<li><a href="#reference">{esc(t["toc_ref"])}</a></li>'
+    body = crumbs_nav([(t["crumb_home"], home), (t["crumb"], p + WH_PATH)]) + f'''
+
+  <main id="main" class="v2-main">
+    <section class="home-hero" aria-labelledby="wh-heading">
+      <div class="container">
+        <p class="v2-eyebrow">{esc(t["eyebrow"])}</p>
+        <h1 class="v2-hero-title home-title" id="wh-heading">{esc(t["h1"])} <em>{esc(t["h1em"])}</em></h1>
+        <p class="v2-hero-sub home-sub">{esc(t["sub"])}</p>
+        <div class="v2-rp-actions"><a href="{p}{API_PATH}" class="v2-btn v2-btn-ghost">{esc(t["api_btn"])}</a></div>
+        <nav class="api-toc" aria-label="{esc(t["toc"])}"><p class="v2-eyebrow">{esc(t["toc"])}</p><ul>{toc}</ul></nav>
+      </div>
+    </section>
+
+{webhookdocs.intro_html(t)}
+
+{webhookdocs.reference_html(t)}
+  </main>'''
+    page_shell(lang, WH_PATH, t["title"], t["desc"], ld, body)
+
+
+def webhooks_llms():
+    t = webhookdocs.INTRO["en"]
+    secs = "\n\n".join(f"## {h}\n" + "\n".join(ps) for _, h, ps in t["sections"])
+    return f"""---
+
+# {t["title"].replace(" | PODFY", "")}: PODFY
+Source: {SITE}{WH_PATH}
+
+{t["sub"]}
+
+{secs}
+
+## Events
+{webhookdocs.llms_text()}
+
+## Signature
+Header Podfy-Signature: t=<unix>,v1=<hex>[,v2=<hex>]. v1 = HMAC-SHA256(secret, t + "." + body) hex; v2 = HMAC-SHA256(secret, t + "." + Podfy-Delivery + "." + body) hex (recommended). Reject t older than 5 minutes, compare in constant time. During a secret rotation (24 hours) a second pair signed with the previous secret follows: accept if any pair matches.
+
+## Delivery
+Answer 2xx within 10 seconds. Retries after 1 min, 5 min, 30 min, 2 h, 6 h, 12 h, then failed. Use the event id (and Podfy-Delivery) as idempotency key. Receivers must tolerate new fields. Targets: HTTPS, public host names only.
+"""
 
 
 def api_llms():
@@ -1160,6 +1216,7 @@ def sync_llms():
 - QR Reporting: {SITE}/qr/ (main page) and {SITE}{SECTION} (overview with all use cases)
 - Comparison, PODFY QR Reporting vs generic QR form tools: {SITE}{VSQR_PATH}
 - Open API reference (REST, part of Advanced; intro also in /nl/, /de/, /fr/): {SITE}{API_PATH} ; specification {SITE}{API_PATH}openapi.json
+- Webhook receiver guide (events, payload, signature v1/v2, retries, Node.js and Python samples; also /nl/, /de/, /fr/): {SITE}{WH_PATH}
 
 ## PODFY QR Reporting (second solution)
 
@@ -1239,6 +1296,7 @@ Source: {SITE}/qr/ and {SITE}{SECTION}
 """]
     full.append(vsqr_llms())
     full.append(api_llms())
+    full.append(webhooks_llms())
     for s in e.ORDER:
         v = e.CASES[s]
         faq = [resolve(e, f) for f in v["faq"]]
@@ -1443,6 +1501,7 @@ if __name__ == "__main__":
         build_cmr(lang)
         build_vsqr(lang)
         build_api(lang)
+        build_webhooks(lang)
         build_home(lang)
     # regenerated pages lose their asset wiring: re-run the site tools so `npm test` stays green
     import subprocess

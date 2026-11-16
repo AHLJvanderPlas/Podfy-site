@@ -31,6 +31,7 @@
       var FOOTER_LABELS = {
         nl: {
           "API reference":"API-documentatie",
+          "Webhook guide":"Webhooks ontvangen",
           "Product":"Product","Solutions":"Oplossingen","Guides":"Gidsen",
           "Trust & Legal":"Vertrouwen & Juridisch","Contact":"Contact",
           "Pricing":"Tarieven","CMR generator":"CMR-generator",
@@ -56,6 +57,7 @@
         },
         de: {
           "API reference":"API-Referenz",
+          "Webhook guide":"Webhooks empfangen",
           "Product":"Produkt","Solutions":"Lösungen","Guides":"Leitfäden",
           "Trust & Legal":"Vertrauen & Recht","Contact":"Kontakt",
           "Pricing":"Preise","CMR generator":"CMR-Generator",
@@ -81,6 +83,7 @@
         },
         fr: {
           "API reference":"Référence API",
+          "Webhook guide":"Guide des webhooks",
           "Product":"Produit","Solutions":"Solutions","Guides":"Guides",
           "Trust & Legal":"Confiance & Légal","Contact":"Contact",
           "Pricing":"Tarifs","CMR generator":"Générateur CMR",

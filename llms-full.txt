@@ -234,17 +234,26 @@ A missing, malformed, unknown or revoked key always gets the same answer, 401 in
 
 ## Live and test keys
 Keys starting with pk_live_ see only production records. Keys starting with pk_test_ (QA records only) see only test records from qa.podfy.app, whose PODFY IDs start with QA-. The two environments never mix.
-The reference register is shared with production, so test keys cannot create or change references (403 insufficient_scope). A record or reference of another brand, or a record of the other environment, answers 404 not_found, never 403.
+The reference register is shared with production, so test keys cannot create or change references (403 read_only_key). A record or reference of another brand, or a record of the other environment, answers 404 not_found, never 403.
 
 ## Rate limit
-Each key may make 600 requests per minute, counted in fixed one-minute windows. Every answer carries X-RateLimit-Limit, X-RateLimit-Remaining and X-RateLimit-Reset (unix seconds when the window ends).
-Above the limit you get 429 rate_limited with a Retry-After header (seconds). Wait that long and try again.
+Each key may make 600 requests per minute, counted in fixed one-minute windows. Every answer for an authenticated key carries X-RateLimit-Limit, X-RateLimit-Remaining and X-RateLimit-Reset (unix seconds when the window ends).
+Before the key is even looked up, a second limit of 1,200 requests per minute per IP address applies. Above either limit you get 429 rate_limited with a Retry-After header (seconds). Wait that long and try again.
 
 ## Errors
-Every error is JSON in the same shape: {"error":{"code":"…","message":"…"}}. Handle errors by the HTTP status and the code, not by the message text. Responses are never cached (Cache-Control: no-store). The full list of codes is in the reference below.
+Every error is JSON in the same shape: {"error":{"code":"…","message":"…","detail":"…"}}. The code is one of a fixed list (the Error shape in the reference): use it for your logic. The message is for people. The optional detail names a specific reason behind a general code, for example ref_exists or invalid_transition. It is absent when there is nothing more specific, and new values may appear, so treat an unknown detail like none. Responses are never cached (Cache-Control: no-store). The full list of codes is in the reference below.
 
 ## Pagination
 List endpoints return {"data": [...], "next_cursor": "…"}. Pass next_cursor back as the cursor parameter to get the next page, until it is null. Cursors are opaque: do not build or change them. Records are listed newest first. The page size is set with limit (1 to 200, default 50).
+
+## Idempotency
+Send an Idempotency-Key header (1 to 255 visible characters) on POST and PATCH to make a retry safe. The first request with a key runs. A repeat with the same key, method, path and body returns the stored answer, marked with Idempotent-Replayed: true, and changes nothing. While the first request is still running, a repeat gets 409 idempotency_in_progress. The same key with a different request gets 422 idempotency_key_reused. Keys are kept for 24 hours per API key. After a 5xx answer the key is released, so you can retry.
+
+## Conditional requests
+A GET of one record, reference or refund returns an ETag. Send it back as If-None-Match to get 304 Not Modified when nothing changed. Send it as If-Match on a PATCH to change the resource only if it is still the version you read, otherwise you get 412 precondition_failed and nothing changes. If-Match is optional.
+
+## Webhooks
+PODFY can also push events to your server, so you do not have to poll the API. The events are listed in the reference below, and the guide explains how to receive and verify them.
 
 ## Operations (base URL https://portal.podfy.net/api/v1)
 - GET /records (scope records:read): List records
@@ -261,6 +270,41 @@ List endpoints return {"data": [...], "next_cursor": "…"}. Pass next_cursor ba
 - POST /refunds/{id}/result (scope refunds:write): Report the payout result
 
 Specification (OpenAPI 3.1): https://podfy.net/docs/api/openapi.json
+
+---
+
+# Webhook receiver guide: PODFY
+Source: https://podfy.net/docs/webhooks/
+
+Receive PODFY events on your own server and check that every request is genuine: signature, retries and code samples.
+
+## What a webhook is here
+A webhook is a request that PODFY sends to your server when something happens: a proof of delivery or a report arrives, a work status changes, or a refund is approved. You do not have to poll the API. Every request is signed, so your server can check that it really comes from PODFY and was not changed on the way.
+This page explains how to receive webhooks. The events and the format of the body are listed in the reference below, in English like the API reference. The REST API is described in the API reference.
+
+## Set up and test a webhook
+A brand admin adds a webhook in the portal under Settings → Integrations → Webhooks (Add webhook). Enter the HTTPS address of your receiver and choose the events. The secret PODFY signs with is shown once, so store it in your secrets manager. With New secret you create a new one: the old secret keeps working for 24 hours, so you can switch your receiver without missing a request.
+Send test sends a webhook.test event with the real headers and signature to your address, so you can test your verification before real events arrive. The delivery log in the portal shows the response code of every attempt, and Resend sends a delivery again.
+If you have no receiver yet, ask PODFY support for a test inbox address. It accepts the signed requests and shows what arrived. A webhook receives either production records or only test records from qa.podfy.app, depending on its QA setting.
+
+## Where PODFY sends
+PODFY only sends to HTTPS addresses with a public host name on port 443. IP addresses, addresses with a user name or password, hosts of PODFY itself and hosts under workers.dev or pages.dev are refused when you save the webhook. PODFY does not follow redirects, so enter the final address.
+A webhook can also use GET with its own query string (custom payload). The signature then covers the full URL, see the reference.
+
+## Events
+- pod.created: A new record of a brand in delivery mode (a proof of delivery was uploaded).
+- report.created: A new record of a brand in report mode (a QR report was submitted).
+- record.status_changed: The work status of a record changed (portal, bulk change or API).
+- record.updated: Another field of a record changed: `assignee`, `priority` or `duplicate_of`. One event per changed field. A comment alone sends nothing.
+- webhook.test: A brand admin pressed Send test in the portal.
+- refund.approved: A refund request was approved. PODFY records and forwards the request; it never pays out.
+- refund.updated: A refund was rejected, or its payout result (`paid` or `failed`) was recorded through the API.
+
+## Signature
+Header Podfy-Signature: t=<unix>,v1=<hex>[,v2=<hex>]. v1 = HMAC-SHA256(secret, t + "." + body) hex; v2 = HMAC-SHA256(secret, t + "." + Podfy-Delivery + "." + body) hex (recommended). Reject t older than 5 minutes, compare in constant time. During a secret rotation (24 hours) a second pair signed with the previous secret follows: accept if any pair matches.
+
+## Delivery
+Answer 2xx within 10 seconds. Retries after 1 min, 5 min, 30 min, 2 h, 6 h, 12 h, then failed. Use the event id (and Podfy-Delivery) as idempotency key. Receivers must tolerate new fields. Targets: HTTPS, public host names only.
 
 ---
 

@@ -55,6 +55,7 @@ Key capabilities:
 - QR Reporting: https://podfy.net/qr/ (main page) and https://podfy.net/solutions/qr-issue-reporting/ (overview with all use cases)
 - Comparison, PODFY QR Reporting vs generic QR form tools: https://podfy.net/vs-qr-form-tools/
 - Open API reference (REST, part of Advanced; intro also in /nl/, /de/, /fr/): https://podfy.net/docs/api/ ; specification https://podfy.net/docs/api/openapi.json
+- Webhook receiver guide (events, payload, signature v1/v2, retries, Node.js and Python samples; also /nl/, /de/, /fr/): https://podfy.net/docs/webhooks/
 
 ## PODFY QR Reporting (second solution)
 
