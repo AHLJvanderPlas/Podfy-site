@@ -13,6 +13,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 // Prefix + enough key material, so documentation such as "pk_live_…" or "re_xxx" does not match.
 export const PATTERNS = [
   ["Cloudflare API token", /cfat_[A-Za-z0-9_-]{20,}/],
+  ["Cloudflare user token", /cfut_[A-Za-z0-9_-]{20,}/],
+  ["Cloudflare global key", /cfk_[A-Za-z0-9_-]{20,}/],
   ["Resend API key", /\bre_[A-Za-z0-9]{6,}_[A-Za-z0-9]{12,}/],
   ["Mollie live key", /\blive_[A-Za-z0-9]{20,}/],
   ["Anthropic API key", /sk-ant-[A-Za-z0-9_-]{16,}/],
@@ -47,7 +49,7 @@ test("no credential literals in tracked files", () => {
 test("the scanner recognises every credential shape", () => {
   // Built at run time so this file never contains a matching literal itself.
   const body = "A1b2C3d4E5f6G7h8J9k0L1m2N3p4Q5r6";
-  const samples = ["cfat" + "_" + body, "re" + "_" + "AbCd1234" + "_" + body, "live" + "_" + body,
+  const samples = ["cfat" + "_" + body, "cfut" + "_" + body, "cfk" + "_" + body, "re" + "_" + "AbCd1234" + "_" + body, "live" + "_" + body,
     "sk-ant" + "-" + body, "pk_live" + "_" + body];
   samples.forEach((s, i) => assert.deepEqual(findSecrets(`key = "${s}"`), [PATTERNS[i][0]]));
   assert.deepEqual(findSecrets("Bearer pk_live_… or re_xxx, live_ mode, sk-ant-<key>"), []);
