@@ -46,7 +46,7 @@
   <link rel="stylesheet" href="/assets/advisor.css" />
   <script src="/assets/theme.js" defer></script>
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PODFY", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Proof of delivery platform for carriers and logistics teams. GPS-stamped, no app required for drivers.", "url": "https://podfy.net", "offers": [{"@type": "Offer", "name": "Basic", "price": "0.10", "priceCurrency": "EUR", "description": "Entry-level pay-per-POD. GPS-stamped, email notification, branded upload link. 14-day retention."}, {"@type": "Offer", "name": "Starter", "price": "0.55", "priceCurrency": "EUR", "description": "GPS, email notifications, multi-file PDF merge, branded upload link. 120-day retention."}, {"@type": "Offer", "name": "Advanced", "price": "0.79", "priceCurrency": "EUR", "description": "Full portal access, damage reporting, multi-user roles, PDF merge. 1-year retention."}, {"@type": "Offer", "name": "Pro", "price": "0.99", "priceCurrency": "EUR", "description": "Everything in Advanced plus CMR waybill generator and PDF branding. 5-year retention."}, {"@type": "Offer", "name": "QR Reporting", "price": "0.68", "priceCurrency": "EUR", "description": "€0.68 per active asset per month, down to €0.27 at volume. Free 6-week pilot.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "0.68", "priceCurrency": "EUR", "unitText": "active asset per month"}}]}
+  {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PODFY", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Proof of delivery platform for carriers and logistics teams. Server timestamp and location when available, no app required for drivers.", "url": "https://podfy.net", "offers": [{"@type": "Offer", "name": "Basic", "price": "0.10", "priceCurrency": "EUR", "description": "Entry-level pay-per-POD. Server timestamp and location when available, email notification, branded upload link. 14-day retention."}, {"@type": "Offer", "name": "Starter", "price": "0.55", "priceCurrency": "EUR", "description": "Location, email notifications, multi-file PDF merge, branded upload link. 120-day retention."}, {"@type": "Offer", "name": "Advanced", "price": "0.79", "priceCurrency": "EUR", "description": "Full portal access, damage reporting, multi-user roles, PDF merge. 1-year retention."}, {"@type": "Offer", "name": "Pro", "price": "0.99", "priceCurrency": "EUR", "description": "Everything in Advanced plus CMR waybill generator and PDF branding. 5-year retention."}, {"@type": "Offer", "name": "QR Reporting", "price": "0.68", "priceCurrency": "EUR", "description": "€0.68 per active asset per month, down to €0.27 at volume. Free 6-week pilot.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "0.68", "priceCurrency": "EUR", "unitText": "active asset per month"}}]}
   </script>
 <link rel="stylesheet" href="/assets/inline-styles.css?v=acdafaad0d8e">
 <script src="/assets/inline-styles.js?v=5902cc0f82a8"></script>
@@ -167,7 +167,7 @@
                 <td><span class="v2-price-check">Yes</span></td>
               </tr>
               <tr>
-                <td class="v2-price-row-label">GPS stamp + timestamped PDF</td>
+                <td class="v2-price-row-label">Timestamp + location when available + PDF</td>
                 <td><span class="v2-price-check">Yes</span></td>
                 <td><span class="v2-price-check">Yes</span></td>
                 <td><span class="v2-price-check">Yes</span></td>
@@ -308,7 +308,7 @@
               <li>Mobile upload: 4G or better, no Wi-Fi required</li>
               <li>Any browser, any phone from 2018 onwards</li>
               <li>Data Processing Agreement available on request</li>
-              <li>7-year audit archive option available (all plans)</li>
+              <li>Up to 7 years of retention: included on Enterprise, or with retention add-ons on Advanced and Pro</li>
             </ul>
           </div>
         </div>
@@ -327,6 +327,7 @@
           <div class="qrp-card"><h3>Advanced <span class="qrp-adv">+€0.25 per asset per month</span></h3><ul class="v2-check-list"><li><a href="/docs/api/">Open API</a></li><li>Feedback to the reporter</li><li>Critical incidents handled within 4 business hours</li></ul>
             <h3 class="qrp-terms-h">Terms</h3><ul class="qrp-terms"><li>Minimum €13.50 per month</li><li>Free 6-week pilot for up to 100 assets</li><li>No setup fee</li><li>Cancel monthly</li><li>Price fixed for 12 months, or 24 months with an annual commitment</li><li>Annual prepayment: ask about the discount</li><li>Fair use: on average about 10 reports per asset per month</li></ul></div>
         </div>
+        <div class="v2-faq-item" id="report-pricing-bands"><p class="v2-faq-q">How do the volume bands work?</p><p class="v2-faq-a">The whole fleet pays the price of the band it reaches, not only the assets above the threshold. At 250 assets the price is €0.68 per asset, so €170 per month. At 251 assets it is €0.45 per asset, so €112.95 per month. A fleet just above a band threshold can therefore cost less in total than one just below it. The monthly minimum is €13.50: up to 19 assets you pay that minimum. Retired assets are free and do not count.</p></div>
         <p><a href="/contact?solution=report" class="v2-btn v2-btn-primary">Request a proposal &rarr;</a></p>
       </div>
     </section>
@@ -344,7 +345,7 @@
           <div class="v2-example-card">
             <p class="v2-example-label">Example 1, Entry-level carrier</p>
             <p class="v2-example-scenario">50 PODs/month · Basic plan</p>
-            <p class="v2-example-calc">50 PODs &times; &euro;0,10<br>GPS stamp + email notification</p>
+            <p class="v2-example-calc">50 PODs &times; &euro;0,10<br>Timestamp and location + email notification</p>
             <div class="v2-example-total">&euro;5,00 <span class="v2-example-total-label">/ month excl. VAT</span></div>
           </div>
 
@@ -364,7 +365,7 @@
 
           <div class="v2-example-card">
             <p class="v2-example-label">Example 4, Construction company</p>
-            <p class="v2-example-scenario">300 PODs/month · Pro plan + 7-year archive</p>
+            <p class="v2-example-scenario">300 PODs/month · Pro plan + 10-year retention add-ons</p>
             <p class="v2-example-calc">300 PODs &times; &euro;0,99 base<br>+ &euro;0,08 extended retention<br>+ &euro;0,05 no-worries = &euro;1,12 / POD</p>
             <div class="v2-example-total">&euro;336,00 <span class="v2-example-total-label">/ month excl. VAT</span></div>
           </div>
@@ -391,7 +392,7 @@
 
           <div class="v2-faq-item">
             <p class="v2-faq-q">What counts as a processed POD?</p>
-            <p class="v2-faq-a">A POD is counted when a file is successfully uploaded, GPS-stamped, and a PDF is generated. Failed or duplicate submissions do not count.</p>
+            <p class="v2-faq-a">A POD is counted when a file is successfully uploaded, timestamped by the server, and a PDF is generated. Failed or duplicate submissions do not count.</p>
           </div>
 
           <div class="v2-faq-item">
@@ -405,8 +406,8 @@
           </div>
 
           <div class="v2-faq-item">
-            <p class="v2-faq-q">Is the 7-year audit archive available on all plans?</p>
-            <p class="v2-faq-a">Yes. The 7-year archive option can be added to any plan as a retention add-on. It satisfies Belastingdienst requirements and is available on request during onboarding.</p>
+            <p class="v2-faq-q">Which plans can keep records for 7 years?</p>
+            <p class="v2-faq-a">Enterprise keeps records for 7 years as standard. On Advanced, the No-worries retention add-on takes the retention to 7 years; on Pro, Extended retention takes it from 5 to 7 years. Starter reaches at most 3 years with add-ons, and Basic keeps records for 14 days. Retention add-ons are set up during onboarding.</p>
           </div>
 
           <div class="v2-faq-item">

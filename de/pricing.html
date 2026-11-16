@@ -41,7 +41,7 @@
   <script src="/assets/theme.js" defer></script>
 
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PODFY", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Liefernachweis-Plattform für Spediteure und Logistikteams. GPS-gestempelt, keine App für Fahrer erforderlich.", "url": "https://podfy.net", "offers": [{"@type": "Offer", "name": "Basic", "price": "0.10", "priceCurrency": "EUR", "description": "Einstieg, Zahlung pro POD. GPS-gestempelt, E-Mail-Benachrichtigung, Marken-Link. 14 Tage Aufbewahrung."}, {"@type": "Offer", "name": "Starter", "price": "0.55", "priceCurrency": "EUR", "description": "GPS, E-Mail-Benachrichtigungen, Mehrdatei-PDF, Marken-Upload-Link. 120 Tage Aufbewahrung."}, {"@type": "Offer", "name": "Advanced", "price": "0.79", "priceCurrency": "EUR", "description": "Portalzugang, Branding-Funktionen, durchsuchbares Archiv. 1 Jahr Aufbewahrung."}, {"@type": "Offer", "name": "Pro", "price": "0.99", "priceCurrency": "EUR", "description": "Alles aus Advanced plus 5 Jahre Aufbewahrung für auditbereite Archive."}, {"@type": "Offer", "name": "Enterprise", "price": "1.49", "priceCurrency": "EUR", "description": "Maßgeschneidert für hohes Volumen: OCR, erweiterte Funktionen, eigene Tarifkarte."}, {"@type": "Offer", "name": "QR Reporting", "price": "0.68", "priceCurrency": "EUR", "description": "0,68 € pro aktivem Objekt und Monat, bis zu 0,27 € bei großen Flotten. Kostenloser 6-Wochen-Pilot.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "0.68", "priceCurrency": "EUR", "unitText": "active asset per month"}}]}
+  {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PODFY", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Liefernachweis-Plattform für Spediteure und Logistikteams. Server-Zeitstempel und Standort, wenn verfügbar, keine App für Fahrer erforderlich.", "url": "https://podfy.net", "offers": [{"@type": "Offer", "name": "Basic", "price": "0.10", "priceCurrency": "EUR", "description": "Einstieg, Zahlung pro POD. Server-Zeitstempel und Standort, wenn verfügbar, E-Mail-Benachrichtigung, Marken-Link. 14 Tage Aufbewahrung."}, {"@type": "Offer", "name": "Starter", "price": "0.55", "priceCurrency": "EUR", "description": "Standort, E-Mail-Benachrichtigungen, Mehrdatei-PDF, Marken-Upload-Link. 120 Tage Aufbewahrung."}, {"@type": "Offer", "name": "Advanced", "price": "0.79", "priceCurrency": "EUR", "description": "Portalzugang, Branding-Funktionen, durchsuchbares Archiv. 1 Jahr Aufbewahrung."}, {"@type": "Offer", "name": "Pro", "price": "0.99", "priceCurrency": "EUR", "description": "Alles aus Advanced plus 5 Jahre Aufbewahrung für auditbereite Archive."}, {"@type": "Offer", "name": "Enterprise", "price": "1.49", "priceCurrency": "EUR", "description": "Maßgeschneidert für hohes Volumen: OCR, erweiterte Funktionen, eigene Tarifkarte."}, {"@type": "Offer", "name": "QR Reporting", "price": "0.68", "priceCurrency": "EUR", "description": "0,68 € pro aktivem Objekt und Monat, bis zu 0,27 € bei großen Flotten. Kostenloser 6-Wochen-Pilot.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "0.68", "priceCurrency": "EUR", "unitText": "active asset per month"}}]}
   </script>
   <script type="application/ld+json">
   {
@@ -170,7 +170,7 @@
                 <td>14 Tage</td>
                 <td>120 Tage</td>
                 <td>1 Jahr</td>
-                <td>10 Jahre</td>
+                <td>5 Jahre</td>
                 <td>Auf Anfrage</td>
               </tr>
               <tr>
@@ -182,7 +182,7 @@
                 <td><span class="v2-price-check">Ja</span></td>
               </tr>
               <tr>
-                <td class="v2-price-row-label">GPS-Stempel + zeitgestempelte PDF</td>
+                <td class="v2-price-row-label">Zeitstempel + Standort, wenn verfügbar + PDF</td>
                 <td><span class="v2-price-check">Ja</span></td>
                 <td><span class="v2-price-check">Ja</span></td>
                 <td><span class="v2-price-check">Ja</span></td>
@@ -274,7 +274,7 @@
         </div>
 
         <p class="v2-prose" data-u="u6f03086">
-          <strong>Warum 10 Jahre beim Pro-Tarif?</strong> Die GoBD (Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern) schreibt für Handelsdokumente, darunter Frachtbriefe und Liefernachweise, eine Aufbewahrungsfrist von 10 Jahren vor (§ 147 AO, § 257 HGB). Der Pro-Tarif erfüllt diese Anforderung ohne Aufpreis, sodass Sie die GoBD-Konformität ohne zusätzliche Erweiterungen nachweisen können.
+          <strong>Aufbewahrung im Pro-Tarif:</strong> Der Pro-Tarif bewahrt Records 5 Jahre auf. Die GoBD (Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern) schreibt für Handelsdokumente, darunter Frachtbriefe und Liefernachweise, eine Aufbewahrungsfrist von 10 Jahren vor (§ 147 AO, § 257 HGB). Mit den Erweiterungen Verlängerte und Sorgenfreie Aufbewahrungsfrist erreichen Sie im Pro-Tarif 10 Jahre.
         </p>
       </div>
     </section>
@@ -299,12 +299,12 @@
                 <tr>
                   <td class="v2-addon-name">Verlängerte Aufbewahrungsfrist</td>
                   <td class="v2-addon-price">+&euro;0,08 / POD</td>
-                  <td class="v2-addon-desc">Starter: 120 Tage &rarr; 1 Jahr. Advanced: 1 &rarr; 3 Jahre. Pro: bereits 10 Jahre im Grundtarif enthalten (GoBD).</td>
+                  <td class="v2-addon-desc">Starter: 120 Tage &rarr; 1 Jahr. Advanced: 1 &rarr; 3 Jahre. Pro: 5 &rarr; 7 Jahre.</td>
                 </tr>
                 <tr>
                   <td class="v2-addon-name">Sorgenfreie Aufbewahrungsfrist</td>
                   <td class="v2-addon-price">+&euro;0,05 / POD</td>
-                  <td class="v2-addon-desc">Stapelt auf verlängerter Aufbewahrung. Starter: 3 Jahre. Advanced: 7 Jahre. Pro: GoBD-Archiv (10 Jahre) bereits im Grundtarif enthalten.</td>
+                  <td class="v2-addon-desc">Stapelt auf verlängerter Aufbewahrung. Starter: 3 Jahre. Advanced: 7 Jahre. Pro: 10 Jahre.</td>
                 </tr>
                 <tr>
                   <td class="v2-addon-name">Erweiterte OCR-Extraktion</td>
@@ -327,7 +327,7 @@
               <li>Mobiler Upload: 4G oder besser, kein WLAN erforderlich</li>
               <li>Jeder Browser, jedes Telefon ab 2018</li>
               <li>Auftragsverarbeitungsvertrag (AVV) auf Anfrage verfügbar</li>
-              <li>10-Jahre-GoBD-Archiv im Pro-Tarif ohne Aufpreis</li>
+              <li>Bis zu 7 Jahre Aufbewahrung: im Enterprise-Tarif enthalten, oder mit Aufbewahrungs-Erweiterungen bei Advanced und Pro</li>
             </ul>
           </div>
         </div>
@@ -347,6 +347,7 @@
           <div class="qrp-card"><h3>Advanced <span class="qrp-adv">+0,25 € pro Objekt und Monat</span></h3><ul class="v2-check-list"><li><a href="/de/docs/api/">Offene API</a></li><li>Rückmeldung an die meldende Person</li><li>Kritische Störungen innerhalb von 4 Arbeitsstunden bearbeitet</li></ul>
             <h3 class="qrp-terms-h">Bedingungen</h3><ul class="qrp-terms"><li>Mindestens 13,50 € pro Monat</li><li>Kostenloser 6-Wochen-Pilot für bis zu 100 Objekte</li><li>Keine Einrichtungsgebühr</li><li>Monatlich kündbar</li><li>Preis 12 Monate fest, oder 24 Monate bei Jahresvertrag</li><li>Jährliche Vorauszahlung: fragen Sie nach dem Rabatt</li><li>Fair Use: im Durchschnitt etwa 10 Meldungen pro Objekt und Monat</li></ul></div>
         </div>
+        <div class="v2-faq-item" id="report-pricing-bands"><p class="v2-faq-q">Wie funktionieren die Mengenstufen?</p><p class="v2-faq-a">Die gesamte Flotte zahlt den Preis der erreichten Stufe, nicht nur die Objekte über der Grenze. Bei 250 Objekten sind es 0,68 € pro Objekt, also 170 € pro Monat. Bei 251 Objekten sind es 0,45 € pro Objekt, also 112,95 € pro Monat. Eine Flotte knapp über einer Stufengrenze kann insgesamt also weniger kosten als eine knapp darunter. Das monatliche Minimum beträgt 13,50 €: bis einschließlich 19 Objekte zahlen Sie dieses Minimum. Stillgelegte Objekte sind kostenlos und zählen nicht mit.</p></div>
         <p><a href="/de/contact?solution=report" class="v2-btn v2-btn-primary">Angebot anfordern &rarr;</a></p>
       </div>
     </section>
@@ -363,7 +364,7 @@
           <div class="v2-example-card">
             <p class="v2-example-label">Beispiel 1, Kleinstbetrieb</p>
             <p class="v2-example-scenario">50 PODs/Monat · Basic-Tarif</p>
-            <p class="v2-example-calc">50 PODs &times; &euro;0,10<br>GPS-Stempel + E-Mail-Benachrichtigung</p>
+            <p class="v2-example-calc">50 PODs &times; &euro;0,10<br>Zeitstempel und Standort + E-Mail-Benachrichtigung</p>
             <div class="v2-example-total">&euro;5,00 <span class="v2-example-total-label">/ Monat zzgl. MwSt.</span></div>
           </div>
 
@@ -376,9 +377,9 @@
 
           <div class="v2-example-card">
             <p class="v2-example-label">Beispiel 3, Bauunternehmen (GoBD)</p>
-            <p class="v2-example-scenario">300 PODs/Monat · Pro-Tarif mit 10-Jahre-GoBD-Archiv</p>
-            <p class="v2-example-calc">300 PODs &times; &euro;0,99 Basis<br>10-Jahre-Archiv im Grundtarif enthalten<br>Keine Erweiterung notwendig</p>
-            <div class="v2-example-total">&euro;297,00 <span class="v2-example-total-label">/ Monat zzgl. MwSt.</span></div>
+            <p class="v2-example-scenario">300 PODs/Monat · Pro-Tarif + 10 Jahre Aufbewahrung (Erweiterungen)</p>
+            <p class="v2-example-calc">300 PODs &times; &euro;0,99 Basis<br>+ &euro;0,08 verlängerte Aufbewahrungsfrist<br>+ &euro;0,05 sorgenfreie Aufbewahrungsfrist = &euro;1,12 / POD</p>
+            <div class="v2-example-total">&euro;336,00 <span class="v2-example-total-label">/ Monat zzgl. MwSt.</span></div>
           </div>
 
           <div class="v2-example-card">
@@ -408,7 +409,7 @@
 
           <div class="v2-faq-item">
             <p class="v2-faq-q">Was zählt als verarbeiteter POD?</p>
-            <p class="v2-faq-a">Ein POD wird gezählt, wenn eine Datei erfolgreich hochgeladen, GPS-gestempelt und eine PDF generiert wurde. Fehlgeschlagene oder doppelte Einsendungen werden nicht gezählt.</p>
+            <p class="v2-faq-a">Ein POD wird gezählt, wenn eine Datei erfolgreich hochgeladen, vom Server mit einem Zeitstempel versehen und eine PDF generiert wurde. Fehlgeschlagene oder doppelte Einsendungen werden nicht gezählt.</p>
           </div>
 
           <div class="v2-faq-item">
@@ -422,8 +423,8 @@
           </div>
 
           <div class="v2-faq-item">
-            <p class="v2-faq-q">Warum hat der Pro-Tarif 10 Jahre Aufbewahrung und nicht 5?</p>
-            <p class="v2-faq-a">In Deutschland schreibt die GoBD (§ 147 AO, § 257 HGB) für Handelsdokumente, einschließlich Frachtbriefe und Liefernachweise, eine Aufbewahrungsfrist von 10 Jahren vor. Der deutsche Pro-Tarif erfüllt diese Anforderung ohne Aufpreis. Für Operationen in den Niederlanden oder Belgien gelten abweichende Fristen (7 Jahre).</p>
+            <p class="v2-faq-q">Welche Tarife können Records 7 Jahre aufbewahren?</p>
+            <p class="v2-faq-a">Der Enterprise-Tarif bewahrt Records standardmäßig 7 Jahre auf. Bei Advanced bringt die Sorgenfreie Aufbewahrungsfrist die Aufbewahrung auf 7 Jahre; bei Pro erweitert die Verlängerte Aufbewahrungsfrist von 5 auf 7 Jahre. Die GoBD verlangt für Handelsdokumente 10 Jahre (§ 147 AO, § 257 HGB): Pro erreicht diese mit beiden Erweiterungen. Starter erreicht mit Erweiterungen höchstens 3 Jahre, Basic bewahrt Records 14 Tage auf. Die Erweiterungen richten wir im Onboarding ein.</p>
           </div>
 
           <div class="v2-faq-item">

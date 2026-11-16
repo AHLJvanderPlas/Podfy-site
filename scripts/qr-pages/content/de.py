@@ -480,7 +480,7 @@ SERVICE = {
  "eyebrow": "Service und Kontinuität", "title": "Worauf Sie sich verlassen können",
  "items": [("99,5 % Verfügbarkeit", "Monatlich gemessen, mit proaktiver Kommunikation bei Störungen."),
            ("Support, der antwortet", "Antwort innerhalb eines Werktags; kritische Störungen innerhalb von 4 Arbeitsstunden."),
-           ("Tägliche Backups", "Jeden Tag ein Backup, in der EU gespeichert."),
+           ("Tägliche Datenbank-Backups", "Jeden Tag ein Backup der Datenbank, in der EU gespeichert. Dateien sind nicht Teil des nächtlichen Backups."),
            ("Verschlüsselt", "Verschlüsselung bei Übertragung und Speicherung."),
            ("Ihre Daten bleiben Ihre", "Exportieren Sie jederzeit alles, inklusive Fotos und Dokumente."),
            ("Kein Lock-in", "Monatlich kündbar. QR-Codes bleiben mit Ihren eigenen IDs verknüpft und funktionieren nach dem Ausstieg per Weiterleitung weiter."),
@@ -496,6 +496,7 @@ QRPRICE = {
  "included_h": "Inklusive", "included": ["Objektregister, QR-Codes und Aufkleber", "Eigene Kategorien, Felder und Foto-Einstellungen", "Routing, Status, Prioritäten und Zusammenführen von Doppelmeldungen", "Dashboard, Berichte und vollständiger Export", "Webhook an Ihre Systeme", "Unbegrenzt Nutzer, Meldungen und QR-Codes (Fair Use)", "Ihr Branding, App in 42 Sprachen, Speicherung in der EU", "Support: Antwort innerhalb eines Werktags"],
  "adv_h": "Advanced", "adv_price": "+{p} pro Objekt und Monat", "adv": ["Offene API", "Rückmeldung an die meldende Person", "Kritische Störungen innerhalb von 4 Arbeitsstunden bearbeitet"],
  "terms_h": "Bedingungen", "terms": ["Mindestens {m} pro Monat", "Kostenloser 6-Wochen-Pilot für bis zu 100 Objekte", "Keine Einrichtungsgebühr", "Monatlich kündbar", "Preis 12 Monate fest, oder 24 Monate bei Jahresvertrag", "Jährliche Vorauszahlung: fragen Sie nach dem Rabatt", "Fair Use: im Durchschnitt etwa 10 Meldungen pro Objekt und Monat"],
+ "band_q": 'Wie funktionieren die Mengenstufen?', "band_a": 'Die gesamte Flotte zahlt den Preis der erreichten Stufe, nicht nur die Objekte über der Grenze. Bei {n1} Objekten sind es {p1} pro Objekt, also {c1} pro Monat. Bei {n2} Objekten sind es {p2} pro Objekt, also {c2} pro Monat. Eine Flotte knapp über einer Stufengrenze kann insgesamt also weniger kosten als eine knapp darunter. Das monatliche Minimum beträgt {m}: bis einschließlich {k} Objekte zahlen Sie dieses Minimum. Stillgelegte Objekte sind kostenlos und zählen nicht mit.',
  "cta": "Angebot anfordern", "strip": "{p} pro aktivem Objekt und Monat, bis zu {low} bei großen Flotten. Kostenloser 6-Wochen-Pilot.", "strip_cta": "Preise ansehen",
 }
 COMPANY = {"title": "Firmenangaben", "rows": ["Handelsname", "Adresse", "Handelsregister (KvK)", "USt-IdNr.", "E-Mail", "LinkedIn"], "trade": "PODFY ist ein Handelsname von Lake-Project"}

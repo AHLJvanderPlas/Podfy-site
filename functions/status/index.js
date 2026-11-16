@@ -246,6 +246,16 @@ export async function onRequestGet(context) {
       description: ui.description,
       canonical,
       alternates,
+      og: { type: "website", title: ui.title, description: ui.description, url: canonical, image: "https://podfy.net/assets/og-image.jpg" },
+      jsonLd: [{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: ui.title,
+        description: ui.description,
+        url: canonical,
+        inLanguage: lang,
+        isPartOf: { "@type": "WebSite", name: "PODFY", url: "https://podfy.net" },
+      }],
     });
   } catch (err) {
     console.error("Status page error:", err);

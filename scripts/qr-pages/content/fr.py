@@ -480,7 +480,7 @@ SERVICE = {
  "eyebrow": "Service et continuité", "title": "Ce sur quoi vous pouvez compter",
  "items": [("99,5 % de disponibilité", "Mesurée chaque mois, avec une communication proactive en cas d'incident."),
            ("Un support qui répond", "Réponse sous un jour ouvré ; incidents critiques sous 4 heures ouvrées."),
-           ("Sauvegardes quotidiennes", "Une sauvegarde chaque jour, stockée dans l'UE."),
+           ("Sauvegardes quotidiennes de la base de données", "Une sauvegarde de la base de données chaque jour, stockée dans l'UE. Les fichiers ne font pas partie de la sauvegarde nocturne."),
            ("Chiffré", "Chiffrement en transit et au repos."),
            ("Vos données restent à vous", "Exportez tout à tout moment, photos et documents compris."),
            ("Sans dépendance", "Résiliable chaque mois. Les QR codes restent liés à vos propres identifiants et continuent de fonctionner via une redirection après votre départ."),
@@ -496,6 +496,7 @@ QRPRICE = {
  "included_h": "Inclus", "included": ["Registre d'équipements, QR codes et autocollants", "Vos catégories, champs et réglages photo", "Routage, statut, priorités et regroupement des doublons", "Tableau de bord, rapports et export complet", "Webhook vers vos systèmes", "Utilisateurs, signalements et QR codes illimités (usage raisonnable)", "Votre image, application en 42 langues, stockage dans l'UE", "Support : réponse sous un jour ouvré"],
  "adv_h": "Advanced", "adv_price": "+{p} par équipement et par mois", "adv": ["API ouverte", "Retour à la personne qui signale", "Incidents critiques traités sous 4 heures ouvrées"],
  "terms_h": "Conditions", "terms": ["Minimum {m} par mois", "Pilote gratuit de 6 semaines jusqu'à 100 équipements", "Sans frais de mise en place", "Résiliable chaque mois", "Prix fixe 12 mois, ou 24 mois avec un engagement annuel", "Paiement annuel anticipé : demandez la remise", "Usage raisonnable : en moyenne environ 10 signalements par équipement et par mois"],
+ "band_q": 'Comment fonctionnent les paliers de volume ?', "band_a": "Tout le parc paie le prix du palier atteint, pas seulement les équipements au-delà du seuil. À {n1} équipements, le prix est de {p1} par équipement, soit {c1} par mois. À {n2} équipements, il est de {p2} par équipement, soit {c2} par mois. Un parc juste au-dessus d'un seuil peut donc coûter moins cher au total qu'un parc juste en dessous. Le minimum mensuel est de {m} : jusqu'à {k} équipements, vous payez ce minimum. Les équipements retirés sont gratuits et ne comptent pas.",
  "cta": "Demander une proposition", "strip": "{p} par équipement actif et par mois, jusqu'à {low} pour les grands parcs. Pilote gratuit de 6 semaines.", "strip_cta": "Voir les tarifs QR",
 }
 COMPANY = {"title": "Informations société", "rows": ["Nom commercial", "Adresse", "Chambre de commerce (KvK)", "TVA", "E-mail", "LinkedIn"], "trade": "PODFY est un nom commercial de Lake-Project"}

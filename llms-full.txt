@@ -680,7 +680,7 @@ and will not install your app.
 
 Podfy is a collection tool, not a scan tool. You send a link; the driver
 photographs the signed document at the gate; it lands in your portal
-with a GPS timestamp, archived and searchable. You never touch the paper.
+with a server timestamp and location when available, archived and searchable. You never touch the paper.
 
 - Scan apps: you have the paper, you want a copy
 
@@ -690,7 +690,7 @@ with a GPS timestamp, archived and searchable. You never touch the paper.
 
 - Works for subcontractors on any phone, any carrier
 
-- GPS timestamp added automatically at upload
+- Server timestamp on every upload; location when available (photo, or phone with permission)
 
 - One archive per requester, not scattered inboxes
 
@@ -790,7 +790,7 @@ Searchability Manual, filing cabinets, scanned PDFs in email Instant, by referen
 Works for sub-contractors Driver-dependent, often fails Yes, no app, no account, any phone
 Document damage/loss risk High, paper degrades, gets lost in cabs None, central digital archive
 Signal requirement None, paper doesn't need signal Mobile data at upload point (4G or better)
-Audit retention Physical storage, expensive at scale 7-year digital archive under EU jurisdiction
+Audit retention Physical storage, expensive at scale Digital archive under EU jurisdiction, up to 7 years
 Transition cost None, already in use Low, link sent with existing dispatch, parallel running 2–4 weeks
 Legal validity Established for CMR originals GPS-stamped digital record is strong evidence; paper CMR may still be required for cross-border legal compliance
 
@@ -1211,13 +1211,13 @@ Evidence type Signature only GPS photo (Podfy)
 
 Proves delivery occurred Yes Yes
 Shows condition of goods No Yes
-Confirms delivery location No Yes, GPS coords
+Confirms delivery location No Yes, when location is available
 Works for unattended delivery No Yes
 Works for subcontractors Inconsistent Yes, any phone
 Tamper-evident timestamp No Yes, server-stored
 
 GPS photo POD, no app required
-Drivers open a link, take a photo. GPS and timestamp are captured automatically.
+Drivers open a link, take a photo. The server sets the timestamp; location comes from the photo or, with permission, the phone.
 See the demo →
 
 ### Documenting unattended deliveries
@@ -1261,7 +1261,7 @@ For shippers and 3PLs: condition photos at every handover point allow damage to 
 
 - Annotate with delivery issue code in Podfy (damage / shortage / refusal)
 
-- GPS timestamp cannot be backdated: tamper-evident record
+- Server timestamp cannot be backdated: tamper-evident record
 
 - Photo + issue code triggers automatic notification to shipper in Podfy
 
@@ -1315,9 +1315,9 @@ Part of the Podfy guide series → What is Proof of Delivery?
 Get release notes by email when new features ship.
 Subscribe →
 
-GPS stamped · No app
+Timestamped · No app
 ### Photo evidence that holds up.From any phone.
-Drivers open a link, take a photo. GPS and timestamp captured. No app to install.
+Drivers open a link, take a photo. Timestamp and location when available. No app to install.
 Book 15 minutes → Try the demo first
 
 ---
@@ -1359,7 +1359,7 @@ CMR Convention. For cross-border road freight under the CMR Convention, claims m
 
 - Data residency: EU-hosted for GDPR compliance
 
-7-year EU archive, included
+EU archive, up to 7 years on Enterprise
 Every Podfy record is stored under EU jurisdiction with full audit export capability.
 See the demo →
 
@@ -1390,11 +1390,11 @@ The record must be linkable to the invoice and purchase order. A consistent refe
 
 ### Frequently asked questions
 
-How long must POD documents be retained in the Netherlands and Belgium? 7 years in both jurisdictions for commercial and financial records. CMR documents for cross-border freight have a 1-year claims window but best practice is to retain for the full 7-year period. Podfy's 7-year archive option covers both requirements.
+How long must POD documents be retained in the Netherlands and Belgium? 7 years in both jurisdictions for commercial and financial records. CMR documents for cross-border freight have a 1-year claims window but best practice is to retain for the full 7-year period. Podfy's retention options (up to 7 years on Enterprise, or with an add-on on Advanced and Pro) cover both requirements.
 
 Does Podfy store data in the EU? Yes. All data is stored in Cloudflare's EU jurisdiction (EU data centres only). Records and files are stored in the EU; email delivery and optional AI document reading use subprocessors listed in the DPA. A Data Processing Agreement is available for organizations with formal GDPR compliance requirements.
 
-What counts as an audit-ready delivery record? An audit-ready record includes: the document itself (signed CMR or delivery note), a timestamp, GPS coordinates confirming location, and a reference linking it to the invoice or PO. All four are captured automatically in every Podfy submission.
+What counts as an audit-ready delivery record? An audit-ready record includes: the document itself (signed CMR or delivery note), a timestamp, GPS coordinates confirming location, and a reference linking it to the invoice or PO. The timestamp is set automatically on every Podfy submission; location is recorded when available.
 
 Can Podfy records be exported for an audit package? Yes. Delivery records can be exported as PDFs from the portal, individually or in bulk by date range or reference prefix. This is typically what Belastingdienst or Belgian FSMA inspections require.
 
@@ -1426,7 +1426,7 @@ Part of the Podfy guide series → What is Proof of Delivery?
 Get release notes by email when new features ship.
 Subscribe →
 
-EU hosted · 7yr archive
+EU storage · Up to 7 years
 ### Audit-ready on day one.No filing cabinets.
 Fifteen minutes. We will show you the portal, export function, and DPA process.
 Book 15 minutes → Try the demo first
@@ -1470,7 +1470,7 @@ Type 03
 Goods arrived in unacceptable condition. A photo taken at the gate — before the driver leaves — documenting the condition at the point of delivery is the key evidence. Without a timestamped photo, responsibility for damage is almost impossible to establish.
 
 Dispute-proof every delivery
-GPS + timestamp + photo. Captured before the truck moves.
+Timestamp, location when available, and photo. Captured before the truck moves.
 See the demo →
 
 ### What counts as proof in a delivery dispute
@@ -1922,7 +1922,7 @@ Audit gaps. Regulatory environments in many EU countries require delivery record
 
 - GPS + timestamp removes date disputes
 
-- 7-year audit-ready archive on EU infrastructure
+- Audit-ready archive on EU infrastructure, up to 7 years (Enterprise or add-on)
 
 - Searchable by reference, route, or date
 
@@ -1940,7 +1940,7 @@ Digital POD
 
 #### Link-based photo upload
 
-Driver opens a browser link, photographs the signed CMR or delivery note, and taps send. GPS coordinates and timestamp are captured at that moment. The stamped PDF is in the portal within seconds.
+Driver opens a browser link, photographs the signed CMR or delivery note, and taps send. The server sets the timestamp; the location comes from the photo or, with permission, the phone. The stamped PDF is in the portal within seconds.
 
 App-based POD
 
@@ -2086,7 +2086,7 @@ How quickly are documents available after delivery?
 As soon as the upload completes, the document is in the portal and your team receives an email notification. This eliminates the typical 3–5 day gap when paper CMRs travel back with the driver.
 
 Is Podfy suitable for audits and disputes?
-Yes. Central storage with GPS timestamps means you can respond to 'not delivered', shortage, or damage claims in seconds rather than days. All records are stored in Cloudflare's EU jurisdiction, GDPR-aligned and available for 7-year retention.
+Yes. Central storage with GPS timestamps means you can respond to 'not delivered', shortage, or damage claims in seconds rather than days. All records are stored in Cloudflare's EU jurisdiction, GDPR-aligned and retained for up to 7 years (Enterprise, or with a retention add-on).
 
 Can Podfy replace a TMS, WMS, or ERP?
 No. Podfy focuses on delivery documentation intake and retrieval. It is designed to complement existing systems by making POD collection simple and consistent across carriers, suppliers, sites, and stores.

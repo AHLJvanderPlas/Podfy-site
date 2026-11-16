@@ -103,7 +103,7 @@
           <!-- Data lifecycle SVG -->
           <p data-u="u65978db">Cycle de vie des données, stockées en juridiction UE</p>
           <svg viewBox="0 0 580 78" xmlns="http://www.w3.org/2000/svg"
-            role="img" aria-label="Cycle de vie des données : téléversement chauffeur vers stockage R2 UE, puis base de données D1 UE, puis e-mail via Resend UE, puis archive 7 ans"
+            role="img" aria-label="Cycle de vie des données : téléversement chauffeur vers stockage R2 UE, puis base de données D1 UE, puis e-mail via Resend UE, puis archive"
             data-u="ue7475f6">
 
             <!-- Box 1: Driver upload -->
@@ -144,7 +144,7 @@
 
             <!-- Box 5: Archive (stamp colour) -->
             <rect x="473" y="21" width="104" height="36" rx="3" fill="none" stroke="var(--v2-stamp,#D24A1F)" stroke-width="1.4"/>
-            <text x="525" y="36" text-anchor="middle" font-size="9" fill="currentColor" font-family="monospace" font-weight="600">Archive 7 ans</text>
+            <text x="525" y="36" text-anchor="middle" font-size="9" fill="currentColor" font-family="monospace" font-weight="600">Archive</text>
             <text x="525" y="49" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace" opacity=".55">prête pour audit</text>
           </svg>
 
@@ -421,6 +421,8 @@
               <p>Les chauffeurs et partenaires accèdent aux POD via des liens par e-mail contenant des jetons longs et impossibles à deviner, validés côté serveur et pouvant être limités dans le temps et limités à des POD spécifiques. Les vues du portail sont enregistrées avec l'horodatage, la référence du jeton et le user-agent basique pour l'auditabilité.</p>
               <p>PODFY vise à stocker les données POD de production dans des régions UE. Les données ne quittent pas la région sélectionnée pour la fonctionnalité du produit sans garanties appropriées.</p>
 
+              <p>La base de données est sauvegardée chaque nuit. La sauvegarde est chiffrée et une restauration a été testée le 16 novembre 2026 (premier exercice). Les fichiers téléversés ne font pas partie de la sauvegarde nocturne.</p>
+
               <h3>4. Sécurité du site web (podfy.net)</h3>
               <p>Déployé en tant que site statique via Cloudflare Pages ; le comportement dynamique est géré par des fonctions Workers. Aucun accès direct à la base de données depuis le navigateur ; les soumissions de formulaires passent par des gestionnaires backend. Les formulaires de contact et de configuration utilisent Cloudflare Turnstile pour réduire les abus automatisés. Les entrées sont validées côté serveur avant d'être écrites dans le stockage ou transmises par e-mail.</p>
               <p>Le site marketing et l'application opérationnelle sont traités comme des surfaces séparées. Les sessions ne sont pas partagées, les bases de données sont distinctes, et les problèmes dans l'un ne compromettent pas automatiquement l'autre.</p>
@@ -484,7 +486,7 @@
       <div class="container">
         <p class="v2-eyebrow">Service et continuité</p>
         <h2 class="v2-section-title" id="svc-heading">Ce sur quoi vous pouvez compter</h2>
-        <div class="v2-feat-grid"><div class="v2-feat"><h3>99,5 % de disponibilité</h3><p>Mesurée chaque mois, avec une communication proactive en cas d&#x27;incident.</p></div><div class="v2-feat"><h3>Un support qui répond</h3><p>Réponse sous un jour ouvré ; avec Advanced, incidents critiques sous 4 heures ouvrées.</p></div><div class="v2-feat"><h3>Sauvegardes quotidiennes</h3><p>Une sauvegarde chaque jour, stockée dans l&#x27;UE.</p></div><div class="v2-feat"><h3>Chiffré</h3><p>Chiffrement en transit et au repos.</p></div><div class="v2-feat"><h3>Vos données restent à vous</h3><p>Exportez tout à tout moment, photos et documents compris.</p></div><div class="v2-feat"><h3>Sans dépendance</h3><p>Résiliable chaque mois. Les QR codes restent liés à vos propres identifiants et continuent de fonctionner via une redirection après votre départ.</p></div><div class="v2-feat"><h3>RGPD par défaut</h3><p>Un accord de traitement des données, une conservation par formule et la suppression sur demande.</p></div><div class="v2-feat"><h3>Notification des violations</h3><p>Nous vous informons sans délai, conformément au RGPD.</p></div></div>
+        <div class="v2-feat-grid"><div class="v2-feat"><h3>99,5 % de disponibilité</h3><p>Mesurée chaque mois, avec une communication proactive en cas d&#x27;incident.</p></div><div class="v2-feat"><h3>Un support qui répond</h3><p>Réponse sous un jour ouvré ; avec Advanced, incidents critiques sous 4 heures ouvrées.</p></div><div class="v2-feat"><h3>Sauvegardes quotidiennes de la base de données</h3><p>Une sauvegarde de la base de données chaque jour, stockée dans l&#x27;UE. Les fichiers ne font pas partie de la sauvegarde nocturne.</p></div><div class="v2-feat"><h3>Chiffré</h3><p>Chiffrement en transit et au repos.</p></div><div class="v2-feat"><h3>Vos données restent à vous</h3><p>Exportez tout à tout moment, photos et documents compris.</p></div><div class="v2-feat"><h3>Sans dépendance</h3><p>Résiliable chaque mois. Les QR codes restent liés à vos propres identifiants et continuent de fonctionner via une redirection après votre départ.</p></div><div class="v2-feat"><h3>RGPD par défaut</h3><p>Un accord de traitement des données, une conservation par formule et la suppression sur demande.</p></div><div class="v2-feat"><h3>Notification des violations</h3><p>Nous vous informons sans délai, conformément au RGPD.</p></div></div>
       </div>
     </section>
     <!-- /Service and continuity -->

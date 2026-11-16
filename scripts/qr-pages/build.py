@@ -1170,8 +1170,8 @@ PODFY QR Reporting puts a QR code on every machine or asset. Anyone (customers, 
 - Printable QR stickers per asset with the brand's logo and custom text, e.g. "Scan to report an issue"
 - Photo per form: required, optional or off
 - Not an emergency channel; repair planning and ticket follow-up stay in the customer's own tools
-- Pricing: €0.68 per active asset per month (251-1,000: €0.45; 1,001-2,500: €0.36; 2,501+: €0.27), minimum €13.50 per month, Advanced add-on +€0.25 (open API, reporter feedback, 4-hour critical support); no fees per report, per user or per QR code; retired assets free; free 6-week pilot for up to 100 assets; no setup fee; cancel monthly
-- Service: 99.5% uptime measured monthly, support reply within one business day (critical incidents within 4 business hours), daily backups in the EU, encryption in transit and at rest, export of all data at any time, monthly cancellation, QR codes redirected for 12 months after leaving
+- Pricing: €0.68 per active asset per month (251-1,000: €0.45; 1,001-2,500: €0.36; 2,501+: €0.27; the whole fleet pays the price of the band it reaches, so 251 assets can cost less in total than 250), minimum €13.50 per month, Advanced add-on +€0.25 (open API, reporter feedback, 4-hour critical support); no fees per report, per user or per QR code; retired assets free; free 6-week pilot for up to 100 assets; no setup fee; cancel monthly
+- Service: 99.5% uptime measured monthly, support reply within one business day (critical incidents within 4 business hours), daily database backups in the EU (files are not part of the nightly backup), encryption in transit and at rest, export of all data at any time, monthly cancellation, QR codes redirected for 12 months after leaving
 
 Use cases:
 {cases}"""
@@ -1311,8 +1311,22 @@ def num(lang, n):
     return {"en": s, "nl": s.replace(",", "."), "de": s.replace(",", "."), "fr": s.replace(",", " ")}[lang]
 
 
+def band_example(lang):
+    """Question and answer on how the volume bands work. The numbers come from QR_TIERS and QR_MIN, never typed by hand:
+    the last asset of the first band against the first asset of the next band, and the fleet size where the minimum stops applying."""
+    q = C[lang].QRPRICE
+    n1, p1 = QR_TIERS[0][1], QR_TIERS[0][2]
+    n2, p2 = QR_TIERS[1][0], QR_TIERS[1][2]
+    c1, c2 = round(n1 * p1, 2), round(n2 * p2, 2)
+    assert c2 < c1, "the example only holds while the next band is cheaper in total"
+    k = max(n for n in range(1, n1 + 1) if round(n * p1, 2) < QR_MIN)
+    return q["band_q"], q["band_a"].format(n1=num(lang, n1), n2=num(lang, n2), p1=money(lang, p1), p2=money(lang, p2),
+                                           c1=money(lang, c1), c2=money(lang, c2), m=money(lang, QR_MIN), k=num(lang, k))
+
+
 def qr_price_section(lang):
     c, q, p = C[lang], C[lang].QRPRICE, pre(lang)
+    bq, ba = band_example(lang)
     rows = "".join(
         f'<tr><td>{esc(q["range_from"].format(a=num(lang, a), b=num(lang, b)) if b else q["range_plus"].format(a=num(lang, a)))}</td><td class="qrp-price">{esc(money(lang, v))}</td></tr>'
         for a, b, v in QR_TIERS)
@@ -1329,6 +1343,7 @@ def qr_price_section(lang):
           <div class="qrp-card"><h3>{esc(q["adv_h"])} <span class="qrp-adv">{esc(q["adv_price"].format(p=money(lang, QR_ADV)))}</span></h3><ul class="v2-check-list">{"".join(f"<li>{api_link(lang, x)}</li>" for x in q["adv"])}</ul>
             <h3 class="qrp-terms-h">{esc(q["terms_h"])}</h3><ul class="qrp-terms">{li(terms)}</ul></div>
         </div>
+        <div class="v2-faq-item" id="report-pricing-bands"><p class="v2-faq-q">{esc(bq)}</p><p class="v2-faq-a">{esc(ba)}</p></div>
         <p><a href="{p}/contact?solution=report" class="v2-btn v2-btn-primary">{esc(q["cta"])} &rarr;</a></p>
       </div>
     </section>'''

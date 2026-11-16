@@ -11,7 +11,7 @@ start date; never sign a start date before the build date in this table.
 |---|---|---|---|
 | QR per asset/shipment, no app, branding, app in 42 languages, portal in English, EU storage | live | — | live |
 | E-mail notifications, searchable history, CSV export | live | — | live |
-| Daily backups, encryption, DPA, retention, deletion | live (nightly D1 backup, 14 days) | — | live |
+| Daily database backups, encryption, DPA, retention, deletion | live (nightly D1 backup, 14 days, encrypted; files in R2 are not in it; first restore drill 2026-11-16; "encrypted, restore tested" is claimed on the trust page only) | — | live |
 | Own categories and extra fields (e.g. refund amount + payment reference) | **live** (app production 2026-10-31; portal configurator) | per-brand category + field list | 1 · live |
 | Photo required / optional / off | **live** (delivery: required/optional, report: all three); **up to 5 photos in one report live 2026-11-01** | form setting + transaction_files | 1 · live; 5 photos: 2 · live |
 | Asset register from template, move/retire, stickers with custom text | **live** (feature `asset_register`, beta) | reference register + sticker text | 1 · live |

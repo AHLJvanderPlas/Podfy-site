@@ -114,6 +114,12 @@
         });
       }
 
+      /* EU badge: storage in the EU (not "data never leaves the EU") */
+      var EU_BADGE = { nl: "Opslag in de EU", de: "Speicherung in der EU", fr: "Stockage dans l\u2019UE" };
+      if (locale && EU_BADGE[locale]) {
+        document.querySelectorAll(".site-footer-eu-badge").forEach(function (el) { el.textContent = EU_BADGE[locale]; });
+      }
+
       /* Rewrite footer column links for NL/DE locales */
       if (locale) {
         var pfx = "/" + locale;
