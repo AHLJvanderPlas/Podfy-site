@@ -155,7 +155,7 @@ export async function onRequestGet(context) {
     </div>
   </section>
 
-  <main class="container" data-u="u102e6a6">
+  <main id="main" class="container" data-u="u102e6a6">
     ${tabsHtml(lang, "market")}
     <section aria-labelledby="mu-heading" data-u="u79ef84c">
       <h2 id="mu-heading" data-u="u3ffdc92">${esc(T.sectionHeading)}</h2>

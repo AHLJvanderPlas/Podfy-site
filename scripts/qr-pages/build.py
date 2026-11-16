@@ -170,7 +170,6 @@ def features(c):
 def write(lang, path, head_html, body):
     full = head_html + '''<body class="v2">
   <div id="v2-progress"></div>
-  <a href="#main" class="sr-only">''' + {"en": "Skip to content", "nl": "Naar inhoud", "de": "Zum Inhalt", "fr": "Aller au contenu"}[lang] + '''</a>
   [[PODFY_HEADER]]
 ''' + body + '''
   [[PODFY_FOOTER]]
@@ -560,7 +559,7 @@ def build_landing(lang):
             <dl class="lp-ticket-rows">{rows}</dl>
             <span class="v2-stamp-mark lp-ticket-stamp">{esc(lp["ticket_stamp"])}</span>
           </article>
-          <figure class="lp-json"><figcaption>{esc(lp["json_caption"])}</figcaption><pre><code>{esc(payload)}</code></pre></figure>
+          <figure class="lp-json"><figcaption>{esc(lp["json_caption"])}</figcaption><pre tabindex="0" role="region" aria-label="{esc(lp["json_caption"])}"><code>{esc(payload)}</code></pre></figure>
         </div>
       </div>
     </section>
@@ -622,7 +621,6 @@ def build_landing(lang):
   </main>'''
     full = head_html + '''<body class="v2">
   <div id="v2-progress"></div>
-  <a href="#main" class="sr-only">''' + {"en": "Skip to content", "nl": "Naar inhoud", "de": "Zum Inhalt", "fr": "Aller au contenu"}[lang] + '''</a>
   [[PODFY_HEADER]]
 ''' + body + f'''
 
@@ -673,7 +671,6 @@ def page_shell(lang, path, title, desc, ld, body, script=None, turnstile=False, 
 {ts}{extra_head}{lds}</head>
 <body class="v2">
   <div id="v2-progress"></div>
-  <a href="#main" class="sr-only">{ {"en": "Skip to content", "nl": "Naar inhoud", "de": "Zum Inhalt", "fr": "Aller au contenu"}[lang] }</a>
   [[PODFY_HEADER]]
 {body}
 
@@ -796,7 +793,7 @@ def build_cmr(lang):
         </div>
         <div class="lp-receive-visual">
           {ticket(m["ticket_head"], m["ticket_vals"][0], m["ticket_labels"], m["ticket_vals"], m["ticket_stamp"])}
-          <figure class="lp-json"><figcaption>{esc(m["json_caption"])}</figcaption><pre><code>{esc(payload)}</code></pre></figure>
+          <figure class="lp-json"><figcaption>{esc(m["json_caption"])}</figcaption><pre tabindex="0" role="region" aria-label="{esc(m["json_caption"])}"><code>{esc(payload)}</code></pre></figure>
         </div>
       </div>
     </section>
@@ -923,7 +920,7 @@ def build_home(lang):
         <p class="v2-eyebrow">{esc(hm["cmp_eyebrow"])}</p>
         <h2 class="v2-section-title" id="home-cmp-heading">{esc(hm["cmp_title"])}</h2>
         <p class="v2-prose">{esc(hm["cmp_intro"])}</p>
-        <div class="home-cmp-wrap"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">{esc(hm["cmp_eyebrow"])}</span></th><th scope="col"><a href="{p}/cmr/">{esc(cols[1])}</a></th><th scope="col"><a href="{p}/qr/">{esc(cols[2])}</a></th></tr></thead><tbody>{cmp_rows}</tbody></table></div>
+        <div class="home-cmp-wrap" tabindex="0" role="region" aria-labelledby="home-cmp-heading"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">{esc(hm["cmp_eyebrow"])}</span></th><th scope="col"><a href="{p}/cmr/">{esc(cols[1])}</a></th><th scope="col"><a href="{p}/qr/">{esc(cols[2])}</a></th></tr></thead><tbody>{cmp_rows}</tbody></table></div>
       </div>
     </section>
 
@@ -1049,7 +1046,7 @@ def build_vsqr(lang):
       <div class="container">
         <h2 class="v2-section-title" id="cmp-heading">{esc(v["cmp_title"])}</h2>
         <p class="v2-prose">{esc(v["cmp_intro"])}</p>
-        <div class="home-cmp-wrap"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">{esc(cols[0])}</span></th><th scope="col">{esc(cols[1])}</th><th scope="col"><a href="{p}{SECTION}">{esc(cols[2])}</a></th></tr></thead><tbody>{rows}</tbody></table></div>
+        <div class="home-cmp-wrap" tabindex="0" role="region" aria-labelledby="cmp-heading"><table class="home-cmp-table"><thead><tr><th scope="col"><span class="sr-only">{esc(cols[0])}</span></th><th scope="col">{esc(cols[1])}</th><th scope="col"><a href="{p}{SECTION}">{esc(cols[2])}</a></th></tr></thead><tbody>{rows}</tbody></table></div>
       </div>
     </section>
 

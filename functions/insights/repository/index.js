@@ -82,7 +82,7 @@ export async function onRequestGet(context) {
     </div>
   </section>
 
-  <main class="container" data-u="u102e6a6">
+  <main id="main" class="container" data-u="u102e6a6">
     ${tabsHtml(lang, "repository")}
     <div id="repo-cards">${cardsHtml}</div>
   </main>`;
