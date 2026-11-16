@@ -1,6 +1,6 @@
-// Same policies as /* in _headers (static pages); applied here to HTML rendered by Functions.
-const PAGE_CSP = "default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://podfy.app https://challenges.cloudflare.com; frame-src 'self' https://challenges.cloudflare.com; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; object-src 'none'";
-const PAGE_CSP_REPORT_ONLY = "default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://podfy.app https://challenges.cloudflare.com; frame-src 'self' https://challenges.cloudflare.com; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; object-src 'none'; report-uri /csp-report";
+// Same policy as /* in _headers (static pages); applied here to HTML rendered by Functions (they never get _headers).
+// tests/csp-headers.test.mjs keeps the two strings identical.
+const PAGE_CSP = "default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://podfy.app https://challenges.cloudflare.com; frame-src 'self' https://challenges.cloudflare.com; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; object-src 'none'; report-uri /csp-report";
 
 export async function onRequest(context) {
   const { request, env, next } = context;
@@ -37,12 +37,11 @@ export async function onRequest(context) {
     url.pathname === "/sitemap-insights.xml" ||
     url.pathname === "/llms-insights.txt"
   ) {
-    // Function responses don't get _headers: give their HTML pages the same policies
+    // Function responses don't get _headers: give their HTML pages the same policy (exactly one CSP)
     const res = await next();
     if (!(res.headers.get("content-type") || "").includes("text/html")) return res;
     const out = new Response(res.body, res);
     out.headers.set("Content-Security-Policy", PAGE_CSP);
-    out.headers.set("Content-Security-Policy-Report-Only", PAGE_CSP_REPORT_ONLY);
     out.headers.set("X-Frame-Options", "DENY");
     out.headers.set("X-Content-Type-Options", "nosniff");
     return out;

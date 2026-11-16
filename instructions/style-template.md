@@ -72,13 +72,12 @@ All tokens live on `body {}` as CSS custom properties.
 
 ## 3. Typography
 
-### Google Fonts import
+### Fonts (self-hosted)
 
-```css
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-```
-
-Place this as the very first line in any CSS file or as a `<link>` in `<head>` before the site stylesheet.
+No third-party font host: the CSP is `font-src 'self'` / `style-src 'self'`. The latin woff2 subsets live in
+`assets/fonts/` (Inter 400/500/600, JetBrains Mono 400/500, Source Serif 4 400/400i/500/500i/600) and are declared
+with `@font-face` (`font-display: swap`) at the top of `assets/styles.site.css`. Other PODFY hosts copy the files they
+use into their own `public/fonts/`.
 
 ### Font stacks
 
