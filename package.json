@@ -11,7 +11,7 @@
     "visual": "node tests/browser/visual.mjs"
   },
   "devDependencies": {
-    "playwright": "1.61.1",
-    "wrangler": "4.76.0"
+    "playwright": "1.65.1",
+    "wrangler": "4.162.0"
   }
 }
